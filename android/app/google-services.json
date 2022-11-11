@@ -1,0 +1,54 @@
+{
+  "project_info": {
+    "project_number": "822428050129",
+    "project_id": "fitegy-8c775",
+    "storage_bucket": "fitegy-8c775.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:822428050129:android:a07fa6cb6df7764a515bf0",
+        "android_client_info": {
+          "package_name": "fitegy.official.com"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "822428050129-pbq3cnbcdf9e7ult14eii365uffjud51.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "fitegy.official.com",
+            "certificate_hash": "9bbb3186b2189ef16d8f272bdab59362c395cbb4"
+          }
+        },
+        {
+          "client_id": "822428050129-p6biujtf1ai6m2hk29fvevb2aie1amin.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDmRN4ORPXOlFDevhQ4QtNwqNf_AXJRMd8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "822428050129-p6biujtf1ai6m2hk29fvevb2aie1amin.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "822428050129-usgu0kqdk7l35s8ld1tud27lq5ejuo2u.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "fitegy.official.com"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
