@@ -148,58 +148,37 @@ class _CreatePostWidgetState extends State<CreatePostWidget> {
                                               BorderRadius.circular(8),
                                         ),
                                       ),
-                                      Container(
-                                        decoration: BoxDecoration(
-                                          boxShadow: [
-                                            BoxShadow(
-                                              blurRadius: 10,
-                                              color: Color(0x33000000),
-                                              offset: Offset(0, 0),
-                                            )
-                                          ],
-                                          gradient: LinearGradient(
-                                            colors: [
-                                              Color(0xFF4791FF),
-                                              Color(0xFF00D3F2)
-                                            ],
-                                            stops: [0, 1],
-                                            begin: AlignmentDirectional(0, 1),
-                                            end: AlignmentDirectional(0, -1),
+                                      FFButtonWidget(
+                                        onPressed: () async {
+                                          context.pushNamed('PostPosted');
+                                        },
+                                        text: 'Post',
+                                        options: FFButtonOptions(
+                                          width: 90,
+                                          height: 32,
+                                          color: FlutterFlowTheme.of(context)
+                                              .secondaryText,
+                                          textStyle:
+                                              FlutterFlowTheme.of(context)
+                                                  .subtitle2
+                                                  .override(
+                                                    fontFamily: 'Inter',
+                                                    color: Colors.white,
+                                                    fontWeight: FontWeight.bold,
+                                                    useGoogleFonts: GoogleFonts
+                                                            .asMap()
+                                                        .containsKey(
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .subtitle2Family),
+                                                  ),
+                                          elevation: 4,
+                                          borderSide: BorderSide(
+                                            color: Colors.transparent,
+                                            width: 1,
                                           ),
                                           borderRadius:
-                                              BorderRadius.circular(30),
-                                        ),
-                                        child: FFButtonWidget(
-                                          onPressed: () async {
-                                            context.pushNamed('PostPosted');
-                                          },
-                                          text: 'Post',
-                                          options: FFButtonOptions(
-                                            width: 100,
-                                            height: 35,
-                                            color: Color(0x0039B4FC),
-                                            textStyle:
-                                                FlutterFlowTheme.of(context)
-                                                    .subtitle2
-                                                    .override(
-                                                      fontFamily: 'Inter',
-                                                      color: Colors.white,
-                                                      fontWeight:
-                                                          FontWeight.bold,
-                                                      useGoogleFonts: GoogleFonts
-                                                              .asMap()
-                                                          .containsKey(
-                                                              FlutterFlowTheme.of(
-                                                                      context)
-                                                                  .subtitle2Family),
-                                                    ),
-                                            borderSide: BorderSide(
-                                              color: Colors.transparent,
-                                              width: 1,
-                                            ),
-                                            borderRadius:
-                                                BorderRadius.circular(0),
-                                          ),
+                                              BorderRadius.circular(15),
                                         ),
                                       ),
                                     ],
@@ -223,10 +202,12 @@ class _CreatePostWidgetState extends State<CreatePostWidget> {
                       Divider(
                         height: 30,
                         thickness: 1,
+                        indent: 30,
+                        endIndent: 30,
                         color: Color(0xFFCFCFCF),
                       ),
                       Padding(
-                        padding: EdgeInsetsDirectional.fromSTEB(35, 0, 30, 0),
+                        padding: EdgeInsetsDirectional.fromSTEB(30, 0, 30, 0),
                         child: Column(
                           mainAxisSize: MainAxisSize.max,
                           mainAxisAlignment: MainAxisAlignment.start,
@@ -273,7 +254,7 @@ class _CreatePostWidgetState extends State<CreatePostWidget> {
                                                           FlutterFlowTheme.of(
                                                                   context)
                                                               .bodyText1Family,
-                                                      color: Color(0xFF39B4FC),
+                                                      color: Color(0xFF99EDFF),
                                                       fontSize: 12,
                                                       useGoogleFonts: GoogleFonts
                                                               .asMap()
@@ -285,12 +266,12 @@ class _CreatePostWidgetState extends State<CreatePostWidget> {
                                             hintText: 'Please select...',
                                             icon: Icon(
                                               Icons.keyboard_arrow_down_sharp,
-                                              color: Color(0xFF39B4FC),
+                                              color: Color(0xFF99EDFF),
                                               size: 20,
                                             ),
                                             fillColor: Colors.white,
                                             elevation: 1,
-                                            borderColor: Color(0xFF39B4FC),
+                                            borderColor: Color(0xFF99EDFF),
                                             borderWidth: 1,
                                             borderRadius: 50,
                                             margin:
@@ -365,7 +346,7 @@ class _CreatePostWidgetState extends State<CreatePostWidget> {
                                           .override(
                                             fontFamily: 'Inter',
                                             color: Color(0xFFB1B1B1),
-                                            fontWeight: FontWeight.normal,
+                                            fontWeight: FontWeight.w300,
                                             useGoogleFonts: GoogleFonts.asMap()
                                                 .containsKey(
                                                     FlutterFlowTheme.of(context)
@@ -410,6 +391,7 @@ class _CreatePostWidgetState extends State<CreatePostWidget> {
                                           color: FlutterFlowTheme.of(context)
                                               .primaryColor,
                                           fontSize: 14,
+                                          fontWeight: FontWeight.w500,
                                           useGoogleFonts: GoogleFonts.asMap()
                                               .containsKey(
                                                   FlutterFlowTheme.of(context)
@@ -434,7 +416,7 @@ class _CreatePostWidgetState extends State<CreatePostWidget> {
                                   .override(
                                     fontFamily: 'Inter',
                                     color: Color(0xFFB1B1B1),
-                                    fontWeight: FontWeight.normal,
+                                    fontWeight: FontWeight.w300,
                                     useGoogleFonts: GoogleFonts.asMap()
                                         .containsKey(
                                             FlutterFlowTheme.of(context)
@@ -557,7 +539,7 @@ class _CreatePostWidgetState extends State<CreatePostWidget> {
                       text: '',
                       icon: Icon(
                         Icons.photo,
-                        color: Color(0x9239B4FC),
+                        color: Color(0x9999EDFF),
                         size: 30,
                       ),
                       options: FFButtonOptions(
@@ -599,7 +581,7 @@ class _CreatePostWidgetState extends State<CreatePostWidget> {
                       text: '',
                       icon: Icon(
                         Icons.clear_all,
-                        color: Color(0x9239B4FC),
+                        color: Color(0x9999EDFF),
                         size: 40,
                       ),
                       options: FFButtonOptions(
@@ -627,7 +609,7 @@ class _CreatePostWidgetState extends State<CreatePostWidget> {
                       text: '',
                       icon: Icon(
                         Icons.location_on,
-                        color: Color(0x9239B4FC),
+                        color: Color(0x9999EDFF),
                         size: 30,
                       ),
                       options: FFButtonOptions(

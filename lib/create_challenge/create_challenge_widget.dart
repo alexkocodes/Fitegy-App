@@ -219,6 +219,7 @@ class _CreateChallengeWidgetState extends State<CreateChallengeWidget> {
                                   .override(
                                     fontFamily: 'Inter',
                                     color: Color(0xFFB1B1B1),
+                                    fontWeight: FontWeight.w300,
                                     useGoogleFonts: GoogleFonts.asMap()
                                         .containsKey(
                                             FlutterFlowTheme.of(context)
