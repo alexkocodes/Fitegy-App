@@ -113,7 +113,7 @@ class _CreateChallengeWidgetState extends State<CreateChallengeWidget> {
                               hintStyle: FlutterFlowTheme.of(context)
                                   .bodyText2
                                   .override(
-                                    fontFamily: 'Montserrat',
+                                    fontFamily: 'Inter',
                                     color: Color(0xFFB1B1B1),
                                     useGoogleFonts: GoogleFonts.asMap()
                                         .containsKey(
@@ -217,7 +217,7 @@ class _CreateChallengeWidgetState extends State<CreateChallengeWidget> {
                               hintStyle: FlutterFlowTheme.of(context)
                                   .bodyText2
                                   .override(
-                                    fontFamily: 'Montserrat',
+                                    fontFamily: 'Inter',
                                     color: Color(0xFFB1B1B1),
                                     useGoogleFonts: GoogleFonts.asMap()
                                         .containsKey(
@@ -321,7 +321,7 @@ class _CreateChallengeWidgetState extends State<CreateChallengeWidget> {
                               hintStyle: FlutterFlowTheme.of(context)
                                   .bodyText2
                                   .override(
-                                    fontFamily: 'Montserrat',
+                                    fontFamily: 'Inter',
                                     color: Color(0xFFB1B1B1),
                                     useGoogleFonts: GoogleFonts.asMap()
                                         .containsKey(
@@ -367,7 +367,7 @@ class _CreateChallengeWidgetState extends State<CreateChallengeWidget> {
                             style: FlutterFlowTheme.of(context)
                                 .bodyText1
                                 .override(
-                                  fontFamily: 'Montserrat',
+                                  fontFamily: 'Inter',
                                   color: Colors.black,
                                   fontSize: 14,
                                   useGoogleFonts: GoogleFonts.asMap()
@@ -410,7 +410,7 @@ class _CreateChallengeWidgetState extends State<CreateChallengeWidget> {
                                   ),
                                 ),
                                 Align(
-                                  alignment: AlignmentDirectional(-0.34, 0),
+                                  alignment: AlignmentDirectional(-0.43, 0),
                                   child: ToggleIcon(
                                     onPressed: () async {
                                       setState(() =>

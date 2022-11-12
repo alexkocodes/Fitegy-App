@@ -363,8 +363,9 @@ class _CreatePostWidgetState extends State<CreatePostWidget> {
                                       hintStyle: FlutterFlowTheme.of(context)
                                           .bodyText2
                                           .override(
-                                            fontFamily: 'Montserrat',
+                                            fontFamily: 'Inter',
                                             color: Color(0xFFB1B1B1),
+                                            fontWeight: FontWeight.normal,
                                             useGoogleFonts: GoogleFonts.asMap()
                                                 .containsKey(
                                                     FlutterFlowTheme.of(context)
@@ -431,9 +432,9 @@ class _CreatePostWidgetState extends State<CreatePostWidget> {
                               style: FlutterFlowTheme.of(context)
                                   .bodyText1
                                   .override(
-                                    fontFamily: 'Montserrat',
+                                    fontFamily: 'Inter',
                                     color: Color(0xFFB1B1B1),
-                                    fontWeight: FontWeight.w300,
+                                    fontWeight: FontWeight.normal,
                                     useGoogleFonts: GoogleFonts.asMap()
                                         .containsKey(
                                             FlutterFlowTheme.of(context)
