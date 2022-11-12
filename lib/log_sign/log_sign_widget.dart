@@ -23,21 +23,62 @@ class LogSignWidget extends StatefulWidget {
 class _LogSignWidgetState extends State<LogSignWidget>
     with TickerProviderStateMixin {
   final animationsMap = {
-    'columnOnPageLoadAnimation': AnimationInfo(
+    'textOnPageLoadAnimation1': AnimationInfo(
       trigger: AnimationTrigger.onPageLoad,
       effects: [
+        VisibilityEffect(duration: 1.ms),
+        MoveEffect(
+          curve: Curves.easeInOut,
+          delay: 0.ms,
+          duration: 820.ms,
+          begin: Offset(57, 0),
+          end: Offset(0, 0),
+        ),
         FadeEffect(
           curve: Curves.easeInOut,
           delay: 0.ms,
-          duration: 970.ms,
+          duration: 820.ms,
+          begin: 0,
+          end: 1,
+        ),
+      ],
+    ),
+    'textOnPageLoadAnimation2': AnimationInfo(
+      trigger: AnimationTrigger.onPageLoad,
+      effects: [
+        VisibilityEffect(duration: 220.ms),
+        MoveEffect(
+          curve: Curves.easeInOut,
+          delay: 220.ms,
+          duration: 820.ms,
+          begin: Offset(62, 0),
+          end: Offset(0, 0),
+        ),
+        FadeEffect(
+          curve: Curves.easeInOut,
+          delay: 220.ms,
+          duration: 820.ms,
+          begin: 0,
+          end: 1,
+        ),
+      ],
+    ),
+    'iconButtonOnPageLoadAnimation': AnimationInfo(
+      trigger: AnimationTrigger.onPageLoad,
+      effects: [
+        VisibilityEffect(duration: 450.ms),
+        FadeEffect(
+          curve: Curves.easeInOut,
+          delay: 450.ms,
+          duration: 820.ms,
           begin: 0,
           end: 1,
         ),
         MoveEffect(
           curve: Curves.easeInOut,
-          delay: 0.ms,
-          duration: 970.ms,
-          begin: Offset(-100, 0),
+          delay: 450.ms,
+          duration: 820.ms,
+          begin: Offset(73, 0),
           end: Offset(0, 0),
         ),
       ],
@@ -47,17 +88,17 @@ class _LogSignWidgetState extends State<LogSignWidget>
       effects: [
         FadeEffect(
           curve: Curves.easeInOut,
-          delay: 0.ms,
-          duration: 600.ms,
+          delay: 640.ms,
+          duration: 820.ms,
           begin: 0,
           end: 1,
         ),
         MoveEffect(
           curve: Curves.easeInOut,
-          delay: 0.ms,
-          duration: 600.ms,
-          begin: Offset(59, 71),
-          end: Offset(0, 4),
+          delay: 640.ms,
+          duration: 820.ms,
+          begin: Offset(100, 0),
+          end: Offset(0, 0),
         ),
       ],
     ),
@@ -1784,7 +1825,8 @@ class _LogSignWidgetState extends State<LogSignWidget>
                                                                   context)
                                                               .title1Family),
                                                 ),
-                                          ),
+                                          ).animateOnPageLoad(animationsMap[
+                                              'textOnPageLoadAnimation1']!),
                                         ),
                                       ),
                                     ],
@@ -1806,17 +1848,8 @@ class _LogSignWidgetState extends State<LogSignWidget>
                                                   FlutterFlowTheme.of(context)
                                                       .title1Family),
                                         ),
-                                  ),
-                                ),
-                                Padding(
-                                  padding: EdgeInsetsDirectional.fromSTEB(
-                                      0, 24, 0, 0),
-                                  child: Container(
-                                    width: double.infinity,
-                                    decoration: BoxDecoration(
-                                      borderRadius: BorderRadius.circular(12),
-                                    ),
-                                  ),
+                                  ).animateOnPageLoad(animationsMap[
+                                      'textOnPageLoadAnimation2']!),
                                 ),
                                 Padding(
                                   padding: EdgeInsetsDirectional.fromSTEB(
@@ -1840,13 +1873,13 @@ class _LogSignWidgetState extends State<LogSignWidget>
                                         onPressed: () async {
                                           context.pushNamed('HomePage');
                                         },
-                                      ),
+                                      ).animateOnPageLoad(animationsMap[
+                                          'iconButtonOnPageLoadAnimation']!),
                                     ],
                                   ),
                                 ),
                               ],
-                            ).animateOnPageLoad(
-                                animationsMap['columnOnPageLoadAnimation']!),
+                            ),
                           ],
                         ),
                       ),
