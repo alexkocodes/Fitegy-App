@@ -405,8 +405,9 @@ class _CreatePostWidgetState extends State<CreatePostWidget> {
                                     style: FlutterFlowTheme.of(context)
                                         .bodyText1
                                         .override(
-                                          fontFamily: 'Montserrat',
-                                          color: Colors.black,
+                                          fontFamily: 'Inter',
+                                          color: FlutterFlowTheme.of(context)
+                                              .primaryColor,
                                           fontSize: 14,
                                           useGoogleFonts: GoogleFonts.asMap()
                                               .containsKey(

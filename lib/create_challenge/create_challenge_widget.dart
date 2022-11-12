@@ -159,8 +159,9 @@ class _CreateChallengeWidgetState extends State<CreateChallengeWidget> {
                             style: FlutterFlowTheme.of(context)
                                 .bodyText1
                                 .override(
-                                  fontFamily: 'Montserrat',
-                                  color: Colors.black,
+                                  fontFamily: 'Inter',
+                                  color: FlutterFlowTheme.of(context)
+                                      .secondaryText,
                                   fontSize: 14,
                                   useGoogleFonts: GoogleFonts.asMap()
                                       .containsKey(FlutterFlowTheme.of(context)
@@ -260,8 +261,9 @@ class _CreateChallengeWidgetState extends State<CreateChallengeWidget> {
                             style: FlutterFlowTheme.of(context)
                                 .bodyText1
                                 .override(
-                                  fontFamily: 'Montserrat',
-                                  color: Colors.black,
+                                  fontFamily: 'Inter',
+                                  color: FlutterFlowTheme.of(context)
+                                      .secondaryText,
                                   fontSize: 14,
                                   useGoogleFonts: GoogleFonts.asMap()
                                       .containsKey(FlutterFlowTheme.of(context)
