@@ -1,13 +1,8 @@
 // Export pages
 export 'log_sign/log_sign_widget.dart' show LogSignWidget;
-export 'email/email_widget.dart' show EmailWidget;
-export 'password/password_widget.dart' show PasswordWidget;
-export 'username/username_widget.dart' show UsernameWidget;
-export 'done/done_widget.dart' show DoneWidget;
 export 'home_page/home_page_widget.dart' show HomePageWidget;
 export 'create/create_widget.dart' show CreateWidget;
 export 'my_account/my_account_widget.dart' show MyAccountWidget;
-export 'landing/landing_widget.dart' show LandingWidget;
 export 'create_challenge/create_challenge_widget.dart'
     show CreateChallengeWidget;
 export 'challenge_created/challenge_created_widget.dart'

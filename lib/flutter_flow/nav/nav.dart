@@ -82,26 +82,6 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
               builder: (context, params) => LogSignWidget(),
             ),
             FFRoute(
-              name: 'Email',
-              path: 'email',
-              builder: (context, params) => EmailWidget(),
-            ),
-            FFRoute(
-              name: 'Password',
-              path: 'password',
-              builder: (context, params) => PasswordWidget(),
-            ),
-            FFRoute(
-              name: 'Username',
-              path: 'username',
-              builder: (context, params) => UsernameWidget(),
-            ),
-            FFRoute(
-              name: 'Done',
-              path: 'done',
-              builder: (context, params) => DoneWidget(),
-            ),
-            FFRoute(
               name: 'HomePage',
               path: 'homePage',
               builder: (context, params) => params.isEmpty
@@ -121,11 +101,6 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
               builder: (context, params) => params.isEmpty
                   ? NavBarPage(initialPage: 'MyAccount')
                   : MyAccountWidget(),
-            ),
-            FFRoute(
-              name: 'Landing',
-              path: 'landing',
-              builder: (context, params) => LandingWidget(),
             ),
             FFRoute(
               name: 'CreateChallenge',
