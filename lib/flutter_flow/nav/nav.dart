@@ -127,6 +127,8 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
                 time: params.getParam('time', ParamType.DateTime),
                 details: params.getParam('details', ParamType.String),
                 comments: params.getParam('comments', ParamType.String),
+                challengeReference: params.getParam('challengeReference',
+                    ParamType.DocumentReference, false, 'challenges'),
               ),
             ),
             FFRoute(
@@ -157,7 +159,10 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
             FFRoute(
               name: 'Invite',
               path: 'invite',
-              builder: (context, params) => InviteWidget(),
+              builder: (context, params) => InviteWidget(
+                challengeReference: params.getParam('challengeReference',
+                    ParamType.DocumentReference, false, 'challenges'),
+              ),
             ),
             FFRoute(
               name: 'InviteSent',

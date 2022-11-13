@@ -15,21 +15,7 @@ service cloud.firestore {
       allow delete: if request.auth != null;
     }
 
-    match /users/{parent}/active_challenges/{document} {
-      allow create: if request.auth.uid == parent;
-      allow read: if true;
-      allow write: if request.auth.uid == parent;
-      allow delete: if false;
-    }
-
-    match /users/{parent}/completed_challenges/{document} {
-      allow create: if request.auth.uid == parent;
-      allow read: if true;
-      allow write: if request.auth.uid == parent;
-      allow delete: if false;
-    }
-
-    match /users/{parent}/invited_challenges/{document} {
+    match /users/{parent}/challenges/{document} {
       allow create: if request.auth.uid == parent;
       allow read: if true;
       allow write: if request.auth.uid == parent;

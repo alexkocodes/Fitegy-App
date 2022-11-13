@@ -1,5 +1,6 @@
 import '../backend/backend.dart';
 import '../components/challenge_card_widget.dart';
+import '../components/empty_widget.dart';
 import '../flutter_flow/flutter_flow_animations.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_util.dart';
@@ -274,13 +275,15 @@ class _MyChallengesWidgetState extends State<MyChallengesWidget>
                                   Padding(
                                     padding: EdgeInsetsDirectional.fromSTEB(
                                         0, 15, 0, 0),
-                                    child: StreamBuilder<
-                                        List<ActiveChallengesRecord>>(
-                                      stream: queryActiveChallengesRecord(
-                                        queryBuilder:
-                                            (activeChallengesRecord) =>
-                                                activeChallengesRecord
-                                                    .orderBy('created_at'),
+                                    child:
+                                        StreamBuilder<List<ChallengesRecord>>(
+                                      stream: queryChallengesRecord(
+                                        queryBuilder: (challengesRecord) =>
+                                            challengesRecord
+                                                .where('status',
+                                                    isEqualTo: 'active')
+                                                .orderBy('created_at',
+                                                    descending: true),
                                         limit: 10,
                                       ),
                                       builder: (context, snapshot) {
@@ -298,9 +301,21 @@ class _MyChallengesWidgetState extends State<MyChallengesWidget>
                                             ),
                                           );
                                         }
-                                        List<ActiveChallengesRecord>
-                                            gridViewActiveChallengesRecordList =
+                                        List<ChallengesRecord>
+                                            gridViewChallengesRecordList =
                                             snapshot.data!;
+                                        if (gridViewChallengesRecordList
+                                            .isEmpty) {
+                                          return Center(
+                                            child: Container(
+                                              width: MediaQuery.of(context)
+                                                      .size
+                                                      .width *
+                                                  0.5,
+                                              child: EmptyWidget(),
+                                            ),
+                                          );
+                                        }
                                         return GridView.builder(
                                           padding: EdgeInsets.zero,
                                           gridDelegate:
@@ -312,28 +327,27 @@ class _MyChallengesWidgetState extends State<MyChallengesWidget>
                                           ),
                                           scrollDirection: Axis.vertical,
                                           itemCount:
-                                              gridViewActiveChallengesRecordList
+                                              gridViewChallengesRecordList
                                                   .length,
                                           itemBuilder:
                                               (context, gridViewIndex) {
-                                            final gridViewActiveChallengesRecord =
-                                                gridViewActiveChallengesRecordList[
+                                            final gridViewChallengesRecord =
+                                                gridViewChallengesRecordList[
                                                     gridViewIndex];
                                             return ChallengeCardWidget(
                                               key: Key(
                                                   'ChallengeCard_${gridViewIndex}'),
-                                              title:
-                                                  gridViewActiveChallengesRecord
-                                                      .title,
-                                              time:
-                                                  gridViewActiveChallengesRecord
-                                                      .createdAt,
-                                              details:
-                                                  gridViewActiveChallengesRecord
-                                                      .details,
-                                              comments:
-                                                  gridViewActiveChallengesRecord
-                                                      .comments,
+                                              title: gridViewChallengesRecord
+                                                  .title,
+                                              time: gridViewChallengesRecord
+                                                  .createdAt,
+                                              details: gridViewChallengesRecord
+                                                  .details,
+                                              comments: gridViewChallengesRecord
+                                                  .comments,
+                                              challengeReference:
+                                                  gridViewChallengesRecord
+                                                      .reference,
                                             );
                                           },
                                         );
@@ -343,13 +357,15 @@ class _MyChallengesWidgetState extends State<MyChallengesWidget>
                                   Padding(
                                     padding: EdgeInsetsDirectional.fromSTEB(
                                         0, 15, 0, 0),
-                                    child: StreamBuilder<
-                                        List<CompletedChallengesRecord>>(
-                                      stream: queryCompletedChallengesRecord(
-                                        queryBuilder:
-                                            (completedChallengesRecord) =>
-                                                completedChallengesRecord
-                                                    .orderBy('created_at'),
+                                    child:
+                                        StreamBuilder<List<ChallengesRecord>>(
+                                      stream: queryChallengesRecord(
+                                        queryBuilder: (challengesRecord) =>
+                                            challengesRecord
+                                                .where('status',
+                                                    isEqualTo: 'completed')
+                                                .orderBy('created_at',
+                                                    descending: true),
                                         limit: 10,
                                       ),
                                       builder: (context, snapshot) {
@@ -362,14 +378,26 @@ class _MyChallengesWidgetState extends State<MyChallengesWidget>
                                               child: CircularProgressIndicator(
                                                 color:
                                                     FlutterFlowTheme.of(context)
-                                                        .primaryBtnText,
+                                                        .lineColor,
                                               ),
                                             ),
                                           );
                                         }
-                                        List<CompletedChallengesRecord>
-                                            gridViewCompletedChallengesRecordList =
+                                        List<ChallengesRecord>
+                                            gridViewChallengesRecordList =
                                             snapshot.data!;
+                                        if (gridViewChallengesRecordList
+                                            .isEmpty) {
+                                          return Center(
+                                            child: Container(
+                                              width: MediaQuery.of(context)
+                                                      .size
+                                                      .width *
+                                                  0.5,
+                                              child: EmptyWidget(),
+                                            ),
+                                          );
+                                        }
                                         return GridView.builder(
                                           padding: EdgeInsets.zero,
                                           gridDelegate:
@@ -381,12 +409,12 @@ class _MyChallengesWidgetState extends State<MyChallengesWidget>
                                           ),
                                           scrollDirection: Axis.vertical,
                                           itemCount:
-                                              gridViewCompletedChallengesRecordList
+                                              gridViewChallengesRecordList
                                                   .length,
                                           itemBuilder:
                                               (context, gridViewIndex) {
-                                            final gridViewCompletedChallengesRecord =
-                                                gridViewCompletedChallengesRecordList[
+                                            final gridViewChallengesRecord =
+                                                gridViewChallengesRecordList[
                                                     gridViewIndex];
                                             return Padding(
                                               padding: EdgeInsetsDirectional
@@ -453,7 +481,7 @@ class _MyChallengesWidgetState extends State<MyChallengesWidget>
                                                                   .start,
                                                           children: [
                                                             Text(
-                                                              gridViewCompletedChallengesRecord
+                                                              gridViewChallengesRecord
                                                                   .title!,
                                                               style: FlutterFlowTheme
                                                                       .of(context)
@@ -481,7 +509,7 @@ class _MyChallengesWidgetState extends State<MyChallengesWidget>
                                                               child: Text(
                                                                 dateTimeFormat(
                                                                     'yMMMd',
-                                                                    gridViewCompletedChallengesRecord
+                                                                    gridViewChallengesRecord
                                                                         .createdAt!),
                                                                 style: FlutterFlowTheme.of(
                                                                         context)

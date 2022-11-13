@@ -6,9 +6,7 @@ import '../flutter_flow/flutter_flow_util.dart';
 
 import 'schema/users_record.dart';
 import 'schema/posts_record.dart';
-import 'schema/active_challenges_record.dart';
-import 'schema/completed_challenges_record.dart';
-import 'schema/invited_challenges_record.dart';
+import 'schema/challenges_record.dart';
 import 'schema/serializers.dart';
 
 export 'dart:async' show StreamSubscription;
@@ -18,9 +16,7 @@ export 'schema/serializers.dart';
 
 export 'schema/users_record.dart';
 export 'schema/posts_record.dart';
-export 'schema/active_challenges_record.dart';
-export 'schema/completed_challenges_record.dart';
-export 'schema/invited_challenges_record.dart';
+export 'schema/challenges_record.dart';
 
 /// Functions to query UsersRecords (as a Stream and as a Future).
 Stream<List<UsersRecord>> queryUsersRecord({
@@ -106,143 +102,50 @@ Future<FFFirestorePage<PostsRecord>> queryPostsRecordPage({
       isStream: isStream,
     );
 
-/// Functions to query ActiveChallengesRecords (as a Stream and as a Future).
-Stream<List<ActiveChallengesRecord>> queryActiveChallengesRecord({
+/// Functions to query ChallengesRecords (as a Stream and as a Future).
+Stream<List<ChallengesRecord>> queryChallengesRecord({
   DocumentReference? parent,
   Query Function(Query)? queryBuilder,
   int limit = -1,
   bool singleRecord = false,
 }) =>
     queryCollection(
-      ActiveChallengesRecord.collection(parent),
-      ActiveChallengesRecord.serializer,
+      ChallengesRecord.collection(parent),
+      ChallengesRecord.serializer,
       queryBuilder: queryBuilder,
       limit: limit,
       singleRecord: singleRecord,
     );
 
-Future<List<ActiveChallengesRecord>> queryActiveChallengesRecordOnce({
+Future<List<ChallengesRecord>> queryChallengesRecordOnce({
   DocumentReference? parent,
   Query Function(Query)? queryBuilder,
   int limit = -1,
   bool singleRecord = false,
 }) =>
     queryCollectionOnce(
-      ActiveChallengesRecord.collection(parent),
-      ActiveChallengesRecord.serializer,
+      ChallengesRecord.collection(parent),
+      ChallengesRecord.serializer,
       queryBuilder: queryBuilder,
       limit: limit,
       singleRecord: singleRecord,
     );
 
-Future<FFFirestorePage<ActiveChallengesRecord>>
-    queryActiveChallengesRecordPage({
+Future<FFFirestorePage<ChallengesRecord>> queryChallengesRecordPage({
   DocumentReference? parent,
   Query Function(Query)? queryBuilder,
   DocumentSnapshot? nextPageMarker,
   required int pageSize,
   required bool isStream,
 }) =>
-        queryCollectionPage(
-          ActiveChallengesRecord.collection(parent),
-          ActiveChallengesRecord.serializer,
-          queryBuilder: queryBuilder,
-          nextPageMarker: nextPageMarker,
-          pageSize: pageSize,
-          isStream: isStream,
-        );
-
-/// Functions to query CompletedChallengesRecords (as a Stream and as a Future).
-Stream<List<CompletedChallengesRecord>> queryCompletedChallengesRecord({
-  DocumentReference? parent,
-  Query Function(Query)? queryBuilder,
-  int limit = -1,
-  bool singleRecord = false,
-}) =>
-    queryCollection(
-      CompletedChallengesRecord.collection(parent),
-      CompletedChallengesRecord.serializer,
+    queryCollectionPage(
+      ChallengesRecord.collection(parent),
+      ChallengesRecord.serializer,
       queryBuilder: queryBuilder,
-      limit: limit,
-      singleRecord: singleRecord,
+      nextPageMarker: nextPageMarker,
+      pageSize: pageSize,
+      isStream: isStream,
     );
-
-Future<List<CompletedChallengesRecord>> queryCompletedChallengesRecordOnce({
-  DocumentReference? parent,
-  Query Function(Query)? queryBuilder,
-  int limit = -1,
-  bool singleRecord = false,
-}) =>
-    queryCollectionOnce(
-      CompletedChallengesRecord.collection(parent),
-      CompletedChallengesRecord.serializer,
-      queryBuilder: queryBuilder,
-      limit: limit,
-      singleRecord: singleRecord,
-    );
-
-Future<FFFirestorePage<CompletedChallengesRecord>>
-    queryCompletedChallengesRecordPage({
-  DocumentReference? parent,
-  Query Function(Query)? queryBuilder,
-  DocumentSnapshot? nextPageMarker,
-  required int pageSize,
-  required bool isStream,
-}) =>
-        queryCollectionPage(
-          CompletedChallengesRecord.collection(parent),
-          CompletedChallengesRecord.serializer,
-          queryBuilder: queryBuilder,
-          nextPageMarker: nextPageMarker,
-          pageSize: pageSize,
-          isStream: isStream,
-        );
-
-/// Functions to query InvitedChallengesRecords (as a Stream and as a Future).
-Stream<List<InvitedChallengesRecord>> queryInvitedChallengesRecord({
-  DocumentReference? parent,
-  Query Function(Query)? queryBuilder,
-  int limit = -1,
-  bool singleRecord = false,
-}) =>
-    queryCollection(
-      InvitedChallengesRecord.collection(parent),
-      InvitedChallengesRecord.serializer,
-      queryBuilder: queryBuilder,
-      limit: limit,
-      singleRecord: singleRecord,
-    );
-
-Future<List<InvitedChallengesRecord>> queryInvitedChallengesRecordOnce({
-  DocumentReference? parent,
-  Query Function(Query)? queryBuilder,
-  int limit = -1,
-  bool singleRecord = false,
-}) =>
-    queryCollectionOnce(
-      InvitedChallengesRecord.collection(parent),
-      InvitedChallengesRecord.serializer,
-      queryBuilder: queryBuilder,
-      limit: limit,
-      singleRecord: singleRecord,
-    );
-
-Future<FFFirestorePage<InvitedChallengesRecord>>
-    queryInvitedChallengesRecordPage({
-  DocumentReference? parent,
-  Query Function(Query)? queryBuilder,
-  DocumentSnapshot? nextPageMarker,
-  required int pageSize,
-  required bool isStream,
-}) =>
-        queryCollectionPage(
-          InvitedChallengesRecord.collection(parent),
-          InvitedChallengesRecord.serializer,
-          queryBuilder: queryBuilder,
-          nextPageMarker: nextPageMarker,
-          pageSize: pageSize,
-          isStream: isStream,
-        );
 
 Stream<List<T>> queryCollection<T>(Query collection, Serializer<T> serializer,
     {Query Function(Query)? queryBuilder,

@@ -746,8 +746,8 @@ class _CreateChallengeWidgetState extends State<CreateChallengeWidget> {
                             children: [
                               FFButtonWidget(
                                 onPressed: () async {
-                                  final activeChallengesCreateData = {
-                                    ...createActiveChallengesRecordData(
+                                  final challengesCreateData = {
+                                    ...createChallengesRecordData(
                                       title: textController1!.text,
                                       details: textController2!.text,
                                       createdAt: getCurrentTimestamp,
@@ -763,9 +763,9 @@ class _CreateChallengeWidgetState extends State<CreateChallengeWidget> {
                                       currentUserReference
                                     ],
                                   };
-                                  await ActiveChallengesRecord.createDoc(
+                                  await ChallengesRecord.createDoc(
                                           currentUserReference!)
-                                      .set(activeChallengesCreateData);
+                                      .set(challengesCreateData);
 
                                   context.pushNamed(
                                     'ChallengeCreated',

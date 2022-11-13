@@ -2,11 +2,17 @@ import '../flutter_flow/flutter_flow_icon_button.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_util.dart';
 import '../flutter_flow/flutter_flow_widgets.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class InviteWidget extends StatefulWidget {
-  const InviteWidget({Key? key}) : super(key: key);
+  const InviteWidget({
+    Key? key,
+    this.challengeReference,
+  }) : super(key: key);
+
+  final DocumentReference? challengeReference;
 
   @override
   _InviteWidgetState createState() => _InviteWidgetState();

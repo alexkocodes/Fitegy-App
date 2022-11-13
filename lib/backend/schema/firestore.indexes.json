@@ -1,23 +1,16 @@
 {
-  "indexes": [],
-  "fieldOverrides": [
+  "indexes": [
     {
-      "collectionGroup": "active_challenges",
-      "fieldPath": "created_at",
-      "indexes": [
+      "collectionGroup": "challenges",
+      "queryScope": "COLLECTION_GROUP",
+      "fields": [
         {
-          "order": "ASCENDING",
-          "queryScope": "COLLECTION_GROUP"
-        }
-      ]
-    },
-    {
-      "collectionGroup": "completed_challenges",
-      "fieldPath": "created_at",
-      "indexes": [
+          "fieldPath": "status",
+          "order": "ASCENDING"
+        },
         {
-          "order": "ASCENDING",
-          "queryScope": "COLLECTION_GROUP"
+          "fieldPath": "created_at",
+          "order": "DESCENDING"
         }
       ]
     }
