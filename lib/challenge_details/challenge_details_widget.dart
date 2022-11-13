@@ -1,10 +1,10 @@
 import '../auth/auth_util.dart';
 import '../backend/backend.dart';
+import '../components/complete_button_widget.dart';
 import '../flutter_flow/flutter_flow_icon_button.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_util.dart';
 import '../flutter_flow/flutter_flow_widgets.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -15,14 +15,14 @@ class ChallengeDetailsWidget extends StatefulWidget {
     this.time,
     this.details,
     this.comments,
-    this.challengeReference,
+    this.id,
   }) : super(key: key);
 
   final String? title;
   final DateTime? time;
   final String? details;
   final String? comments;
-  final DocumentReference? challengeReference;
+  final String? id;
 
   @override
   _ChallengeDetailsWidgetState createState() => _ChallengeDetailsWidgetState();
@@ -297,152 +297,146 @@ class _ChallengeDetailsWidgetState extends State<ChallengeDetailsWidget> {
                               color: FlutterFlowTheme.of(context)
                                   .secondaryBackground,
                             ),
-                            child: Row(
-                              mainAxisSize: MainAxisSize.max,
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                FFButtonWidget(
-                                  onPressed: () async {
-                                    final challengesUpdateData =
-                                        createChallengesRecordData(
-                                      status: 'completed',
-                                    );
-                                    await widget.challengeReference!
-                                        .update(challengesUpdateData);
-
-                                    context.goNamed(
-                                      'ChallengeCompleted',
-                                      extra: <String, dynamic>{
-                                        kTransitionInfoKey: TransitionInfo(
-                                          hasTransition: true,
-                                          transitionType:
-                                              PageTransitionType.fade,
-                                          duration: Duration(milliseconds: 300),
-                                        ),
+                            child: FutureBuilder<List<ChallengesRecord>>(
+                              future: queryChallengesRecordOnce(
+                                parent: currentUserReference,
+                                queryBuilder: (challengesRecord) =>
+                                    challengesRecord.where('id',
+                                        isEqualTo: widget.id),
+                                singleRecord: true,
+                              ),
+                              builder: (context, snapshot) {
+                                // Customize what your widget looks like when it's loading.
+                                if (!snapshot.hasData) {
+                                  return Center(
+                                    child: SizedBox(
+                                      width: 40,
+                                      height: 40,
+                                      child: CircularProgressIndicator(
+                                        color: FlutterFlowTheme.of(context)
+                                            .primaryBtnText,
+                                      ),
+                                    ),
+                                  );
+                                }
+                                List<ChallengesRecord> rowChallengesRecordList =
+                                    snapshot.data!;
+                                // Return an empty Container when the document does not exist.
+                                if (snapshot.data!.isEmpty) {
+                                  return Container();
+                                }
+                                final rowChallengesRecord =
+                                    rowChallengesRecordList.isNotEmpty
+                                        ? rowChallengesRecordList.first
+                                        : null;
+                                return Row(
+                                  mainAxisSize: MainAxisSize.max,
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
+                                  children: [
+                                    CompleteButtonWidget(
+                                      challengeReference:
+                                          rowChallengesRecord!.reference,
+                                    ),
+                                    FFButtonWidget(
+                                      onPressed: () async {
+                                        context.pushNamed('Invite');
                                       },
-                                    );
-                                  },
-                                  text: 'Complete',
-                                  options: FFButtonOptions(
-                                    width: 110,
-                                    height: 40,
-                                    color: Color(0xFF59CD72),
-                                    textStyle: FlutterFlowTheme.of(context)
-                                        .subtitle2
-                                        .override(
-                                          fontFamily: 'Archivo Black',
-                                          color: Colors.white,
-                                          useGoogleFonts: GoogleFonts.asMap()
-                                              .containsKey(
-                                                  FlutterFlowTheme.of(context)
-                                                      .subtitle2Family),
+                                      text: 'Invite 🔥 ',
+                                      options: FFButtonOptions(
+                                        width: 110,
+                                        height: 40,
+                                        color: FlutterFlowTheme.of(context)
+                                            .secondaryText,
+                                        textStyle: FlutterFlowTheme.of(context)
+                                            .subtitle2
+                                            .override(
+                                              fontFamily: 'Archivo Black',
+                                              color: Colors.white,
+                                              useGoogleFonts:
+                                                  GoogleFonts.asMap()
+                                                      .containsKey(
+                                                          FlutterFlowTheme.of(
+                                                                  context)
+                                                              .subtitle2Family),
+                                            ),
+                                        elevation: 10,
+                                        borderSide: BorderSide(
+                                          color: Colors.transparent,
+                                          width: 1,
                                         ),
-                                    elevation: 10,
-                                    borderSide: BorderSide(
-                                      color: Colors.transparent,
-                                      width: 1,
+                                        borderRadius: BorderRadius.circular(8),
+                                      ),
                                     ),
-                                    borderRadius: BorderRadius.circular(8),
-                                  ),
-                                ),
-                                FFButtonWidget(
-                                  onPressed: () async {
-                                    context.pushNamed(
-                                      'Invite',
-                                      queryParams: {
-                                        'challengeReference': serializeParam(
-                                          widget.challengeReference,
-                                          ParamType.DocumentReference,
+                                    FFButtonWidget(
+                                      onPressed: () async {
+                                        var confirmDialogResponse =
+                                            await showDialog<bool>(
+                                                  context: context,
+                                                  builder:
+                                                      (alertDialogContext) {
+                                                    return AlertDialog(
+                                                      title: Text(
+                                                          'Delete This Challenge'),
+                                                      content: Text(
+                                                          'Are you sure you want to delete this challenge?'),
+                                                      actions: [
+                                                        TextButton(
+                                                          onPressed: () =>
+                                                              Navigator.pop(
+                                                                  alertDialogContext,
+                                                                  false),
+                                                          child: Text('Cancel'),
+                                                        ),
+                                                        TextButton(
+                                                          onPressed: () =>
+                                                              Navigator.pop(
+                                                                  alertDialogContext,
+                                                                  true),
+                                                          child:
+                                                              Text('Confirm'),
+                                                        ),
+                                                      ],
+                                                    );
+                                                  },
+                                                ) ??
+                                                false;
+                                        if (confirmDialogResponse) {
+                                          await rowChallengesRecord!.reference
+                                              .delete();
+                                        } else {
+                                          Navigator.pop(context);
+                                        }
+                                      },
+                                      text: 'Delete',
+                                      options: FFButtonOptions(
+                                        width: 110,
+                                        height: 40,
+                                        color: FlutterFlowTheme.of(context)
+                                            .alternate,
+                                        textStyle: FlutterFlowTheme.of(context)
+                                            .subtitle2
+                                            .override(
+                                              fontFamily: 'Archivo Black',
+                                              color: Colors.white,
+                                              useGoogleFonts:
+                                                  GoogleFonts.asMap()
+                                                      .containsKey(
+                                                          FlutterFlowTheme.of(
+                                                                  context)
+                                                              .subtitle2Family),
+                                            ),
+                                        elevation: 10,
+                                        borderSide: BorderSide(
+                                          color: Colors.transparent,
+                                          width: 1,
                                         ),
-                                      }.withoutNulls,
-                                    );
-                                  },
-                                  text: 'Invite 🔥 ',
-                                  options: FFButtonOptions(
-                                    width: 110,
-                                    height: 40,
-                                    color: FlutterFlowTheme.of(context)
-                                        .secondaryText,
-                                    textStyle: FlutterFlowTheme.of(context)
-                                        .subtitle2
-                                        .override(
-                                          fontFamily: 'Archivo Black',
-                                          color: Colors.white,
-                                          useGoogleFonts: GoogleFonts.asMap()
-                                              .containsKey(
-                                                  FlutterFlowTheme.of(context)
-                                                      .subtitle2Family),
-                                        ),
-                                    elevation: 10,
-                                    borderSide: BorderSide(
-                                      color: Colors.transparent,
-                                      width: 1,
+                                        borderRadius: BorderRadius.circular(8),
+                                      ),
                                     ),
-                                    borderRadius: BorderRadius.circular(8),
-                                  ),
-                                ),
-                                FFButtonWidget(
-                                  onPressed: () async {
-                                    var confirmDialogResponse =
-                                        await showDialog<bool>(
-                                              context: context,
-                                              builder: (alertDialogContext) {
-                                                return AlertDialog(
-                                                  title: Text(
-                                                      'Delete This Challenge'),
-                                                  content: Text(
-                                                      'Are you sure you want to delete this challenge?'),
-                                                  actions: [
-                                                    TextButton(
-                                                      onPressed: () =>
-                                                          Navigator.pop(
-                                                              alertDialogContext,
-                                                              false),
-                                                      child: Text('Cancel'),
-                                                    ),
-                                                    TextButton(
-                                                      onPressed: () =>
-                                                          Navigator.pop(
-                                                              alertDialogContext,
-                                                              true),
-                                                      child: Text('Confirm'),
-                                                    ),
-                                                  ],
-                                                );
-                                              },
-                                            ) ??
-                                            false;
-                                    if (confirmDialogResponse) {
-                                      await widget.challengeReference!.delete();
-                                    } else {
-                                      Navigator.pop(context);
-                                    }
-                                  },
-                                  text: 'Delete',
-                                  options: FFButtonOptions(
-                                    width: 110,
-                                    height: 40,
-                                    color:
-                                        FlutterFlowTheme.of(context).alternate,
-                                    textStyle: FlutterFlowTheme.of(context)
-                                        .subtitle2
-                                        .override(
-                                          fontFamily: 'Archivo Black',
-                                          color: Colors.white,
-                                          useGoogleFonts: GoogleFonts.asMap()
-                                              .containsKey(
-                                                  FlutterFlowTheme.of(context)
-                                                      .subtitle2Family),
-                                        ),
-                                    elevation: 10,
-                                    borderSide: BorderSide(
-                                      color: Colors.transparent,
-                                      width: 1,
-                                    ),
-                                    borderRadius: BorderRadius.circular(8),
-                                  ),
-                                ),
-                              ],
+                                  ],
+                                );
+                              },
                             ),
                           ),
                         ),

@@ -89,18 +89,18 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
                   : HomePageWidget(),
             ),
             FFRoute(
-              name: 'Create',
-              path: 'create',
-              builder: (context, params) => params.isEmpty
-                  ? NavBarPage(initialPage: 'Create')
-                  : CreateWidget(),
-            ),
-            FFRoute(
               name: 'MyAccount',
               path: 'myAccount',
               builder: (context, params) => params.isEmpty
                   ? NavBarPage(initialPage: 'MyAccount')
                   : MyAccountWidget(),
+            ),
+            FFRoute(
+              name: 'Create',
+              path: 'create',
+              builder: (context, params) => params.isEmpty
+                  ? NavBarPage(initialPage: 'Create')
+                  : CreateWidget(),
             ),
             FFRoute(
               name: 'CreateChallenge',
@@ -127,8 +127,7 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
                 time: params.getParam('time', ParamType.DateTime),
                 details: params.getParam('details', ParamType.String),
                 comments: params.getParam('comments', ParamType.String),
-                challengeReference: params.getParam('challengeReference',
-                    ParamType.DocumentReference, false, 'challenges'),
+                id: params.getParam('id', ParamType.String),
               ),
             ),
             FFRoute(

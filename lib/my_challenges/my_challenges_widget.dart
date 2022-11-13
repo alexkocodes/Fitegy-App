@@ -345,9 +345,7 @@ class _MyChallengesWidgetState extends State<MyChallengesWidget>
                                                   .details,
                                               comments: gridViewChallengesRecord
                                                   .comments,
-                                              challengeReference:
-                                                  gridViewChallengesRecord
-                                                      .reference,
+                                              id: gridViewChallengesRecord.id,
                                             );
                                           },
                                         );

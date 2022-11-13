@@ -34,6 +34,8 @@ abstract class ChallengesRecord
 
   String? get comments;
 
+  String? get id;
+
   @BuiltValueField(wireName: kDocumentReferenceField)
   DocumentReference? get ffRef;
   DocumentReference get reference => ffRef!;
@@ -47,7 +49,8 @@ abstract class ChallengesRecord
     ..invitedParticipants = ListBuilder()
     ..status = ''
     ..colorScheme = ''
-    ..comments = '';
+    ..comments = ''
+    ..id = '';
 
   static Query<Map<String, dynamic>> collection([DocumentReference? parent]) =>
       parent != null
@@ -83,6 +86,7 @@ Map<String, dynamic> createChallengesRecordData({
   String? status,
   String? colorScheme,
   String? comments,
+  String? id,
 }) {
   final firestoreData = serializers.toFirestore(
     ChallengesRecord.serializer,
@@ -96,7 +100,8 @@ Map<String, dynamic> createChallengesRecordData({
         ..invitedParticipants = null
         ..status = status
         ..colorScheme = colorScheme
-        ..comments = comments,
+        ..comments = comments
+        ..id = id,
     ),
   );
 

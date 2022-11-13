@@ -91,6 +91,13 @@ class _$ChallengesRecordSerializer
         ..add(serializers.serialize(value,
             specifiedType: const FullType(String)));
     }
+    value = object.id;
+    if (value != null) {
+      result
+        ..add('id')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(String)));
+    }
     value = object.ffRef;
     if (value != null) {
       result
@@ -158,6 +165,10 @@ class _$ChallengesRecordSerializer
           result.comments = serializers.deserialize(value,
               specifiedType: const FullType(String)) as String?;
           break;
+        case 'id':
+          result.id = serializers.deserialize(value,
+              specifiedType: const FullType(String)) as String?;
+          break;
         case 'Document__Reference__Field':
           result.ffRef = serializers.deserialize(value,
               specifiedType: const FullType(DocumentReference, const [
@@ -191,6 +202,8 @@ class _$ChallengesRecord extends ChallengesRecord {
   @override
   final String? comments;
   @override
+  final String? id;
+  @override
   final DocumentReference<Object?>? ffRef;
 
   factory _$ChallengesRecord(
@@ -207,6 +220,7 @@ class _$ChallengesRecord extends ChallengesRecord {
       this.status,
       this.colorScheme,
       this.comments,
+      this.id,
       this.ffRef})
       : super._();
 
@@ -231,6 +245,7 @@ class _$ChallengesRecord extends ChallengesRecord {
         status == other.status &&
         colorScheme == other.colorScheme &&
         comments == other.comments &&
+        id == other.id &&
         ffRef == other.ffRef;
   }
 
@@ -244,15 +259,17 @@ class _$ChallengesRecord extends ChallengesRecord {
                         $jc(
                             $jc(
                                 $jc(
-                                    $jc($jc(0, title.hashCode),
-                                        details.hashCode),
-                                    createdAt.hashCode),
-                                createBy.hashCode),
-                            activeParticipants.hashCode),
-                        invitedParticipants.hashCode),
-                    status.hashCode),
-                colorScheme.hashCode),
-            comments.hashCode),
+                                    $jc(
+                                        $jc($jc(0, title.hashCode),
+                                            details.hashCode),
+                                        createdAt.hashCode),
+                                    createBy.hashCode),
+                                activeParticipants.hashCode),
+                            invitedParticipants.hashCode),
+                        status.hashCode),
+                    colorScheme.hashCode),
+                comments.hashCode),
+            id.hashCode),
         ffRef.hashCode));
   }
 
@@ -268,6 +285,7 @@ class _$ChallengesRecord extends ChallengesRecord {
           ..add('status', status)
           ..add('colorScheme', colorScheme)
           ..add('comments', comments)
+          ..add('id', id)
           ..add('ffRef', ffRef))
         .toString();
   }
@@ -322,6 +340,10 @@ class ChallengesRecordBuilder
   String? get comments => _$this._comments;
   set comments(String? comments) => _$this._comments = comments;
 
+  String? _id;
+  String? get id => _$this._id;
+  set id(String? id) => _$this._id = id;
+
   DocumentReference<Object?>? _ffRef;
   DocumentReference<Object?>? get ffRef => _$this._ffRef;
   set ffRef(DocumentReference<Object?>? ffRef) => _$this._ffRef = ffRef;
@@ -342,6 +364,7 @@ class ChallengesRecordBuilder
       _status = $v.status;
       _colorScheme = $v.colorScheme;
       _comments = $v.comments;
+      _id = $v.id;
       _ffRef = $v.ffRef;
       _$v = null;
     }
@@ -376,6 +399,7 @@ class ChallengesRecordBuilder
               status: status,
               colorScheme: colorScheme,
               comments: comments,
+              id: id,
               ffRef: ffRef);
     } catch (_) {
       late String _$failedField;
