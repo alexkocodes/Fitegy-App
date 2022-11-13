@@ -1,3 +1,5 @@
+import 'package:fitegy/flutter_flow/flutter_flow_animations.dart';
+
 import '../backend/backend.dart';
 import '../components/complete_button_widget.dart';
 import '../flutter_flow/flutter_flow_icon_button.dart';
@@ -15,17 +17,16 @@ class ChallengeDetailsWidget extends StatefulWidget {
     this.time,
     this.details,
     this.comments,
-    this.id,
     this.challengeRef,
+    this.path,
   }) : super(key: key);
 
   final String? title;
   final DateTime? time;
   final String? details;
   final String? comments;
-  final String? id;
   final DocumentReference? challengeRef;
-
+  final String? path;
   @override
   _ChallengeDetailsWidgetState createState() => _ChallengeDetailsWidgetState();
 }
@@ -35,6 +36,7 @@ class _ChallengeDetailsWidgetState extends State<ChallengeDetailsWidget> {
 
   @override
   Widget build(BuildContext context) {
+    final db = FirebaseFirestore.instance;
     return Scaffold(
       key: scaffoldKey,
       backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
@@ -301,7 +303,7 @@ class _ChallengeDetailsWidgetState extends State<ChallengeDetailsWidget> {
                             ),
                             child: FutureBuilder<ChallengesRecord>(
                               future: ChallengesRecord.getDocumentOnce(
-                                  widget.challengeRef!),
+                                  db.doc(widget.path!)),
                               builder: (context, snapshot) {
                                 // Customize what your widget looks like when it's loading.
                                 if (!snapshot.hasData) {

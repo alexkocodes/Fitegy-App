@@ -345,10 +345,12 @@ class _MyChallengesWidgetState extends State<MyChallengesWidget>
                                                   .details,
                                               comments: gridViewChallengesRecord
                                                   .comments,
-                                              id: gridViewChallengesRecord.id,
                                               challengeRef:
                                                   gridViewChallengesRecord
                                                       .reference,
+                                              path: gridViewChallengesRecord
+                                                  .reference.path
+                                                  .toString(),
                                             );
                                           },
                                         );
@@ -417,145 +419,23 @@ class _MyChallengesWidgetState extends State<MyChallengesWidget>
                                             final gridViewChallengesRecord =
                                                 gridViewChallengesRecordList[
                                                     gridViewIndex];
-                                            return Padding(
-                                              padding: EdgeInsetsDirectional
-                                                  .fromSTEB(15, 0, 15, 0),
-                                              child: InkWell(
-                                                onTap: () async {
-                                                  context.pushNamed(
-                                                      'ChallengeDetails');
-                                                },
-                                                child: Container(
-                                                  width: MediaQuery.of(context)
-                                                          .size
-                                                          .width *
-                                                      0.35,
-                                                  height: MediaQuery.of(context)
-                                                          .size
-                                                          .height *
-                                                      0.2,
-                                                  decoration: BoxDecoration(
-                                                    boxShadow: [
-                                                      BoxShadow(
-                                                        blurRadius: 12,
-                                                        color:
-                                                            Color(0x33000000),
-                                                        offset: Offset(0, 5),
-                                                      )
-                                                    ],
-                                                    gradient: LinearGradient(
-                                                      colors: [
-                                                        Color(0xFFE6A0FF),
-                                                        Color(0xFF9AE1FF)
-                                                      ],
-                                                      stops: [0, 1],
-                                                      begin:
-                                                          AlignmentDirectional(
-                                                              -0.34, -1),
-                                                      end: AlignmentDirectional(
-                                                          0.34, 1),
-                                                    ),
-                                                    borderRadius:
-                                                        BorderRadius.circular(
-                                                            20),
-                                                  ),
-                                                  child: Padding(
-                                                    padding:
-                                                        EdgeInsetsDirectional
-                                                            .fromSTEB(
-                                                                15, 15, 15, 15),
-                                                    child: Column(
-                                                      mainAxisSize:
-                                                          MainAxisSize.max,
-                                                      mainAxisAlignment:
-                                                          MainAxisAlignment
-                                                              .spaceBetween,
-                                                      crossAxisAlignment:
-                                                          CrossAxisAlignment
-                                                              .start,
-                                                      children: [
-                                                        Column(
-                                                          mainAxisSize:
-                                                              MainAxisSize.max,
-                                                          crossAxisAlignment:
-                                                              CrossAxisAlignment
-                                                                  .start,
-                                                          children: [
-                                                            Text(
-                                                              gridViewChallengesRecord
-                                                                  .title!,
-                                                              style: FlutterFlowTheme
-                                                                      .of(context)
-                                                                  .bodyText1
-                                                                  .override(
-                                                                    fontFamily:
-                                                                        'Archivo Black',
-                                                                    color: FlutterFlowTheme.of(
-                                                                            context)
-                                                                        .secondaryBackground,
-                                                                    useGoogleFonts: GoogleFonts
-                                                                            .asMap()
-                                                                        .containsKey(
-                                                                            FlutterFlowTheme.of(context).bodyText1Family),
-                                                                  ),
-                                                            ),
-                                                            Padding(
-                                                              padding:
-                                                                  EdgeInsetsDirectional
-                                                                      .fromSTEB(
-                                                                          0,
-                                                                          5,
-                                                                          0,
-                                                                          0),
-                                                              child: Text(
-                                                                dateTimeFormat(
-                                                                    'yMMMd',
-                                                                    gridViewChallengesRecord
-                                                                        .createdAt!),
-                                                                style: FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .bodyText1
-                                                                    .override(
-                                                                      fontFamily:
-                                                                          FlutterFlowTheme.of(context)
-                                                                              .bodyText1Family,
-                                                                      color: FlutterFlowTheme.of(
-                                                                              context)
-                                                                          .primaryBtnText,
-                                                                      fontSize:
-                                                                          12,
-                                                                      fontWeight:
-                                                                          FontWeight
-                                                                              .normal,
-                                                                      useGoogleFonts: GoogleFonts
-                                                                              .asMap()
-                                                                          .containsKey(
-                                                                              FlutterFlowTheme.of(context).bodyText1Family),
-                                                                    ),
-                                                              ),
-                                                            ),
-                                                          ],
-                                                        ),
-                                                        Row(
-                                                          mainAxisSize:
-                                                              MainAxisSize.max,
-                                                          mainAxisAlignment:
-                                                              MainAxisAlignment
-                                                                  .end,
-                                                          children: [
-                                                            Image.asset(
-                                                              'assets/images/Hole.png',
-                                                              width: 15,
-                                                              fit: BoxFit.cover,
-                                                            ),
-                                                          ],
-                                                        ),
-                                                      ],
-                                                    ),
-                                                  ),
-                                                ),
-                                              ).animateOnPageLoad(animationsMap[
-                                                  'containerOnPageLoadAnimation1']!),
+                                            return ChallengeCardWidget(
+                                              key: Key(
+                                                  'ChallengeCard_${gridViewIndex}'),
+                                              title: gridViewChallengesRecord
+                                                  .title,
+                                              time: gridViewChallengesRecord
+                                                  .createdAt,
+                                              details: gridViewChallengesRecord
+                                                  .details,
+                                              comments: gridViewChallengesRecord
+                                                  .comments,
+                                              challengeRef:
+                                                  gridViewChallengesRecord
+                                                      .reference,
+                                              path: gridViewChallengesRecord
+                                                  .reference.path
+                                                  .toString(),
                                             );
                                           },
                                         );
