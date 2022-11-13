@@ -6,7 +6,18 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class ChallengeDetailsWidget extends StatefulWidget {
-  const ChallengeDetailsWidget({Key? key}) : super(key: key);
+  const ChallengeDetailsWidget({
+    Key? key,
+    this.title,
+    this.time,
+    this.details,
+    this.comments,
+  }) : super(key: key);
+
+  final String? title;
+  final DateTime? time;
+  final String? details;
+  final String? comments;
 
   @override
   _ChallengeDetailsWidgetState createState() => _ChallengeDetailsWidgetState();
@@ -118,7 +129,10 @@ class _ChallengeDetailsWidgetState extends State<ChallengeDetailsWidget> {
                                           CrossAxisAlignment.start,
                                       children: [
                                         Text(
-                                          'Alex\'s Spring Break Run',
+                                          valueOrDefault<String>(
+                                            widget.title,
+                                            'Can your friends do this? 😏',
+                                          ),
                                           style: FlutterFlowTheme.of(context)
                                               .bodyText1
                                               .override(
@@ -140,7 +154,11 @@ class _ChallengeDetailsWidgetState extends State<ChallengeDetailsWidget> {
                                               EdgeInsetsDirectional.fromSTEB(
                                                   0, 5, 0, 0),
                                           child: Text(
-                                            'Oct 10th, 22',
+                                            valueOrDefault<String>(
+                                              dateTimeFormat(
+                                                  'yMMMd', widget.time),
+                                              'Some time in the past...',
+                                            ),
                                             style: FlutterFlowTheme.of(context)
                                                 .bodyText1
                                                 .override(
@@ -168,7 +186,10 @@ class _ChallengeDetailsWidgetState extends State<ChallengeDetailsWidget> {
                                       padding: EdgeInsetsDirectional.fromSTEB(
                                           0, 20, 0, 0),
                                       child: Text(
-                                        'Cardio: Split Lunge Jump: 30-60 seconds\nRest: 30 seconds\nDiamond Push-Up: 30-60 seconds\nRest: 30 seconds\nTransverse Lunge to Power Skip: 30-60 seconds\nRest: 30 seconds\nCore: Mountain Climber Twist: 30-60 seconds\nRest: 30 seconds\nCardio: Burpee with Push-Up: 30-60 seconds\nRest: 30 seconds\nRepeat the whole workout 2X',
+                                        valueOrDefault<String>(
+                                          widget.details,
+                                          'No details here 😮',
+                                        ),
                                         style: FlutterFlowTheme.of(context)
                                             .bodyText1
                                             .override(
@@ -217,7 +238,10 @@ class _ChallengeDetailsWidgetState extends State<ChallengeDetailsWidget> {
                                       padding: EdgeInsetsDirectional.fromSTEB(
                                           0, 10, 0, 0),
                                       child: Text(
-                                        'Fam let’s do this for all the hardworking women out there! Feel free to repeat the whole workout a few more times based on your own endurance. Share and challenge your friends to join you! 💛',
+                                        valueOrDefault<String>(
+                                          widget.comments,
+                                          'No comments. ',
+                                        ),
                                         style: FlutterFlowTheme.of(context)
                                             .bodyText1
                                             .override(

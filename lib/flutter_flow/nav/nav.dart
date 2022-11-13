@@ -122,7 +122,12 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
             FFRoute(
               name: 'ChallengeDetails',
               path: 'challengeDetails',
-              builder: (context, params) => ChallengeDetailsWidget(),
+              builder: (context, params) => ChallengeDetailsWidget(
+                title: params.getParam('title', ParamType.String),
+                time: params.getParam('time', ParamType.DateTime),
+                details: params.getParam('details', ParamType.String),
+                comments: params.getParam('comments', ParamType.String),
+              ),
             ),
             FFRoute(
               name: 'ChallengeCompleted',
