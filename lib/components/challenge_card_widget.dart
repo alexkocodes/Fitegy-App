@@ -14,7 +14,6 @@ class ChallengeCardWidget extends StatefulWidget {
     this.time,
     this.details,
     this.comments,
-    this.challengeRef,
     this.path,
   }) : super(key: key);
 
@@ -22,7 +21,6 @@ class ChallengeCardWidget extends StatefulWidget {
   final DateTime? time;
   final String? details;
   final String? comments;
-  final DocumentReference? challengeRef;
   final String? path;
 
   @override
@@ -60,7 +58,6 @@ class _ChallengeCardWidgetState extends State<ChallengeCardWidget>
 
   @override
   Widget build(BuildContext context) {
-    print(widget.path);
     return Padding(
       padding: EdgeInsetsDirectional.fromSTEB(15, 0, 15, 0),
       child: InkWell(
@@ -83,10 +80,6 @@ class _ChallengeCardWidgetState extends State<ChallengeCardWidget>
               'comments': serializeParam(
                 widget.comments,
                 ParamType.String,
-              ),
-              'challengeRef': serializeParam(
-                widget.challengeRef!,
-                ParamType.DocumentReference,
               ),
               'path': serializeParam(
                 widget.path,

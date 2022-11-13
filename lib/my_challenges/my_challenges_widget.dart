@@ -345,9 +345,6 @@ class _MyChallengesWidgetState extends State<MyChallengesWidget>
                                                   .details,
                                               comments: gridViewChallengesRecord
                                                   .comments,
-                                              challengeRef:
-                                                  gridViewChallengesRecord
-                                                      .reference,
                                               path: gridViewChallengesRecord
                                                   .reference.path
                                                   .toString(),
@@ -430,9 +427,6 @@ class _MyChallengesWidgetState extends State<MyChallengesWidget>
                                                   .details,
                                               comments: gridViewChallengesRecord
                                                   .comments,
-                                              challengeRef:
-                                                  gridViewChallengesRecord
-                                                      .reference,
                                               path: gridViewChallengesRecord
                                                   .reference.path
                                                   .toString(),

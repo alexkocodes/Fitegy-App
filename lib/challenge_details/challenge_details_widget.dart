@@ -17,7 +17,6 @@ class ChallengeDetailsWidget extends StatefulWidget {
     this.time,
     this.details,
     this.comments,
-    this.challengeRef,
     this.path,
   }) : super(key: key);
 
@@ -25,7 +24,6 @@ class ChallengeDetailsWidget extends StatefulWidget {
   final DateTime? time;
   final String? details;
   final String? comments;
-  final DocumentReference? challengeRef;
   final String? path;
   @override
   _ChallengeDetailsWidgetState createState() => _ChallengeDetailsWidgetState();
