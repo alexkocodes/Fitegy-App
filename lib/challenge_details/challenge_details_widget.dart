@@ -1,10 +1,10 @@
-import '../auth/auth_util.dart';
 import '../backend/backend.dart';
 import '../components/complete_button_widget.dart';
 import '../flutter_flow/flutter_flow_icon_button.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_util.dart';
 import '../flutter_flow/flutter_flow_widgets.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -16,6 +16,7 @@ class ChallengeDetailsWidget extends StatefulWidget {
     this.details,
     this.comments,
     this.id,
+    this.challengeRef,
   }) : super(key: key);
 
   final String? title;
@@ -23,6 +24,7 @@ class ChallengeDetailsWidget extends StatefulWidget {
   final String? details;
   final String? comments;
   final String? id;
+  final DocumentReference? challengeRef;
 
   @override
   _ChallengeDetailsWidgetState createState() => _ChallengeDetailsWidgetState();
@@ -297,14 +299,9 @@ class _ChallengeDetailsWidgetState extends State<ChallengeDetailsWidget> {
                               color: FlutterFlowTheme.of(context)
                                   .secondaryBackground,
                             ),
-                            child: FutureBuilder<List<ChallengesRecord>>(
-                              future: queryChallengesRecordOnce(
-                                parent: currentUserReference,
-                                queryBuilder: (challengesRecord) =>
-                                    challengesRecord.where('id',
-                                        isEqualTo: widget.id),
-                                singleRecord: true,
-                              ),
+                            child: FutureBuilder<ChallengesRecord>(
+                              future: ChallengesRecord.getDocumentOnce(
+                                  widget.challengeRef!),
                               builder: (context, snapshot) {
                                 // Customize what your widget looks like when it's loading.
                                 if (!snapshot.hasData) {
@@ -314,21 +311,12 @@ class _ChallengeDetailsWidgetState extends State<ChallengeDetailsWidget> {
                                       height: 40,
                                       child: CircularProgressIndicator(
                                         color: FlutterFlowTheme.of(context)
-                                            .primaryBtnText,
+                                            .lineColor,
                                       ),
                                     ),
                                   );
                                 }
-                                List<ChallengesRecord> rowChallengesRecordList =
-                                    snapshot.data!;
-                                // Return an empty Container when the document does not exist.
-                                if (snapshot.data!.isEmpty) {
-                                  return Container();
-                                }
-                                final rowChallengesRecord =
-                                    rowChallengesRecordList.isNotEmpty
-                                        ? rowChallengesRecordList.first
-                                        : null;
+                                final rowChallengesRecord = snapshot.data!;
                                 return Row(
                                   mainAxisSize: MainAxisSize.max,
                                   mainAxisAlignment:
@@ -336,7 +324,7 @@ class _ChallengeDetailsWidgetState extends State<ChallengeDetailsWidget> {
                                   children: [
                                     CompleteButtonWidget(
                                       challengeReference:
-                                          rowChallengesRecord!.reference,
+                                          rowChallengesRecord.reference,
                                     ),
                                     FFButtonWidget(
                                       onPressed: () async {
@@ -402,7 +390,7 @@ class _ChallengeDetailsWidgetState extends State<ChallengeDetailsWidget> {
                                                 ) ??
                                                 false;
                                         if (confirmDialogResponse) {
-                                          await rowChallengesRecord!.reference
+                                          await rowChallengesRecord.reference
                                               .delete();
                                         } else {
                                           Navigator.pop(context);
