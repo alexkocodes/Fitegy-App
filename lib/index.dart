@@ -1,4 +1,5 @@
 // Export pages
+export 'landing/landing_widget.dart' show LandingWidget;
 export 'log_sign/log_sign_widget.dart' show LogSignWidget;
 export 'home_page/home_page_widget.dart' show HomePageWidget;
 export 'my_account/my_account_widget.dart' show MyAccountWidget;
