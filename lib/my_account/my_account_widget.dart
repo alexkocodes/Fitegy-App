@@ -41,7 +41,7 @@ class _MyAccountWidgetState extends State<MyAccountWidget> {
                 GoRouter.of(context).prepareAuthEvent();
                 await signOut();
 
-                context.goNamedAuth('LogSign', mounted);
+                context.goNamedAuth('Landing', mounted);
               },
             ),
           ),
