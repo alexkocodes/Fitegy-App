@@ -46,7 +46,8 @@ class _CreateChallengePageWidgetState extends State<CreateChallengePageWidget> {
 
   @override
   Widget build(BuildContext context) {
-    return SingleChildScrollView(
+    return Container(
+      padding: EdgeInsets.only(bottom: 20),
       child: Column(
         mainAxisSize: MainAxisSize.max,
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -173,6 +174,7 @@ class _CreateChallengePageWidgetState extends State<CreateChallengePageWidget> {
                       ),
                       child: TextFormField(
                         controller: textController1,
+                        textCapitalization: TextCapitalization.sentences,
                         obscureText: false,
                         decoration: InputDecoration(
                           labelStyle: FlutterFlowTheme.of(context)
@@ -269,7 +271,8 @@ class _CreateChallengePageWidgetState extends State<CreateChallengePageWidget> {
                       ),
                       child: TextFormField(
                         controller: textController2,
-                        autofocus: true,
+                        textCapitalization: TextCapitalization.sentences,
+                        autofocus: false,
                         obscureText: false,
                         decoration: InputDecoration(
                           labelStyle: FlutterFlowTheme.of(context)
@@ -335,7 +338,7 @@ class _CreateChallengePageWidgetState extends State<CreateChallengePageWidget> {
                                   FlutterFlowTheme.of(context).bodyText1Family),
                             ),
                         textAlign: TextAlign.start,
-                        maxLines: 8,
+                        maxLines: 10,
                         keyboardType: TextInputType.multiline,
                       ),
                     ),
@@ -368,7 +371,8 @@ class _CreateChallengePageWidgetState extends State<CreateChallengePageWidget> {
                       ),
                       child: TextFormField(
                         controller: commentsController,
-                        autofocus: true,
+                        textCapitalization: TextCapitalization.sentences,
+                        autofocus: false,
                         obscureText: false,
                         decoration: InputDecoration(
                           labelStyle: FlutterFlowTheme.of(context)
@@ -551,47 +555,47 @@ class _CreateChallengePageWidgetState extends State<CreateChallengePageWidget> {
                       verticalDirection: VerticalDirection.down,
                       clipBehavior: Clip.none,
                       children: [
-                        Align(
-                          alignment: AlignmentDirectional(-0.98, 0.2),
-                          child: Text(
-                            'Select a color theme:',
-                            style: FlutterFlowTheme.of(context)
-                                .bodyText1
-                                .override(
-                                  fontFamily: FlutterFlowTheme.of(context)
-                                      .bodyText1Family,
-                                  color: FlutterFlowTheme.of(context)
-                                      .secondaryText,
-                                  useGoogleFonts: GoogleFonts.asMap()
-                                      .containsKey(FlutterFlowTheme.of(context)
-                                          .bodyText1Family),
-                                ),
-                          ),
-                        ),
-                        FlutterFlowRadioButton(
-                          options: ['1', '2', '3', '4', '5'].toList(),
-                          initialValue: '1',
-                          onChanged: (val) =>
-                              setState(() => radioButtonValue = val),
-                          optionHeight: 25,
-                          textStyle: FlutterFlowTheme.of(context)
-                              .bodyText1
-                              .override(
-                                fontFamily: FlutterFlowTheme.of(context)
-                                    .bodyText1Family,
-                                color: Colors.black,
-                                useGoogleFonts: GoogleFonts.asMap().containsKey(
-                                    FlutterFlowTheme.of(context)
-                                        .bodyText1Family),
-                              ),
-                          buttonPosition: RadioButtonPosition.left,
-                          direction: Axis.horizontal,
-                          radioButtonColor: Colors.blue,
-                          inactiveRadioButtonColor: Color(0x8A000000),
-                          toggleable: false,
-                          horizontalAlignment: WrapAlignment.start,
-                          verticalAlignment: WrapCrossAlignment.start,
-                        ),
+                        // Align(
+                        //   alignment: AlignmentDirectional(-0.98, 0.2),
+                        //   child: Text(
+                        //     'Select a color theme:',
+                        //     style: FlutterFlowTheme.of(context)
+                        //         .bodyText1
+                        //         .override(
+                        //           fontFamily: FlutterFlowTheme.of(context)
+                        //               .bodyText1Family,
+                        //           color: FlutterFlowTheme.of(context)
+                        //               .secondaryText,
+                        //           useGoogleFonts: GoogleFonts.asMap()
+                        //               .containsKey(FlutterFlowTheme.of(context)
+                        //                   .bodyText1Family),
+                        //         ),
+                        //   ),
+                        // ),
+                        // FlutterFlowRadioButton(
+                        //   options: ['1', '2', '3', '4', '5'].toList(),
+                        //   initialValue: '1',
+                        //   onChanged: (val) =>
+                        //       setState(() => radioButtonValue = val),
+                        //   optionHeight: 25,
+                        //   textStyle: FlutterFlowTheme.of(context)
+                        //       .bodyText1
+                        //       .override(
+                        //         fontFamily: FlutterFlowTheme.of(context)
+                        //             .bodyText1Family,
+                        //         color: Colors.black,
+                        //         useGoogleFonts: GoogleFonts.asMap().containsKey(
+                        //             FlutterFlowTheme.of(context)
+                        //                 .bodyText1Family),
+                        //       ),
+                        //   buttonPosition: RadioButtonPosition.left,
+                        //   direction: Axis.horizontal,
+                        //   radioButtonColor: Colors.blue,
+                        //   inactiveRadioButtonColor: Color(0x8A000000),
+                        //   toggleable: false,
+                        //   horizontalAlignment: WrapAlignment.start,
+                        //   verticalAlignment: WrapCrossAlignment.start,
+                        // ),
                       ],
                     ),
                   ),
