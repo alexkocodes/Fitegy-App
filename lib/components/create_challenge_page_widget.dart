@@ -25,6 +25,7 @@ class _CreateChallengePageWidgetState extends State<CreateChallengePageWidget> {
   TextEditingController? textController1;
   TextEditingController? textController2;
   TextEditingController? textController4;
+  int buttonIndex = 1;
 
   @override
   void initState() {
@@ -545,62 +546,6 @@ class _CreateChallengePageWidgetState extends State<CreateChallengePageWidget> {
                   ),
                   Padding(
                     padding: EdgeInsetsDirectional.fromSTEB(0, 10, 0, 0),
-                    child: Wrap(
-                      spacing: 0,
-                      runSpacing: 0,
-                      alignment: WrapAlignment.start,
-                      crossAxisAlignment: WrapCrossAlignment.start,
-                      direction: Axis.horizontal,
-                      runAlignment: WrapAlignment.start,
-                      verticalDirection: VerticalDirection.down,
-                      clipBehavior: Clip.none,
-                      children: [
-                        // Align(
-                        //   alignment: AlignmentDirectional(-0.98, 0.2),
-                        //   child: Text(
-                        //     'Select a color theme:',
-                        //     style: FlutterFlowTheme.of(context)
-                        //         .bodyText1
-                        //         .override(
-                        //           fontFamily: FlutterFlowTheme.of(context)
-                        //               .bodyText1Family,
-                        //           color: FlutterFlowTheme.of(context)
-                        //               .secondaryText,
-                        //           useGoogleFonts: GoogleFonts.asMap()
-                        //               .containsKey(FlutterFlowTheme.of(context)
-                        //                   .bodyText1Family),
-                        //         ),
-                        //   ),
-                        // ),
-                        // FlutterFlowRadioButton(
-                        //   options: ['1', '2', '3', '4', '5'].toList(),
-                        //   initialValue: '1',
-                        //   onChanged: (val) =>
-                        //       setState(() => radioButtonValue = val),
-                        //   optionHeight: 25,
-                        //   textStyle: FlutterFlowTheme.of(context)
-                        //       .bodyText1
-                        //       .override(
-                        //         fontFamily: FlutterFlowTheme.of(context)
-                        //             .bodyText1Family,
-                        //         color: Colors.black,
-                        //         useGoogleFonts: GoogleFonts.asMap().containsKey(
-                        //             FlutterFlowTheme.of(context)
-                        //                 .bodyText1Family),
-                        //       ),
-                        //   buttonPosition: RadioButtonPosition.left,
-                        //   direction: Axis.horizontal,
-                        //   radioButtonColor: Colors.blue,
-                        //   inactiveRadioButtonColor: Color(0x8A000000),
-                        //   toggleable: false,
-                        //   horizontalAlignment: WrapAlignment.start,
-                        //   verticalAlignment: WrapCrossAlignment.start,
-                        // ),
-                      ],
-                    ),
-                  ),
-                  Padding(
-                    padding: EdgeInsetsDirectional.fromSTEB(0, 10, 0, 0),
                     child: Row(
                       mainAxisSize: MainAxisSize.max,
                       mainAxisAlignment: MainAxisAlignment.start,
@@ -624,67 +569,193 @@ class _CreateChallengePageWidgetState extends State<CreateChallengePageWidget> {
                         ),
                         Padding(
                           padding: EdgeInsetsDirectional.fromSTEB(5, 0, 5, 0),
-                          child: Container(
-                            width: 20,
-                            height: 20,
-                            decoration: BoxDecoration(
-                              gradient: LinearGradient(
-                                colors: [Color(0xFFE6A0FF), Color(0xFF9AE1FF)],
-                                stops: [0, 1],
-                                begin: AlignmentDirectional(-0.34, -1),
-                                end: AlignmentDirectional(0.34, 1),
-                              ),
-                              shape: BoxShape.circle,
+                          child: Stack(alignment: Alignment.center, children: [
+                            Container(
+                              width: 26,
+                              height: 26,
+                              decoration: BoxDecoration(
+                                  shape: BoxShape.circle,
+                                  border: buttonIndex == 1
+                                      ? Border.all(
+                                          color: Colors.white, width: 3)
+                                      : null),
                             ),
-                          ),
+                            Container(
+                              child: InkWell(
+                                onTap: () {
+                                  setState(() {
+                                    buttonIndex = 1;
+                                  });
+                                },
+                              ),
+                              width: 20,
+                              height: 20,
+                              decoration: BoxDecoration(
+                                gradient: LinearGradient(
+                                  colors: [
+                                    Color.fromARGB(255, 154, 225, 255),
+                                    Color.fromARGB(255, 253, 255, 155)
+                                  ],
+                                  stops: [0, 1],
+                                  begin: AlignmentDirectional(-0.34, -1),
+                                  end: AlignmentDirectional(0.34, 1),
+                                ),
+                                shape: BoxShape.circle,
+                              ),
+                            ),
+                          ]),
                         ),
                         Padding(
                           padding: EdgeInsetsDirectional.fromSTEB(5, 0, 5, 0),
-                          child: Container(
-                            width: 20,
-                            height: 20,
-                            decoration: BoxDecoration(
-                              gradient: LinearGradient(
-                                colors: [Color(0xFFE6A0FF), Color(0xFF9AE1FF)],
-                                stops: [0, 1],
-                                begin: AlignmentDirectional(-0.34, -1),
-                                end: AlignmentDirectional(0.34, 1),
-                              ),
-                              shape: BoxShape.circle,
+                          child: Stack(alignment: Alignment.center, children: [
+                            Container(
+                              width: 26,
+                              height: 26,
+                              decoration: BoxDecoration(
+                                  shape: BoxShape.circle,
+                                  border: buttonIndex == 2
+                                      ? Border.all(
+                                          color: Colors.white, width: 3)
+                                      : null),
                             ),
-                          ),
+                            Container(
+                              child: InkWell(
+                                onTap: () {
+                                  setState(() {
+                                    buttonIndex = 2;
+                                  });
+                                },
+                              ),
+                              width: 20,
+                              height: 20,
+                              decoration: BoxDecoration(
+                                gradient: LinearGradient(
+                                  colors: [
+                                    Color.fromARGB(255, 89, 205, 114),
+                                    Color.fromARGB(255, 253, 255, 155)
+                                  ],
+                                  stops: [0, 1],
+                                  begin: AlignmentDirectional(-0.34, -1),
+                                  end: AlignmentDirectional(0.34, 1),
+                                ),
+                                shape: BoxShape.circle,
+                              ),
+                            ),
+                          ]),
                         ),
                         Padding(
                           padding: EdgeInsetsDirectional.fromSTEB(5, 0, 5, 0),
-                          child: Container(
-                            width: 20,
-                            height: 20,
-                            decoration: BoxDecoration(
-                              gradient: LinearGradient(
-                                colors: [Color(0xFFE6A0FF), Color(0xFF9AE1FF)],
-                                stops: [0, 1],
-                                begin: AlignmentDirectional(-0.34, -1),
-                                end: AlignmentDirectional(0.34, 1),
-                              ),
-                              shape: BoxShape.circle,
+                          child: Stack(alignment: Alignment.center, children: [
+                            Container(
+                              width: 26,
+                              height: 26,
+                              decoration: BoxDecoration(
+                                  shape: BoxShape.circle,
+                                  border: buttonIndex == 3
+                                      ? Border.all(
+                                          color: Colors.white, width: 3)
+                                      : null),
                             ),
-                          ),
+                            Container(
+                              child: InkWell(
+                                onTap: () {
+                                  setState(() {
+                                    buttonIndex = 3;
+                                  });
+                                },
+                              ),
+                              width: 20,
+                              height: 20,
+                              decoration: BoxDecoration(
+                                gradient: LinearGradient(
+                                  colors: [
+                                    Color.fromARGB(255, 255, 116, 116),
+                                    Color.fromARGB(255, 253, 255, 155)
+                                  ],
+                                  stops: [0, 1],
+                                  begin: AlignmentDirectional(-0.34, -1),
+                                  end: AlignmentDirectional(0.34, 1),
+                                ),
+                                shape: BoxShape.circle,
+                              ),
+                            ),
+                          ]),
                         ),
                         Padding(
                           padding: EdgeInsetsDirectional.fromSTEB(5, 0, 5, 0),
-                          child: Container(
-                            width: 20,
-                            height: 20,
-                            decoration: BoxDecoration(
-                              gradient: LinearGradient(
-                                colors: [Color(0xFFE6A0FF), Color(0xFF9AE1FF)],
-                                stops: [0, 1],
-                                begin: AlignmentDirectional(-0.34, -1),
-                                end: AlignmentDirectional(0.34, 1),
-                              ),
-                              shape: BoxShape.circle,
+                          child: Stack(alignment: Alignment.center, children: [
+                            Container(
+                              width: 26,
+                              height: 26,
+                              decoration: BoxDecoration(
+                                  shape: BoxShape.circle,
+                                  border: buttonIndex == 4
+                                      ? Border.all(
+                                          color: Colors.white, width: 3)
+                                      : null),
                             ),
-                          ),
+                            Container(
+                              child: InkWell(
+                                onTap: () {
+                                  setState(() {
+                                    buttonIndex = 4;
+                                  });
+                                },
+                              ),
+                              width: 20,
+                              height: 20,
+                              decoration: BoxDecoration(
+                                gradient: LinearGradient(
+                                  colors: [
+                                    Color.fromARGB(255, 255, 89, 200),
+                                    Color.fromARGB(255, 253, 255, 155)
+                                  ],
+                                  stops: [0, 1],
+                                  begin: AlignmentDirectional(-0.34, -1),
+                                  end: AlignmentDirectional(0.34, 1),
+                                ),
+                                shape: BoxShape.circle,
+                              ),
+                            ),
+                          ]),
+                        ),
+                        Padding(
+                          padding: EdgeInsetsDirectional.fromSTEB(5, 0, 5, 0),
+                          child: Stack(alignment: Alignment.center, children: [
+                            Container(
+                              width: 26,
+                              height: 26,
+                              decoration: BoxDecoration(
+                                  shape: BoxShape.circle,
+                                  border: buttonIndex == 5
+                                      ? Border.all(
+                                          color: Colors.white, width: 3)
+                                      : null),
+                            ),
+                            Container(
+                              child: InkWell(
+                                onTap: () {
+                                  setState(() {
+                                    buttonIndex = 5;
+                                  });
+                                },
+                              ),
+                              width: 20,
+                              height: 20,
+                              decoration: BoxDecoration(
+                                gradient: LinearGradient(
+                                  colors: [
+                                    Color(0xFFE6A0FF),
+                                    Color(0xFF9AE1FF)
+                                  ],
+                                  stops: [0, 1],
+                                  begin: AlignmentDirectional(-0.34, -1),
+                                  end: AlignmentDirectional(0.34, 1),
+                                ),
+                                shape: BoxShape.circle,
+                              ),
+                            ),
+                          ]),
                         ),
                       ],
                     ),
@@ -758,7 +829,7 @@ class _CreateChallengePageWidgetState extends State<CreateChallengePageWidget> {
                                 createdAt: getCurrentTimestamp,
                                 createBy: currentUserReference,
                                 status: 'active',
-                                colorScheme: radioButtonValue,
+                                colorScheme: buttonIndex.toString(),
                                 comments: commentsController!.text,
                                 id: random_data.randomString(
                                   8,
