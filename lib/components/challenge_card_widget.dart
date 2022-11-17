@@ -23,7 +23,7 @@ class ChallengeCardWidget extends StatefulWidget {
   final String? details;
   final String? comments;
   final String? path;
-  final String? color;
+  final int? color;
 
   @override
   _ChallengeCardWidgetState createState() => _ChallengeCardWidgetState();
