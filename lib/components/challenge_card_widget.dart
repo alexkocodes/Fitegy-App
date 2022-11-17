@@ -15,6 +15,7 @@ class ChallengeCardWidget extends StatefulWidget {
     this.comments,
     this.path,
     this.color,
+    this.index,
   }) : super(key: key);
 
   final String? title;
@@ -23,6 +24,7 @@ class ChallengeCardWidget extends StatefulWidget {
   final String? comments;
   final String? path;
   final int? color;
+  final int? index;
 
   @override
   _ChallengeCardWidgetState createState() => _ChallengeCardWidgetState();
@@ -30,28 +32,6 @@ class ChallengeCardWidget extends StatefulWidget {
 
 class _ChallengeCardWidgetState extends State<ChallengeCardWidget>
     with TickerProviderStateMixin {
-  final animationsMap = {
-    'containerOnPageLoadAnimation': AnimationInfo(
-      trigger: AnimationTrigger.onPageLoad,
-      effects: [
-        MoveEffect(
-          curve: Curves.easeInOut,
-          delay: 0.ms,
-          duration: 1000.ms,
-          begin: Offset(0, 100),
-          end: Offset(0, 0),
-        ),
-        FadeEffect(
-          curve: Curves.easeInOut,
-          delay: 0.ms,
-          duration: 1000.ms,
-          begin: 0,
-          end: 1,
-        ),
-      ],
-    ),
-  };
-
   final colorSchemes = [
     [Color.fromARGB(255, 154, 225, 255), Color.fromARGB(255, 253, 255, 155)],
     [Color.fromARGB(255, 89, 205, 114), Color.fromARGB(255, 253, 255, 155)],
@@ -60,6 +40,7 @@ class _ChallengeCardWidgetState extends State<ChallengeCardWidget>
     [Color(0xFFE6A0FF), Color(0xFF9AE1FF)],
   ];
 
+  static var animation_delay;
   @override
   void initState() {
     super.initState();
@@ -67,8 +48,50 @@ class _ChallengeCardWidgetState extends State<ChallengeCardWidget>
 
   @override
   Widget build(BuildContext context) {
+    switch (widget.index! % 6) {
+      case 0:
+        animation_delay = 100;
+        break;
+      case 1:
+        animation_delay = 200;
+        break;
+      case 2:
+        animation_delay = 300;
+        break;
+      case 3:
+        animation_delay = 400;
+        break;
+      case 4:
+        animation_delay = 500;
+        break;
+      case 5:
+        animation_delay = 600;
+        break;
+      default:
+    }
+    var animationsMap = {
+      'containerOnPageLoadAnimation': AnimationInfo(
+        trigger: AnimationTrigger.onPageLoad,
+        effects: [
+          MoveEffect(
+            curve: Curves.easeInOut,
+            delay: Duration(milliseconds: animation_delay),
+            duration: 600.ms,
+            begin: Offset(0, 100),
+            end: Offset(0, 0),
+          ),
+          FadeEffect(
+            curve: Curves.easeInOut,
+            delay: Duration(milliseconds: animation_delay),
+            duration: 600.ms,
+            begin: 0,
+            end: 1,
+          ),
+        ],
+      ),
+    };
     return Padding(
-      padding: EdgeInsetsDirectional.fromSTEB(15, 0, 15, 0),
+      padding: EdgeInsetsDirectional.fromSTEB(18, 0, 15, 20),
       child: InkWell(
         onTap: () async {
           context.pushNamed(

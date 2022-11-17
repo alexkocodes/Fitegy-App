@@ -337,8 +337,8 @@ class _MyChallengesWidgetState extends State<MyChallengesWidget>
                                               SliverGridDelegateWithFixedCrossAxisCount(
                                             crossAxisCount: 2,
                                             crossAxisSpacing: 10,
-                                            mainAxisSpacing: 30,
-                                            childAspectRatio: 0.95,
+                                            mainAxisSpacing: 10,
+                                            childAspectRatio: 0.88,
                                           ),
                                           scrollDirection: Axis.vertical,
                                           itemCount:
@@ -365,6 +365,7 @@ class _MyChallengesWidgetState extends State<MyChallengesWidget>
                                                   .toString(),
                                               color: gridViewChallengesRecord
                                                   .colorScheme,
+                                              index: gridViewIndex,
                                             );
                                           },
                                         );
@@ -373,7 +374,7 @@ class _MyChallengesWidgetState extends State<MyChallengesWidget>
                                   ),
                                   Padding(
                                     padding: EdgeInsetsDirectional.fromSTEB(
-                                        0, 15, 0, 0),
+                                        0, 20, 0, 0),
                                     child:
                                         StreamBuilder<List<ChallengesRecord>>(
                                       stream: queryChallengesRecord(
@@ -416,13 +417,12 @@ class _MyChallengesWidgetState extends State<MyChallengesWidget>
                                           );
                                         }
                                         return GridView.builder(
-                                          padding: EdgeInsets.zero,
                                           gridDelegate:
                                               SliverGridDelegateWithFixedCrossAxisCount(
                                             crossAxisCount: 2,
                                             crossAxisSpacing: 10,
-                                            mainAxisSpacing: 30,
-                                            childAspectRatio: 0.95,
+                                            mainAxisSpacing: 10,
+                                            childAspectRatio: 0.88,
                                           ),
                                           scrollDirection: Axis.vertical,
                                           itemCount:
@@ -449,6 +449,7 @@ class _MyChallengesWidgetState extends State<MyChallengesWidget>
                                                   .toString(),
                                               color: gridViewChallengesRecord
                                                   .colorScheme,
+                                              index: gridViewIndex,
                                             );
                                           },
                                         );
@@ -457,1046 +458,86 @@ class _MyChallengesWidgetState extends State<MyChallengesWidget>
                                   ),
                                   Padding(
                                     padding: EdgeInsetsDirectional.fromSTEB(
-                                        0, 15, 0, 0),
-                                    child: ListView(
-                                      padding: EdgeInsets.zero,
-                                      scrollDirection: Axis.vertical,
-                                      children: [
-                                        Padding(
-                                          padding:
-                                              EdgeInsetsDirectional.fromSTEB(
-                                                  15, 0, 15, 30),
-                                          child: Row(
-                                            mainAxisSize: MainAxisSize.max,
-                                            mainAxisAlignment:
-                                                MainAxisAlignment.spaceBetween,
-                                            children: [
-                                              InkWell(
-                                                onTap: () async {
-                                                  context.pushNamed(
-                                                      'ChallengeDetails');
-                                                },
-                                                child: Container(
-                                                  width: MediaQuery.of(context)
-                                                          .size
-                                                          .width *
-                                                      0.35,
-                                                  height: MediaQuery.of(context)
-                                                          .size
-                                                          .height *
-                                                      0.2,
-                                                  decoration: BoxDecoration(
-                                                    boxShadow: [
-                                                      BoxShadow(
-                                                        blurRadius: 12,
-                                                        color:
-                                                            Color(0x33000000),
-                                                        offset: Offset(0, 5),
-                                                      )
-                                                    ],
-                                                    gradient: LinearGradient(
-                                                      colors: [
-                                                        Color(0xFFE6A0FF),
-                                                        Color(0xFF9AE1FF)
-                                                      ],
-                                                      stops: [0, 1],
-                                                      begin:
-                                                          AlignmentDirectional(
-                                                              -0.34, -1),
-                                                      end: AlignmentDirectional(
-                                                          0.34, 1),
-                                                    ),
-                                                    borderRadius:
-                                                        BorderRadius.circular(
-                                                            20),
-                                                  ),
-                                                  child: Padding(
-                                                    padding:
-                                                        EdgeInsetsDirectional
-                                                            .fromSTEB(
-                                                                15, 15, 15, 15),
-                                                    child: Column(
-                                                      mainAxisSize:
-                                                          MainAxisSize.max,
-                                                      mainAxisAlignment:
-                                                          MainAxisAlignment
-                                                              .spaceBetween,
-                                                      crossAxisAlignment:
-                                                          CrossAxisAlignment
-                                                              .start,
-                                                      children: [
-                                                        Column(
-                                                          mainAxisSize:
-                                                              MainAxisSize.max,
-                                                          crossAxisAlignment:
-                                                              CrossAxisAlignment
-                                                                  .start,
-                                                          children: [
-                                                            Text(
-                                                              'Alex\'s Spring Break Run',
-                                                              style: FlutterFlowTheme
-                                                                      .of(context)
-                                                                  .bodyText1
-                                                                  .override(
-                                                                    fontFamily:
-                                                                        'Archivo Black',
-                                                                    color: FlutterFlowTheme.of(
-                                                                            context)
-                                                                        .secondaryBackground,
-                                                                    useGoogleFonts: GoogleFonts
-                                                                            .asMap()
-                                                                        .containsKey(
-                                                                            FlutterFlowTheme.of(context).bodyText1Family),
-                                                                  ),
-                                                            ),
-                                                            Padding(
-                                                              padding:
-                                                                  EdgeInsetsDirectional
-                                                                      .fromSTEB(
-                                                                          0,
-                                                                          5,
-                                                                          0,
-                                                                          0),
-                                                              child: Text(
-                                                                'Oct 10th, 22',
-                                                                style: FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .bodyText1
-                                                                    .override(
-                                                                      fontFamily:
-                                                                          FlutterFlowTheme.of(context)
-                                                                              .bodyText1Family,
-                                                                      color: FlutterFlowTheme.of(
-                                                                              context)
-                                                                          .primaryBtnText,
-                                                                      fontSize:
-                                                                          12,
-                                                                      fontWeight:
-                                                                          FontWeight
-                                                                              .normal,
-                                                                      useGoogleFonts: GoogleFonts
-                                                                              .asMap()
-                                                                          .containsKey(
-                                                                              FlutterFlowTheme.of(context).bodyText1Family),
-                                                                    ),
-                                                              ),
-                                                            ),
-                                                          ],
-                                                        ),
-                                                        Row(
-                                                          mainAxisSize:
-                                                              MainAxisSize.max,
-                                                          mainAxisAlignment:
-                                                              MainAxisAlignment
-                                                                  .end,
-                                                          children: [
-                                                            Image.asset(
-                                                              'assets/images/Hole.png',
-                                                              width: 15,
-                                                              fit: BoxFit.cover,
-                                                            ),
-                                                          ],
-                                                        ),
-                                                      ],
-                                                    ),
-                                                  ),
-                                                ),
-                                              ).animateOnPageLoad(animationsMap[
-                                                  'containerOnPageLoadAnimation2']!),
-                                              Container(
-                                                width: MediaQuery.of(context)
-                                                        .size
-                                                        .width *
-                                                    0.35,
-                                                height: MediaQuery.of(context)
-                                                        .size
-                                                        .height *
-                                                    0.2,
-                                                decoration: BoxDecoration(
-                                                  boxShadow: [
-                                                    BoxShadow(
-                                                      blurRadius: 12,
-                                                      color: Color(0x33000000),
-                                                      offset: Offset(0, 5),
-                                                    )
-                                                  ],
-                                                  gradient: LinearGradient(
-                                                    colors: [
-                                                      Color(0xFF9AE1FF),
-                                                      Color(0xFFFDFF9B)
-                                                    ],
-                                                    stops: [0, 1],
-                                                    begin: AlignmentDirectional(
-                                                        -0.34, -1),
-                                                    end: AlignmentDirectional(
-                                                        0.34, 1),
-                                                  ),
-                                                  borderRadius:
-                                                      BorderRadius.circular(20),
-                                                ),
-                                                child: Padding(
-                                                  padding: EdgeInsetsDirectional
-                                                      .fromSTEB(15, 15, 15, 15),
-                                                  child: Column(
-                                                    mainAxisSize:
-                                                        MainAxisSize.max,
-                                                    mainAxisAlignment:
-                                                        MainAxisAlignment
-                                                            .spaceBetween,
-                                                    crossAxisAlignment:
-                                                        CrossAxisAlignment
-                                                            .start,
-                                                    children: [
-                                                      Column(
-                                                        mainAxisSize:
-                                                            MainAxisSize.max,
-                                                        crossAxisAlignment:
-                                                            CrossAxisAlignment
-                                                                .start,
-                                                        children: [
-                                                          Text(
-                                                            'HIIT every Friday (with the Taiwanese)',
-                                                            style: FlutterFlowTheme
-                                                                    .of(context)
-                                                                .bodyText1
-                                                                .override(
-                                                                  fontFamily:
-                                                                      'Archivo Black',
-                                                                  color: FlutterFlowTheme.of(
-                                                                          context)
-                                                                      .secondaryBackground,
-                                                                  useGoogleFonts: GoogleFonts
-                                                                          .asMap()
-                                                                      .containsKey(
-                                                                          FlutterFlowTheme.of(context)
-                                                                              .bodyText1Family),
-                                                                ),
-                                                          ),
-                                                          Padding(
-                                                            padding:
-                                                                EdgeInsetsDirectional
-                                                                    .fromSTEB(
-                                                                        0,
-                                                                        5,
-                                                                        0,
-                                                                        0),
-                                                            child: Text(
-                                                              'Oct 10th, 22',
-                                                              style: FlutterFlowTheme
-                                                                      .of(context)
-                                                                  .bodyText1
-                                                                  .override(
-                                                                    fontFamily:
-                                                                        FlutterFlowTheme.of(context)
-                                                                            .bodyText1Family,
-                                                                    color: FlutterFlowTheme.of(
-                                                                            context)
-                                                                        .primaryBtnText,
-                                                                    fontSize:
-                                                                        12,
-                                                                    fontWeight:
-                                                                        FontWeight
-                                                                            .normal,
-                                                                    useGoogleFonts: GoogleFonts
-                                                                            .asMap()
-                                                                        .containsKey(
-                                                                            FlutterFlowTheme.of(context).bodyText1Family),
-                                                                  ),
-                                                            ),
-                                                          ),
-                                                        ],
-                                                      ),
-                                                      Row(
-                                                        mainAxisSize:
-                                                            MainAxisSize.max,
-                                                        mainAxisAlignment:
-                                                            MainAxisAlignment
-                                                                .end,
-                                                        children: [
-                                                          Image.asset(
-                                                            'assets/images/Hole.png',
-                                                            width: 15,
-                                                            fit: BoxFit.cover,
-                                                          ),
-                                                        ],
-                                                      ),
-                                                    ],
-                                                  ),
-                                                ),
-                                              ).animateOnPageLoad(animationsMap[
-                                                  'containerOnPageLoadAnimation3']!),
-                                            ],
+                                        0, 20, 0, 0),
+                                    child:
+                                        StreamBuilder<List<ChallengesRecord>>(
+                                      stream: queryChallengesRecord(
+                                        queryBuilder: (challengesRecord) =>
+                                            challengesRecord
+                                                .where('status',
+                                                    isEqualTo: 'invited')
+                                                .orderBy('created_at',
+                                                    descending: true),
+                                        limit: 10,
+                                      ),
+                                      builder: (context, snapshot) {
+                                        // Customize what your widget looks like when it's loading.
+                                        if (!snapshot.hasData) {
+                                          return Center(
+                                            child: SizedBox(
+                                              width: 40,
+                                              height: 40,
+                                              child: CircularProgressIndicator(
+                                                color:
+                                                    FlutterFlowTheme.of(context)
+                                                        .lineColor,
+                                              ),
+                                            ),
+                                          );
+                                        }
+                                        List<ChallengesRecord>
+                                            gridViewChallengesRecordList =
+                                            snapshot.data!;
+                                        if (gridViewChallengesRecordList
+                                            .isEmpty) {
+                                          return Center(
+                                            child: Container(
+                                              width: MediaQuery.of(context)
+                                                      .size
+                                                      .width *
+                                                  0.5,
+                                              child: EmptyWidget(),
+                                            ),
+                                          );
+                                        }
+                                        return GridView.builder(
+                                          gridDelegate:
+                                              SliverGridDelegateWithFixedCrossAxisCount(
+                                            crossAxisCount: 2,
+                                            crossAxisSpacing: 10,
+                                            mainAxisSpacing: 10,
+                                            childAspectRatio: 0.88,
                                           ),
-                                        ),
-                                        Padding(
-                                          padding:
-                                              EdgeInsetsDirectional.fromSTEB(
-                                                  15, 0, 15, 30),
-                                          child: Row(
-                                            mainAxisSize: MainAxisSize.max,
-                                            mainAxisAlignment:
-                                                MainAxisAlignment.spaceBetween,
-                                            children: [
-                                              Container(
-                                                width: MediaQuery.of(context)
-                                                        .size
-                                                        .width *
-                                                    0.35,
-                                                height: MediaQuery.of(context)
-                                                        .size
-                                                        .height *
-                                                    0.2,
-                                                decoration: BoxDecoration(
-                                                  boxShadow: [
-                                                    BoxShadow(
-                                                      blurRadius: 12,
-                                                      color: Color(0x33000000),
-                                                      offset: Offset(0, 5),
-                                                    )
-                                                  ],
-                                                  gradient: LinearGradient(
-                                                    colors: [
-                                                      Color(0xFFFF7474),
-                                                      Color(0xFFFFFB99)
-                                                    ],
-                                                    stops: [0, 1],
-                                                    begin: AlignmentDirectional(
-                                                        -0.34, -1),
-                                                    end: AlignmentDirectional(
-                                                        0.34, 1),
-                                                  ),
-                                                  borderRadius:
-                                                      BorderRadius.circular(20),
-                                                ),
-                                                child: Padding(
-                                                  padding: EdgeInsetsDirectional
-                                                      .fromSTEB(15, 15, 15, 15),
-                                                  child: Column(
-                                                    mainAxisSize:
-                                                        MainAxisSize.max,
-                                                    mainAxisAlignment:
-                                                        MainAxisAlignment
-                                                            .spaceBetween,
-                                                    crossAxisAlignment:
-                                                        CrossAxisAlignment
-                                                            .start,
-                                                    children: [
-                                                      Column(
-                                                        mainAxisSize:
-                                                            MainAxisSize.max,
-                                                        crossAxisAlignment:
-                                                            CrossAxisAlignment
-                                                                .start,
-                                                        children: [
-                                                          Text(
-                                                            'Alex\'s Spring Break Run',
-                                                            style: FlutterFlowTheme
-                                                                    .of(context)
-                                                                .bodyText1
-                                                                .override(
-                                                                  fontFamily:
-                                                                      'Archivo Black',
-                                                                  color: FlutterFlowTheme.of(
-                                                                          context)
-                                                                      .secondaryBackground,
-                                                                  useGoogleFonts: GoogleFonts
-                                                                          .asMap()
-                                                                      .containsKey(
-                                                                          FlutterFlowTheme.of(context)
-                                                                              .bodyText1Family),
-                                                                ),
-                                                          ),
-                                                          Padding(
-                                                            padding:
-                                                                EdgeInsetsDirectional
-                                                                    .fromSTEB(
-                                                                        0,
-                                                                        5,
-                                                                        0,
-                                                                        0),
-                                                            child: Text(
-                                                              'Oct 10th, 22',
-                                                              style: FlutterFlowTheme
-                                                                      .of(context)
-                                                                  .bodyText1
-                                                                  .override(
-                                                                    fontFamily:
-                                                                        FlutterFlowTheme.of(context)
-                                                                            .bodyText1Family,
-                                                                    color: FlutterFlowTheme.of(
-                                                                            context)
-                                                                        .primaryBtnText,
-                                                                    fontSize:
-                                                                        12,
-                                                                    fontWeight:
-                                                                        FontWeight
-                                                                            .normal,
-                                                                    useGoogleFonts: GoogleFonts
-                                                                            .asMap()
-                                                                        .containsKey(
-                                                                            FlutterFlowTheme.of(context).bodyText1Family),
-                                                                  ),
-                                                            ),
-                                                          ),
-                                                        ],
-                                                      ),
-                                                      Row(
-                                                        mainAxisSize:
-                                                            MainAxisSize.max,
-                                                        mainAxisAlignment:
-                                                            MainAxisAlignment
-                                                                .end,
-                                                        children: [
-                                                          Image.asset(
-                                                            'assets/images/Hole.png',
-                                                            width: 15,
-                                                            fit: BoxFit.cover,
-                                                          ),
-                                                        ],
-                                                      ),
-                                                    ],
-                                                  ),
-                                                ),
-                                              ).animateOnPageLoad(animationsMap[
-                                                  'containerOnPageLoadAnimation4']!),
-                                              Container(
-                                                width: MediaQuery.of(context)
-                                                        .size
-                                                        .width *
-                                                    0.35,
-                                                height: MediaQuery.of(context)
-                                                        .size
-                                                        .height *
-                                                    0.2,
-                                                decoration: BoxDecoration(
-                                                  boxShadow: [
-                                                    BoxShadow(
-                                                      blurRadius: 12,
-                                                      color: Color(0x33000000),
-                                                      offset: Offset(0, 5),
-                                                    )
-                                                  ],
-                                                  gradient: LinearGradient(
-                                                    colors: [
-                                                      Color(0xFF59CD72),
-                                                      Color(0xFFFDFF9B)
-                                                    ],
-                                                    stops: [0, 1],
-                                                    begin: AlignmentDirectional(
-                                                        -0.34, -1),
-                                                    end: AlignmentDirectional(
-                                                        0.34, 1),
-                                                  ),
-                                                  borderRadius:
-                                                      BorderRadius.circular(20),
-                                                ),
-                                                child: Padding(
-                                                  padding: EdgeInsetsDirectional
-                                                      .fromSTEB(15, 15, 15, 15),
-                                                  child: Column(
-                                                    mainAxisSize:
-                                                        MainAxisSize.max,
-                                                    mainAxisAlignment:
-                                                        MainAxisAlignment
-                                                            .spaceBetween,
-                                                    crossAxisAlignment:
-                                                        CrossAxisAlignment
-                                                            .start,
-                                                    children: [
-                                                      Column(
-                                                        mainAxisSize:
-                                                            MainAxisSize.max,
-                                                        crossAxisAlignment:
-                                                            CrossAxisAlignment
-                                                                .start,
-                                                        children: [
-                                                          Text(
-                                                            'Alex\'s Spring Break Run',
-                                                            style: FlutterFlowTheme
-                                                                    .of(context)
-                                                                .bodyText1
-                                                                .override(
-                                                                  fontFamily:
-                                                                      'Archivo Black',
-                                                                  color: FlutterFlowTheme.of(
-                                                                          context)
-                                                                      .secondaryBackground,
-                                                                  useGoogleFonts: GoogleFonts
-                                                                          .asMap()
-                                                                      .containsKey(
-                                                                          FlutterFlowTheme.of(context)
-                                                                              .bodyText1Family),
-                                                                ),
-                                                          ),
-                                                          Padding(
-                                                            padding:
-                                                                EdgeInsetsDirectional
-                                                                    .fromSTEB(
-                                                                        0,
-                                                                        5,
-                                                                        0,
-                                                                        0),
-                                                            child: Text(
-                                                              'Oct 10th, 22',
-                                                              style: FlutterFlowTheme
-                                                                      .of(context)
-                                                                  .bodyText1
-                                                                  .override(
-                                                                    fontFamily:
-                                                                        FlutterFlowTheme.of(context)
-                                                                            .bodyText1Family,
-                                                                    color: FlutterFlowTheme.of(
-                                                                            context)
-                                                                        .primaryBtnText,
-                                                                    fontSize:
-                                                                        12,
-                                                                    fontWeight:
-                                                                        FontWeight
-                                                                            .normal,
-                                                                    useGoogleFonts: GoogleFonts
-                                                                            .asMap()
-                                                                        .containsKey(
-                                                                            FlutterFlowTheme.of(context).bodyText1Family),
-                                                                  ),
-                                                            ),
-                                                          ),
-                                                        ],
-                                                      ),
-                                                      Row(
-                                                        mainAxisSize:
-                                                            MainAxisSize.max,
-                                                        mainAxisAlignment:
-                                                            MainAxisAlignment
-                                                                .end,
-                                                        children: [
-                                                          Image.asset(
-                                                            'assets/images/Hole.png',
-                                                            width: 15,
-                                                            fit: BoxFit.cover,
-                                                          ),
-                                                        ],
-                                                      ),
-                                                    ],
-                                                  ),
-                                                ),
-                                              ).animateOnPageLoad(animationsMap[
-                                                  'containerOnPageLoadAnimation5']!),
-                                            ],
-                                          ),
-                                        ),
-                                        Padding(
-                                          padding:
-                                              EdgeInsetsDirectional.fromSTEB(
-                                                  15, 0, 15, 30),
-                                          child: Row(
-                                            mainAxisSize: MainAxisSize.max,
-                                            mainAxisAlignment:
-                                                MainAxisAlignment.spaceBetween,
-                                            children: [
-                                              Container(
-                                                width: MediaQuery.of(context)
-                                                        .size
-                                                        .width *
-                                                    0.35,
-                                                height: MediaQuery.of(context)
-                                                        .size
-                                                        .height *
-                                                    0.2,
-                                                decoration: BoxDecoration(
-                                                  boxShadow: [
-                                                    BoxShadow(
-                                                      blurRadius: 12,
-                                                      color: Color(0x33000000),
-                                                      offset: Offset(0, 5),
-                                                    )
-                                                  ],
-                                                  gradient: LinearGradient(
-                                                    colors: [
-                                                      Color(0xFFFF59C7),
-                                                      Color(0xFFF7FF9B)
-                                                    ],
-                                                    stops: [0, 1],
-                                                    begin: AlignmentDirectional(
-                                                        -0.34, -1),
-                                                    end: AlignmentDirectional(
-                                                        0.34, 1),
-                                                  ),
-                                                  borderRadius:
-                                                      BorderRadius.circular(20),
-                                                ),
-                                                child: Padding(
-                                                  padding: EdgeInsetsDirectional
-                                                      .fromSTEB(15, 15, 15, 15),
-                                                  child: Column(
-                                                    mainAxisSize:
-                                                        MainAxisSize.max,
-                                                    mainAxisAlignment:
-                                                        MainAxisAlignment
-                                                            .spaceBetween,
-                                                    crossAxisAlignment:
-                                                        CrossAxisAlignment
-                                                            .start,
-                                                    children: [
-                                                      Column(
-                                                        mainAxisSize:
-                                                            MainAxisSize.max,
-                                                        crossAxisAlignment:
-                                                            CrossAxisAlignment
-                                                                .start,
-                                                        children: [
-                                                          Text(
-                                                            'Alex\'s Spring Break Run',
-                                                            style: FlutterFlowTheme
-                                                                    .of(context)
-                                                                .bodyText1
-                                                                .override(
-                                                                  fontFamily:
-                                                                      'Archivo Black',
-                                                                  color: FlutterFlowTheme.of(
-                                                                          context)
-                                                                      .secondaryBackground,
-                                                                  useGoogleFonts: GoogleFonts
-                                                                          .asMap()
-                                                                      .containsKey(
-                                                                          FlutterFlowTheme.of(context)
-                                                                              .bodyText1Family),
-                                                                ),
-                                                          ),
-                                                          Padding(
-                                                            padding:
-                                                                EdgeInsetsDirectional
-                                                                    .fromSTEB(
-                                                                        0,
-                                                                        5,
-                                                                        0,
-                                                                        0),
-                                                            child: Text(
-                                                              'Oct 10th, 22',
-                                                              style: FlutterFlowTheme
-                                                                      .of(context)
-                                                                  .bodyText1
-                                                                  .override(
-                                                                    fontFamily:
-                                                                        FlutterFlowTheme.of(context)
-                                                                            .bodyText1Family,
-                                                                    color: FlutterFlowTheme.of(
-                                                                            context)
-                                                                        .primaryBtnText,
-                                                                    fontSize:
-                                                                        12,
-                                                                    fontWeight:
-                                                                        FontWeight
-                                                                            .normal,
-                                                                    useGoogleFonts: GoogleFonts
-                                                                            .asMap()
-                                                                        .containsKey(
-                                                                            FlutterFlowTheme.of(context).bodyText1Family),
-                                                                  ),
-                                                            ),
-                                                          ),
-                                                        ],
-                                                      ),
-                                                      Row(
-                                                        mainAxisSize:
-                                                            MainAxisSize.max,
-                                                        mainAxisAlignment:
-                                                            MainAxisAlignment
-                                                                .end,
-                                                        children: [
-                                                          Image.asset(
-                                                            'assets/images/Hole.png',
-                                                            width: 15,
-                                                            fit: BoxFit.cover,
-                                                          ),
-                                                        ],
-                                                      ),
-                                                    ],
-                                                  ),
-                                                ),
-                                              ).animateOnPageLoad(animationsMap[
-                                                  'containerOnPageLoadAnimation6']!),
-                                              Container(
-                                                width: MediaQuery.of(context)
-                                                        .size
-                                                        .width *
-                                                    0.35,
-                                                height: MediaQuery.of(context)
-                                                        .size
-                                                        .height *
-                                                    0.2,
-                                                decoration: BoxDecoration(
-                                                  boxShadow: [
-                                                    BoxShadow(
-                                                      blurRadius: 12,
-                                                      color: Color(0x33000000),
-                                                      offset: Offset(0, 5),
-                                                    )
-                                                  ],
-                                                  gradient: LinearGradient(
-                                                    colors: [
-                                                      Color(0xFFE6A0FF),
-                                                      Color(0xFF9AE1FF)
-                                                    ],
-                                                    stops: [0, 1],
-                                                    begin: AlignmentDirectional(
-                                                        -0.34, -1),
-                                                    end: AlignmentDirectional(
-                                                        0.34, 1),
-                                                  ),
-                                                  borderRadius:
-                                                      BorderRadius.circular(20),
-                                                ),
-                                                child: Padding(
-                                                  padding: EdgeInsetsDirectional
-                                                      .fromSTEB(15, 15, 15, 15),
-                                                  child: Column(
-                                                    mainAxisSize:
-                                                        MainAxisSize.max,
-                                                    mainAxisAlignment:
-                                                        MainAxisAlignment
-                                                            .spaceBetween,
-                                                    crossAxisAlignment:
-                                                        CrossAxisAlignment
-                                                            .start,
-                                                    children: [
-                                                      Column(
-                                                        mainAxisSize:
-                                                            MainAxisSize.max,
-                                                        crossAxisAlignment:
-                                                            CrossAxisAlignment
-                                                                .start,
-                                                        children: [
-                                                          Text(
-                                                            'Alex\'s Spring Break Run',
-                                                            style: FlutterFlowTheme
-                                                                    .of(context)
-                                                                .bodyText1
-                                                                .override(
-                                                                  fontFamily:
-                                                                      'Archivo Black',
-                                                                  color: FlutterFlowTheme.of(
-                                                                          context)
-                                                                      .secondaryBackground,
-                                                                  useGoogleFonts: GoogleFonts
-                                                                          .asMap()
-                                                                      .containsKey(
-                                                                          FlutterFlowTheme.of(context)
-                                                                              .bodyText1Family),
-                                                                ),
-                                                          ),
-                                                          Padding(
-                                                            padding:
-                                                                EdgeInsetsDirectional
-                                                                    .fromSTEB(
-                                                                        0,
-                                                                        5,
-                                                                        0,
-                                                                        0),
-                                                            child: Text(
-                                                              'Oct 10th, 22',
-                                                              style: FlutterFlowTheme
-                                                                      .of(context)
-                                                                  .bodyText1
-                                                                  .override(
-                                                                    fontFamily:
-                                                                        FlutterFlowTheme.of(context)
-                                                                            .bodyText1Family,
-                                                                    color: FlutterFlowTheme.of(
-                                                                            context)
-                                                                        .primaryBtnText,
-                                                                    fontSize:
-                                                                        12,
-                                                                    fontWeight:
-                                                                        FontWeight
-                                                                            .normal,
-                                                                    useGoogleFonts: GoogleFonts
-                                                                            .asMap()
-                                                                        .containsKey(
-                                                                            FlutterFlowTheme.of(context).bodyText1Family),
-                                                                  ),
-                                                            ),
-                                                          ),
-                                                        ],
-                                                      ),
-                                                      Row(
-                                                        mainAxisSize:
-                                                            MainAxisSize.max,
-                                                        mainAxisAlignment:
-                                                            MainAxisAlignment
-                                                                .end,
-                                                        children: [
-                                                          Image.asset(
-                                                            'assets/images/Hole.png',
-                                                            width: 15,
-                                                            fit: BoxFit.cover,
-                                                          ),
-                                                        ],
-                                                      ),
-                                                    ],
-                                                  ),
-                                                ),
-                                              ).animateOnPageLoad(animationsMap[
-                                                  'containerOnPageLoadAnimation7']!),
-                                            ],
-                                          ),
-                                        ),
-                                        Padding(
-                                          padding:
-                                              EdgeInsetsDirectional.fromSTEB(
-                                                  15, 0, 15, 30),
-                                          child: Row(
-                                            mainAxisSize: MainAxisSize.max,
-                                            mainAxisAlignment:
-                                                MainAxisAlignment.spaceBetween,
-                                            children: [
-                                              Container(
-                                                width: MediaQuery.of(context)
-                                                        .size
-                                                        .width *
-                                                    0.35,
-                                                height: MediaQuery.of(context)
-                                                        .size
-                                                        .height *
-                                                    0.2,
-                                                decoration: BoxDecoration(
-                                                  boxShadow: [
-                                                    BoxShadow(
-                                                      blurRadius: 12,
-                                                      color: Color(0x33000000),
-                                                      offset: Offset(0, 5),
-                                                    )
-                                                  ],
-                                                  gradient: LinearGradient(
-                                                    colors: [
-                                                      Color(0xFFE6A0FF),
-                                                      Color(0xFF9AE1FF)
-                                                    ],
-                                                    stops: [0, 1],
-                                                    begin: AlignmentDirectional(
-                                                        -0.34, -1),
-                                                    end: AlignmentDirectional(
-                                                        0.34, 1),
-                                                  ),
-                                                  borderRadius:
-                                                      BorderRadius.circular(20),
-                                                ),
-                                                child: Padding(
-                                                  padding: EdgeInsetsDirectional
-                                                      .fromSTEB(15, 15, 15, 15),
-                                                  child: Column(
-                                                    mainAxisSize:
-                                                        MainAxisSize.max,
-                                                    mainAxisAlignment:
-                                                        MainAxisAlignment
-                                                            .spaceBetween,
-                                                    crossAxisAlignment:
-                                                        CrossAxisAlignment
-                                                            .start,
-                                                    children: [
-                                                      Column(
-                                                        mainAxisSize:
-                                                            MainAxisSize.max,
-                                                        crossAxisAlignment:
-                                                            CrossAxisAlignment
-                                                                .start,
-                                                        children: [
-                                                          Text(
-                                                            'Alex\'s Spring Break Run',
-                                                            style: FlutterFlowTheme
-                                                                    .of(context)
-                                                                .bodyText1
-                                                                .override(
-                                                                  fontFamily:
-                                                                      'Archivo Black',
-                                                                  color: FlutterFlowTheme.of(
-                                                                          context)
-                                                                      .secondaryBackground,
-                                                                  useGoogleFonts: GoogleFonts
-                                                                          .asMap()
-                                                                      .containsKey(
-                                                                          FlutterFlowTheme.of(context)
-                                                                              .bodyText1Family),
-                                                                ),
-                                                          ),
-                                                          Padding(
-                                                            padding:
-                                                                EdgeInsetsDirectional
-                                                                    .fromSTEB(
-                                                                        0,
-                                                                        5,
-                                                                        0,
-                                                                        0),
-                                                            child: Text(
-                                                              'Oct 10th, 22',
-                                                              style: FlutterFlowTheme
-                                                                      .of(context)
-                                                                  .bodyText1
-                                                                  .override(
-                                                                    fontFamily:
-                                                                        FlutterFlowTheme.of(context)
-                                                                            .bodyText1Family,
-                                                                    color: FlutterFlowTheme.of(
-                                                                            context)
-                                                                        .primaryBtnText,
-                                                                    fontSize:
-                                                                        12,
-                                                                    fontWeight:
-                                                                        FontWeight
-                                                                            .normal,
-                                                                    useGoogleFonts: GoogleFonts
-                                                                            .asMap()
-                                                                        .containsKey(
-                                                                            FlutterFlowTheme.of(context).bodyText1Family),
-                                                                  ),
-                                                            ),
-                                                          ),
-                                                        ],
-                                                      ),
-                                                      Row(
-                                                        mainAxisSize:
-                                                            MainAxisSize.max,
-                                                        mainAxisAlignment:
-                                                            MainAxisAlignment
-                                                                .end,
-                                                        children: [
-                                                          Image.asset(
-                                                            'assets/images/Hole.png',
-                                                            width: 15,
-                                                            fit: BoxFit.cover,
-                                                          ),
-                                                        ],
-                                                      ),
-                                                    ],
-                                                  ),
-                                                ),
-                                              ).animateOnPageLoad(animationsMap[
-                                                  'containerOnPageLoadAnimation8']!),
-                                              Container(
-                                                width: MediaQuery.of(context)
-                                                        .size
-                                                        .width *
-                                                    0.35,
-                                                height: MediaQuery.of(context)
-                                                        .size
-                                                        .height *
-                                                    0.2,
-                                                decoration: BoxDecoration(
-                                                  boxShadow: [
-                                                    BoxShadow(
-                                                      blurRadius: 12,
-                                                      color: Color(0x33000000),
-                                                      offset: Offset(0, 5),
-                                                    )
-                                                  ],
-                                                  gradient: LinearGradient(
-                                                    colors: [
-                                                      Color(0xFFE6A0FF),
-                                                      Color(0xFF9AE1FF)
-                                                    ],
-                                                    stops: [0, 1],
-                                                    begin: AlignmentDirectional(
-                                                        -0.34, -1),
-                                                    end: AlignmentDirectional(
-                                                        0.34, 1),
-                                                  ),
-                                                  borderRadius:
-                                                      BorderRadius.circular(20),
-                                                ),
-                                                child: Padding(
-                                                  padding: EdgeInsetsDirectional
-                                                      .fromSTEB(15, 15, 15, 15),
-                                                  child: Column(
-                                                    mainAxisSize:
-                                                        MainAxisSize.max,
-                                                    mainAxisAlignment:
-                                                        MainAxisAlignment
-                                                            .spaceBetween,
-                                                    crossAxisAlignment:
-                                                        CrossAxisAlignment
-                                                            .start,
-                                                    children: [
-                                                      Column(
-                                                        mainAxisSize:
-                                                            MainAxisSize.max,
-                                                        crossAxisAlignment:
-                                                            CrossAxisAlignment
-                                                                .start,
-                                                        children: [
-                                                          Text(
-                                                            'Alex\'s Spring Break Run',
-                                                            style: FlutterFlowTheme
-                                                                    .of(context)
-                                                                .bodyText1
-                                                                .override(
-                                                                  fontFamily:
-                                                                      'Archivo Black',
-                                                                  color: FlutterFlowTheme.of(
-                                                                          context)
-                                                                      .secondaryBackground,
-                                                                  useGoogleFonts: GoogleFonts
-                                                                          .asMap()
-                                                                      .containsKey(
-                                                                          FlutterFlowTheme.of(context)
-                                                                              .bodyText1Family),
-                                                                ),
-                                                          ),
-                                                          Padding(
-                                                            padding:
-                                                                EdgeInsetsDirectional
-                                                                    .fromSTEB(
-                                                                        0,
-                                                                        5,
-                                                                        0,
-                                                                        0),
-                                                            child: Text(
-                                                              'Oct 10th, 22',
-                                                              style: FlutterFlowTheme
-                                                                      .of(context)
-                                                                  .bodyText1
-                                                                  .override(
-                                                                    fontFamily:
-                                                                        FlutterFlowTheme.of(context)
-                                                                            .bodyText1Family,
-                                                                    color: FlutterFlowTheme.of(
-                                                                            context)
-                                                                        .primaryBtnText,
-                                                                    fontSize:
-                                                                        12,
-                                                                    fontWeight:
-                                                                        FontWeight
-                                                                            .normal,
-                                                                    useGoogleFonts: GoogleFonts
-                                                                            .asMap()
-                                                                        .containsKey(
-                                                                            FlutterFlowTheme.of(context).bodyText1Family),
-                                                                  ),
-                                                            ),
-                                                          ),
-                                                        ],
-                                                      ),
-                                                      Row(
-                                                        mainAxisSize:
-                                                            MainAxisSize.max,
-                                                        mainAxisAlignment:
-                                                            MainAxisAlignment
-                                                                .end,
-                                                        children: [
-                                                          Image.asset(
-                                                            'assets/images/Hole.png',
-                                                            width: 15,
-                                                            fit: BoxFit.cover,
-                                                          ),
-                                                        ],
-                                                      ),
-                                                    ],
-                                                  ),
-                                                ),
-                                              ).animateOnPageLoad(animationsMap[
-                                                  'containerOnPageLoadAnimation9']!),
-                                            ],
-                                          ),
-                                        ),
-                                      ],
+                                          scrollDirection: Axis.vertical,
+                                          itemCount:
+                                              gridViewChallengesRecordList
+                                                  .length,
+                                          itemBuilder:
+                                              (context, gridViewIndex) {
+                                            final gridViewChallengesRecord =
+                                                gridViewChallengesRecordList[
+                                                    gridViewIndex];
+                                            return ChallengeCardWidget(
+                                              key: Key(
+                                                  'ChallengeCard_${gridViewIndex}'),
+                                              title: gridViewChallengesRecord
+                                                  .title,
+                                              time: gridViewChallengesRecord
+                                                  .createdAt,
+                                              details: gridViewChallengesRecord
+                                                  .details,
+                                              comments: gridViewChallengesRecord
+                                                  .comments,
+                                              path: gridViewChallengesRecord
+                                                  .reference.path
+                                                  .toString(),
+                                              color: gridViewChallengesRecord
+                                                  .colorScheme,
+                                              index: gridViewIndex,
+                                            );
+                                          },
+                                        );
+                                      },
                                     ),
                                   ),
                                 ],
