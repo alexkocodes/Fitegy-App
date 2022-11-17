@@ -31,8 +31,6 @@ String? serializeParam(
   bool isList = false,
 ]) {
   try {
-    print("color:");
-    print(param);
     if (param == null) {
       return null;
     }

@@ -15,16 +15,13 @@ class ChallengeCardWidget extends StatefulWidget {
     this.comments,
     this.path,
     this.color,
-
   }) : super(key: key);
 
   final String? title;
   final DateTime? time;
   final String? details;
   final String? comments;
-
   final String? path;
-
   final int? color;
 
   @override
@@ -98,10 +95,8 @@ class _ChallengeCardWidgetState extends State<ChallengeCardWidget>
                 ParamType.String,
               ),
               'color': serializeParam(
-
                 widget.color,
                 ParamType.int,
-
               ),
             }.withoutNulls,
           );
