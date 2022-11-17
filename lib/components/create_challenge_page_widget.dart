@@ -1,6 +1,5 @@
 import '../auth/auth_util.dart';
 import '../backend/backend.dart';
-import '../flutter_flow/flutter_flow_radio_button.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_toggle_icon.dart';
 import '../flutter_flow/flutter_flow_util.dart';
@@ -829,7 +828,7 @@ class _CreateChallengePageWidgetState extends State<CreateChallengePageWidget> {
                                 createdAt: getCurrentTimestamp,
                                 createBy: currentUserReference,
                                 status: 'active',
-                                colorScheme: buttonIndex.toString(),
+                                colorScheme: buttonIndex,
                                 comments: commentsController!.text,
                                 id: random_data.randomString(
                                   8,

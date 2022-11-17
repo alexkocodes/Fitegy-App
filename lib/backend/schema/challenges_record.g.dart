@@ -77,13 +77,6 @@ class _$ChallengesRecordSerializer
         ..add(serializers.serialize(value,
             specifiedType: const FullType(String)));
     }
-    value = object.colorScheme;
-    if (value != null) {
-      result
-        ..add('color_scheme')
-        ..add(serializers.serialize(value,
-            specifiedType: const FullType(String)));
-    }
     value = object.comments;
     if (value != null) {
       result
@@ -97,6 +90,12 @@ class _$ChallengesRecordSerializer
         ..add('id')
         ..add(serializers.serialize(value,
             specifiedType: const FullType(String)));
+    }
+    value = object.colorScheme;
+    if (value != null) {
+      result
+        ..add('color_scheme')
+        ..add(serializers.serialize(value, specifiedType: const FullType(int)));
     }
     value = object.ffRef;
     if (value != null) {
@@ -157,10 +156,6 @@ class _$ChallengesRecordSerializer
           result.status = serializers.deserialize(value,
               specifiedType: const FullType(String)) as String?;
           break;
-        case 'color_scheme':
-          result.colorScheme = serializers.deserialize(value,
-              specifiedType: const FullType(String)) as String?;
-          break;
         case 'comments':
           result.comments = serializers.deserialize(value,
               specifiedType: const FullType(String)) as String?;
@@ -168,6 +163,10 @@ class _$ChallengesRecordSerializer
         case 'id':
           result.id = serializers.deserialize(value,
               specifiedType: const FullType(String)) as String?;
+          break;
+        case 'color_scheme':
+          result.colorScheme = serializers.deserialize(value,
+              specifiedType: const FullType(int)) as int?;
           break;
         case 'Document__Reference__Field':
           result.ffRef = serializers.deserialize(value,
@@ -198,11 +197,11 @@ class _$ChallengesRecord extends ChallengesRecord {
   @override
   final String? status;
   @override
-  final String? colorScheme;
-  @override
   final String? comments;
   @override
   final String? id;
+  @override
+  final int? colorScheme;
   @override
   final DocumentReference<Object?>? ffRef;
 
@@ -218,9 +217,9 @@ class _$ChallengesRecord extends ChallengesRecord {
       this.activeParticipants,
       this.invitedParticipants,
       this.status,
-      this.colorScheme,
       this.comments,
       this.id,
+      this.colorScheme,
       this.ffRef})
       : super._();
 
@@ -243,9 +242,9 @@ class _$ChallengesRecord extends ChallengesRecord {
         activeParticipants == other.activeParticipants &&
         invitedParticipants == other.invitedParticipants &&
         status == other.status &&
-        colorScheme == other.colorScheme &&
         comments == other.comments &&
         id == other.id &&
+        colorScheme == other.colorScheme &&
         ffRef == other.ffRef;
   }
 
@@ -267,9 +266,9 @@ class _$ChallengesRecord extends ChallengesRecord {
                                 activeParticipants.hashCode),
                             invitedParticipants.hashCode),
                         status.hashCode),
-                    colorScheme.hashCode),
-                comments.hashCode),
-            id.hashCode),
+                    comments.hashCode),
+                id.hashCode),
+            colorScheme.hashCode),
         ffRef.hashCode));
   }
 
@@ -283,9 +282,9 @@ class _$ChallengesRecord extends ChallengesRecord {
           ..add('activeParticipants', activeParticipants)
           ..add('invitedParticipants', invitedParticipants)
           ..add('status', status)
-          ..add('colorScheme', colorScheme)
           ..add('comments', comments)
           ..add('id', id)
+          ..add('colorScheme', colorScheme)
           ..add('ffRef', ffRef))
         .toString();
   }
@@ -332,10 +331,6 @@ class ChallengesRecordBuilder
   String? get status => _$this._status;
   set status(String? status) => _$this._status = status;
 
-  String? _colorScheme;
-  String? get colorScheme => _$this._colorScheme;
-  set colorScheme(String? colorScheme) => _$this._colorScheme = colorScheme;
-
   String? _comments;
   String? get comments => _$this._comments;
   set comments(String? comments) => _$this._comments = comments;
@@ -343,6 +338,10 @@ class ChallengesRecordBuilder
   String? _id;
   String? get id => _$this._id;
   set id(String? id) => _$this._id = id;
+
+  int? _colorScheme;
+  int? get colorScheme => _$this._colorScheme;
+  set colorScheme(int? colorScheme) => _$this._colorScheme = colorScheme;
 
   DocumentReference<Object?>? _ffRef;
   DocumentReference<Object?>? get ffRef => _$this._ffRef;
@@ -362,9 +361,9 @@ class ChallengesRecordBuilder
       _activeParticipants = $v.activeParticipants?.toBuilder();
       _invitedParticipants = $v.invitedParticipants?.toBuilder();
       _status = $v.status;
-      _colorScheme = $v.colorScheme;
       _comments = $v.comments;
       _id = $v.id;
+      _colorScheme = $v.colorScheme;
       _ffRef = $v.ffRef;
       _$v = null;
     }
@@ -397,9 +396,9 @@ class ChallengesRecordBuilder
               activeParticipants: _activeParticipants?.build(),
               invitedParticipants: _invitedParticipants?.build(),
               status: status,
-              colorScheme: colorScheme,
               comments: comments,
               id: id,
+              colorScheme: colorScheme,
               ffRef: ffRef);
     } catch (_) {
       late String _$failedField;

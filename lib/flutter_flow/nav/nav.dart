@@ -110,11 +110,6 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
                   : CreateWidget(),
             ),
             FFRoute(
-              name: 'CreateChallenge',
-              path: 'createChallenge',
-              builder: (context, params) => CreateChallengeWidget(),
-            ),
-            FFRoute(
               name: 'ChallengeCreated',
               path: 'challengeCreated',
               builder: (context, params) => ChallengeCreatedWidget(),
