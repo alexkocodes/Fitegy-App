@@ -18,6 +18,7 @@ class ChallengeDetailsWidget extends StatefulWidget {
     this.details,
     this.comments,
     this.path,
+    this.color,
   }) : super(key: key);
 
   final String? title;
@@ -25,16 +26,27 @@ class ChallengeDetailsWidget extends StatefulWidget {
   final String? details;
   final String? comments;
   final String? path;
+  final int? color;
+
   @override
   _ChallengeDetailsWidgetState createState() => _ChallengeDetailsWidgetState();
 }
 
 class _ChallengeDetailsWidgetState extends State<ChallengeDetailsWidget> {
   final scaffoldKey = GlobalKey<ScaffoldState>();
+  final colorSchemes = [
+    [Color.fromARGB(255, 154, 225, 255), Color.fromARGB(255, 253, 255, 155)],
+    [Color.fromARGB(255, 89, 205, 114), Color.fromARGB(255, 253, 255, 155)],
+    [Color.fromARGB(255, 255, 116, 116), Color.fromARGB(255, 253, 255, 155)],
+    [Color.fromARGB(255, 255, 89, 200), Color.fromARGB(255, 253, 255, 155)],
+    [Color(0xFFE6A0FF), Color(0xFF9AE1FF)],
+  ];
 
   @override
   Widget build(BuildContext context) {
     final db = FirebaseFirestore.instance;
+    print("widget color");
+    print(widget.color);
     return Scaffold(
       key: scaffoldKey,
       backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
@@ -113,10 +125,7 @@ class _ChallengeDetailsWidgetState extends State<ChallengeDetailsWidget> {
                                   )
                                 ],
                                 gradient: LinearGradient(
-                                  colors: [
-                                    Color(0xFFE6A0FF),
-                                    Color(0xFF9AE1FF)
-                                  ],
+                                  colors: colorSchemes[widget.color! - 1],
                                   stops: [0, 1],
                                   begin: AlignmentDirectional(-0.34, -1),
                                   end: AlignmentDirectional(0.34, 1),

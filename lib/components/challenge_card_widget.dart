@@ -95,6 +95,10 @@ class _ChallengeCardWidgetState extends State<ChallengeCardWidget>
                 widget.path,
                 ParamType.String,
               ),
+              'color': serializeParam(
+                1,
+                ParamType.int,
+              ),
             }.withoutNulls,
           );
         },
@@ -110,7 +114,7 @@ class _ChallengeCardWidgetState extends State<ChallengeCardWidget>
               )
             ],
             gradient: LinearGradient(
-              colors: colorSchemes[2],
+              colors: colorSchemes[widget.color! - 1],
               stops: [0, 1],
               begin: AlignmentDirectional(-0.34, -1),
               end: AlignmentDirectional(0.34, 1),

@@ -1,3 +1,5 @@
+import 'package:fitegy/flutter_flow/upload_media.dart';
+
 import '../backend/backend.dart';
 import '../components/challenge_card_widget.dart';
 import '../components/empty_widget.dart';
@@ -242,7 +244,7 @@ class _MyChallengesWidgetState extends State<MyChallengesWidget>
                         child: Column(
                           children: [
                             Container(
-                              height: 35,
+                              height: 30,
                               padding: EdgeInsets.symmetric(horizontal: 5),
                               child: TabBar(
                                 labelColor:
