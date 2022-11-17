@@ -96,8 +96,8 @@ class _ChallengeCardWidgetState extends State<ChallengeCardWidget>
                 ParamType.String,
               ),
               'color': serializeParam(
-                1,
-                ParamType.int,
+                widget.color.toString(),
+                ParamType.String,
               ),
             }.withoutNulls,
           );

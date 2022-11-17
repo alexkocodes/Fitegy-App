@@ -26,7 +26,7 @@ class ChallengeDetailsWidget extends StatefulWidget {
   final String? details;
   final String? comments;
   final String? path;
-  final int? color;
+  final String? color;
 
   @override
   _ChallengeDetailsWidgetState createState() => _ChallengeDetailsWidgetState();
@@ -45,7 +45,6 @@ class _ChallengeDetailsWidgetState extends State<ChallengeDetailsWidget> {
   @override
   Widget build(BuildContext context) {
     final db = FirebaseFirestore.instance;
-    print("widget color");
     print(widget.color);
     return Scaffold(
       key: scaffoldKey,
@@ -125,7 +124,8 @@ class _ChallengeDetailsWidgetState extends State<ChallengeDetailsWidget> {
                                   )
                                 ],
                                 gradient: LinearGradient(
-                                  colors: colorSchemes[widget.color! - 1],
+                                  colors: colorSchemes[
+                                      int.parse(widget.color!) - 1],
                                   stops: [0, 1],
                                   begin: AlignmentDirectional(-0.34, -1),
                                   end: AlignmentDirectional(0.34, 1),
