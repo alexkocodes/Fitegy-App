@@ -14,6 +14,7 @@ class ChallengeCardWidget extends StatefulWidget {
     this.details,
     this.comments,
     this.id,
+    this.color,
   }) : super(key: key);
 
   final String? title;
@@ -21,6 +22,7 @@ class ChallengeCardWidget extends StatefulWidget {
   final String? details;
   final String? comments;
   final String? id;
+  final int? color;
 
   @override
   _ChallengeCardWidgetState createState() => _ChallengeCardWidgetState();
@@ -85,7 +87,7 @@ class _ChallengeCardWidgetState extends State<ChallengeCardWidget>
                 ParamType.String,
               ),
               'color': serializeParam(
-                1,
+                widget.color,
                 ParamType.int,
               ),
             }.withoutNulls,

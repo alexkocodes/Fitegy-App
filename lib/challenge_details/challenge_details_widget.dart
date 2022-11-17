@@ -282,6 +282,12 @@ class _ChallengeDetailsWidgetState extends State<ChallengeDetailsWidget> {
                                         ),
                                       ],
                                     ),
+                                    SelectionArea(
+                                        child: Text(
+                                      widget.color.toString(),
+                                      style: FlutterFlowTheme.of(context)
+                                          .bodyText1,
+                                    )),
                                   ],
                                 ),
                               ),
