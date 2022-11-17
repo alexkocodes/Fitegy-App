@@ -241,40 +241,53 @@ class _MyChallengesWidgetState extends State<MyChallengesWidget>
                         initialIndex: 0,
                         child: Column(
                           children: [
-                            TabBar(
-                              labelColor:
-                                  FlutterFlowTheme.of(context).secondaryText,
-                              unselectedLabelColor: Color(0x9C868686),
-                              labelStyle: FlutterFlowTheme.of(context)
-                                  .bodyText1
-                                  .override(
-                                    fontFamily: 'Archivo Black',
-                                    fontSize: 13,
-                                    useGoogleFonts: GoogleFonts.asMap()
-                                        .containsKey(
-                                            FlutterFlowTheme.of(context)
-                                                .bodyText1Family),
+                            Container(
+                              height: 35,
+                              padding: EdgeInsets.symmetric(horizontal: 5),
+                              child: TabBar(
+                                labelColor:
+                                    FlutterFlowTheme.of(context).primaryBtnText,
+                                unselectedLabelColor: Color(0x9C868686),
+                                labelStyle: FlutterFlowTheme.of(context)
+                                    .bodyText1
+                                    .override(
+                                      fontFamily: 'Archivo Black',
+                                      fontSize:
+                                          MediaQuery.of(context).size.width *
+                                              0.03,
+                                      useGoogleFonts: GoogleFonts.asMap()
+                                          .containsKey(
+                                              FlutterFlowTheme.of(context)
+                                                  .bodyText1Family),
+                                    ),
+                                indicator: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(50),
+                                  color: Colors.black,
+                                ),
+                                indicatorSize: TabBarIndicatorSize.tab,
+                                indicatorPadding:
+                                    EdgeInsets.symmetric(horizontal: 10),
+                                indicatorColor:
+                                    FlutterFlowTheme.of(context).primaryBtnText,
+                                tabs: [
+                                  Tab(
+                                    text: 'In Progress',
                                   ),
-                              indicatorColor:
-                                  FlutterFlowTheme.of(context).primaryBtnText,
-                              tabs: [
-                                Tab(
-                                  text: 'In Progress',
-                                ),
-                                Tab(
-                                  text: 'Completed',
-                                ),
-                                Tab(
-                                  text: 'Invited',
-                                ),
-                              ],
+                                  Tab(
+                                    text: 'Completed',
+                                  ),
+                                  Tab(
+                                    text: 'Invited',
+                                  ),
+                                ],
+                              ),
                             ),
                             Expanded(
                               child: TabBarView(
                                 children: [
                                   Padding(
                                     padding: EdgeInsetsDirectional.fromSTEB(
-                                        0, 15, 0, 0),
+                                        0, 20, 0, 0),
                                     child:
                                         StreamBuilder<List<ChallengesRecord>>(
                                       stream: queryChallengesRecord(
@@ -348,6 +361,8 @@ class _MyChallengesWidgetState extends State<MyChallengesWidget>
                                               path: gridViewChallengesRecord
                                                   .reference.path
                                                   .toString(),
+                                              color: gridViewChallengesRecord
+                                                  .colorScheme,
                                             );
                                           },
                                         );
@@ -430,6 +445,8 @@ class _MyChallengesWidgetState extends State<MyChallengesWidget>
                                               path: gridViewChallengesRecord
                                                   .reference.path
                                                   .toString(),
+                                              color: gridViewChallengesRecord
+                                                  .colorScheme,
                                             );
                                           },
                                         );

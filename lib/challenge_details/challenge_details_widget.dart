@@ -66,6 +66,7 @@ class _ChallengeDetailsWidgetState extends State<ChallengeDetailsWidget> {
         body: Builder(
           builder: (context) {
             return SafeArea(
+              top: false,
               child: GestureDetector(
                 onTap: () => FocusScope.of(context).unfocus(),
                 child: Container(
