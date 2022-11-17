@@ -130,8 +130,7 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
                 details: params.getParam('details', ParamType.String),
                 comments: params.getParam('comments', ParamType.String),
                 id: params.getParam('id', ParamType.String),
-                challengeRef: params.getParam('challengeRef',
-                    ParamType.DocumentReference, false, 'challenges'),
+                color: params.getParam('color', ParamType.int),
               ),
             ),
             FFRoute(
