@@ -1,3 +1,5 @@
+import 'package:fitegy/flutter_flow/upload_media.dart';
+
 import '../backend/backend.dart';
 import '../components/challenge_card_widget.dart';
 import '../components/empty_widget.dart';
@@ -241,40 +243,53 @@ class _MyChallengesWidgetState extends State<MyChallengesWidget>
                         initialIndex: 0,
                         child: Column(
                           children: [
-                            TabBar(
-                              labelColor:
-                                  FlutterFlowTheme.of(context).secondaryText,
-                              unselectedLabelColor: Color(0x9C868686),
-                              labelStyle: FlutterFlowTheme.of(context)
-                                  .bodyText1
-                                  .override(
-                                    fontFamily: 'Archivo Black',
-                                    fontSize: 13,
-                                    useGoogleFonts: GoogleFonts.asMap()
-                                        .containsKey(
-                                            FlutterFlowTheme.of(context)
-                                                .bodyText1Family),
+                            Container(
+                              height: 30,
+                              padding: EdgeInsets.symmetric(horizontal: 5),
+                              child: TabBar(
+                                labelColor:
+                                    FlutterFlowTheme.of(context).primaryBtnText,
+                                unselectedLabelColor: Color(0x9C868686),
+                                labelStyle: FlutterFlowTheme.of(context)
+                                    .bodyText1
+                                    .override(
+                                      fontFamily: 'Archivo Black',
+                                      fontSize:
+                                          MediaQuery.of(context).size.width *
+                                              0.03,
+                                      useGoogleFonts: GoogleFonts.asMap()
+                                          .containsKey(
+                                              FlutterFlowTheme.of(context)
+                                                  .bodyText1Family),
+                                    ),
+                                indicator: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(50),
+                                  color: Colors.black,
+                                ),
+                                indicatorSize: TabBarIndicatorSize.tab,
+                                indicatorPadding:
+                                    EdgeInsets.symmetric(horizontal: 10),
+                                indicatorColor:
+                                    FlutterFlowTheme.of(context).primaryBtnText,
+                                tabs: [
+                                  Tab(
+                                    text: 'In Progress',
                                   ),
-                              indicatorColor:
-                                  FlutterFlowTheme.of(context).primaryBtnText,
-                              tabs: [
-                                Tab(
-                                  text: 'In Progress',
-                                ),
-                                Tab(
-                                  text: 'Completed',
-                                ),
-                                Tab(
-                                  text: 'Invited',
-                                ),
-                              ],
+                                  Tab(
+                                    text: 'Completed',
+                                  ),
+                                  Tab(
+                                    text: 'Invited',
+                                  ),
+                                ],
+                              ),
                             ),
                             Expanded(
                               child: TabBarView(
                                 children: [
                                   Padding(
                                     padding: EdgeInsetsDirectional.fromSTEB(
-                                        0, 15, 0, 0),
+                                        0, 20, 0, 0),
                                     child:
                                         StreamBuilder<List<ChallengesRecord>>(
                                       stream: queryChallengesRecord(
@@ -345,7 +360,9 @@ class _MyChallengesWidgetState extends State<MyChallengesWidget>
                                                   .details,
                                               comments: gridViewChallengesRecord
                                                   .comments,
-                                              id: gridViewChallengesRecord.id,
+                                              path: gridViewChallengesRecord
+                                                  .reference.path
+                                                  .toString(),
                                               color: gridViewChallengesRecord
                                                   .colorScheme,
                                             );
@@ -416,145 +433,22 @@ class _MyChallengesWidgetState extends State<MyChallengesWidget>
                                             final gridViewChallengesRecord =
                                                 gridViewChallengesRecordList[
                                                     gridViewIndex];
-                                            return Padding(
-                                              padding: EdgeInsetsDirectional
-                                                  .fromSTEB(15, 0, 15, 0),
-                                              child: InkWell(
-                                                onTap: () async {
-                                                  context.pushNamed(
-                                                      'ChallengeDetails');
-                                                },
-                                                child: Container(
-                                                  width: MediaQuery.of(context)
-                                                          .size
-                                                          .width *
-                                                      0.35,
-                                                  height: MediaQuery.of(context)
-                                                          .size
-                                                          .height *
-                                                      0.2,
-                                                  decoration: BoxDecoration(
-                                                    boxShadow: [
-                                                      BoxShadow(
-                                                        blurRadius: 12,
-                                                        color:
-                                                            Color(0x33000000),
-                                                        offset: Offset(0, 5),
-                                                      )
-                                                    ],
-                                                    gradient: LinearGradient(
-                                                      colors: [
-                                                        Color(0xFFE6A0FF),
-                                                        Color(0xFF9AE1FF)
-                                                      ],
-                                                      stops: [0, 1],
-                                                      begin:
-                                                          AlignmentDirectional(
-                                                              -0.34, -1),
-                                                      end: AlignmentDirectional(
-                                                          0.34, 1),
-                                                    ),
-                                                    borderRadius:
-                                                        BorderRadius.circular(
-                                                            20),
-                                                  ),
-                                                  child: Padding(
-                                                    padding:
-                                                        EdgeInsetsDirectional
-                                                            .fromSTEB(
-                                                                15, 15, 15, 15),
-                                                    child: Column(
-                                                      mainAxisSize:
-                                                          MainAxisSize.max,
-                                                      mainAxisAlignment:
-                                                          MainAxisAlignment
-                                                              .spaceBetween,
-                                                      crossAxisAlignment:
-                                                          CrossAxisAlignment
-                                                              .start,
-                                                      children: [
-                                                        Column(
-                                                          mainAxisSize:
-                                                              MainAxisSize.max,
-                                                          crossAxisAlignment:
-                                                              CrossAxisAlignment
-                                                                  .start,
-                                                          children: [
-                                                            Text(
-                                                              gridViewChallengesRecord
-                                                                  .title!,
-                                                              style: FlutterFlowTheme
-                                                                      .of(context)
-                                                                  .bodyText1
-                                                                  .override(
-                                                                    fontFamily:
-                                                                        'Archivo Black',
-                                                                    color: FlutterFlowTheme.of(
-                                                                            context)
-                                                                        .secondaryBackground,
-                                                                    useGoogleFonts: GoogleFonts
-                                                                            .asMap()
-                                                                        .containsKey(
-                                                                            FlutterFlowTheme.of(context).bodyText1Family),
-                                                                  ),
-                                                            ),
-                                                            Padding(
-                                                              padding:
-                                                                  EdgeInsetsDirectional
-                                                                      .fromSTEB(
-                                                                          0,
-                                                                          5,
-                                                                          0,
-                                                                          0),
-                                                              child: Text(
-                                                                dateTimeFormat(
-                                                                    'yMMMd',
-                                                                    gridViewChallengesRecord
-                                                                        .createdAt!),
-                                                                style: FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .bodyText1
-                                                                    .override(
-                                                                      fontFamily:
-                                                                          FlutterFlowTheme.of(context)
-                                                                              .bodyText1Family,
-                                                                      color: FlutterFlowTheme.of(
-                                                                              context)
-                                                                          .primaryBtnText,
-                                                                      fontSize:
-                                                                          12,
-                                                                      fontWeight:
-                                                                          FontWeight
-                                                                              .normal,
-                                                                      useGoogleFonts: GoogleFonts
-                                                                              .asMap()
-                                                                          .containsKey(
-                                                                              FlutterFlowTheme.of(context).bodyText1Family),
-                                                                    ),
-                                                              ),
-                                                            ),
-                                                          ],
-                                                        ),
-                                                        Row(
-                                                          mainAxisSize:
-                                                              MainAxisSize.max,
-                                                          mainAxisAlignment:
-                                                              MainAxisAlignment
-                                                                  .end,
-                                                          children: [
-                                                            Image.asset(
-                                                              'assets/images/Hole.png',
-                                                              width: 15,
-                                                              fit: BoxFit.cover,
-                                                            ),
-                                                          ],
-                                                        ),
-                                                      ],
-                                                    ),
-                                                  ),
-                                                ),
-                                              ).animateOnPageLoad(animationsMap[
-                                                  'containerOnPageLoadAnimation1']!),
+                                            return ChallengeCardWidget(
+                                              key: Key(
+                                                  'ChallengeCard_${gridViewIndex}'),
+                                              title: gridViewChallengesRecord
+                                                  .title,
+                                              time: gridViewChallengesRecord
+                                                  .createdAt,
+                                              details: gridViewChallengesRecord
+                                                  .details,
+                                              comments: gridViewChallengesRecord
+                                                  .comments,
+                                              path: gridViewChallengesRecord
+                                                  .reference.path
+                                                  .toString(),
+                                              color: gridViewChallengesRecord
+                                                  .colorScheme,
                                             );
                                           },
                                         );

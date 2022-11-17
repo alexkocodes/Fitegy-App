@@ -7,21 +7,24 @@ import 'package:flutter_animate/flutter_animate.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class ChallengeCardWidget extends StatefulWidget {
-  const ChallengeCardWidget({
+  ChallengeCardWidget({
     Key? key,
     this.title,
     this.time,
     this.details,
     this.comments,
-    this.id,
+    this.path,
     this.color,
+
   }) : super(key: key);
 
   final String? title;
   final DateTime? time;
   final String? details;
   final String? comments;
-  final String? id;
+
+  final String? path;
+
   final int? color;
 
   @override
@@ -51,6 +54,14 @@ class _ChallengeCardWidgetState extends State<ChallengeCardWidget>
       ],
     ),
   };
+
+  final colorSchemes = [
+    [Color.fromARGB(255, 154, 225, 255), Color.fromARGB(255, 253, 255, 155)],
+    [Color.fromARGB(255, 89, 205, 114), Color.fromARGB(255, 253, 255, 155)],
+    [Color.fromARGB(255, 255, 116, 116), Color.fromARGB(255, 253, 255, 155)],
+    [Color.fromARGB(255, 255, 89, 200), Color.fromARGB(255, 253, 255, 155)],
+    [Color(0xFFE6A0FF), Color(0xFF9AE1FF)],
+  ];
 
   @override
   void initState() {
@@ -82,13 +93,15 @@ class _ChallengeCardWidgetState extends State<ChallengeCardWidget>
                 widget.comments,
                 ParamType.String,
               ),
-              'id': serializeParam(
-                widget.id,
+              'path': serializeParam(
+                widget.path,
                 ParamType.String,
               ),
               'color': serializeParam(
+
                 widget.color,
                 ParamType.int,
+
               ),
             }.withoutNulls,
           );
@@ -105,7 +118,7 @@ class _ChallengeCardWidgetState extends State<ChallengeCardWidget>
               )
             ],
             gradient: LinearGradient(
-              colors: [Color(0xFFE6A0FF), Color(0xFF9AE1FF)],
+              colors: colorSchemes[widget.color! - 1],
               stops: [0, 1],
               begin: AlignmentDirectional(-0.34, -1),
               end: AlignmentDirectional(0.34, 1),

@@ -1,3 +1,8 @@
+
+import 'package:fitegy/flutter_flow/flutter_flow_animations.dart';
+
+import '../backend/backend.dart';
+
 import '../components/complete_button_widget.dart';
 import '../flutter_flow/flutter_flow_icon_button.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
@@ -13,7 +18,9 @@ class ChallengeDetailsWidget extends StatefulWidget {
     this.time,
     this.details,
     this.comments,
-    this.id,
+
+    this.path,
+
     this.color,
   }) : super(key: key);
 
@@ -21,8 +28,10 @@ class ChallengeDetailsWidget extends StatefulWidget {
   final DateTime? time;
   final String? details;
   final String? comments;
-  final String? id;
+
   final int? color;
+
+  final String? path;
 
   @override
   _ChallengeDetailsWidgetState createState() => _ChallengeDetailsWidgetState();
@@ -30,9 +39,18 @@ class ChallengeDetailsWidget extends StatefulWidget {
 
 class _ChallengeDetailsWidgetState extends State<ChallengeDetailsWidget> {
   final scaffoldKey = GlobalKey<ScaffoldState>();
+  final colorSchemes = [
+    [Color.fromARGB(255, 154, 225, 255), Color.fromARGB(255, 253, 255, 155)],
+    [Color.fromARGB(255, 89, 205, 114), Color.fromARGB(255, 253, 255, 155)],
+    [Color.fromARGB(255, 255, 116, 116), Color.fromARGB(255, 253, 255, 155)],
+    [Color.fromARGB(255, 255, 89, 200), Color.fromARGB(255, 253, 255, 155)],
+    [Color(0xFFE6A0FF), Color(0xFF9AE1FF)],
+  ];
 
   @override
   Widget build(BuildContext context) {
+    final db = FirebaseFirestore.instance;
+    print(widget.color);
     return Scaffold(
       key: scaffoldKey,
       backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
@@ -64,6 +82,7 @@ class _ChallengeDetailsWidgetState extends State<ChallengeDetailsWidget> {
         body: Builder(
           builder: (context) {
             return SafeArea(
+              top: false,
               child: GestureDetector(
                 onTap: () => FocusScope.of(context).unfocus(),
                 child: Container(
@@ -110,10 +129,8 @@ class _ChallengeDetailsWidgetState extends State<ChallengeDetailsWidget> {
                                   )
                                 ],
                                 gradient: LinearGradient(
-                                  colors: [
-                                    Color(0xFFE6A0FF),
-                                    Color(0xFF9AE1FF)
-                                  ],
+                                  colors: colorSchemes[
+                                      int.parse(widget.color!) - 1],
                                   stops: [0, 1],
                                   begin: AlignmentDirectional(-0.34, -1),
                                   end: AlignmentDirectional(0.34, 1),
@@ -303,30 +320,59 @@ class _ChallengeDetailsWidgetState extends State<ChallengeDetailsWidget> {
                               color: FlutterFlowTheme.of(context)
                                   .secondaryBackground,
                             ),
-                            child: Row(
-                              mainAxisSize: MainAxisSize.max,
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                CompleteButtonWidget(),
-                                FFButtonWidget(
-                                  onPressed: () async {
-                                    context.pushNamed('Invite');
-                                  },
-                                  text: 'Invite 🔥 ',
-                                  options: FFButtonOptions(
-                                    width: 110,
-                                    height: 40,
-                                    color: FlutterFlowTheme.of(context)
-                                        .secondaryText,
-                                    textStyle: FlutterFlowTheme.of(context)
-                                        .subtitle2
-                                        .override(
-                                          fontFamily: 'Archivo Black',
-                                          color: Colors.white,
-                                          useGoogleFonts: GoogleFonts.asMap()
-                                              .containsKey(
-                                                  FlutterFlowTheme.of(context)
-                                                      .subtitle2Family),
+                            child: FutureBuilder<ChallengesRecord>(
+                              future: ChallengesRecord.getDocumentOnce(
+                                  db.doc(widget.path!)),
+                              builder: (context, snapshot) {
+                                // Customize what your widget looks like when it's loading.
+                                if (!snapshot.hasData) {
+                                  return Center(
+                                    child: SizedBox(
+                                      width: 40,
+                                      height: 40,
+                                      child: CircularProgressIndicator(
+                                        color: FlutterFlowTheme.of(context)
+                                            .lineColor,
+                                      ),
+                                    ),
+                                  );
+                                }
+                                final rowChallengesRecord = snapshot.data!;
+                                return Row(
+                                  mainAxisSize: MainAxisSize.max,
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
+                                  children: [
+                                    CompleteButtonWidget(
+                                      challengeReference:
+                                          rowChallengesRecord.reference,
+                                    ),
+                                    FFButtonWidget(
+                                      onPressed: () async {
+                                        context.pushNamed('Invite');
+                                      },
+                                      text: 'Invite 🔥 ',
+                                      options: FFButtonOptions(
+                                        width: 110,
+                                        height: 40,
+                                        color: FlutterFlowTheme.of(context)
+                                            .secondaryText,
+                                        textStyle: FlutterFlowTheme.of(context)
+                                            .subtitle2
+                                            .override(
+                                              fontFamily: 'Archivo Black',
+                                              color: Colors.white,
+                                              useGoogleFonts:
+                                                  GoogleFonts.asMap()
+                                                      .containsKey(
+                                                          FlutterFlowTheme.of(
+                                                                  context)
+                                                              .subtitle2Family),
+                                            ),
+                                        elevation: 10,
+                                        borderSide: BorderSide(
+                                          color: Colors.transparent,
+                                          width: 1,
                                         ),
                                     elevation: 10,
                                     borderSide: BorderSide(

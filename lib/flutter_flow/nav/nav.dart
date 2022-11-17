@@ -131,6 +131,7 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
                 comments: params.getParam('comments', ParamType.String),
                 id: params.getParam('id', ParamType.String),
                 color: params.getParam('color', ParamType.int),
+
               ),
             ),
             FFRoute(
