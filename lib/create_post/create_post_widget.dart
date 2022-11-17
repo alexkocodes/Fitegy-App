@@ -340,7 +340,7 @@ class _CreatePostWidgetState extends State<CreatePostWidget> {
                                                         .bodyText2Family),
                                           ),
                                       hintText:
-                                          'What do you want your friends to know?',
+                                          'What do you want your friends to know????',
                                       hintStyle: FlutterFlowTheme.of(context)
                                           .bodyText2
                                           .override(

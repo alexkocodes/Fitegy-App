@@ -4,8 +4,6 @@ export 'log_sign/log_sign_widget.dart' show LogSignWidget;
 export 'home_page/home_page_widget.dart' show HomePageWidget;
 export 'my_account/my_account_widget.dart' show MyAccountWidget;
 export 'create/create_widget.dart' show CreateWidget;
-export 'create_challenge/create_challenge_widget.dart'
-    show CreateChallengeWidget;
 export 'challenge_created/challenge_created_widget.dart'
     show ChallengeCreatedWidget;
 export 'my_challenges/my_challenges_widget.dart' show MyChallengesWidget;
