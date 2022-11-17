@@ -1,7 +1,6 @@
 import '../flutter_flow/flutter_flow_animations.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_util.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:flutter_animate/flutter_animate.dart';
@@ -10,19 +9,22 @@ import 'package:google_fonts/google_fonts.dart';
 class ChallengeCardWidget extends StatefulWidget {
   ChallengeCardWidget({
     Key? key,
-    required this.title,
-    required this.time,
-    required this.details,
-    required this.comments,
-    required this.path,
-    required this.color,
+    this.title,
+    this.time,
+    this.details,
+    this.comments,
+    this.path,
+    this.color,
+
   }) : super(key: key);
 
   final String? title;
   final DateTime? time;
   final String? details;
   final String? comments;
+
   final String? path;
+
   final int? color;
 
   @override
@@ -96,8 +98,10 @@ class _ChallengeCardWidgetState extends State<ChallengeCardWidget>
                 ParamType.String,
               ),
               'color': serializeParam(
-                widget.color.toString(),
-                ParamType.String,
+
+                widget.color,
+                ParamType.int,
+
               ),
             }.withoutNulls,
           );

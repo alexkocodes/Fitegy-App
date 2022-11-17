@@ -1,12 +1,13 @@
+
 import 'package:fitegy/flutter_flow/flutter_flow_animations.dart';
 
 import '../backend/backend.dart';
+
 import '../components/complete_button_widget.dart';
 import '../flutter_flow/flutter_flow_icon_button.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_util.dart';
 import '../flutter_flow/flutter_flow_widgets.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -17,7 +18,9 @@ class ChallengeDetailsWidget extends StatefulWidget {
     this.time,
     this.details,
     this.comments,
+
     this.path,
+
     this.color,
   }) : super(key: key);
 
@@ -25,8 +28,10 @@ class ChallengeDetailsWidget extends StatefulWidget {
   final DateTime? time;
   final String? details;
   final String? comments;
+
+  final int? color;
+
   final String? path;
-  final String? color;
 
   @override
   _ChallengeDetailsWidgetState createState() => _ChallengeDetailsWidgetState();
@@ -294,6 +299,12 @@ class _ChallengeDetailsWidgetState extends State<ChallengeDetailsWidget> {
                                         ),
                                       ],
                                     ),
+                                    SelectionArea(
+                                        child: Text(
+                                      widget.color.toString(),
+                                      style: FlutterFlowTheme.of(context)
+                                          .bodyText1,
+                                    )),
                                   ],
                                 ),
                               ),
@@ -363,78 +374,74 @@ class _ChallengeDetailsWidgetState extends State<ChallengeDetailsWidget> {
                                           color: Colors.transparent,
                                           width: 1,
                                         ),
-                                        borderRadius: BorderRadius.circular(8),
-                                      ),
+                                    elevation: 10,
+                                    borderSide: BorderSide(
+                                      color: Colors.transparent,
+                                      width: 1,
                                     ),
-                                    FFButtonWidget(
-                                      onPressed: () async {
-                                        var confirmDialogResponse =
-                                            await showDialog<bool>(
-                                                  context: context,
-                                                  builder:
-                                                      (alertDialogContext) {
-                                                    return AlertDialog(
-                                                      title: Text(
-                                                          'Delete This Challenge'),
-                                                      content: Text(
-                                                          'Are you sure you want to delete this challenge?'),
-                                                      actions: [
-                                                        TextButton(
-                                                          onPressed: () =>
-                                                              Navigator.pop(
-                                                                  alertDialogContext,
-                                                                  false),
-                                                          child: Text('Cancel'),
-                                                        ),
-                                                        TextButton(
-                                                          onPressed: () =>
-                                                              Navigator.pop(
-                                                                  alertDialogContext,
-                                                                  true),
-                                                          child:
-                                                              Text('Confirm'),
-                                                        ),
-                                                      ],
-                                                    );
-                                                  },
-                                                ) ??
-                                                false;
-                                        if (confirmDialogResponse) {
-                                          await rowChallengesRecord.reference
-                                              .delete();
-                                        } else {
-                                          Navigator.pop(context);
-                                        }
-                                      },
-                                      text: 'Delete',
-                                      options: FFButtonOptions(
-                                        width: 110,
-                                        height: 40,
-                                        color: FlutterFlowTheme.of(context)
-                                            .alternate,
-                                        textStyle: FlutterFlowTheme.of(context)
-                                            .subtitle2
-                                            .override(
-                                              fontFamily: 'Archivo Black',
-                                              color: Colors.white,
-                                              useGoogleFonts:
-                                                  GoogleFonts.asMap()
-                                                      .containsKey(
-                                                          FlutterFlowTheme.of(
-                                                                  context)
-                                                              .subtitle2Family),
-                                            ),
-                                        elevation: 10,
-                                        borderSide: BorderSide(
-                                          color: Colors.transparent,
-                                          width: 1,
+                                    borderRadius: BorderRadius.circular(8),
+                                  ),
+                                ),
+                                FFButtonWidget(
+                                  onPressed: () async {
+                                    var confirmDialogResponse =
+                                        await showDialog<bool>(
+                                              context: context,
+                                              builder: (alertDialogContext) {
+                                                return AlertDialog(
+                                                  title: Text(
+                                                      'Delete This Challenge'),
+                                                  content: Text(
+                                                      'Are you sure you want to delete this challenge?'),
+                                                  actions: [
+                                                    TextButton(
+                                                      onPressed: () =>
+                                                          Navigator.pop(
+                                                              alertDialogContext,
+                                                              false),
+                                                      child: Text('Cancel'),
+                                                    ),
+                                                    TextButton(
+                                                      onPressed: () =>
+                                                          Navigator.pop(
+                                                              alertDialogContext,
+                                                              true),
+                                                      child: Text('Confirm'),
+                                                    ),
+                                                  ],
+                                                );
+                                              },
+                                            ) ??
+                                            false;
+                                    if (!confirmDialogResponse) {
+                                      Navigator.pop(context);
+                                    }
+                                  },
+                                  text: 'Delete',
+                                  options: FFButtonOptions(
+                                    width: 110,
+                                    height: 40,
+                                    color:
+                                        FlutterFlowTheme.of(context).alternate,
+                                    textStyle: FlutterFlowTheme.of(context)
+                                        .subtitle2
+                                        .override(
+                                          fontFamily: 'Archivo Black',
+                                          color: Colors.white,
+                                          useGoogleFonts: GoogleFonts.asMap()
+                                              .containsKey(
+                                                  FlutterFlowTheme.of(context)
+                                                      .subtitle2Family),
                                         ),
-                                        borderRadius: BorderRadius.circular(8),
-                                      ),
+                                    elevation: 10,
+                                    borderSide: BorderSide(
+                                      color: Colors.transparent,
+                                      width: 1,
                                     ),
-                                  ],
-                                );
-                              },
+                                    borderRadius: BorderRadius.circular(8),
+                                  ),
+                                ),
+                              ],
                             ),
                           ),
                         ),
