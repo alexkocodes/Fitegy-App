@@ -237,7 +237,7 @@ class _MyChallengesWidgetState extends State<MyChallengesWidget>
                   ),
                   Expanded(
                     child: Padding(
-                      padding: EdgeInsetsDirectional.fromSTEB(0, 25, 0, 0),
+                      padding: EdgeInsetsDirectional.fromSTEB(0, 30, 0, 0),
                       child: DefaultTabController(
                         length: 3,
                         initialIndex: 0,
@@ -289,7 +289,7 @@ class _MyChallengesWidgetState extends State<MyChallengesWidget>
                                 children: [
                                   Padding(
                                     padding: EdgeInsetsDirectional.fromSTEB(
-                                        0, 20, 0, 0),
+                                        0, 30, 0, 0),
                                     child:
                                         StreamBuilder<List<ChallengesRecord>>(
                                       stream: queryChallengesRecord(
@@ -374,7 +374,7 @@ class _MyChallengesWidgetState extends State<MyChallengesWidget>
                                   ),
                                   Padding(
                                     padding: EdgeInsetsDirectional.fromSTEB(
-                                        0, 20, 0, 0),
+                                        0, 30, 0, 0),
                                     child:
                                         StreamBuilder<List<ChallengesRecord>>(
                                       stream: queryChallengesRecord(
@@ -458,7 +458,7 @@ class _MyChallengesWidgetState extends State<MyChallengesWidget>
                                   ),
                                   Padding(
                                     padding: EdgeInsetsDirectional.fromSTEB(
-                                        0, 20, 0, 0),
+                                        0, 30, 0, 0),
                                     child:
                                         StreamBuilder<List<ChallengesRecord>>(
                                       stream: queryChallengesRecord(

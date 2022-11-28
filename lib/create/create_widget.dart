@@ -1,5 +1,5 @@
-import 'package:flutter/services.dart';
-
+import '../auth/auth_util.dart';
+import '../backend/backend.dart';
 import '../backend/firebase_storage/storage.dart';
 import '../components/challenge_bottom_sheet_widget.dart';
 import '../components/create_challenge_page_widget.dart';
@@ -27,10 +27,11 @@ class CreateWidget extends StatefulWidget {
 
 class _CreateWidgetState extends State<CreateWidget> {
   bool isMediaUploading = false;
-  String uploadedFileUrl = '';
+  List<String> uploadedFileUrls = [];
   int currentIndex = 1;
   String? dropDownValue;
   TextEditingController? textController;
+  TextEditingController? textController5;
   PageController? pageViewController;
   final scaffoldKey = GlobalKey<ScaffoldState>();
   FocusNode focusNode = FocusNode();
@@ -39,11 +40,13 @@ class _CreateWidgetState extends State<CreateWidget> {
   void initState() {
     super.initState();
     textController = TextEditingController();
+    textController5 = TextEditingController();
   }
 
   @override
   void dispose() {
     textController?.dispose();
+    textController5?.dispose();
     super.dispose();
   }
 
@@ -369,6 +372,31 @@ class _CreateWidgetState extends State<CreateWidget> {
                                               ),
                                               FFButtonWidget(
                                                 onPressed: () async {
+                                                  // currentUserLocationValue =
+                                                  //     await getCurrentUserLocation(
+                                                  //         defaultLocation:
+                                                  //             LatLng(0.0, 0.0));
+
+                                                  final postsCreateData = {
+                                                    ...createPostsRecordData(
+                                                      postDescription:
+                                                          textController!.text,
+                                                      postUser:
+                                                          currentUserReference,
+                                                      timePosted:
+                                                          getCurrentTimestamp,
+                                                      location: "Abu Dhabi"
+                                                          .toString(),
+                                                      numComments: 0,
+                                                      private: dropDownValue,
+                                                    ),
+                                                    'post_images':
+                                                        uploadedFileUrls,
+                                                  };
+                                                  await PostsRecord.createDoc(
+                                                          currentUserReference!)
+                                                      .set(postsCreateData);
+
                                                   context
                                                       .pushNamed('PostPosted');
                                                 },
@@ -749,16 +777,10 @@ class _CreateWidgetState extends State<CreateWidget> {
                         children: [
                           FFButtonWidget(
                             onPressed: () async {
-                              final selectedMedia =
-                                  await selectMediaWithSourceBottomSheet(
-                                context: context,
+                              final selectedMedia = await selectMedia(
                                 imageQuality: 100,
-                                allowPhoto: true,
-                                allowVideo: true,
-                                backgroundColor: FlutterFlowTheme.of(context)
-                                    .primaryBackground,
-                                textColor: Color(0xFF39B4FC),
-                                pickerFontFamily: 'Archivo Black',
+                                mediaSource: MediaSource.photoGallery,
+                                multiImage: true,
                               );
                               if (selectedMedia != null &&
                                   selectedMedia.every((m) => validateFileFormat(
@@ -787,8 +809,8 @@ class _CreateWidgetState extends State<CreateWidget> {
                                 }
                                 if (downloadUrls.length ==
                                     selectedMedia.length) {
-                                  setState(() =>
-                                      uploadedFileUrl = downloadUrls.first);
+                                  setState(
+                                      () => uploadedFileUrls = downloadUrls);
                                   showUploadMessage(context, 'Success!');
                                 } else {
                                   setState(() {});

@@ -62,12 +62,13 @@ Future<FFFirestorePage<UsersRecord>> queryUsersRecordPage({
 
 /// Functions to query PostsRecords (as a Stream and as a Future).
 Stream<List<PostsRecord>> queryPostsRecord({
+  DocumentReference? parent,
   Query Function(Query)? queryBuilder,
   int limit = -1,
   bool singleRecord = false,
 }) =>
     queryCollection(
-      PostsRecord.collection,
+      PostsRecord.collection(parent),
       PostsRecord.serializer,
       queryBuilder: queryBuilder,
       limit: limit,
@@ -75,12 +76,13 @@ Stream<List<PostsRecord>> queryPostsRecord({
     );
 
 Future<List<PostsRecord>> queryPostsRecordOnce({
+  DocumentReference? parent,
   Query Function(Query)? queryBuilder,
   int limit = -1,
   bool singleRecord = false,
 }) =>
     queryCollectionOnce(
-      PostsRecord.collection,
+      PostsRecord.collection(parent),
       PostsRecord.serializer,
       queryBuilder: queryBuilder,
       limit: limit,
@@ -88,13 +90,14 @@ Future<List<PostsRecord>> queryPostsRecordOnce({
     );
 
 Future<FFFirestorePage<PostsRecord>> queryPostsRecordPage({
+  DocumentReference? parent,
   Query Function(Query)? queryBuilder,
   DocumentSnapshot? nextPageMarker,
   required int pageSize,
   required bool isStream,
 }) =>
     queryCollectionPage(
-      PostsRecord.collection,
+      PostsRecord.collection(parent),
       PostsRecord.serializer,
       queryBuilder: queryBuilder,
       nextPageMarker: nextPageMarker,

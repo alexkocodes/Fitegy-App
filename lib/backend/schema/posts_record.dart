@@ -9,12 +9,6 @@ part 'posts_record.g.dart';
 abstract class PostsRecord implements Built<PostsRecord, PostsRecordBuilder> {
   static Serializer<PostsRecord> get serializer => _$postsRecordSerializer;
 
-  @BuiltValueField(wireName: 'post_photo')
-  String? get postPhoto;
-
-  @BuiltValueField(wireName: 'post_title')
-  String? get postTitle;
-
   @BuiltValueField(wireName: 'post_description')
   String? get postDescription;
 
@@ -32,19 +26,36 @@ abstract class PostsRecord implements Built<PostsRecord, PostsRecordBuilder> {
   @BuiltValueField(wireName: 'in_post_challenge')
   DocumentReference? get inPostChallenge;
 
+  BuiltList<String>? get postImages;
+
+  @BuiltValueField(wireName: 'location')
+  String? get location;
+
+  @BuiltValueField(wireName: 'private')
+  String? get private;
+
   @BuiltValueField(wireName: kDocumentReferenceField)
   DocumentReference? get ffRef;
   DocumentReference get reference => ffRef!;
 
+  DocumentReference get parentReference => reference.parent.parent!;
+
   static void _initializeBuilder(PostsRecordBuilder builder) => builder
-    ..postPhoto = ''
-    ..postTitle = ''
     ..postDescription = ''
     ..likes = ListBuilder()
-    ..numComments = 0;
+    ..numComments = 0
+    ..postImages = ListBuilder()
+    ..location = ''
+    ..private = "Private";
 
-  static CollectionReference get collection =>
-      FirebaseFirestore.instance.collection('posts');
+  // getting data from Firestore
+  static Query<Map<String, dynamic>> collection([DocumentReference? parent]) =>
+      parent != null
+          ? parent.collection('posts')
+          : FirebaseFirestore.instance.collectionGroup('posts');
+
+  static DocumentReference createDoc(DocumentReference parent) =>
+      parent.collection('posts').doc();
 
   static Stream<PostsRecord> getDocument(DocumentReference ref) => ref
       .snapshots()
@@ -65,26 +76,27 @@ abstract class PostsRecord implements Built<PostsRecord, PostsRecordBuilder> {
 }
 
 Map<String, dynamic> createPostsRecordData({
-  String? postPhoto,
-  String? postTitle,
   String? postDescription,
   DocumentReference? postUser,
   DateTime? timePosted,
   int? numComments,
   DocumentReference? inPostChallenge,
+  String? location,
+  String? private,
 }) {
   final firestoreData = serializers.toFirestore(
     PostsRecord.serializer,
     PostsRecord(
       (p) => p
-        ..postPhoto = postPhoto
-        ..postTitle = postTitle
         ..postDescription = postDescription
         ..postUser = postUser
         ..timePosted = timePosted
         ..likes = null
         ..numComments = numComments
-        ..inPostChallenge = inPostChallenge,
+        ..inPostChallenge = inPostChallenge
+        ..postImages = null
+        ..location = location
+        ..private = private,
     ),
   );
 
