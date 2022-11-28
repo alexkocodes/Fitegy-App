@@ -805,9 +805,11 @@ class _CreateWidgetState extends State<CreateWidget>
                                                 right: -2,
                                                 top: -9,
                                                 child: IconButton(
+                                                  focusColor: Colors.white,
                                                   icon: Icon(
                                                     Icons.cancel,
-                                                    color: Colors.black,
+                                                    color: Colors.white
+                                                        .withOpacity(0.8),
                                                     size: 18,
                                                   ),
                                                   onPressed: () {
@@ -921,49 +923,6 @@ class _CreateWidgetState extends State<CreateWidget>
                                 imageFileList!.addAll(selectedImages);
                               }
                               setState(() {});
-                              // final selectedMedia = await selectMedia(
-                              //   imageQuality: 100,
-                              //   mediaSource: MediaSource.photoGallery,
-                              //   multiImage: true,
-                              // );
-
-                              // if (selectedMedia != null &&
-                              //     selectedMedia.every((m) => validateFileFormat(
-                              //         m.storagePath, context))) {
-                              //   setState(() => isMediaUploading = true);
-                              //   var downloadUrls = <String>[];
-                              //   try {
-                              //     showUploadMessage(
-                              //       context,
-                              //       'Uploading file...',
-                              //       showLoading: true,
-                              //     );
-                              //     downloadUrls = (await Future.wait(
-                              //       selectedMedia.map(
-                              //         (m) async => await uploadData(
-                              //             m.storagePath, m.bytes),
-                              //       ),
-                              //     ))
-                              //         .where((u) => u != null)
-                              //         .map((u) => u!)
-                              //         .toList();
-                              //   } finally {
-                              //     ScaffoldMessenger.of(context)
-                              //         .hideCurrentSnackBar();
-                              //     isMediaUploading = false;
-                              //   }
-                              //   if (downloadUrls.length ==
-                              //       selectedMedia.length) {
-                              //     setState(
-                              //         () => uploadedFileUrls = downloadUrls);
-                              //     showUploadMessage(context, 'Success!');
-                              //   } else {
-                              //     setState(() {});
-                              //     showUploadMessage(
-                              //         context, 'Failed to upload media');
-                              //     return;
-                              //   }
-                              // }
                             },
                             text: '',
                             icon: Icon(
