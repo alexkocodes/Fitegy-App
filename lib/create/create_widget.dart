@@ -673,6 +673,7 @@ class _CreateWidgetState extends State<CreateWidget>
                                         padding: EdgeInsetsDirectional.fromSTEB(
                                             0, 15, 0, 0),
                                         child: DetectableTextField(
+                                          cursorHeight: 15,
                                           detectionRegExp: detectionRegExp()!,
                                           decoratedStyle: TextStyle(
                                             fontSize: 15.5,
@@ -684,6 +685,9 @@ class _CreateWidgetState extends State<CreateWidget>
                                           focusNode: focusNode,
                                           obscureText: false,
                                           decoration: InputDecoration(
+                                            contentPadding:
+                                                EdgeInsets.symmetric(
+                                                    horizontal: 0, vertical: 0),
                                             labelStyle:
                                                 FlutterFlowTheme.of(context)
                                                     .bodyText2
@@ -761,7 +765,7 @@ class _CreateWidgetState extends State<CreateWidget>
                                                 fontFamily: 'Inter',
                                                 color:
                                                     FlutterFlowTheme.of(context)
-                                                        .primaryColor,
+                                                        .secondaryText,
                                                 fontSize: 14,
                                                 fontWeight: FontWeight.w500,
                                                 useGoogleFonts: GoogleFonts
@@ -783,7 +787,8 @@ class _CreateWidgetState extends State<CreateWidget>
                                     curve: Curves.fastOutSlowIn,
                                     height: imageFileList!.isEmpty ? 0 : 250,
                                     child: Container(
-                                      padding: const EdgeInsets.all(8.0),
+                                      padding: const EdgeInsets.symmetric(
+                                          vertical: 8.0),
                                       child: ListView.builder(
                                         key: _listKey,
                                         shrinkWrap: true,
@@ -794,16 +799,20 @@ class _CreateWidgetState extends State<CreateWidget>
                                             padding: EdgeInsets.only(right: 15),
                                             decoration: BoxDecoration(
                                               borderRadius:
-                                                  BorderRadius.circular(20),
+                                                  BorderRadius.circular(40),
                                             ),
                                             child: Stack(children: [
-                                              Image.file(
-                                                  File(imageFileList![index]
-                                                      .path),
-                                                  fit: BoxFit.fitWidth),
+                                              ClipRRect(
+                                                borderRadius:
+                                                    BorderRadius.circular(10.0),
+                                                child: Image.file(
+                                                    File(imageFileList![index]
+                                                        .path),
+                                                    fit: BoxFit.fitWidth),
+                                              ),
                                               Positioned(
-                                                right: -2,
-                                                top: -9,
+                                                right: -6,
+                                                top: -6,
                                                 child: IconButton(
                                                   focusColor: Colors.white,
                                                   icon: Icon(
