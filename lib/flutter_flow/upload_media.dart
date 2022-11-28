@@ -143,6 +143,7 @@ Future<List<SelectedMedia>?> selectMedia({
     if (pickedMedia == null || pickedMedia.isEmpty) {
       return null;
     }
+    print(pickedMedia.asMap()[0]!.name);
     return Future.wait(pickedMedia.asMap().entries.map((e) async {
       final index = e.key;
       final media = e.value;

@@ -45,23 +45,22 @@ class _CreateWidgetState extends State<CreateWidget>
   int currentIndex = 1;
   String? dropDownValue;
   TextEditingController? textController;
-  TextEditingController? textController5;
   PageController? pageViewController;
   final scaffoldKey = GlobalKey<ScaffoldState>();
   FocusNode focusNode = FocusNode();
   final GlobalKey<AnimatedListState> _listKey = GlobalKey(); // backing data
 
+  List<SelectedMedia> toBeUploaded = [];
+
   @override
   void initState() {
     super.initState();
     textController = TextEditingController();
-    textController5 = TextEditingController();
   }
 
   @override
   void dispose() {
     textController?.dispose();
-    textController5?.dispose();
     super.dispose();
   }
 
@@ -436,7 +435,7 @@ class _CreateWidgetState extends State<CreateWidget>
                                                   //     await getCurrentUserLocation(
                                                   //         defaultLocation:
                                                   //             LatLng(0.0, 0.0));
-                                                  if (textController5!.text ==
+                                                  if (textController!.text ==
                                                       '') {
                                                     await showDialog(
                                                       context: context,
@@ -459,6 +458,59 @@ class _CreateWidgetState extends State<CreateWidget>
                                                       },
                                                     );
                                                   } else {
+                                                    if (toBeUploaded != null &&
+                                                        toBeUploaded.every((m) =>
+                                                            validateFileFormat(
+                                                                m.storagePath,
+                                                                context))) {
+                                                      setState(() =>
+                                                          isMediaUploading =
+                                                              true);
+                                                      var downloadUrls =
+                                                          <String>[];
+                                                      try {
+                                                        showUploadMessage(
+                                                          context,
+                                                          'Uploading file...',
+                                                          showLoading: true,
+                                                        );
+                                                        downloadUrls =
+                                                            (await Future.wait(
+                                                          toBeUploaded.map(
+                                                            (m) async =>
+                                                                await uploadData(
+                                                                    m.storagePath,
+                                                                    m.bytes),
+                                                          ),
+                                                        ))
+                                                                .where((u) =>
+                                                                    u != null)
+                                                                .map((u) => u!)
+                                                                .toList();
+                                                      } finally {
+                                                        ScaffoldMessenger.of(
+                                                                context)
+                                                            .hideCurrentSnackBar();
+                                                        isMediaUploading =
+                                                            false;
+                                                      }
+                                                      if (downloadUrls.length ==
+                                                          toBeUploaded.length) {
+                                                        setState(() =>
+                                                            uploadedFileUrls =
+                                                                downloadUrls);
+                                                        showUploadMessage(
+                                                            context,
+                                                            'Success!');
+                                                      } else {
+                                                        setState(() {});
+                                                        showUploadMessage(
+                                                            context,
+                                                            'Failed to upload media');
+                                                        return;
+                                                      }
+                                                    }
+                                                    ;
                                                     final postsCreateData = {
                                                       ...createPostsRecordData(
                                                         postDescription:
@@ -795,6 +847,7 @@ class _CreateWidgetState extends State<CreateWidget>
                                         scrollDirection: Axis.horizontal,
                                         itemCount: imageFileList!.length,
                                         itemBuilder: (context, index) {
+                                          print(imageFileList![index].path);
                                           return Container(
                                             padding: EdgeInsets.only(right: 15),
                                             decoration: BoxDecoration(
@@ -931,7 +984,24 @@ class _CreateWidgetState extends State<CreateWidget>
                               if (selectedImages!.isNotEmpty) {
                                 imageFileList!.addAll(selectedImages);
                               }
-                              setState(() {});
+
+                              // final selectedMedia = await selectMedia(
+                              //   imageQuality: 100,
+                              //   mediaSource: MediaSource.photoGallery,
+                              //   multiImage: true,
+                              // );
+                              var selectedMedia = await Future.wait(
+                                  selectedImages.asMap().entries.map((e) async {
+                                final index = e.key;
+                                final media = e.value;
+                                final mediaBytes = await media.readAsBytes();
+                                final path = storagePath(
+                                    currentUserUid, media.name, false, index);
+                                return SelectedMedia(path, mediaBytes);
+                              }));
+                              setState(() {
+                                toBeUploaded = selectedMedia;
+                              });
                             },
                             text: '',
                             icon: Icon(
