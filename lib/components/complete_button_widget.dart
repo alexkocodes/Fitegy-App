@@ -38,7 +38,7 @@ class _CompleteButtonWidgetState extends State<CompleteButtonWidget> {
               useGoogleFonts: GoogleFonts.asMap()
                   .containsKey(FlutterFlowTheme.of(context).subtitle2Family),
             ),
-        elevation: 10,
+        elevation: 4,
         borderSide: BorderSide(
           color: Colors.transparent,
           width: 1,

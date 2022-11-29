@@ -399,7 +399,7 @@ class _ChallengeDetailsWidgetState extends State<ChallengeDetailsWidget> {
                                                                           context)
                                                                       .subtitle2Family),
                                                         ),
-                                                elevation: 10,
+                                                elevation: 4,
                                                 borderSide: BorderSide(
                                                   color: Colors.transparent,
                                                   width: 1,
@@ -467,7 +467,7 @@ class _ChallengeDetailsWidgetState extends State<ChallengeDetailsWidget> {
                                                                           context)
                                                                       .subtitle2Family),
                                                         ),
-                                                elevation: 10,
+                                                elevation: 4,
                                                 borderSide: BorderSide(
                                                   color: Colors.transparent,
                                                   width: 1,

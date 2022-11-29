@@ -36,6 +36,9 @@ class ChallengeCardWidget extends StatefulWidget {
 
 class _ChallengeCardWidgetState extends State<ChallengeCardWidget>
     with TickerProviderStateMixin {
+  Animation<double>? _scale;
+  AnimationController? _controller;
+
   final colorSchemes = [
     [Color.fromARGB(255, 154, 225, 255), Color.fromARGB(255, 253, 255, 155)],
     [Color.fromARGB(255, 89, 205, 114), Color.fromARGB(255, 253, 255, 155)],
@@ -48,24 +51,19 @@ class _ChallengeCardWidgetState extends State<ChallengeCardWidget>
       trigger: AnimationTrigger.onActionTrigger,
       applyInitialState: true,
       effects: [
-        ScaleEffect(
+        ShakeEffect(
           curve: Curves.easeInOut,
           delay: 0.ms,
-          duration: 200.ms,
-          begin: 1.2,
-          end: 0.8,
-        ),
-        ScaleEffect(
-          curve: Curves.easeInOut,
-          delay: 0.ms,
-          duration: 400.ms,
-          begin: 0.8,
-          end: 1.2,
+          duration: 1000.ms,
+          hz: 4,
+          offset: Offset(0, 0),
+          rotation: 0.087,
         ),
       ],
     ),
   };
-  static var animation_delay;
+  static var animationDelay;
+
   void initState() {
     super.initState();
     setupAnimations(
@@ -74,28 +72,40 @@ class _ChallengeCardWidgetState extends State<ChallengeCardWidget>
           !anim.applyInitialState),
       this,
     );
+    _controller = AnimationController(
+      vsync: this,
+      duration: const Duration(milliseconds: 50),
+    );
+    _scale = Tween<double>(begin: 1.0, end: 0.9)
+        .animate(CurvedAnimation(parent: _controller!, curve: Curves.ease));
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
+    _controller!.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
     switch (widget.index! % 6) {
       case 0:
-        animation_delay = 100;
+        animationDelay = 100;
         break;
       case 1:
-        animation_delay = 200;
+        animationDelay = 200;
         break;
       case 2:
-        animation_delay = 300;
+        animationDelay = 300;
         break;
       case 3:
-        animation_delay = 400;
+        animationDelay = 400;
         break;
       case 4:
-        animation_delay = 500;
+        animationDelay = 500;
         break;
       case 5:
-        animation_delay = 600;
+        animationDelay = 600;
         break;
       default:
     }
@@ -105,14 +115,14 @@ class _ChallengeCardWidgetState extends State<ChallengeCardWidget>
       effects: [
         MoveEffect(
           curve: Curves.easeInOut,
-          delay: Duration(milliseconds: animation_delay),
+          delay: Duration(milliseconds: animationDelay),
           duration: 600.ms,
           begin: Offset(0, 100),
           end: Offset(0, 0),
         ),
         FadeEffect(
           curve: Curves.easeInOut,
-          delay: Duration(milliseconds: animation_delay),
+          delay: Duration(milliseconds: animationDelay),
           duration: 600.ms,
           begin: 0,
           end: 1,
@@ -199,76 +209,95 @@ class _ChallengeCardWidgetState extends State<ChallengeCardWidget>
             );
           }
         },
-        child: Container(
-          width: MediaQuery.of(context).size.width * 0.35,
-          height: MediaQuery.of(context).size.height * 0.2,
-          decoration: BoxDecoration(
-            boxShadow: [
-              BoxShadow(
-                blurRadius: 12,
-                color: Color(0x33000000),
-                offset: Offset(0, 5),
-              )
-            ],
-            gradient: LinearGradient(
-              colors: colorSchemes[widget.color! - 1],
-              stops: [0, 1],
-              begin: AlignmentDirectional(-0.34, -1),
-              end: AlignmentDirectional(0.34, 1),
-            ),
-            borderRadius: BorderRadius.circular(20),
-          ),
-          child: Padding(
-            padding: EdgeInsetsDirectional.fromSTEB(15, 15, 15, 15),
-            child: Column(
-              mainAxisSize: MainAxisSize.max,
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Column(
+        child: Listener(
+          onPointerUp: (event) {
+            _controller!.reverse();
+          },
+          onPointerDown: (event) {
+            _controller!.forward();
+          },
+          child: ScaleTransition(
+            scale: _scale!,
+            child: Container(
+              width: MediaQuery.of(context).size.width * 0.35,
+              height: MediaQuery.of(context).size.height * 0.2,
+              decoration: BoxDecoration(
+                boxShadow: [
+                  BoxShadow(
+                    blurRadius: 12,
+                    color: Color(0x33000000),
+                    offset: Offset(0, 5),
+                  )
+                ],
+                gradient: LinearGradient(
+                  colors: colorSchemes[widget.color! - 1],
+                  stops: [0, 1],
+                  begin: AlignmentDirectional(-0.34, -1),
+                  end: AlignmentDirectional(0.34, 1),
+                ),
+                borderRadius: BorderRadius.circular(20),
+              ),
+              child: Padding(
+                padding: EdgeInsetsDirectional.fromSTEB(15, 15, 15, 15),
+                child: Column(
                   mainAxisSize: MainAxisSize.max,
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text(
-                      widget.title!,
-                      style: FlutterFlowTheme.of(context).bodyText1.override(
-                            fontFamily: 'Archivo Black',
-                            color: FlutterFlowTheme.of(context)
-                                .secondaryBackground,
-                            useGoogleFonts: GoogleFonts.asMap().containsKey(
-                                FlutterFlowTheme.of(context).bodyText1Family),
+                    Column(
+                      mainAxisSize: MainAxisSize.max,
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          widget.title!,
+                          style: FlutterFlowTheme.of(context)
+                              .bodyText1
+                              .override(
+                                fontFamily: 'Archivo Black',
+                                color: FlutterFlowTheme.of(context)
+                                    .secondaryBackground,
+                                useGoogleFonts: GoogleFonts.asMap().containsKey(
+                                    FlutterFlowTheme.of(context)
+                                        .bodyText1Family),
+                              ),
+                        ),
+                        Padding(
+                          padding: EdgeInsetsDirectional.fromSTEB(0, 5, 0, 0),
+                          child: Text(
+                            dateTimeFormat('yMMMd', widget.time),
+                            style: FlutterFlowTheme.of(context)
+                                .bodyText1
+                                .override(
+                                  fontFamily: FlutterFlowTheme.of(context)
+                                      .bodyText1Family,
+                                  color: FlutterFlowTheme.of(context)
+                                      .primaryBtnText,
+                                  fontSize: 12,
+                                  fontWeight: FontWeight.normal,
+                                  useGoogleFonts: GoogleFonts.asMap()
+                                      .containsKey(FlutterFlowTheme.of(context)
+                                          .bodyText1Family),
+                                ),
                           ),
+                        ),
+                      ],
                     ),
-                    Padding(
-                      padding: EdgeInsetsDirectional.fromSTEB(0, 5, 0, 0),
-                      child: Text(
-                        dateTimeFormat('yMMMd', widget.time),
-                        style: FlutterFlowTheme.of(context).bodyText1.override(
-                              fontFamily:
-                                  FlutterFlowTheme.of(context).bodyText1Family,
-                              color:
-                                  FlutterFlowTheme.of(context).primaryBtnText,
-                              fontSize: 12,
-                              fontWeight: FontWeight.normal,
-                              useGoogleFonts: GoogleFonts.asMap().containsKey(
-                                  FlutterFlowTheme.of(context).bodyText1Family),
-                            ),
-                      ),
-                    ),
+                    widget.destination == "select"
+                        ? Row(
+                            mainAxisSize: MainAxisSize.max,
+                            mainAxisAlignment: MainAxisAlignment.end,
+                            children: [
+                              Image.asset(
+                                'assets/images/Hole.png',
+                                width: 15,
+                                fit: BoxFit.cover,
+                              ),
+                            ],
+                          )
+                        : Container(),
                   ],
                 ),
-                // Row(
-                //   mainAxisSize: MainAxisSize.max,
-                //   mainAxisAlignment: MainAxisAlignment.end,
-                //   children: [
-                //     Image.asset(
-                //       'assets/images/Hole.png',
-                //       width: 15,
-                //       fit: BoxFit.cover,
-                //     ),
-                //   ],
-                // ),
-              ],
+              ),
             ),
           ),
         ),
