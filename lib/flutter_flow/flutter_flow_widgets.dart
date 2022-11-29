@@ -58,8 +58,27 @@ class FFButtonWidget extends StatefulWidget {
   State<FFButtonWidget> createState() => _FFButtonWidgetState();
 }
 
-class _FFButtonWidgetState extends State<FFButtonWidget> {
+class _FFButtonWidgetState extends State<FFButtonWidget>
+    with SingleTickerProviderStateMixin {
   bool loading = false;
+  Animation<double>? _scale;
+  AnimationController? _controller;
+  @override
+  void initState() {
+    super.initState();
+    _controller = AnimationController(
+      vsync: this,
+      duration: const Duration(milliseconds: 50),
+    );
+    _scale = Tween<double>(begin: 1.0, end: 0.9)
+        .animate(CurvedAnimation(parent: _controller!, curve: Curves.ease));
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
+    _controller!.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -135,34 +154,56 @@ class _FFButtonWidgetState extends State<FFButtonWidget> {
     );
 
     if (widget.icon != null || widget.iconData != null) {
-      return Container(
-        height: widget.options.height,
-        width: widget.options.width,
-        child: ElevatedButton.icon(
-          icon: Padding(
-            padding: widget.options.iconPadding ?? EdgeInsets.zero,
-            child: widget.icon ??
-                FaIcon(
-                  widget.iconData,
-                  size: widget.options.iconSize,
-                  color: widget.options.iconColor ??
-                      widget.options.textStyle!.color,
-                ),
+      return Listener(
+        onPointerUp: (event) {
+          _controller!.reverse();
+        },
+        onPointerDown: (event) {
+          _controller!.forward();
+        },
+        child: ScaleTransition(
+          scale: _scale!,
+          child: Container(
+            height: widget.options.height,
+            width: widget.options.width,
+            child: ElevatedButton.icon(
+              icon: Padding(
+                padding: widget.options.iconPadding ?? EdgeInsets.zero,
+                child: widget.icon ??
+                    FaIcon(
+                      widget.iconData,
+                      size: widget.options.iconSize,
+                      color: widget.options.iconColor ??
+                          widget.options.textStyle!.color,
+                    ),
+              ),
+              label: textWidget,
+              onPressed: onPressed,
+              style: style,
+            ),
           ),
-          label: textWidget,
-          onPressed: onPressed,
-          style: style,
         ),
       );
     }
 
-    return Container(
-      height: widget.options.height,
-      width: widget.options.width,
-      child: ElevatedButton(
-        onPressed: onPressed,
-        style: style,
-        child: textWidget,
+    return Listener(
+      onPointerUp: (event) {
+        _controller!.reverse();
+      },
+      onPointerDown: (event) {
+        _controller!.forward();
+      },
+      child: ScaleTransition(
+        scale: _scale!,
+        child: Container(
+          height: widget.options.height,
+          width: widget.options.width,
+          child: ElevatedButton(
+            onPressed: onPressed,
+            style: style,
+            child: textWidget,
+          ),
+        ),
       ),
     );
   }
