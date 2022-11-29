@@ -23,6 +23,7 @@ class ChallengeBottomSheetWidget extends StatefulWidget {
 
 class _ChallengeBottomSheetWidgetState extends State<ChallengeBottomSheetWidget>
     with TickerProviderStateMixin {
+  var selectedIndex = -1;
   @override
   void initState() {
     super.initState();
@@ -217,6 +218,14 @@ class _ChallengeBottomSheetWidgetState extends State<ChallengeBottomSheetWidget>
                                             .colorScheme,
                                         index: gridViewIndex,
                                         destination: "select",
+                                        callback: (val) => setState(() {
+                                          selectedIndex = val;
+                                          //print(selectedIndex);
+                                        }),
+                                        showCheck:
+                                            gridViewIndex == selectedIndex
+                                                ? true
+                                                : false,
                                       );
                                     },
                                   );
@@ -295,6 +304,14 @@ class _ChallengeBottomSheetWidgetState extends State<ChallengeBottomSheetWidget>
                                             .colorScheme,
                                         index: gridViewIndex,
                                         destination: "select",
+                                        callback: (val) => setState(() {
+                                          selectedIndex = val;
+                                          //print(selectedIndex);
+                                        }),
+                                        showCheck:
+                                            gridViewIndex == selectedIndex
+                                                ? true
+                                                : false,
                                       );
                                     },
                                   );
@@ -372,6 +389,14 @@ class _ChallengeBottomSheetWidgetState extends State<ChallengeBottomSheetWidget>
                                             .colorScheme,
                                         index: gridViewIndex,
                                         destination: "select",
+                                        callback: (val) => setState(() {
+                                          selectedIndex = val;
+                                          //print(selectedIndex);
+                                        }),
+                                        showCheck:
+                                            gridViewIndex == selectedIndex
+                                                ? true
+                                                : false,
                                       );
                                     },
                                   );

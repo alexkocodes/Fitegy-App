@@ -19,6 +19,8 @@ class ChallengeCardWidget extends StatefulWidget {
     this.color,
     this.index,
     this.destination,
+    this.callback,
+    this.showCheck,
   }) : super(key: key);
 
   final String? title;
@@ -29,7 +31,8 @@ class ChallengeCardWidget extends StatefulWidget {
   final int? color;
   final int? index;
   final String? destination;
-
+  final Function? callback;
+  final bool? showCheck;
   @override
   _ChallengeCardWidgetState createState() => _ChallengeCardWidgetState();
 }
@@ -164,6 +167,17 @@ class _ChallengeCardWidgetState extends State<ChallengeCardWidget>
                 ),
               }.withoutNulls,
             );
+          } else {
+            setState(() {
+              //_showCheck = true;
+              var value = -1;
+              if (widget.showCheck!) {
+                value = -1;
+              } else {
+                value = widget.index!;
+              }
+              widget.callback!(value);
+            });
           }
         },
         onLongPress: () async {
@@ -288,7 +302,9 @@ class _ChallengeCardWidgetState extends State<ChallengeCardWidget>
                             mainAxisAlignment: MainAxisAlignment.end,
                             children: [
                               Image.asset(
-                                'assets/images/Hole.png',
+                                widget.showCheck!
+                                    ? 'assets/images/check.png'
+                                    : 'assets/images/Hole.png',
                                 width: 15,
                                 fit: BoxFit.cover,
                               ),
