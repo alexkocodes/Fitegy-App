@@ -182,17 +182,17 @@ class _ChallengeCardWidgetState extends State<ChallengeCardWidget>
                     ),
                   ],
                 ),
-                Row(
-                  mainAxisSize: MainAxisSize.max,
-                  mainAxisAlignment: MainAxisAlignment.end,
-                  children: [
-                    Image.asset(
-                      'assets/images/Hole.png',
-                      width: 15,
-                      fit: BoxFit.cover,
-                    ),
-                  ],
-                ),
+                // Row(
+                //   mainAxisSize: MainAxisSize.max,
+                //   mainAxisAlignment: MainAxisAlignment.end,
+                //   children: [
+                //     Image.asset(
+                //       'assets/images/Hole.png',
+                //       width: 15,
+                //       fit: BoxFit.cover,
+                //     ),
+                //   ],
+                // ),
               ],
             ),
           ),

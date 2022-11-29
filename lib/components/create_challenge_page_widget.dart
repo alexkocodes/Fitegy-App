@@ -821,40 +821,66 @@ class _CreateChallengePageWidgetState extends State<CreateChallengePageWidget> {
                       children: [
                         FFButtonWidget(
                           onPressed: () async {
-                            final challengesCreateData = {
-                              ...createChallengesRecordData(
-                                title: textController1!.text,
-                                details: textController2!.text,
-                                createdAt: getCurrentTimestamp,
-                                createBy: currentUserReference,
-                                status: 'active',
-                                colorScheme: buttonIndex,
-                                comments: commentsController!.text,
-                                id: random_data.randomString(
-                                  8,
-                                  10,
-                                  true,
-                                  true,
-                                  true,
+                            if (textController1!.text == '') {
+                              await showDialog(
+                                  context: context,
+                                  builder: (alertDialogContext) {
+                                    return AlertDialog(
+                                      title: Text(
+                                          'Challenge name can\'t be empty!'),
+                                      content: Text(
+                                          'Try something like: Spring Break Saadiyat 4k Run Challenge 🏃‍♂️'),
+                                      actions: [
+                                        TextButton(
+                                          onPressed: () =>
+                                              Navigator.pop(alertDialogContext),
+                                          child: Text('Ok'),
+                                        ),
+                                      ],
+                                    );
+                                  });
+                            } else {
+                              final challengesCreateData = {
+                                ...createChallengesRecordData(
+                                  title: textController1!.text,
+                                  details: textController2!.text,
+                                  createdAt: getCurrentTimestamp,
+                                  createBy: currentUserReference,
+                                  status: 'active',
+                                  colorScheme: buttonIndex,
+                                  comments: commentsController!.text,
+                                  id: random_data.randomString(
+                                    8,
+                                    10,
+                                    true,
+                                    true,
+                                    true,
+                                  ),
                                 ),
-                              ),
-                              'active_participants': [currentUserReference],
-                              'invited_participants': [currentUserReference],
-                            };
-                            await ChallengesRecord.createDoc(
-                                    currentUserReference!)
-                                .set(challengesCreateData);
+                                'active_participants': [currentUserReference],
+                                'invited_participants': [currentUserReference],
+                              };
+                              await ChallengesRecord.createDoc(
+                                      currentUserReference!)
+                                  .set(challengesCreateData);
 
-                            context.pushNamed(
-                              'ChallengeCreated',
-                              extra: <String, dynamic>{
-                                kTransitionInfoKey: TransitionInfo(
-                                  hasTransition: true,
-                                  transitionType: PageTransitionType.fade,
-                                  duration: Duration(milliseconds: 800),
-                                ),
-                              },
-                            );
+                              context.pushNamed(
+                                'ChallengeCreated',
+                                queryParams: {
+                                  'title': serializeParam(
+                                    textController1!.text,
+                                    ParamType.String,
+                                  ),
+                                }.withoutNulls,
+                                extra: <String, dynamic>{
+                                  kTransitionInfoKey: TransitionInfo(
+                                    hasTransition: true,
+                                    transitionType: PageTransitionType.fade,
+                                    duration: Duration(milliseconds: 800),
+                                  ),
+                                },
+                              );
+                            }
                           },
                           text: 'Create',
                           options: FFButtonOptions(

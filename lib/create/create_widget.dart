@@ -847,7 +847,6 @@ class _CreateWidgetState extends State<CreateWidget>
                                         scrollDirection: Axis.horizontal,
                                         itemCount: imageFileList!.length,
                                         itemBuilder: (context, index) {
-                                          print(imageFileList![index].path);
                                           return Container(
                                             padding: EdgeInsets.only(right: 15),
                                             decoration: BoxDecoration(
@@ -980,16 +979,11 @@ class _CreateWidgetState extends State<CreateWidget>
                           FFButtonWidget(
                             onPressed: () async {
                               final List<XFile>? selectedImages =
-                                  await imagePicker.pickMultiImage();
+                                  await imagePicker.pickMultiImage(
+                                      imageQuality: 70);
                               if (selectedImages!.isNotEmpty) {
                                 imageFileList!.addAll(selectedImages);
                               }
-
-                              // final selectedMedia = await selectMedia(
-                              //   imageQuality: 100,
-                              //   mediaSource: MediaSource.photoGallery,
-                              //   multiImage: true,
-                              // );
                               var selectedMedia = await Future.wait(
                                   selectedImages.asMap().entries.map((e) async {
                                 final index = e.key;
