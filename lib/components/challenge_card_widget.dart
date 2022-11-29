@@ -1,3 +1,5 @@
+import 'package:flutter/services.dart';
+
 import '../flutter_flow/flutter_flow_animations.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_util.dart';
@@ -16,6 +18,7 @@ class ChallengeCardWidget extends StatefulWidget {
     this.path,
     this.color,
     this.index,
+    this.destination,
   }) : super(key: key);
 
   final String? title;
@@ -25,6 +28,7 @@ class ChallengeCardWidget extends StatefulWidget {
   final String? path;
   final int? color;
   final int? index;
+  final String? destination;
 
   @override
   _ChallengeCardWidgetState createState() => _ChallengeCardWidgetState();
@@ -39,11 +43,37 @@ class _ChallengeCardWidgetState extends State<ChallengeCardWidget>
     [Color.fromARGB(255, 255, 89, 200), Color.fromARGB(255, 253, 255, 155)],
     [Color(0xFFE6A0FF), Color(0xFF9AE1FF)],
   ];
-
+  var animationsMap = {
+    'containerOnActionTriggerAnimation': AnimationInfo(
+      trigger: AnimationTrigger.onActionTrigger,
+      applyInitialState: true,
+      effects: [
+        ScaleEffect(
+          curve: Curves.easeInOut,
+          delay: 0.ms,
+          duration: 200.ms,
+          begin: 1.2,
+          end: 0.8,
+        ),
+        ScaleEffect(
+          curve: Curves.easeInOut,
+          delay: 0.ms,
+          duration: 400.ms,
+          begin: 0.8,
+          end: 1.2,
+        ),
+      ],
+    ),
+  };
   static var animation_delay;
-  @override
   void initState() {
     super.initState();
+    setupAnimations(
+      animationsMap.values.where((anim) =>
+          anim.trigger == AnimationTrigger.onActionTrigger ||
+          !anim.applyInitialState),
+      this,
+    );
   }
 
   @override
@@ -69,60 +99,105 @@ class _ChallengeCardWidgetState extends State<ChallengeCardWidget>
         break;
       default:
     }
-    var animationsMap = {
-      'containerOnPageLoadAnimation': AnimationInfo(
-        trigger: AnimationTrigger.onPageLoad,
-        effects: [
-          MoveEffect(
-            curve: Curves.easeInOut,
-            delay: Duration(milliseconds: animation_delay),
-            duration: 600.ms,
-            begin: Offset(0, 100),
-            end: Offset(0, 0),
-          ),
-          FadeEffect(
-            curve: Curves.easeInOut,
-            delay: Duration(milliseconds: animation_delay),
-            duration: 600.ms,
-            begin: 0,
-            end: 1,
-          ),
-        ],
-      ),
-    };
+
+    animationsMap['containerOnPageLoadAnimation'] = AnimationInfo(
+      trigger: AnimationTrigger.onPageLoad,
+      effects: [
+        MoveEffect(
+          curve: Curves.easeInOut,
+          delay: Duration(milliseconds: animation_delay),
+          duration: 600.ms,
+          begin: Offset(0, 100),
+          end: Offset(0, 0),
+        ),
+        FadeEffect(
+          curve: Curves.easeInOut,
+          delay: Duration(milliseconds: animation_delay),
+          duration: 600.ms,
+          begin: 0,
+          end: 1,
+        ),
+      ],
+    );
+
     return Padding(
       padding: EdgeInsetsDirectional.fromSTEB(18, 0, 15, 20),
       child: InkWell(
         onTap: () async {
-          context.pushNamed(
-            'ChallengeDetails',
-            queryParams: {
-              'title': serializeParam(
-                widget.title,
-                ParamType.String,
-              ),
-              'time': serializeParam(
-                widget.time,
-                ParamType.DateTime,
-              ),
-              'details': serializeParam(
-                widget.details,
-                ParamType.String,
-              ),
-              'comments': serializeParam(
-                widget.comments,
-                ParamType.String,
-              ),
-              'path': serializeParam(
-                widget.path,
-                ParamType.String,
-              ),
-              'color': serializeParam(
-                widget.color,
-                ParamType.int,
-              ),
-            }.withoutNulls,
-          );
+          if (widget.destination == "challenge details") {
+            context.pushNamed(
+              'ChallengeDetails',
+              queryParams: {
+                'title': serializeParam(
+                  widget.title,
+                  ParamType.String,
+                ),
+                'time': serializeParam(
+                  widget.time,
+                  ParamType.DateTime,
+                ),
+                'details': serializeParam(
+                  widget.details,
+                  ParamType.String,
+                ),
+                'comments': serializeParam(
+                  widget.comments,
+                  ParamType.String,
+                ),
+                'path': serializeParam(
+                  widget.path,
+                  ParamType.String,
+                ),
+                'color': serializeParam(
+                  widget.color,
+                  ParamType.int,
+                ),
+              }.withoutNulls,
+            );
+          }
+        },
+        onLongPress: () async {
+          HapticFeedback.lightImpact();
+          if (animationsMap['containerOnActionTriggerAnimation'] != null) {
+            await animationsMap['containerOnActionTriggerAnimation']!
+                .controller
+                .forward(from: 0.0);
+          }
+          if (widget.destination == "select") {
+            context.pushNamed(
+              "ChallengeDetails",
+              queryParams: {
+                'title': serializeParam(
+                  widget.title,
+                  ParamType.String,
+                ),
+                'time': serializeParam(
+                  widget.time,
+                  ParamType.DateTime,
+                ),
+                'details': serializeParam(
+                  widget.details,
+                  ParamType.String,
+                ),
+                'comments': serializeParam(
+                  widget.comments,
+                  ParamType.String,
+                ),
+                'path': serializeParam(
+                  widget.path,
+                  ParamType.String,
+                ),
+                'color': serializeParam(
+                  widget.color,
+                  ParamType.int,
+                ),
+                'type': serializeParam(
+                  widget.destination,
+                  ParamType.String,
+                ),
+              }.withoutNulls,
+            );
+          }
         },
         child: Container(
           width: MediaQuery.of(context).size.width * 0.35,
@@ -197,7 +272,10 @@ class _ChallengeCardWidgetState extends State<ChallengeCardWidget>
             ),
           ),
         ),
-      ).animateOnPageLoad(animationsMap['containerOnPageLoadAnimation']!),
+      )
+          .animateOnPageLoad(animationsMap['containerOnPageLoadAnimation']!)
+          .animateOnActionTrigger(
+              animationsMap['containerOnActionTriggerAnimation']!),
     );
   }
 }

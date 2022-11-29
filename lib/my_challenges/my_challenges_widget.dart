@@ -193,6 +193,7 @@ class _MyChallengesWidgetState extends State<MyChallengesWidget>
                                               color: gridViewChallengesRecord
                                                   .colorScheme,
                                               index: gridViewIndex,
+                                              destination: "challenge details",
                                             );
                                           },
                                         );
@@ -277,6 +278,7 @@ class _MyChallengesWidgetState extends State<MyChallengesWidget>
                                               color: gridViewChallengesRecord
                                                   .colorScheme,
                                               index: gridViewIndex,
+                                              destination: "challenge details",
                                             );
                                           },
                                         );
@@ -361,6 +363,7 @@ class _MyChallengesWidgetState extends State<MyChallengesWidget>
                                               color: gridViewChallengesRecord
                                                   .colorScheme,
                                               index: gridViewIndex,
+                                              destination: "challenge details",
                                             );
                                           },
                                         );

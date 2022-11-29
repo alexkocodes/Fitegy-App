@@ -675,6 +675,7 @@ class _ChallengeBottomSheetWidgetState extends State<ChallengeBottomSheetWidget>
                                         color: gridViewChallengesRecord
                                             .colorScheme,
                                         index: gridViewIndex,
+                                        destination: "select",
                                       );
                                     },
                                   );
@@ -752,6 +753,7 @@ class _ChallengeBottomSheetWidgetState extends State<ChallengeBottomSheetWidget>
                                         color: gridViewChallengesRecord
                                             .colorScheme,
                                         index: gridViewIndex,
+                                        destination: "select",
                                       );
                                     },
                                   );
@@ -828,6 +830,7 @@ class _ChallengeBottomSheetWidgetState extends State<ChallengeBottomSheetWidget>
                                         color: gridViewChallengesRecord
                                             .colorScheme,
                                         index: gridViewIndex,
+                                        destination: "select",
                                       );
                                     },
                                   );
