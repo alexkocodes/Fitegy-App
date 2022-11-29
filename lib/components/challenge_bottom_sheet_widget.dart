@@ -24,9 +24,21 @@ class ChallengeBottomSheetWidget extends StatefulWidget {
 class _ChallengeBottomSheetWidgetState extends State<ChallengeBottomSheetWidget>
     with TickerProviderStateMixin {
   var selectedIndex = -1;
+  late TabController _controller;
   @override
   void initState() {
+    _controller = TabController(length: 3, vsync: this);
+    _controller.addListener(() {
+      selectedIndex = -1;
+      //DefaultTabController.of(context).animateTo(_controller.index);
+    });
     super.initState();
+  }
+
+  @override
+  void dispose() {
+    _controller.dispose();
+    super.dispose();
   }
 
   @override
@@ -108,6 +120,7 @@ class _ChallengeBottomSheetWidgetState extends State<ChallengeBottomSheetWidget>
                         height: 30,
                         padding: EdgeInsets.symmetric(horizontal: 5),
                         child: TabBar(
+                          controller: _controller,
                           labelColor:
                               FlutterFlowTheme.of(context).primaryBtnText,
                           unselectedLabelColor: Color(0x9C868686),
@@ -145,6 +158,7 @@ class _ChallengeBottomSheetWidgetState extends State<ChallengeBottomSheetWidget>
                       ),
                       Expanded(
                         child: TabBarView(
+                          controller: _controller,
                           children: [
                             Padding(
                               padding:
@@ -201,6 +215,7 @@ class _ChallengeBottomSheetWidgetState extends State<ChallengeBottomSheetWidget>
                                       final gridViewChallengesRecord =
                                           gridViewChallengesRecordList[
                                               gridViewIndex];
+
                                       return ChallengeCardWidget(
                                         key: Key(
                                             'ChallengeCard_${gridViewIndex}'),
