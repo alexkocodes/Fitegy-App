@@ -540,7 +540,7 @@ class _CreateWidgetState extends State<CreateWidget>
                                                 text: 'Post',
                                                 options: FFButtonOptions(
                                                   width: 90,
-                                                  height: 32,
+                                                  height: 33,
                                                   color: FlutterFlowTheme.of(
                                                           context)
                                                       .secondaryText,
@@ -566,7 +566,7 @@ class _CreateWidgetState extends State<CreateWidget>
                                                     width: 1,
                                                   ),
                                                   borderRadius:
-                                                      BorderRadius.circular(15),
+                                                      BorderRadius.circular(30),
                                                 ),
                                               ),
                                             ],

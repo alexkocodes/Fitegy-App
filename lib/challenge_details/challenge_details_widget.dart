@@ -311,35 +311,43 @@ class _ChallengeDetailsWidgetState extends State<ChallengeDetailsWidget> {
                                   .secondaryBackground,
                             ),
                             child: widget.type == "select"
-                                ? SizedBox(
-                                    child: FFButtonWidget(
-                                      onPressed: () {},
-                                      text: "Select this challenge",
-                                      options: FFButtonOptions(
-                                        height: 30,
-                                        color: FlutterFlowTheme.of(context)
-                                            .secondaryColor,
-                                        textStyle: FlutterFlowTheme.of(context)
-                                            .subtitle2
-                                            .override(
-                                              fontFamily: 'Archivo Black',
-                                              color: Colors.white,
-                                              useGoogleFonts:
-                                                  GoogleFonts.asMap()
-                                                      .containsKey(
-                                                          FlutterFlowTheme.of(
-                                                                  context)
-                                                              .subtitle2Family),
+                                ? Row(
+                                    mainAxisSize: MainAxisSize.max,
+                                    children: [
+                                        Expanded(
+                                          child: FFButtonWidget(
+                                            onPressed: () {},
+                                            text: "Select this challenge",
+                                            options: FFButtonOptions(
+                                              height: 50,
+                                              color:
+                                                  FlutterFlowTheme.of(context)
+                                                      .secondaryColor,
+                                              textStyle:
+                                                  FlutterFlowTheme.of(context)
+                                                      .subtitle2
+                                                      .override(
+                                                        fontFamily:
+                                                            'Archivo Black',
+                                                        color: Colors.white,
+                                                        useGoogleFonts: GoogleFonts
+                                                                .asMap()
+                                                            .containsKey(
+                                                                FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .subtitle2Family),
+                                                      ),
+                                              elevation: 4,
+                                              borderSide: BorderSide(
+                                                color: Colors.transparent,
+                                                width: 1,
+                                              ),
+                                              borderRadius:
+                                                  BorderRadius.circular(40),
                                             ),
-                                        elevation: 7,
-                                        borderSide: BorderSide(
-                                          color: Colors.transparent,
-                                          width: 1,
+                                          ),
                                         ),
-                                        borderRadius: BorderRadius.circular(20),
-                                      ),
-                                    ),
-                                  )
+                                      ])
                                 : FutureBuilder<ChallengesRecord>(
                                     future: ChallengesRecord.getDocumentOnce(
                                         db.doc(widget.path!)),
