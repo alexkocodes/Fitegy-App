@@ -87,6 +87,20 @@ class _$PostsRecordSerializer implements StructuredSerializer<PostsRecord> {
         ..add(serializers.serialize(value,
             specifiedType: const FullType(String)));
     }
+    value = object.status;
+    if (value != null) {
+      result
+        ..add('status')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(String)));
+    }
+    value = object.displayName;
+    if (value != null) {
+      result
+        ..add('display_name')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(String)));
+    }
     value = object.ffRef;
     if (value != null) {
       result
@@ -154,6 +168,14 @@ class _$PostsRecordSerializer implements StructuredSerializer<PostsRecord> {
           result.private = serializers.deserialize(value,
               specifiedType: const FullType(String)) as String?;
           break;
+        case 'status':
+          result.status = serializers.deserialize(value,
+              specifiedType: const FullType(String)) as String?;
+          break;
+        case 'display_name':
+          result.displayName = serializers.deserialize(value,
+              specifiedType: const FullType(String)) as String?;
+          break;
         case 'Document__Reference__Field':
           result.ffRef = serializers.deserialize(value,
               specifiedType: const FullType(DocumentReference, const [
@@ -187,6 +209,10 @@ class _$PostsRecord extends PostsRecord {
   @override
   final String? private;
   @override
+  final String? status;
+  @override
+  final String? displayName;
+  @override
   final DocumentReference<Object?>? ffRef;
 
   factory _$PostsRecord([void Function(PostsRecordBuilder)? updates]) =>
@@ -202,6 +228,8 @@ class _$PostsRecord extends PostsRecord {
       this.postImages,
       this.location,
       this.private,
+      this.status,
+      this.displayName,
       this.ffRef})
       : super._();
 
@@ -225,6 +253,8 @@ class _$PostsRecord extends PostsRecord {
         postImages == other.postImages &&
         location == other.location &&
         private == other.private &&
+        status == other.status &&
+        displayName == other.displayName &&
         ffRef == other.ffRef;
   }
 
@@ -238,15 +268,21 @@ class _$PostsRecord extends PostsRecord {
                         $jc(
                             $jc(
                                 $jc(
-                                    $jc($jc(0, postDescription.hashCode),
-                                        postUser.hashCode),
-                                    timePosted.hashCode),
-                                likes.hashCode),
-                            numComments.hashCode),
-                        inPostChallenge.hashCode),
-                    postImages.hashCode),
-                location.hashCode),
-            private.hashCode),
+                                    $jc(
+                                        $jc(
+                                            $jc(
+                                                $jc(0,
+                                                    postDescription.hashCode),
+                                                postUser.hashCode),
+                                            timePosted.hashCode),
+                                        likes.hashCode),
+                                    numComments.hashCode),
+                                inPostChallenge.hashCode),
+                            postImages.hashCode),
+                        location.hashCode),
+                    private.hashCode),
+                status.hashCode),
+            displayName.hashCode),
         ffRef.hashCode));
   }
 
@@ -262,6 +298,8 @@ class _$PostsRecord extends PostsRecord {
           ..add('postImages', postImages)
           ..add('location', location)
           ..add('private', private)
+          ..add('status', status)
+          ..add('displayName', displayName)
           ..add('ffRef', ffRef))
         .toString();
   }
@@ -313,6 +351,14 @@ class PostsRecordBuilder implements Builder<PostsRecord, PostsRecordBuilder> {
   String? get private => _$this._private;
   set private(String? private) => _$this._private = private;
 
+  String? _status;
+  String? get status => _$this._status;
+  set status(String? status) => _$this._status = status;
+
+  String? _displayName;
+  String? get displayName => _$this._displayName;
+  set displayName(String? displayName) => _$this._displayName = displayName;
+
   DocumentReference<Object?>? _ffRef;
   DocumentReference<Object?>? get ffRef => _$this._ffRef;
   set ffRef(DocumentReference<Object?>? ffRef) => _$this._ffRef = ffRef;
@@ -333,6 +379,8 @@ class PostsRecordBuilder implements Builder<PostsRecord, PostsRecordBuilder> {
       _postImages = $v.postImages?.toBuilder();
       _location = $v.location;
       _private = $v.private;
+      _status = $v.status;
+      _displayName = $v.displayName;
       _ffRef = $v.ffRef;
       _$v = null;
     }
@@ -367,6 +415,8 @@ class PostsRecordBuilder implements Builder<PostsRecord, PostsRecordBuilder> {
               postImages: _postImages?.build(),
               location: location,
               private: private,
+              status: status,
+              displayName: displayName,
               ffRef: ffRef);
     } catch (_) {
       late String _$failedField;

@@ -19,6 +19,7 @@ class FFAppState {
   late SharedPreferences prefs;
 
   bool isChallengePrivate = false;
+  bool firstTime = true;
 }
 
 LatLng? _latLngFromString(String? val) {

@@ -5,7 +5,12 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class PostActionBarWidget extends StatefulWidget {
-  const PostActionBarWidget({Key? key}) : super(key: key);
+  const PostActionBarWidget({
+    Key? key,
+    this.likeCount,
+  }) : super(key: key);
+
+  final int? likeCount;
 
   @override
   _PostActionBarWidgetState createState() => _PostActionBarWidgetState();
@@ -50,7 +55,10 @@ class _PostActionBarWidgetState extends State<PostActionBarWidget> {
                   child: Padding(
                     padding: EdgeInsetsDirectional.fromSTEB(0, 12, 0, 0),
                     child: Text(
-                      'Like',
+                      valueOrDefault<String>(
+                        widget.likeCount?.toString(),
+                        '0',
+                      ),
                       style: FlutterFlowTheme.of(context).bodyText1.override(
                             fontFamily:
                                 FlutterFlowTheme.of(context).bodyText1Family,
