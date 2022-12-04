@@ -68,7 +68,7 @@ class _$PostsRecordSerializer implements StructuredSerializer<PostsRecord> {
     value = object.postImages;
     if (value != null) {
       result
-        ..add('postImages')
+        ..add('post_images')
         ..add(serializers.serialize(value,
             specifiedType:
                 const FullType(BuiltList, const [const FullType(String)])));
@@ -154,7 +154,7 @@ class _$PostsRecordSerializer implements StructuredSerializer<PostsRecord> {
                 const FullType.nullable(Object)
               ])) as DocumentReference<Object?>?;
           break;
-        case 'postImages':
+        case 'post_images':
           result.postImages.replace(serializers.deserialize(value,
                   specifiedType: const FullType(
                       BuiltList, const [const FullType(String)]))!

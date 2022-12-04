@@ -26,6 +26,7 @@ abstract class PostsRecord implements Built<PostsRecord, PostsRecordBuilder> {
   @BuiltValueField(wireName: 'in_post_challenge')
   DocumentReference? get inPostChallenge;
 
+  @BuiltValueField(wireName: 'post_images')
   BuiltList<String>? get postImages;
 
   @BuiltValueField(wireName: 'location')

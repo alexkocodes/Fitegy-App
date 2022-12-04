@@ -141,11 +141,11 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
               path: 'challengeCompleted',
               builder: (context, params) => ChallengeCompletedWidget(),
             ),
-            FFRoute(
-              name: 'CreatePost',
-              path: 'createPost',
-              builder: (context, params) => CreatePostWidget(),
-            ),
+            // FFRoute(
+            //   name: 'CreatePost',
+            //   path: 'createPost',
+            //   builder: (context, params) => CreatePostWidget(),
+            // ),
             FFRoute(
               name: 'ChallengeSelected',
               path: 'challengeSelected',

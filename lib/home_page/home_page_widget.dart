@@ -53,7 +53,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                 children: [
                   if (FFAppState().firstTime)
                     Padding(
-                      padding: EdgeInsetsDirectional.fromSTEB(25, 60, 20, 20),
+                      padding: EdgeInsetsDirectional.fromSTEB(25, 0, 20, 20),
                       child: Text(
                         'See what your\nfriends are doing...',
                         style: FlutterFlowTheme.of(context).title2.override(
@@ -130,8 +130,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                             width: 40,
                             height: 40,
                             child: CircularProgressIndicator(
-                              color:
-                                  FlutterFlowTheme.of(context).primaryBtnText,
+                              color: FlutterFlowTheme.of(context).primaryColor,
                             ),
                           ),
                         ),
@@ -139,6 +138,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                         itemBuilder: (context, _, listViewIndex) {
                           final listViewPostsRecord =
                               _pagingController!.itemList![listViewIndex];
+
                           return PostWidget(
                             key: Key('Post_${listViewIndex}'),
                             name: listViewPostsRecord.displayName,
@@ -149,7 +149,6 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                               listViewPostsRecord.likes!.toList().length,
                               0,
                             ),
-                            photos: listViewPostsRecord.postImages!.toList(),
                             challenge: listViewPostsRecord.inPostChallenge,
                             imageURLs: listViewPostsRecord.postImages!.toList(),
                           );

@@ -15,7 +15,6 @@ class PostWidget extends StatefulWidget {
     this.status,
     this.description,
     this.likeCount,
-    this.photos,
     this.challenge,
     this.imageURLs,
   }) : super(key: key);
@@ -25,7 +24,6 @@ class PostWidget extends StatefulWidget {
   final String? status;
   final String? description;
   final int? likeCount;
-  final List<String>? photos;
   final DocumentReference? challenge;
   final List<String>? imageURLs;
 
@@ -149,24 +147,19 @@ class _PostWidgetState extends State<PostWidget> {
                         child: Stack(
                           children: [
                             Align(
-                              alignment: AlignmentDirectional(-0.7, 1),
-                              child: FlutterFlowIconButton(
-                                borderColor: Colors.transparent,
-                                borderRadius: 20,
-                                borderWidth: 0.2,
-                                buttonSize: 40,
-                                icon: Icon(
-                                  Icons.check_circle_outline_outlined,
-                                  color: Color(0xFF92FF6B),
-                                  size: 13,
-                                ),
-                                onPressed: () {
-                                  print('IconButton pressed ...');
-                                },
+                              alignment: AlignmentDirectional(-0.55, 0),
+                              child: Icon(
+                                widget.status == "Completed"
+                                    ? Icons.check_circle_outline_outlined
+                                    : Icons.auto_awesome,
+                                color: widget.status == "Completed"
+                                    ? Color(0xFF92FF6B)
+                                    : Color(0xFFE6A0FF),
+                                size: 13,
                               ),
                             ),
                             Align(
-                              alignment: AlignmentDirectional(1, -0.25),
+                              alignment: AlignmentDirectional(1, -0.3),
                               child: Padding(
                                 padding:
                                     EdgeInsetsDirectional.fromSTEB(0, 4, 0, 0),
@@ -177,7 +170,9 @@ class _PostWidgetState extends State<PostWidget> {
                                       .override(
                                         fontFamily: FlutterFlowTheme.of(context)
                                             .bodyText1Family,
-                                        color: Color(0xFF92FF6B),
+                                        color: widget.status == "Completed"
+                                            ? Color(0xFF92FF6B)
+                                            : Color(0xFFE6A0FF),
                                         fontSize: 12,
                                         fontWeight: FontWeight.normal,
                                         useGoogleFonts: GoogleFonts.asMap()
@@ -196,7 +191,7 @@ class _PostWidgetState extends State<PostWidget> {
                 ),
               ),
               Padding(
-                padding: EdgeInsetsDirectional.fromSTEB(0, 10, 0, 0),
+                padding: EdgeInsetsDirectional.fromSTEB(0, 10, 0, 10),
                 child: Container(
                   height: 30,
                   decoration: BoxDecoration(
@@ -218,35 +213,39 @@ class _PostWidgetState extends State<PostWidget> {
                   ),
                 ),
               ),
-              Container(
-                height: 200,
-                decoration: BoxDecoration(
-                  color: FlutterFlowTheme.of(context).secondaryBackground,
-                ),
-                child: Builder(
-                  builder: (context) {
-                    final imageUrls = widget.imageURLs?.map((e) => e).toList();
-                    return ListView.builder(
-                      padding: EdgeInsets.zero,
-                      scrollDirection: Axis.horizontal,
-                      itemCount: imageUrls!.length,
-                      itemBuilder: (context, imageUrlsIndex) {
-                        final imageUrlsItem = imageUrls[imageUrlsIndex];
-                        return Padding(
-                          padding: EdgeInsetsDirectional.fromSTEB(0, 0, 20, 0),
-                          child: ClipRRect(
-                            borderRadius: BorderRadius.circular(15),
-                            child: Image.network(
-                              'https://picsum.photos/seed/466/600',
-                              fit: BoxFit.cover,
-                            ),
-                          ),
-                        );
-                      },
-                    );
-                  },
-                ),
-              ),
+              widget.imageURLs!.length > 0
+                  ? Container(
+                      height: 250,
+                      decoration: BoxDecoration(
+                        color: FlutterFlowTheme.of(context).secondaryBackground,
+                      ),
+                      child: Builder(
+                        builder: (context) {
+                          final imageUrls =
+                              widget.imageURLs?.map((e) => e).toList();
+
+                          return ListView.builder(
+                            padding: EdgeInsets.zero,
+                            scrollDirection: Axis.horizontal,
+                            itemCount: imageUrls!.length,
+                            itemBuilder: (context, imageUrlsIndex) {
+                              return Padding(
+                                padding:
+                                    EdgeInsetsDirectional.fromSTEB(0, 0, 20, 0),
+                                child: ClipRRect(
+                                  borderRadius: BorderRadius.circular(15),
+                                  child: Image.network(
+                                    imageUrls[imageUrlsIndex],
+                                    fit: BoxFit.cover,
+                                  ),
+                                ),
+                              );
+                            },
+                          );
+                        },
+                      ),
+                    )
+                  : Container(),
               Divider(),
               PostActionBarWidget(
                 likeCount: widget.likeCount,
