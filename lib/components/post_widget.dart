@@ -7,6 +7,9 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
+import 'image_expanded_view.dart';
+import 'package:easy_image_viewer/easy_image_viewer.dart';
+
 class PostWidget extends StatefulWidget {
   const PostWidget({
     Key? key,
@@ -34,6 +37,8 @@ class PostWidget extends StatefulWidget {
 class _PostWidgetState extends State<PostWidget> {
   @override
   Widget build(BuildContext context) {
+    final _imageProviders =
+        widget.imageURLs?.map((e) => Image.network(e).image).toList();
     return Padding(
       padding: EdgeInsetsDirectional.fromSTEB(25, 10, 25, 10),
       child: Container(
@@ -232,11 +237,25 @@ class _PostWidgetState extends State<PostWidget> {
                               return Padding(
                                 padding:
                                     EdgeInsetsDirectional.fromSTEB(0, 0, 20, 0),
-                                child: ClipRRect(
-                                  borderRadius: BorderRadius.circular(15),
-                                  child: Image.network(
-                                    imageUrls[imageUrlsIndex],
-                                    fit: BoxFit.cover,
+                                child: InkWell(
+                                  onTap: () {
+                                    MultiImageProvider multiImageProvider =
+                                        MultiImageProvider(_imageProviders!);
+                                    showImageViewerPager(
+                                        context, multiImageProvider,
+                                        swipeDismissible: true,
+                                        doubleTapZoomable: true);
+                                  },
+                                  child: Hero(
+                                    tag: 'imageTag',
+                                    transitionOnUserGestures: true,
+                                    child: ClipRRect(
+                                      borderRadius: BorderRadius.circular(15),
+                                      child: Image.network(
+                                        imageUrls[imageUrlsIndex],
+                                        fit: BoxFit.cover,
+                                      ),
+                                    ),
                                   ),
                                 ),
                               );

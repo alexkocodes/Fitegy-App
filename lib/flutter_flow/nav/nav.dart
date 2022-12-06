@@ -348,7 +348,7 @@ class FFRoute {
               ? Container(
                   color: Colors.transparent,
                   child: Image.asset(
-                    'assets/images/iPhone_13_Pro_Max_-_33.png',
+                    'assets/images/15.png',
                     fit: BoxFit.cover,
                   ),
                 )
