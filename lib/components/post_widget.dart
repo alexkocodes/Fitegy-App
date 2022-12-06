@@ -240,7 +240,8 @@ class _PostWidgetState extends State<PostWidget> {
                                 child: InkWell(
                                   onTap: () {
                                     MultiImageProvider multiImageProvider =
-                                        MultiImageProvider(_imageProviders!);
+                                        MultiImageProvider(_imageProviders!,
+                                            initialIndex: imageUrlsIndex);
                                     showImageViewerPager(
                                         context, multiImageProvider,
                                         swipeDismissible: true,
