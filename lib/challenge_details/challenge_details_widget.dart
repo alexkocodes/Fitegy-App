@@ -444,7 +444,26 @@ class _ChallengeDetailsWidgetState extends State<ChallengeDetailsWidget> {
                                                           },
                                                         ) ??
                                                         false;
-                                                if (!confirmDialogResponse) {
+                                                if (confirmDialogResponse) {
+                                                  print("deleting");
+                                                  await db
+                                                      .doc(widget.path!)
+                                                      .delete();
+                                                  context.goNamed(
+                                                      'MyChallenges',
+                                                      extra: <String, dynamic>{
+                                                        kTransitionInfoKey:
+                                                            TransitionInfo(
+                                                          hasTransition: true,
+                                                          transitionType:
+                                                              PageTransitionType
+                                                                  .leftToRight,
+                                                          duration: Duration(
+                                                              milliseconds:
+                                                                  300),
+                                                        ),
+                                                      });
+                                                } else if (!confirmDialogResponse) {
                                                   Navigator.pop(context);
                                                 }
                                               },
