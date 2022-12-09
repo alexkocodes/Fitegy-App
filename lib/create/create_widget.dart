@@ -3,6 +3,8 @@ import 'dart:io';
 import 'package:detectable_text_field/detector/sample_regular_expressions.dart';
 import 'package:detectable_text_field/widgets/detectable_editable_text.dart';
 import 'package:detectable_text_field/widgets/detectable_text_field.dart';
+import 'package:fitegy/components/challenge_card_widget.dart';
+import 'package:fitegy/components/selected_challenge.dart';
 import 'package:flutter_animate/effects/fade_effect.dart';
 import 'package:flutter_animate/effects/move_effect.dart';
 import 'package:flutter_animate/flutter_animate.dart';
@@ -119,6 +121,13 @@ class _CreateWidgetState extends State<CreateWidget>
       ),
     ],
   );
+  var selectedChallengeData = {};
+  final db = FirebaseFirestore.instance;
+  getData(data) {
+    setState(() {
+      selectedChallengeData = data;
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -511,20 +520,24 @@ class _CreateWidgetState extends State<CreateWidget>
                                                       }
                                                     }
                                                     ;
+
                                                     final postsCreateData = {
                                                       ...createPostsRecordData(
-                                                        postDescription:
-                                                            textController!
-                                                                .text,
-                                                        postUser:
-                                                            currentUserReference,
-                                                        timePosted:
-                                                            getCurrentTimestamp,
-                                                        location: "Abu Dhabi"
-                                                            .toString(),
-                                                        numComments: 0,
-                                                        private: dropDownValue,
-                                                      ),
+                                                          postDescription:
+                                                              textController!
+                                                                  .text,
+                                                          postUser:
+                                                              currentUserReference,
+                                                          timePosted:
+                                                              getCurrentTimestamp,
+                                                          location: "Abu Dhabi"
+                                                              .toString(),
+                                                          numComments: 0,
+                                                          private:
+                                                              dropDownValue,
+                                                          inPostChallenge: db.doc(
+                                                              selectedChallengeData[
+                                                                  "selectedPath"])),
                                                       'post_images':
                                                           uploadedFileUrls,
                                                     };
@@ -907,63 +920,86 @@ class _CreateWidgetState extends State<CreateWidget>
                                         ),
                                   )),
                                   Padding(
-                                    padding: EdgeInsetsDirectional.fromSTEB(
-                                        0, 16, 0, 0),
-                                    child: FFButtonWidget(
-                                      onPressed: () async {
-                                        await showModalBottomSheet(
-                                          isScrollControlled: true,
-                                          backgroundColor: Colors.transparent,
-                                          context: context,
-                                          builder: (context) {
-                                            return Padding(
-                                              padding: MediaQuery.of(context)
-                                                  .viewInsets,
-                                              child: Container(
-                                                height: MediaQuery.of(context)
-                                                        .size
-                                                        .height *
-                                                    0.8,
-                                                child:
-                                                    ChallengeBottomSheetWidget(),
+                                      padding: EdgeInsetsDirectional.fromSTEB(
+                                          0, 16, 0, 0),
+                                      child: (selectedChallengeData.isEmpty)
+                                          ? FFButtonWidget(
+                                              onPressed: () async {
+                                                await showModalBottomSheet(
+                                                  isScrollControlled: true,
+                                                  backgroundColor:
+                                                      Colors.transparent,
+                                                  context: context,
+                                                  builder: (context) {
+                                                    return Padding(
+                                                      padding:
+                                                          MediaQuery.of(context)
+                                                              .viewInsets,
+                                                      child: Container(
+                                                        height: MediaQuery.of(
+                                                                    context)
+                                                                .size
+                                                                .height *
+                                                            0.8,
+                                                        child:
+                                                            ChallengeBottomSheetWidget(),
+                                                      ),
+                                                    );
+                                                  },
+                                                ).then((data) async {
+                                                  setState(() {
+                                                    if (data != null) {
+                                                      selectedChallengeData =
+                                                          data;
+                                                    }
+                                                  });
+                                                });
+                                              },
+                                              text: '',
+                                              icon: Icon(
+                                                Icons.add,
+                                                size: 15,
                                               ),
-                                            );
-                                          },
-                                        ).then((value) => setState(() {}));
-                                      },
-                                      text: '',
-                                      icon: Icon(
-                                        Icons.add,
-                                        size: 15,
-                                      ),
-                                      options: FFButtonOptions(
-                                        elevation: 0,
-                                        width: 160,
-                                        height: 100,
-                                        color: FlutterFlowTheme.of(context)
-                                            .lineColor,
-                                        textStyle: FlutterFlowTheme.of(context)
-                                            .subtitle2
-                                            .override(
-                                              fontFamily:
-                                                  FlutterFlowTheme.of(context)
-                                                      .subtitle2Family,
-                                              color: Colors.white,
-                                              useGoogleFonts:
-                                                  GoogleFonts.asMap()
-                                                      .containsKey(
-                                                          FlutterFlowTheme.of(
-                                                                  context)
-                                                              .subtitle2Family),
-                                            ),
-                                        borderSide: BorderSide(
-                                          color: Colors.transparent,
-                                          width: 1,
-                                        ),
-                                        borderRadius: BorderRadius.circular(20),
-                                      ),
-                                    ),
-                                  ),
+                                              options: FFButtonOptions(
+                                                elevation: 0,
+                                                width: 160,
+                                                height: 100,
+                                                color:
+                                                    FlutterFlowTheme.of(context)
+                                                        .lineColor,
+                                                textStyle:
+                                                    FlutterFlowTheme.of(context)
+                                                        .subtitle2
+                                                        .override(
+                                                          fontFamily:
+                                                              FlutterFlowTheme.of(
+                                                                      context)
+                                                                  .subtitle2Family,
+                                                          color: Colors.white,
+                                                          useGoogleFonts: GoogleFonts
+                                                                  .asMap()
+                                                              .containsKey(
+                                                                  FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .subtitle2Family),
+                                                        ),
+                                                borderSide: BorderSide(
+                                                  color: Colors.transparent,
+                                                  width: 1,
+                                                ),
+                                                borderRadius:
+                                                    BorderRadius.circular(20),
+                                              ),
+                                            )
+                                          : SelectedChallengeCardWidget(
+                                              title: selectedChallengeData[
+                                                  "selectedTitle"],
+                                              time: selectedChallengeData[
+                                                  "selectedTime"],
+                                              color: selectedChallengeData[
+                                                  "selectedColor"],
+                                              callback: getData,
+                                            )),
                                 ],
                               ),
                             ),

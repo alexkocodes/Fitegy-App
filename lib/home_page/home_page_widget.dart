@@ -70,9 +70,12 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                         PagedListView<DocumentSnapshot<Object?>?, PostsRecord>(
                       pagingController: () {
                         final Query<Object?> Function(Query<Object?>)
-                            queryBuilder = (postsRecord) => postsRecord;
+                            queryBuilder = (postsRecord) => postsRecord
+                                .orderBy('time_posted', descending: true);
                         if (_pagingController != null) {
-                          final query = queryBuilder(PostsRecord.collection());
+                          final query = queryBuilder(
+                            PostsRecord.collection(),
+                          );
                           if (query != _pagingQuery) {
                             // The query has changed
                             _pagingQuery = query;

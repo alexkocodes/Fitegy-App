@@ -24,13 +24,21 @@ class ChallengeBottomSheetWidget extends StatefulWidget {
 class _ChallengeBottomSheetWidgetState extends State<ChallengeBottomSheetWidget>
     with TickerProviderStateMixin {
   var selectedIndex = -1;
+  var selectedPath = "";
+  var selectedTitle = "";
+  var selectedTime = "";
+  var selectedData = {
+    "selectedPath": "",
+    "selectedTitle": "",
+    "selectedTime": DateTime,
+    "selectedColor": "",
+  };
   late TabController _controller;
   @override
   void initState() {
     _controller = TabController(length: 3, vsync: this);
     _controller.addListener(() {
       selectedIndex = -1;
-      //DefaultTabController.of(context).animateTo(_controller.index);
     });
     super.initState();
   }
@@ -81,7 +89,7 @@ class _ChallengeBottomSheetWidgetState extends State<ChallengeBottomSheetWidget>
                     ),
                     FFButtonWidget(
                       onPressed: () async {
-                        Navigator.pop(context);
+                        Navigator.pop(context, selectedData);
                       },
                       text: 'Select',
                       options: FFButtonOptions(
@@ -233,9 +241,14 @@ class _ChallengeBottomSheetWidgetState extends State<ChallengeBottomSheetWidget>
                                             .colorScheme,
                                         index: gridViewIndex,
                                         destination: "select",
-                                        callback: (val) => setState(() {
-                                          selectedIndex = val;
-                                          //print(selectedIndex);
+                                        callback:
+                                            (index, path, title, time, color) =>
+                                                setState(() {
+                                          selectedIndex = index;
+                                          selectedData["selectedPath"] = path;
+                                          selectedData["selectedTitle"] = title;
+                                          selectedData["selectedTime"] = time;
+                                          selectedData["selectedColor"] = color;
                                         }),
                                         showCheck:
                                             gridViewIndex == selectedIndex
@@ -319,9 +332,14 @@ class _ChallengeBottomSheetWidgetState extends State<ChallengeBottomSheetWidget>
                                             .colorScheme,
                                         index: gridViewIndex,
                                         destination: "select",
-                                        callback: (val) => setState(() {
-                                          selectedIndex = val;
-                                          //print(selectedIndex);
+                                        callback:
+                                            (index, path, title, time, color) =>
+                                                setState(() {
+                                          selectedIndex = index;
+                                          selectedData["selectedPath"] = path;
+                                          selectedData["selectedTitle"] = title;
+                                          selectedData["selectedTime"] = time;
+                                          selectedData["selectedColor"] = color;
                                         }),
                                         showCheck:
                                             gridViewIndex == selectedIndex
@@ -404,9 +422,14 @@ class _ChallengeBottomSheetWidgetState extends State<ChallengeBottomSheetWidget>
                                             .colorScheme,
                                         index: gridViewIndex,
                                         destination: "select",
-                                        callback: (val) => setState(() {
-                                          selectedIndex = val;
-                                          //print(selectedIndex);
+                                        callback:
+                                            (index, path, title, time, color) =>
+                                                setState(() {
+                                          selectedIndex = index;
+                                          selectedData["selectedPath"] = path;
+                                          selectedData["selectedTitle"] = title;
+                                          selectedData["selectedTime"] = time;
+                                          selectedData["selectedColor"] = color;
                                         }),
                                         showCheck:
                                             gridViewIndex == selectedIndex
