@@ -373,7 +373,9 @@ class _ChallengeDetailsWidgetState extends State<ChallengeDetailsWidget> {
                                           mainAxisAlignment:
                                               MainAxisAlignment.spaceBetween,
                                           children: [
-                                            CompleteButtonWidget(),
+                                            CompleteButtonWidget(
+                                              path: widget.path,
+                                            ),
                                             FFButtonWidget(
                                               onPressed: () async {
                                                 context.pushNamed('Invite');
