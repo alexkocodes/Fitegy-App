@@ -535,9 +535,14 @@ class _CreateWidgetState extends State<CreateWidget>
                                                           numComments: 0,
                                                           private:
                                                               dropDownValue,
-                                                          inPostChallenge: db.doc(
+                                                          inPostChallenge:
                                                               selectedChallengeData[
-                                                                  "selectedPath"])),
+                                                                          "selectedPath"] ==
+                                                                      null
+                                                                  ? null
+                                                                  : db.doc(
+                                                                      selectedChallengeData[
+                                                                          "selectedPath"])),
                                                       'post_images':
                                                           uploadedFileUrls,
                                                     };

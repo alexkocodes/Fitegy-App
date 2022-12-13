@@ -1,3 +1,5 @@
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+
 import '../backend/backend.dart';
 import '../components/post_widget.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
@@ -29,6 +31,17 @@ class _HomePageWidgetState extends State<HomePageWidget> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      floatingActionButton: FloatingActionButton(
+        child: Icon(
+          Icons.add,
+        ),
+        backgroundColor: FlutterFlowTheme.of(context).primaryColor,
+        onPressed: () {
+          // context.pushNamed(
+          //   "MyChallenges",
+          // );
+        },
+      ),
       key: scaffoldKey,
       backgroundColor: Colors.white,
       body: SafeArea(
