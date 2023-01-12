@@ -3,6 +3,7 @@ import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_util.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 import 'package:simple_gradient_text/simple_gradient_text.dart';
 
 class GradientPageTitlesWidget extends StatefulWidget {
@@ -23,6 +24,8 @@ class GradientPageTitlesWidget extends StatefulWidget {
 class _GradientPageTitlesWidgetState extends State<GradientPageTitlesWidget> {
   @override
   Widget build(BuildContext context) {
+    context.watch<FFAppState>();
+
     return Padding(
       padding: EdgeInsetsDirectional.fromSTEB(30, 20, 30, 20),
       child: Column(

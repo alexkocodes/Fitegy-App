@@ -1,12 +1,30 @@
+import '../auth/auth_util.dart';
 import '../components/post_action_bar_widget.dart';
 import '../flutter_flow/flutter_flow_icon_button.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_util.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 
 class PostWidget extends StatefulWidget {
-  const PostWidget({Key? key}) : super(key: key);
+  const PostWidget({
+    Key? key,
+    this.name,
+    this.location,
+    this.status,
+    this.description,
+    this.likeCount,
+    this.challenge,
+  }) : super(key: key);
+
+  final String? name;
+  final String? location;
+  final String? status;
+  final String? description;
+  final int? likeCount;
+  final DocumentReference? challenge;
 
   @override
   _PostWidgetState createState() => _PostWidgetState();
@@ -15,6 +33,8 @@ class PostWidget extends StatefulWidget {
 class _PostWidgetState extends State<PostWidget> {
   @override
   Widget build(BuildContext context) {
+    context.watch<FFAppState>();
+
     return Padding(
       padding: EdgeInsetsDirectional.fromSTEB(25, 10, 25, 10),
       child: Container(
@@ -63,30 +83,34 @@ class _PostWidgetState extends State<PostWidget> {
                           children: [
                             Align(
                               alignment: AlignmentDirectional(0, 0),
-                              child: Container(
-                                clipBehavior: Clip.antiAlias,
-                                decoration: BoxDecoration(
-                                  shape: BoxShape.circle,
-                                ),
-                                child: Image.asset(
-                                  'assets/images/273002726_1101444370691406_4784853650561083952_n.jpg',
-                                  fit: BoxFit.fitHeight,
+                              child: AuthUserStreamWidget(
+                                builder: (context) => Container(
+                                  clipBehavior: Clip.antiAlias,
+                                  decoration: BoxDecoration(
+                                    shape: BoxShape.circle,
+                                  ),
+                                  child: Image.asset(
+                                    'assets/images/273002726_1101444370691406_4784853650561083952_n.jpg',
+                                    fit: BoxFit.fitHeight,
+                                  ),
                                 ),
                               ),
                             ),
                             Padding(
                               padding:
-                                  EdgeInsetsDirectional.fromSTEB(5, 0, 0, 0),
+                                  EdgeInsetsDirectional.fromSTEB(10, 0, 0, 0),
                               child: Column(
                                 mainAxisSize: MainAxisSize.max,
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
                                   Text(
-                                    'Jun Bin',
+                                    widget.name!,
                                     style: FlutterFlowTheme.of(context)
                                         .bodyText1
                                         .override(
                                           fontFamily: 'Inter',
+                                          color: FlutterFlowTheme.of(context)
+                                              .primaryColor,
                                           fontSize: 15,
                                           fontWeight: FontWeight.w600,
                                           useGoogleFonts: GoogleFonts.asMap()
@@ -96,7 +120,7 @@ class _PostWidgetState extends State<PostWidget> {
                                         ),
                                   ),
                                   Text(
-                                    'Singapore',
+                                    widget.location!,
                                     style: FlutterFlowTheme.of(context)
                                         .bodyText1
                                         .override(
@@ -146,7 +170,7 @@ class _PostWidgetState extends State<PostWidget> {
                                 padding:
                                     EdgeInsetsDirectional.fromSTEB(0, 4, 0, 0),
                                 child: Text(
-                                  'Completed',
+                                  widget.status!,
                                   style: FlutterFlowTheme.of(context)
                                       .bodyText1
                                       .override(
@@ -171,14 +195,43 @@ class _PostWidgetState extends State<PostWidget> {
                 ),
               ),
               Padding(
-                padding: EdgeInsetsDirectional.fromSTEB(0, 4, 0, 0),
-                child: Text(
-                  'Just finished my January 4k run challenge, who wants to join me for Feb? ✨',
-                  style: FlutterFlowTheme.of(context).bodyText1,
+                padding: EdgeInsetsDirectional.fromSTEB(0, 10, 0, 10),
+                child: Container(
+                  height: 30,
+                  decoration: BoxDecoration(
+                    color: FlutterFlowTheme.of(context).secondaryBackground,
+                  ),
+                  child: Padding(
+                    padding: EdgeInsetsDirectional.fromSTEB(0, 4, 0, 0),
+                    child: Text(
+                      widget.description!,
+                      style: FlutterFlowTheme.of(context).bodyText1.override(
+                            fontFamily:
+                                FlutterFlowTheme.of(context).bodyText1Family,
+                            color: FlutterFlowTheme.of(context).secondaryText,
+                            fontWeight: FontWeight.normal,
+                            useGoogleFonts: GoogleFonts.asMap().containsKey(
+                                FlutterFlowTheme.of(context).bodyText1Family),
+                          ),
+                    ),
+                  ),
+                ),
+              ),
+              Container(
+                height: 200,
+                decoration: BoxDecoration(
+                  color: FlutterFlowTheme.of(context).secondaryBackground,
+                ),
+                child: ListView(
+                  padding: EdgeInsets.zero,
+                  scrollDirection: Axis.horizontal,
+                  children: [],
                 ),
               ),
               Divider(),
-              PostActionBarWidget(),
+              PostActionBarWidget(
+                likeCount: widget.likeCount,
+              ),
             ],
           ),
         ),

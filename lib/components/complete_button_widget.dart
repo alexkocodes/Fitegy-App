@@ -3,6 +3,7 @@ import '../flutter_flow/flutter_flow_util.dart';
 import '../flutter_flow/flutter_flow_widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 
 class CompleteButtonWidget extends StatefulWidget {
   const CompleteButtonWidget({Key? key}) : super(key: key);
@@ -14,6 +15,8 @@ class CompleteButtonWidget extends StatefulWidget {
 class _CompleteButtonWidgetState extends State<CompleteButtonWidget> {
   @override
   Widget build(BuildContext context) {
+    context.watch<FFAppState>();
+
     return FFButtonWidget(
       onPressed: () async {
         context.goNamed(

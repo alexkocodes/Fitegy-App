@@ -8,6 +8,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 import 'package:simple_gradient_text/simple_gradient_text.dart';
 
 class CreatePostV2Widget extends StatefulWidget {
@@ -41,6 +42,7 @@ class _CreatePostV2WidgetState extends State<CreatePostV2Widget>
     ),
   };
   TextEditingController? textController;
+  final _unfocusNode = FocusNode();
   final scaffoldKey = GlobalKey<ScaffoldState>();
 
   @override
@@ -52,17 +54,20 @@ class _CreatePostV2WidgetState extends State<CreatePostV2Widget>
 
   @override
   void dispose() {
+    _unfocusNode.dispose();
     textController?.dispose();
     super.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
+    context.watch<FFAppState>();
+
     return Scaffold(
       key: scaffoldKey,
       backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
       body: GestureDetector(
-        onTap: () => FocusScope.of(context).unfocus(),
+        onTap: () => FocusScope.of(context).requestFocus(_unfocusNode),
         child: Container(
           decoration: BoxDecoration(
             gradient: LinearGradient(

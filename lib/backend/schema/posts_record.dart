@@ -9,12 +9,6 @@ part 'posts_record.g.dart';
 abstract class PostsRecord implements Built<PostsRecord, PostsRecordBuilder> {
   static Serializer<PostsRecord> get serializer => _$postsRecordSerializer;
 
-  @BuiltValueField(wireName: 'post_photo')
-  String? get postPhoto;
-
-  @BuiltValueField(wireName: 'post_title')
-  String? get postTitle;
-
   @BuiltValueField(wireName: 'post_description')
   String? get postDescription;
 
@@ -29,22 +23,44 @@ abstract class PostsRecord implements Built<PostsRecord, PostsRecordBuilder> {
   @BuiltValueField(wireName: 'num_comments')
   int? get numComments;
 
+  @BuiltValueField(wireName: 'post_images')
+  BuiltList<String>? get postImages;
+
+  String? get private;
+
   @BuiltValueField(wireName: 'in_post_challenge')
   DocumentReference? get inPostChallenge;
+
+  String? get location;
+
+  String? get status;
+
+  @BuiltValueField(wireName: 'display_name')
+  String? get displayName;
 
   @BuiltValueField(wireName: kDocumentReferenceField)
   DocumentReference? get ffRef;
   DocumentReference get reference => ffRef!;
 
+  DocumentReference get parentReference => reference.parent.parent!;
+
   static void _initializeBuilder(PostsRecordBuilder builder) => builder
-    ..postPhoto = ''
-    ..postTitle = ''
     ..postDescription = ''
     ..likes = ListBuilder()
-    ..numComments = 0;
+    ..numComments = 0
+    ..postImages = ListBuilder()
+    ..private = ''
+    ..location = ''
+    ..status = ''
+    ..displayName = '';
 
-  static CollectionReference get collection =>
-      FirebaseFirestore.instance.collection('posts');
+  static Query<Map<String, dynamic>> collection([DocumentReference? parent]) =>
+      parent != null
+          ? parent.collection('posts')
+          : FirebaseFirestore.instance.collectionGroup('posts');
+
+  static DocumentReference createDoc(DocumentReference parent) =>
+      parent.collection('posts').doc();
 
   static Stream<PostsRecord> getDocument(DocumentReference ref) => ref
       .snapshots()
@@ -65,26 +81,31 @@ abstract class PostsRecord implements Built<PostsRecord, PostsRecordBuilder> {
 }
 
 Map<String, dynamic> createPostsRecordData({
-  String? postPhoto,
-  String? postTitle,
   String? postDescription,
   DocumentReference? postUser,
   DateTime? timePosted,
   int? numComments,
+  String? private,
   DocumentReference? inPostChallenge,
+  String? location,
+  String? status,
+  String? displayName,
 }) {
   final firestoreData = serializers.toFirestore(
     PostsRecord.serializer,
     PostsRecord(
       (p) => p
-        ..postPhoto = postPhoto
-        ..postTitle = postTitle
         ..postDescription = postDescription
         ..postUser = postUser
         ..timePosted = timePosted
         ..likes = null
         ..numComments = numComments
-        ..inPostChallenge = inPostChallenge,
+        ..postImages = null
+        ..private = private
+        ..inPostChallenge = inPostChallenge
+        ..location = location
+        ..status = status
+        ..displayName = displayName,
     ),
   );
 

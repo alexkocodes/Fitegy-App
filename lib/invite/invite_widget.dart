@@ -5,6 +5,7 @@ import '../flutter_flow/flutter_flow_widgets.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 
 class InviteWidget extends StatefulWidget {
   const InviteWidget({
@@ -19,10 +20,19 @@ class InviteWidget extends StatefulWidget {
 }
 
 class _InviteWidgetState extends State<InviteWidget> {
+  final _unfocusNode = FocusNode();
   final scaffoldKey = GlobalKey<ScaffoldState>();
 
   @override
+  void dispose() {
+    _unfocusNode.dispose();
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
+    context.watch<FFAppState>();
+
     return Scaffold(
       key: scaffoldKey,
       backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
@@ -49,7 +59,7 @@ class _InviteWidgetState extends State<InviteWidget> {
       ),
       body: SafeArea(
         child: GestureDetector(
-          onTap: () => FocusScope.of(context).unfocus(),
+          onTap: () => FocusScope.of(context).requestFocus(_unfocusNode),
           child: Column(
             mainAxisSize: MainAxisSize.max,
             crossAxisAlignment: CrossAxisAlignment.start,

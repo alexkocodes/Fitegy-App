@@ -11,7 +11,6 @@ export 'challenge_details/challenge_details_widget.dart'
     show ChallengeDetailsWidget;
 export 'challenge_completed/challenge_completed_widget.dart'
     show ChallengeCompletedWidget;
-export 'create_post/create_post_widget.dart' show CreatePostWidget;
 export 'challenge_selected/challenge_selected_widget.dart'
     show ChallengeSelectedWidget;
 export 'post_posted/post_posted_widget.dart' show PostPostedWidget;

@@ -53,24 +53,24 @@
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
 
-	<key>NSCameraUsageDescription</key>
-      <string>In order to take a picture or video, this app requires permission to access the camera.</string>
-	<key>NSMicrophoneUsageDescription</key>
-      <string>In order to record audio for video, this app requires permission to access the microphone.</string>
-	<key>NSPhotoLibraryUsageDescription</key>
-      <string>In order to upload media, this app requires permission to access the photo library.</string>
-	<key>PermissionGroupNotification</key>
-      <string>This allows us to send you updates on your challenges and posts.</string>
-	<key>NSMicrophoneUsageDescription</key>
-      <string>This lets you record audio when you are taking a video.</string>
 	<key>NSLocationWhenInUseUsageDescription</key>
-      <string>This allows us to find nearby challenges and events for you.</string>
-	<key>NSFaceIDUsageDescription</key>
-      <string>This allows you to log in with Face ID.</string>
-	<key>NSPhotoLibraryUsageDescription</key>
-      <string>This allows you to upload pictures or videos from your gallery.</string>
+    <string>In order to search nearby, this app requires access to your current location.</string>
 	<key>NSCameraUsageDescription</key>
-      <string>This lets you take pictures when you feel like it.</string>
+    <string>In order to take a picture or video, this app requires permission to access the camera.</string>
+	<key>NSPhotoLibraryUsageDescription</key>
+    <string>In order to upload media, this app requires permission to access the photo library.</string>
+	<key>PermissionGroupNotification</key>
+    <string>This allows us to send you updates on your challenges and posts.</string>
+	<key>NSMicrophoneUsageDescription</key>
+    <string>This lets you record audio when you are taking a video.</string>
+	<key>NSLocationWhenInUseUsageDescription</key>
+    <string>This allows us to find nearby challenges and events for you.</string>
+	<key>NSFaceIDUsageDescription</key>
+    <string>This allows you to log in with Face ID.</string>
+	<key>NSPhotoLibraryUsageDescription</key>
+    <string>This allows you to upload pictures or videos from your gallery.</string>
+	<key>NSCameraUsageDescription</key>
+    <string>This lets you take pictures when you feel like it.</string>
 
 
 	<key>UILaunchStoryboardName</key>
@@ -93,9 +93,5 @@
 	<key>UIViewControllerBasedStatusBarAppearance</key>
 	<false/>
 
-	<key>CADisableMinimumFrameDurationOnPhone</key>
-	<true/>
-	<key>UIApplicationSupportsIndirectInputEvents</key>
-	<true/>
 </dict>
 </plist>

@@ -26,13 +26,6 @@ class _$UsersRecordSerializer implements StructuredSerializer<UsersRecord> {
         ..add(serializers.serialize(value,
             specifiedType: const FullType(String)));
     }
-    value = object.displayName;
-    if (value != null) {
-      result
-        ..add('display_name')
-        ..add(serializers.serialize(value,
-            specifiedType: const FullType(String)));
-    }
     value = object.photoUrl;
     if (value != null) {
       result
@@ -68,6 +61,27 @@ class _$UsersRecordSerializer implements StructuredSerializer<UsersRecord> {
         ..add(serializers.serialize(value,
             specifiedType: const FullType(String)));
     }
+    value = object.firstName;
+    if (value != null) {
+      result
+        ..add('first_name')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(String)));
+    }
+    value = object.lastName;
+    if (value != null) {
+      result
+        ..add('last_name')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(String)));
+    }
+    value = object.displayName;
+    if (value != null) {
+      result
+        ..add('display_name')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(String)));
+    }
     value = object.ffRef;
     if (value != null) {
       result
@@ -94,10 +108,6 @@ class _$UsersRecordSerializer implements StructuredSerializer<UsersRecord> {
           result.email = serializers.deserialize(value,
               specifiedType: const FullType(String)) as String?;
           break;
-        case 'display_name':
-          result.displayName = serializers.deserialize(value,
-              specifiedType: const FullType(String)) as String?;
-          break;
         case 'photo_url':
           result.photoUrl = serializers.deserialize(value,
               specifiedType: const FullType(String)) as String?;
@@ -118,6 +128,18 @@ class _$UsersRecordSerializer implements StructuredSerializer<UsersRecord> {
           result.username = serializers.deserialize(value,
               specifiedType: const FullType(String)) as String?;
           break;
+        case 'first_name':
+          result.firstName = serializers.deserialize(value,
+              specifiedType: const FullType(String)) as String?;
+          break;
+        case 'last_name':
+          result.lastName = serializers.deserialize(value,
+              specifiedType: const FullType(String)) as String?;
+          break;
+        case 'display_name':
+          result.displayName = serializers.deserialize(value,
+              specifiedType: const FullType(String)) as String?;
+          break;
         case 'Document__Reference__Field':
           result.ffRef = serializers.deserialize(value,
               specifiedType: const FullType(DocumentReference, const [
@@ -135,8 +157,6 @@ class _$UsersRecord extends UsersRecord {
   @override
   final String? email;
   @override
-  final String? displayName;
-  @override
   final String? photoUrl;
   @override
   final String? uid;
@@ -147,6 +167,12 @@ class _$UsersRecord extends UsersRecord {
   @override
   final String? username;
   @override
+  final String? firstName;
+  @override
+  final String? lastName;
+  @override
+  final String? displayName;
+  @override
   final DocumentReference<Object?>? ffRef;
 
   factory _$UsersRecord([void Function(UsersRecordBuilder)? updates]) =>
@@ -154,12 +180,14 @@ class _$UsersRecord extends UsersRecord {
 
   _$UsersRecord._(
       {this.email,
-      this.displayName,
       this.photoUrl,
       this.uid,
       this.createdTime,
       this.phoneNumber,
       this.username,
+      this.firstName,
+      this.lastName,
+      this.displayName,
       this.ffRef})
       : super._();
 
@@ -175,12 +203,14 @@ class _$UsersRecord extends UsersRecord {
     if (identical(other, this)) return true;
     return other is UsersRecord &&
         email == other.email &&
-        displayName == other.displayName &&
         photoUrl == other.photoUrl &&
         uid == other.uid &&
         createdTime == other.createdTime &&
         phoneNumber == other.phoneNumber &&
         username == other.username &&
+        firstName == other.firstName &&
+        lastName == other.lastName &&
+        displayName == other.displayName &&
         ffRef == other.ffRef;
   }
 
@@ -191,12 +221,18 @@ class _$UsersRecord extends UsersRecord {
             $jc(
                 $jc(
                     $jc(
-                        $jc($jc($jc(0, email.hashCode), displayName.hashCode),
-                            photoUrl.hashCode),
-                        uid.hashCode),
-                    createdTime.hashCode),
-                phoneNumber.hashCode),
-            username.hashCode),
+                        $jc(
+                            $jc(
+                                $jc(
+                                    $jc($jc(0, email.hashCode),
+                                        photoUrl.hashCode),
+                                    uid.hashCode),
+                                createdTime.hashCode),
+                            phoneNumber.hashCode),
+                        username.hashCode),
+                    firstName.hashCode),
+                lastName.hashCode),
+            displayName.hashCode),
         ffRef.hashCode));
   }
 
@@ -204,12 +240,14 @@ class _$UsersRecord extends UsersRecord {
   String toString() {
     return (newBuiltValueToStringHelper(r'UsersRecord')
           ..add('email', email)
-          ..add('displayName', displayName)
           ..add('photoUrl', photoUrl)
           ..add('uid', uid)
           ..add('createdTime', createdTime)
           ..add('phoneNumber', phoneNumber)
           ..add('username', username)
+          ..add('firstName', firstName)
+          ..add('lastName', lastName)
+          ..add('displayName', displayName)
           ..add('ffRef', ffRef))
         .toString();
   }
@@ -221,10 +259,6 @@ class UsersRecordBuilder implements Builder<UsersRecord, UsersRecordBuilder> {
   String? _email;
   String? get email => _$this._email;
   set email(String? email) => _$this._email = email;
-
-  String? _displayName;
-  String? get displayName => _$this._displayName;
-  set displayName(String? displayName) => _$this._displayName = displayName;
 
   String? _photoUrl;
   String? get photoUrl => _$this._photoUrl;
@@ -246,6 +280,18 @@ class UsersRecordBuilder implements Builder<UsersRecord, UsersRecordBuilder> {
   String? get username => _$this._username;
   set username(String? username) => _$this._username = username;
 
+  String? _firstName;
+  String? get firstName => _$this._firstName;
+  set firstName(String? firstName) => _$this._firstName = firstName;
+
+  String? _lastName;
+  String? get lastName => _$this._lastName;
+  set lastName(String? lastName) => _$this._lastName = lastName;
+
+  String? _displayName;
+  String? get displayName => _$this._displayName;
+  set displayName(String? displayName) => _$this._displayName = displayName;
+
   DocumentReference<Object?>? _ffRef;
   DocumentReference<Object?>? get ffRef => _$this._ffRef;
   set ffRef(DocumentReference<Object?>? ffRef) => _$this._ffRef = ffRef;
@@ -258,12 +304,14 @@ class UsersRecordBuilder implements Builder<UsersRecord, UsersRecordBuilder> {
     final $v = _$v;
     if ($v != null) {
       _email = $v.email;
-      _displayName = $v.displayName;
       _photoUrl = $v.photoUrl;
       _uid = $v.uid;
       _createdTime = $v.createdTime;
       _phoneNumber = $v.phoneNumber;
       _username = $v.username;
+      _firstName = $v.firstName;
+      _lastName = $v.lastName;
+      _displayName = $v.displayName;
       _ffRef = $v.ffRef;
       _$v = null;
     }
@@ -288,12 +336,14 @@ class UsersRecordBuilder implements Builder<UsersRecord, UsersRecordBuilder> {
     final _$result = _$v ??
         new _$UsersRecord._(
             email: email,
-            displayName: displayName,
             photoUrl: photoUrl,
             uid: uid,
             createdTime: createdTime,
             phoneNumber: phoneNumber,
             username: username,
+            firstName: firstName,
+            lastName: lastName,
+            displayName: displayName,
             ffRef: ffRef);
     replace(_$result);
     return _$result;

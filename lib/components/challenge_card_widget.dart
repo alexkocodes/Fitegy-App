@@ -5,26 +5,24 @@ import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 
 class ChallengeCardWidget extends StatefulWidget {
-  ChallengeCardWidget({
+  const ChallengeCardWidget({
     Key? key,
     this.title,
     this.time,
     this.details,
     this.comments,
-    this.path,
+    this.id,
     this.color,
-
   }) : super(key: key);
 
   final String? title;
   final DateTime? time;
   final String? details;
   final String? comments;
-
-  final String? path;
-
+  final String? id;
   final int? color;
 
   @override
@@ -34,42 +32,43 @@ class ChallengeCardWidget extends StatefulWidget {
 class _ChallengeCardWidgetState extends State<ChallengeCardWidget>
     with TickerProviderStateMixin {
   final animationsMap = {
-    'containerOnPageLoadAnimation': AnimationInfo(
-      trigger: AnimationTrigger.onPageLoad,
+    'containerOnActionTriggerAnimation': AnimationInfo(
+      trigger: AnimationTrigger.onActionTrigger,
+      applyInitialState: true,
       effects: [
-        MoveEffect(
+        ScaleEffect(
           curve: Curves.easeInOut,
           delay: 0.ms,
-          duration: 1000.ms,
-          begin: Offset(0, 100),
-          end: Offset(0, 0),
+          duration: 260.ms,
+          begin: 1,
+          end: 0.8,
         ),
-        FadeEffect(
+        ScaleEffect(
           curve: Curves.easeInOut,
-          delay: 0.ms,
-          duration: 1000.ms,
-          begin: 0,
+          delay: 300.ms,
+          duration: 600.ms,
+          begin: 0.8,
           end: 1,
         ),
       ],
     ),
   };
 
-  final colorSchemes = [
-    [Color.fromARGB(255, 154, 225, 255), Color.fromARGB(255, 253, 255, 155)],
-    [Color.fromARGB(255, 89, 205, 114), Color.fromARGB(255, 253, 255, 155)],
-    [Color.fromARGB(255, 255, 116, 116), Color.fromARGB(255, 253, 255, 155)],
-    [Color.fromARGB(255, 255, 89, 200), Color.fromARGB(255, 253, 255, 155)],
-    [Color(0xFFE6A0FF), Color(0xFF9AE1FF)],
-  ];
-
   @override
   void initState() {
     super.initState();
+    setupAnimations(
+      animationsMap.values.where((anim) =>
+          anim.trigger == AnimationTrigger.onActionTrigger ||
+          !anim.applyInitialState),
+      this,
+    );
   }
 
   @override
   Widget build(BuildContext context) {
+    context.watch<FFAppState>();
+
     return Padding(
       padding: EdgeInsetsDirectional.fromSTEB(15, 0, 15, 0),
       child: InkWell(
@@ -93,15 +92,13 @@ class _ChallengeCardWidgetState extends State<ChallengeCardWidget>
                 widget.comments,
                 ParamType.String,
               ),
-              'path': serializeParam(
-                widget.path,
+              'id': serializeParam(
+                widget.id,
                 ParamType.String,
               ),
               'color': serializeParam(
-
                 widget.color,
                 ParamType.int,
-
               ),
             }.withoutNulls,
           );
@@ -118,7 +115,7 @@ class _ChallengeCardWidgetState extends State<ChallengeCardWidget>
               )
             ],
             gradient: LinearGradient(
-              colors: colorSchemes[widget.color! - 1],
+              colors: [Color(0xFFE6A0FF), Color(0xFF9AE1FF)],
               stops: [0, 1],
               begin: AlignmentDirectional(-0.34, -1),
               end: AlignmentDirectional(0.34, 1),
@@ -164,22 +161,13 @@ class _ChallengeCardWidgetState extends State<ChallengeCardWidget>
                     ),
                   ],
                 ),
-                Row(
-                  mainAxisSize: MainAxisSize.max,
-                  mainAxisAlignment: MainAxisAlignment.end,
-                  children: [
-                    Image.asset(
-                      'assets/images/Hole.png',
-                      width: 15,
-                      fit: BoxFit.cover,
-                    ),
-                  ],
-                ),
               ],
             ),
           ),
         ),
-      ).animateOnPageLoad(animationsMap['containerOnPageLoadAnimation']!),
+      ).animateOnActionTrigger(
+        animationsMap['containerOnActionTriggerAnimation']!,
+      ),
     );
   }
 }

@@ -5,6 +5,7 @@ import 'package:go_router/go_router.dart';
 import 'package:page_transition/page_transition.dart';
 import '../flutter_flow_theme.dart';
 import '../../backend/backend.dart';
+
 import '../../auth/firebase_user_provider.dart';
 
 import '../../index.dart';
@@ -112,7 +113,9 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
             FFRoute(
               name: 'ChallengeCreated',
               path: 'challengeCreated',
-              builder: (context, params) => ChallengeCreatedWidget(),
+              builder: (context, params) => ChallengeCreatedWidget(
+                title: params.getParam('title', ParamType.String),
+              ),
             ),
             FFRoute(
               name: 'MyChallenges',
@@ -131,18 +134,12 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
                 comments: params.getParam('comments', ParamType.String),
                 id: params.getParam('id', ParamType.String),
                 color: params.getParam('color', ParamType.int),
-
               ),
             ),
             FFRoute(
               name: 'ChallengeCompleted',
               path: 'challengeCompleted',
               builder: (context, params) => ChallengeCompletedWidget(),
-            ),
-            FFRoute(
-              name: 'CreatePost',
-              path: 'createPost',
-              builder: (context, params) => CreatePostWidget(),
             ),
             FFRoute(
               name: 'ChallengeSelected',
@@ -163,8 +160,11 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
               name: 'Invite',
               path: 'invite',
               builder: (context, params) => InviteWidget(
-                challengeReference: params.getParam('challengeReference',
-                    ParamType.DocumentReference, false, 'challenges'),
+                challengeReference: params.getParam(
+                    'challengeReference',
+                    ParamType.DocumentReference,
+                    false,
+                    ['users', 'challenges']),
               ),
             ),
             FFRoute(
@@ -283,7 +283,7 @@ class FFParameters {
     String paramName,
     ParamType type, [
     bool isList = false,
-    String? collectionName,
+    List<String>? collectionNamePath,
   ]) {
     if (futureParamValues.containsKey(paramName)) {
       return futureParamValues[paramName];
@@ -297,7 +297,7 @@ class FFParameters {
       return param;
     }
     // Return serialized value.
-    return deserializeParam<T>(param, type, isList, collectionName);
+    return deserializeParam<T>(param, type, isList, collectionNamePath);
   }
 }
 
@@ -346,7 +346,7 @@ class FFRoute {
               ? Container(
                   color: Colors.transparent,
                   child: Image.asset(
-                    'assets/images/iPhone_13_Pro_Max_-_33.png',
+                    'assets/images/15.png',
                     fit: BoxFit.cover,
                   ),
                 )

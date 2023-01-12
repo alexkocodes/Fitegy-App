@@ -7,9 +7,15 @@ import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 
 class ChallengeCreatedWidget extends StatefulWidget {
-  const ChallengeCreatedWidget({Key? key}) : super(key: key);
+  const ChallengeCreatedWidget({
+    Key? key,
+    this.title,
+  }) : super(key: key);
+
+  final String? title;
 
   @override
   _ChallengeCreatedWidgetState createState() => _ChallengeCreatedWidgetState();
@@ -67,6 +73,7 @@ class _ChallengeCreatedWidgetState extends State<ChallengeCreatedWidget>
       ],
     ),
   };
+  final _unfocusNode = FocusNode();
   final scaffoldKey = GlobalKey<ScaffoldState>();
 
   @override
@@ -75,12 +82,20 @@ class _ChallengeCreatedWidgetState extends State<ChallengeCreatedWidget>
   }
 
   @override
+  void dispose() {
+    _unfocusNode.dispose();
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
+    context.watch<FFAppState>();
+
     return Scaffold(
       key: scaffoldKey,
       backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
       body: GestureDetector(
-        onTap: () => FocusScope.of(context).unfocus(),
+        onTap: () => FocusScope.of(context).requestFocus(_unfocusNode),
         child: Stack(
           children: [
             Image.asset(
@@ -146,7 +161,7 @@ class _ChallengeCreatedWidgetState extends State<ChallengeCreatedWidget>
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Text(
-                              'Alex\'s Fall Break Run',
+                              widget.title!,
                               style: FlutterFlowTheme.of(context)
                                   .bodyText1
                                   .override(
@@ -162,7 +177,7 @@ class _ChallengeCreatedWidgetState extends State<ChallengeCreatedWidget>
                               padding:
                                   EdgeInsetsDirectional.fromSTEB(0, 5, 0, 0),
                               child: Text(
-                                'Oct 10th, 22',
+                                dateTimeFormat('yMMMd', getCurrentTimestamp),
                                 style: FlutterFlowTheme.of(context)
                                     .bodyText1
                                     .override(

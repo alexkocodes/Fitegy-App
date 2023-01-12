@@ -10,6 +10,7 @@ import 'package:flutter/scheduler.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 
 class LandingWidget extends StatefulWidget {
   const LandingWidget({Key? key}) : super(key: key);
@@ -329,6 +330,7 @@ class _LandingWidgetState extends State<LandingWidget>
     ),
   };
   PageController? pageViewController;
+  final _unfocusNode = FocusNode();
   final scaffoldKey = GlobalKey<ScaffoldState>();
 
   @override
@@ -337,12 +339,20 @@ class _LandingWidgetState extends State<LandingWidget>
   }
 
   @override
+  void dispose() {
+    _unfocusNode.dispose();
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
+    context.watch<FFAppState>();
+
     return Scaffold(
       key: scaffoldKey,
       backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
       body: GestureDetector(
-        onTap: () => FocusScope.of(context).unfocus(),
+        onTap: () => FocusScope.of(context).requestFocus(_unfocusNode),
         child: Column(
           mainAxisSize: MainAxisSize.max,
           children: [
