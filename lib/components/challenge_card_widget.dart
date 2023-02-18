@@ -6,6 +6,8 @@ import 'package:flutter/scheduler.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
+import 'challenge_card_model.dart';
+export 'challenge_card_model.dart';
 
 class ChallengeCardWidget extends StatefulWidget {
   const ChallengeCardWidget({
@@ -31,6 +33,8 @@ class ChallengeCardWidget extends StatefulWidget {
 
 class _ChallengeCardWidgetState extends State<ChallengeCardWidget>
     with TickerProviderStateMixin {
+  late ChallengeCardModel _model;
+
   final animationsMap = {
     'containerOnActionTriggerAnimation': AnimationInfo(
       trigger: AnimationTrigger.onActionTrigger,
@@ -55,14 +59,29 @@ class _ChallengeCardWidgetState extends State<ChallengeCardWidget>
   };
 
   @override
+  void setState(VoidCallback callback) {
+    super.setState(callback);
+    _model.onUpdate();
+  }
+
+  @override
   void initState() {
     super.initState();
+    _model = createModel(context, () => ChallengeCardModel());
+
     setupAnimations(
       animationsMap.values.where((anim) =>
           anim.trigger == AnimationTrigger.onActionTrigger ||
           !anim.applyInitialState),
       this,
     );
+  }
+
+  @override
+  void dispose() {
+    _model.maybeDispose();
+
+    super.dispose();
   }
 
   @override

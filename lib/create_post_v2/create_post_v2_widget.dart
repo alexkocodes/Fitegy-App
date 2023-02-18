@@ -10,6 +10,8 @@ import 'package:flutter_animate/flutter_animate.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'package:simple_gradient_text/simple_gradient_text.dart';
+import 'create_post_v2_model.dart';
+export 'create_post_v2_model.dart';
 
 class CreatePostV2Widget extends StatefulWidget {
   const CreatePostV2Widget({Key? key}) : super(key: key);
@@ -20,6 +22,11 @@ class CreatePostV2Widget extends StatefulWidget {
 
 class _CreatePostV2WidgetState extends State<CreatePostV2Widget>
     with TickerProviderStateMixin {
+  late CreatePostV2Model _model;
+
+  final scaffoldKey = GlobalKey<ScaffoldState>();
+  final _unfocusNode = FocusNode();
+
   final animationsMap = {
     'containerOnPageLoadAnimation': AnimationInfo(
       trigger: AnimationTrigger.onPageLoad,
@@ -41,21 +48,20 @@ class _CreatePostV2WidgetState extends State<CreatePostV2Widget>
       ],
     ),
   };
-  TextEditingController? textController;
-  final _unfocusNode = FocusNode();
-  final scaffoldKey = GlobalKey<ScaffoldState>();
 
   @override
   void initState() {
     super.initState();
+    _model = createModel(context, () => CreatePostV2Model());
 
-    textController = TextEditingController();
+    _model.textController ??= TextEditingController();
   }
 
   @override
   void dispose() {
+    _model.dispose();
+
     _unfocusNode.dispose();
-    textController?.dispose();
     super.dispose();
   }
 
@@ -231,7 +237,7 @@ class _CreatePostV2WidgetState extends State<CreatePostV2Widget>
                                   borderRadius: BorderRadius.circular(12),
                                 ),
                                 child: TextFormField(
-                                  controller: textController,
+                                  controller: _model.textController,
                                   autofocus: true,
                                   obscureText: false,
                                   decoration: InputDecoration(
@@ -307,6 +313,8 @@ class _CreatePostV2WidgetState extends State<CreatePostV2Widget>
                                   textAlign: TextAlign.start,
                                   maxLines: 15,
                                   keyboardType: TextInputType.multiline,
+                                  validator: _model.textControllerValidator
+                                      .asValidator(context),
                                 ),
                               ),
                             ),

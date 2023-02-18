@@ -5,6 +5,8 @@ import '../flutter_flow/flutter_flow_util.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
+import 'my_account_model.dart';
+export 'my_account_model.dart';
 
 class MyAccountWidget extends StatefulWidget {
   const MyAccountWidget({Key? key}) : super(key: key);
@@ -14,11 +16,21 @@ class MyAccountWidget extends StatefulWidget {
 }
 
 class _MyAccountWidgetState extends State<MyAccountWidget> {
-  final _unfocusNode = FocusNode();
+  late MyAccountModel _model;
+
   final scaffoldKey = GlobalKey<ScaffoldState>();
+  final _unfocusNode = FocusNode();
+
+  @override
+  void initState() {
+    super.initState();
+    _model = createModel(context, () => MyAccountModel());
+  }
 
   @override
   void dispose() {
+    _model.dispose();
+
     _unfocusNode.dispose();
     super.dispose();
   }

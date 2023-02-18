@@ -7,6 +7,8 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
+import 'post_model.dart';
+export 'post_model.dart';
 
 class PostWidget extends StatefulWidget {
   const PostWidget({
@@ -31,6 +33,27 @@ class PostWidget extends StatefulWidget {
 }
 
 class _PostWidgetState extends State<PostWidget> {
+  late PostModel _model;
+
+  @override
+  void setState(VoidCallback callback) {
+    super.setState(callback);
+    _model.onUpdate();
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    _model = createModel(context, () => PostModel());
+  }
+
+  @override
+  void dispose() {
+    _model.maybeDispose();
+
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     context.watch<FFAppState>();
@@ -229,8 +252,12 @@ class _PostWidgetState extends State<PostWidget> {
                 ),
               ),
               Divider(),
-              PostActionBarWidget(
-                likeCount: widget.likeCount,
+              wrapWithModel(
+                model: _model.postActionBarModel,
+                updateCallback: () => setState(() {}),
+                child: PostActionBarWidget(
+                  likeCount: widget.likeCount,
+                ),
               ),
             ],
           ),

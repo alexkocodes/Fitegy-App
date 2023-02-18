@@ -9,6 +9,8 @@ import 'package:flutter/scheduler.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
+import 'my_challenges_model.dart';
+export 'my_challenges_model.dart';
 
 class MyChallengesWidget extends StatefulWidget {
   const MyChallengesWidget({Key? key}) : super(key: key);
@@ -19,6 +21,11 @@ class MyChallengesWidget extends StatefulWidget {
 
 class _MyChallengesWidgetState extends State<MyChallengesWidget>
     with TickerProviderStateMixin {
+  late MyChallengesModel _model;
+
+  final scaffoldKey = GlobalKey<ScaffoldState>();
+  final _unfocusNode = FocusNode();
+
   final animationsMap = {
     'containerOnPageLoadAnimation': AnimationInfo(
       trigger: AnimationTrigger.onPageLoad,
@@ -40,16 +47,17 @@ class _MyChallengesWidgetState extends State<MyChallengesWidget>
       ],
     ),
   };
-  final _unfocusNode = FocusNode();
-  final scaffoldKey = GlobalKey<ScaffoldState>();
 
   @override
   void initState() {
     super.initState();
+    _model = createModel(context, () => MyChallengesModel());
   }
 
   @override
   void dispose() {
+    _model.dispose();
+
     _unfocusNode.dispose();
     super.dispose();
   }
@@ -193,7 +201,8 @@ class _MyChallengesWidgetState extends State<MyChallengesWidget>
                                                 gridViewChallengesRecordList[
                                                     gridViewIndex];
                                             return ChallengeCardWidget(
-                                              key: UniqueKey(),
+                                              key: Key(
+                                                  'Keyci6_${gridViewIndex}_of_${gridViewChallengesRecordList.length}'),
                                               title: gridViewChallengesRecord
                                                   .title,
                                               time: gridViewChallengesRecord
@@ -481,7 +490,8 @@ class _MyChallengesWidgetState extends State<MyChallengesWidget>
                                                 gridViewChallengesRecordList[
                                                     gridViewIndex];
                                             return ChallengeCardWidget(
-                                              key: UniqueKey(),
+                                              key: Key(
+                                                  'Keyyxi_${gridViewIndex}_of_${gridViewChallengesRecordList.length}'),
                                               title: gridViewChallengesRecord
                                                   .title,
                                               time: gridViewChallengesRecord

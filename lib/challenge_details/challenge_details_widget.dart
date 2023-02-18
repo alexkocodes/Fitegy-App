@@ -9,6 +9,8 @@ import 'package:flutter/scheduler.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
+import 'challenge_details_model.dart';
+export 'challenge_details_model.dart';
 
 class ChallengeDetailsWidget extends StatefulWidget {
   const ChallengeDetailsWidget({
@@ -34,6 +36,11 @@ class ChallengeDetailsWidget extends StatefulWidget {
 
 class _ChallengeDetailsWidgetState extends State<ChallengeDetailsWidget>
     with TickerProviderStateMixin {
+  late ChallengeDetailsModel _model;
+
+  final scaffoldKey = GlobalKey<ScaffoldState>();
+  final _unfocusNode = FocusNode();
+
   final animationsMap = {
     'containerOnPageLoadAnimation': AnimationInfo(
       trigger: AnimationTrigger.onPageLoad,
@@ -49,16 +56,17 @@ class _ChallengeDetailsWidgetState extends State<ChallengeDetailsWidget>
       ],
     ),
   };
-  final _unfocusNode = FocusNode();
-  final scaffoldKey = GlobalKey<ScaffoldState>();
 
   @override
   void initState() {
     super.initState();
+    _model = createModel(context, () => ChallengeDetailsModel());
   }
 
   @override
   void dispose() {
+    _model.dispose();
+
     _unfocusNode.dispose();
     super.dispose();
   }
@@ -336,7 +344,11 @@ class _ChallengeDetailsWidgetState extends State<ChallengeDetailsWidget>
                               mainAxisSize: MainAxisSize.max,
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
-                                CompleteButtonWidget(),
+                                wrapWithModel(
+                                  model: _model.completeButtonModel,
+                                  updateCallback: () => setState(() {}),
+                                  child: CompleteButtonWidget(),
+                                ),
                                 FFButtonWidget(
                                   onPressed: () async {
                                     context.pushNamed('Invite');

@@ -4,6 +4,8 @@ import '../flutter_flow/flutter_flow_widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
+import 'complete_button_model.dart';
+export 'complete_button_model.dart';
 
 class CompleteButtonWidget extends StatefulWidget {
   const CompleteButtonWidget({Key? key}) : super(key: key);
@@ -13,6 +15,27 @@ class CompleteButtonWidget extends StatefulWidget {
 }
 
 class _CompleteButtonWidgetState extends State<CompleteButtonWidget> {
+  late CompleteButtonModel _model;
+
+  @override
+  void setState(VoidCallback callback) {
+    super.setState(callback);
+    _model.onUpdate();
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    _model = createModel(context, () => CompleteButtonModel());
+  }
+
+  @override
+  void dispose() {
+    _model.maybeDispose();
+
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     context.watch<FFAppState>();

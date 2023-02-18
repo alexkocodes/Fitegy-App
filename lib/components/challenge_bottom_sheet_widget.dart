@@ -10,6 +10,8 @@ import 'package:flutter/scheduler.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
+import 'challenge_bottom_sheet_model.dart';
+export 'challenge_bottom_sheet_model.dart';
 
 class ChallengeBottomSheetWidget extends StatefulWidget {
   const ChallengeBottomSheetWidget({Key? key}) : super(key: key);
@@ -21,6 +23,8 @@ class ChallengeBottomSheetWidget extends StatefulWidget {
 
 class _ChallengeBottomSheetWidgetState extends State<ChallengeBottomSheetWidget>
     with TickerProviderStateMixin {
+  late ChallengeBottomSheetModel _model;
+
   final animationsMap = {
     'containerOnPageLoadAnimation': AnimationInfo(
       trigger: AnimationTrigger.onPageLoad,
@@ -44,8 +48,22 @@ class _ChallengeBottomSheetWidgetState extends State<ChallengeBottomSheetWidget>
   };
 
   @override
+  void setState(VoidCallback callback) {
+    super.setState(callback);
+    _model.onUpdate();
+  }
+
+  @override
   void initState() {
     super.initState();
+    _model = createModel(context, () => ChallengeBottomSheetModel());
+  }
+
+  @override
+  void dispose() {
+    _model.maybeDispose();
+
+    super.dispose();
   }
 
   @override
@@ -209,7 +227,8 @@ class _ChallengeBottomSheetWidgetState extends State<ChallengeBottomSheetWidget>
                                           gridViewChallengesRecordList[
                                               gridViewIndex];
                                       return ChallengeCardWidget(
-                                        key: UniqueKey(),
+                                        key: Key(
+                                            'Keysny_${gridViewIndex}_of_${gridViewChallengesRecordList.length}'),
                                         title: gridViewChallengesRecord.title,
                                         time:
                                             gridViewChallengesRecord.createdAt,
@@ -474,7 +493,8 @@ class _ChallengeBottomSheetWidgetState extends State<ChallengeBottomSheetWidget>
                                           gridViewChallengesRecordList[
                                               gridViewIndex];
                                       return ChallengeCardWidget(
-                                        key: UniqueKey(),
+                                        key: Key(
+                                            'Keysrm_${gridViewIndex}_of_${gridViewChallengesRecordList.length}'),
                                         title: gridViewChallengesRecord.title,
                                         time:
                                             gridViewChallengesRecord.createdAt,

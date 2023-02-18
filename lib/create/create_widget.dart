@@ -17,6 +17,8 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'package:simple_gradient_text/simple_gradient_text.dart';
+import 'create_model.dart';
+export 'create_model.dart';
 
 class CreateWidget extends StatefulWidget {
   const CreateWidget({Key? key}) : super(key: key);
@@ -26,38 +28,29 @@ class CreateWidget extends StatefulWidget {
 }
 
 class _CreateWidgetState extends State<CreateWidget> {
-  bool isMediaUploading = false;
-  List<String> uploadedFileUrls = [];
+  late CreateModel _model;
 
-  String? dropDownValue;
-  TextEditingController? textController5;
-  PageController? pageViewController;
-  TextEditingController? commentsController;
-  TextEditingController? textController1;
-  TextEditingController? textController2;
-  TextEditingController? textController4;
-  LatLng? currentUserLocationValue;
-  final _unfocusNode = FocusNode();
   final scaffoldKey = GlobalKey<ScaffoldState>();
+  final _unfocusNode = FocusNode();
+  LatLng? currentUserLocationValue;
 
   @override
   void initState() {
     super.initState();
-    commentsController = TextEditingController();
-    textController1 = TextEditingController();
-    textController2 = TextEditingController();
-    textController4 = TextEditingController();
-    textController5 = TextEditingController();
+    _model = createModel(context, () => CreateModel());
+
+    _model.textController1 ??= TextEditingController();
+    _model.textController2 ??= TextEditingController();
+    _model.commentsController ??= TextEditingController();
+    _model.textController4 ??= TextEditingController();
+    _model.textController5 ??= TextEditingController();
   }
 
   @override
   void dispose() {
+    _model.dispose();
+
     _unfocusNode.dispose();
-    commentsController?.dispose();
-    textController1?.dispose();
-    textController2?.dispose();
-    textController4?.dispose();
-    textController5?.dispose();
     super.dispose();
   }
 
@@ -80,7 +73,8 @@ class _CreateWidgetState extends State<CreateWidget> {
             ),
           ),
           child: PageView(
-            controller: pageViewController ??= PageController(initialPage: 1),
+            controller: _model.pageViewController ??=
+                PageController(initialPage: 1),
             scrollDirection: Axis.vertical,
             children: [
               Container(
@@ -111,7 +105,7 @@ class _CreateWidgetState extends State<CreateWidget> {
                                     size: 30,
                                   ),
                                   onPressed: () async {
-                                    await pageViewController?.nextPage(
+                                    await _model.pageViewController?.nextPage(
                                       duration: Duration(milliseconds: 300),
                                       curve: Curves.ease,
                                     );
@@ -279,7 +273,7 @@ class _CreateWidgetState extends State<CreateWidget> {
                                               BorderRadius.circular(12),
                                         ),
                                         child: TextFormField(
-                                          controller: textController1,
+                                          controller: _model.textController1,
                                           obscureText: false,
                                           decoration: InputDecoration(
                                             labelStyle:
@@ -370,6 +364,9 @@ class _CreateWidgetState extends State<CreateWidget> {
                                                                 context)
                                                             .bodyText1Family),
                                               ),
+                                          validator: _model
+                                              .textController1Validator
+                                              .asValidator(context),
                                         ),
                                       ),
                                     ),
@@ -409,7 +406,7 @@ class _CreateWidgetState extends State<CreateWidget> {
                                               BorderRadius.circular(12),
                                         ),
                                         child: TextFormField(
-                                          controller: textController2,
+                                          controller: _model.textController2,
                                           obscureText: false,
                                           decoration: InputDecoration(
                                             labelStyle:
@@ -503,6 +500,9 @@ class _CreateWidgetState extends State<CreateWidget> {
                                           textAlign: TextAlign.start,
                                           maxLines: 8,
                                           keyboardType: TextInputType.multiline,
+                                          validator: _model
+                                              .textController2Validator
+                                              .asValidator(context),
                                         ),
                                       ),
                                     ),
@@ -542,7 +542,7 @@ class _CreateWidgetState extends State<CreateWidget> {
                                               BorderRadius.circular(12),
                                         ),
                                         child: TextFormField(
-                                          controller: commentsController,
+                                          controller: _model.commentsController,
                                           obscureText: false,
                                           decoration: InputDecoration(
                                             labelStyle:
@@ -636,6 +636,9 @@ class _CreateWidgetState extends State<CreateWidget> {
                                           textAlign: TextAlign.start,
                                           maxLines: null,
                                           keyboardType: TextInputType.multiline,
+                                          validator: _model
+                                              .commentsControllerValidator
+                                              .asValidator(context),
                                         ),
                                       ),
                                     ),
@@ -675,7 +678,7 @@ class _CreateWidgetState extends State<CreateWidget> {
                                               BorderRadius.circular(12),
                                         ),
                                         child: TextFormField(
-                                          controller: textController4,
+                                          controller: _model.textController4,
                                           obscureText: false,
                                           decoration: InputDecoration(
                                             labelStyle:
@@ -766,6 +769,9 @@ class _CreateWidgetState extends State<CreateWidget> {
                                                                 context)
                                                             .bodyText1Family),
                                               ),
+                                          validator: _model
+                                              .textController4Validator
+                                              .asValidator(context),
                                         ),
                                       ),
                                     ),
@@ -1005,17 +1011,18 @@ class _CreateWidgetState extends State<CreateWidget> {
                                             onPressed: () async {
                                               final challengesCreateData = {
                                                 ...createChallengesRecordData(
-                                                  title: textController1!.text,
-                                                  details:
-                                                      textController2!.text,
+                                                  title: _model
+                                                      .textController1.text,
+                                                  details: _model
+                                                      .textController2.text,
                                                   createdAt:
                                                       getCurrentTimestamp,
                                                   createBy:
                                                       currentUserReference,
                                                   status: 'active',
                                                   colorScheme: 1,
-                                                  comments:
-                                                      commentsController!.text,
+                                                  comments: _model
+                                                      .commentsController.text,
                                                   id: random_data.randomString(
                                                     8,
                                                     10,
@@ -1039,7 +1046,7 @@ class _CreateWidgetState extends State<CreateWidget> {
                                                 'ChallengeCreated',
                                                 queryParams: {
                                                   'title': serializeParam(
-                                                    textController1!.text,
+                                                    _model.textController1.text,
                                                     ParamType.String,
                                                   ),
                                                 }.withoutNulls,
@@ -1168,7 +1175,7 @@ class _CreateWidgetState extends State<CreateWidget> {
                           size: 40,
                         ),
                         onPressed: () async {
-                          await pageViewController?.previousPage(
+                          await _model.pageViewController?.previousPage(
                             duration: Duration(milliseconds: 300),
                             curve: Curves.ease,
                           );
@@ -1199,7 +1206,7 @@ class _CreateWidgetState extends State<CreateWidget> {
                         ),
                         showLoadingIndicator: true,
                         onPressed: () async {
-                          await pageViewController?.nextPage(
+                          await _model.pageViewController?.nextPage(
                             duration: Duration(milliseconds: 300),
                             curve: Curves.ease,
                           );
@@ -1285,7 +1292,8 @@ class _CreateWidgetState extends State<CreateWidget> {
                                             children: [
                                               FFButtonWidget(
                                                 onPressed: () async {
-                                                  await pageViewController
+                                                  await _model
+                                                      .pageViewController
                                                       ?.previousPage(
                                                     duration: Duration(
                                                         milliseconds: 300),
@@ -1333,7 +1341,8 @@ class _CreateWidgetState extends State<CreateWidget> {
                                                       await getCurrentUserLocation(
                                                           defaultLocation:
                                                               LatLng(0.0, 0.0));
-                                                  if (textController5!.text ==
+                                                  if (_model.textController5
+                                                          .text ==
                                                       '') {
                                                     await showDialog(
                                                       context: context,
@@ -1358,9 +1367,9 @@ class _CreateWidgetState extends State<CreateWidget> {
                                                   } else {
                                                     final postsCreateData = {
                                                       ...createPostsRecordData(
-                                                        postDescription:
-                                                            textController5!
-                                                                .text,
+                                                        postDescription: _model
+                                                            .textController5
+                                                            .text,
                                                         postUser:
                                                             currentUserReference,
                                                         timePosted:
@@ -1369,10 +1378,11 @@ class _CreateWidgetState extends State<CreateWidget> {
                                                             currentUserLocationValue
                                                                 ?.toString(),
                                                         numComments: 0,
-                                                        private: dropDownValue,
+                                                        private: _model
+                                                            .dropDownValue,
                                                       ),
-                                                      'post_images':
-                                                          uploadedFileUrls,
+                                                      'post_images': _model
+                                                          .uploadedFileUrls,
                                                     };
                                                     await PostsRecord.createDoc(
                                                             currentUserReference!)
@@ -1475,15 +1485,15 @@ class _CreateWidgetState extends State<CreateWidget> {
                                               children: [
                                                 FlutterFlowDropDown<String>(
                                                   initialOption:
-                                                      dropDownValue ??=
+                                                      _model.dropDownValue ??=
                                                           'Public',
                                                   options: [
                                                     'Public',
                                                     'Private'
                                                   ],
                                                   onChanged: (val) => setState(
-                                                      () =>
-                                                          dropDownValue = val),
+                                                      () => _model
+                                                          .dropDownValue = val),
                                                   width: 75,
                                                   height: 26,
                                                   textStyle: FlutterFlowTheme
@@ -1570,7 +1580,7 @@ class _CreateWidgetState extends State<CreateWidget> {
                                         padding: EdgeInsetsDirectional.fromSTEB(
                                             0, 15, 0, 0),
                                         child: TextFormField(
-                                          controller: textController5,
+                                          controller: _model.textController5,
                                           autofocus: true,
                                           obscureText: false,
                                           decoration: InputDecoration(
@@ -1663,6 +1673,9 @@ class _CreateWidgetState extends State<CreateWidget> {
                                           textAlign: TextAlign.start,
                                           maxLines: null,
                                           keyboardType: TextInputType.multiline,
+                                          validator: _model
+                                              .textController5Validator
+                                              .asValidator(context),
                                         ),
                                       ),
                                     ),
@@ -1774,7 +1787,8 @@ class _CreateWidgetState extends State<CreateWidget> {
                               if (selectedMedia != null &&
                                   selectedMedia.every((m) => validateFileFormat(
                                       m.storagePath, context))) {
-                                setState(() => isMediaUploading = true);
+                                setState(() => _model.isMediaUploading = true);
+                                var selectedUploadedFiles = <FFUploadedFile>[];
                                 var downloadUrls = <String>[];
                                 try {
                                   showUploadMessage(
@@ -1782,6 +1796,15 @@ class _CreateWidgetState extends State<CreateWidget> {
                                     'Uploading file...',
                                     showLoading: true,
                                   );
+                                  selectedUploadedFiles = selectedMedia
+                                      .map((m) => FFUploadedFile(
+                                            name: m.storagePath.split('/').last,
+                                            bytes: m.bytes,
+                                            height: m.dimensions?.height,
+                                            width: m.dimensions?.width,
+                                          ))
+                                      .toList();
+
                                   downloadUrls = (await Future.wait(
                                     selectedMedia.map(
                                       (m) async => await uploadData(
@@ -1794,12 +1817,17 @@ class _CreateWidgetState extends State<CreateWidget> {
                                 } finally {
                                   ScaffoldMessenger.of(context)
                                       .hideCurrentSnackBar();
-                                  isMediaUploading = false;
+                                  _model.isMediaUploading = false;
                                 }
-                                if (downloadUrls.length ==
-                                    selectedMedia.length) {
-                                  setState(
-                                      () => uploadedFileUrls = downloadUrls);
+                                if (selectedUploadedFiles.length ==
+                                        selectedMedia.length &&
+                                    downloadUrls.length ==
+                                        selectedMedia.length) {
+                                  setState(() {
+                                    _model.uploadedLocalFiles =
+                                        selectedUploadedFiles;
+                                    _model.uploadedFileUrls = downloadUrls;
+                                  });
                                   showUploadMessage(context, 'Success!');
                                 } else {
                                   setState(() {});

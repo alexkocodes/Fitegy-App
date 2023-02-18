@@ -11,6 +11,8 @@ import 'package:flutter_animate/flutter_animate.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
+import 'landing_model.dart';
+export 'landing_model.dart';
 
 class LandingWidget extends StatefulWidget {
   const LandingWidget({Key? key}) : super(key: key);
@@ -21,6 +23,11 @@ class LandingWidget extends StatefulWidget {
 
 class _LandingWidgetState extends State<LandingWidget>
     with TickerProviderStateMixin {
+  late LandingModel _model;
+
+  final scaffoldKey = GlobalKey<ScaffoldState>();
+  final _unfocusNode = FocusNode();
+
   final animationsMap = {
     'imageOnPageLoadAnimation1': AnimationInfo(
       trigger: AnimationTrigger.onPageLoad,
@@ -329,17 +336,17 @@ class _LandingWidgetState extends State<LandingWidget>
       ],
     ),
   };
-  PageController? pageViewController;
-  final _unfocusNode = FocusNode();
-  final scaffoldKey = GlobalKey<ScaffoldState>();
 
   @override
   void initState() {
     super.initState();
+    _model = createModel(context, () => LandingModel());
   }
 
   @override
   void dispose() {
+    _model.dispose();
+
     _unfocusNode.dispose();
     super.dispose();
   }
@@ -379,7 +386,7 @@ class _LandingWidgetState extends State<LandingWidget>
                         child: Stack(
                           children: [
                             PageView(
-                              controller: pageViewController ??=
+                              controller: _model.pageViewController ??=
                                   PageController(initialPage: 0),
                               scrollDirection: Axis.horizontal,
                               children: [
@@ -1300,12 +1307,12 @@ class _LandingWidgetState extends State<LandingWidget>
                                     EdgeInsetsDirectional.fromSTEB(0, 0, 0, 30),
                                 child:
                                     smooth_page_indicator.SmoothPageIndicator(
-                                  controller: pageViewController ??=
+                                  controller: _model.pageViewController ??=
                                       PageController(initialPage: 0),
                                   count: 3,
                                   axisDirection: Axis.horizontal,
                                   onDotClicked: (i) {
-                                    pageViewController!.animateToPage(
+                                    _model.pageViewController!.animateToPage(
                                       i,
                                       duration: Duration(milliseconds: 500),
                                       curve: Curves.ease,
@@ -1351,7 +1358,7 @@ class _LandingWidgetState extends State<LandingWidget>
                                   size: 14,
                                 ),
                                 onPressed: () async {
-                                  await pageViewController?.previousPage(
+                                  await _model.pageViewController?.previousPage(
                                     duration: Duration(milliseconds: 300),
                                     curve: Curves.ease,
                                   );
@@ -1370,7 +1377,7 @@ class _LandingWidgetState extends State<LandingWidget>
                                   size: 14,
                                 ),
                                 onPressed: () async {
-                                  await pageViewController?.nextPage(
+                                  await _model.pageViewController?.nextPage(
                                     duration: Duration(milliseconds: 300),
                                     curve: Curves.ease,
                                   );

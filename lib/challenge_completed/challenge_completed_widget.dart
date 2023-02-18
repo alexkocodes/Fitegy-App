@@ -7,6 +7,8 @@ import 'package:flutter/scheduler.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
+import 'challenge_completed_model.dart';
+export 'challenge_completed_model.dart';
 
 class ChallengeCompletedWidget extends StatefulWidget {
   const ChallengeCompletedWidget({Key? key}) : super(key: key);
@@ -18,6 +20,11 @@ class ChallengeCompletedWidget extends StatefulWidget {
 
 class _ChallengeCompletedWidgetState extends State<ChallengeCompletedWidget>
     with TickerProviderStateMixin {
+  late ChallengeCompletedModel _model;
+
+  final scaffoldKey = GlobalKey<ScaffoldState>();
+  final _unfocusNode = FocusNode();
+
   final animationsMap = {
     'imageOnPageLoadAnimation': AnimationInfo(
       trigger: AnimationTrigger.onPageLoad,
@@ -84,16 +91,17 @@ class _ChallengeCompletedWidgetState extends State<ChallengeCompletedWidget>
       ],
     ),
   };
-  final _unfocusNode = FocusNode();
-  final scaffoldKey = GlobalKey<ScaffoldState>();
 
   @override
   void initState() {
     super.initState();
+    _model = createModel(context, () => ChallengeCompletedModel());
   }
 
   @override
   void dispose() {
+    _model.dispose();
+
     _unfocusNode.dispose();
     super.dispose();
   }

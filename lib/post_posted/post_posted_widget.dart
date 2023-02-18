@@ -7,6 +7,8 @@ import 'package:flutter/scheduler.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
+import 'post_posted_model.dart';
+export 'post_posted_model.dart';
 
 class PostPostedWidget extends StatefulWidget {
   const PostPostedWidget({Key? key}) : super(key: key);
@@ -17,6 +19,11 @@ class PostPostedWidget extends StatefulWidget {
 
 class _PostPostedWidgetState extends State<PostPostedWidget>
     with TickerProviderStateMixin {
+  late PostPostedModel _model;
+
+  final scaffoldKey = GlobalKey<ScaffoldState>();
+  final _unfocusNode = FocusNode();
+
   final animationsMap = {
     'imageOnPageLoadAnimation': AnimationInfo(
       trigger: AnimationTrigger.onPageLoad,
@@ -83,16 +90,17 @@ class _PostPostedWidgetState extends State<PostPostedWidget>
       ],
     ),
   };
-  final _unfocusNode = FocusNode();
-  final scaffoldKey = GlobalKey<ScaffoldState>();
 
   @override
   void initState() {
     super.initState();
+    _model = createModel(context, () => PostPostedModel());
   }
 
   @override
   void dispose() {
+    _model.dispose();
+
     _unfocusNode.dispose();
     super.dispose();
   }

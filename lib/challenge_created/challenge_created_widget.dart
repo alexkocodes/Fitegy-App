@@ -8,6 +8,8 @@ import 'package:flutter/scheduler.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
+import 'challenge_created_model.dart';
+export 'challenge_created_model.dart';
 
 class ChallengeCreatedWidget extends StatefulWidget {
   const ChallengeCreatedWidget({
@@ -23,6 +25,11 @@ class ChallengeCreatedWidget extends StatefulWidget {
 
 class _ChallengeCreatedWidgetState extends State<ChallengeCreatedWidget>
     with TickerProviderStateMixin {
+  late ChallengeCreatedModel _model;
+
+  final scaffoldKey = GlobalKey<ScaffoldState>();
+  final _unfocusNode = FocusNode();
+
   final animationsMap = {
     'imageOnPageLoadAnimation1': AnimationInfo(
       trigger: AnimationTrigger.onPageLoad,
@@ -73,16 +80,17 @@ class _ChallengeCreatedWidgetState extends State<ChallengeCreatedWidget>
       ],
     ),
   };
-  final _unfocusNode = FocusNode();
-  final scaffoldKey = GlobalKey<ScaffoldState>();
 
   @override
   void initState() {
     super.initState();
+    _model = createModel(context, () => ChallengeCreatedModel());
   }
 
   @override
   void dispose() {
+    _model.dispose();
+
     _unfocusNode.dispose();
     super.dispose();
   }

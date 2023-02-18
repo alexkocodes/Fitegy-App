@@ -14,6 +14,8 @@ import 'package:flutter_animate/flutter_animate.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
+import 'log_sign_model.dart';
+export 'log_sign_model.dart';
 
 class LogSignWidget extends StatefulWidget {
   const LogSignWidget({
@@ -29,6 +31,11 @@ class LogSignWidget extends StatefulWidget {
 
 class _LogSignWidgetState extends State<LogSignWidget>
     with TickerProviderStateMixin {
+  late LogSignModel _model;
+
+  final scaffoldKey = GlobalKey<ScaffoldState>();
+  final _unfocusNode = FocusNode();
+
   final animationsMap = {
     'textOnPageLoadAnimation1': AnimationInfo(
       trigger: AnimationTrigger.onPageLoad,
@@ -110,49 +117,27 @@ class _LogSignWidgetState extends State<LogSignWidget>
       ],
     ),
   };
-  PageController? pageViewController;
-  TextEditingController? firstNameController;
-  TextEditingController? lastNameController;
-  TextEditingController? logInEmailController;
-  TextEditingController? logInPassController;
-  late bool logInPassVisibility;
-  TextEditingController? newEmailController;
-  TextEditingController? confirmPassController;
-  late bool confirmPassVisibility;
-  TextEditingController? newPassController;
-  late bool newPassVisibility;
-  TextEditingController? textController4;
-  final _unfocusNode = FocusNode();
-  final scaffoldKey = GlobalKey<ScaffoldState>();
 
   @override
   void initState() {
     super.initState();
+    _model = createModel(context, () => LogSignModel());
 
-    confirmPassController = TextEditingController();
-    confirmPassVisibility = false;
-    newPassController = TextEditingController();
-    newPassVisibility = false;
-    firstNameController = TextEditingController();
-    lastNameController = TextEditingController();
-    logInEmailController = TextEditingController();
-    logInPassController = TextEditingController();
-    logInPassVisibility = false;
-    newEmailController = TextEditingController();
-    textController4 = TextEditingController();
+    _model.logInEmailController ??= TextEditingController();
+    _model.logInPassController ??= TextEditingController();
+    _model.firstNameController ??= TextEditingController();
+    _model.lastNameController ??= TextEditingController();
+    _model.newEmailController ??= TextEditingController();
+    _model.newPassController ??= TextEditingController();
+    _model.confirmPassController ??= TextEditingController();
+    _model.textController4 ??= TextEditingController();
   }
 
   @override
   void dispose() {
+    _model.dispose();
+
     _unfocusNode.dispose();
-    confirmPassController?.dispose();
-    newPassController?.dispose();
-    firstNameController?.dispose();
-    lastNameController?.dispose();
-    logInEmailController?.dispose();
-    logInPassController?.dispose();
-    newEmailController?.dispose();
-    textController4?.dispose();
     super.dispose();
   }
 
@@ -188,7 +173,7 @@ class _LogSignWidgetState extends State<LogSignWidget>
                   padding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 50),
                   child: PageView(
                     physics: const NeverScrollableScrollPhysics(),
-                    controller: pageViewController ??=
+                    controller: _model.pageViewController ??=
                         PageController(initialPage: 0),
                     scrollDirection: Axis.horizontal,
                     children: [
@@ -296,8 +281,8 @@ class _LogSignWidgetState extends State<LogSignWidget>
                                                                 .circular(12),
                                                       ),
                                                       child: TextFormField(
-                                                        controller:
-                                                            logInEmailController,
+                                                        controller: _model
+                                                            .logInEmailController,
                                                         obscureText: false,
                                                         decoration:
                                                             InputDecoration(
@@ -421,6 +406,10 @@ class _LogSignWidgetState extends State<LogSignWidget>
                                                                           FlutterFlowTheme.of(context)
                                                                               .bodyText1Family),
                                                                 ),
+                                                        validator: _model
+                                                            .logInEmailControllerValidator
+                                                            .asValidator(
+                                                                context),
                                                       ),
                                                     ),
                                                   ),
@@ -449,10 +438,10 @@ class _LogSignWidgetState extends State<LogSignWidget>
                                                                 .circular(12),
                                                       ),
                                                       child: TextFormField(
-                                                        controller:
-                                                            logInPassController,
-                                                        obscureText:
-                                                            !logInPassVisibility,
+                                                        controller: _model
+                                                            .logInPassController,
+                                                        obscureText: !_model
+                                                            .logInPassVisibility,
                                                         decoration:
                                                             InputDecoration(
                                                           labelStyle:
@@ -560,14 +549,16 @@ class _LogSignWidgetState extends State<LogSignWidget>
                                                           suffixIcon: InkWell(
                                                             onTap: () =>
                                                                 setState(
-                                                              () => logInPassVisibility =
-                                                                  !logInPassVisibility,
+                                                              () => _model
+                                                                      .logInPassVisibility =
+                                                                  !_model
+                                                                      .logInPassVisibility,
                                                             ),
                                                             focusNode: FocusNode(
                                                                 skipTraversal:
                                                                     true),
                                                             child: Icon(
-                                                              logInPassVisibility
+                                                              _model.logInPassVisibility
                                                                   ? Icons
                                                                       .visibility_outlined
                                                                   : Icons
@@ -594,6 +585,10 @@ class _LogSignWidgetState extends State<LogSignWidget>
                                                                           FlutterFlowTheme.of(context)
                                                                               .bodyText1Family),
                                                                 ),
+                                                        validator: _model
+                                                            .logInPassControllerValidator
+                                                            .asValidator(
+                                                                context),
                                                       ),
                                                     ),
                                                   ),
@@ -617,9 +612,11 @@ class _LogSignWidgetState extends State<LogSignWidget>
                                                             final user =
                                                                 await signInWithEmail(
                                                               context,
-                                                              logInEmailController!
+                                                              _model
+                                                                  .logInEmailController
                                                                   .text,
-                                                              logInPassController!
+                                                              _model
+                                                                  .logInPassController
                                                                   .text,
                                                             );
                                                             if (user == null) {
@@ -724,8 +721,8 @@ class _LogSignWidgetState extends State<LogSignWidget>
                                                                 .circular(12),
                                                       ),
                                                       child: TextFormField(
-                                                        controller:
-                                                            firstNameController,
+                                                        controller: _model
+                                                            .firstNameController,
                                                         obscureText: false,
                                                         decoration:
                                                             InputDecoration(
@@ -769,8 +766,8 @@ class _LogSignWidgetState extends State<LogSignWidget>
                                                               UnderlineInputBorder(
                                                             borderSide:
                                                                 BorderSide(
-                                                              color:
-                                                                  Colors.black,
+                                                              color: Color(
+                                                                  0x00000000),
                                                               width: 1,
                                                             ),
                                                             borderRadius:
@@ -823,6 +820,10 @@ class _LogSignWidgetState extends State<LogSignWidget>
                                                                 ),
                                                         textAlign:
                                                             TextAlign.start,
+                                                        validator: _model
+                                                            .firstNameControllerValidator
+                                                            .asValidator(
+                                                                context),
                                                       ),
                                                     ),
                                                   ),
@@ -832,8 +833,8 @@ class _LogSignWidgetState extends State<LogSignWidget>
                                                             .fromSTEB(
                                                                 0, 10, 0, 0),
                                                     child: TextFormField(
-                                                      controller:
-                                                          lastNameController,
+                                                      controller: _model
+                                                          .lastNameController,
                                                       obscureText: false,
                                                       decoration:
                                                           InputDecoration(
@@ -875,7 +876,8 @@ class _LogSignWidgetState extends State<LogSignWidget>
                                                             UnderlineInputBorder(
                                                           borderSide:
                                                               BorderSide(
-                                                            color: Colors.black,
+                                                            color: Color(
+                                                                0x00000000),
                                                             width: 1,
                                                           ),
                                                           borderRadius:
@@ -925,6 +927,9 @@ class _LogSignWidgetState extends State<LogSignWidget>
                                                               ),
                                                       textAlign:
                                                           TextAlign.start,
+                                                      validator: _model
+                                                          .lastNameControllerValidator
+                                                          .asValidator(context),
                                                     ),
                                                   ),
                                                   Padding(
@@ -955,7 +960,8 @@ class _LogSignWidgetState extends State<LogSignWidget>
                                                             size: 30,
                                                           ),
                                                           onPressed: () async {
-                                                            await pageViewController
+                                                            await _model
+                                                                .pageViewController
                                                                 ?.nextPage(
                                                               duration: Duration(
                                                                   milliseconds:
@@ -1171,7 +1177,8 @@ class _LogSignWidgetState extends State<LogSignWidget>
                                       size: 20,
                                     ),
                                     onPressed: () async {
-                                      await pageViewController?.previousPage(
+                                      await _model.pageViewController
+                                          ?.previousPage(
                                         duration: Duration(milliseconds: 300),
                                         curve: Curves.ease,
                                       );
@@ -1216,7 +1223,7 @@ class _LogSignWidgetState extends State<LogSignWidget>
                                       ),
                                       SelectionArea(
                                           child: Text(
-                                        firstNameController!.text,
+                                        _model.firstNameController.text,
                                         style: FlutterFlowTheme.of(context)
                                             .title1
                                             .override(
@@ -1282,9 +1289,9 @@ class _LogSignWidgetState extends State<LogSignWidget>
                                       borderRadius: BorderRadius.circular(12),
                                     ),
                                     child: TextFormField(
-                                      controller: newEmailController,
+                                      controller: _model.newEmailController,
                                       onChanged: (_) => EasyDebounce.debounce(
-                                        'newEmailController',
+                                        '_model.newEmailController',
                                         Duration(milliseconds: 2000),
                                         () => setState(() {}),
                                       ),
@@ -1316,7 +1323,7 @@ class _LogSignWidgetState extends State<LogSignWidget>
                                         ),
                                         focusedBorder: UnderlineInputBorder(
                                           borderSide: BorderSide(
-                                            color: Colors.black,
+                                            color: Color(0x00000000),
                                             width: 1,
                                           ),
                                           borderRadius:
@@ -1339,11 +1346,12 @@ class _LogSignWidgetState extends State<LogSignWidget>
                                           borderRadius:
                                               BorderRadius.circular(0),
                                         ),
-                                        suffixIcon: newEmailController!
+                                        suffixIcon: _model.newEmailController!
                                                 .text.isNotEmpty
                                             ? InkWell(
                                                 onTap: () async {
-                                                  newEmailController?.clear();
+                                                  _model.newEmailController
+                                                      ?.clear();
                                                   setState(() {});
                                                 },
                                                 child: Icon(
@@ -1366,6 +1374,9 @@ class _LogSignWidgetState extends State<LogSignWidget>
                                                         .bodyText1Family),
                                           ),
                                       textAlign: TextAlign.start,
+                                      validator: _model
+                                          .newEmailControllerValidator
+                                          .asValidator(context),
                                     ),
                                   ),
                                 ),
@@ -1389,7 +1400,8 @@ class _LogSignWidgetState extends State<LogSignWidget>
                                           size: 30,
                                         ),
                                         onPressed: () async {
-                                          await pageViewController?.nextPage(
+                                          await _model.pageViewController
+                                              ?.nextPage(
                                             duration:
                                                 Duration(milliseconds: 300),
                                             curve: Curves.ease,
@@ -1428,7 +1440,8 @@ class _LogSignWidgetState extends State<LogSignWidget>
                                       size: 20,
                                     ),
                                     onPressed: () async {
-                                      await pageViewController?.previousPage(
+                                      await _model.pageViewController
+                                          ?.previousPage(
                                         duration: Duration(milliseconds: 300),
                                         curve: Curves.ease,
                                       );
@@ -1513,8 +1526,8 @@ class _LogSignWidgetState extends State<LogSignWidget>
                                       padding: EdgeInsetsDirectional.fromSTEB(
                                           0, 0, 0, 10),
                                       child: TextFormField(
-                                        controller: newPassController,
-                                        obscureText: !newPassVisibility,
+                                        controller: _model.newPassController,
+                                        obscureText: !_model.newPassVisibility,
                                         decoration: InputDecoration(
                                           labelText: 'Password',
                                           labelStyle:
@@ -1544,7 +1557,7 @@ class _LogSignWidgetState extends State<LogSignWidget>
                                           ),
                                           focusedBorder: UnderlineInputBorder(
                                             borderSide: BorderSide(
-                                              color: Colors.black,
+                                              color: Color(0x00000000),
                                               width: 1,
                                             ),
                                             borderRadius:
@@ -1569,13 +1582,13 @@ class _LogSignWidgetState extends State<LogSignWidget>
                                           ),
                                           suffixIcon: InkWell(
                                             onTap: () => setState(
-                                              () => newPassVisibility =
-                                                  !newPassVisibility,
+                                              () => _model.newPassVisibility =
+                                                  !_model.newPassVisibility,
                                             ),
                                             focusNode:
                                                 FocusNode(skipTraversal: true),
                                             child: Icon(
-                                              newPassVisibility
+                                              _model.newPassVisibility
                                                   ? Icons.visibility_outlined
                                                   : Icons
                                                       .visibility_off_outlined,
@@ -1598,6 +1611,9 @@ class _LogSignWidgetState extends State<LogSignWidget>
                                                               .bodyText1Family),
                                             ),
                                         textAlign: TextAlign.start,
+                                        validator: _model
+                                            .newPassControllerValidator
+                                            .asValidator(context),
                                       ),
                                     ),
                                   ),
@@ -1633,8 +1649,10 @@ class _LogSignWidgetState extends State<LogSignWidget>
                                       padding: EdgeInsetsDirectional.fromSTEB(
                                           0, 0, 0, 10),
                                       child: TextFormField(
-                                        controller: confirmPassController,
-                                        obscureText: !confirmPassVisibility,
+                                        controller:
+                                            _model.confirmPassController,
+                                        obscureText:
+                                            !_model.confirmPassVisibility,
                                         decoration: InputDecoration(
                                           labelText: 'Password',
                                           labelStyle:
@@ -1664,7 +1682,7 @@ class _LogSignWidgetState extends State<LogSignWidget>
                                           ),
                                           focusedBorder: UnderlineInputBorder(
                                             borderSide: BorderSide(
-                                              color: Colors.black,
+                                              color: Color(0x00000000),
                                               width: 1,
                                             ),
                                             borderRadius:
@@ -1689,13 +1707,14 @@ class _LogSignWidgetState extends State<LogSignWidget>
                                           ),
                                           suffixIcon: InkWell(
                                             onTap: () => setState(
-                                              () => confirmPassVisibility =
-                                                  !confirmPassVisibility,
+                                              () => _model
+                                                      .confirmPassVisibility =
+                                                  !_model.confirmPassVisibility,
                                             ),
                                             focusNode:
                                                 FocusNode(skipTraversal: true),
                                             child: Icon(
-                                              confirmPassVisibility
+                                              _model.confirmPassVisibility
                                                   ? Icons.visibility_outlined
                                                   : Icons
                                                       .visibility_off_outlined,
@@ -1718,6 +1737,9 @@ class _LogSignWidgetState extends State<LogSignWidget>
                                                               .bodyText1Family),
                                             ),
                                         textAlign: TextAlign.start,
+                                        validator: _model
+                                            .confirmPassControllerValidator
+                                            .asValidator(context),
                                       ),
                                     ),
                                   ),
@@ -1744,7 +1766,7 @@ class _LogSignWidgetState extends State<LogSignWidget>
                                       size: 30,
                                     ),
                                     onPressed: () async {
-                                      await pageViewController?.nextPage(
+                                      await _model.pageViewController?.nextPage(
                                         duration: Duration(milliseconds: 300),
                                         curve: Curves.ease,
                                       );
@@ -1780,7 +1802,8 @@ class _LogSignWidgetState extends State<LogSignWidget>
                                       size: 20,
                                     ),
                                     onPressed: () async {
-                                      await pageViewController?.previousPage(
+                                      await _model.pageViewController
+                                          ?.previousPage(
                                         duration: Duration(milliseconds: 300),
                                         curve: Curves.ease,
                                       );
@@ -1867,7 +1890,7 @@ class _LogSignWidgetState extends State<LogSignWidget>
                                       borderRadius: BorderRadius.circular(12),
                                     ),
                                     child: TextFormField(
-                                      controller: textController4,
+                                      controller: _model.textController4,
                                       obscureText: false,
                                       decoration: InputDecoration(
                                         labelText: '@',
@@ -1896,7 +1919,7 @@ class _LogSignWidgetState extends State<LogSignWidget>
                                         ),
                                         focusedBorder: UnderlineInputBorder(
                                           borderSide: BorderSide(
-                                            color: Colors.black,
+                                            color: Color(0x00000000),
                                             width: 1,
                                           ),
                                           borderRadius:
@@ -1932,6 +1955,8 @@ class _LogSignWidgetState extends State<LogSignWidget>
                                                         .bodyText1Family),
                                           ),
                                       textAlign: TextAlign.start,
+                                      validator: _model.textController4Validator
+                                          .asValidator(context),
                                     ),
                                   ),
                                 ),
@@ -1946,8 +1971,9 @@ class _LogSignWidgetState extends State<LogSignWidget>
                                         onPressed: () async {
                                           GoRouter.of(context)
                                               .prepareAuthEvent();
-                                          if (newPassController?.text !=
-                                              confirmPassController?.text) {
+                                          if (_model.newPassController.text !=
+                                              _model
+                                                  .confirmPassController.text) {
                                             ScaffoldMessenger.of(context)
                                                 .showSnackBar(
                                               SnackBar(
@@ -1962,8 +1988,8 @@ class _LogSignWidgetState extends State<LogSignWidget>
                                           final user =
                                               await createAccountWithEmail(
                                             context,
-                                            newEmailController!.text,
-                                            newPassController!.text,
+                                            _model.newEmailController.text,
+                                            _model.newPassController.text,
                                           );
                                           if (user == null) {
                                             return;
@@ -1971,7 +1997,8 @@ class _LogSignWidgetState extends State<LogSignWidget>
 
                                           final usersCreateData =
                                               createUsersRecordData(
-                                            email: newEmailController!.text,
+                                            email:
+                                                _model.newEmailController.text,
                                             uid: random_data.randomString(
                                               8,
                                               10,
@@ -1980,19 +2007,22 @@ class _LogSignWidgetState extends State<LogSignWidget>
                                               true,
                                             ),
                                             createdTime: getCurrentTimestamp,
-                                            username: textController4!.text,
+                                            username:
+                                                _model.textController4.text,
                                             firstName:
-                                                firstNameController!.text,
-                                            lastName: lastNameController!.text,
+                                                _model.firstNameController.text,
+                                            lastName:
+                                                _model.lastNameController.text,
                                             displayName:
-                                                '${firstNameController!.text} ${lastNameController!.text}',
+                                                '${_model.firstNameController.text} ${_model.lastNameController.text}',
                                           );
                                           await UsersRecord.collection
                                               .doc(user.uid)
                                               .update(usersCreateData);
 
                                           await sendEmailVerification();
-                                          await pageViewController?.nextPage(
+                                          await _model.pageViewController
+                                              ?.nextPage(
                                             duration:
                                                 Duration(milliseconds: 300),
                                             curve: Curves.ease,

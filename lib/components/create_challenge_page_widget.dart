@@ -10,6 +10,8 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'package:simple_gradient_text/simple_gradient_text.dart';
+import 'create_challenge_page_model.dart';
+export 'create_challenge_page_model.dart';
 
 class CreateChallengePageWidget extends StatefulWidget {
   const CreateChallengePageWidget({Key? key}) : super(key: key);
@@ -20,26 +22,29 @@ class CreateChallengePageWidget extends StatefulWidget {
 }
 
 class _CreateChallengePageWidgetState extends State<CreateChallengePageWidget> {
-  TextEditingController? commentsController;
-  TextEditingController? textController1;
-  TextEditingController? textController2;
-  TextEditingController? textController4;
+  late CreateChallengePageModel _model;
+
+  @override
+  void setState(VoidCallback callback) {
+    super.setState(callback);
+    _model.onUpdate();
+  }
 
   @override
   void initState() {
     super.initState();
-    commentsController = TextEditingController();
-    textController1 = TextEditingController();
-    textController2 = TextEditingController();
-    textController4 = TextEditingController();
+    _model = createModel(context, () => CreateChallengePageModel());
+
+    _model.textController1 ??= TextEditingController();
+    _model.textController2 ??= TextEditingController();
+    _model.commentsController ??= TextEditingController();
+    _model.textController4 ??= TextEditingController();
   }
 
   @override
   void dispose() {
-    commentsController?.dispose();
-    textController1?.dispose();
-    textController2?.dispose();
-    textController4?.dispose();
+    _model.maybeDispose();
+
     super.dispose();
   }
 
@@ -172,7 +177,7 @@ class _CreateChallengePageWidgetState extends State<CreateChallengePageWidget> {
                       borderRadius: BorderRadius.circular(12),
                     ),
                     child: TextFormField(
-                      controller: textController1,
+                      controller: _model.textController1,
                       obscureText: false,
                       decoration: InputDecoration(
                         labelStyle: FlutterFlowTheme.of(context)
@@ -236,6 +241,8 @@ class _CreateChallengePageWidgetState extends State<CreateChallengePageWidget> {
                             useGoogleFonts: GoogleFonts.asMap().containsKey(
                                 FlutterFlowTheme.of(context).bodyText1Family),
                           ),
+                      validator:
+                          _model.textController1Validator.asValidator(context),
                     ),
                   ),
                 ),
@@ -266,7 +273,7 @@ class _CreateChallengePageWidgetState extends State<CreateChallengePageWidget> {
                       borderRadius: BorderRadius.circular(12),
                     ),
                     child: TextFormField(
-                      controller: textController2,
+                      controller: _model.textController2,
                       obscureText: false,
                       decoration: InputDecoration(
                         labelStyle: FlutterFlowTheme.of(context)
@@ -332,6 +339,8 @@ class _CreateChallengePageWidgetState extends State<CreateChallengePageWidget> {
                       textAlign: TextAlign.start,
                       maxLines: 8,
                       keyboardType: TextInputType.multiline,
+                      validator:
+                          _model.textController2Validator.asValidator(context),
                     ),
                   ),
                 ),
@@ -362,7 +371,7 @@ class _CreateChallengePageWidgetState extends State<CreateChallengePageWidget> {
                       borderRadius: BorderRadius.circular(12),
                     ),
                     child: TextFormField(
-                      controller: commentsController,
+                      controller: _model.commentsController,
                       obscureText: false,
                       decoration: InputDecoration(
                         labelStyle: FlutterFlowTheme.of(context)
@@ -428,6 +437,8 @@ class _CreateChallengePageWidgetState extends State<CreateChallengePageWidget> {
                       textAlign: TextAlign.start,
                       maxLines: null,
                       keyboardType: TextInputType.multiline,
+                      validator: _model.commentsControllerValidator
+                          .asValidator(context),
                     ),
                   ),
                 ),
@@ -458,7 +469,7 @@ class _CreateChallengePageWidgetState extends State<CreateChallengePageWidget> {
                       borderRadius: BorderRadius.circular(12),
                     ),
                     child: TextFormField(
-                      controller: textController4,
+                      controller: _model.textController4,
                       obscureText: false,
                       decoration: InputDecoration(
                         labelStyle: FlutterFlowTheme.of(context)
@@ -522,6 +533,8 @@ class _CreateChallengePageWidgetState extends State<CreateChallengePageWidget> {
                             useGoogleFonts: GoogleFonts.asMap().containsKey(
                                 FlutterFlowTheme.of(context).bodyText1Family),
                           ),
+                      validator:
+                          _model.textController4Validator.asValidator(context),
                     ),
                   ),
                 ),
@@ -714,8 +727,8 @@ class _CreateChallengePageWidgetState extends State<CreateChallengePageWidget> {
                         onPressed: () async {
                           final challengesCreateData = {
                             ...createChallengesRecordData(
-                              title: textController1!.text,
-                              details: textController2!.text,
+                              title: _model.textController1.text,
+                              details: _model.textController2.text,
                               createdAt: getCurrentTimestamp,
                               createBy: currentUserReference,
                               status: 'active',
@@ -723,7 +736,7 @@ class _CreateChallengePageWidgetState extends State<CreateChallengePageWidget> {
                                 random_data.randomInteger(1, 5),
                                 1,
                               ),
-                              comments: commentsController!.text,
+                              comments: _model.commentsController.text,
                               id: random_data.randomString(
                                 8,
                                 10,

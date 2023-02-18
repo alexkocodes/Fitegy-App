@@ -10,6 +10,8 @@ import 'package:flutter_animate/flutter_animate.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'package:simple_gradient_text/simple_gradient_text.dart';
+import 'challenge_selected_model.dart';
+export 'challenge_selected_model.dart';
 
 class ChallengeSelectedWidget extends StatefulWidget {
   const ChallengeSelectedWidget({Key? key}) : super(key: key);
@@ -21,6 +23,11 @@ class ChallengeSelectedWidget extends StatefulWidget {
 
 class _ChallengeSelectedWidgetState extends State<ChallengeSelectedWidget>
     with TickerProviderStateMixin {
+  late ChallengeSelectedModel _model;
+
+  final scaffoldKey = GlobalKey<ScaffoldState>();
+  final _unfocusNode = FocusNode();
+
   final animationsMap = {
     'containerOnPageLoadAnimation': AnimationInfo(
       trigger: AnimationTrigger.onPageLoad,
@@ -42,21 +49,20 @@ class _ChallengeSelectedWidgetState extends State<ChallengeSelectedWidget>
       ],
     ),
   };
-  TextEditingController? textController;
-  final _unfocusNode = FocusNode();
-  final scaffoldKey = GlobalKey<ScaffoldState>();
 
   @override
   void initState() {
     super.initState();
+    _model = createModel(context, () => ChallengeSelectedModel());
 
-    textController = TextEditingController();
+    _model.textController ??= TextEditingController();
   }
 
   @override
   void dispose() {
+    _model.dispose();
+
     _unfocusNode.dispose();
-    textController?.dispose();
     super.dispose();
   }
 
@@ -232,7 +238,7 @@ class _ChallengeSelectedWidgetState extends State<ChallengeSelectedWidget>
                                   borderRadius: BorderRadius.circular(12),
                                 ),
                                 child: TextFormField(
-                                  controller: textController,
+                                  controller: _model.textController,
                                   autofocus: true,
                                   obscureText: false,
                                   decoration: InputDecoration(
@@ -308,6 +314,8 @@ class _ChallengeSelectedWidgetState extends State<ChallengeSelectedWidget>
                                   textAlign: TextAlign.start,
                                   maxLines: 10,
                                   keyboardType: TextInputType.multiline,
+                                  validator: _model.textControllerValidator
+                                      .asValidator(context),
                                 ),
                               ),
                             ),

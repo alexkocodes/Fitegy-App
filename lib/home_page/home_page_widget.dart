@@ -6,6 +6,8 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
 import 'package:provider/provider.dart';
+import 'home_page_model.dart';
+export 'home_page_model.dart';
 
 class HomePageWidget extends StatefulWidget {
   const HomePageWidget({Key? key}) : super(key: key);
@@ -15,16 +17,21 @@ class HomePageWidget extends StatefulWidget {
 }
 
 class _HomePageWidgetState extends State<HomePageWidget> {
-  PagingController<DocumentSnapshot?, PostsRecord>? _pagingController;
-  Query? _pagingQuery;
-  List<StreamSubscription?> _streamSubscriptions = [];
+  late HomePageModel _model;
 
-  final _unfocusNode = FocusNode();
   final scaffoldKey = GlobalKey<ScaffoldState>();
+  final _unfocusNode = FocusNode();
+
+  @override
+  void initState() {
+    super.initState();
+    _model = createModel(context, () => HomePageModel());
+  }
 
   @override
   void dispose() {
-    _streamSubscriptions.forEach((s) => s?.cancel());
+    _model.dispose();
+
     _unfocusNode.dispose();
     super.dispose();
   }
@@ -77,22 +84,24 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                         final Query<Object?> Function(Query<Object?>)
                             queryBuilder = (postsRecord) => postsRecord
                                 .orderBy('time_posted', descending: true);
-                        if (_pagingController != null) {
+                        if (_model.pagingController != null) {
                           final query = queryBuilder(PostsRecord.collection());
-                          if (query != _pagingQuery) {
+                          if (query != _model.pagingQuery) {
                             // The query has changed
-                            _pagingQuery = query;
-                            _streamSubscriptions.forEach((s) => s?.cancel());
-                            _streamSubscriptions.clear();
-                            _pagingController!.refresh();
+                            _model.pagingQuery = query;
+                            _model.streamSubscriptions
+                                .forEach((s) => s?.cancel());
+                            _model.streamSubscriptions.clear();
+                            _model.pagingController!.refresh();
                           }
-                          return _pagingController!;
+                          return _model.pagingController!;
                         }
 
-                        _pagingController =
+                        _model.pagingController =
                             PagingController(firstPageKey: null);
-                        _pagingQuery = queryBuilder(PostsRecord.collection());
-                        _pagingController!
+                        _model.pagingQuery =
+                            queryBuilder(PostsRecord.collection());
+                        _model.pagingController!
                             .addPageRequestListener((nextPageMarker) {
                           queryPostsRecordPage(
                             queryBuilder: (postsRecord) => postsRecord
@@ -101,31 +110,33 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                             pageSize: 8,
                             isStream: true,
                           ).then((page) {
-                            _pagingController!.appendPage(
+                            _model.pagingController!.appendPage(
                               page.data,
                               page.nextPageMarker,
                             );
                             final streamSubscription =
                                 page.dataStream?.listen((data) {
                               data.forEach((item) {
-                                final itemIndexes = _pagingController!.itemList!
+                                final itemIndexes = _model
+                                    .pagingController!.itemList!
                                     .asMap()
                                     .map((k, v) => MapEntry(v.reference.id, k));
                                 final index = itemIndexes[item.reference.id];
-                                final items = _pagingController!.itemList!;
+                                final items =
+                                    _model.pagingController!.itemList!;
                                 if (index != null) {
                                   items.replaceRange(index, index + 1, [item]);
-                                  _pagingController!.itemList = {
+                                  _model.pagingController!.itemList = {
                                     for (var item in items) item.reference: item
                                   }.values.toList();
                                 }
                               });
                               setState(() {});
                             });
-                            _streamSubscriptions.add(streamSubscription);
+                            _model.streamSubscriptions.add(streamSubscription);
                           });
                         });
-                        return _pagingController!;
+                        return _model.pagingController!;
                       }(),
                       padding: EdgeInsets.zero,
                       shrinkWrap: true,
@@ -145,9 +156,10 @@ class _HomePageWidgetState extends State<HomePageWidget> {
 
                         itemBuilder: (context, _, listViewIndex) {
                           final listViewPostsRecord =
-                              _pagingController!.itemList![listViewIndex];
+                              _model.pagingController!.itemList![listViewIndex];
                           return PostWidget(
-                            key: UniqueKey(),
+                            key: Key(
+                                'Keyity_${listViewIndex}_of_${_model.pagingController!.itemList!.length}'),
                             name: listViewPostsRecord.displayName,
                             location: listViewPostsRecord.location,
                             status: listViewPostsRecord.status,

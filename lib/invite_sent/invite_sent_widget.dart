@@ -7,6 +7,8 @@ import 'package:flutter/scheduler.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
+import 'invite_sent_model.dart';
+export 'invite_sent_model.dart';
 
 class InviteSentWidget extends StatefulWidget {
   const InviteSentWidget({Key? key}) : super(key: key);
@@ -17,6 +19,11 @@ class InviteSentWidget extends StatefulWidget {
 
 class _InviteSentWidgetState extends State<InviteSentWidget>
     with TickerProviderStateMixin {
+  late InviteSentModel _model;
+
+  final scaffoldKey = GlobalKey<ScaffoldState>();
+  final _unfocusNode = FocusNode();
+
   final animationsMap = {
     'imageOnPageLoadAnimation': AnimationInfo(
       trigger: AnimationTrigger.onPageLoad,
@@ -83,16 +90,17 @@ class _InviteSentWidgetState extends State<InviteSentWidget>
       ],
     ),
   };
-  final _unfocusNode = FocusNode();
-  final scaffoldKey = GlobalKey<ScaffoldState>();
 
   @override
   void initState() {
     super.initState();
+    _model = createModel(context, () => InviteSentModel());
   }
 
   @override
   void dispose() {
+    _model.dispose();
+
     _unfocusNode.dispose();
     super.dispose();
   }

@@ -5,6 +5,8 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'package:simple_gradient_text/simple_gradient_text.dart';
+import 'gradient_page_titles_model.dart';
+export 'gradient_page_titles_model.dart';
 
 class GradientPageTitlesWidget extends StatefulWidget {
   const GradientPageTitlesWidget({
@@ -22,6 +24,27 @@ class GradientPageTitlesWidget extends StatefulWidget {
 }
 
 class _GradientPageTitlesWidgetState extends State<GradientPageTitlesWidget> {
+  late GradientPageTitlesModel _model;
+
+  @override
+  void setState(VoidCallback callback) {
+    super.setState(callback);
+    _model.onUpdate();
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    _model = createModel(context, () => GradientPageTitlesModel());
+  }
+
+  @override
+  void dispose() {
+    _model.maybeDispose();
+
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     context.watch<FFAppState>();

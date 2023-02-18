@@ -6,6 +6,8 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
+import 'invite_model.dart';
+export 'invite_model.dart';
 
 class InviteWidget extends StatefulWidget {
   const InviteWidget({
@@ -20,11 +22,21 @@ class InviteWidget extends StatefulWidget {
 }
 
 class _InviteWidgetState extends State<InviteWidget> {
-  final _unfocusNode = FocusNode();
+  late InviteModel _model;
+
   final scaffoldKey = GlobalKey<ScaffoldState>();
+  final _unfocusNode = FocusNode();
+
+  @override
+  void initState() {
+    super.initState();
+    _model = createModel(context, () => InviteModel());
+  }
 
   @override
   void dispose() {
+    _model.dispose();
+
     _unfocusNode.dispose();
     super.dispose();
   }
