@@ -198,7 +198,6 @@ class _PostWidgetState extends State<PostWidget> {
               Padding(
                 padding: EdgeInsetsDirectional.fromSTEB(0, 10, 0, 10),
                 child: Container(
-                  height: 30,
                   decoration: BoxDecoration(
                     color: FlutterFlowTheme.of(context).secondaryBackground,
                   ),
