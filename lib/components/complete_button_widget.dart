@@ -1,34 +1,28 @@
-import '../auth/auth_util.dart';
-import '../backend/backend.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+
 import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_util.dart';
 import '../flutter_flow/flutter_flow_widgets.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class CompleteButtonWidget extends StatefulWidget {
-  const CompleteButtonWidget({
-    Key? key,
-    this.challengeReference,
-  }) : super(key: key);
+  const CompleteButtonWidget({Key? key, this.path}) : super(key: key);
 
-  final DocumentReference? challengeReference;
-
+  final String? path;
   @override
   _CompleteButtonWidgetState createState() => _CompleteButtonWidgetState();
 }
 
 class _CompleteButtonWidgetState extends State<CompleteButtonWidget> {
+  final db = FirebaseFirestore.instance;
   @override
   Widget build(BuildContext context) {
     return FFButtonWidget(
       onPressed: () async {
-        final challengesUpdateData = createChallengesRecordData(
-          status: 'completed',
-        );
-        await widget.challengeReference!.update(challengesUpdateData);
-
+        await db
+            .doc(widget.path!)
+            .set({"status": "completed"}, SetOptions(merge: true));
         context.goNamed(
           'ChallengeCompleted',
           extra: <String, dynamic>{
@@ -51,7 +45,7 @@ class _CompleteButtonWidgetState extends State<CompleteButtonWidget> {
               useGoogleFonts: GoogleFonts.asMap()
                   .containsKey(FlutterFlowTheme.of(context).subtitle2Family),
             ),
-        elevation: 10,
+        elevation: 4,
         borderSide: BorderSide(
           color: Colors.transparent,
           width: 1,

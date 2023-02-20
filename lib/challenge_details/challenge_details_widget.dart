@@ -1,12 +1,12 @@
 import 'package:fitegy/flutter_flow/flutter_flow_animations.dart';
 
 import '../backend/backend.dart';
+
 import '../components/complete_button_widget.dart';
 import '../flutter_flow/flutter_flow_icon_button.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_util.dart';
 import '../flutter_flow/flutter_flow_widgets.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -18,6 +18,8 @@ class ChallengeDetailsWidget extends StatefulWidget {
     this.details,
     this.comments,
     this.path,
+    this.color,
+    this.type,
   }) : super(key: key);
 
   final String? title;
@@ -25,16 +27,27 @@ class ChallengeDetailsWidget extends StatefulWidget {
   final String? details;
   final String? comments;
   final String? path;
+  final int? color;
+  final String? type;
+
   @override
   _ChallengeDetailsWidgetState createState() => _ChallengeDetailsWidgetState();
 }
 
 class _ChallengeDetailsWidgetState extends State<ChallengeDetailsWidget> {
   final scaffoldKey = GlobalKey<ScaffoldState>();
+  final colorSchemes = [
+    [Color.fromARGB(255, 154, 225, 255), Color.fromARGB(255, 253, 255, 155)],
+    [Color.fromARGB(255, 89, 205, 114), Color.fromARGB(255, 253, 255, 155)],
+    [Color.fromARGB(255, 255, 116, 116), Color.fromARGB(255, 253, 255, 155)],
+    [Color.fromARGB(255, 255, 89, 200), Color.fromARGB(255, 253, 255, 155)],
+    [Color(0xFFE6A0FF), Color(0xFF9AE1FF)],
+  ];
 
   @override
   Widget build(BuildContext context) {
     final db = FirebaseFirestore.instance;
+
     return Scaffold(
       key: scaffoldKey,
       backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
@@ -66,6 +79,7 @@ class _ChallengeDetailsWidgetState extends State<ChallengeDetailsWidget> {
         body: Builder(
           builder: (context) {
             return SafeArea(
+              top: false,
               child: GestureDetector(
                 onTap: () => FocusScope.of(context).unfocus(),
                 child: Container(
@@ -112,10 +126,7 @@ class _ChallengeDetailsWidgetState extends State<ChallengeDetailsWidget> {
                                   )
                                 ],
                                 gradient: LinearGradient(
-                                  colors: [
-                                    Color(0xFFE6A0FF),
-                                    Color(0xFF9AE1FF)
-                                  ],
+                                  colors: colorSchemes[widget.color! - 1],
                                   stops: [0, 1],
                                   begin: AlignmentDirectional(-0.34, -1),
                                   end: AlignmentDirectional(0.34, 1),
@@ -299,133 +310,196 @@ class _ChallengeDetailsWidgetState extends State<ChallengeDetailsWidget> {
                               color: FlutterFlowTheme.of(context)
                                   .secondaryBackground,
                             ),
-                            child: FutureBuilder<ChallengesRecord>(
-                              future: ChallengesRecord.getDocumentOnce(
-                                  db.doc(widget.path!)),
-                              builder: (context, snapshot) {
-                                // Customize what your widget looks like when it's loading.
-                                if (!snapshot.hasData) {
-                                  return Center(
-                                    child: SizedBox(
-                                      width: 40,
-                                      height: 40,
-                                      child: CircularProgressIndicator(
-                                        color: FlutterFlowTheme.of(context)
-                                            .lineColor,
-                                      ),
-                                    ),
-                                  );
-                                }
-                                final rowChallengesRecord = snapshot.data!;
-                                return Row(
-                                  mainAxisSize: MainAxisSize.max,
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceBetween,
-                                  children: [
-                                    CompleteButtonWidget(
-                                      challengeReference:
-                                          rowChallengesRecord.reference,
-                                    ),
-                                    FFButtonWidget(
-                                      onPressed: () async {
-                                        context.pushNamed('Invite');
-                                      },
-                                      text: 'Invite 🔥 ',
-                                      options: FFButtonOptions(
-                                        width: 110,
-                                        height: 40,
-                                        color: FlutterFlowTheme.of(context)
-                                            .secondaryText,
-                                        textStyle: FlutterFlowTheme.of(context)
-                                            .subtitle2
-                                            .override(
-                                              fontFamily: 'Archivo Black',
-                                              color: Colors.white,
-                                              useGoogleFonts:
-                                                  GoogleFonts.asMap()
-                                                      .containsKey(
-                                                          FlutterFlowTheme.of(
-                                                                  context)
-                                                              .subtitle2Family),
+                            child: widget.type == "select"
+                                ? Row(
+                                    mainAxisSize: MainAxisSize.max,
+                                    children: [
+                                        Expanded(
+                                          child: FFButtonWidget(
+                                            onPressed: () {},
+                                            text: "Select this challenge",
+                                            options: FFButtonOptions(
+                                              height: 50,
+                                              color:
+                                                  FlutterFlowTheme.of(context)
+                                                      .secondaryColor,
+                                              textStyle:
+                                                  FlutterFlowTheme.of(context)
+                                                      .subtitle2
+                                                      .override(
+                                                        fontFamily:
+                                                            'Archivo Black',
+                                                        color: Colors.white,
+                                                        useGoogleFonts: GoogleFonts
+                                                                .asMap()
+                                                            .containsKey(
+                                                                FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .subtitle2Family),
+                                                      ),
+                                              elevation: 4,
+                                              borderSide: BorderSide(
+                                                color: Colors.transparent,
+                                                width: 1,
+                                              ),
+                                              borderRadius:
+                                                  BorderRadius.circular(40),
                                             ),
-                                        elevation: 10,
-                                        borderSide: BorderSide(
-                                          color: Colors.transparent,
-                                          width: 1,
+                                          ),
                                         ),
-                                        borderRadius: BorderRadius.circular(8),
-                                      ),
-                                    ),
-                                    FFButtonWidget(
-                                      onPressed: () async {
-                                        var confirmDialogResponse =
-                                            await showDialog<bool>(
-                                                  context: context,
-                                                  builder:
-                                                      (alertDialogContext) {
-                                                    return AlertDialog(
-                                                      title: Text(
-                                                          'Delete This Challenge'),
-                                                      content: Text(
-                                                          'Are you sure you want to delete this challenge?'),
-                                                      actions: [
-                                                        TextButton(
-                                                          onPressed: () =>
-                                                              Navigator.pop(
-                                                                  alertDialogContext,
-                                                                  false),
-                                                          child: Text('Cancel'),
-                                                        ),
-                                                        TextButton(
-                                                          onPressed: () =>
-                                                              Navigator.pop(
-                                                                  alertDialogContext,
-                                                                  true),
-                                                          child:
-                                                              Text('Confirm'),
-                                                        ),
-                                                      ],
-                                                    );
-                                                  },
-                                                ) ??
-                                                false;
-                                        if (confirmDialogResponse) {
-                                          await rowChallengesRecord.reference
-                                              .delete();
-                                        } else {
-                                          Navigator.pop(context);
-                                        }
-                                      },
-                                      text: 'Delete',
-                                      options: FFButtonOptions(
-                                        width: 110,
-                                        height: 40,
-                                        color: FlutterFlowTheme.of(context)
-                                            .alternate,
-                                        textStyle: FlutterFlowTheme.of(context)
-                                            .subtitle2
-                                            .override(
-                                              fontFamily: 'Archivo Black',
-                                              color: Colors.white,
-                                              useGoogleFonts:
-                                                  GoogleFonts.asMap()
-                                                      .containsKey(
-                                                          FlutterFlowTheme.of(
-                                                                  context)
-                                                              .subtitle2Family),
+                                      ])
+                                : FutureBuilder<ChallengesRecord>(
+                                    future: ChallengesRecord.getDocumentOnce(
+                                        db.doc(widget.path!)),
+                                    builder: (context, snapshot) {
+                                      // Customize what your widget looks like when it's loading.
+                                      if (!snapshot.hasData) {
+                                        return Center(
+                                          child: SizedBox(
+                                            width: 40,
+                                            height: 40,
+                                            child: CircularProgressIndicator(
+                                              color:
+                                                  FlutterFlowTheme.of(context)
+                                                      .lineColor,
                                             ),
-                                        elevation: 10,
-                                        borderSide: BorderSide(
-                                          color: Colors.transparent,
-                                          width: 1,
-                                        ),
-                                        borderRadius: BorderRadius.circular(8),
-                                      ),
-                                    ),
-                                  ],
-                                );
-                              },
-                            ),
+                                          ),
+                                        );
+                                      }
+                                      final rowChallengesRecord =
+                                          snapshot.data!;
+                                      return Row(
+                                          mainAxisSize: MainAxisSize.max,
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.spaceBetween,
+                                          children: [
+                                            CompleteButtonWidget(
+                                              path: widget.path,
+                                            ),
+                                            FFButtonWidget(
+                                              onPressed: () async {
+                                                context.pushNamed('Invite');
+                                              },
+                                              text: 'Invite 🔥 ',
+                                              options: FFButtonOptions(
+                                                width: 110,
+                                                height: 40,
+                                                color:
+                                                    FlutterFlowTheme.of(context)
+                                                        .secondaryText,
+                                                textStyle:
+                                                    FlutterFlowTheme.of(context)
+                                                        .subtitle2
+                                                        .override(
+                                                          fontFamily:
+                                                              'Archivo Black',
+                                                          color: Colors.white,
+                                                          useGoogleFonts: GoogleFonts
+                                                                  .asMap()
+                                                              .containsKey(
+                                                                  FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .subtitle2Family),
+                                                        ),
+                                                elevation: 4,
+                                                borderSide: BorderSide(
+                                                  color: Colors.transparent,
+                                                  width: 1,
+                                                ),
+                                                borderRadius:
+                                                    BorderRadius.circular(8),
+                                              ),
+                                            ),
+                                            FFButtonWidget(
+                                              onPressed: () async {
+                                                var confirmDialogResponse =
+                                                    await showDialog<bool>(
+                                                          context: context,
+                                                          builder:
+                                                              (alertDialogContext) {
+                                                            return AlertDialog(
+                                                              title: Text(
+                                                                  'Delete This Challenge'),
+                                                              content: Text(
+                                                                  'Are you sure you want to delete this challenge?'),
+                                                              actions: [
+                                                                TextButton(
+                                                                  onPressed: () =>
+                                                                      Navigator.pop(
+                                                                          alertDialogContext,
+                                                                          false),
+                                                                  child: Text(
+                                                                      'Cancel'),
+                                                                ),
+                                                                TextButton(
+                                                                  onPressed: () =>
+                                                                      Navigator.pop(
+                                                                          alertDialogContext,
+                                                                          true),
+                                                                  child: Text(
+                                                                      'Confirm'),
+                                                                ),
+                                                              ],
+                                                            );
+                                                          },
+                                                        ) ??
+                                                        false;
+                                                if (confirmDialogResponse) {
+                                                  print("deleting");
+                                                  await db
+                                                      .doc(widget.path!)
+                                                      .delete();
+                                                  context.goNamed(
+                                                      'MyChallenges',
+                                                      extra: <String, dynamic>{
+                                                        kTransitionInfoKey:
+                                                            TransitionInfo(
+                                                          hasTransition: true,
+                                                          transitionType:
+                                                              PageTransitionType
+                                                                  .leftToRight,
+                                                          duration: Duration(
+                                                              milliseconds:
+                                                                  300),
+                                                        ),
+                                                      });
+                                                } else if (!confirmDialogResponse) {
+                                                  Navigator.pop(context);
+                                                }
+                                              },
+                                              text: 'Delete',
+                                              options: FFButtonOptions(
+                                                width: 110,
+                                                height: 40,
+                                                color:
+                                                    FlutterFlowTheme.of(context)
+                                                        .alternate,
+                                                textStyle:
+                                                    FlutterFlowTheme.of(context)
+                                                        .subtitle2
+                                                        .override(
+                                                          fontFamily:
+                                                              'Archivo Black',
+                                                          color: Colors.white,
+                                                          useGoogleFonts: GoogleFonts
+                                                                  .asMap()
+                                                              .containsKey(
+                                                                  FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .subtitle2Family),
+                                                        ),
+                                                elevation: 4,
+                                                borderSide: BorderSide(
+                                                  color: Colors.transparent,
+                                                  width: 1,
+                                                ),
+                                                borderRadius:
+                                                    BorderRadius.circular(8),
+                                              ),
+                                            ),
+                                          ]);
+                                    },
+                                  ),
                           ),
                         ),
                       ],

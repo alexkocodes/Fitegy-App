@@ -110,14 +110,11 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
                   : CreateWidget(),
             ),
             FFRoute(
-              name: 'CreateChallenge',
-              path: 'createChallenge',
-              builder: (context, params) => CreateChallengeWidget(),
-            ),
-            FFRoute(
               name: 'ChallengeCreated',
               path: 'challengeCreated',
-              builder: (context, params) => ChallengeCreatedWidget(),
+              builder: (context, params) => ChallengeCreatedWidget(
+                title: params.getParam("title", ParamType.String),
+              ),
             ),
             FFRoute(
               name: 'MyChallenges',
@@ -135,6 +132,8 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
                 details: params.getParam('details', ParamType.String),
                 comments: params.getParam('comments', ParamType.String),
                 path: params.getParam('path', ParamType.String),
+                color: params.getParam('color', ParamType.int),
+                type: params.getParam('type', ParamType.String),
               ),
             ),
             FFRoute(
@@ -142,11 +141,11 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
               path: 'challengeCompleted',
               builder: (context, params) => ChallengeCompletedWidget(),
             ),
-            FFRoute(
-              name: 'CreatePost',
-              path: 'createPost',
-              builder: (context, params) => CreatePostWidget(),
-            ),
+            // FFRoute(
+            //   name: 'CreatePost',
+            //   path: 'createPost',
+            //   builder: (context, params) => CreatePostWidget(),
+            // ),
             FFRoute(
               name: 'ChallengeSelected',
               path: 'challengeSelected',
@@ -349,7 +348,7 @@ class FFRoute {
               ? Container(
                   color: Colors.transparent,
                   child: Image.asset(
-                    'assets/images/iPhone_13_Pro_Max_-_33.png',
+                    'assets/images/15.png',
                     fit: BoxFit.cover,
                   ),
                 )

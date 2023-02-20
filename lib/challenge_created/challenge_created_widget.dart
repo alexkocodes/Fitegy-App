@@ -9,7 +9,12 @@ import 'package:flutter_animate/flutter_animate.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class ChallengeCreatedWidget extends StatefulWidget {
-  const ChallengeCreatedWidget({Key? key}) : super(key: key);
+  const ChallengeCreatedWidget({
+    Key? key,
+    this.title,
+  }) : super(key: key);
+
+  final String? title;
 
   @override
   _ChallengeCreatedWidgetState createState() => _ChallengeCreatedWidgetState();
@@ -146,7 +151,7 @@ class _ChallengeCreatedWidgetState extends State<ChallengeCreatedWidget>
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Text(
-                              'Alex\'s Fall Break Run',
+                              widget.title!,
                               style: FlutterFlowTheme.of(context)
                                   .bodyText1
                                   .override(
@@ -162,7 +167,7 @@ class _ChallengeCreatedWidgetState extends State<ChallengeCreatedWidget>
                               padding:
                                   EdgeInsetsDirectional.fromSTEB(0, 5, 0, 0),
                               child: Text(
-                                'Oct 10th, 22',
+                                dateTimeFormat('yMMMd', getCurrentTimestamp),
                                 style: FlutterFlowTheme.of(context)
                                     .bodyText1
                                     .override(

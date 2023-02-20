@@ -8,37 +8,33 @@ import 'package:flutter/scheduler.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-class ChallengeCardWidget extends StatefulWidget {
-  ChallengeCardWidget({
+import 'challenge_bottom_sheet_widget.dart';
+
+class SelectedChallengeCardWidget extends StatefulWidget {
+  SelectedChallengeCardWidget({
     Key? key,
     this.title,
     this.time,
-    this.details,
-    this.comments,
     this.path,
     this.color,
     this.index,
-    this.destination,
     this.callback,
-    this.showCheck,
   }) : super(key: key);
 
   final String? title;
   final DateTime? time;
-  final String? details;
-  final String? comments;
   final String? path;
   final int? color;
   final int? index;
-  final String? destination;
   final Function? callback;
-  final bool? showCheck;
+
   @override
-  _ChallengeCardWidgetState createState() => _ChallengeCardWidgetState();
+  _SelectedChallengeCardWidgetState createState() =>
+      _SelectedChallengeCardWidgetState();
 }
 
-class _ChallengeCardWidgetState extends State<ChallengeCardWidget>
-    with TickerProviderStateMixin {
+class _SelectedChallengeCardWidgetState
+    extends State<SelectedChallengeCardWidget> with TickerProviderStateMixin {
   Animation<double>? _scale;
   AnimationController? _controller;
 
@@ -65,7 +61,6 @@ class _ChallengeCardWidgetState extends State<ChallengeCardWidget>
       ],
     ),
   };
-  static var animationDelay;
 
   void initState() {
     super.initState();
@@ -91,148 +86,25 @@ class _ChallengeCardWidgetState extends State<ChallengeCardWidget>
 
   @override
   Widget build(BuildContext context) {
-    switch (widget.index! % 6) {
-      case 0:
-        animationDelay = 100;
-        break;
-      case 1:
-        animationDelay = 200;
-        break;
-      case 2:
-        animationDelay = 300;
-        break;
-      case 3:
-        animationDelay = 400;
-        break;
-      case 4:
-        animationDelay = 500;
-        break;
-      case 5:
-        animationDelay = 600;
-        break;
-      default:
-    }
-
-    animationsMap['containerOnPageLoadAnimation'] = AnimationInfo(
-      trigger: AnimationTrigger.onPageLoad,
-      effects: [
-        MoveEffect(
-          curve: Curves.easeInOut,
-          delay: Duration(milliseconds: animationDelay),
-          duration: 600.ms,
-          begin: Offset(0, 100),
-          end: Offset(0, 0),
-        ),
-        FadeEffect(
-          curve: Curves.easeInOut,
-          delay: Duration(milliseconds: animationDelay),
-          duration: 600.ms,
-          begin: 0,
-          end: 1,
-        ),
-      ],
-    );
-    var index = -1;
-    var path = "";
-    var title;
-    var time;
-    var color;
     return Padding(
-      padding: EdgeInsetsDirectional.fromSTEB(18, 0, 15, 20),
+      padding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 0),
       child: InkWell(
         onTap: () async {
-          if (widget.destination == "challenge details") {
-            context.pushNamed(
-              'ChallengeDetails',
-              queryParams: {
-                'title': serializeParam(
-                  widget.title,
-                  ParamType.String,
-                ),
-                'time': serializeParam(
-                  widget.time,
-                  ParamType.DateTime,
-                ),
-                'details': serializeParam(
-                  widget.details,
-                  ParamType.String,
-                ),
-                'comments': serializeParam(
-                  widget.comments,
-                  ParamType.String,
-                ),
-                'path': serializeParam(
-                  widget.path,
-                  ParamType.String,
-                ),
-                'color': serializeParam(
-                  widget.color,
-                  ParamType.int,
-                ),
-              }.withoutNulls,
-            );
-          } else {
-            setState(() {
-              if (widget.showCheck!) {
-                index = -1;
-              }
-              index = widget.index!;
-              path = widget.path!;
-              title = widget.title;
-              time = widget.time;
-              color = widget.color;
-              widget.callback!(
-                index,
-                path,
-                title,
-                time,
-                color,
-              );
-            });
-          }
-        },
-        onLongPress: () async {
-          HapticFeedback.lightImpact();
-          if (animationsMap['containerOnActionTriggerAnimation'] != null) {
-            await animationsMap['containerOnActionTriggerAnimation']!
-                .controller
-                .forward(from: 0.0);
-          }
-          if (widget.destination == "select") {
-            context.pushNamed(
-              "ChallengeDetails",
-              queryParams: {
-                'title': serializeParam(
-                  widget.title,
-                  ParamType.String,
-                ),
-                'time': serializeParam(
-                  widget.time,
-                  ParamType.DateTime,
-                ),
-                'details': serializeParam(
-                  widget.details,
-                  ParamType.String,
-                ),
-                'comments': serializeParam(
-                  widget.comments,
-                  ParamType.String,
-                ),
-                'path': serializeParam(
-                  widget.path,
-                  ParamType.String,
-                ),
-                'color': serializeParam(
-                  widget.color,
-                  ParamType.int,
-                ),
-                'type': serializeParam(
-                  widget.destination,
-                  ParamType.String,
-                ),
-              }.withoutNulls,
-            );
-          }
+          await showModalBottomSheet(
+              isScrollControlled: true,
+              backgroundColor: Colors.transparent,
+              context: context,
+              builder: (context) {
+                return Padding(
+                  padding: MediaQuery.of(context).viewInsets,
+                  child: Container(
+                    height: MediaQuery.of(context).size.height * 0.8,
+                    child: ChallengeBottomSheetWidget(),
+                  ),
+                );
+              }).then((value) {
+            widget.callback!(value);
+          });
         },
         child: Listener(
           onPointerUp: (event) {
@@ -244,8 +116,8 @@ class _ChallengeCardWidgetState extends State<ChallengeCardWidget>
           child: ScaleTransition(
             scale: _scale!,
             child: Container(
-              width: MediaQuery.of(context).size.width * 0.35,
-              height: MediaQuery.of(context).size.height * 0.2,
+              width: 160,
+              height: 100,
               decoration: BoxDecoration(
                 boxShadow: [
                   BoxShadow(
@@ -278,6 +150,7 @@ class _ChallengeCardWidgetState extends State<ChallengeCardWidget>
                           style: FlutterFlowTheme.of(context)
                               .bodyText1
                               .override(
+                                fontSize: 16,
                                 fontFamily: 'Archivo Black',
                                 color: FlutterFlowTheme.of(context)
                                     .secondaryBackground,
@@ -307,31 +180,13 @@ class _ChallengeCardWidgetState extends State<ChallengeCardWidget>
                         ),
                       ],
                     ),
-                    widget.destination == "select"
-                        ? Row(
-                            mainAxisSize: MainAxisSize.max,
-                            mainAxisAlignment: MainAxisAlignment.end,
-                            children: [
-                              Image.asset(
-                                widget.showCheck!
-                                    ? 'assets/images/check.png'
-                                    : 'assets/images/Hole.png',
-                                width: 15,
-                                fit: BoxFit.cover,
-                              ),
-                            ],
-                          )
-                        : Container(),
                   ],
                 ),
               ),
             ),
           ),
         ),
-      )
-          .animateOnPageLoad(animationsMap['containerOnPageLoadAnimation']!)
-          .animateOnActionTrigger(
-              animationsMap['containerOnActionTriggerAnimation']!),
+      ),
     );
   }
 }
