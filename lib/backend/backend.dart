@@ -8,6 +8,7 @@ import '../flutter_flow/flutter_flow_util.dart';
 import 'schema/users_record.dart';
 import 'schema/challenges_record.dart';
 import 'schema/posts_record.dart';
+import 'schema/friends_record.dart';
 import 'schema/serializers.dart';
 
 export 'dart:async' show StreamSubscription;
@@ -18,6 +19,7 @@ export 'schema/serializers.dart';
 export 'schema/users_record.dart';
 export 'schema/challenges_record.dart';
 export 'schema/posts_record.dart';
+export 'schema/friends_record.dart';
 
 /// Functions to query UsersRecords (as a Stream and as a Future).
 Future<int> queryUsersRecordCount({
@@ -177,6 +179,62 @@ Future<FFFirestorePage<PostsRecord>> queryPostsRecordPage({
     queryCollectionPage(
       PostsRecord.collection(parent),
       PostsRecord.serializer,
+      queryBuilder: queryBuilder,
+      nextPageMarker: nextPageMarker,
+      pageSize: pageSize,
+      isStream: isStream,
+    );
+
+/// Functions to query FriendsRecords (as a Stream and as a Future).
+Future<int> queryFriendsRecordCount({
+  DocumentReference? parent,
+  Query Function(Query)? queryBuilder,
+  int limit = -1,
+}) =>
+    queryCollectionCount(
+      FriendsRecord.collection(parent),
+      queryBuilder: queryBuilder,
+      limit: limit,
+    );
+
+Stream<List<FriendsRecord>> queryFriendsRecord({
+  DocumentReference? parent,
+  Query Function(Query)? queryBuilder,
+  int limit = -1,
+  bool singleRecord = false,
+}) =>
+    queryCollection(
+      FriendsRecord.collection(parent),
+      FriendsRecord.serializer,
+      queryBuilder: queryBuilder,
+      limit: limit,
+      singleRecord: singleRecord,
+    );
+
+Future<List<FriendsRecord>> queryFriendsRecordOnce({
+  DocumentReference? parent,
+  Query Function(Query)? queryBuilder,
+  int limit = -1,
+  bool singleRecord = false,
+}) =>
+    queryCollectionOnce(
+      FriendsRecord.collection(parent),
+      FriendsRecord.serializer,
+      queryBuilder: queryBuilder,
+      limit: limit,
+      singleRecord: singleRecord,
+    );
+
+Future<FFFirestorePage<FriendsRecord>> queryFriendsRecordPage({
+  DocumentReference? parent,
+  Query Function(Query)? queryBuilder,
+  DocumentSnapshot? nextPageMarker,
+  required int pageSize,
+  required bool isStream,
+}) =>
+    queryCollectionPage(
+      FriendsRecord.collection(parent),
+      FriendsRecord.serializer,
       queryBuilder: queryBuilder,
       nextPageMarker: nextPageMarker,
       pageSize: pageSize,

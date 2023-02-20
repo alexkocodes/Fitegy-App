@@ -8,6 +8,7 @@ part of 'serializers.dart';
 
 Serializers _$serializers = (new Serializers().toBuilder()
       ..add(ChallengesRecord.serializer)
+      ..add(FriendsRecord.serializer)
       ..add(PostsRecord.serializer)
       ..add(UsersRecord.serializer)
       ..addBuilderFactory(

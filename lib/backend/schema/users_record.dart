@@ -33,6 +33,8 @@ abstract class UsersRecord implements Built<UsersRecord, UsersRecordBuilder> {
   @BuiltValueField(wireName: 'display_name')
   String? get displayName;
 
+  String? get emoji;
+
   @BuiltValueField(wireName: kDocumentReferenceField)
   DocumentReference? get ffRef;
   DocumentReference get reference => ffRef!;
@@ -45,7 +47,8 @@ abstract class UsersRecord implements Built<UsersRecord, UsersRecordBuilder> {
     ..username = ''
     ..firstName = ''
     ..lastName = ''
-    ..displayName = '';
+    ..displayName = ''
+    ..emoji = '';
 
   static CollectionReference get collection =>
       FirebaseFirestore.instance.collection('users');
@@ -78,6 +81,7 @@ Map<String, dynamic> createUsersRecordData({
   String? firstName,
   String? lastName,
   String? displayName,
+  String? emoji,
 }) {
   final firestoreData = serializers.toFirestore(
     UsersRecord.serializer,
@@ -91,7 +95,8 @@ Map<String, dynamic> createUsersRecordData({
         ..username = username
         ..firstName = firstName
         ..lastName = lastName
-        ..displayName = displayName,
+        ..displayName = displayName
+        ..emoji = emoji,
     ),
   );
 

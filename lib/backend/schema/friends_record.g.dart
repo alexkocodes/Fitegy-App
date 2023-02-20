@@ -1,28 +1,29 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'users_record.dart';
+part of 'friends_record.dart';
 
 // **************************************************************************
 // BuiltValueGenerator
 // **************************************************************************
 
-Serializer<UsersRecord> _$usersRecordSerializer = new _$UsersRecordSerializer();
+Serializer<FriendsRecord> _$friendsRecordSerializer =
+    new _$FriendsRecordSerializer();
 
-class _$UsersRecordSerializer implements StructuredSerializer<UsersRecord> {
+class _$FriendsRecordSerializer implements StructuredSerializer<FriendsRecord> {
   @override
-  final Iterable<Type> types = const [UsersRecord, _$UsersRecord];
+  final Iterable<Type> types = const [FriendsRecord, _$FriendsRecord];
   @override
-  final String wireName = 'UsersRecord';
+  final String wireName = 'FriendsRecord';
 
   @override
-  Iterable<Object?> serialize(Serializers serializers, UsersRecord object,
+  Iterable<Object?> serialize(Serializers serializers, FriendsRecord object,
       {FullType specifiedType = FullType.unspecified}) {
     final result = <Object?>[];
     Object? value;
-    value = object.email;
+    value = object.displayName;
     if (value != null) {
       result
-        ..add('email')
+        ..add('display_name')
         ..add(serializers.serialize(value,
             specifiedType: const FullType(String)));
     }
@@ -40,27 +41,6 @@ class _$UsersRecordSerializer implements StructuredSerializer<UsersRecord> {
         ..add(serializers.serialize(value,
             specifiedType: const FullType(String)));
     }
-    value = object.createdTime;
-    if (value != null) {
-      result
-        ..add('created_time')
-        ..add(serializers.serialize(value,
-            specifiedType: const FullType(DateTime)));
-    }
-    value = object.phoneNumber;
-    if (value != null) {
-      result
-        ..add('phone_number')
-        ..add(serializers.serialize(value,
-            specifiedType: const FullType(String)));
-    }
-    value = object.username;
-    if (value != null) {
-      result
-        ..add('username')
-        ..add(serializers.serialize(value,
-            specifiedType: const FullType(String)));
-    }
     value = object.firstName;
     if (value != null) {
       result
@@ -75,17 +55,17 @@ class _$UsersRecordSerializer implements StructuredSerializer<UsersRecord> {
         ..add(serializers.serialize(value,
             specifiedType: const FullType(String)));
     }
-    value = object.displayName;
-    if (value != null) {
-      result
-        ..add('display_name')
-        ..add(serializers.serialize(value,
-            specifiedType: const FullType(String)));
-    }
     value = object.emoji;
     if (value != null) {
       result
         ..add('emoji')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(String)));
+    }
+    value = object.username;
+    if (value != null) {
+      result
+        ..add('username')
         ..add(serializers.serialize(value,
             specifiedType: const FullType(String)));
     }
@@ -101,9 +81,10 @@ class _$UsersRecordSerializer implements StructuredSerializer<UsersRecord> {
   }
 
   @override
-  UsersRecord deserialize(Serializers serializers, Iterable<Object?> serialized,
+  FriendsRecord deserialize(
+      Serializers serializers, Iterable<Object?> serialized,
       {FullType specifiedType = FullType.unspecified}) {
-    final result = new UsersRecordBuilder();
+    final result = new FriendsRecordBuilder();
 
     final iterator = serialized.iterator;
     while (iterator.moveNext()) {
@@ -111,8 +92,8 @@ class _$UsersRecordSerializer implements StructuredSerializer<UsersRecord> {
       iterator.moveNext();
       final Object? value = iterator.current;
       switch (key) {
-        case 'email':
-          result.email = serializers.deserialize(value,
+        case 'display_name':
+          result.displayName = serializers.deserialize(value,
               specifiedType: const FullType(String)) as String?;
           break;
         case 'photo_url':
@@ -123,18 +104,6 @@ class _$UsersRecordSerializer implements StructuredSerializer<UsersRecord> {
           result.uid = serializers.deserialize(value,
               specifiedType: const FullType(String)) as String?;
           break;
-        case 'created_time':
-          result.createdTime = serializers.deserialize(value,
-              specifiedType: const FullType(DateTime)) as DateTime?;
-          break;
-        case 'phone_number':
-          result.phoneNumber = serializers.deserialize(value,
-              specifiedType: const FullType(String)) as String?;
-          break;
-        case 'username':
-          result.username = serializers.deserialize(value,
-              specifiedType: const FullType(String)) as String?;
-          break;
         case 'first_name':
           result.firstName = serializers.deserialize(value,
               specifiedType: const FullType(String)) as String?;
@@ -143,12 +112,12 @@ class _$UsersRecordSerializer implements StructuredSerializer<UsersRecord> {
           result.lastName = serializers.deserialize(value,
               specifiedType: const FullType(String)) as String?;
           break;
-        case 'display_name':
-          result.displayName = serializers.deserialize(value,
-              specifiedType: const FullType(String)) as String?;
-          break;
         case 'emoji':
           result.emoji = serializers.deserialize(value,
+              specifiedType: const FullType(String)) as String?;
+          break;
+        case 'username':
+          result.username = serializers.deserialize(value,
               specifiedType: const FullType(String)) as String?;
           break;
         case 'Document__Reference__Field':
@@ -164,68 +133,56 @@ class _$UsersRecordSerializer implements StructuredSerializer<UsersRecord> {
   }
 }
 
-class _$UsersRecord extends UsersRecord {
+class _$FriendsRecord extends FriendsRecord {
   @override
-  final String? email;
+  final String? displayName;
   @override
   final String? photoUrl;
   @override
   final String? uid;
   @override
-  final DateTime? createdTime;
-  @override
-  final String? phoneNumber;
-  @override
-  final String? username;
-  @override
   final String? firstName;
   @override
   final String? lastName;
   @override
-  final String? displayName;
-  @override
   final String? emoji;
+  @override
+  final String? username;
   @override
   final DocumentReference<Object?>? ffRef;
 
-  factory _$UsersRecord([void Function(UsersRecordBuilder)? updates]) =>
-      (new UsersRecordBuilder()..update(updates))._build();
+  factory _$FriendsRecord([void Function(FriendsRecordBuilder)? updates]) =>
+      (new FriendsRecordBuilder()..update(updates))._build();
 
-  _$UsersRecord._(
-      {this.email,
+  _$FriendsRecord._(
+      {this.displayName,
       this.photoUrl,
       this.uid,
-      this.createdTime,
-      this.phoneNumber,
-      this.username,
       this.firstName,
       this.lastName,
-      this.displayName,
       this.emoji,
+      this.username,
       this.ffRef})
       : super._();
 
   @override
-  UsersRecord rebuild(void Function(UsersRecordBuilder) updates) =>
+  FriendsRecord rebuild(void Function(FriendsRecordBuilder) updates) =>
       (toBuilder()..update(updates)).build();
 
   @override
-  UsersRecordBuilder toBuilder() => new UsersRecordBuilder()..replace(this);
+  FriendsRecordBuilder toBuilder() => new FriendsRecordBuilder()..replace(this);
 
   @override
   bool operator ==(Object other) {
     if (identical(other, this)) return true;
-    return other is UsersRecord &&
-        email == other.email &&
+    return other is FriendsRecord &&
+        displayName == other.displayName &&
         photoUrl == other.photoUrl &&
         uid == other.uid &&
-        createdTime == other.createdTime &&
-        phoneNumber == other.phoneNumber &&
-        username == other.username &&
         firstName == other.firstName &&
         lastName == other.lastName &&
-        displayName == other.displayName &&
         emoji == other.emoji &&
+        username == other.username &&
         ffRef == other.ffRef;
   }
 
@@ -237,46 +194,38 @@ class _$UsersRecord extends UsersRecord {
                 $jc(
                     $jc(
                         $jc(
-                            $jc(
-                                $jc(
-                                    $jc(
-                                        $jc($jc(0, email.hashCode),
-                                            photoUrl.hashCode),
-                                        uid.hashCode),
-                                    createdTime.hashCode),
-                                phoneNumber.hashCode),
-                            username.hashCode),
+                            $jc($jc(0, displayName.hashCode),
+                                photoUrl.hashCode),
+                            uid.hashCode),
                         firstName.hashCode),
                     lastName.hashCode),
-                displayName.hashCode),
-            emoji.hashCode),
+                emoji.hashCode),
+            username.hashCode),
         ffRef.hashCode));
   }
 
   @override
   String toString() {
-    return (newBuiltValueToStringHelper(r'UsersRecord')
-          ..add('email', email)
+    return (newBuiltValueToStringHelper(r'FriendsRecord')
+          ..add('displayName', displayName)
           ..add('photoUrl', photoUrl)
           ..add('uid', uid)
-          ..add('createdTime', createdTime)
-          ..add('phoneNumber', phoneNumber)
-          ..add('username', username)
           ..add('firstName', firstName)
           ..add('lastName', lastName)
-          ..add('displayName', displayName)
           ..add('emoji', emoji)
+          ..add('username', username)
           ..add('ffRef', ffRef))
         .toString();
   }
 }
 
-class UsersRecordBuilder implements Builder<UsersRecord, UsersRecordBuilder> {
-  _$UsersRecord? _$v;
+class FriendsRecordBuilder
+    implements Builder<FriendsRecord, FriendsRecordBuilder> {
+  _$FriendsRecord? _$v;
 
-  String? _email;
-  String? get email => _$this._email;
-  set email(String? email) => _$this._email = email;
+  String? _displayName;
+  String? get displayName => _$this._displayName;
+  set displayName(String? displayName) => _$this._displayName = displayName;
 
   String? _photoUrl;
   String? get photoUrl => _$this._photoUrl;
@@ -286,18 +235,6 @@ class UsersRecordBuilder implements Builder<UsersRecord, UsersRecordBuilder> {
   String? get uid => _$this._uid;
   set uid(String? uid) => _$this._uid = uid;
 
-  DateTime? _createdTime;
-  DateTime? get createdTime => _$this._createdTime;
-  set createdTime(DateTime? createdTime) => _$this._createdTime = createdTime;
-
-  String? _phoneNumber;
-  String? get phoneNumber => _$this._phoneNumber;
-  set phoneNumber(String? phoneNumber) => _$this._phoneNumber = phoneNumber;
-
-  String? _username;
-  String? get username => _$this._username;
-  set username(String? username) => _$this._username = username;
-
   String? _firstName;
   String? get firstName => _$this._firstName;
   set firstName(String? firstName) => _$this._firstName = firstName;
@@ -306,35 +243,32 @@ class UsersRecordBuilder implements Builder<UsersRecord, UsersRecordBuilder> {
   String? get lastName => _$this._lastName;
   set lastName(String? lastName) => _$this._lastName = lastName;
 
-  String? _displayName;
-  String? get displayName => _$this._displayName;
-  set displayName(String? displayName) => _$this._displayName = displayName;
-
   String? _emoji;
   String? get emoji => _$this._emoji;
   set emoji(String? emoji) => _$this._emoji = emoji;
+
+  String? _username;
+  String? get username => _$this._username;
+  set username(String? username) => _$this._username = username;
 
   DocumentReference<Object?>? _ffRef;
   DocumentReference<Object?>? get ffRef => _$this._ffRef;
   set ffRef(DocumentReference<Object?>? ffRef) => _$this._ffRef = ffRef;
 
-  UsersRecordBuilder() {
-    UsersRecord._initializeBuilder(this);
+  FriendsRecordBuilder() {
+    FriendsRecord._initializeBuilder(this);
   }
 
-  UsersRecordBuilder get _$this {
+  FriendsRecordBuilder get _$this {
     final $v = _$v;
     if ($v != null) {
-      _email = $v.email;
+      _displayName = $v.displayName;
       _photoUrl = $v.photoUrl;
       _uid = $v.uid;
-      _createdTime = $v.createdTime;
-      _phoneNumber = $v.phoneNumber;
-      _username = $v.username;
       _firstName = $v.firstName;
       _lastName = $v.lastName;
-      _displayName = $v.displayName;
       _emoji = $v.emoji;
+      _username = $v.username;
       _ffRef = $v.ffRef;
       _$v = null;
     }
@@ -342,32 +276,29 @@ class UsersRecordBuilder implements Builder<UsersRecord, UsersRecordBuilder> {
   }
 
   @override
-  void replace(UsersRecord other) {
+  void replace(FriendsRecord other) {
     ArgumentError.checkNotNull(other, 'other');
-    _$v = other as _$UsersRecord;
+    _$v = other as _$FriendsRecord;
   }
 
   @override
-  void update(void Function(UsersRecordBuilder)? updates) {
+  void update(void Function(FriendsRecordBuilder)? updates) {
     if (updates != null) updates(this);
   }
 
   @override
-  UsersRecord build() => _build();
+  FriendsRecord build() => _build();
 
-  _$UsersRecord _build() {
+  _$FriendsRecord _build() {
     final _$result = _$v ??
-        new _$UsersRecord._(
-            email: email,
+        new _$FriendsRecord._(
+            displayName: displayName,
             photoUrl: photoUrl,
             uid: uid,
-            createdTime: createdTime,
-            phoneNumber: phoneNumber,
-            username: username,
             firstName: firstName,
             lastName: lastName,
-            displayName: displayName,
             emoji: emoji,
+            username: username,
             ffRef: ffRef);
     replace(_$result);
     return _$result;
