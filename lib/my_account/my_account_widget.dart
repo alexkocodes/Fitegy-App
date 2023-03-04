@@ -51,40 +51,46 @@ class _MyAccountWidgetState extends State<MyAccountWidget> {
             mainAxisSize: MainAxisSize.max,
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Row(
-                mainAxisSize: MainAxisSize.max,
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Container(
-                    width: 100.0,
-                    height: 100.0,
-                    decoration: BoxDecoration(
-                      color: Color(0xFFDBE2E7),
-                      shape: BoxShape.circle,
-                    ),
-                    child: Padding(
-                      padding:
-                          EdgeInsetsDirectional.fromSTEB(2.0, 2.0, 2.0, 2.0),
-                      child: AuthUserStreamWidget(
-                        builder: (context) => Container(
-                          width: 90.0,
-                          height: 90.0,
-                          clipBehavior: Clip.antiAlias,
-                          decoration: BoxDecoration(
-                            shape: BoxShape.circle,
-                          ),
-                          child: CachedNetworkImage(
-                            imageUrl: valueOrDefault<String>(
-                              currentUserPhoto,
-                              'https://images.unsplash.com/photo-1574158622682-e40e69881006?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2333&q=80',
-                            ),
-                            fit: BoxFit.cover,
-                          ),
+              Padding(
+                padding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 30),
+                child: Text(
+                  currentUserDisplayName,
+                  textAlign: TextAlign.center,
+                  style: FlutterFlowTheme.of(context).title1.override(
+                        fontFamily: 'Archivo Black',
+                        fontSize: 24,
+                        useGoogleFonts: GoogleFonts.asMap().containsKey(
+                            FlutterFlowTheme.of(context).title1Family),
+                      ),
+                ),
+              ),
+              Container(
+                width: 100.0,
+                height: 100.0,
+                decoration: BoxDecoration(
+                  color: Color(0xFFDBE2E7),
+                  shape: BoxShape.circle,
+                ),
+                child: Padding(
+                  padding: EdgeInsetsDirectional.fromSTEB(2.0, 2.0, 2.0, 2.0),
+                  child: AuthUserStreamWidget(
+                    builder: (context) => Container(
+                      width: 90.0,
+                      height: 90.0,
+                      clipBehavior: Clip.antiAlias,
+                      decoration: BoxDecoration(
+                        shape: BoxShape.circle,
+                      ),
+                      child: CachedNetworkImage(
+                        imageUrl: valueOrDefault<String>(
+                          currentUserPhoto,
+                          'https://images.unsplash.com/photo-1574158622682-e40e69881006?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2333&q=80',
                         ),
+                        fit: BoxFit.cover,
                       ),
                     ),
                   ),
-                ],
+                ),
               ),
               Padding(
                 padding: EdgeInsetsDirectional.fromSTEB(0.0, 12.0, 0.0, 16.0),
