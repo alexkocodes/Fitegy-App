@@ -18,6 +18,15 @@ class SelectedMedia {
   final Uint8List bytes;
 }
 
+class MediaDimensions {
+  const MediaDimensions({
+    this.height,
+    this.width,
+  });
+  final double? height;
+  final double? width;
+}
+
 enum MediaSource {
   photoGallery,
   videoGallery,

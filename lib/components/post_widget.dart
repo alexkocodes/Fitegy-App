@@ -88,7 +88,7 @@ class _PostWidgetState extends State<PostWidget> {
                             Align(
                               alignment: AlignmentDirectional(0, 0),
                               child: AuthUserStreamWidget(
-                                child: Container(
+                                builder: (context) => Container(
                                   clipBehavior: Clip.antiAlias,
                                   decoration: BoxDecoration(
                                     shape: BoxShape.circle,
