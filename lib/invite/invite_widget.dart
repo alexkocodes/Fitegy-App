@@ -47,6 +47,16 @@ class _InviteWidgetState extends State<InviteWidget> {
 
   @override
   Widget build(BuildContext context) {
+    final db = FirebaseFirestore.instance;
+    Future<String?> getImageURL(String uid) async {
+      final imageURL = await db
+          .collection("user")
+          .doc(uid)
+          .get()
+          .then((value) => value.data()!['photo_url']);
+      return imageURL;
+    }
+
     return Scaffold(
       key: scaffoldKey,
       backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
@@ -236,6 +246,7 @@ class _InviteWidgetState extends State<InviteWidget> {
                             itemBuilder: (context, _, listViewIndex) {
                               final listViewFriendsRecord = _model
                                   .pagingController!.itemList![listViewIndex];
+
                               return UserCardSmallWidget(
                                 key: Key(
                                     'Key046_${listViewIndex}_of_${_model.pagingController!.itemList!.length}'),
