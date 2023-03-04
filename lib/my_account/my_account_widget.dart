@@ -27,7 +27,6 @@ class _MyAccountWidgetState extends State<MyAccountWidget> {
   late MyAccountModel _model;
 
   final scaffoldKey = GlobalKey<ScaffoldState>();
-  final _unfocusNode = FocusNode();
 
   @override
   void initState() {
@@ -38,8 +37,6 @@ class _MyAccountWidgetState extends State<MyAccountWidget> {
   @override
   void dispose() {
     _model.dispose();
-
-    _unfocusNode.dispose();
     super.dispose();
   }
 
@@ -50,7 +47,6 @@ class _MyAccountWidgetState extends State<MyAccountWidget> {
       backgroundColor: FlutterFlowTheme.of(context).secondaryBackground,
       body: SafeArea(
         child: GestureDetector(
-          onTap: () => FocusScope.of(context).requestFocus(_unfocusNode),
           child: Column(
             mainAxisSize: MainAxisSize.max,
             mainAxisAlignment: MainAxisAlignment.center,

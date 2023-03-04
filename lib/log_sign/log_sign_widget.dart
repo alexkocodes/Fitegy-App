@@ -1955,12 +1955,12 @@ class _LogSignWidgetState extends State<LogSignWidget>
                                                     Duration(milliseconds: 300),
                                                 curve: Curves.ease,
                                               );
-                                              await Future.delayed(
-                                                  const Duration(
-                                                      milliseconds: 10000));
+                                              // await Future.delayed(
+                                              //     const Duration(
+                                              //         milliseconds: 10000));
 
-                                              context.goNamedAuth(
-                                                  'HomePage', mounted);
+                                              // context.goNamedAuth(
+                                              //     'HomePage', mounted);
                                             },
                                             text: 'Create!',
                                             options: FFButtonOptions(
