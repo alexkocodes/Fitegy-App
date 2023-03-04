@@ -1,6 +1,6 @@
-import '../flutter_flow/flutter_flow_animations.dart';
-import '../flutter_flow/flutter_flow_theme.dart';
-import '../flutter_flow/flutter_flow_util.dart';
+import '/flutter_flow/flutter_flow_animations.dart';
+import '/flutter_flow/flutter_flow_theme.dart';
+import '/flutter_flow/flutter_flow_util.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:flutter_animate/flutter_animate.dart';
@@ -44,7 +44,7 @@ class _ChallengeCardWidgetState extends State<ChallengeCardWidget>
           curve: Curves.easeInOut,
           delay: 0.ms,
           duration: 260.ms,
-          begin: 1,
+          begin: 1.0,
           end: 0.8,
         ),
         ScaleEffect(
@@ -52,7 +52,7 @@ class _ChallengeCardWidgetState extends State<ChallengeCardWidget>
           delay: 300.ms,
           duration: 600.ms,
           begin: 0.8,
-          end: 1,
+          end: 1.0,
         ),
       ],
     ),
@@ -89,7 +89,7 @@ class _ChallengeCardWidgetState extends State<ChallengeCardWidget>
     context.watch<FFAppState>();
 
     return Padding(
-      padding: EdgeInsetsDirectional.fromSTEB(15, 0, 15, 0),
+      padding: EdgeInsetsDirectional.fromSTEB(15.0, 0.0, 15.0, 0.0),
       child: InkWell(
         onTap: () async {
           context.pushNamed(
@@ -128,21 +128,21 @@ class _ChallengeCardWidgetState extends State<ChallengeCardWidget>
           decoration: BoxDecoration(
             boxShadow: [
               BoxShadow(
-                blurRadius: 12,
+                blurRadius: 12.0,
                 color: Color(0x33000000),
-                offset: Offset(0, 5),
+                offset: Offset(0.0, 5.0),
               )
             ],
             gradient: LinearGradient(
               colors: [Color(0xFFE6A0FF), Color(0xFF9AE1FF)],
-              stops: [0, 1],
-              begin: AlignmentDirectional(-0.34, -1),
-              end: AlignmentDirectional(0.34, 1),
+              stops: [0.0, 1.0],
+              begin: AlignmentDirectional(-0.34, -1.0),
+              end: AlignmentDirectional(0.34, 1.0),
             ),
-            borderRadius: BorderRadius.circular(20),
+            borderRadius: BorderRadius.circular(20.0),
           ),
           child: Padding(
-            padding: EdgeInsetsDirectional.fromSTEB(15, 15, 15, 15),
+            padding: EdgeInsetsDirectional.fromSTEB(15.0, 15.0, 15.0, 15.0),
             child: Column(
               mainAxisSize: MainAxisSize.max,
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -163,7 +163,8 @@ class _ChallengeCardWidgetState extends State<ChallengeCardWidget>
                           ),
                     ),
                     Padding(
-                      padding: EdgeInsetsDirectional.fromSTEB(0, 5, 0, 0),
+                      padding:
+                          EdgeInsetsDirectional.fromSTEB(0.0, 5.0, 0.0, 0.0),
                       child: Text(
                         dateTimeFormat('yMMMd', widget.time),
                         style: FlutterFlowTheme.of(context).bodyText1.override(
@@ -171,7 +172,7 @@ class _ChallengeCardWidgetState extends State<ChallengeCardWidget>
                                   FlutterFlowTheme.of(context).bodyText1Family,
                               color:
                                   FlutterFlowTheme.of(context).primaryBtnText,
-                              fontSize: 12,
+                              fontSize: 12.0,
                               fontWeight: FontWeight.normal,
                               useGoogleFonts: GoogleFonts.asMap().containsKey(
                                   FlutterFlowTheme.of(context).bodyText1Family),

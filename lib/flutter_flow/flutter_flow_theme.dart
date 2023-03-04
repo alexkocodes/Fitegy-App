@@ -33,6 +33,12 @@ abstract class FlutterFlowTheme {
   late Color customColor4;
   late Color white;
   late Color background;
+  late Color grayIcon;
+  late Color gray200;
+  late Color gray600;
+  late Color black600;
+  late Color tertiary400;
+  late Color textColor;
 
   String get title1Family => typography.title1Family;
   TextStyle get title1 => typography.title1;
@@ -84,6 +90,12 @@ class LightModeTheme extends FlutterFlowTheme {
   late Color customColor4 = Color(0xFF090F13);
   late Color white = Color(0xFFFFFFFF);
   late Color background = Color(0xFF1D2429);
+  late Color grayIcon = Color(0xFF95A1AC);
+  late Color gray200 = Color(0xFFDBE2E7);
+  late Color gray600 = Color(0xFF262D34);
+  late Color black600 = Color(0xFF090F13);
+  late Color tertiary400 = Color(0xFF39D2C0);
+  late Color textColor = Color(0xFF1E2429);
 }
 
 abstract class Typography {
@@ -113,49 +125,49 @@ class MobileTypography extends Typography {
         fontFamily: 'Inter',
         color: theme.primaryText,
         fontWeight: FontWeight.w600,
-        fontSize: 24,
+        fontSize: 24.0,
       );
   String get title2Family => 'Inter';
   TextStyle get title2 => TextStyle(
         fontFamily: 'Inter',
         color: theme.secondaryText,
         fontWeight: FontWeight.w600,
-        fontSize: 22,
+        fontSize: 22.0,
       );
   String get title3Family => 'Inter';
   TextStyle get title3 => TextStyle(
         fontFamily: 'Inter',
         color: theme.primaryText,
         fontWeight: FontWeight.w600,
-        fontSize: 20,
+        fontSize: 20.0,
       );
   String get subtitle1Family => 'Inter';
   TextStyle get subtitle1 => TextStyle(
         fontFamily: 'Inter',
         color: theme.primaryText,
         fontWeight: FontWeight.w600,
-        fontSize: 18,
+        fontSize: 18.0,
       );
   String get subtitle2Family => 'Inter';
   TextStyle get subtitle2 => TextStyle(
         fontFamily: 'Inter',
         color: theme.secondaryText,
         fontWeight: FontWeight.w600,
-        fontSize: 16,
+        fontSize: 16.0,
       );
   String get bodyText1Family => 'Inter';
   TextStyle get bodyText1 => TextStyle(
         fontFamily: 'Inter',
         color: theme.primaryText,
         fontWeight: FontWeight.w500,
-        fontSize: 14,
+        fontSize: 14.0,
       );
   String get bodyText2Family => 'Inter';
   TextStyle get bodyText2 => TextStyle(
         fontFamily: 'Inter',
         color: theme.secondaryText,
         fontWeight: FontWeight.w300,
-        fontSize: 14,
+        fontSize: 14.0,
       );
 }
 
@@ -169,49 +181,49 @@ class TabletTypography extends Typography {
         fontFamily: 'Inter',
         color: theme.primaryText,
         fontWeight: FontWeight.w600,
-        fontSize: 24,
+        fontSize: 24.0,
       );
   String get title2Family => 'Inter';
   TextStyle get title2 => TextStyle(
         fontFamily: 'Inter',
         color: theme.secondaryText,
         fontWeight: FontWeight.w600,
-        fontSize: 22,
+        fontSize: 22.0,
       );
   String get title3Family => 'Inter';
   TextStyle get title3 => TextStyle(
         fontFamily: 'Inter',
         color: theme.primaryText,
         fontWeight: FontWeight.w600,
-        fontSize: 20,
+        fontSize: 20.0,
       );
   String get subtitle1Family => 'Inter';
   TextStyle get subtitle1 => TextStyle(
         fontFamily: 'Inter',
         color: theme.primaryText,
         fontWeight: FontWeight.w500,
-        fontSize: 18,
+        fontSize: 18.0,
       );
   String get subtitle2Family => 'Inter';
   TextStyle get subtitle2 => TextStyle(
         fontFamily: 'Inter',
         color: theme.secondaryText,
         fontWeight: FontWeight.w500,
-        fontSize: 16,
+        fontSize: 16.0,
       );
   String get bodyText1Family => 'Inter';
   TextStyle get bodyText1 => TextStyle(
         fontFamily: 'Inter',
         color: theme.primaryText,
         fontWeight: FontWeight.w500,
-        fontSize: 14,
+        fontSize: 14.0,
       );
   String get bodyText2Family => 'Inter';
   TextStyle get bodyText2 => TextStyle(
         fontFamily: 'Inter',
         color: theme.secondaryText,
         fontWeight: FontWeight.w300,
-        fontSize: 14,
+        fontSize: 14.0,
       );
 }
 
@@ -225,49 +237,49 @@ class DesktopTypography extends Typography {
         fontFamily: 'Inter',
         color: theme.primaryText,
         fontWeight: FontWeight.w600,
-        fontSize: 24,
+        fontSize: 24.0,
       );
   String get title2Family => 'Inter';
   TextStyle get title2 => TextStyle(
         fontFamily: 'Inter',
         color: theme.secondaryText,
         fontWeight: FontWeight.w600,
-        fontSize: 22,
+        fontSize: 22.0,
       );
   String get title3Family => 'Inter';
   TextStyle get title3 => TextStyle(
         fontFamily: 'Inter',
         color: theme.primaryText,
         fontWeight: FontWeight.w600,
-        fontSize: 20,
+        fontSize: 20.0,
       );
   String get subtitle1Family => 'Inter';
   TextStyle get subtitle1 => TextStyle(
         fontFamily: 'Inter',
         color: theme.primaryText,
         fontWeight: FontWeight.w500,
-        fontSize: 18,
+        fontSize: 18.0,
       );
   String get subtitle2Family => 'Inter';
   TextStyle get subtitle2 => TextStyle(
         fontFamily: 'Inter',
         color: theme.secondaryText,
         fontWeight: FontWeight.w500,
-        fontSize: 16,
+        fontSize: 16.0,
       );
   String get bodyText1Family => 'Inter';
   TextStyle get bodyText1 => TextStyle(
         fontFamily: 'Inter',
         color: theme.primaryText,
         fontWeight: FontWeight.w500,
-        fontSize: 14,
+        fontSize: 14.0,
       );
   String get bodyText2Family => 'Inter';
   TextStyle get bodyText2 => TextStyle(
         fontFamily: 'Inter',
         color: theme.secondaryText,
         fontWeight: FontWeight.w300,
-        fontSize: 14,
+        fontSize: 14.0,
       );
 }
 

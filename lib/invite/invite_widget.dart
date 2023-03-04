@@ -1,9 +1,9 @@
-import '../backend/backend.dart';
-import '../components/user_card_small_widget.dart';
-import '../flutter_flow/flutter_flow_icon_button.dart';
-import '../flutter_flow/flutter_flow_theme.dart';
-import '../flutter_flow/flutter_flow_util.dart';
-import '../flutter_flow/flutter_flow_widgets.dart';
+import '/backend/backend.dart';
+import '/components/user_card_small_widget.dart';
+import '/flutter_flow/flutter_flow_icon_button.dart';
+import '/flutter_flow/flutter_flow_theme.dart';
+import '/flutter_flow/flutter_flow_util.dart';
+import '/flutter_flow/flutter_flow_widgets.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -56,13 +56,13 @@ class _InviteWidgetState extends State<InviteWidget> {
         automaticallyImplyLeading: false,
         leading: FlutterFlowIconButton(
           borderColor: Colors.transparent,
-          borderRadius: 30,
-          borderWidth: 1,
-          buttonSize: 60,
+          borderRadius: 30.0,
+          borderWidth: 1.0,
+          buttonSize: 60.0,
           icon: Icon(
             Icons.keyboard_arrow_left_outlined,
             color: FlutterFlowTheme.of(context).primaryColor,
-            size: 30,
+            size: 30.0,
           ),
           onPressed: () async {
             context.pop();
@@ -70,7 +70,7 @@ class _InviteWidgetState extends State<InviteWidget> {
         ),
         actions: [],
         centerTitle: false,
-        elevation: 0,
+        elevation: 0.0,
       ),
       body: SafeArea(
         child: GestureDetector(
@@ -80,7 +80,7 @@ class _InviteWidgetState extends State<InviteWidget> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Padding(
-                padding: EdgeInsetsDirectional.fromSTEB(30, 0, 30, 20),
+                padding: EdgeInsetsDirectional.fromSTEB(30.0, 0.0, 30.0, 20.0),
                 child: Column(
                   mainAxisSize: MainAxisSize.min,
                   crossAxisAlignment: CrossAxisAlignment.center,
@@ -91,22 +91,23 @@ class _InviteWidgetState extends State<InviteWidget> {
                       textAlign: TextAlign.center,
                       style: FlutterFlowTheme.of(context).title1.override(
                             fontFamily: 'Archivo Black',
-                            fontSize: 24,
+                            fontSize: 24.0,
                             useGoogleFonts: GoogleFonts.asMap().containsKey(
                                 FlutterFlowTheme.of(context).title1Family),
                           ),
                     )),
                     Padding(
-                      padding: EdgeInsetsDirectional.fromSTEB(0, 20, 0, 0),
+                      padding:
+                          EdgeInsetsDirectional.fromSTEB(0.0, 20.0, 0.0, 0.0),
                       child: Container(
-                        width: MediaQuery.of(context).size.width,
+                        width: MediaQuery.of(context).size.width * 1.0,
                         decoration: BoxDecoration(
                           color: Color(0xFFF4F4F4),
-                          borderRadius: BorderRadius.circular(40),
+                          borderRadius: BorderRadius.circular(40.0),
                         ),
                         child: Padding(
-                          padding:
-                              EdgeInsetsDirectional.fromSTEB(24, 10, 16, 10),
+                          padding: EdgeInsetsDirectional.fromSTEB(
+                              24.0, 10.0, 16.0, 10.0),
                           child: Row(
                             mainAxisSize: MainAxisSize.max,
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -117,7 +118,7 @@ class _InviteWidgetState extends State<InviteWidget> {
                                   Icon(
                                     Icons.search_outlined,
                                     color: Color(0xFFCFCFCF),
-                                    size: 28,
+                                    size: 28.0,
                                   ),
                                   Text(
                                     'Search ',
@@ -126,7 +127,7 @@ class _InviteWidgetState extends State<InviteWidget> {
                                         .override(
                                           fontFamily: 'Inter',
                                           color: Color(0xFFCFCFCF),
-                                          fontSize: 23,
+                                          fontSize: 23.0,
                                           fontWeight: FontWeight.normal,
                                           useGoogleFonts: GoogleFonts.asMap()
                                               .containsKey(
@@ -148,10 +149,11 @@ class _InviteWidgetState extends State<InviteWidget> {
                 child: Container(
                   height: double.infinity,
                   child: Stack(
-                    alignment: AlignmentDirectional(0, 1),
+                    alignment: AlignmentDirectional(0.0, 1.0),
                     children: [
                       Padding(
-                        padding: EdgeInsetsDirectional.fromSTEB(30, 0, 30, 0),
+                        padding: EdgeInsetsDirectional.fromSTEB(
+                            30.0, 0.0, 30.0, 0.0),
                         child: PagedListView<DocumentSnapshot<Object?>?,
                             FriendsRecord>(
                           pagingController: () {
@@ -225,8 +227,8 @@ class _InviteWidgetState extends State<InviteWidget> {
                             // Customize what your widget looks like when it's loading the first page.
                             firstPageProgressIndicatorBuilder: (_) => Center(
                               child: SizedBox(
-                                width: 40,
-                                height: 40,
+                                width: 40.0,
+                                height: 40.0,
                                 child: CircularProgressIndicator(
                                   color: FlutterFlowTheme.of(context)
                                       .primaryBtnText,
@@ -256,16 +258,16 @@ class _InviteWidgetState extends State<InviteWidget> {
                               Color(0x00FFFFFF),
                               FlutterFlowTheme.of(context).primaryBackground
                             ],
-                            stops: [0, 1],
-                            begin: AlignmentDirectional(0, -1),
-                            end: AlignmentDirectional(0, 1),
+                            stops: [0.0, 1.0],
+                            begin: AlignmentDirectional(0.0, -1.0),
+                            end: AlignmentDirectional(0, 1.0),
                           ),
                         ),
                         child: Align(
-                          alignment: AlignmentDirectional(0.01, 1),
+                          alignment: AlignmentDirectional(0.01, 1.0),
                           child: Padding(
-                            padding:
-                                EdgeInsetsDirectional.fromSTEB(30, 0, 30, 80),
+                            padding: EdgeInsetsDirectional.fromSTEB(
+                                30.0, 0.0, 30.0, 80.0),
                             child: Row(
                               mainAxisSize: MainAxisSize.max,
                               mainAxisAlignment: MainAxisAlignment.end,
@@ -274,7 +276,7 @@ class _InviteWidgetState extends State<InviteWidget> {
                                 Icon(
                                   Icons.arrow_right_alt,
                                   color: Colors.black,
-                                  size: 40,
+                                  size: 40.0,
                                 ),
                                 FFButtonWidget(
                                   onPressed: () async {
@@ -282,8 +284,12 @@ class _InviteWidgetState extends State<InviteWidget> {
                                   },
                                   text: 'Send',
                                   options: FFButtonOptions(
-                                    width: 130,
-                                    height: 40,
+                                    width: 130.0,
+                                    height: 40.0,
+                                    padding: EdgeInsetsDirectional.fromSTEB(
+                                        0.0, 0.0, 0.0, 0.0),
+                                    iconPadding: EdgeInsetsDirectional.fromSTEB(
+                                        0.0, 0.0, 0.0, 0.0),
                                     color: FlutterFlowTheme.of(context)
                                         .secondaryText,
                                     textStyle: FlutterFlowTheme.of(context)
@@ -296,12 +302,12 @@ class _InviteWidgetState extends State<InviteWidget> {
                                                   FlutterFlowTheme.of(context)
                                                       .subtitle2Family),
                                         ),
-                                    elevation: 10,
+                                    elevation: 10.0,
                                     borderSide: BorderSide(
                                       color: Colors.transparent,
-                                      width: 1,
+                                      width: 1.0,
                                     ),
-                                    borderRadius: BorderRadius.circular(8),
+                                    borderRadius: BorderRadius.circular(8.0),
                                   ),
                                 ),
                               ],

@@ -1,5 +1,5 @@
-import '../flutter_flow/flutter_flow_theme.dart';
-import '../flutter_flow/flutter_flow_util.dart';
+import '/flutter_flow/flutter_flow_theme.dart';
+import '/flutter_flow/flutter_flow_util.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
@@ -50,15 +50,15 @@ class _UserCardSmallWidgetState extends State<UserCardSmallWidget> {
     context.watch<FFAppState>();
 
     return Padding(
-      padding: EdgeInsetsDirectional.fromSTEB(0, 20, 0, 0),
+      padding: EdgeInsetsDirectional.fromSTEB(0.0, 20.0, 0.0, 0.0),
       child: Container(
-        width: MediaQuery.of(context).size.width,
+        width: MediaQuery.of(context).size.width * 1.0,
         decoration: BoxDecoration(
           color: Color(0xFFF4F4F4),
-          borderRadius: BorderRadius.circular(10),
+          borderRadius: BorderRadius.circular(10.0),
         ),
         child: Padding(
-          padding: EdgeInsetsDirectional.fromSTEB(10, 5, 30, 5),
+          padding: EdgeInsetsDirectional.fromSTEB(10.0, 5.0, 30.0, 5.0),
           child: Row(
             mainAxisSize: MainAxisSize.max,
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -69,13 +69,14 @@ class _UserCardSmallWidgetState extends State<UserCardSmallWidget> {
                   Icon(
                     Icons.check_circle,
                     color: Color(0x004791FF),
-                    size: 30,
+                    size: 30.0,
                   ),
                   Padding(
-                    padding: EdgeInsetsDirectional.fromSTEB(10, 0, 0, 0),
+                    padding:
+                        EdgeInsetsDirectional.fromSTEB(10.0, 0.0, 0.0, 0.0),
                     child: Container(
-                      width: 36,
-                      height: 36,
+                      width: 36.0,
+                      height: 36.0,
                       clipBehavior: Clip.antiAlias,
                       decoration: BoxDecoration(
                         shape: BoxShape.circle,
@@ -86,14 +87,15 @@ class _UserCardSmallWidgetState extends State<UserCardSmallWidget> {
                     ),
                   ),
                   Padding(
-                    padding: EdgeInsetsDirectional.fromSTEB(10, 0, 0, 0),
+                    padding:
+                        EdgeInsetsDirectional.fromSTEB(10.0, 0.0, 0.0, 0.0),
                     child: SelectionArea(
                         child: Text(
                       widget.username,
                       style: FlutterFlowTheme.of(context).bodyText1.override(
                             fontFamily: 'Inter',
                             color: Color(0xFFCFCFCF),
-                            fontSize: 17,
+                            fontSize: 17.0,
                             fontWeight: FontWeight.normal,
                             useGoogleFonts: GoogleFonts.asMap().containsKey(
                                 FlutterFlowTheme.of(context).bodyText1Family),
@@ -107,7 +109,7 @@ class _UserCardSmallWidgetState extends State<UserCardSmallWidget> {
                 widget.emoji!,
                 style: FlutterFlowTheme.of(context).bodyText1.override(
                       fontFamily: FlutterFlowTheme.of(context).bodyText1Family,
-                      fontSize: 20,
+                      fontSize: 20.0,
                       useGoogleFonts: GoogleFonts.asMap().containsKey(
                           FlutterFlowTheme.of(context).bodyText1Family),
                     ),

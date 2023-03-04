@@ -1,9 +1,9 @@
-import '../components/challenge_bottom_sheet_widget.dart';
-import '../flutter_flow/flutter_flow_animations.dart';
-import '../flutter_flow/flutter_flow_icon_button.dart';
-import '../flutter_flow/flutter_flow_theme.dart';
-import '../flutter_flow/flutter_flow_util.dart';
-import '../flutter_flow/flutter_flow_widgets.dart';
+import '/components/challenge_bottom_sheet_widget.dart';
+import '/flutter_flow/flutter_flow_animations.dart';
+import '/flutter_flow/flutter_flow_icon_button.dart';
+import '/flutter_flow/flutter_flow_theme.dart';
+import '/flutter_flow/flutter_flow_util.dart';
+import '/flutter_flow/flutter_flow_widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:flutter_animate/flutter_animate.dart';
@@ -35,15 +35,15 @@ class _CreatePostV2WidgetState extends State<CreatePostV2Widget>
           curve: Curves.easeInOut,
           delay: 0.ms,
           duration: 1000.ms,
-          begin: Offset(0, 100),
-          end: Offset(0, 0),
+          begin: Offset(0.0, 100.0),
+          end: Offset(0.0, 0.0),
         ),
         FadeEffect(
           curve: Curves.easeInOut,
           delay: 0.ms,
           duration: 1000.ms,
-          begin: 0,
-          end: 1,
+          begin: 0.0,
+          end: 1.0,
         ),
       ],
     ),
@@ -78,9 +78,9 @@ class _CreatePostV2WidgetState extends State<CreatePostV2Widget>
           decoration: BoxDecoration(
             gradient: LinearGradient(
               colors: [Color(0xFFFDFF91), Color(0x1F34DAFF)],
-              stops: [0, 1],
-              begin: AlignmentDirectional(0, -1),
-              end: AlignmentDirectional(0, 1),
+              stops: [0.0, 1.0],
+              begin: AlignmentDirectional(0.0, -1.0),
+              end: AlignmentDirectional(0, 1.0),
             ),
           ),
           child: Column(
@@ -88,7 +88,7 @@ class _CreatePostV2WidgetState extends State<CreatePostV2Widget>
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Padding(
-                padding: EdgeInsetsDirectional.fromSTEB(30, 20, 30, 20),
+                padding: EdgeInsetsDirectional.fromSTEB(30.0, 20.0, 30.0, 20.0),
                 child: Column(
                   mainAxisSize: MainAxisSize.min,
                   mainAxisAlignment: MainAxisAlignment.start,
@@ -99,17 +99,17 @@ class _CreatePostV2WidgetState extends State<CreatePostV2Widget>
                         Align(
                           alignment: AlignmentDirectional(-1.1, 0.12),
                           child: Padding(
-                            padding:
-                                EdgeInsetsDirectional.fromSTEB(0, 30, 0, 0),
+                            padding: EdgeInsetsDirectional.fromSTEB(
+                                0.0, 30.0, 0.0, 0.0),
                             child: FlutterFlowIconButton(
                               borderColor: Colors.transparent,
-                              borderRadius: 30,
-                              borderWidth: 1,
-                              buttonSize: 50,
+                              borderRadius: 30.0,
+                              borderWidth: 1.0,
+                              buttonSize: 50.0,
                               icon: Icon(
                                 Icons.keyboard_arrow_left_sharp,
                                 color: FlutterFlowTheme.of(context).primaryText,
-                                size: 30,
+                                size: 30.0,
                               ),
                               onPressed: () async {
                                 context.pop();
@@ -126,8 +126,8 @@ class _CreatePostV2WidgetState extends State<CreatePostV2Widget>
                           Container(
                             decoration: BoxDecoration(),
                             child: Padding(
-                              padding:
-                                  EdgeInsetsDirectional.fromSTEB(5, 0, 0, 0),
+                              padding: EdgeInsetsDirectional.fromSTEB(
+                                  5.0, 0.0, 0.0, 0.0),
                               child: Text(
                                 'Let your friends know you want their ',
                                 style: FlutterFlowTheme.of(context)
@@ -136,7 +136,7 @@ class _CreatePostV2WidgetState extends State<CreatePostV2Widget>
                                       fontFamily: 'Inter',
                                       color: FlutterFlowTheme.of(context)
                                           .secondaryText,
-                                      fontSize: 23,
+                                      fontSize: 23.0,
                                       fontWeight: FontWeight.w600,
                                       useGoogleFonts: GoogleFonts.asMap()
                                           .containsKey(
@@ -156,7 +156,7 @@ class _CreatePostV2WidgetState extends State<CreatePostV2Widget>
                                     fontFamily: 'Inter',
                                     color: FlutterFlowTheme.of(context)
                                         .primaryColor,
-                                    fontSize: 23,
+                                    fontSize: 23.0,
                                     fontWeight: FontWeight.w600,
                                     useGoogleFonts: GoogleFonts.asMap()
                                         .containsKey(
@@ -175,12 +175,13 @@ class _CreatePostV2WidgetState extends State<CreatePostV2Widget>
                       ),
                     ),
                     Padding(
-                      padding: EdgeInsetsDirectional.fromSTEB(5, 0, 0, 0),
+                      padding:
+                          EdgeInsetsDirectional.fromSTEB(5.0, 0.0, 0.0, 0.0),
                       child: Column(
                         mainAxisSize: MainAxisSize.max,
                         children: [
                           Divider(
-                            thickness: 1,
+                            thickness: 1.0,
                             color: Color(0xFFCFCFCF),
                           ),
                         ],
@@ -191,13 +192,14 @@ class _CreatePostV2WidgetState extends State<CreatePostV2Widget>
               ),
               Expanded(
                 child: Padding(
-                  padding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 70),
+                  padding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 70.0),
                   child: Column(
                     mainAxisSize: MainAxisSize.max,
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       Padding(
-                        padding: EdgeInsetsDirectional.fromSTEB(35, 0, 30, 0),
+                        padding: EdgeInsetsDirectional.fromSTEB(
+                            35.0, 0.0, 30.0, 0.0),
                         child: Column(
                           mainAxisSize: MainAxisSize.max,
                           mainAxisAlignment: MainAxisAlignment.start,
@@ -212,7 +214,7 @@ class _CreatePostV2WidgetState extends State<CreatePostV2Widget>
                                         .bodyText1Family,
                                     color: FlutterFlowTheme.of(context)
                                         .secondaryText,
-                                    fontSize: 16,
+                                    fontSize: 16.0,
                                     useGoogleFonts: GoogleFonts.asMap()
                                         .containsKey(
                                             FlutterFlowTheme.of(context)
@@ -220,8 +222,8 @@ class _CreatePostV2WidgetState extends State<CreatePostV2Widget>
                                   ),
                             ),
                             Padding(
-                              padding:
-                                  EdgeInsetsDirectional.fromSTEB(0, 10, 0, 20),
+                              padding: EdgeInsetsDirectional.fromSTEB(
+                                  0.0, 10.0, 0.0, 20.0),
                               child: Container(
                                 width: double.infinity,
                                 decoration: BoxDecoration(
@@ -229,12 +231,12 @@ class _CreatePostV2WidgetState extends State<CreatePostV2Widget>
                                       .secondaryBackground,
                                   boxShadow: [
                                     BoxShadow(
-                                      blurRadius: 6,
+                                      blurRadius: 6.0,
                                       color: Color(0x3416202A),
-                                      offset: Offset(0, 2),
+                                      offset: Offset(0.0, 2.0),
                                     )
                                   ],
-                                  borderRadius: BorderRadius.circular(12),
+                                  borderRadius: BorderRadius.circular(12.0),
                                 ),
                                 child: TextFormField(
                                   controller: _model.textController,
@@ -267,44 +269,44 @@ class _CreatePostV2WidgetState extends State<CreatePostV2Widget>
                                     enabledBorder: OutlineInputBorder(
                                       borderSide: BorderSide(
                                         color: Color(0x00000000),
-                                        width: 1,
+                                        width: 1.0,
                                       ),
-                                      borderRadius: BorderRadius.circular(10),
+                                      borderRadius: BorderRadius.circular(10.0),
                                     ),
                                     focusedBorder: OutlineInputBorder(
                                       borderSide: BorderSide(
                                         color: Color(0x00000000),
-                                        width: 1,
+                                        width: 1.0,
                                       ),
-                                      borderRadius: BorderRadius.circular(10),
+                                      borderRadius: BorderRadius.circular(10.0),
                                     ),
                                     errorBorder: OutlineInputBorder(
                                       borderSide: BorderSide(
                                         color: Color(0x00000000),
-                                        width: 1,
+                                        width: 1.0,
                                       ),
-                                      borderRadius: BorderRadius.circular(10),
+                                      borderRadius: BorderRadius.circular(10.0),
                                     ),
                                     focusedErrorBorder: OutlineInputBorder(
                                       borderSide: BorderSide(
                                         color: Color(0x00000000),
-                                        width: 1,
+                                        width: 1.0,
                                       ),
-                                      borderRadius: BorderRadius.circular(10),
+                                      borderRadius: BorderRadius.circular(10.0),
                                     ),
                                     filled: true,
                                     fillColor: FlutterFlowTheme.of(context)
                                         .secondaryBackground,
                                     contentPadding:
                                         EdgeInsetsDirectional.fromSTEB(
-                                            15, 20, 15, 20),
+                                            15.0, 20.0, 15.0, 20.0),
                                   ),
                                   style: FlutterFlowTheme.of(context)
                                       .bodyText1
                                       .override(
                                         fontFamily: 'Montserrat',
                                         color: Colors.black,
-                                        fontSize: 14,
+                                        fontSize: 14.0,
                                         useGoogleFonts: GoogleFonts.asMap()
                                             .containsKey(
                                                 FlutterFlowTheme.of(context)
@@ -325,7 +327,7 @@ class _CreatePostV2WidgetState extends State<CreatePostV2Widget>
                                 Expanded(
                                   child: Stack(
                                     alignment: AlignmentDirectional(
-                                        0, -0.050000000000000044),
+                                        0.0, -0.050000000000000044),
                                     children: [
                                       Align(
                                         alignment:
@@ -341,7 +343,7 @@ class _CreatePostV2WidgetState extends State<CreatePostV2Widget>
                                                 color:
                                                     FlutterFlowTheme.of(context)
                                                         .secondaryText,
-                                                fontSize: 16,
+                                                fontSize: 16.0,
                                                 useGoogleFonts: GoogleFonts
                                                         .asMap()
                                                     .containsKey(
@@ -352,7 +354,8 @@ class _CreatePostV2WidgetState extends State<CreatePostV2Widget>
                                         ),
                                       ),
                                       Align(
-                                        alignment: AlignmentDirectional(0.8, 0),
+                                        alignment:
+                                            AlignmentDirectional(0.8, 0.0),
                                         child: FFButtonWidget(
                                           onPressed: () async {
                                             showModalBottomSheet(
@@ -380,8 +383,14 @@ class _CreatePostV2WidgetState extends State<CreatePostV2Widget>
                                           },
                                           text: 'Select',
                                           options: FFButtonOptions(
-                                            width: 80,
-                                            height: 30,
+                                            width: 80.0,
+                                            height: 30.0,
+                                            padding:
+                                                EdgeInsetsDirectional.fromSTEB(
+                                                    0.0, 0.0, 0.0, 0.0),
+                                            iconPadding:
+                                                EdgeInsetsDirectional.fromSTEB(
+                                                    0.0, 0.0, 0.0, 0.0),
                                             color: FlutterFlowTheme.of(context)
                                                 .secondaryText,
                                             textStyle:
@@ -390,7 +399,7 @@ class _CreatePostV2WidgetState extends State<CreatePostV2Widget>
                                                     .override(
                                                       fontFamily: 'Inter',
                                                       color: Colors.white,
-                                                      fontSize: 3,
+                                                      fontSize: 3.0,
                                                       fontWeight:
                                                           FontWeight.bold,
                                                       useGoogleFonts: GoogleFonts
@@ -400,13 +409,13 @@ class _CreatePostV2WidgetState extends State<CreatePostV2Widget>
                                                                       context)
                                                                   .subtitle2Family),
                                                     ),
-                                            elevation: 5,
+                                            elevation: 5.0,
                                             borderSide: BorderSide(
                                               color: Colors.transparent,
-                                              width: 1,
+                                              width: 1.0,
                                             ),
                                             borderRadius:
-                                                BorderRadius.circular(8),
+                                                BorderRadius.circular(8.0),
                                           ),
                                         ),
                                       ),
@@ -416,8 +425,8 @@ class _CreatePostV2WidgetState extends State<CreatePostV2Widget>
                               ],
                             ),
                             Padding(
-                              padding:
-                                  EdgeInsetsDirectional.fromSTEB(0, 20, 0, 20),
+                              padding: EdgeInsetsDirectional.fromSTEB(
+                                  0.0, 20.0, 0.0, 20.0),
                               child: Row(
                                 mainAxisSize: MainAxisSize.max,
                                 mainAxisAlignment: MainAxisAlignment.center,
@@ -434,15 +443,16 @@ class _CreatePostV2WidgetState extends State<CreatePostV2Widget>
                                               .customColor4,
                                           Color(0x4CFFFFFF)
                                         ],
-                                        stops: [0, 1],
-                                        begin: AlignmentDirectional(-0.34, -1),
-                                        end: AlignmentDirectional(0.34, 1),
+                                        stops: [0.0, 1.0],
+                                        begin:
+                                            AlignmentDirectional(-0.34, -1.0),
+                                        end: AlignmentDirectional(0.34, 1.0),
                                       ),
-                                      borderRadius: BorderRadius.circular(20),
+                                      borderRadius: BorderRadius.circular(20.0),
                                     ),
                                     child: Padding(
                                       padding: EdgeInsetsDirectional.fromSTEB(
-                                          15, 15, 15, 15),
+                                          15.0, 15.0, 15.0, 15.0),
                                       child: Column(
                                         mainAxisSize: MainAxisSize.max,
                                         mainAxisAlignment:
@@ -476,7 +486,8 @@ class _CreatePostV2WidgetState extends State<CreatePostV2Widget>
                                               ),
                                               Padding(
                                                 padding: EdgeInsetsDirectional
-                                                    .fromSTEB(0, 5, 0, 0),
+                                                    .fromSTEB(
+                                                        0.0, 5.0, 0.0, 0.0),
                                                 child: Text(
                                                   'Select wisely :)',
                                                   style: FlutterFlowTheme.of(
@@ -491,7 +502,7 @@ class _CreatePostV2WidgetState extends State<CreatePostV2Widget>
                                                             FlutterFlowTheme.of(
                                                                     context)
                                                                 .primaryBtnText,
-                                                        fontSize: 12,
+                                                        fontSize: 12.0,
                                                         fontWeight:
                                                             FontWeight.normal,
                                                         useGoogleFonts: GoogleFonts
@@ -517,7 +528,8 @@ class _CreatePostV2WidgetState extends State<CreatePostV2Widget>
                         ),
                       ),
                       Padding(
-                        padding: EdgeInsetsDirectional.fromSTEB(35, 10, 30, 0),
+                        padding: EdgeInsetsDirectional.fromSTEB(
+                            35.0, 10.0, 30.0, 0.0),
                         child: Row(
                           mainAxisSize: MainAxisSize.max,
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -528,8 +540,12 @@ class _CreatePostV2WidgetState extends State<CreatePostV2Widget>
                               },
                               text: 'Cancel',
                               options: FFButtonOptions(
-                                width: 110,
-                                height: 40,
+                                width: 110.0,
+                                height: 40.0,
+                                padding: EdgeInsetsDirectional.fromSTEB(
+                                    0.0, 0.0, 0.0, 0.0),
+                                iconPadding: EdgeInsetsDirectional.fromSTEB(
+                                    0.0, 0.0, 0.0, 0.0),
                                 color:
                                     FlutterFlowTheme.of(context).secondaryText,
                                 textStyle: FlutterFlowTheme.of(context)
@@ -543,12 +559,12 @@ class _CreatePostV2WidgetState extends State<CreatePostV2Widget>
                                               FlutterFlowTheme.of(context)
                                                   .subtitle2Family),
                                     ),
-                                elevation: 5,
+                                elevation: 5.0,
                                 borderSide: BorderSide(
                                   color: Colors.transparent,
-                                  width: 1,
+                                  width: 1.0,
                                 ),
-                                borderRadius: BorderRadius.circular(8),
+                                borderRadius: BorderRadius.circular(8.0),
                               ),
                             ),
                             FFButtonWidget(
@@ -566,8 +582,12 @@ class _CreatePostV2WidgetState extends State<CreatePostV2Widget>
                               },
                               text: 'Create',
                               options: FFButtonOptions(
-                                width: 110,
-                                height: 40,
+                                width: 110.0,
+                                height: 40.0,
+                                padding: EdgeInsetsDirectional.fromSTEB(
+                                    0.0, 0.0, 0.0, 0.0),
+                                iconPadding: EdgeInsetsDirectional.fromSTEB(
+                                    0.0, 0.0, 0.0, 0.0),
                                 color:
                                     FlutterFlowTheme.of(context).secondaryText,
                                 textStyle: FlutterFlowTheme.of(context)
@@ -581,12 +601,12 @@ class _CreatePostV2WidgetState extends State<CreatePostV2Widget>
                                               FlutterFlowTheme.of(context)
                                                   .subtitle2Family),
                                     ),
-                                elevation: 5,
+                                elevation: 5.0,
                                 borderSide: BorderSide(
                                   color: Colors.transparent,
-                                  width: 1,
+                                  width: 1.0,
                                 ),
-                                borderRadius: BorderRadius.circular(8),
+                                borderRadius: BorderRadius.circular(8.0),
                               ),
                             ),
                           ],

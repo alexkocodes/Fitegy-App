@@ -1,6 +1,6 @@
-import '../flutter_flow/flutter_flow_icon_button.dart';
-import '../flutter_flow/flutter_flow_theme.dart';
-import '../flutter_flow/flutter_flow_util.dart';
+import '/flutter_flow/flutter_flow_icon_button.dart';
+import '/flutter_flow/flutter_flow_theme.dart';
+import '/flutter_flow/flutter_flow_util.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
@@ -56,20 +56,20 @@ class _PostActionBarWidgetState extends State<PostActionBarWidget> {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Container(
-            width: 70,
+            width: 70.0,
             child: Stack(
               children: [
                 Align(
-                  alignment: AlignmentDirectional(-1.07, 0),
+                  alignment: AlignmentDirectional(-1.07, 0.0),
                   child: FlutterFlowIconButton(
                     borderColor: Colors.transparent,
-                    borderRadius: 30,
-                    borderWidth: 0,
-                    buttonSize: 40,
+                    borderRadius: 30.0,
+                    borderWidth: 0.0,
+                    buttonSize: 40.0,
                     icon: Icon(
                       Icons.favorite_border_rounded,
                       color: Color(0xFFCFCFCF),
-                      size: 20,
+                      size: 20.0,
                     ),
                     onPressed: () {
                       print('IconButton pressed ...');
@@ -79,7 +79,8 @@ class _PostActionBarWidgetState extends State<PostActionBarWidget> {
                 Align(
                   alignment: AlignmentDirectional(0.45, -0.12),
                   child: Padding(
-                    padding: EdgeInsetsDirectional.fromSTEB(0, 12, 0, 0),
+                    padding:
+                        EdgeInsetsDirectional.fromSTEB(0.0, 12.0, 0.0, 0.0),
                     child: Text(
                       valueOrDefault<String>(
                         widget.likeCount?.toString(),
@@ -89,7 +90,7 @@ class _PostActionBarWidgetState extends State<PostActionBarWidget> {
                             fontFamily:
                                 FlutterFlowTheme.of(context).bodyText1Family,
                             color: Color(0xFFCFCFCF),
-                            fontSize: 13,
+                            fontSize: 13.0,
                             useGoogleFonts: GoogleFonts.asMap().containsKey(
                                 FlutterFlowTheme.of(context).bodyText1Family),
                           ),
@@ -100,20 +101,20 @@ class _PostActionBarWidgetState extends State<PostActionBarWidget> {
             ),
           ),
           Container(
-            width: 100,
+            width: 100.0,
             child: Stack(
               children: [
                 Align(
-                  alignment: AlignmentDirectional(-1.09, 0),
+                  alignment: AlignmentDirectional(-1.09, 0.0),
                   child: FlutterFlowIconButton(
                     borderColor: Colors.transparent,
-                    borderRadius: 30,
-                    borderWidth: 0,
-                    buttonSize: 40,
+                    borderRadius: 30.0,
+                    borderWidth: 0.0,
+                    buttonSize: 40.0,
                     icon: Icon(
                       Icons.mode_comment_outlined,
                       color: Color(0xFFCFCFCF),
-                      size: 18,
+                      size: 18.0,
                     ),
                     onPressed: () {
                       print('IconButton pressed ...');
@@ -123,14 +124,15 @@ class _PostActionBarWidgetState extends State<PostActionBarWidget> {
                 Align(
                   alignment: AlignmentDirectional(0.8, 0.52),
                   child: Padding(
-                    padding: EdgeInsetsDirectional.fromSTEB(0, 12, 0, 0),
+                    padding:
+                        EdgeInsetsDirectional.fromSTEB(0.0, 12.0, 0.0, 0.0),
                     child: Text(
                       'Comments',
                       style: FlutterFlowTheme.of(context).bodyText1.override(
                             fontFamily:
                                 FlutterFlowTheme.of(context).bodyText1Family,
                             color: Color(0xFFCFCFCF),
-                            fontSize: 13,
+                            fontSize: 13.0,
                             useGoogleFonts: GoogleFonts.asMap().containsKey(
                                 FlutterFlowTheme.of(context).bodyText1Family),
                           ),
@@ -141,20 +143,21 @@ class _PostActionBarWidgetState extends State<PostActionBarWidget> {
             ),
           ),
           Container(
-            width: 120,
+            width: 120.0,
             child: Stack(
               children: [
                 Align(
                   alignment: AlignmentDirectional(0.8, 0.1),
                   child: Padding(
-                    padding: EdgeInsetsDirectional.fromSTEB(0, 12, 0, 0),
+                    padding:
+                        EdgeInsetsDirectional.fromSTEB(0.0, 12.0, 0.0, 0.0),
                     child: Text(
                       'See Challenge',
                       style: FlutterFlowTheme.of(context).bodyText1.override(
                             fontFamily:
                                 FlutterFlowTheme.of(context).bodyText1Family,
                             color: Color(0xFFCFCFCF),
-                            fontSize: 13,
+                            fontSize: 13.0,
                             useGoogleFonts: GoogleFonts.asMap().containsKey(
                                 FlutterFlowTheme.of(context).bodyText1Family),
                           ),
@@ -165,13 +168,13 @@ class _PostActionBarWidgetState extends State<PostActionBarWidget> {
                   alignment: AlignmentDirectional(-1.09, -1.59),
                   child: FlutterFlowIconButton(
                     borderColor: Colors.transparent,
-                    borderRadius: 30,
-                    borderWidth: 0,
-                    buttonSize: 40,
+                    borderRadius: 30.0,
+                    borderWidth: 0.0,
+                    buttonSize: 40.0,
                     icon: Icon(
                       Icons.local_fire_department_outlined,
                       color: Color(0xFFCFCFCF),
-                      size: 20,
+                      size: 20.0,
                     ),
                     onPressed: () {
                       print('IconButton pressed ...');

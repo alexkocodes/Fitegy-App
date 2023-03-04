@@ -1,9 +1,9 @@
-import '../components/complete_button_widget.dart';
-import '../flutter_flow/flutter_flow_animations.dart';
-import '../flutter_flow/flutter_flow_icon_button.dart';
-import '../flutter_flow/flutter_flow_theme.dart';
-import '../flutter_flow/flutter_flow_util.dart';
-import '../flutter_flow/flutter_flow_widgets.dart';
+import '/components/complete_button_widget.dart';
+import '/flutter_flow/flutter_flow_animations.dart';
+import '/flutter_flow/flutter_flow_icon_button.dart';
+import '/flutter_flow/flutter_flow_theme.dart';
+import '/flutter_flow/flutter_flow_util.dart';
+import '/flutter_flow/flutter_flow_widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:flutter_animate/flutter_animate.dart';
@@ -50,7 +50,7 @@ class _ChallengeDetailsWidgetState extends State<ChallengeDetailsWidget>
           delay: 0.ms,
           duration: 500.ms,
           hz: 2,
-          offset: Offset(0, 0),
+          offset: Offset(0.0, 0.0),
           rotation: 0.087,
         ),
       ],
@@ -87,12 +87,12 @@ class _ChallengeDetailsWidgetState extends State<ChallengeDetailsWidget>
             automaticallyImplyLeading: false,
             leading: FlutterFlowIconButton(
               borderColor: Colors.transparent,
-              borderRadius: 30,
-              borderWidth: 1,
+              borderRadius: 30.0,
+              borderWidth: 1.0,
               icon: Icon(
                 Icons.keyboard_arrow_left_outlined,
                 color: FlutterFlowTheme.of(context).primaryColor,
-                size: 30,
+                size: 30.0,
               ),
               onPressed: () async {
                 context.pop();
@@ -100,7 +100,7 @@ class _ChallengeDetailsWidgetState extends State<ChallengeDetailsWidget>
             ),
             actions: [],
             centerTitle: false,
-            elevation: 0,
+            elevation: 0.0,
           )
         ],
         body: Builder(
@@ -115,13 +115,15 @@ class _ChallengeDetailsWidgetState extends State<ChallengeDetailsWidget>
                     color: FlutterFlowTheme.of(context).secondaryBackground,
                   ),
                   child: Padding(
-                    padding: EdgeInsetsDirectional.fromSTEB(30, 10, 30, 0),
+                    padding:
+                        EdgeInsetsDirectional.fromSTEB(30.0, 10.0, 30.0, 0.0),
                     child: Column(
                       mainAxisSize: MainAxisSize.max,
                       mainAxisAlignment: MainAxisAlignment.start,
                       children: [
                         Padding(
-                          padding: EdgeInsetsDirectional.fromSTEB(5, 0, 0, 30),
+                          padding: EdgeInsetsDirectional.fromSTEB(
+                              5.0, 0.0, 0.0, 30.0),
                           child: Text(
                             'Here are your challenge details. Want a friend to join you? 🤔',
                             style: FlutterFlowTheme.of(context)
@@ -129,7 +131,7 @@ class _ChallengeDetailsWidgetState extends State<ChallengeDetailsWidget>
                                 .override(
                                   fontFamily: FlutterFlowTheme.of(context)
                                       .bodyText1Family,
-                                  fontSize: 25,
+                                  fontSize: 25.0,
                                   fontWeight: FontWeight.w600,
                                   useGoogleFonts: GoogleFonts.asMap()
                                       .containsKey(FlutterFlowTheme.of(context)
@@ -146,9 +148,9 @@ class _ChallengeDetailsWidgetState extends State<ChallengeDetailsWidget>
                               decoration: BoxDecoration(
                                 boxShadow: [
                                   BoxShadow(
-                                    blurRadius: 12,
+                                    blurRadius: 12.0,
                                     color: Color(0x33000000),
-                                    offset: Offset(0, 5),
+                                    offset: Offset(0.0, 5.0),
                                   )
                                 ],
                                 gradient: LinearGradient(
@@ -156,15 +158,15 @@ class _ChallengeDetailsWidgetState extends State<ChallengeDetailsWidget>
                                     Color(0xFFE6A0FF),
                                     Color(0xFF9AE1FF)
                                   ],
-                                  stops: [0, 1],
-                                  begin: AlignmentDirectional(-0.34, -1),
-                                  end: AlignmentDirectional(0.34, 1),
+                                  stops: [0.0, 1.0],
+                                  begin: AlignmentDirectional(-0.34, -1.0),
+                                  end: AlignmentDirectional(0.34, 1.0),
                                 ),
-                                borderRadius: BorderRadius.circular(20),
+                                borderRadius: BorderRadius.circular(20.0),
                               ),
                               child: Padding(
                                 padding: EdgeInsetsDirectional.fromSTEB(
-                                    20, 20, 20, 20),
+                                    20.0, 20.0, 20.0, 20.0),
                                 child: Column(
                                   mainAxisSize: MainAxisSize.max,
                                   mainAxisAlignment:
@@ -188,7 +190,7 @@ class _ChallengeDetailsWidgetState extends State<ChallengeDetailsWidget>
                                                 color:
                                                     FlutterFlowTheme.of(context)
                                                         .secondaryBackground,
-                                                fontSize: 18,
+                                                fontSize: 18.0,
                                                 useGoogleFonts: GoogleFonts
                                                         .asMap()
                                                     .containsKey(
@@ -200,7 +202,7 @@ class _ChallengeDetailsWidgetState extends State<ChallengeDetailsWidget>
                                         Padding(
                                           padding:
                                               EdgeInsetsDirectional.fromSTEB(
-                                                  0, 5, 0, 0),
+                                                  0.0, 5.0, 0.0, 0.0),
                                           child: Text(
                                             valueOrDefault<String>(
                                               dateTimeFormat(
@@ -217,7 +219,7 @@ class _ChallengeDetailsWidgetState extends State<ChallengeDetailsWidget>
                                                   color: FlutterFlowTheme.of(
                                                           context)
                                                       .primaryBtnText,
-                                                  fontSize: 12,
+                                                  fontSize: 12.0,
                                                   fontWeight: FontWeight.normal,
                                                   useGoogleFonts: GoogleFonts
                                                           .asMap()
@@ -231,7 +233,7 @@ class _ChallengeDetailsWidgetState extends State<ChallengeDetailsWidget>
                                         Padding(
                                           padding:
                                               EdgeInsetsDirectional.fromSTEB(
-                                                  0, 20, 0, 0),
+                                                  0.0, 20.0, 0.0, 0.0),
                                           child: Text(
                                             valueOrDefault<String>(
                                               widget.details,
@@ -247,7 +249,7 @@ class _ChallengeDetailsWidgetState extends State<ChallengeDetailsWidget>
                                                   color: FlutterFlowTheme.of(
                                                           context)
                                                       .primaryBackground,
-                                                  fontSize: 12,
+                                                  fontSize: 12.0,
                                                   fontWeight: FontWeight.w300,
                                                   useGoogleFonts: GoogleFonts
                                                           .asMap()
@@ -269,7 +271,7 @@ class _ChallengeDetailsWidgetState extends State<ChallengeDetailsWidget>
                                         Padding(
                                           padding:
                                               EdgeInsetsDirectional.fromSTEB(
-                                                  0, 20, 0, 0),
+                                                  0.0, 20.0, 0.0, 0.0),
                                           child: Text(
                                             'Additional Comments',
                                             style: FlutterFlowTheme.of(context)
@@ -294,7 +296,7 @@ class _ChallengeDetailsWidgetState extends State<ChallengeDetailsWidget>
                                         Padding(
                                           padding:
                                               EdgeInsetsDirectional.fromSTEB(
-                                                  0, 10, 0, 0),
+                                                  0.0, 10.0, 0.0, 0.0),
                                           child: Text(
                                             valueOrDefault<String>(
                                               widget.comments,
@@ -310,7 +312,7 @@ class _ChallengeDetailsWidgetState extends State<ChallengeDetailsWidget>
                                                   color: FlutterFlowTheme.of(
                                                           context)
                                                       .primaryBackground,
-                                                  fontSize: 12,
+                                                  fontSize: 12.0,
                                                   fontWeight: FontWeight.w300,
                                                   useGoogleFonts: GoogleFonts
                                                           .asMap()
@@ -332,10 +334,11 @@ class _ChallengeDetailsWidgetState extends State<ChallengeDetailsWidget>
                           ],
                         ),
                         Padding(
-                          padding: EdgeInsetsDirectional.fromSTEB(0, 20, 0, 0),
+                          padding: EdgeInsetsDirectional.fromSTEB(
+                              0.0, 20.0, 0.0, 0.0),
                           child: Container(
                             width: double.infinity,
-                            height: 80,
+                            height: 80.0,
                             decoration: BoxDecoration(
                               color: FlutterFlowTheme.of(context)
                                   .secondaryBackground,
@@ -355,8 +358,12 @@ class _ChallengeDetailsWidgetState extends State<ChallengeDetailsWidget>
                                   },
                                   text: 'Invite 🔥 ',
                                   options: FFButtonOptions(
-                                    width: 110,
-                                    height: 40,
+                                    width: 110.0,
+                                    height: 40.0,
+                                    padding: EdgeInsetsDirectional.fromSTEB(
+                                        0.0, 0.0, 0.0, 0.0),
+                                    iconPadding: EdgeInsetsDirectional.fromSTEB(
+                                        0.0, 0.0, 0.0, 0.0),
                                     color: FlutterFlowTheme.of(context)
                                         .secondaryText,
                                     textStyle: FlutterFlowTheme.of(context)
@@ -369,12 +376,12 @@ class _ChallengeDetailsWidgetState extends State<ChallengeDetailsWidget>
                                                   FlutterFlowTheme.of(context)
                                                       .subtitle2Family),
                                         ),
-                                    elevation: 10,
+                                    elevation: 10.0,
                                     borderSide: BorderSide(
                                       color: Colors.transparent,
-                                      width: 1,
+                                      width: 1.0,
                                     ),
-                                    borderRadius: BorderRadius.circular(8),
+                                    borderRadius: BorderRadius.circular(8.0),
                                   ),
                                 ),
                                 FFButtonWidget(
@@ -414,8 +421,12 @@ class _ChallengeDetailsWidgetState extends State<ChallengeDetailsWidget>
                                   },
                                   text: 'Delete',
                                   options: FFButtonOptions(
-                                    width: 110,
-                                    height: 40,
+                                    width: 110.0,
+                                    height: 40.0,
+                                    padding: EdgeInsetsDirectional.fromSTEB(
+                                        0.0, 0.0, 0.0, 0.0),
+                                    iconPadding: EdgeInsetsDirectional.fromSTEB(
+                                        0.0, 0.0, 0.0, 0.0),
                                     color:
                                         FlutterFlowTheme.of(context).alternate,
                                     textStyle: FlutterFlowTheme.of(context)
@@ -428,12 +439,12 @@ class _ChallengeDetailsWidgetState extends State<ChallengeDetailsWidget>
                                                   FlutterFlowTheme.of(context)
                                                       .subtitle2Family),
                                         ),
-                                    elevation: 10,
+                                    elevation: 10.0,
                                     borderSide: BorderSide(
                                       color: Colors.transparent,
-                                      width: 1,
+                                      width: 1.0,
                                     ),
-                                    borderRadius: BorderRadius.circular(8),
+                                    borderRadius: BorderRadius.circular(8.0),
                                   ),
                                 ),
                               ],

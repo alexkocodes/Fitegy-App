@@ -1,16 +1,16 @@
-import '../auth/auth_util.dart';
-import '../backend/backend.dart';
-import '../backend/firebase_storage/storage.dart';
-import '../components/challenge_bottom_sheet_widget.dart';
-import '../flutter_flow/flutter_flow_drop_down.dart';
-import '../flutter_flow/flutter_flow_icon_button.dart';
-import '../flutter_flow/flutter_flow_theme.dart';
-import '../flutter_flow/flutter_flow_toggle_icon.dart';
-import '../flutter_flow/flutter_flow_util.dart';
-import '../flutter_flow/flutter_flow_widgets.dart';
-import '../flutter_flow/upload_media.dart';
+import '/auth/auth_util.dart';
+import '/backend/backend.dart';
+import '/backend/firebase_storage/storage.dart';
+import '/components/challenge_bottom_sheet_widget.dart';
+import '/flutter_flow/flutter_flow_drop_down.dart';
+import '/flutter_flow/flutter_flow_icon_button.dart';
+import '/flutter_flow/flutter_flow_theme.dart';
+import '/flutter_flow/flutter_flow_toggle_icon.dart';
+import '/flutter_flow/flutter_flow_util.dart';
+import '/flutter_flow/flutter_flow_widgets.dart';
+import '/flutter_flow/upload_media.dart';
 import 'dart:ui';
-import '../flutter_flow/random_data_util.dart' as random_data;
+import '/flutter_flow/random_data_util.dart' as random_data;
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -67,9 +67,9 @@ class _CreateWidgetState extends State<CreateWidget> {
           decoration: BoxDecoration(
             gradient: LinearGradient(
               colors: [Color(0xFFFDFF91), Color(0x3034DAFF)],
-              stops: [0, 1],
-              begin: AlignmentDirectional(0, -1),
-              end: AlignmentDirectional(0, 1),
+              stops: [0.0, 1.0],
+              begin: AlignmentDirectional(0.0, -1.0),
+              end: AlignmentDirectional(0, 1.0),
             ),
           ),
           child: PageView(
@@ -78,31 +78,32 @@ class _CreateWidgetState extends State<CreateWidget> {
             scrollDirection: Axis.vertical,
             children: [
               Container(
-                height: MediaQuery.of(context).size.height * 1,
+                height: MediaQuery.of(context).size.height * 1.0,
                 decoration: BoxDecoration(),
                 child: SingleChildScrollView(
                   child: Column(
                     mainAxisSize: MainAxisSize.max,
                     children: [
                       Padding(
-                        padding: EdgeInsetsDirectional.fromSTEB(35, 0, 35, 0),
+                        padding: EdgeInsetsDirectional.fromSTEB(
+                            35.0, 0.0, 35.0, 0.0),
                         child: Stack(
                           children: [
                             Align(
                               alignment: AlignmentDirectional(-1.1, 0.12),
                               child: Padding(
-                                padding:
-                                    EdgeInsetsDirectional.fromSTEB(0, 30, 0, 0),
+                                padding: EdgeInsetsDirectional.fromSTEB(
+                                    0.0, 30.0, 0.0, 0.0),
                                 child: FlutterFlowIconButton(
                                   borderColor: Colors.transparent,
-                                  borderRadius: 30,
-                                  borderWidth: 1,
-                                  buttonSize: 50,
+                                  borderRadius: 30.0,
+                                  borderWidth: 1.0,
+                                  buttonSize: 50.0,
                                   icon: Icon(
                                     Icons.keyboard_arrow_left_sharp,
                                     color: FlutterFlowTheme.of(context)
                                         .primaryText,
-                                    size: 30,
+                                    size: 30.0,
                                   ),
                                   onPressed: () async {
                                     await _model.pageViewController?.nextPage(
@@ -122,8 +123,8 @@ class _CreateWidgetState extends State<CreateWidget> {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Padding(
-                              padding:
-                                  EdgeInsetsDirectional.fromSTEB(35, 0, 30, 0),
+                              padding: EdgeInsetsDirectional.fromSTEB(
+                                  35.0, 0.0, 30.0, 0.0),
                               child: SingleChildScrollView(
                                 child: Column(
                                   mainAxisSize: MainAxisSize.min,
@@ -132,7 +133,7 @@ class _CreateWidgetState extends State<CreateWidget> {
                                   children: [
                                     Padding(
                                       padding: EdgeInsetsDirectional.fromSTEB(
-                                          0, 20, 0, 20),
+                                          0.0, 20.0, 0.0, 20.0),
                                       child: Column(
                                         mainAxisSize: MainAxisSize.min,
                                         mainAxisAlignment:
@@ -141,8 +142,8 @@ class _CreateWidgetState extends State<CreateWidget> {
                                             CrossAxisAlignment.start,
                                         children: [
                                           Wrap(
-                                            spacing: 0,
-                                            runSpacing: 0,
+                                            spacing: 0.0,
+                                            runSpacing: 0.0,
                                             alignment: WrapAlignment.start,
                                             crossAxisAlignment:
                                                 WrapCrossAlignment.start,
@@ -156,7 +157,8 @@ class _CreateWidgetState extends State<CreateWidget> {
                                                 decoration: BoxDecoration(),
                                                 child: Padding(
                                                   padding: EdgeInsetsDirectional
-                                                      .fromSTEB(5, 0, 0, 0),
+                                                      .fromSTEB(
+                                                          5.0, 0.0, 0.0, 0.0),
                                                   child: Text(
                                                     'Challenge yourself with a',
                                                     style: FlutterFlowTheme.of(
@@ -167,7 +169,7 @@ class _CreateWidgetState extends State<CreateWidget> {
                                                           color: FlutterFlowTheme
                                                                   .of(context)
                                                               .secondaryText,
-                                                          fontSize: 23,
+                                                          fontSize: 23.0,
                                                           fontWeight:
                                                               FontWeight.w600,
                                                           useGoogleFonts: GoogleFonts
@@ -184,7 +186,8 @@ class _CreateWidgetState extends State<CreateWidget> {
                                                 decoration: BoxDecoration(),
                                                 child: Padding(
                                                   padding: EdgeInsetsDirectional
-                                                      .fromSTEB(5, 0, 0, 0),
+                                                      .fromSTEB(
+                                                          5.0, 0.0, 0.0, 0.0),
                                                   child: GradientText(
                                                     'new goal.',
                                                     style: FlutterFlowTheme.of(
@@ -195,7 +198,7 @@ class _CreateWidgetState extends State<CreateWidget> {
                                                           color: FlutterFlowTheme
                                                                   .of(context)
                                                               .primaryColor,
-                                                          fontSize: 23,
+                                                          fontSize: 23.0,
                                                           fontWeight:
                                                               FontWeight.w600,
                                                           useGoogleFonts: GoogleFonts
@@ -223,12 +226,12 @@ class _CreateWidgetState extends State<CreateWidget> {
                                           Padding(
                                             padding:
                                                 EdgeInsetsDirectional.fromSTEB(
-                                                    5, 0, 0, 0),
+                                                    5.0, 0.0, 0.0, 0.0),
                                             child: Column(
                                               mainAxisSize: MainAxisSize.max,
                                               children: [
                                                 Divider(
-                                                  thickness: 1,
+                                                  thickness: 1.0,
                                                   color: Color(0xFFCFCFCF),
                                                 ),
                                               ],
@@ -247,7 +250,7 @@ class _CreateWidgetState extends State<CreateWidget> {
                                                     .bodyText1Family,
                                             color: FlutterFlowTheme.of(context)
                                                 .secondaryText,
-                                            fontSize: 16,
+                                            fontSize: 16.0,
                                             useGoogleFonts: GoogleFonts.asMap()
                                                 .containsKey(
                                                     FlutterFlowTheme.of(context)
@@ -256,7 +259,7 @@ class _CreateWidgetState extends State<CreateWidget> {
                                     ),
                                     Padding(
                                       padding: EdgeInsetsDirectional.fromSTEB(
-                                          0, 10, 0, 20),
+                                          0.0, 10.0, 0.0, 20.0),
                                       child: Container(
                                         width: double.infinity,
                                         decoration: BoxDecoration(
@@ -264,13 +267,13 @@ class _CreateWidgetState extends State<CreateWidget> {
                                               .secondaryBackground,
                                           boxShadow: [
                                             BoxShadow(
-                                              blurRadius: 6,
+                                              blurRadius: 6.0,
                                               color: Color(0x3416202A),
-                                              offset: Offset(0, 2),
+                                              offset: Offset(0.0, 2.0),
                                             )
                                           ],
                                           borderRadius:
-                                              BorderRadius.circular(12),
+                                              BorderRadius.circular(12.0),
                                         ),
                                         child: TextFormField(
                                           controller: _model.textController1,
@@ -308,35 +311,35 @@ class _CreateWidgetState extends State<CreateWidget> {
                                             enabledBorder: OutlineInputBorder(
                                               borderSide: BorderSide(
                                                 color: Color(0x00000000),
-                                                width: 1,
+                                                width: 1.0,
                                               ),
                                               borderRadius:
-                                                  BorderRadius.circular(10),
+                                                  BorderRadius.circular(10.0),
                                             ),
                                             focusedBorder: OutlineInputBorder(
                                               borderSide: BorderSide(
                                                 color: Color(0x00000000),
-                                                width: 1,
+                                                width: 1.0,
                                               ),
                                               borderRadius:
-                                                  BorderRadius.circular(10),
+                                                  BorderRadius.circular(10.0),
                                             ),
                                             errorBorder: OutlineInputBorder(
                                               borderSide: BorderSide(
                                                 color: Color(0x00000000),
-                                                width: 1,
+                                                width: 1.0,
                                               ),
                                               borderRadius:
-                                                  BorderRadius.circular(10),
+                                                  BorderRadius.circular(10.0),
                                             ),
                                             focusedErrorBorder:
                                                 OutlineInputBorder(
                                               borderSide: BorderSide(
                                                 color: Color(0x00000000),
-                                                width: 1,
+                                                width: 1.0,
                                               ),
                                               borderRadius:
-                                                  BorderRadius.circular(10),
+                                                  BorderRadius.circular(10.0),
                                             ),
                                             filled: true,
                                             fillColor:
@@ -356,7 +359,7 @@ class _CreateWidgetState extends State<CreateWidget> {
                                                 color:
                                                     FlutterFlowTheme.of(context)
                                                         .secondaryText,
-                                                fontSize: 14,
+                                                fontSize: 14.0,
                                                 useGoogleFonts: GoogleFonts
                                                         .asMap()
                                                     .containsKey(
@@ -380,7 +383,7 @@ class _CreateWidgetState extends State<CreateWidget> {
                                                     .bodyText1Family,
                                             color: FlutterFlowTheme.of(context)
                                                 .secondaryText,
-                                            fontSize: 16,
+                                            fontSize: 16.0,
                                             useGoogleFonts: GoogleFonts.asMap()
                                                 .containsKey(
                                                     FlutterFlowTheme.of(context)
@@ -389,7 +392,7 @@ class _CreateWidgetState extends State<CreateWidget> {
                                     ),
                                     Padding(
                                       padding: EdgeInsetsDirectional.fromSTEB(
-                                          0, 10, 0, 20),
+                                          0.0, 10.0, 0.0, 20.0),
                                       child: Container(
                                         width: double.infinity,
                                         decoration: BoxDecoration(
@@ -397,13 +400,13 @@ class _CreateWidgetState extends State<CreateWidget> {
                                               .secondaryBackground,
                                           boxShadow: [
                                             BoxShadow(
-                                              blurRadius: 6,
+                                              blurRadius: 6.0,
                                               color: Color(0x3416202A),
-                                              offset: Offset(0, 2),
+                                              offset: Offset(0.0, 2.0),
                                             )
                                           ],
                                           borderRadius:
-                                              BorderRadius.circular(12),
+                                              BorderRadius.circular(12.0),
                                         ),
                                         child: TextFormField(
                                           controller: _model.textController2,
@@ -444,35 +447,35 @@ class _CreateWidgetState extends State<CreateWidget> {
                                             enabledBorder: OutlineInputBorder(
                                               borderSide: BorderSide(
                                                 color: Color(0x00000000),
-                                                width: 1,
+                                                width: 1.0,
                                               ),
                                               borderRadius:
-                                                  BorderRadius.circular(10),
+                                                  BorderRadius.circular(10.0),
                                             ),
                                             focusedBorder: OutlineInputBorder(
                                               borderSide: BorderSide(
                                                 color: Color(0x00000000),
-                                                width: 1,
+                                                width: 1.0,
                                               ),
                                               borderRadius:
-                                                  BorderRadius.circular(10),
+                                                  BorderRadius.circular(10.0),
                                             ),
                                             errorBorder: OutlineInputBorder(
                                               borderSide: BorderSide(
                                                 color: Color(0x00000000),
-                                                width: 1,
+                                                width: 1.0,
                                               ),
                                               borderRadius:
-                                                  BorderRadius.circular(10),
+                                                  BorderRadius.circular(10.0),
                                             ),
                                             focusedErrorBorder:
                                                 OutlineInputBorder(
                                               borderSide: BorderSide(
                                                 color: Color(0x00000000),
-                                                width: 1,
+                                                width: 1.0,
                                               ),
                                               borderRadius:
-                                                  BorderRadius.circular(10),
+                                                  BorderRadius.circular(10.0),
                                             ),
                                             filled: true,
                                             fillColor:
@@ -480,7 +483,7 @@ class _CreateWidgetState extends State<CreateWidget> {
                                                     .secondaryBackground,
                                             contentPadding:
                                                 EdgeInsetsDirectional.fromSTEB(
-                                                    15, 20, 15, 20),
+                                                    15.0, 20.0, 15.0, 20.0),
                                           ),
                                           style: FlutterFlowTheme.of(context)
                                               .bodyText1
@@ -489,7 +492,7 @@ class _CreateWidgetState extends State<CreateWidget> {
                                                 color:
                                                     FlutterFlowTheme.of(context)
                                                         .secondaryText,
-                                                fontSize: 14,
+                                                fontSize: 14.0,
                                                 useGoogleFonts: GoogleFonts
                                                         .asMap()
                                                     .containsKey(
@@ -516,7 +519,7 @@ class _CreateWidgetState extends State<CreateWidget> {
                                                     .bodyText1Family,
                                             color: FlutterFlowTheme.of(context)
                                                 .secondaryText,
-                                            fontSize: 16,
+                                            fontSize: 16.0,
                                             useGoogleFonts: GoogleFonts.asMap()
                                                 .containsKey(
                                                     FlutterFlowTheme.of(context)
@@ -525,7 +528,7 @@ class _CreateWidgetState extends State<CreateWidget> {
                                     ),
                                     Padding(
                                       padding: EdgeInsetsDirectional.fromSTEB(
-                                          0, 10, 0, 20),
+                                          0.0, 10.0, 0.0, 20.0),
                                       child: Container(
                                         width: double.infinity,
                                         decoration: BoxDecoration(
@@ -533,13 +536,13 @@ class _CreateWidgetState extends State<CreateWidget> {
                                               .secondaryBackground,
                                           boxShadow: [
                                             BoxShadow(
-                                              blurRadius: 6,
+                                              blurRadius: 6.0,
                                               color: Color(0x3416202A),
-                                              offset: Offset(0, 2),
+                                              offset: Offset(0.0, 2.0),
                                             )
                                           ],
                                           borderRadius:
-                                              BorderRadius.circular(12),
+                                              BorderRadius.circular(12.0),
                                         ),
                                         child: TextFormField(
                                           controller: _model.commentsController,
@@ -580,35 +583,35 @@ class _CreateWidgetState extends State<CreateWidget> {
                                             enabledBorder: OutlineInputBorder(
                                               borderSide: BorderSide(
                                                 color: Color(0x00000000),
-                                                width: 1,
+                                                width: 1.0,
                                               ),
                                               borderRadius:
-                                                  BorderRadius.circular(10),
+                                                  BorderRadius.circular(10.0),
                                             ),
                                             focusedBorder: OutlineInputBorder(
                                               borderSide: BorderSide(
                                                 color: Color(0x00000000),
-                                                width: 1,
+                                                width: 1.0,
                                               ),
                                               borderRadius:
-                                                  BorderRadius.circular(10),
+                                                  BorderRadius.circular(10.0),
                                             ),
                                             errorBorder: OutlineInputBorder(
                                               borderSide: BorderSide(
                                                 color: Color(0x00000000),
-                                                width: 1,
+                                                width: 1.0,
                                               ),
                                               borderRadius:
-                                                  BorderRadius.circular(10),
+                                                  BorderRadius.circular(10.0),
                                             ),
                                             focusedErrorBorder:
                                                 OutlineInputBorder(
                                               borderSide: BorderSide(
                                                 color: Color(0x00000000),
-                                                width: 1,
+                                                width: 1.0,
                                               ),
                                               borderRadius:
-                                                  BorderRadius.circular(10),
+                                                  BorderRadius.circular(10.0),
                                             ),
                                             filled: true,
                                             fillColor:
@@ -616,7 +619,7 @@ class _CreateWidgetState extends State<CreateWidget> {
                                                     .secondaryBackground,
                                             contentPadding:
                                                 EdgeInsetsDirectional.fromSTEB(
-                                                    15, 20, 15, 20),
+                                                    15.0, 20.0, 15.0, 20.0),
                                           ),
                                           style: FlutterFlowTheme.of(context)
                                               .bodyText1
@@ -625,7 +628,7 @@ class _CreateWidgetState extends State<CreateWidget> {
                                                 color:
                                                     FlutterFlowTheme.of(context)
                                                         .secondaryText,
-                                                fontSize: 14,
+                                                fontSize: 14.0,
                                                 useGoogleFonts: GoogleFonts
                                                         .asMap()
                                                     .containsKey(
@@ -652,7 +655,7 @@ class _CreateWidgetState extends State<CreateWidget> {
                                                     .bodyText1Family,
                                             color: FlutterFlowTheme.of(context)
                                                 .secondaryText,
-                                            fontSize: 16,
+                                            fontSize: 16.0,
                                             useGoogleFonts: GoogleFonts.asMap()
                                                 .containsKey(
                                                     FlutterFlowTheme.of(context)
@@ -661,7 +664,7 @@ class _CreateWidgetState extends State<CreateWidget> {
                                     ),
                                     Padding(
                                       padding: EdgeInsetsDirectional.fromSTEB(
-                                          0, 10, 0, 10),
+                                          0.0, 10.0, 0.0, 10.0),
                                       child: Container(
                                         width: double.infinity,
                                         decoration: BoxDecoration(
@@ -669,13 +672,13 @@ class _CreateWidgetState extends State<CreateWidget> {
                                               .secondaryBackground,
                                           boxShadow: [
                                             BoxShadow(
-                                              blurRadius: 6,
+                                              blurRadius: 6.0,
                                               color: Color(0x3416202A),
-                                              offset: Offset(0, 2),
+                                              offset: Offset(0.0, 2.0),
                                             )
                                           ],
                                           borderRadius:
-                                              BorderRadius.circular(12),
+                                              BorderRadius.circular(12.0),
                                         ),
                                         child: TextFormField(
                                           controller: _model.textController4,
@@ -714,35 +717,35 @@ class _CreateWidgetState extends State<CreateWidget> {
                                             enabledBorder: OutlineInputBorder(
                                               borderSide: BorderSide(
                                                 color: Color(0x00000000),
-                                                width: 1,
+                                                width: 1.0,
                                               ),
                                               borderRadius:
-                                                  BorderRadius.circular(10),
+                                                  BorderRadius.circular(10.0),
                                             ),
                                             focusedBorder: OutlineInputBorder(
                                               borderSide: BorderSide(
                                                 color: Color(0x00000000),
-                                                width: 1,
+                                                width: 1.0,
                                               ),
                                               borderRadius:
-                                                  BorderRadius.circular(10),
+                                                  BorderRadius.circular(10.0),
                                             ),
                                             errorBorder: OutlineInputBorder(
                                               borderSide: BorderSide(
                                                 color: Color(0x00000000),
-                                                width: 1,
+                                                width: 1.0,
                                               ),
                                               borderRadius:
-                                                  BorderRadius.circular(10),
+                                                  BorderRadius.circular(10.0),
                                             ),
                                             focusedErrorBorder:
                                                 OutlineInputBorder(
                                               borderSide: BorderSide(
                                                 color: Color(0x00000000),
-                                                width: 1,
+                                                width: 1.0,
                                               ),
                                               borderRadius:
-                                                  BorderRadius.circular(10),
+                                                  BorderRadius.circular(10.0),
                                             ),
                                             filled: true,
                                             fillColor:
@@ -761,7 +764,7 @@ class _CreateWidgetState extends State<CreateWidget> {
                                               .override(
                                                 fontFamily: 'Inter',
                                                 color: Colors.black,
-                                                fontSize: 14,
+                                                fontSize: 14.0,
                                                 useGoogleFonts: GoogleFonts
                                                         .asMap()
                                                     .containsKey(
@@ -776,15 +779,15 @@ class _CreateWidgetState extends State<CreateWidget> {
                                       ),
                                     ),
                                     Divider(
-                                      thickness: 1,
+                                      thickness: 1.0,
                                       color: Color(0xFFCFCFCF),
                                     ),
                                     Padding(
                                       padding: EdgeInsetsDirectional.fromSTEB(
-                                          0, 10, 0, 0),
+                                          0.0, 10.0, 0.0, 0.0),
                                       child: Wrap(
-                                        spacing: 0,
-                                        runSpacing: 0,
+                                        spacing: 0.0,
+                                        runSpacing: 0.0,
                                         alignment: WrapAlignment.start,
                                         crossAxisAlignment:
                                             WrapCrossAlignment.start,
@@ -797,7 +800,7 @@ class _CreateWidgetState extends State<CreateWidget> {
                                           Padding(
                                             padding:
                                                 EdgeInsetsDirectional.fromSTEB(
-                                                    0, 10, 0, 0),
+                                                    0.0, 10.0, 0.0, 0.0),
                                             child: Row(
                                               mainAxisSize: MainAxisSize.max,
                                               mainAxisAlignment:
@@ -831,23 +834,24 @@ class _CreateWidgetState extends State<CreateWidget> {
                                                 ),
                                                 Padding(
                                                   padding: EdgeInsetsDirectional
-                                                      .fromSTEB(5, 0, 5, 0),
+                                                      .fromSTEB(
+                                                          5.0, 0.0, 5.0, 0.0),
                                                   child: Container(
-                                                    width: 20,
-                                                    height: 20,
+                                                    width: 20.0,
+                                                    height: 20.0,
                                                     decoration: BoxDecoration(
                                                       gradient: LinearGradient(
                                                         colors: [
                                                           Color(0xFFE6A0FF),
                                                           Color(0xFF9AE1FF)
                                                         ],
-                                                        stops: [0, 1],
+                                                        stops: [0.0, 1.0],
                                                         begin:
                                                             AlignmentDirectional(
-                                                                -0.34, -1),
+                                                                -0.34, -1.0),
                                                         end:
                                                             AlignmentDirectional(
-                                                                0.34, 1),
+                                                                0.34, 1.0),
                                                       ),
                                                       shape: BoxShape.circle,
                                                     ),
@@ -855,23 +859,24 @@ class _CreateWidgetState extends State<CreateWidget> {
                                                 ),
                                                 Padding(
                                                   padding: EdgeInsetsDirectional
-                                                      .fromSTEB(5, 0, 5, 0),
+                                                      .fromSTEB(
+                                                          5.0, 0.0, 5.0, 0.0),
                                                   child: Container(
-                                                    width: 20,
-                                                    height: 20,
+                                                    width: 20.0,
+                                                    height: 20.0,
                                                     decoration: BoxDecoration(
                                                       gradient: LinearGradient(
                                                         colors: [
                                                           Color(0xFFE6A0FF),
                                                           Color(0xFF9AE1FF)
                                                         ],
-                                                        stops: [0, 1],
+                                                        stops: [0.0, 1.0],
                                                         begin:
                                                             AlignmentDirectional(
-                                                                -0.34, -1),
+                                                                -0.34, -1.0),
                                                         end:
                                                             AlignmentDirectional(
-                                                                0.34, 1),
+                                                                0.34, 1.0),
                                                       ),
                                                       shape: BoxShape.circle,
                                                     ),
@@ -879,23 +884,24 @@ class _CreateWidgetState extends State<CreateWidget> {
                                                 ),
                                                 Padding(
                                                   padding: EdgeInsetsDirectional
-                                                      .fromSTEB(5, 0, 5, 0),
+                                                      .fromSTEB(
+                                                          5.0, 0.0, 5.0, 0.0),
                                                   child: Container(
-                                                    width: 20,
-                                                    height: 20,
+                                                    width: 20.0,
+                                                    height: 20.0,
                                                     decoration: BoxDecoration(
                                                       gradient: LinearGradient(
                                                         colors: [
                                                           Color(0xFFE6A0FF),
                                                           Color(0xFF9AE1FF)
                                                         ],
-                                                        stops: [0, 1],
+                                                        stops: [0.0, 1.0],
                                                         begin:
                                                             AlignmentDirectional(
-                                                                -0.34, -1),
+                                                                -0.34, -1.0),
                                                         end:
                                                             AlignmentDirectional(
-                                                                0.34, 1),
+                                                                0.34, 1.0),
                                                       ),
                                                       shape: BoxShape.circle,
                                                     ),
@@ -903,23 +909,24 @@ class _CreateWidgetState extends State<CreateWidget> {
                                                 ),
                                                 Padding(
                                                   padding: EdgeInsetsDirectional
-                                                      .fromSTEB(5, 0, 5, 0),
+                                                      .fromSTEB(
+                                                          5.0, 0.0, 5.0, 0.0),
                                                   child: Container(
-                                                    width: 20,
-                                                    height: 20,
+                                                    width: 20.0,
+                                                    height: 20.0,
                                                     decoration: BoxDecoration(
                                                       gradient: LinearGradient(
                                                         colors: [
                                                           Color(0xFFE6A0FF),
                                                           Color(0xFF9AE1FF)
                                                         ],
-                                                        stops: [0, 1],
+                                                        stops: [0.0, 1.0],
                                                         begin:
                                                             AlignmentDirectional(
-                                                                -0.34, -1),
+                                                                -0.34, -1.0),
                                                         end:
                                                             AlignmentDirectional(
-                                                                0.34, 1),
+                                                                0.34, 1.0),
                                                       ),
                                                       shape: BoxShape.circle,
                                                     ),
@@ -939,11 +946,11 @@ class _CreateWidgetState extends State<CreateWidget> {
                                         Expanded(
                                           child: Stack(
                                             alignment: AlignmentDirectional(
-                                                0, -0.050000000000000044),
+                                                0.0, -0.050000000000000044),
                                             children: [
                                               Align(
                                                 alignment: AlignmentDirectional(
-                                                    -1, 0.2),
+                                                    -1.0, 0.2),
                                                 child: Text(
                                                   'Set to Private: ',
                                                   style: FlutterFlowTheme.of(
@@ -969,7 +976,7 @@ class _CreateWidgetState extends State<CreateWidget> {
                                               ),
                                               Align(
                                                 alignment: AlignmentDirectional(
-                                                    -0.43, 0),
+                                                    -0.43, 0.0),
                                                 child: ToggleIcon(
                                                   onPressed: () async {
                                                     setState(() => FFAppState()
@@ -984,13 +991,13 @@ class _CreateWidgetState extends State<CreateWidget> {
                                                     color: FlutterFlowTheme.of(
                                                             context)
                                                         .secondaryColor,
-                                                    size: 20,
+                                                    size: 20.0,
                                                   ),
                                                   offIcon: Icon(
                                                     Icons
                                                         .check_circle_outline_sharp,
                                                     color: Color(0xA1868686),
-                                                    size: 20,
+                                                    size: 20.0,
                                                   ),
                                                 ),
                                               ),
@@ -1001,7 +1008,7 @@ class _CreateWidgetState extends State<CreateWidget> {
                                     ),
                                     Padding(
                                       padding: EdgeInsetsDirectional.fromSTEB(
-                                          0, 10, 0, 0),
+                                          0.0, 10.0, 0.0, 0.0),
                                       child: Row(
                                         mainAxisSize: MainAxisSize.max,
                                         mainAxisAlignment:
@@ -1064,8 +1071,12 @@ class _CreateWidgetState extends State<CreateWidget> {
                                             },
                                             text: 'Create',
                                             options: FFButtonOptions(
-                                              width: 110,
-                                              height: 40,
+                                              width: 110.0,
+                                              height: 40.0,
+                                              padding: EdgeInsetsDirectional
+                                                  .fromSTEB(0.0, 0.0, 0.0, 0.0),
+                                              iconPadding: EdgeInsetsDirectional
+                                                  .fromSTEB(0.0, 0.0, 0.0, 0.0),
                                               color:
                                                   FlutterFlowTheme.of(context)
                                                       .secondaryText,
@@ -1084,13 +1095,13 @@ class _CreateWidgetState extends State<CreateWidget> {
                                                                         context)
                                                                     .subtitle2Family),
                                                       ),
-                                              elevation: 5,
+                                              elevation: 5.0,
                                               borderSide: BorderSide(
                                                 color: Colors.transparent,
-                                                width: 1,
+                                                width: 1.0,
                                               ),
                                               borderRadius:
-                                                  BorderRadius.circular(8),
+                                                  BorderRadius.circular(8.0),
                                             ),
                                           ),
                                         ],
@@ -1108,21 +1119,22 @@ class _CreateWidgetState extends State<CreateWidget> {
                 ),
               ),
               Padding(
-                padding: EdgeInsetsDirectional.fromSTEB(30, 0, 24, 50),
+                padding: EdgeInsetsDirectional.fromSTEB(30.0, 0.0, 24.0, 50.0),
                 child: Column(
                   mainAxisSize: MainAxisSize.max,
                   mainAxisAlignment: MainAxisAlignment.center,
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Padding(
-                      padding: EdgeInsetsDirectional.fromSTEB(10, 40, 10, 10),
+                      padding: EdgeInsetsDirectional.fromSTEB(
+                          10.0, 40.0, 10.0, 10.0),
                       child: Column(
                         mainAxisSize: MainAxisSize.max,
                         crossAxisAlignment: CrossAxisAlignment.stretch,
                         children: [
                           Padding(
-                            padding:
-                                EdgeInsetsDirectional.fromSTEB(10, 0, 16, 0),
+                            padding: EdgeInsetsDirectional.fromSTEB(
+                                10.0, 0.0, 16.0, 0.0),
                             child: Text(
                               'Create',
                               style:
@@ -1130,7 +1142,7 @@ class _CreateWidgetState extends State<CreateWidget> {
                                         fontFamily: 'Inter',
                                         color: FlutterFlowTheme.of(context)
                                             .secondaryText,
-                                        fontSize: 30,
+                                        fontSize: 30.0,
                                         fontWeight: FontWeight.bold,
                                         useGoogleFonts: GoogleFonts.asMap()
                                             .containsKey(
@@ -1140,8 +1152,8 @@ class _CreateWidgetState extends State<CreateWidget> {
                             ),
                           ),
                           Padding(
-                            padding:
-                                EdgeInsetsDirectional.fromSTEB(10, 10, 0, 0),
+                            padding: EdgeInsetsDirectional.fromSTEB(
+                                10.0, 10.0, 0.0, 0.0),
                             child: Text(
                               'Choose create mode to create \na new challenge.',
                               style: FlutterFlowTheme.of(context)
@@ -1150,7 +1162,7 @@ class _CreateWidgetState extends State<CreateWidget> {
                                     fontFamily: 'Inter',
                                     color: FlutterFlowTheme.of(context)
                                         .primaryColor,
-                                    fontSize: 18,
+                                    fontSize: 18.0,
                                     fontWeight: FontWeight.w600,
                                     useGoogleFonts: GoogleFonts.asMap()
                                         .containsKey(
@@ -1163,16 +1175,17 @@ class _CreateWidgetState extends State<CreateWidget> {
                       ),
                     ),
                     Padding(
-                      padding: EdgeInsetsDirectional.fromSTEB(5, 0, 0, 0),
+                      padding:
+                          EdgeInsetsDirectional.fromSTEB(5.0, 0.0, 0.0, 0.0),
                       child: FlutterFlowIconButton(
                         borderColor: Colors.transparent,
-                        borderRadius: 30,
-                        borderWidth: 1,
-                        buttonSize: 60,
+                        borderRadius: 30.0,
+                        borderWidth: 1.0,
+                        buttonSize: 60.0,
                         icon: Icon(
                           Icons.add_circle,
                           color: FlutterFlowTheme.of(context).secondaryText,
-                          size: 40,
+                          size: 40.0,
                         ),
                         onPressed: () async {
                           await _model.pageViewController?.previousPage(
@@ -1183,7 +1196,7 @@ class _CreateWidgetState extends State<CreateWidget> {
                       ),
                     ),
                     Container(
-                      width: 70,
+                      width: 70.0,
                       decoration: BoxDecoration(),
                       child: Image.asset(
                         'assets/images/decoration2.png',
@@ -1193,16 +1206,17 @@ class _CreateWidgetState extends State<CreateWidget> {
                       ),
                     ),
                     Padding(
-                      padding: EdgeInsetsDirectional.fromSTEB(5, 0, 0, 0),
+                      padding:
+                          EdgeInsetsDirectional.fromSTEB(5.0, 0.0, 0.0, 0.0),
                       child: FlutterFlowIconButton(
                         borderColor: Colors.transparent,
-                        borderRadius: 30,
-                        borderWidth: 1,
-                        buttonSize: 60,
+                        borderRadius: 30.0,
+                        borderWidth: 1.0,
+                        buttonSize: 60.0,
                         icon: FaIcon(
                           FontAwesomeIcons.featherAlt,
                           color: FlutterFlowTheme.of(context).secondaryText,
-                          size: 30,
+                          size: 30.0,
                         ),
                         showLoadingIndicator: true,
                         onPressed: () async {
@@ -1214,13 +1228,14 @@ class _CreateWidgetState extends State<CreateWidget> {
                       ),
                     ),
                     Padding(
-                      padding: EdgeInsetsDirectional.fromSTEB(20, 10, 16, 0),
+                      padding:
+                          EdgeInsetsDirectional.fromSTEB(20.0, 10.0, 16.0, 0.0),
                       child: Text(
                         'Post',
                         style: FlutterFlowTheme.of(context).title1.override(
                               fontFamily: 'Inter',
                               color: FlutterFlowTheme.of(context).secondaryText,
-                              fontSize: 30,
+                              fontSize: 30.0,
                               fontWeight: FontWeight.bold,
                               useGoogleFonts: GoogleFonts.asMap().containsKey(
                                   FlutterFlowTheme.of(context).title1Family),
@@ -1228,13 +1243,14 @@ class _CreateWidgetState extends State<CreateWidget> {
                       ),
                     ),
                     Padding(
-                      padding: EdgeInsetsDirectional.fromSTEB(20, 10, 0, 0),
+                      padding:
+                          EdgeInsetsDirectional.fromSTEB(20.0, 10.0, 0.0, 0.0),
                       child: Text(
                         'Choose post mode to make \na new post.',
                         style: FlutterFlowTheme.of(context).bodyText2.override(
                               fontFamily: 'Inter',
                               color: FlutterFlowTheme.of(context).primaryColor,
-                              fontSize: 18,
+                              fontSize: 18.0,
                               fontWeight: FontWeight.w600,
                               useGoogleFonts: GoogleFonts.asMap().containsKey(
                                   FlutterFlowTheme.of(context).bodyText2Family),
@@ -1255,21 +1271,21 @@ class _CreateWidgetState extends State<CreateWidget> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Align(
-                      alignment: AlignmentDirectional(0, 0),
+                      alignment: AlignmentDirectional(0.0, 0.0),
                       child: ClipRRect(
-                        borderRadius: BorderRadius.circular(0),
+                        borderRadius: BorderRadius.circular(0.0),
                         child: BackdropFilter(
                           filter: ImageFilter.blur(
-                            sigmaX: 2,
-                            sigmaY: 2,
+                            sigmaX: 2.0,
+                            sigmaY: 2.0,
                           ),
                           child: Container(
                             decoration: BoxDecoration(
                               color: Color(0x61FFFFFF),
                             ),
                             child: Padding(
-                              padding:
-                                  EdgeInsetsDirectional.fromSTEB(0, 60, 0, 0),
+                              padding: EdgeInsetsDirectional.fromSTEB(
+                                  0.0, 60.0, 0.0, 0.0),
                               child: Column(
                                 mainAxisSize: MainAxisSize.min,
                                 mainAxisAlignment: MainAxisAlignment.start,
@@ -1277,14 +1293,14 @@ class _CreateWidgetState extends State<CreateWidget> {
                                 children: [
                                   Padding(
                                     padding: EdgeInsetsDirectional.fromSTEB(
-                                        30, 0, 30, 0),
+                                        30.0, 0.0, 30.0, 0.0),
                                     child: Column(
                                       mainAxisSize: MainAxisSize.max,
                                       children: [
                                         Padding(
                                           padding:
                                               EdgeInsetsDirectional.fromSTEB(
-                                                  0, 0, 0, 5),
+                                                  0.0, 0.0, 0.0, 5.0),
                                           child: Row(
                                             mainAxisSize: MainAxisSize.max,
                                             mainAxisAlignment:
@@ -1302,6 +1318,13 @@ class _CreateWidgetState extends State<CreateWidget> {
                                                 },
                                                 text: 'Cancel',
                                                 options: FFButtonOptions(
+                                                  padding: EdgeInsetsDirectional
+                                                      .fromSTEB(
+                                                          0.0, 0.0, 0.0, 0.0),
+                                                  iconPadding:
+                                                      EdgeInsetsDirectional
+                                                          .fromSTEB(0.0, 0.0,
+                                                              0.0, 0.0),
                                                   color: FlutterFlowTheme.of(
                                                           context)
                                                       .primaryBtnText,
@@ -1317,7 +1340,7 @@ class _CreateWidgetState extends State<CreateWidget> {
                                                             FlutterFlowTheme.of(
                                                                     context)
                                                                 .customColor4,
-                                                        fontSize: 14,
+                                                        fontSize: 14.0,
                                                         fontWeight:
                                                             FontWeight.normal,
                                                         useGoogleFonts: GoogleFonts
@@ -1329,10 +1352,11 @@ class _CreateWidgetState extends State<CreateWidget> {
                                                       ),
                                                   borderSide: BorderSide(
                                                     color: Colors.transparent,
-                                                    width: 1,
+                                                    width: 1.0,
                                                   ),
                                                   borderRadius:
-                                                      BorderRadius.circular(8),
+                                                      BorderRadius.circular(
+                                                          8.0),
                                                 ),
                                               ),
                                               FFButtonWidget(
@@ -1394,8 +1418,15 @@ class _CreateWidgetState extends State<CreateWidget> {
                                                 },
                                                 text: 'Post',
                                                 options: FFButtonOptions(
-                                                  width: 90,
-                                                  height: 32,
+                                                  width: 90.0,
+                                                  height: 32.0,
+                                                  padding: EdgeInsetsDirectional
+                                                      .fromSTEB(
+                                                          0.0, 0.0, 0.0, 0.0),
+                                                  iconPadding:
+                                                      EdgeInsetsDirectional
+                                                          .fromSTEB(0.0, 0.0,
+                                                              0.0, 0.0),
                                                   color: FlutterFlowTheme.of(
                                                           context)
                                                       .secondaryText,
@@ -1415,13 +1446,14 @@ class _CreateWidgetState extends State<CreateWidget> {
                                                                             context)
                                                                         .subtitle2Family),
                                                           ),
-                                                  elevation: 4,
+                                                  elevation: 4.0,
                                                   borderSide: BorderSide(
                                                     color: Colors.transparent,
-                                                    width: 1,
+                                                    width: 1.0,
                                                   ),
                                                   borderRadius:
-                                                      BorderRadius.circular(15),
+                                                      BorderRadius.circular(
+                                                          15.0),
                                                 ),
                                               ),
                                             ],
@@ -1444,15 +1476,15 @@ class _CreateWidgetState extends State<CreateWidget> {
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
                             Divider(
-                              height: 30,
-                              thickness: 1,
-                              indent: 30,
-                              endIndent: 30,
+                              height: 30.0,
+                              thickness: 1.0,
+                              indent: 30.0,
+                              endIndent: 30.0,
                               color: Color(0xFFCFCFCF),
                             ),
                             Padding(
-                              padding:
-                                  EdgeInsetsDirectional.fromSTEB(30, 0, 30, 0),
+                              padding: EdgeInsetsDirectional.fromSTEB(
+                                  30.0, 0.0, 30.0, 0.0),
                               child: Column(
                                 mainAxisSize: MainAxisSize.max,
                                 mainAxisAlignment: MainAxisAlignment.start,
@@ -1462,8 +1494,8 @@ class _CreateWidgetState extends State<CreateWidget> {
                                     mainAxisSize: MainAxisSize.max,
                                     children: [
                                       Container(
-                                        width: 50,
-                                        height: 50,
+                                        width: 50.0,
+                                        height: 50.0,
                                         clipBehavior: Clip.antiAlias,
                                         decoration: BoxDecoration(
                                           shape: BoxShape.circle,
@@ -1474,7 +1506,7 @@ class _CreateWidgetState extends State<CreateWidget> {
                                       ),
                                       Padding(
                                         padding: EdgeInsetsDirectional.fromSTEB(
-                                            10, 0, 0, 0),
+                                            10.0, 0.0, 0.0, 0.0),
                                         child: Column(
                                           mainAxisSize: MainAxisSize.max,
                                           crossAxisAlignment:
@@ -1494,8 +1526,8 @@ class _CreateWidgetState extends State<CreateWidget> {
                                                   onChanged: (val) => setState(
                                                       () => _model
                                                           .dropDownValue = val),
-                                                  width: 75,
-                                                  height: 26,
+                                                  width: 75.0,
+                                                  height: 26.0,
                                                   textStyle: FlutterFlowTheme
                                                           .of(context)
                                                       .bodyText1
@@ -1506,7 +1538,7 @@ class _CreateWidgetState extends State<CreateWidget> {
                                                                 .bodyText1Family,
                                                         color:
                                                             Color(0xFF99EDFF),
-                                                        fontSize: 12,
+                                                        fontSize: 12.0,
                                                         useGoogleFonts: GoogleFonts
                                                                 .asMap()
                                                             .containsKey(
@@ -1519,23 +1551,24 @@ class _CreateWidgetState extends State<CreateWidget> {
                                                     Icons
                                                         .keyboard_arrow_down_sharp,
                                                     color: Color(0xFF99EDFF),
-                                                    size: 20,
+                                                    size: 20.0,
                                                   ),
                                                   fillColor: Colors.white,
-                                                  elevation: 1,
+                                                  elevation: 1.0,
                                                   borderColor:
                                                       Color(0xFF99EDFF),
-                                                  borderWidth: 1,
-                                                  borderRadius: 50,
+                                                  borderWidth: 1.0,
+                                                  borderRadius: 50.0,
                                                   margin: EdgeInsetsDirectional
-                                                      .fromSTEB(10, 4, 4, 4),
+                                                      .fromSTEB(
+                                                          10.0, 4.0, 4.0, 4.0),
                                                   hidesUnderline: true,
                                                 ),
                                               ],
                                             ),
                                             Padding(
                                               padding: EdgeInsetsDirectional
-                                                  .fromSTEB(6, 4, 0, 0),
+                                                  .fromSTEB(6.0, 4.0, 0.0, 0.0),
                                               child: SelectionArea(
                                                   child: Text(
                                                 'Abu Dhabi',
@@ -1549,7 +1582,7 @@ class _CreateWidgetState extends State<CreateWidget> {
                                                                   .bodyText1Family,
                                                           color:
                                                               Color(0xFF9A9A9A),
-                                                          fontSize: 12,
+                                                          fontSize: 12.0,
                                                           fontWeight:
                                                               FontWeight.normal,
                                                           useGoogleFonts: GoogleFonts
@@ -1568,17 +1601,18 @@ class _CreateWidgetState extends State<CreateWidget> {
                                   ),
                                   Padding(
                                     padding: EdgeInsetsDirectional.fromSTEB(
-                                        0, 10, 0, 20),
+                                        0.0, 10.0, 0.0, 20.0),
                                     child: Container(
                                       width: double.infinity,
                                       decoration: BoxDecoration(
                                         color: FlutterFlowTheme.of(context)
                                             .secondaryBackground,
-                                        borderRadius: BorderRadius.circular(12),
+                                        borderRadius:
+                                            BorderRadius.circular(12.0),
                                       ),
                                       child: Padding(
                                         padding: EdgeInsetsDirectional.fromSTEB(
-                                            0, 15, 0, 0),
+                                            0.0, 15.0, 0.0, 0.0),
                                         child: TextFormField(
                                           controller: _model.textController5,
                                           autofocus: true,
@@ -1619,35 +1653,35 @@ class _CreateWidgetState extends State<CreateWidget> {
                                             enabledBorder: OutlineInputBorder(
                                               borderSide: BorderSide(
                                                 color: Color(0x00000000),
-                                                width: 1,
+                                                width: 1.0,
                                               ),
                                               borderRadius:
-                                                  BorderRadius.circular(10),
+                                                  BorderRadius.circular(10.0),
                                             ),
                                             focusedBorder: OutlineInputBorder(
                                               borderSide: BorderSide(
                                                 color: Color(0x00000000),
-                                                width: 1,
+                                                width: 1.0,
                                               ),
                                               borderRadius:
-                                                  BorderRadius.circular(10),
+                                                  BorderRadius.circular(10.0),
                                             ),
                                             errorBorder: OutlineInputBorder(
                                               borderSide: BorderSide(
                                                 color: Color(0x00000000),
-                                                width: 1,
+                                                width: 1.0,
                                               ),
                                               borderRadius:
-                                                  BorderRadius.circular(10),
+                                                  BorderRadius.circular(10.0),
                                             ),
                                             focusedErrorBorder:
                                                 OutlineInputBorder(
                                               borderSide: BorderSide(
                                                 color: Color(0x00000000),
-                                                width: 1,
+                                                width: 1.0,
                                               ),
                                               borderRadius:
-                                                  BorderRadius.circular(10),
+                                                  BorderRadius.circular(10.0),
                                             ),
                                             filled: true,
                                             fillColor:
@@ -1661,7 +1695,7 @@ class _CreateWidgetState extends State<CreateWidget> {
                                                 color:
                                                     FlutterFlowTheme.of(context)
                                                         .primaryColor,
-                                                fontSize: 14,
+                                                fontSize: 14.0,
                                                 fontWeight: FontWeight.w500,
                                                 useGoogleFonts: GoogleFonts
                                                         .asMap()
@@ -1682,7 +1716,7 @@ class _CreateWidgetState extends State<CreateWidget> {
                                   ),
                                   Container(
                                     constraints: BoxConstraints(
-                                      maxHeight: 300,
+                                      maxHeight: 300.0,
                                     ),
                                     decoration: BoxDecoration(
                                       color: FlutterFlowTheme.of(context)
@@ -1690,7 +1724,7 @@ class _CreateWidgetState extends State<CreateWidget> {
                                     ),
                                   ),
                                   Divider(
-                                    thickness: 1,
+                                    thickness: 1.0,
                                     color: Color(0x9C868686),
                                   ),
                                   SelectionArea(
@@ -1710,7 +1744,7 @@ class _CreateWidgetState extends State<CreateWidget> {
                                   )),
                                   Padding(
                                     padding: EdgeInsetsDirectional.fromSTEB(
-                                        0, 16, 0, 0),
+                                        0.0, 16.0, 0.0, 0.0),
                                     child: FFButtonWidget(
                                       onPressed: () async {
                                         await showModalBottomSheet(
@@ -1736,11 +1770,16 @@ class _CreateWidgetState extends State<CreateWidget> {
                                       text: '',
                                       icon: Icon(
                                         Icons.add,
-                                        size: 15,
+                                        size: 15.0,
                                       ),
                                       options: FFButtonOptions(
-                                        width: 160,
-                                        height: 100,
+                                        width: 160.0,
+                                        height: 100.0,
+                                        padding: EdgeInsetsDirectional.fromSTEB(
+                                            0.0, 0.0, 0.0, 0.0),
+                                        iconPadding:
+                                            EdgeInsetsDirectional.fromSTEB(
+                                                0.0, 0.0, 0.0, 0.0),
                                         color: FlutterFlowTheme.of(context)
                                             .lineColor,
                                         textStyle: FlutterFlowTheme.of(context)
@@ -1759,9 +1798,10 @@ class _CreateWidgetState extends State<CreateWidget> {
                                             ),
                                         borderSide: BorderSide(
                                           color: Colors.transparent,
-                                          width: 1,
+                                          width: 1.0,
                                         ),
-                                        borderRadius: BorderRadius.circular(20),
+                                        borderRadius:
+                                            BorderRadius.circular(20.0),
                                       ),
                                     ),
                                   ),
@@ -1773,7 +1813,8 @@ class _CreateWidgetState extends State<CreateWidget> {
                       ),
                     ),
                     Padding(
-                      padding: EdgeInsetsDirectional.fromSTEB(30, 0, 30, 20),
+                      padding:
+                          EdgeInsetsDirectional.fromSTEB(30.0, 0.0, 30.0, 20.0),
                       child: Row(
                         mainAxisSize: MainAxisSize.max,
                         children: [
@@ -1841,9 +1882,13 @@ class _CreateWidgetState extends State<CreateWidget> {
                             icon: Icon(
                               Icons.photo,
                               color: Color(0x9999EDFF),
-                              size: 30,
+                              size: 30.0,
                             ),
                             options: FFButtonOptions(
+                              padding: EdgeInsetsDirectional.fromSTEB(
+                                  0.0, 0.0, 0.0, 0.0),
+                              iconPadding: EdgeInsetsDirectional.fromSTEB(
+                                  0.0, 0.0, 0.0, 0.0),
                               color: Color(0x003B3F6B),
                               textStyle: FlutterFlowTheme.of(context)
                                   .subtitle2
@@ -1858,9 +1903,9 @@ class _CreateWidgetState extends State<CreateWidget> {
                                   ),
                               borderSide: BorderSide(
                                 color: Colors.transparent,
-                                width: 1,
+                                width: 1.0,
                               ),
-                              borderRadius: BorderRadius.circular(8),
+                              borderRadius: BorderRadius.circular(8.0),
                             ),
                           ),
                           FFButtonWidget(
@@ -1886,9 +1931,13 @@ class _CreateWidgetState extends State<CreateWidget> {
                             icon: Icon(
                               Icons.clear_all,
                               color: Color(0x9999EDFF),
-                              size: 40,
+                              size: 40.0,
                             ),
                             options: FFButtonOptions(
+                              padding: EdgeInsetsDirectional.fromSTEB(
+                                  0.0, 0.0, 0.0, 0.0),
+                              iconPadding: EdgeInsetsDirectional.fromSTEB(
+                                  0.0, 0.0, 0.0, 0.0),
                               color: Color(0x003B3F6B),
                               textStyle: FlutterFlowTheme.of(context)
                                   .subtitle2
@@ -1903,9 +1952,9 @@ class _CreateWidgetState extends State<CreateWidget> {
                                   ),
                               borderSide: BorderSide(
                                 color: Colors.transparent,
-                                width: 1,
+                                width: 1.0,
                               ),
-                              borderRadius: BorderRadius.circular(8),
+                              borderRadius: BorderRadius.circular(8.0),
                             ),
                           ),
                           FFButtonWidget(
@@ -1916,9 +1965,13 @@ class _CreateWidgetState extends State<CreateWidget> {
                             icon: Icon(
                               Icons.location_on,
                               color: Color(0x9999EDFF),
-                              size: 30,
+                              size: 30.0,
                             ),
                             options: FFButtonOptions(
+                              padding: EdgeInsetsDirectional.fromSTEB(
+                                  0.0, 0.0, 0.0, 0.0),
+                              iconPadding: EdgeInsetsDirectional.fromSTEB(
+                                  0.0, 0.0, 0.0, 0.0),
                               color: Color(0x003B3F6B),
                               textStyle: FlutterFlowTheme.of(context)
                                   .subtitle2
@@ -1933,9 +1986,9 @@ class _CreateWidgetState extends State<CreateWidget> {
                                   ),
                               borderSide: BorderSide(
                                 color: Colors.transparent,
-                                width: 1,
+                                width: 1.0,
                               ),
-                              borderRadius: BorderRadius.circular(8),
+                              borderRadius: BorderRadius.circular(8.0),
                             ),
                           ),
                         ],

@@ -1,5 +1,5 @@
-import '../flutter_flow/flutter_flow_theme.dart';
-import '../flutter_flow/flutter_flow_util.dart';
+import '/flutter_flow/flutter_flow_theme.dart';
+import '/flutter_flow/flutter_flow_util.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
@@ -40,7 +40,7 @@ class _EmptyWidgetState extends State<EmptyWidget> {
     context.watch<FFAppState>();
 
     return Padding(
-      padding: EdgeInsetsDirectional.fromSTEB(0, 140, 0, 0),
+      padding: EdgeInsetsDirectional.fromSTEB(0.0, 140.0, 0.0, 0.0),
       child: Column(
         mainAxisSize: MainAxisSize.max,
         mainAxisAlignment: MainAxisAlignment.start,
@@ -54,7 +54,7 @@ class _EmptyWidgetState extends State<EmptyWidget> {
             'Nothing here ',
             style: FlutterFlowTheme.of(context).bodyText1.override(
                   fontFamily: 'Archivo Black',
-                  fontSize: 30,
+                  fontSize: 30.0,
                   useGoogleFonts: GoogleFonts.asMap().containsKey(
                       FlutterFlowTheme.of(context).bodyText1Family),
                 ),

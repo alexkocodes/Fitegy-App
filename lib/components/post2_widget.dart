@@ -1,7 +1,7 @@
-import '../components/post_action_bar_widget.dart';
-import '../flutter_flow/flutter_flow_icon_button.dart';
-import '../flutter_flow/flutter_flow_theme.dart';
-import '../flutter_flow/flutter_flow_util.dart';
+import '/components/post_action_bar_widget.dart';
+import '/flutter_flow/flutter_flow_icon_button.dart';
+import '/flutter_flow/flutter_flow_theme.dart';
+import '/flutter_flow/flutter_flow_util.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
@@ -42,32 +42,32 @@ class _Post2WidgetState extends State<Post2Widget> {
     context.watch<FFAppState>();
 
     return Padding(
-      padding: EdgeInsetsDirectional.fromSTEB(25, 10, 25, 10),
+      padding: EdgeInsetsDirectional.fromSTEB(25.0, 10.0, 25.0, 10.0),
       child: Container(
         width: double.infinity,
         decoration: BoxDecoration(
           color: FlutterFlowTheme.of(context).secondaryBackground,
           boxShadow: [
             BoxShadow(
-              blurRadius: 15,
+              blurRadius: 15.0,
               color: Color(0x33000000),
-              offset: Offset(0, 0),
+              offset: Offset(0.0, 0.0),
             )
           ],
-          borderRadius: BorderRadius.circular(10),
+          borderRadius: BorderRadius.circular(10.0),
         ),
         child: Padding(
-          padding: EdgeInsetsDirectional.fromSTEB(20, 10, 20, 10),
+          padding: EdgeInsetsDirectional.fromSTEB(20.0, 10.0, 20.0, 10.0),
           child: Column(
             mainAxisSize: MainAxisSize.max,
             mainAxisAlignment: MainAxisAlignment.start,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Padding(
-                padding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 5),
+                padding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 5.0),
                 child: Container(
                   width: double.infinity,
-                  height: 35,
+                  height: 35.0,
                   decoration: BoxDecoration(
                     color: FlutterFlowTheme.of(context).secondaryBackground,
                   ),
@@ -76,8 +76,8 @@ class _Post2WidgetState extends State<Post2Widget> {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       Container(
-                        width: 150,
-                        height: 100,
+                        width: 150.0,
+                        height: 100.0,
                         decoration: BoxDecoration(
                           color:
                               FlutterFlowTheme.of(context).secondaryBackground,
@@ -88,7 +88,7 @@ class _Post2WidgetState extends State<Post2Widget> {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Align(
-                              alignment: AlignmentDirectional(0, 0),
+                              alignment: AlignmentDirectional(0.0, 0.0),
                               child: Container(
                                 clipBehavior: Clip.antiAlias,
                                 decoration: BoxDecoration(
@@ -101,8 +101,8 @@ class _Post2WidgetState extends State<Post2Widget> {
                               ),
                             ),
                             Padding(
-                              padding:
-                                  EdgeInsetsDirectional.fromSTEB(5, 0, 0, 0),
+                              padding: EdgeInsetsDirectional.fromSTEB(
+                                  5.0, 0.0, 0.0, 0.0),
                               child: Column(
                                 mainAxisSize: MainAxisSize.max,
                                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -113,7 +113,7 @@ class _Post2WidgetState extends State<Post2Widget> {
                                         .bodyText1
                                         .override(
                                           fontFamily: 'Inter',
-                                          fontSize: 15,
+                                          fontSize: 15.0,
                                           fontWeight: FontWeight.w600,
                                           useGoogleFonts: GoogleFonts.asMap()
                                               .containsKey(
@@ -130,7 +130,7 @@ class _Post2WidgetState extends State<Post2Widget> {
                                               FlutterFlowTheme.of(context)
                                                   .bodyText1Family,
                                           color: Color(0xFFB1B1B1),
-                                          fontSize: 10,
+                                          fontSize: 10.0,
                                           fontWeight: FontWeight.w300,
                                           useGoogleFonts: GoogleFonts.asMap()
                                               .containsKey(
@@ -145,21 +145,21 @@ class _Post2WidgetState extends State<Post2Widget> {
                         ),
                       ),
                       Container(
-                        width: 100,
-                        height: 100,
+                        width: 100.0,
+                        height: 100.0,
                         child: Stack(
                           children: [
                             Align(
-                              alignment: AlignmentDirectional(-0.75, 1),
+                              alignment: AlignmentDirectional(-0.75, 1.0),
                               child: FlutterFlowIconButton(
                                 borderColor: Colors.transparent,
-                                borderRadius: 20,
+                                borderRadius: 20.0,
                                 borderWidth: 0.2,
-                                buttonSize: 40,
+                                buttonSize: 40.0,
                                 icon: Icon(
                                   Icons.auto_awesome,
                                   color: Color(0xFFE6A0FF),
-                                  size: 13,
+                                  size: 13.0,
                                 ),
                                 onPressed: () {
                                   print('IconButton pressed ...');
@@ -167,10 +167,10 @@ class _Post2WidgetState extends State<Post2Widget> {
                               ),
                             ),
                             Align(
-                              alignment: AlignmentDirectional(1, -0.25),
+                              alignment: AlignmentDirectional(1.0, -0.25),
                               child: Padding(
-                                padding:
-                                    EdgeInsetsDirectional.fromSTEB(0, 4, 0, 0),
+                                padding: EdgeInsetsDirectional.fromSTEB(
+                                    0.0, 4.0, 0.0, 0.0),
                                 child: Text(
                                   'In Progress',
                                   style: FlutterFlowTheme.of(context)
@@ -179,7 +179,7 @@ class _Post2WidgetState extends State<Post2Widget> {
                                         fontFamily: FlutterFlowTheme.of(context)
                                             .bodyText1Family,
                                         color: Color(0xFFE6A0FF),
-                                        fontSize: 12,
+                                        fontSize: 12.0,
                                         fontWeight: FontWeight.normal,
                                         useGoogleFonts: GoogleFonts.asMap()
                                             .containsKey(
@@ -197,7 +197,7 @@ class _Post2WidgetState extends State<Post2Widget> {
                 ),
               ),
               Padding(
-                padding: EdgeInsetsDirectional.fromSTEB(0, 4, 0, 0),
+                padding: EdgeInsetsDirectional.fromSTEB(0.0, 4.0, 0.0, 0.0),
                 child: Text(
                   'Doing coach Lyne’s HIIT workout challenge on International Women’s Day. Who else is doing it?',
                   style: FlutterFlowTheme.of(context).bodyText1,

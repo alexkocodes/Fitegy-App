@@ -33,10 +33,15 @@ service cloud.firestore {
 
 
     match /users/{parent}/friends/{document} {
-      allow create: if request.auth.uid == parent;
-      allow read: if true;
-      allow write: if request.auth.uid == parent;
-      allow delete: if false;
+      allow create: if request.auth != null;
+      allow read: if request.auth != null;
+      allow write: if request.auth != null;
+      allow delete: if request.auth != null;
     }
+
+    match /{path=**}/friends/{document} {
+      allow read: if request.auth != null;
+    }
+
   }
 }

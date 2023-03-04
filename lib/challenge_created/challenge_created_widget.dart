@@ -1,7 +1,7 @@
-import '../flutter_flow/flutter_flow_animations.dart';
-import '../flutter_flow/flutter_flow_icon_button.dart';
-import '../flutter_flow/flutter_flow_theme.dart';
-import '../flutter_flow/flutter_flow_util.dart';
+import '/flutter_flow/flutter_flow_animations.dart';
+import '/flutter_flow/flutter_flow_icon_button.dart';
+import '/flutter_flow/flutter_flow_theme.dart';
+import '/flutter_flow/flutter_flow_util.dart';
 import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
@@ -38,8 +38,8 @@ class _ChallengeCreatedWidgetState extends State<ChallengeCreatedWidget>
           curve: Curves.easeInOut,
           delay: 0.ms,
           duration: 1500.ms,
-          begin: Offset(-100, -100),
-          end: Offset(0, 0),
+          begin: Offset(-100.0, -100.0),
+          end: Offset(0.0, 0.0),
         ),
       ],
     ),
@@ -50,8 +50,8 @@ class _ChallengeCreatedWidgetState extends State<ChallengeCreatedWidget>
           curve: Curves.easeInOut,
           delay: 0.ms,
           duration: 1000.ms,
-          begin: Offset(81, 0),
-          end: Offset(0, 0),
+          begin: Offset(81.0, 0.0),
+          end: Offset(0.0, 0.0),
         ),
       ],
     ),
@@ -62,8 +62,8 @@ class _ChallengeCreatedWidgetState extends State<ChallengeCreatedWidget>
           curve: Curves.easeInOut,
           delay: 0.ms,
           duration: 1500.ms,
-          begin: Offset(87, 80),
-          end: Offset(0, 0),
+          begin: Offset(87.0, 80.0),
+          end: Offset(0.0, 0.0),
         ),
       ],
     ),
@@ -74,8 +74,8 @@ class _ChallengeCreatedWidgetState extends State<ChallengeCreatedWidget>
           curve: Curves.easeInOut,
           delay: 0.ms,
           duration: 1400.ms,
-          begin: Offset(-36, 30),
-          end: Offset(0, 0),
+          begin: Offset(-36.0, 30.0),
+          end: Offset(0.0, 0.0),
         ),
       ],
     ),
@@ -116,7 +116,7 @@ class _ChallengeCreatedWidgetState extends State<ChallengeCreatedWidget>
               alignment: AlignmentDirectional(-1.88, -0.64),
               child: Image.asset(
                 'assets/images/bubble_(4).png',
-                width: 300,
+                width: 300.0,
                 fit: BoxFit.fill,
               ).animateOnPageLoad(animationsMap['imageOnPageLoadAnimation1']!),
             ),
@@ -124,7 +124,7 @@ class _ChallengeCreatedWidgetState extends State<ChallengeCreatedWidget>
               alignment: AlignmentDirectional(0.81, 0.08),
               child: Image.asset(
                 'assets/images/bubble_(2).png',
-                width: 130,
+                width: 130.0,
                 fit: BoxFit.cover,
               ).animateOnPageLoad(animationsMap['imageOnPageLoadAnimation2']!),
             ),
@@ -132,38 +132,39 @@ class _ChallengeCreatedWidgetState extends State<ChallengeCreatedWidget>
               alignment: AlignmentDirectional(0.9, 0.33),
               child: Image.asset(
                 'assets/images/bubble_(1).png',
-                width: 200,
+                width: 200.0,
                 fit: BoxFit.cover,
               ).animateOnPageLoad(animationsMap['imageOnPageLoadAnimation3']!),
             ),
             Align(
-              alignment: AlignmentDirectional(0, -0.1),
+              alignment: AlignmentDirectional(0.0, -0.1),
               child: ClipRRect(
                 child: BackdropFilter(
                   filter: ImageFilter.blur(
-                    sigmaX: 5,
-                    sigmaY: 5,
+                    sigmaX: 5.0,
+                    sigmaY: 5.0,
                   ),
                   child: ClipRRect(
-                    borderRadius: BorderRadius.circular(32),
+                    borderRadius: BorderRadius.circular(32.0),
                     child: Container(
                       width: MediaQuery.of(context).size.width * 0.5,
                       height: MediaQuery.of(context).size.height * 0.3,
                       decoration: BoxDecoration(
                         gradient: LinearGradient(
                           colors: [Color(0x94FFFFFF), Color(0x00FFFFFF)],
-                          stops: [0, 0.7],
-                          begin: AlignmentDirectional(-0.64, -1),
-                          end: AlignmentDirectional(0.64, 1),
+                          stops: [0.0, 0.7],
+                          begin: AlignmentDirectional(-0.64, -1.0),
+                          end: AlignmentDirectional(0.64, 1.0),
                         ),
-                        borderRadius: BorderRadius.circular(32),
+                        borderRadius: BorderRadius.circular(32.0),
                         border: Border.all(
                           color: Color(0x4DFFFFFF),
-                          width: 2,
+                          width: 2.0,
                         ),
                       ),
                       child: Padding(
-                        padding: EdgeInsetsDirectional.fromSTEB(20, 20, 20, 20),
+                        padding: EdgeInsetsDirectional.fromSTEB(
+                            20.0, 20.0, 20.0, 20.0),
                         child: Column(
                           mainAxisSize: MainAxisSize.max,
                           crossAxisAlignment: CrossAxisAlignment.start,
@@ -174,7 +175,7 @@ class _ChallengeCreatedWidgetState extends State<ChallengeCreatedWidget>
                                   .bodyText1
                                   .override(
                                     fontFamily: 'Archivo Black',
-                                    fontSize: 16,
+                                    fontSize: 16.0,
                                     useGoogleFonts: GoogleFonts.asMap()
                                         .containsKey(
                                             FlutterFlowTheme.of(context)
@@ -182,8 +183,8 @@ class _ChallengeCreatedWidgetState extends State<ChallengeCreatedWidget>
                                   ),
                             ),
                             Padding(
-                              padding:
-                                  EdgeInsetsDirectional.fromSTEB(0, 5, 0, 0),
+                              padding: EdgeInsetsDirectional.fromSTEB(
+                                  0.0, 5.0, 0.0, 0.0),
                               child: Text(
                                 dateTimeFormat('yMMMd', getCurrentTimestamp),
                                 style: FlutterFlowTheme.of(context)
@@ -191,7 +192,7 @@ class _ChallengeCreatedWidgetState extends State<ChallengeCreatedWidget>
                                     .override(
                                       fontFamily: FlutterFlowTheme.of(context)
                                           .bodyText1Family,
-                                      fontSize: 10,
+                                      fontSize: 10.0,
                                       fontWeight: FontWeight.w500,
                                       useGoogleFonts: GoogleFonts.asMap()
                                           .containsKey(
@@ -201,8 +202,8 @@ class _ChallengeCreatedWidgetState extends State<ChallengeCreatedWidget>
                               ),
                             ),
                             Padding(
-                              padding:
-                                  EdgeInsetsDirectional.fromSTEB(0, 20, 0, 0),
+                              padding: EdgeInsetsDirectional.fromSTEB(
+                                  0.0, 20.0, 0.0, 0.0),
                               child: Image.asset(
                                 'assets/images/diamond.png',
                                 fit: BoxFit.cover,
@@ -220,8 +221,8 @@ class _ChallengeCreatedWidgetState extends State<ChallengeCreatedWidget>
               alignment: AlignmentDirectional(-0.5, 0.25),
               child: Image.asset(
                 'assets/images/bubble.png',
-                width: 100,
-                height: 100,
+                width: 100.0,
+                height: 100.0,
                 fit: BoxFit.cover,
               ).animateOnPageLoad(animationsMap['imageOnPageLoadAnimation4']!),
             ),
@@ -229,13 +230,13 @@ class _ChallengeCreatedWidgetState extends State<ChallengeCreatedWidget>
               alignment: AlignmentDirectional(0.85, 0.93),
               child: FlutterFlowIconButton(
                 borderColor: Colors.transparent,
-                borderRadius: 30,
-                borderWidth: 1,
-                buttonSize: 60,
+                borderRadius: 30.0,
+                borderWidth: 1.0,
+                buttonSize: 60.0,
                 icon: Icon(
                   Icons.arrow_forward,
                   color: FlutterFlowTheme.of(context).primaryBackground,
-                  size: 30,
+                  size: 30.0,
                 ),
                 onPressed: () async {
                   context.pushNamed('MyChallenges');

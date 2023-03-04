@@ -1,8 +1,8 @@
-import '../auth/auth_util.dart';
-import '../components/post_action_bar_widget.dart';
-import '../flutter_flow/flutter_flow_icon_button.dart';
-import '../flutter_flow/flutter_flow_theme.dart';
-import '../flutter_flow/flutter_flow_util.dart';
+import '/auth/auth_util.dart';
+import '/components/post_action_bar_widget.dart';
+import '/flutter_flow/flutter_flow_icon_button.dart';
+import '/flutter_flow/flutter_flow_theme.dart';
+import '/flutter_flow/flutter_flow_util.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -59,32 +59,32 @@ class _PostWidgetState extends State<PostWidget> {
     context.watch<FFAppState>();
 
     return Padding(
-      padding: EdgeInsetsDirectional.fromSTEB(25, 10, 25, 10),
+      padding: EdgeInsetsDirectional.fromSTEB(25.0, 10.0, 25.0, 10.0),
       child: Container(
         width: double.infinity,
         decoration: BoxDecoration(
           color: FlutterFlowTheme.of(context).secondaryBackground,
           boxShadow: [
             BoxShadow(
-              blurRadius: 15,
+              blurRadius: 15.0,
               color: Color(0x33000000),
-              offset: Offset(0, 0),
+              offset: Offset(0.0, 0.0),
             )
           ],
-          borderRadius: BorderRadius.circular(10),
+          borderRadius: BorderRadius.circular(10.0),
         ),
         child: Padding(
-          padding: EdgeInsetsDirectional.fromSTEB(20, 10, 20, 10),
+          padding: EdgeInsetsDirectional.fromSTEB(20.0, 10.0, 20.0, 10.0),
           child: Column(
             mainAxisSize: MainAxisSize.max,
             mainAxisAlignment: MainAxisAlignment.start,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Padding(
-                padding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 5),
+                padding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 5.0),
                 child: Container(
                   width: double.infinity,
-                  height: 35,
+                  height: 35.0,
                   decoration: BoxDecoration(
                     color: FlutterFlowTheme.of(context).secondaryBackground,
                   ),
@@ -93,8 +93,8 @@ class _PostWidgetState extends State<PostWidget> {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       Container(
-                        width: 150,
-                        height: 100,
+                        width: 150.0,
+                        height: 100.0,
                         decoration: BoxDecoration(
                           color:
                               FlutterFlowTheme.of(context).secondaryBackground,
@@ -105,7 +105,7 @@ class _PostWidgetState extends State<PostWidget> {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Align(
-                              alignment: AlignmentDirectional(0, 0),
+                              alignment: AlignmentDirectional(0.0, 0.0),
                               child: AuthUserStreamWidget(
                                 builder: (context) => Container(
                                   clipBehavior: Clip.antiAlias,
@@ -120,8 +120,8 @@ class _PostWidgetState extends State<PostWidget> {
                               ),
                             ),
                             Padding(
-                              padding:
-                                  EdgeInsetsDirectional.fromSTEB(10, 0, 0, 0),
+                              padding: EdgeInsetsDirectional.fromSTEB(
+                                  10.0, 0.0, 0.0, 0.0),
                               child: Column(
                                 mainAxisSize: MainAxisSize.max,
                                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -134,7 +134,7 @@ class _PostWidgetState extends State<PostWidget> {
                                           fontFamily: 'Inter',
                                           color: FlutterFlowTheme.of(context)
                                               .primaryColor,
-                                          fontSize: 15,
+                                          fontSize: 15.0,
                                           fontWeight: FontWeight.w600,
                                           useGoogleFonts: GoogleFonts.asMap()
                                               .containsKey(
@@ -151,7 +151,7 @@ class _PostWidgetState extends State<PostWidget> {
                                               FlutterFlowTheme.of(context)
                                                   .bodyText1Family,
                                           color: Color(0xFFB1B1B1),
-                                          fontSize: 10,
+                                          fontSize: 10.0,
                                           fontWeight: FontWeight.w300,
                                           useGoogleFonts: GoogleFonts.asMap()
                                               .containsKey(
@@ -166,21 +166,21 @@ class _PostWidgetState extends State<PostWidget> {
                         ),
                       ),
                       Container(
-                        width: 100,
-                        height: 100,
+                        width: 100.0,
+                        height: 100.0,
                         child: Stack(
                           children: [
                             Align(
-                              alignment: AlignmentDirectional(-0.7, 1),
+                              alignment: AlignmentDirectional(-0.7, 1.0),
                               child: FlutterFlowIconButton(
                                 borderColor: Colors.transparent,
-                                borderRadius: 20,
+                                borderRadius: 20.0,
                                 borderWidth: 0.2,
-                                buttonSize: 40,
+                                buttonSize: 40.0,
                                 icon: Icon(
                                   Icons.check_circle_outline_outlined,
                                   color: Color(0xFF92FF6B),
-                                  size: 13,
+                                  size: 13.0,
                                 ),
                                 onPressed: () {
                                   print('IconButton pressed ...');
@@ -188,10 +188,10 @@ class _PostWidgetState extends State<PostWidget> {
                               ),
                             ),
                             Align(
-                              alignment: AlignmentDirectional(1, -0.25),
+                              alignment: AlignmentDirectional(1.0, -0.25),
                               child: Padding(
-                                padding:
-                                    EdgeInsetsDirectional.fromSTEB(0, 4, 0, 0),
+                                padding: EdgeInsetsDirectional.fromSTEB(
+                                    0.0, 4.0, 0.0, 0.0),
                                 child: Text(
                                   widget.status!,
                                   style: FlutterFlowTheme.of(context)
@@ -200,7 +200,7 @@ class _PostWidgetState extends State<PostWidget> {
                                         fontFamily: FlutterFlowTheme.of(context)
                                             .bodyText1Family,
                                         color: Color(0xFF92FF6B),
-                                        fontSize: 12,
+                                        fontSize: 12.0,
                                         fontWeight: FontWeight.normal,
                                         useGoogleFonts: GoogleFonts.asMap()
                                             .containsKey(
@@ -218,14 +218,14 @@ class _PostWidgetState extends State<PostWidget> {
                 ),
               ),
               Padding(
-                padding: EdgeInsetsDirectional.fromSTEB(0, 10, 0, 10),
+                padding: EdgeInsetsDirectional.fromSTEB(0.0, 10.0, 0.0, 10.0),
                 child: Container(
-                  height: 30,
+                  height: 30.0,
                   decoration: BoxDecoration(
                     color: FlutterFlowTheme.of(context).secondaryBackground,
                   ),
                   child: Padding(
-                    padding: EdgeInsetsDirectional.fromSTEB(0, 4, 0, 0),
+                    padding: EdgeInsetsDirectional.fromSTEB(0.0, 4.0, 0.0, 0.0),
                     child: Text(
                       widget.description!,
                       style: FlutterFlowTheme.of(context).bodyText1.override(
@@ -241,7 +241,7 @@ class _PostWidgetState extends State<PostWidget> {
                 ),
               ),
               Container(
-                height: 200,
+                height: 200.0,
                 decoration: BoxDecoration(
                   color: FlutterFlowTheme.of(context).secondaryBackground,
                 ),

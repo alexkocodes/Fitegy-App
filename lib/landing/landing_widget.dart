@@ -1,8 +1,8 @@
-import '../flutter_flow/flutter_flow_animations.dart';
-import '../flutter_flow/flutter_flow_icon_button.dart';
-import '../flutter_flow/flutter_flow_theme.dart';
-import '../flutter_flow/flutter_flow_util.dart';
-import '../flutter_flow/flutter_flow_widgets.dart';
+import '/flutter_flow/flutter_flow_animations.dart';
+import '/flutter_flow/flutter_flow_icon_button.dart';
+import '/flutter_flow/flutter_flow_theme.dart';
+import '/flutter_flow/flutter_flow_util.dart';
+import '/flutter_flow/flutter_flow_widgets.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart'
     as smooth_page_indicator;
 import 'package:flutter/material.dart';
@@ -37,8 +37,8 @@ class _LandingWidgetState extends State<LandingWidget>
           curve: Curves.easeInOut,
           delay: 0.ms,
           duration: 810.ms,
-          begin: 0,
-          end: 1,
+          begin: 0.0,
+          end: 1.0,
         ),
       ],
     ),
@@ -50,15 +50,15 @@ class _LandingWidgetState extends State<LandingWidget>
           curve: Curves.easeInOut,
           delay: 300.ms,
           duration: 630.ms,
-          begin: 0,
-          end: 1,
+          begin: 0.0,
+          end: 1.0,
         ),
         MoveEffect(
           curve: Curves.easeInOut,
           delay: 300.ms,
           duration: 630.ms,
-          begin: Offset(71, 0),
-          end: Offset(0, 0),
+          begin: Offset(71.0, 0.0),
+          end: Offset(0.0, 0.0),
         ),
       ],
     ),
@@ -70,15 +70,15 @@ class _LandingWidgetState extends State<LandingWidget>
           curve: Curves.easeInOut,
           delay: 400.ms,
           duration: 630.ms,
-          begin: 0,
-          end: 1,
+          begin: 0.0,
+          end: 1.0,
         ),
         MoveEffect(
           curve: Curves.easeInOut,
           delay: 400.ms,
           duration: 630.ms,
-          begin: Offset(71, 0),
-          end: Offset(0, 0),
+          begin: Offset(71.0, 0.0),
+          end: Offset(0.0, 0.0),
         ),
       ],
     ),
@@ -90,15 +90,15 @@ class _LandingWidgetState extends State<LandingWidget>
           curve: Curves.elasticOut,
           delay: 550.ms,
           duration: 1200.ms,
-          begin: 0,
-          end: 1,
+          begin: 0.0,
+          end: 1.0,
         ),
         MoveEffect(
           curve: Curves.elasticOut,
           delay: 550.ms,
           duration: 1200.ms,
-          begin: Offset(-79, 0),
-          end: Offset(0, 0),
+          begin: Offset(-79.0, 0.0),
+          end: Offset(0.0, 0.0),
         ),
       ],
     ),
@@ -110,15 +110,15 @@ class _LandingWidgetState extends State<LandingWidget>
           curve: Curves.elasticOut,
           delay: 650.ms,
           duration: 1200.ms,
-          begin: 0,
-          end: 1,
+          begin: 0.0,
+          end: 1.0,
         ),
         MoveEffect(
           curve: Curves.elasticOut,
           delay: 650.ms,
           duration: 1200.ms,
-          begin: Offset(-74, 0),
-          end: Offset(0, 0),
+          begin: Offset(-74.0, 0.0),
+          end: Offset(0.0, 0.0),
         ),
       ],
     ),
@@ -130,8 +130,8 @@ class _LandingWidgetState extends State<LandingWidget>
           curve: Curves.easeInOut,
           delay: 0.ms,
           duration: 630.ms,
-          begin: 0,
-          end: 1,
+          begin: 0.0,
+          end: 1.0,
         ),
       ],
     ),
@@ -143,15 +143,15 @@ class _LandingWidgetState extends State<LandingWidget>
           curve: Curves.easeInOut,
           delay: 300.ms,
           duration: 630.ms,
-          begin: 0,
-          end: 1,
+          begin: 0.0,
+          end: 1.0,
         ),
         MoveEffect(
           curve: Curves.easeInOut,
           delay: 300.ms,
           duration: 630.ms,
-          begin: Offset(71, 0),
-          end: Offset(0, 0),
+          begin: Offset(71.0, 0.0),
+          end: Offset(0.0, 0.0),
         ),
       ],
     ),
@@ -163,15 +163,15 @@ class _LandingWidgetState extends State<LandingWidget>
           curve: Curves.easeInOut,
           delay: 400.ms,
           duration: 630.ms,
-          begin: 0,
-          end: 1,
+          begin: 0.0,
+          end: 1.0,
         ),
         MoveEffect(
           curve: Curves.easeInOut,
           delay: 400.ms,
           duration: 630.ms,
-          begin: Offset(71, 0),
-          end: Offset(0, 0),
+          begin: Offset(71.0, 0.0),
+          end: Offset(0.0, 0.0),
         ),
       ],
     ),
@@ -183,15 +183,15 @@ class _LandingWidgetState extends State<LandingWidget>
           curve: Curves.elasticOut,
           delay: 550.ms,
           duration: 900.ms,
-          begin: 0,
-          end: 1,
+          begin: 0.0,
+          end: 1.0,
         ),
         MoveEffect(
           curve: Curves.elasticOut,
           delay: 550.ms,
           duration: 900.ms,
-          begin: Offset(-79, 0),
-          end: Offset(0, 0),
+          begin: Offset(-79.0, 0.0),
+          end: Offset(0.0, 0.0),
         ),
       ],
     ),
@@ -203,15 +203,15 @@ class _LandingWidgetState extends State<LandingWidget>
           curve: Curves.elasticOut,
           delay: 650.ms,
           duration: 600.ms,
-          begin: 0,
-          end: 1,
+          begin: 0.0,
+          end: 1.0,
         ),
         MoveEffect(
           curve: Curves.elasticOut,
           delay: 650.ms,
           duration: 600.ms,
-          begin: Offset(-74, 0),
-          end: Offset(0, 0),
+          begin: Offset(-74.0, 0.0),
+          end: Offset(0.0, 0.0),
         ),
       ],
     ),
@@ -223,15 +223,15 @@ class _LandingWidgetState extends State<LandingWidget>
           curve: Curves.easeInOut,
           delay: 300.ms,
           duration: 630.ms,
-          begin: 0,
-          end: 1,
+          begin: 0.0,
+          end: 1.0,
         ),
         MoveEffect(
           curve: Curves.easeInOut,
           delay: 300.ms,
           duration: 630.ms,
-          begin: Offset(71, 0),
-          end: Offset(0, 0),
+          begin: Offset(71.0, 0.0),
+          end: Offset(0.0, 0.0),
         ),
       ],
     ),
@@ -243,15 +243,15 @@ class _LandingWidgetState extends State<LandingWidget>
           curve: Curves.easeInOut,
           delay: 400.ms,
           duration: 630.ms,
-          begin: 0,
-          end: 1,
+          begin: 0.0,
+          end: 1.0,
         ),
         MoveEffect(
           curve: Curves.easeInOut,
           delay: 400.ms,
           duration: 630.ms,
-          begin: Offset(71, 0),
-          end: Offset(0, 0),
+          begin: Offset(71.0, 0.0),
+          end: Offset(0.0, 0.0),
         ),
       ],
     ),
@@ -263,15 +263,15 @@ class _LandingWidgetState extends State<LandingWidget>
           curve: Curves.elasticOut,
           delay: 550.ms,
           duration: 900.ms,
-          begin: 0,
-          end: 1,
+          begin: 0.0,
+          end: 1.0,
         ),
         MoveEffect(
           curve: Curves.elasticOut,
           delay: 550.ms,
           duration: 900.ms,
-          begin: Offset(-79, 0),
-          end: Offset(0, 0),
+          begin: Offset(-79.0, 0.0),
+          end: Offset(0.0, 0.0),
         ),
       ],
     ),
@@ -283,15 +283,15 @@ class _LandingWidgetState extends State<LandingWidget>
           curve: Curves.elasticOut,
           delay: 650.ms,
           duration: 600.ms,
-          begin: 0,
-          end: 1,
+          begin: 0.0,
+          end: 1.0,
         ),
         MoveEffect(
           curve: Curves.elasticOut,
           delay: 650.ms,
           duration: 600.ms,
-          begin: Offset(-74, 0),
-          end: Offset(0, 0),
+          begin: Offset(-74.0, 0.0),
+          end: Offset(0.0, 0.0),
         ),
       ],
     ),
@@ -303,15 +303,15 @@ class _LandingWidgetState extends State<LandingWidget>
           curve: Curves.easeInOut,
           delay: 600.ms,
           duration: 600.ms,
-          begin: 0,
-          end: 1,
+          begin: 0.0,
+          end: 1.0,
         ),
         MoveEffect(
           curve: Curves.easeInOut,
           delay: 600.ms,
           duration: 600.ms,
-          begin: Offset(66, 0),
-          end: Offset(0, 0),
+          begin: Offset(66.0, 0.0),
+          end: Offset(0.0, 0.0),
         ),
       ],
     ),
@@ -323,15 +323,15 @@ class _LandingWidgetState extends State<LandingWidget>
           curve: Curves.easeInOut,
           delay: 600.ms,
           duration: 600.ms,
-          begin: 0,
-          end: 1,
+          begin: 0.0,
+          end: 1.0,
         ),
         MoveEffect(
           curve: Curves.easeInOut,
           delay: 600.ms,
           duration: 600.ms,
-          begin: Offset(-51, 0),
-          end: Offset(0, 0),
+          begin: Offset(-51.0, 0.0),
+          end: Offset(0.0, 0.0),
         ),
       ],
     ),
@@ -378,7 +378,7 @@ class _LandingWidgetState extends State<LandingWidget>
                   width: double.infinity,
                   height: double.infinity,
                   child: Stack(
-                    alignment: AlignmentDirectional(0, 0),
+                    alignment: AlignmentDirectional(0.0, 0.0),
                     children: [
                       Container(
                         width: double.infinity,
@@ -394,10 +394,11 @@ class _LandingWidgetState extends State<LandingWidget>
                                   width: double.infinity,
                                   height: double.infinity,
                                   child: Stack(
-                                    alignment: AlignmentDirectional(0, 0),
+                                    alignment: AlignmentDirectional(0.0, 0.0),
                                     children: [
                                       Align(
-                                        alignment: AlignmentDirectional(0, 0),
+                                        alignment:
+                                            AlignmentDirectional(0.0, 0.0),
                                         child: Column(
                                           mainAxisSize: MainAxisSize.max,
                                           mainAxisAlignment:
@@ -405,13 +406,14 @@ class _LandingWidgetState extends State<LandingWidget>
                                           children: [
                                             Padding(
                                               padding: EdgeInsetsDirectional
-                                                  .fromSTEB(40, 0, 40, 0),
+                                                  .fromSTEB(
+                                                      40.0, 0.0, 40.0, 0.0),
                                               child: Row(
                                                 mainAxisSize: MainAxisSize.max,
                                                 children: [
                                                   Image.asset(
                                                     'assets/images/Fitegy_(1).png',
-                                                    width: 100,
+                                                    width: 100.0,
                                                     fit: BoxFit.cover,
                                                   ).animateOnPageLoad(animationsMap[
                                                       'imageOnPageLoadAnimation1']!),
@@ -420,7 +422,8 @@ class _LandingWidgetState extends State<LandingWidget>
                                             ),
                                             Padding(
                                               padding: EdgeInsetsDirectional
-                                                  .fromSTEB(40, 0, 40, 0),
+                                                  .fromSTEB(
+                                                      40.0, 0.0, 40.0, 0.0),
                                               child: Column(
                                                 mainAxisSize: MainAxisSize.min,
                                                 mainAxisAlignment:
@@ -442,7 +445,7 @@ class _LandingWidgetState extends State<LandingWidget>
                                                                 color: FlutterFlowTheme.of(
                                                                         context)
                                                                     .secondaryText,
-                                                                fontSize: 38,
+                                                                fontSize: 38.0,
                                                                 fontWeight:
                                                                     FontWeight
                                                                         .normal,
@@ -462,8 +465,8 @@ class _LandingWidgetState extends State<LandingWidget>
                                                   Padding(
                                                     padding:
                                                         EdgeInsetsDirectional
-                                                            .fromSTEB(
-                                                                0, 40, 0, 0),
+                                                            .fromSTEB(0.0, 40.0,
+                                                                0.0, 0.0),
                                                     child: Row(
                                                       mainAxisSize:
                                                           MainAxisSize.max,
@@ -500,7 +503,7 @@ class _LandingWidgetState extends State<LandingWidget>
                                                   ),
                                                   Container(
                                                     width: double.infinity,
-                                                    height: 100,
+                                                    height: 100.0,
                                                     decoration: BoxDecoration(),
                                                   ),
                                                 ],
@@ -508,7 +511,8 @@ class _LandingWidgetState extends State<LandingWidget>
                                             ),
                                             Padding(
                                               padding: EdgeInsetsDirectional
-                                                  .fromSTEB(40, 0, 40, 0),
+                                                  .fromSTEB(
+                                                      40.0, 0.0, 40.0, 0.0),
                                               child: Column(
                                                 mainAxisSize: MainAxisSize.max,
                                                 children: [
@@ -547,8 +551,22 @@ class _LandingWidgetState extends State<LandingWidget>
                                                           text: 'Sign up',
                                                           options:
                                                               FFButtonOptions(
-                                                            width: 130,
-                                                            height: 50,
+                                                            width: 130.0,
+                                                            height: 50.0,
+                                                            padding:
+                                                                EdgeInsetsDirectional
+                                                                    .fromSTEB(
+                                                                        0.0,
+                                                                        0.0,
+                                                                        0.0,
+                                                                        0.0),
+                                                            iconPadding:
+                                                                EdgeInsetsDirectional
+                                                                    .fromSTEB(
+                                                                        0.0,
+                                                                        0.0,
+                                                                        0.0,
+                                                                        0.0),
                                                             color: FlutterFlowTheme
                                                                     .of(context)
                                                                 .secondaryText,
@@ -563,7 +581,7 @@ class _LandingWidgetState extends State<LandingWidget>
                                                                               context)
                                                                           .primaryBackground,
                                                                       fontSize:
-                                                                          19,
+                                                                          19.0,
                                                                       fontWeight:
                                                                           FontWeight
                                                                               .normal,
@@ -576,12 +594,12 @@ class _LandingWidgetState extends State<LandingWidget>
                                                                 BorderSide(
                                                               color: Colors
                                                                   .transparent,
-                                                              width: 1,
+                                                              width: 1.0,
                                                             ),
                                                             borderRadius:
                                                                 BorderRadius
                                                                     .circular(
-                                                                        50),
+                                                                        50.0),
                                                           ),
                                                         ).animateOnPageLoad(
                                                             animationsMap[
@@ -592,8 +610,8 @@ class _LandingWidgetState extends State<LandingWidget>
                                                   Padding(
                                                     padding:
                                                         EdgeInsetsDirectional
-                                                            .fromSTEB(
-                                                                0, 16, 0, 0),
+                                                            .fromSTEB(0.0, 16.0,
+                                                                0.0, 0.0),
                                                     child: Row(
                                                       mainAxisSize:
                                                           MainAxisSize.max,
@@ -626,8 +644,11 @@ class _LandingWidgetState extends State<LandingWidget>
                                                         Padding(
                                                           padding:
                                                               EdgeInsetsDirectional
-                                                                  .fromSTEB(4,
-                                                                      0, 0, 0),
+                                                                  .fromSTEB(
+                                                                      4.0,
+                                                                      0.0,
+                                                                      0.0,
+                                                                      0.0),
                                                           child: InkWell(
                                                             onTap: () async {
                                                               context.pushNamed(
@@ -697,10 +718,11 @@ class _LandingWidgetState extends State<LandingWidget>
                                   width: double.infinity,
                                   height: double.infinity,
                                   child: Stack(
-                                    alignment: AlignmentDirectional(0, 0),
+                                    alignment: AlignmentDirectional(0.0, 0.0),
                                     children: [
                                       Align(
-                                        alignment: AlignmentDirectional(0, 0),
+                                        alignment:
+                                            AlignmentDirectional(0.0, 0.0),
                                         child: Column(
                                           mainAxisSize: MainAxisSize.max,
                                           mainAxisAlignment:
@@ -708,13 +730,14 @@ class _LandingWidgetState extends State<LandingWidget>
                                           children: [
                                             Padding(
                                               padding: EdgeInsetsDirectional
-                                                  .fromSTEB(40, 0, 40, 0),
+                                                  .fromSTEB(
+                                                      40.0, 0.0, 40.0, 0.0),
                                               child: Row(
                                                 mainAxisSize: MainAxisSize.max,
                                                 children: [
                                                   Image.asset(
                                                     'assets/images/Fitegy_(1).png',
-                                                    width: 100,
+                                                    width: 100.0,
                                                     fit: BoxFit.cover,
                                                   ).animateOnPageLoad(animationsMap[
                                                       'imageOnPageLoadAnimation2']!),
@@ -723,7 +746,8 @@ class _LandingWidgetState extends State<LandingWidget>
                                             ),
                                             Padding(
                                               padding: EdgeInsetsDirectional
-                                                  .fromSTEB(40, 0, 40, 0),
+                                                  .fromSTEB(
+                                                      40.0, 0.0, 40.0, 0.0),
                                               child: Column(
                                                 mainAxisSize: MainAxisSize.min,
                                                 mainAxisAlignment:
@@ -745,7 +769,7 @@ class _LandingWidgetState extends State<LandingWidget>
                                                                 color: FlutterFlowTheme.of(
                                                                         context)
                                                                     .secondaryText,
-                                                                fontSize: 38,
+                                                                fontSize: 38.0,
                                                                 fontWeight:
                                                                     FontWeight
                                                                         .normal,
@@ -765,8 +789,8 @@ class _LandingWidgetState extends State<LandingWidget>
                                                   Padding(
                                                     padding:
                                                         EdgeInsetsDirectional
-                                                            .fromSTEB(
-                                                                0, 40, 0, 0),
+                                                            .fromSTEB(0.0, 40.0,
+                                                                0.0, 0.0),
                                                     child: Row(
                                                       mainAxisSize:
                                                           MainAxisSize.max,
@@ -803,7 +827,7 @@ class _LandingWidgetState extends State<LandingWidget>
                                                   ),
                                                   Container(
                                                     width: double.infinity,
-                                                    height: 100,
+                                                    height: 100.0,
                                                     decoration: BoxDecoration(),
                                                   ),
                                                 ],
@@ -811,7 +835,8 @@ class _LandingWidgetState extends State<LandingWidget>
                                             ),
                                             Padding(
                                               padding: EdgeInsetsDirectional
-                                                  .fromSTEB(40, 0, 40, 0),
+                                                  .fromSTEB(
+                                                      40.0, 0.0, 40.0, 0.0),
                                               child: Column(
                                                 mainAxisSize: MainAxisSize.max,
                                                 children: [
@@ -850,8 +875,22 @@ class _LandingWidgetState extends State<LandingWidget>
                                                           text: 'Sign up',
                                                           options:
                                                               FFButtonOptions(
-                                                            width: 130,
-                                                            height: 50,
+                                                            width: 130.0,
+                                                            height: 50.0,
+                                                            padding:
+                                                                EdgeInsetsDirectional
+                                                                    .fromSTEB(
+                                                                        0.0,
+                                                                        0.0,
+                                                                        0.0,
+                                                                        0.0),
+                                                            iconPadding:
+                                                                EdgeInsetsDirectional
+                                                                    .fromSTEB(
+                                                                        0.0,
+                                                                        0.0,
+                                                                        0.0,
+                                                                        0.0),
                                                             color: FlutterFlowTheme
                                                                     .of(context)
                                                                 .secondaryText,
@@ -866,7 +905,7 @@ class _LandingWidgetState extends State<LandingWidget>
                                                                               context)
                                                                           .primaryBackground,
                                                                       fontSize:
-                                                                          19,
+                                                                          19.0,
                                                                       fontWeight:
                                                                           FontWeight
                                                                               .normal,
@@ -879,12 +918,12 @@ class _LandingWidgetState extends State<LandingWidget>
                                                                 BorderSide(
                                                               color: Colors
                                                                   .transparent,
-                                                              width: 1,
+                                                              width: 1.0,
                                                             ),
                                                             borderRadius:
                                                                 BorderRadius
                                                                     .circular(
-                                                                        50),
+                                                                        50.0),
                                                           ),
                                                         ).animateOnPageLoad(
                                                             animationsMap[
@@ -895,8 +934,8 @@ class _LandingWidgetState extends State<LandingWidget>
                                                   Padding(
                                                     padding:
                                                         EdgeInsetsDirectional
-                                                            .fromSTEB(
-                                                                0, 16, 0, 0),
+                                                            .fromSTEB(0.0, 16.0,
+                                                                0.0, 0.0),
                                                     child: Row(
                                                       mainAxisSize:
                                                           MainAxisSize.max,
@@ -929,8 +968,11 @@ class _LandingWidgetState extends State<LandingWidget>
                                                         Padding(
                                                           padding:
                                                               EdgeInsetsDirectional
-                                                                  .fromSTEB(4,
-                                                                      0, 0, 0),
+                                                                  .fromSTEB(
+                                                                      4.0,
+                                                                      0.0,
+                                                                      0.0,
+                                                                      0.0),
                                                           child: InkWell(
                                                             onTap: () async {
                                                               context.pushNamed(
@@ -1000,10 +1042,11 @@ class _LandingWidgetState extends State<LandingWidget>
                                   width: double.infinity,
                                   height: double.infinity,
                                   child: Stack(
-                                    alignment: AlignmentDirectional(0, 0),
+                                    alignment: AlignmentDirectional(0.0, 0.0),
                                     children: [
                                       Align(
-                                        alignment: AlignmentDirectional(0, 0),
+                                        alignment:
+                                            AlignmentDirectional(0.0, 0.0),
                                         child: Column(
                                           mainAxisSize: MainAxisSize.max,
                                           mainAxisAlignment:
@@ -1011,13 +1054,14 @@ class _LandingWidgetState extends State<LandingWidget>
                                           children: [
                                             Padding(
                                               padding: EdgeInsetsDirectional
-                                                  .fromSTEB(40, 0, 40, 0),
+                                                  .fromSTEB(
+                                                      40.0, 0.0, 40.0, 0.0),
                                               child: Row(
                                                 mainAxisSize: MainAxisSize.max,
                                                 children: [
                                                   Image.asset(
                                                     'assets/images/Fitegy_(1).png',
-                                                    width: 100,
+                                                    width: 100.0,
                                                     fit: BoxFit.cover,
                                                   ),
                                                 ],
@@ -1025,7 +1069,8 @@ class _LandingWidgetState extends State<LandingWidget>
                                             ),
                                             Padding(
                                               padding: EdgeInsetsDirectional
-                                                  .fromSTEB(40, 0, 40, 0),
+                                                  .fromSTEB(
+                                                      40.0, 0.0, 40.0, 0.0),
                                               child: Column(
                                                 mainAxisSize: MainAxisSize.min,
                                                 mainAxisAlignment:
@@ -1047,7 +1092,7 @@ class _LandingWidgetState extends State<LandingWidget>
                                                                 color: FlutterFlowTheme.of(
                                                                         context)
                                                                     .secondaryText,
-                                                                fontSize: 38,
+                                                                fontSize: 38.0,
                                                                 fontWeight:
                                                                     FontWeight
                                                                         .normal,
@@ -1067,8 +1112,8 @@ class _LandingWidgetState extends State<LandingWidget>
                                                   Padding(
                                                     padding:
                                                         EdgeInsetsDirectional
-                                                            .fromSTEB(
-                                                                0, 40, 0, 0),
+                                                            .fromSTEB(0.0, 40.0,
+                                                                0.0, 0.0),
                                                     child: Row(
                                                       mainAxisSize:
                                                           MainAxisSize.max,
@@ -1105,7 +1150,7 @@ class _LandingWidgetState extends State<LandingWidget>
                                                   ),
                                                   Container(
                                                     width: double.infinity,
-                                                    height: 100,
+                                                    height: 100.0,
                                                     decoration: BoxDecoration(),
                                                   ),
                                                 ],
@@ -1113,7 +1158,8 @@ class _LandingWidgetState extends State<LandingWidget>
                                             ),
                                             Padding(
                                               padding: EdgeInsetsDirectional
-                                                  .fromSTEB(40, 0, 40, 0),
+                                                  .fromSTEB(
+                                                      40.0, 0.0, 40.0, 0.0),
                                               child: Column(
                                                 mainAxisSize: MainAxisSize.max,
                                                 children: [
@@ -1152,8 +1198,22 @@ class _LandingWidgetState extends State<LandingWidget>
                                                           text: 'Log in',
                                                           options:
                                                               FFButtonOptions(
-                                                            width: 130,
-                                                            height: 50,
+                                                            width: 130.0,
+                                                            height: 50.0,
+                                                            padding:
+                                                                EdgeInsetsDirectional
+                                                                    .fromSTEB(
+                                                                        0.0,
+                                                                        0.0,
+                                                                        0.0,
+                                                                        0.0),
+                                                            iconPadding:
+                                                                EdgeInsetsDirectional
+                                                                    .fromSTEB(
+                                                                        0.0,
+                                                                        0.0,
+                                                                        0.0,
+                                                                        0.0),
                                                             color: FlutterFlowTheme
                                                                     .of(context)
                                                                 .secondaryText,
@@ -1168,7 +1228,7 @@ class _LandingWidgetState extends State<LandingWidget>
                                                                               context)
                                                                           .primaryBackground,
                                                                       fontSize:
-                                                                          19,
+                                                                          19.0,
                                                                       fontWeight:
                                                                           FontWeight
                                                                               .normal,
@@ -1181,12 +1241,12 @@ class _LandingWidgetState extends State<LandingWidget>
                                                                 BorderSide(
                                                               color: Colors
                                                                   .transparent,
-                                                              width: 1,
+                                                              width: 1.0,
                                                             ),
                                                             borderRadius:
                                                                 BorderRadius
                                                                     .circular(
-                                                                        50),
+                                                                        50.0),
                                                           ),
                                                         ).animateOnPageLoad(
                                                             animationsMap[
@@ -1197,8 +1257,8 @@ class _LandingWidgetState extends State<LandingWidget>
                                                   Padding(
                                                     padding:
                                                         EdgeInsetsDirectional
-                                                            .fromSTEB(
-                                                                0, 16, 0, 0),
+                                                            .fromSTEB(0.0, 16.0,
+                                                                0.0, 0.0),
                                                     child: Row(
                                                       mainAxisSize:
                                                           MainAxisSize.max,
@@ -1231,8 +1291,11 @@ class _LandingWidgetState extends State<LandingWidget>
                                                         Padding(
                                                           padding:
                                                               EdgeInsetsDirectional
-                                                                  .fromSTEB(4,
-                                                                      0, 0, 0),
+                                                                  .fromSTEB(
+                                                                      4.0,
+                                                                      0.0,
+                                                                      0.0,
+                                                                      0.0),
                                                           child: InkWell(
                                                             onTap: () async {
                                                               context.pushNamed(
@@ -1301,10 +1364,10 @@ class _LandingWidgetState extends State<LandingWidget>
                               ],
                             ),
                             Align(
-                              alignment: AlignmentDirectional(0, 1),
+                              alignment: AlignmentDirectional(0.0, 1.0),
                               child: Padding(
-                                padding:
-                                    EdgeInsetsDirectional.fromSTEB(0, 0, 0, 30),
+                                padding: EdgeInsetsDirectional.fromSTEB(
+                                    0.0, 0.0, 0.0, 30.0),
                                 child:
                                     smooth_page_indicator.SmoothPageIndicator(
                                   controller: _model.pageViewController ??=
@@ -1320,11 +1383,11 @@ class _LandingWidgetState extends State<LandingWidget>
                                   },
                                   effect:
                                       smooth_page_indicator.ExpandingDotsEffect(
-                                    expansionFactor: 4,
-                                    spacing: 8,
-                                    radius: 16,
-                                    dotWidth: 8,
-                                    dotHeight: 8,
+                                    expansionFactor: 4.0,
+                                    spacing: 8.0,
+                                    radius: 16.0,
+                                    dotWidth: 8.0,
+                                    dotHeight: 8.0,
                                     dotColor:
                                         FlutterFlowTheme.of(context).lineColor,
                                     activeDotColor: FlutterFlowTheme.of(context)
@@ -1338,24 +1401,24 @@ class _LandingWidgetState extends State<LandingWidget>
                         ),
                       ),
                       Align(
-                        alignment: AlignmentDirectional(0, 1),
+                        alignment: AlignmentDirectional(0.0, 1.0),
                         child: Padding(
-                          padding:
-                              EdgeInsetsDirectional.fromSTEB(40, 0, 40, 12),
+                          padding: EdgeInsetsDirectional.fromSTEB(
+                              40.0, 0.0, 40.0, 12.0),
                           child: Row(
                             mainAxisSize: MainAxisSize.max,
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
                               FlutterFlowIconButton(
                                 borderColor: Colors.transparent,
-                                borderRadius: 8,
-                                borderWidth: 1,
-                                buttonSize: 45,
+                                borderRadius: 8.0,
+                                borderWidth: 1.0,
+                                buttonSize: 45.0,
                                 icon: FaIcon(
                                   FontAwesomeIcons.longArrowAltLeft,
                                   color: FlutterFlowTheme.of(context)
                                       .primaryBackground,
-                                  size: 14,
+                                  size: 14.0,
                                 ),
                                 onPressed: () async {
                                   await _model.pageViewController?.previousPage(
@@ -1367,14 +1430,14 @@ class _LandingWidgetState extends State<LandingWidget>
                                   'iconButtonOnPageLoadAnimation1']!),
                               FlutterFlowIconButton(
                                 borderColor: Colors.transparent,
-                                borderRadius: 8,
-                                borderWidth: 1,
-                                buttonSize: 45,
+                                borderRadius: 8.0,
+                                borderWidth: 1.0,
+                                buttonSize: 45.0,
                                 icon: FaIcon(
                                   FontAwesomeIcons.longArrowAltRight,
                                   color: FlutterFlowTheme.of(context)
                                       .primaryBackground,
-                                  size: 14,
+                                  size: 14.0,
                                 ),
                                 onPressed: () async {
                                   await _model.pageViewController?.nextPage(

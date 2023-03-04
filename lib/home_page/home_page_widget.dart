@@ -1,7 +1,7 @@
-import '../backend/backend.dart';
-import '../components/post_widget.dart';
-import '../flutter_flow/flutter_flow_theme.dart';
-import '../flutter_flow/flutter_flow_util.dart';
+import '/backend/backend.dart';
+import '/components/post_widget.dart';
+import '/flutter_flow/flutter_flow_theme.dart';
+import '/flutter_flow/flutter_flow_util.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
@@ -65,13 +65,14 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                 children: [
                   if (FFAppState().firstTime)
                     Padding(
-                      padding: EdgeInsetsDirectional.fromSTEB(25, 0, 20, 20),
+                      padding:
+                          EdgeInsetsDirectional.fromSTEB(25.0, 0.0, 20.0, 20.0),
                       child: Text(
                         'See what your\nfriends are doing...',
                         style: FlutterFlowTheme.of(context).title2.override(
                               fontFamily: 'Inter',
                               color: FlutterFlowTheme.of(context).primaryColor,
-                              fontSize: 25,
+                              fontSize: 25.0,
                               useGoogleFonts: GoogleFonts.asMap().containsKey(
                                   FlutterFlowTheme.of(context).title2Family),
                             ),
@@ -145,8 +146,8 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                         // Customize what your widget looks like when it's loading the first page.
                         firstPageProgressIndicatorBuilder: (_) => Center(
                           child: SizedBox(
-                            width: 40,
-                            height: 40,
+                            width: 40.0,
+                            height: 40.0,
                             child: CircularProgressIndicator(
                               color:
                                   FlutterFlowTheme.of(context).primaryBtnText,

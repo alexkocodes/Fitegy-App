@@ -1,10 +1,10 @@
-import '../auth/auth_util.dart';
-import '../backend/backend.dart';
-import '../flutter_flow/flutter_flow_theme.dart';
-import '../flutter_flow/flutter_flow_toggle_icon.dart';
-import '../flutter_flow/flutter_flow_util.dart';
-import '../flutter_flow/flutter_flow_widgets.dart';
-import '../flutter_flow/random_data_util.dart' as random_data;
+import '/auth/auth_util.dart';
+import '/backend/backend.dart';
+import '/flutter_flow/flutter_flow_theme.dart';
+import '/flutter_flow/flutter_flow_toggle_icon.dart';
+import '/flutter_flow/flutter_flow_util.dart';
+import '/flutter_flow/flutter_flow_widgets.dart';
+import '/flutter_flow/random_data_util.dart' as random_data;
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -57,7 +57,7 @@ class _CreateChallengePageWidgetState extends State<CreateChallengePageWidget> {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Padding(
-          padding: EdgeInsetsDirectional.fromSTEB(35, 0, 30, 0),
+          padding: EdgeInsetsDirectional.fromSTEB(35.0, 0.0, 30.0, 0.0),
           child: SingleChildScrollView(
             child: Column(
               mainAxisSize: MainAxisSize.min,
@@ -65,15 +65,15 @@ class _CreateChallengePageWidgetState extends State<CreateChallengePageWidget> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Padding(
-                  padding: EdgeInsetsDirectional.fromSTEB(0, 20, 0, 20),
+                  padding: EdgeInsetsDirectional.fromSTEB(0.0, 20.0, 0.0, 20.0),
                   child: Column(
                     mainAxisSize: MainAxisSize.min,
                     mainAxisAlignment: MainAxisAlignment.start,
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Wrap(
-                        spacing: 0,
-                        runSpacing: 0,
+                        spacing: 0.0,
+                        runSpacing: 0.0,
                         alignment: WrapAlignment.start,
                         crossAxisAlignment: WrapCrossAlignment.start,
                         direction: Axis.horizontal,
@@ -84,8 +84,8 @@ class _CreateChallengePageWidgetState extends State<CreateChallengePageWidget> {
                           Container(
                             decoration: BoxDecoration(),
                             child: Padding(
-                              padding:
-                                  EdgeInsetsDirectional.fromSTEB(5, 0, 0, 0),
+                              padding: EdgeInsetsDirectional.fromSTEB(
+                                  5.0, 0.0, 0.0, 0.0),
                               child: Text(
                                 'Challenge yourself with a',
                                 style: FlutterFlowTheme.of(context)
@@ -94,7 +94,7 @@ class _CreateChallengePageWidgetState extends State<CreateChallengePageWidget> {
                                       fontFamily: 'Inter',
                                       color: FlutterFlowTheme.of(context)
                                           .secondaryText,
-                                      fontSize: 23,
+                                      fontSize: 23.0,
                                       fontWeight: FontWeight.w600,
                                       useGoogleFonts: GoogleFonts.asMap()
                                           .containsKey(
@@ -107,8 +107,8 @@ class _CreateChallengePageWidgetState extends State<CreateChallengePageWidget> {
                           Container(
                             decoration: BoxDecoration(),
                             child: Padding(
-                              padding:
-                                  EdgeInsetsDirectional.fromSTEB(5, 0, 0, 0),
+                              padding: EdgeInsetsDirectional.fromSTEB(
+                                  5.0, 0.0, 0.0, 0.0),
                               child: GradientText(
                                 'new goal.',
                                 style: FlutterFlowTheme.of(context)
@@ -117,7 +117,7 @@ class _CreateChallengePageWidgetState extends State<CreateChallengePageWidget> {
                                       fontFamily: 'Inter',
                                       color: FlutterFlowTheme.of(context)
                                           .primaryColor,
-                                      fontSize: 23,
+                                      fontSize: 23.0,
                                       fontWeight: FontWeight.w600,
                                       useGoogleFonts: GoogleFonts.asMap()
                                           .containsKey(
@@ -136,12 +136,13 @@ class _CreateChallengePageWidgetState extends State<CreateChallengePageWidget> {
                         ],
                       ),
                       Padding(
-                        padding: EdgeInsetsDirectional.fromSTEB(5, 0, 0, 0),
+                        padding:
+                            EdgeInsetsDirectional.fromSTEB(5.0, 0.0, 0.0, 0.0),
                         child: Column(
                           mainAxisSize: MainAxisSize.max,
                           children: [
                             Divider(
-                              thickness: 1,
+                              thickness: 1.0,
                               color: Color(0xFFCFCFCF),
                             ),
                           ],
@@ -156,25 +157,25 @@ class _CreateChallengePageWidgetState extends State<CreateChallengePageWidget> {
                         fontFamily:
                             FlutterFlowTheme.of(context).bodyText1Family,
                         color: FlutterFlowTheme.of(context).secondaryText,
-                        fontSize: 16,
+                        fontSize: 16.0,
                         useGoogleFonts: GoogleFonts.asMap().containsKey(
                             FlutterFlowTheme.of(context).bodyText1Family),
                       ),
                 ),
                 Padding(
-                  padding: EdgeInsetsDirectional.fromSTEB(0, 10, 0, 20),
+                  padding: EdgeInsetsDirectional.fromSTEB(0.0, 10.0, 0.0, 20.0),
                   child: Container(
                     width: double.infinity,
                     decoration: BoxDecoration(
                       color: FlutterFlowTheme.of(context).secondaryBackground,
                       boxShadow: [
                         BoxShadow(
-                          blurRadius: 6,
+                          blurRadius: 6.0,
                           color: Color(0x3416202A),
-                          offset: Offset(0, 2),
+                          offset: Offset(0.0, 2.0),
                         )
                       ],
-                      borderRadius: BorderRadius.circular(12),
+                      borderRadius: BorderRadius.circular(12.0),
                     ),
                     child: TextFormField(
                       controller: _model.textController1,
@@ -201,30 +202,30 @@ class _CreateChallengePageWidgetState extends State<CreateChallengePageWidget> {
                         enabledBorder: OutlineInputBorder(
                           borderSide: BorderSide(
                             color: Color(0x00000000),
-                            width: 1,
+                            width: 1.0,
                           ),
-                          borderRadius: BorderRadius.circular(10),
+                          borderRadius: BorderRadius.circular(10.0),
                         ),
                         focusedBorder: OutlineInputBorder(
                           borderSide: BorderSide(
                             color: Color(0x00000000),
-                            width: 1,
+                            width: 1.0,
                           ),
-                          borderRadius: BorderRadius.circular(10),
+                          borderRadius: BorderRadius.circular(10.0),
                         ),
                         errorBorder: OutlineInputBorder(
                           borderSide: BorderSide(
                             color: Color(0x00000000),
-                            width: 1,
+                            width: 1.0,
                           ),
-                          borderRadius: BorderRadius.circular(10),
+                          borderRadius: BorderRadius.circular(10.0),
                         ),
                         focusedErrorBorder: OutlineInputBorder(
                           borderSide: BorderSide(
                             color: Color(0x00000000),
-                            width: 1,
+                            width: 1.0,
                           ),
-                          borderRadius: BorderRadius.circular(10),
+                          borderRadius: BorderRadius.circular(10.0),
                         ),
                         filled: true,
                         fillColor:
@@ -237,7 +238,7 @@ class _CreateChallengePageWidgetState extends State<CreateChallengePageWidget> {
                       style: FlutterFlowTheme.of(context).bodyText1.override(
                             fontFamily: 'Inter',
                             color: FlutterFlowTheme.of(context).secondaryText,
-                            fontSize: 14,
+                            fontSize: 14.0,
                             useGoogleFonts: GoogleFonts.asMap().containsKey(
                                 FlutterFlowTheme.of(context).bodyText1Family),
                           ),
@@ -252,25 +253,25 @@ class _CreateChallengePageWidgetState extends State<CreateChallengePageWidget> {
                         fontFamily:
                             FlutterFlowTheme.of(context).bodyText1Family,
                         color: FlutterFlowTheme.of(context).secondaryText,
-                        fontSize: 16,
+                        fontSize: 16.0,
                         useGoogleFonts: GoogleFonts.asMap().containsKey(
                             FlutterFlowTheme.of(context).bodyText1Family),
                       ),
                 ),
                 Padding(
-                  padding: EdgeInsetsDirectional.fromSTEB(0, 10, 0, 20),
+                  padding: EdgeInsetsDirectional.fromSTEB(0.0, 10.0, 0.0, 20.0),
                   child: Container(
                     width: double.infinity,
                     decoration: BoxDecoration(
                       color: FlutterFlowTheme.of(context).secondaryBackground,
                       boxShadow: [
                         BoxShadow(
-                          blurRadius: 6,
+                          blurRadius: 6.0,
                           color: Color(0x3416202A),
-                          offset: Offset(0, 2),
+                          offset: Offset(0.0, 2.0),
                         )
                       ],
-                      borderRadius: BorderRadius.circular(12),
+                      borderRadius: BorderRadius.circular(12.0),
                     ),
                     child: TextFormField(
                       controller: _model.textController2,
@@ -298,41 +299,41 @@ class _CreateChallengePageWidgetState extends State<CreateChallengePageWidget> {
                         enabledBorder: OutlineInputBorder(
                           borderSide: BorderSide(
                             color: Color(0x00000000),
-                            width: 1,
+                            width: 1.0,
                           ),
-                          borderRadius: BorderRadius.circular(10),
+                          borderRadius: BorderRadius.circular(10.0),
                         ),
                         focusedBorder: OutlineInputBorder(
                           borderSide: BorderSide(
                             color: Color(0x00000000),
-                            width: 1,
+                            width: 1.0,
                           ),
-                          borderRadius: BorderRadius.circular(10),
+                          borderRadius: BorderRadius.circular(10.0),
                         ),
                         errorBorder: OutlineInputBorder(
                           borderSide: BorderSide(
                             color: Color(0x00000000),
-                            width: 1,
+                            width: 1.0,
                           ),
-                          borderRadius: BorderRadius.circular(10),
+                          borderRadius: BorderRadius.circular(10.0),
                         ),
                         focusedErrorBorder: OutlineInputBorder(
                           borderSide: BorderSide(
                             color: Color(0x00000000),
-                            width: 1,
+                            width: 1.0,
                           ),
-                          borderRadius: BorderRadius.circular(10),
+                          borderRadius: BorderRadius.circular(10.0),
                         ),
                         filled: true,
                         fillColor:
                             FlutterFlowTheme.of(context).secondaryBackground,
-                        contentPadding:
-                            EdgeInsetsDirectional.fromSTEB(15, 20, 15, 20),
+                        contentPadding: EdgeInsetsDirectional.fromSTEB(
+                            15.0, 20.0, 15.0, 20.0),
                       ),
                       style: FlutterFlowTheme.of(context).bodyText1.override(
                             fontFamily: 'Inter',
                             color: FlutterFlowTheme.of(context).secondaryText,
-                            fontSize: 14,
+                            fontSize: 14.0,
                             useGoogleFonts: GoogleFonts.asMap().containsKey(
                                 FlutterFlowTheme.of(context).bodyText1Family),
                           ),
@@ -350,25 +351,25 @@ class _CreateChallengePageWidgetState extends State<CreateChallengePageWidget> {
                         fontFamily:
                             FlutterFlowTheme.of(context).bodyText1Family,
                         color: FlutterFlowTheme.of(context).secondaryText,
-                        fontSize: 16,
+                        fontSize: 16.0,
                         useGoogleFonts: GoogleFonts.asMap().containsKey(
                             FlutterFlowTheme.of(context).bodyText1Family),
                       ),
                 ),
                 Padding(
-                  padding: EdgeInsetsDirectional.fromSTEB(0, 10, 0, 20),
+                  padding: EdgeInsetsDirectional.fromSTEB(0.0, 10.0, 0.0, 20.0),
                   child: Container(
                     width: double.infinity,
                     decoration: BoxDecoration(
                       color: FlutterFlowTheme.of(context).secondaryBackground,
                       boxShadow: [
                         BoxShadow(
-                          blurRadius: 6,
+                          blurRadius: 6.0,
                           color: Color(0x3416202A),
-                          offset: Offset(0, 2),
+                          offset: Offset(0.0, 2.0),
                         )
                       ],
-                      borderRadius: BorderRadius.circular(12),
+                      borderRadius: BorderRadius.circular(12.0),
                     ),
                     child: TextFormField(
                       controller: _model.commentsController,
@@ -396,41 +397,41 @@ class _CreateChallengePageWidgetState extends State<CreateChallengePageWidget> {
                         enabledBorder: OutlineInputBorder(
                           borderSide: BorderSide(
                             color: Color(0x00000000),
-                            width: 1,
+                            width: 1.0,
                           ),
-                          borderRadius: BorderRadius.circular(10),
+                          borderRadius: BorderRadius.circular(10.0),
                         ),
                         focusedBorder: OutlineInputBorder(
                           borderSide: BorderSide(
                             color: Color(0x00000000),
-                            width: 1,
+                            width: 1.0,
                           ),
-                          borderRadius: BorderRadius.circular(10),
+                          borderRadius: BorderRadius.circular(10.0),
                         ),
                         errorBorder: OutlineInputBorder(
                           borderSide: BorderSide(
                             color: Color(0x00000000),
-                            width: 1,
+                            width: 1.0,
                           ),
-                          borderRadius: BorderRadius.circular(10),
+                          borderRadius: BorderRadius.circular(10.0),
                         ),
                         focusedErrorBorder: OutlineInputBorder(
                           borderSide: BorderSide(
                             color: Color(0x00000000),
-                            width: 1,
+                            width: 1.0,
                           ),
-                          borderRadius: BorderRadius.circular(10),
+                          borderRadius: BorderRadius.circular(10.0),
                         ),
                         filled: true,
                         fillColor:
                             FlutterFlowTheme.of(context).secondaryBackground,
-                        contentPadding:
-                            EdgeInsetsDirectional.fromSTEB(15, 20, 15, 20),
+                        contentPadding: EdgeInsetsDirectional.fromSTEB(
+                            15.0, 20.0, 15.0, 20.0),
                       ),
                       style: FlutterFlowTheme.of(context).bodyText1.override(
                             fontFamily: 'Inter',
                             color: FlutterFlowTheme.of(context).secondaryText,
-                            fontSize: 14,
+                            fontSize: 14.0,
                             useGoogleFonts: GoogleFonts.asMap().containsKey(
                                 FlutterFlowTheme.of(context).bodyText1Family),
                           ),
@@ -448,25 +449,25 @@ class _CreateChallengePageWidgetState extends State<CreateChallengePageWidget> {
                         fontFamily:
                             FlutterFlowTheme.of(context).bodyText1Family,
                         color: FlutterFlowTheme.of(context).secondaryText,
-                        fontSize: 16,
+                        fontSize: 16.0,
                         useGoogleFonts: GoogleFonts.asMap().containsKey(
                             FlutterFlowTheme.of(context).bodyText1Family),
                       ),
                 ),
                 Padding(
-                  padding: EdgeInsetsDirectional.fromSTEB(0, 10, 0, 10),
+                  padding: EdgeInsetsDirectional.fromSTEB(0.0, 10.0, 0.0, 10.0),
                   child: Container(
                     width: double.infinity,
                     decoration: BoxDecoration(
                       color: FlutterFlowTheme.of(context).secondaryBackground,
                       boxShadow: [
                         BoxShadow(
-                          blurRadius: 6,
+                          blurRadius: 6.0,
                           color: Color(0x3416202A),
-                          offset: Offset(0, 2),
+                          offset: Offset(0.0, 2.0),
                         )
                       ],
-                      borderRadius: BorderRadius.circular(12),
+                      borderRadius: BorderRadius.circular(12.0),
                     ),
                     child: TextFormField(
                       controller: _model.textController4,
@@ -493,30 +494,30 @@ class _CreateChallengePageWidgetState extends State<CreateChallengePageWidget> {
                         enabledBorder: OutlineInputBorder(
                           borderSide: BorderSide(
                             color: Color(0x00000000),
-                            width: 1,
+                            width: 1.0,
                           ),
-                          borderRadius: BorderRadius.circular(10),
+                          borderRadius: BorderRadius.circular(10.0),
                         ),
                         focusedBorder: OutlineInputBorder(
                           borderSide: BorderSide(
                             color: Color(0x00000000),
-                            width: 1,
+                            width: 1.0,
                           ),
-                          borderRadius: BorderRadius.circular(10),
+                          borderRadius: BorderRadius.circular(10.0),
                         ),
                         errorBorder: OutlineInputBorder(
                           borderSide: BorderSide(
                             color: Color(0x00000000),
-                            width: 1,
+                            width: 1.0,
                           ),
-                          borderRadius: BorderRadius.circular(10),
+                          borderRadius: BorderRadius.circular(10.0),
                         ),
                         focusedErrorBorder: OutlineInputBorder(
                           borderSide: BorderSide(
                             color: Color(0x00000000),
-                            width: 1,
+                            width: 1.0,
                           ),
-                          borderRadius: BorderRadius.circular(10),
+                          borderRadius: BorderRadius.circular(10.0),
                         ),
                         filled: true,
                         fillColor:
@@ -529,7 +530,7 @@ class _CreateChallengePageWidgetState extends State<CreateChallengePageWidget> {
                       style: FlutterFlowTheme.of(context).bodyText1.override(
                             fontFamily: 'Inter',
                             color: Colors.black,
-                            fontSize: 14,
+                            fontSize: 14.0,
                             useGoogleFonts: GoogleFonts.asMap().containsKey(
                                 FlutterFlowTheme.of(context).bodyText1Family),
                           ),
@@ -539,14 +540,14 @@ class _CreateChallengePageWidgetState extends State<CreateChallengePageWidget> {
                   ),
                 ),
                 Divider(
-                  thickness: 1,
+                  thickness: 1.0,
                   color: Color(0xFFCFCFCF),
                 ),
                 Padding(
-                  padding: EdgeInsetsDirectional.fromSTEB(0, 10, 0, 0),
+                  padding: EdgeInsetsDirectional.fromSTEB(0.0, 10.0, 0.0, 0.0),
                   child: Wrap(
-                    spacing: 0,
-                    runSpacing: 0,
+                    spacing: 0.0,
+                    runSpacing: 0.0,
                     alignment: WrapAlignment.start,
                     crossAxisAlignment: WrapCrossAlignment.start,
                     direction: Axis.horizontal,
@@ -555,7 +556,8 @@ class _CreateChallengePageWidgetState extends State<CreateChallengePageWidget> {
                     clipBehavior: Clip.none,
                     children: [
                       Padding(
-                        padding: EdgeInsetsDirectional.fromSTEB(0, 10, 0, 0),
+                        padding:
+                            EdgeInsetsDirectional.fromSTEB(0.0, 10.0, 0.0, 0.0),
                         child: Row(
                           mainAxisSize: MainAxisSize.max,
                           mainAxisAlignment: MainAxisAlignment.start,
@@ -579,80 +581,80 @@ class _CreateChallengePageWidgetState extends State<CreateChallengePageWidget> {
                               ),
                             ),
                             Padding(
-                              padding:
-                                  EdgeInsetsDirectional.fromSTEB(5, 0, 5, 0),
+                              padding: EdgeInsetsDirectional.fromSTEB(
+                                  5.0, 0.0, 5.0, 0.0),
                               child: Container(
-                                width: 20,
-                                height: 20,
+                                width: 20.0,
+                                height: 20.0,
                                 decoration: BoxDecoration(
                                   gradient: LinearGradient(
                                     colors: [
                                       Color(0xFFE6A0FF),
                                       Color(0xFF9AE1FF)
                                     ],
-                                    stops: [0, 1],
-                                    begin: AlignmentDirectional(-0.34, -1),
-                                    end: AlignmentDirectional(0.34, 1),
+                                    stops: [0.0, 1.0],
+                                    begin: AlignmentDirectional(-0.34, -1.0),
+                                    end: AlignmentDirectional(0.34, 1.0),
                                   ),
                                   shape: BoxShape.circle,
                                 ),
                               ),
                             ),
                             Padding(
-                              padding:
-                                  EdgeInsetsDirectional.fromSTEB(5, 0, 5, 0),
+                              padding: EdgeInsetsDirectional.fromSTEB(
+                                  5.0, 0.0, 5.0, 0.0),
                               child: Container(
-                                width: 20,
-                                height: 20,
+                                width: 20.0,
+                                height: 20.0,
                                 decoration: BoxDecoration(
                                   gradient: LinearGradient(
                                     colors: [
                                       Color(0xFFE6A0FF),
                                       Color(0xFF9AE1FF)
                                     ],
-                                    stops: [0, 1],
-                                    begin: AlignmentDirectional(-0.34, -1),
-                                    end: AlignmentDirectional(0.34, 1),
+                                    stops: [0.0, 1.0],
+                                    begin: AlignmentDirectional(-0.34, -1.0),
+                                    end: AlignmentDirectional(0.34, 1.0),
                                   ),
                                   shape: BoxShape.circle,
                                 ),
                               ),
                             ),
                             Padding(
-                              padding:
-                                  EdgeInsetsDirectional.fromSTEB(5, 0, 5, 0),
+                              padding: EdgeInsetsDirectional.fromSTEB(
+                                  5.0, 0.0, 5.0, 0.0),
                               child: Container(
-                                width: 20,
-                                height: 20,
+                                width: 20.0,
+                                height: 20.0,
                                 decoration: BoxDecoration(
                                   gradient: LinearGradient(
                                     colors: [
                                       Color(0xFFE6A0FF),
                                       Color(0xFF9AE1FF)
                                     ],
-                                    stops: [0, 1],
-                                    begin: AlignmentDirectional(-0.34, -1),
-                                    end: AlignmentDirectional(0.34, 1),
+                                    stops: [0.0, 1.0],
+                                    begin: AlignmentDirectional(-0.34, -1.0),
+                                    end: AlignmentDirectional(0.34, 1.0),
                                   ),
                                   shape: BoxShape.circle,
                                 ),
                               ),
                             ),
                             Padding(
-                              padding:
-                                  EdgeInsetsDirectional.fromSTEB(5, 0, 5, 0),
+                              padding: EdgeInsetsDirectional.fromSTEB(
+                                  5.0, 0.0, 5.0, 0.0),
                               child: Container(
-                                width: 20,
-                                height: 20,
+                                width: 20.0,
+                                height: 20.0,
                                 decoration: BoxDecoration(
                                   gradient: LinearGradient(
                                     colors: [
                                       Color(0xFFE6A0FF),
                                       Color(0xFF9AE1FF)
                                     ],
-                                    stops: [0, 1],
-                                    begin: AlignmentDirectional(-0.34, -1),
-                                    end: AlignmentDirectional(0.34, 1),
+                                    stops: [0.0, 1.0],
+                                    begin: AlignmentDirectional(-0.34, -1.0),
+                                    end: AlignmentDirectional(0.34, 1.0),
                                   ),
                                   shape: BoxShape.circle,
                                 ),
@@ -671,10 +673,10 @@ class _CreateChallengePageWidgetState extends State<CreateChallengePageWidget> {
                     Expanded(
                       child: Stack(
                         alignment:
-                            AlignmentDirectional(0, -0.050000000000000044),
+                            AlignmentDirectional(0.0, -0.050000000000000044),
                         children: [
                           Align(
-                            alignment: AlignmentDirectional(-1, 0.2),
+                            alignment: AlignmentDirectional(-1.0, 0.2),
                             child: Text(
                               'Set to Private: ',
                               style: FlutterFlowTheme.of(context)
@@ -692,7 +694,7 @@ class _CreateChallengePageWidgetState extends State<CreateChallengePageWidget> {
                             ),
                           ),
                           Align(
-                            alignment: AlignmentDirectional(-0.43, 0),
+                            alignment: AlignmentDirectional(-0.43, 0.0),
                             child: ToggleIcon(
                               onPressed: () async {
                                 setState(() => FFAppState().isChallengePrivate =
@@ -703,12 +705,12 @@ class _CreateChallengePageWidgetState extends State<CreateChallengePageWidget> {
                                 Icons.check_circle,
                                 color:
                                     FlutterFlowTheme.of(context).secondaryColor,
-                                size: 20,
+                                size: 20.0,
                               ),
                               offIcon: Icon(
                                 Icons.check_circle_outline_sharp,
                                 color: Color(0xA1868686),
-                                size: 20,
+                                size: 20.0,
                               ),
                             ),
                           ),
@@ -718,7 +720,7 @@ class _CreateChallengePageWidgetState extends State<CreateChallengePageWidget> {
                   ],
                 ),
                 Padding(
-                  padding: EdgeInsetsDirectional.fromSTEB(0, 10, 0, 0),
+                  padding: EdgeInsetsDirectional.fromSTEB(0.0, 10.0, 0.0, 0.0),
                   child: Row(
                     mainAxisSize: MainAxisSize.max,
                     mainAxisAlignment: MainAxisAlignment.end,
@@ -765,8 +767,12 @@ class _CreateChallengePageWidgetState extends State<CreateChallengePageWidget> {
                         },
                         text: 'Create',
                         options: FFButtonOptions(
-                          width: 110,
-                          height: 40,
+                          width: 110.0,
+                          height: 40.0,
+                          padding: EdgeInsetsDirectional.fromSTEB(
+                              0.0, 0.0, 0.0, 0.0),
+                          iconPadding: EdgeInsetsDirectional.fromSTEB(
+                              0.0, 0.0, 0.0, 0.0),
                           color: FlutterFlowTheme.of(context).secondaryText,
                           textStyle: FlutterFlowTheme.of(context)
                               .subtitle2
@@ -778,12 +784,12 @@ class _CreateChallengePageWidgetState extends State<CreateChallengePageWidget> {
                                     FlutterFlowTheme.of(context)
                                         .subtitle2Family),
                               ),
-                          elevation: 5,
+                          elevation: 5.0,
                           borderSide: BorderSide(
                             color: Colors.transparent,
-                            width: 1,
+                            width: 1.0,
                           ),
-                          borderRadius: BorderRadius.circular(8),
+                          borderRadius: BorderRadius.circular(8.0),
                         ),
                       ),
                     ],

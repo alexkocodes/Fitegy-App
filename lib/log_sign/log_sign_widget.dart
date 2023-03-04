@@ -1,12 +1,12 @@
-import '../auth/auth_util.dart';
-import '../backend/backend.dart';
-import '../flutter_flow/flutter_flow_animations.dart';
-import '../flutter_flow/flutter_flow_icon_button.dart';
-import '../flutter_flow/flutter_flow_theme.dart';
-import '../flutter_flow/flutter_flow_util.dart';
-import '../flutter_flow/flutter_flow_widgets.dart';
+import '/auth/auth_util.dart';
+import '/backend/backend.dart';
+import '/flutter_flow/flutter_flow_animations.dart';
+import '/flutter_flow/flutter_flow_icon_button.dart';
+import '/flutter_flow/flutter_flow_theme.dart';
+import '/flutter_flow/flutter_flow_util.dart';
+import '/flutter_flow/flutter_flow_widgets.dart';
 import 'dart:ui';
-import '../flutter_flow/random_data_util.dart' as random_data;
+import '/flutter_flow/random_data_util.dart' as random_data;
 import 'package:easy_debounce/easy_debounce.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
@@ -45,15 +45,15 @@ class _LogSignWidgetState extends State<LogSignWidget>
           curve: Curves.easeInOut,
           delay: 0.ms,
           duration: 820.ms,
-          begin: Offset(57, 0),
-          end: Offset(0, 0),
+          begin: Offset(57.0, 0.0),
+          end: Offset(0.0, 0.0),
         ),
         FadeEffect(
           curve: Curves.easeInOut,
           delay: 0.ms,
           duration: 820.ms,
-          begin: 0,
-          end: 1,
+          begin: 0.0,
+          end: 1.0,
         ),
       ],
     ),
@@ -65,15 +65,15 @@ class _LogSignWidgetState extends State<LogSignWidget>
           curve: Curves.easeInOut,
           delay: 220.ms,
           duration: 820.ms,
-          begin: Offset(62, 0),
-          end: Offset(0, 0),
+          begin: Offset(62.0, 0.0),
+          end: Offset(0.0, 0.0),
         ),
         FadeEffect(
           curve: Curves.easeInOut,
           delay: 220.ms,
           duration: 820.ms,
-          begin: 0,
-          end: 1,
+          begin: 0.0,
+          end: 1.0,
         ),
       ],
     ),
@@ -85,15 +85,15 @@ class _LogSignWidgetState extends State<LogSignWidget>
           curve: Curves.easeInOut,
           delay: 450.ms,
           duration: 820.ms,
-          begin: 0,
-          end: 1,
+          begin: 0.0,
+          end: 1.0,
         ),
         MoveEffect(
           curve: Curves.easeInOut,
           delay: 450.ms,
           duration: 820.ms,
-          begin: Offset(73, 0),
-          end: Offset(0, 0),
+          begin: Offset(73.0, 0.0),
+          end: Offset(0.0, 0.0),
         ),
       ],
     ),
@@ -104,15 +104,15 @@ class _LogSignWidgetState extends State<LogSignWidget>
           curve: Curves.easeInOut,
           delay: 640.ms,
           duration: 820.ms,
-          begin: 0,
-          end: 1,
+          begin: 0.0,
+          end: 1.0,
         ),
         MoveEffect(
           curve: Curves.easeInOut,
           delay: 640.ms,
           duration: 820.ms,
-          begin: Offset(100, 0),
-          end: Offset(0, 0),
+          begin: Offset(100.0, 0.0),
+          end: Offset(0.0, 0.0),
         ),
       ],
     ),
@@ -160,17 +160,17 @@ class _LogSignWidgetState extends State<LogSignWidget>
             ),
           ),
           child: ClipRRect(
-            borderRadius: BorderRadius.circular(0),
+            borderRadius: BorderRadius.circular(0.0),
             child: BackdropFilter(
               filter: ImageFilter.blur(
-                sigmaX: 2,
-                sigmaY: 2,
+                sigmaX: 2.0,
+                sigmaY: 2.0,
               ),
               child: Container(
                 width: double.infinity,
                 height: double.infinity,
                 child: Padding(
-                  padding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 50),
+                  padding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 50.0),
                   child: PageView(
                     physics: const NeverScrollableScrollPhysics(),
                     controller: _model.pageViewController ??=
@@ -178,14 +178,15 @@ class _LogSignWidgetState extends State<LogSignWidget>
                     scrollDirection: Axis.horizontal,
                     children: [
                       Padding(
-                        padding: EdgeInsetsDirectional.fromSTEB(24, 80, 24, 24),
+                        padding: EdgeInsetsDirectional.fromSTEB(
+                            24.0, 80.0, 24.0, 24.0),
                         child: Column(
                           mainAxisSize: MainAxisSize.max,
                           children: [
                             Expanded(
                               child: Padding(
                                 padding: EdgeInsetsDirectional.fromSTEB(
-                                    1, 100, 0, 0),
+                                    1.0, 100.0, 0.0, 0.0),
                                 child: DefaultTabController(
                                   length: 2,
                                   initialIndex: min(
@@ -229,7 +230,8 @@ class _LogSignWidgetState extends State<LogSignWidget>
                                           children: [
                                             Padding(
                                               padding: EdgeInsetsDirectional
-                                                  .fromSTEB(10, 40, 10, 0),
+                                                  .fromSTEB(
+                                                      10.0, 40.0, 10.0, 0.0),
                                               child: Column(
                                                 mainAxisSize: MainAxisSize.max,
                                                 crossAxisAlignment:
@@ -259,8 +261,8 @@ class _LogSignWidgetState extends State<LogSignWidget>
                                                   Padding(
                                                     padding:
                                                         EdgeInsetsDirectional
-                                                            .fromSTEB(
-                                                                0, 24, 0, 0),
+                                                            .fromSTEB(0.0, 24.0,
+                                                                0.0, 0.0),
                                                     child: Container(
                                                       width: double.infinity,
                                                       decoration: BoxDecoration(
@@ -269,16 +271,16 @@ class _LogSignWidgetState extends State<LogSignWidget>
                                                             .secondaryBackground,
                                                         boxShadow: [
                                                           BoxShadow(
-                                                            blurRadius: 6,
+                                                            blurRadius: 6.0,
                                                             color: Color(
                                                                 0x3416202A),
-                                                            offset:
-                                                                Offset(0, 2),
+                                                            offset: Offset(
+                                                                0.0, 2.0),
                                                           )
                                                         ],
                                                         borderRadius:
                                                             BorderRadius
-                                                                .circular(12),
+                                                                .circular(12.0),
                                                       ),
                                                       child: TextFormField(
                                                         controller: _model
@@ -325,12 +327,12 @@ class _LogSignWidgetState extends State<LogSignWidget>
                                                                 BorderSide(
                                                               color: Color(
                                                                   0x00000000),
-                                                              width: 1,
+                                                              width: 1.0,
                                                             ),
                                                             borderRadius:
                                                                 BorderRadius
                                                                     .circular(
-                                                                        12),
+                                                                        12.0),
                                                           ),
                                                           focusedBorder:
                                                               OutlineInputBorder(
@@ -338,12 +340,12 @@ class _LogSignWidgetState extends State<LogSignWidget>
                                                                 BorderSide(
                                                               color: Color(
                                                                   0x00000000),
-                                                              width: 1,
+                                                              width: 1.0,
                                                             ),
                                                             borderRadius:
                                                                 BorderRadius
                                                                     .circular(
-                                                                        12),
+                                                                        12.0),
                                                           ),
                                                           errorBorder:
                                                               OutlineInputBorder(
@@ -351,12 +353,12 @@ class _LogSignWidgetState extends State<LogSignWidget>
                                                                 BorderSide(
                                                               color: Color(
                                                                   0x00000000),
-                                                              width: 1,
+                                                              width: 1.0,
                                                             ),
                                                             borderRadius:
                                                                 BorderRadius
                                                                     .circular(
-                                                                        12),
+                                                                        12.0),
                                                           ),
                                                           focusedErrorBorder:
                                                               OutlineInputBorder(
@@ -364,12 +366,12 @@ class _LogSignWidgetState extends State<LogSignWidget>
                                                                 BorderSide(
                                                               color: Color(
                                                                   0x00000000),
-                                                              width: 1,
+                                                              width: 1.0,
                                                             ),
                                                             borderRadius:
                                                                 BorderRadius
                                                                     .circular(
-                                                                        12),
+                                                                        12.0),
                                                           ),
                                                           filled: true,
                                                           fillColor: FlutterFlowTheme
@@ -378,10 +380,10 @@ class _LogSignWidgetState extends State<LogSignWidget>
                                                           contentPadding:
                                                               EdgeInsetsDirectional
                                                                   .fromSTEB(
-                                                                      20,
-                                                                      24,
-                                                                      20,
-                                                                      24),
+                                                                      20.0,
+                                                                      24.0,
+                                                                      20.0,
+                                                                      24.0),
                                                           prefixIcon: Icon(
                                                             Icons
                                                                 .email_outlined,
@@ -399,7 +401,8 @@ class _LogSignWidgetState extends State<LogSignWidget>
                                                                       'Montserrat',
                                                                   color: Colors
                                                                       .black,
-                                                                  fontSize: 14,
+                                                                  fontSize:
+                                                                      14.0,
                                                                   useGoogleFonts: GoogleFonts
                                                                           .asMap()
                                                                       .containsKey(
@@ -416,8 +419,8 @@ class _LogSignWidgetState extends State<LogSignWidget>
                                                   Padding(
                                                     padding:
                                                         EdgeInsetsDirectional
-                                                            .fromSTEB(
-                                                                0, 16, 0, 0),
+                                                            .fromSTEB(0.0, 16.0,
+                                                                0.0, 0.0),
                                                     child: Container(
                                                       width: double.infinity,
                                                       decoration: BoxDecoration(
@@ -426,16 +429,16 @@ class _LogSignWidgetState extends State<LogSignWidget>
                                                             .secondaryBackground,
                                                         boxShadow: [
                                                           BoxShadow(
-                                                            blurRadius: 6,
+                                                            blurRadius: 6.0,
                                                             color: Color(
                                                                 0x3416202A),
-                                                            offset:
-                                                                Offset(0, 2),
+                                                            offset: Offset(
+                                                                0.0, 2.0),
                                                           )
                                                         ],
                                                         borderRadius:
                                                             BorderRadius
-                                                                .circular(12),
+                                                                .circular(12.0),
                                                       ),
                                                       child: TextFormField(
                                                         controller: _model
@@ -454,7 +457,7 @@ class _LogSignWidgetState extends State<LogSignWidget>
                                                                     color: Color(
                                                                         0xFFB1B1B1),
                                                                     fontSize:
-                                                                        14,
+                                                                        14.0,
                                                                     useGoogleFonts: GoogleFonts
                                                                             .asMap()
                                                                         .containsKey(
@@ -471,7 +474,7 @@ class _LogSignWidgetState extends State<LogSignWidget>
                                                                     color: Color(
                                                                         0xFFB1B1B1),
                                                                     fontSize:
-                                                                        14,
+                                                                        14.0,
                                                                     useGoogleFonts: GoogleFonts
                                                                             .asMap()
                                                                         .containsKey(
@@ -483,12 +486,12 @@ class _LogSignWidgetState extends State<LogSignWidget>
                                                                 BorderSide(
                                                               color: Color(
                                                                   0x00000000),
-                                                              width: 1,
+                                                              width: 1.0,
                                                             ),
                                                             borderRadius:
                                                                 BorderRadius
                                                                     .circular(
-                                                                        12),
+                                                                        12.0),
                                                           ),
                                                           focusedBorder:
                                                               OutlineInputBorder(
@@ -496,12 +499,12 @@ class _LogSignWidgetState extends State<LogSignWidget>
                                                                 BorderSide(
                                                               color: Color(
                                                                   0x00000000),
-                                                              width: 1,
+                                                              width: 1.0,
                                                             ),
                                                             borderRadius:
                                                                 BorderRadius
                                                                     .circular(
-                                                                        12),
+                                                                        12.0),
                                                           ),
                                                           errorBorder:
                                                               OutlineInputBorder(
@@ -509,12 +512,12 @@ class _LogSignWidgetState extends State<LogSignWidget>
                                                                 BorderSide(
                                                               color: Color(
                                                                   0x00000000),
-                                                              width: 1,
+                                                              width: 1.0,
                                                             ),
                                                             borderRadius:
                                                                 BorderRadius
                                                                     .circular(
-                                                                        12),
+                                                                        12.0),
                                                           ),
                                                           focusedErrorBorder:
                                                               OutlineInputBorder(
@@ -522,12 +525,12 @@ class _LogSignWidgetState extends State<LogSignWidget>
                                                                 BorderSide(
                                                               color: Color(
                                                                   0x00000000),
-                                                              width: 1,
+                                                              width: 1.0,
                                                             ),
                                                             borderRadius:
                                                                 BorderRadius
                                                                     .circular(
-                                                                        12),
+                                                                        12.0),
                                                           ),
                                                           filled: true,
                                                           fillColor: FlutterFlowTheme
@@ -536,10 +539,10 @@ class _LogSignWidgetState extends State<LogSignWidget>
                                                           contentPadding:
                                                               EdgeInsetsDirectional
                                                                   .fromSTEB(
-                                                                      20,
-                                                                      24,
-                                                                      20,
-                                                                      24),
+                                                                      20.0,
+                                                                      24.0,
+                                                                      20.0,
+                                                                      24.0),
                                                           prefixIcon: Icon(
                                                             Icons.security,
                                                             color: FlutterFlowTheme
@@ -566,7 +569,7 @@ class _LogSignWidgetState extends State<LogSignWidget>
                                                               color: FlutterFlowTheme
                                                                       .of(context)
                                                                   .lineColor,
-                                                              size: 22,
+                                                              size: 22.0,
                                                             ),
                                                           ),
                                                         ),
@@ -595,8 +598,8 @@ class _LogSignWidgetState extends State<LogSignWidget>
                                                   Padding(
                                                     padding:
                                                         EdgeInsetsDirectional
-                                                            .fromSTEB(
-                                                                0, 20, 0, 60),
+                                                            .fromSTEB(0.0, 20.0,
+                                                                0.0, 60.0),
                                                     child: Row(
                                                       mainAxisSize:
                                                           MainAxisSize.max,
@@ -630,8 +633,22 @@ class _LogSignWidgetState extends State<LogSignWidget>
                                                           text: 'Log In',
                                                           options:
                                                               FFButtonOptions(
-                                                            width: 150,
-                                                            height: 50,
+                                                            width: 150.0,
+                                                            height: 50.0,
+                                                            padding:
+                                                                EdgeInsetsDirectional
+                                                                    .fromSTEB(
+                                                                        0.0,
+                                                                        0.0,
+                                                                        0.0,
+                                                                        0.0),
+                                                            iconPadding:
+                                                                EdgeInsetsDirectional
+                                                                    .fromSTEB(
+                                                                        0.0,
+                                                                        0.0,
+                                                                        0.0,
+                                                                        0.0),
                                                             color: FlutterFlowTheme
                                                                     .of(context)
                                                                 .primaryColor,
@@ -645,7 +662,7 @@ class _LogSignWidgetState extends State<LogSignWidget>
                                                                       color: Colors
                                                                           .white,
                                                                       fontSize:
-                                                                          18,
+                                                                          18.0,
                                                                       fontWeight:
                                                                           FontWeight
                                                                               .w500,
@@ -654,12 +671,12 @@ class _LogSignWidgetState extends State<LogSignWidget>
                                                                           .containsKey(
                                                                               FlutterFlowTheme.of(context).subtitle2Family),
                                                                     ),
-                                                            elevation: 3,
+                                                            elevation: 3.0,
                                                             borderSide:
                                                                 BorderSide(
                                                               color: Colors
                                                                   .transparent,
-                                                              width: 1,
+                                                              width: 1.0,
                                                             ),
                                                           ),
                                                         ),
@@ -671,15 +688,16 @@ class _LogSignWidgetState extends State<LogSignWidget>
                                             ),
                                             Padding(
                                               padding: EdgeInsetsDirectional
-                                                  .fromSTEB(10, 40, 10, 0),
+                                                  .fromSTEB(
+                                                      10.0, 40.0, 10.0, 0.0),
                                               child: Column(
                                                 mainAxisSize: MainAxisSize.max,
                                                 children: [
                                                   Padding(
                                                     padding:
                                                         EdgeInsetsDirectional
-                                                            .fromSTEB(
-                                                                0, 12, 0, 0),
+                                                            .fromSTEB(0.0, 12.0,
+                                                                0.0, 0.0),
                                                     child: Row(
                                                       mainAxisSize:
                                                           MainAxisSize.max,
@@ -711,14 +729,14 @@ class _LogSignWidgetState extends State<LogSignWidget>
                                                   Padding(
                                                     padding:
                                                         EdgeInsetsDirectional
-                                                            .fromSTEB(
-                                                                0, 24, 0, 0),
+                                                            .fromSTEB(0.0, 24.0,
+                                                                0.0, 0.0),
                                                     child: Container(
                                                       width: double.infinity,
                                                       decoration: BoxDecoration(
                                                         borderRadius:
                                                             BorderRadius
-                                                                .circular(12),
+                                                                .circular(12.0),
                                                       ),
                                                       child: TextFormField(
                                                         controller: _model
@@ -755,12 +773,12 @@ class _LogSignWidgetState extends State<LogSignWidget>
                                                                 BorderSide(
                                                               color:
                                                                   Colors.black,
-                                                              width: 1,
+                                                              width: 1.0,
                                                             ),
                                                             borderRadius:
                                                                 BorderRadius
                                                                     .circular(
-                                                                        0),
+                                                                        0.0),
                                                           ),
                                                           focusedBorder:
                                                               UnderlineInputBorder(
@@ -768,12 +786,12 @@ class _LogSignWidgetState extends State<LogSignWidget>
                                                                 BorderSide(
                                                               color: Color(
                                                                   0x00000000),
-                                                              width: 1,
+                                                              width: 1.0,
                                                             ),
                                                             borderRadius:
                                                                 BorderRadius
                                                                     .circular(
-                                                                        0),
+                                                                        0.0),
                                                           ),
                                                           errorBorder:
                                                               UnderlineInputBorder(
@@ -781,12 +799,12 @@ class _LogSignWidgetState extends State<LogSignWidget>
                                                                 BorderSide(
                                                               color: Color(
                                                                   0x00000000),
-                                                              width: 1,
+                                                              width: 1.0,
                                                             ),
                                                             borderRadius:
                                                                 BorderRadius
                                                                     .circular(
-                                                                        0),
+                                                                        0.0),
                                                           ),
                                                           focusedErrorBorder:
                                                               UnderlineInputBorder(
@@ -794,12 +812,12 @@ class _LogSignWidgetState extends State<LogSignWidget>
                                                                 BorderSide(
                                                               color: Color(
                                                                   0x00000000),
-                                                              width: 1,
+                                                              width: 1.0,
                                                             ),
                                                             borderRadius:
                                                                 BorderRadius
                                                                     .circular(
-                                                                        0),
+                                                                        0.0),
                                                           ),
                                                         ),
                                                         style:
@@ -811,7 +829,8 @@ class _LogSignWidgetState extends State<LogSignWidget>
                                                                       'Montserrat',
                                                                   color: Colors
                                                                       .black,
-                                                                  fontSize: 14,
+                                                                  fontSize:
+                                                                      14.0,
                                                                   useGoogleFonts: GoogleFonts
                                                                           .asMap()
                                                                       .containsKey(
@@ -830,8 +849,8 @@ class _LogSignWidgetState extends State<LogSignWidget>
                                                   Padding(
                                                     padding:
                                                         EdgeInsetsDirectional
-                                                            .fromSTEB(
-                                                                0, 10, 0, 0),
+                                                            .fromSTEB(0.0, 10.0,
+                                                                0.0, 0.0),
                                                     child: TextFormField(
                                                       controller: _model
                                                           .lastNameController,
@@ -866,11 +885,12 @@ class _LogSignWidgetState extends State<LogSignWidget>
                                                           borderSide:
                                                               BorderSide(
                                                             color: Colors.black,
-                                                            width: 1,
+                                                            width: 1.0,
                                                           ),
                                                           borderRadius:
                                                               BorderRadius
-                                                                  .circular(0),
+                                                                  .circular(
+                                                                      0.0),
                                                         ),
                                                         focusedBorder:
                                                             UnderlineInputBorder(
@@ -878,11 +898,12 @@ class _LogSignWidgetState extends State<LogSignWidget>
                                                               BorderSide(
                                                             color: Color(
                                                                 0x00000000),
-                                                            width: 1,
+                                                            width: 1.0,
                                                           ),
                                                           borderRadius:
                                                               BorderRadius
-                                                                  .circular(0),
+                                                                  .circular(
+                                                                      0.0),
                                                         ),
                                                         errorBorder:
                                                             UnderlineInputBorder(
@@ -890,11 +911,12 @@ class _LogSignWidgetState extends State<LogSignWidget>
                                                               BorderSide(
                                                             color: Color(
                                                                 0x00000000),
-                                                            width: 1,
+                                                            width: 1.0,
                                                           ),
                                                           borderRadius:
                                                               BorderRadius
-                                                                  .circular(0),
+                                                                  .circular(
+                                                                      0.0),
                                                         ),
                                                         focusedErrorBorder:
                                                             UnderlineInputBorder(
@@ -902,11 +924,12 @@ class _LogSignWidgetState extends State<LogSignWidget>
                                                               BorderSide(
                                                             color: Color(
                                                                 0x00000000),
-                                                            width: 1,
+                                                            width: 1.0,
                                                           ),
                                                           borderRadius:
                                                               BorderRadius
-                                                                  .circular(0),
+                                                                  .circular(
+                                                                      0.0),
                                                         ),
                                                       ),
                                                       style:
@@ -918,7 +941,7 @@ class _LogSignWidgetState extends State<LogSignWidget>
                                                                     'Montserrat',
                                                                 color: Colors
                                                                     .black,
-                                                                fontSize: 14,
+                                                                fontSize: 14.0,
                                                                 useGoogleFonts: GoogleFonts
                                                                         .asMap()
                                                                     .containsKey(
@@ -935,8 +958,8 @@ class _LogSignWidgetState extends State<LogSignWidget>
                                                   Padding(
                                                     padding:
                                                         EdgeInsetsDirectional
-                                                            .fromSTEB(
-                                                                0, 30, 0, 60),
+                                                            .fromSTEB(0.0, 30.0,
+                                                                0.0, 60.0),
                                                     child: Row(
                                                       mainAxisSize:
                                                           MainAxisSize.max,
@@ -946,9 +969,9 @@ class _LogSignWidgetState extends State<LogSignWidget>
                                                         FlutterFlowIconButton(
                                                           borderColor: Colors
                                                               .transparent,
-                                                          borderRadius: 10,
-                                                          borderWidth: 1,
-                                                          buttonSize: 50,
+                                                          borderRadius: 10.0,
+                                                          borderWidth: 1.0,
+                                                          buttonSize: 50.0,
                                                           fillColor:
                                                               FlutterFlowTheme.of(
                                                                       context)
@@ -957,7 +980,7 @@ class _LogSignWidgetState extends State<LogSignWidget>
                                                             Icons
                                                                 .arrow_right_alt,
                                                             color: Colors.black,
-                                                            size: 30,
+                                                            size: 30.0,
                                                           ),
                                                           onPressed: () async {
                                                             await _model
@@ -986,8 +1009,8 @@ class _LogSignWidgetState extends State<LogSignWidget>
                               ),
                             ),
                             Padding(
-                              padding:
-                                  EdgeInsetsDirectional.fromSTEB(0, 0, 0, 10),
+                              padding: EdgeInsetsDirectional.fromSTEB(
+                                  0.0, 0.0, 0.0, 10.0),
                               child: Row(
                                 mainAxisSize: MainAxisSize.max,
                                 mainAxisAlignment:
@@ -1001,7 +1024,7 @@ class _LogSignWidgetState extends State<LogSignWidget>
                                       mainAxisSize: MainAxisSize.max,
                                       children: [
                                         Divider(
-                                          thickness: 1,
+                                          thickness: 1.0,
                                           color: Color(0xB3FFFFFF),
                                         ),
                                       ],
@@ -1030,7 +1053,7 @@ class _LogSignWidgetState extends State<LogSignWidget>
                                       mainAxisSize: MainAxisSize.max,
                                       children: [
                                         Divider(
-                                          thickness: 1,
+                                          thickness: 1.0,
                                           color: Color(0xB3FFFFFF),
                                         ),
                                       ],
@@ -1045,19 +1068,19 @@ class _LogSignWidgetState extends State<LogSignWidget>
                               children: [
                                 Padding(
                                   padding: EdgeInsetsDirectional.fromSTEB(
-                                      0, 0, 8, 0),
+                                      0.0, 0.0, 8.0, 0.0),
                                   child: FlutterFlowIconButton(
                                     borderColor: Colors.transparent,
-                                    borderRadius: 30,
-                                    borderWidth: 1,
-                                    buttonSize: 50,
+                                    borderRadius: 30.0,
+                                    borderWidth: 1.0,
+                                    buttonSize: 50.0,
                                     fillColor: FlutterFlowTheme.of(context)
                                         .primaryBtnText,
                                     icon: FaIcon(
                                       FontAwesomeIcons.facebookF,
                                       color: FlutterFlowTheme.of(context)
                                           .primaryText,
-                                      size: 30,
+                                      size: 30.0,
                                     ),
                                     onPressed: () {
                                       print('IconButton pressed ...');
@@ -1066,19 +1089,19 @@ class _LogSignWidgetState extends State<LogSignWidget>
                                 ),
                                 Padding(
                                   padding: EdgeInsetsDirectional.fromSTEB(
-                                      8, 8, 8, 8),
+                                      8.0, 8.0, 8.0, 8.0),
                                   child: FlutterFlowIconButton(
                                     borderColor: Colors.transparent,
-                                    borderRadius: 30,
-                                    borderWidth: 1,
-                                    buttonSize: 50,
+                                    borderRadius: 30.0,
+                                    borderWidth: 1.0,
+                                    buttonSize: 50.0,
                                     fillColor: FlutterFlowTheme.of(context)
                                         .secondaryBackground,
                                     icon: FaIcon(
                                       FontAwesomeIcons.google,
                                       color: FlutterFlowTheme.of(context)
                                           .primaryText,
-                                      size: 24,
+                                      size: 24.0,
                                     ),
                                     onPressed: () async {
                                       GoRouter.of(context).prepareAuthEvent();
@@ -1094,19 +1117,19 @@ class _LogSignWidgetState extends State<LogSignWidget>
                                 ),
                                 Padding(
                                   padding: EdgeInsetsDirectional.fromSTEB(
-                                      8, 8, 8, 8),
+                                      8.0, 8.0, 8.0, 8.0),
                                   child: FlutterFlowIconButton(
                                     borderColor: Colors.transparent,
-                                    borderRadius: 30,
-                                    borderWidth: 1,
-                                    buttonSize: 50,
+                                    borderRadius: 30.0,
+                                    borderWidth: 1.0,
+                                    buttonSize: 50.0,
                                     fillColor: FlutterFlowTheme.of(context)
                                         .secondaryBackground,
                                     icon: FaIcon(
                                       FontAwesomeIcons.apple,
                                       color: FlutterFlowTheme.of(context)
                                           .primaryText,
-                                      size: 24,
+                                      size: 24.0,
                                     ),
                                     onPressed: () async {
                                       GoRouter.of(context).prepareAuthEvent();
@@ -1122,19 +1145,19 @@ class _LogSignWidgetState extends State<LogSignWidget>
                                 ),
                                 Padding(
                                   padding: EdgeInsetsDirectional.fromSTEB(
-                                      8, 0, 0, 0),
+                                      8.0, 0.0, 0.0, 0.0),
                                   child: FlutterFlowIconButton(
                                     borderColor: Colors.transparent,
-                                    borderRadius: 30,
-                                    borderWidth: 1,
-                                    buttonSize: 50,
+                                    borderRadius: 30.0,
+                                    borderWidth: 1.0,
+                                    buttonSize: 50.0,
                                     fillColor: FlutterFlowTheme.of(context)
                                         .primaryBtnText,
                                     icon: FaIcon(
                                       FontAwesomeIcons.twitter,
                                       color: FlutterFlowTheme.of(context)
                                           .primaryText,
-                                      size: 26,
+                                      size: 26.0,
                                     ),
                                     onPressed: () async {
                                       GoRouter.of(context).prepareAuthEvent();
@@ -1154,8 +1177,8 @@ class _LogSignWidgetState extends State<LogSignWidget>
                         ),
                       ),
                       Padding(
-                        padding:
-                            EdgeInsetsDirectional.fromSTEB(30, 100, 30, 24),
+                        padding: EdgeInsetsDirectional.fromSTEB(
+                            30.0, 100.0, 30.0, 24.0),
                         child: Column(
                           mainAxisSize: MainAxisSize.max,
                           mainAxisAlignment: MainAxisAlignment.start,
@@ -1164,17 +1187,17 @@ class _LogSignWidgetState extends State<LogSignWidget>
                             Stack(
                               children: [
                                 Align(
-                                  alignment: AlignmentDirectional(-1.01, 0),
+                                  alignment: AlignmentDirectional(-1.01, 0.0),
                                   child: FlutterFlowIconButton(
                                     borderColor: Colors.transparent,
-                                    borderRadius: 30,
-                                    borderWidth: 1,
-                                    buttonSize: 40,
+                                    borderRadius: 30.0,
+                                    borderWidth: 1.0,
+                                    buttonSize: 40.0,
                                     icon: Icon(
                                       Icons.arrow_back_outlined,
                                       color: FlutterFlowTheme.of(context)
                                           .primaryText,
-                                      size: 20,
+                                      size: 20.0,
                                     ),
                                     onPressed: () async {
                                       await _model.pageViewController
@@ -1193,19 +1216,21 @@ class _LogSignWidgetState extends State<LogSignWidget>
                               children: [
                                 Padding(
                                   padding: EdgeInsetsDirectional.fromSTEB(
-                                      0, 44, 0, 0),
+                                      0.0, 44.0, 0.0, 0.0),
                                   child: Row(
                                     mainAxisSize: MainAxisSize.max,
                                     children: [
                                       Container(
-                                        height: 50,
+                                        height: 50.0,
                                         decoration: BoxDecoration(),
-                                        alignment: AlignmentDirectional(-1, 0),
+                                        alignment:
+                                            AlignmentDirectional(-1.0, 0.0),
                                       ),
                                       Container(
-                                        height: 50,
+                                        height: 50.0,
                                         decoration: BoxDecoration(),
-                                        alignment: AlignmentDirectional(-1, 0),
+                                        alignment:
+                                            AlignmentDirectional(-1.0, 0.0),
                                         child: Text(
                                           'Welcome ',
                                           style: FlutterFlowTheme.of(context)
@@ -1255,7 +1280,7 @@ class _LogSignWidgetState extends State<LogSignWidget>
                                 ),
                                 Padding(
                                   padding: EdgeInsetsDirectional.fromSTEB(
-                                      0, 12, 0, 0),
+                                      0.0, 12.0, 0.0, 0.0),
                                   child: Row(
                                     mainAxisSize: MainAxisSize.max,
                                     children: [
@@ -1282,11 +1307,11 @@ class _LogSignWidgetState extends State<LogSignWidget>
                                 ),
                                 Padding(
                                   padding: EdgeInsetsDirectional.fromSTEB(
-                                      0, 24, 0, 0),
+                                      0.0, 24.0, 0.0, 0.0),
                                   child: Container(
                                     width: double.infinity,
                                     decoration: BoxDecoration(
-                                      borderRadius: BorderRadius.circular(12),
+                                      borderRadius: BorderRadius.circular(12.0),
                                     ),
                                     child: TextFormField(
                                       controller: _model.newEmailController,
@@ -1316,35 +1341,35 @@ class _LogSignWidgetState extends State<LogSignWidget>
                                         enabledBorder: UnderlineInputBorder(
                                           borderSide: BorderSide(
                                             color: Colors.black,
-                                            width: 1,
+                                            width: 1.0,
                                           ),
                                           borderRadius:
-                                              BorderRadius.circular(0),
+                                              BorderRadius.circular(0.0),
                                         ),
                                         focusedBorder: UnderlineInputBorder(
                                           borderSide: BorderSide(
                                             color: Color(0x00000000),
-                                            width: 1,
+                                            width: 1.0,
                                           ),
                                           borderRadius:
-                                              BorderRadius.circular(0),
+                                              BorderRadius.circular(0.0),
                                         ),
                                         errorBorder: UnderlineInputBorder(
                                           borderSide: BorderSide(
                                             color: Color(0x00000000),
-                                            width: 1,
+                                            width: 1.0,
                                           ),
                                           borderRadius:
-                                              BorderRadius.circular(0),
+                                              BorderRadius.circular(0.0),
                                         ),
                                         focusedErrorBorder:
                                             UnderlineInputBorder(
                                           borderSide: BorderSide(
                                             color: Color(0x00000000),
-                                            width: 1,
+                                            width: 1.0,
                                           ),
                                           borderRadius:
-                                              BorderRadius.circular(0),
+                                              BorderRadius.circular(0.0),
                                         ),
                                         suffixIcon: _model.newEmailController!
                                                 .text.isNotEmpty
@@ -1357,7 +1382,7 @@ class _LogSignWidgetState extends State<LogSignWidget>
                                                 child: Icon(
                                                   Icons.clear,
                                                   color: Color(0x7D3B3F6B),
-                                                  size: 22,
+                                                  size: 22.0,
                                                 ),
                                               )
                                             : null,
@@ -1367,7 +1392,7 @@ class _LogSignWidgetState extends State<LogSignWidget>
                                           .override(
                                             fontFamily: 'Montserrat',
                                             color: Colors.black,
-                                            fontSize: 14,
+                                            fontSize: 14.0,
                                             useGoogleFonts: GoogleFonts.asMap()
                                                 .containsKey(
                                                     FlutterFlowTheme.of(context)
@@ -1382,22 +1407,22 @@ class _LogSignWidgetState extends State<LogSignWidget>
                                 ),
                                 Padding(
                                   padding: EdgeInsetsDirectional.fromSTEB(
-                                      0, 30, 0, 60),
+                                      0.0, 30.0, 0.0, 60.0),
                                   child: Row(
                                     mainAxisSize: MainAxisSize.max,
                                     mainAxisAlignment: MainAxisAlignment.end,
                                     children: [
                                       FlutterFlowIconButton(
                                         borderColor: Colors.transparent,
-                                        borderRadius: 10,
-                                        borderWidth: 1,
-                                        buttonSize: 50,
+                                        borderRadius: 10.0,
+                                        borderWidth: 1.0,
+                                        buttonSize: 50.0,
                                         fillColor: FlutterFlowTheme.of(context)
                                             .primaryBtnText,
                                         icon: Icon(
                                           Icons.arrow_right_alt,
                                           color: Colors.black,
-                                          size: 30,
+                                          size: 30.0,
                                         ),
                                         onPressed: () async {
                                           await _model.pageViewController
@@ -1417,8 +1442,8 @@ class _LogSignWidgetState extends State<LogSignWidget>
                         ),
                       ),
                       Padding(
-                        padding:
-                            EdgeInsetsDirectional.fromSTEB(30, 100, 30, 24),
+                        padding: EdgeInsetsDirectional.fromSTEB(
+                            30.0, 100.0, 30.0, 24.0),
                         child: Column(
                           mainAxisSize: MainAxisSize.max,
                           mainAxisAlignment: MainAxisAlignment.start,
@@ -1427,17 +1452,17 @@ class _LogSignWidgetState extends State<LogSignWidget>
                             Stack(
                               children: [
                                 Align(
-                                  alignment: AlignmentDirectional(-1.08, 0),
+                                  alignment: AlignmentDirectional(-1.08, 0.0),
                                   child: FlutterFlowIconButton(
                                     borderColor: Colors.transparent,
-                                    borderRadius: 30,
-                                    borderWidth: 1,
-                                    buttonSize: 40,
+                                    borderRadius: 30.0,
+                                    borderWidth: 1.0,
+                                    buttonSize: 40.0,
                                     icon: Icon(
                                       Icons.arrow_back_outlined,
                                       color: FlutterFlowTheme.of(context)
                                           .primaryText,
-                                      size: 20,
+                                      size: 20.0,
                                     ),
                                     onPressed: () async {
                                       await _model.pageViewController
@@ -1456,18 +1481,19 @@ class _LogSignWidgetState extends State<LogSignWidget>
                               children: [
                                 Padding(
                                   padding: EdgeInsetsDirectional.fromSTEB(
-                                      0, 44, 0, 0),
+                                      0.0, 44.0, 0.0, 0.0),
                                   child: Row(
                                     mainAxisSize: MainAxisSize.max,
                                     children: [
                                       Container(
-                                        height: 50,
+                                        height: 50.0,
                                         decoration: BoxDecoration(),
-                                        alignment: AlignmentDirectional(-1, 0),
+                                        alignment:
+                                            AlignmentDirectional(-1.0, 0.0),
                                         child: Padding(
                                           padding:
                                               EdgeInsetsDirectional.fromSTEB(
-                                                  0, 0, 16, 0),
+                                                  0.0, 0.0, 16.0, 0.0),
                                           child: Text(
                                             'Password? 🔐',
                                             style: FlutterFlowTheme.of(context)
@@ -1489,7 +1515,7 @@ class _LogSignWidgetState extends State<LogSignWidget>
                                 ),
                                 Padding(
                                   padding: EdgeInsetsDirectional.fromSTEB(
-                                      0, 12, 0, 0),
+                                      0.0, 12.0, 0.0, 0.0),
                                   child: Row(
                                     mainAxisSize: MainAxisSize.max,
                                     children: [
@@ -1516,15 +1542,15 @@ class _LogSignWidgetState extends State<LogSignWidget>
                                 ),
                                 Padding(
                                   padding: EdgeInsetsDirectional.fromSTEB(
-                                      0, 15, 0, 0),
+                                      0.0, 15.0, 0.0, 0.0),
                                   child: Container(
                                     width: double.infinity,
                                     decoration: BoxDecoration(
-                                      borderRadius: BorderRadius.circular(12),
+                                      borderRadius: BorderRadius.circular(12.0),
                                     ),
                                     child: Padding(
                                       padding: EdgeInsetsDirectional.fromSTEB(
-                                          0, 0, 0, 10),
+                                          0.0, 0.0, 0.0, 10.0),
                                       child: TextFormField(
                                         controller: _model.newPassController,
                                         obscureText: !_model.newPassVisibility,
@@ -1550,35 +1576,35 @@ class _LogSignWidgetState extends State<LogSignWidget>
                                           enabledBorder: UnderlineInputBorder(
                                             borderSide: BorderSide(
                                               color: Colors.black,
-                                              width: 1,
+                                              width: 1.0,
                                             ),
                                             borderRadius:
-                                                BorderRadius.circular(0),
+                                                BorderRadius.circular(0.0),
                                           ),
                                           focusedBorder: UnderlineInputBorder(
                                             borderSide: BorderSide(
                                               color: Color(0x00000000),
-                                              width: 1,
+                                              width: 1.0,
                                             ),
                                             borderRadius:
-                                                BorderRadius.circular(0),
+                                                BorderRadius.circular(0.0),
                                           ),
                                           errorBorder: UnderlineInputBorder(
                                             borderSide: BorderSide(
                                               color: Color(0x00000000),
-                                              width: 1,
+                                              width: 1.0,
                                             ),
                                             borderRadius:
-                                                BorderRadius.circular(0),
+                                                BorderRadius.circular(0.0),
                                           ),
                                           focusedErrorBorder:
                                               UnderlineInputBorder(
                                             borderSide: BorderSide(
                                               color: Color(0x00000000),
-                                              width: 1,
+                                              width: 1.0,
                                             ),
                                             borderRadius:
-                                                BorderRadius.circular(0),
+                                                BorderRadius.circular(0.0),
                                           ),
                                           suffixIcon: InkWell(
                                             onTap: () => setState(
@@ -1593,7 +1619,7 @@ class _LogSignWidgetState extends State<LogSignWidget>
                                                   : Icons
                                                       .visibility_off_outlined,
                                               color: Color(0x7D3B3F6B),
-                                              size: 22,
+                                              size: 22.0,
                                             ),
                                           ),
                                         ),
@@ -1602,7 +1628,7 @@ class _LogSignWidgetState extends State<LogSignWidget>
                                             .override(
                                               fontFamily: 'Montserrat',
                                               color: Colors.black,
-                                              fontSize: 14,
+                                              fontSize: 14.0,
                                               useGoogleFonts:
                                                   GoogleFonts.asMap()
                                                       .containsKey(
@@ -1620,7 +1646,7 @@ class _LogSignWidgetState extends State<LogSignWidget>
                                 ),
                                 Padding(
                                   padding: EdgeInsetsDirectional.fromSTEB(
-                                      0, 30, 0, 0),
+                                      0.0, 30.0, 0.0, 0.0),
                                   child: Text(
                                     'Confirm your password:',
                                     style: FlutterFlowTheme.of(context)
@@ -1639,15 +1665,15 @@ class _LogSignWidgetState extends State<LogSignWidget>
                                 ),
                                 Padding(
                                   padding: EdgeInsetsDirectional.fromSTEB(
-                                      0, 15, 0, 0),
+                                      0.0, 15.0, 0.0, 0.0),
                                   child: Container(
                                     width: double.infinity,
                                     decoration: BoxDecoration(
-                                      borderRadius: BorderRadius.circular(12),
+                                      borderRadius: BorderRadius.circular(12.0),
                                     ),
                                     child: Padding(
                                       padding: EdgeInsetsDirectional.fromSTEB(
-                                          0, 0, 0, 10),
+                                          0.0, 0.0, 0.0, 10.0),
                                       child: TextFormField(
                                         controller:
                                             _model.confirmPassController,
@@ -1675,35 +1701,35 @@ class _LogSignWidgetState extends State<LogSignWidget>
                                           enabledBorder: UnderlineInputBorder(
                                             borderSide: BorderSide(
                                               color: Colors.black,
-                                              width: 1,
+                                              width: 1.0,
                                             ),
                                             borderRadius:
-                                                BorderRadius.circular(0),
+                                                BorderRadius.circular(0.0),
                                           ),
                                           focusedBorder: UnderlineInputBorder(
                                             borderSide: BorderSide(
                                               color: Color(0x00000000),
-                                              width: 1,
+                                              width: 1.0,
                                             ),
                                             borderRadius:
-                                                BorderRadius.circular(0),
+                                                BorderRadius.circular(0.0),
                                           ),
                                           errorBorder: UnderlineInputBorder(
                                             borderSide: BorderSide(
                                               color: Color(0x00000000),
-                                              width: 1,
+                                              width: 1.0,
                                             ),
                                             borderRadius:
-                                                BorderRadius.circular(0),
+                                                BorderRadius.circular(0.0),
                                           ),
                                           focusedErrorBorder:
                                               UnderlineInputBorder(
                                             borderSide: BorderSide(
                                               color: Color(0x00000000),
-                                              width: 1,
+                                              width: 1.0,
                                             ),
                                             borderRadius:
-                                                BorderRadius.circular(0),
+                                                BorderRadius.circular(0.0),
                                           ),
                                           suffixIcon: InkWell(
                                             onTap: () => setState(
@@ -1719,7 +1745,7 @@ class _LogSignWidgetState extends State<LogSignWidget>
                                                   : Icons
                                                       .visibility_off_outlined,
                                               color: Color(0x7D3B3F6B),
-                                              size: 22,
+                                              size: 22.0,
                                             ),
                                           ),
                                         ),
@@ -1728,7 +1754,7 @@ class _LogSignWidgetState extends State<LogSignWidget>
                                             .override(
                                               fontFamily: 'Montserrat',
                                               color: Colors.black,
-                                              fontSize: 14,
+                                              fontSize: 14.0,
                                               useGoogleFonts:
                                                   GoogleFonts.asMap()
                                                       .containsKey(
@@ -1747,23 +1773,23 @@ class _LogSignWidgetState extends State<LogSignWidget>
                               ],
                             ),
                             Padding(
-                              padding:
-                                  EdgeInsetsDirectional.fromSTEB(0, 30, 0, 60),
+                              padding: EdgeInsetsDirectional.fromSTEB(
+                                  0.0, 30.0, 0.0, 60.0),
                               child: Row(
                                 mainAxisSize: MainAxisSize.max,
                                 mainAxisAlignment: MainAxisAlignment.end,
                                 children: [
                                   FlutterFlowIconButton(
                                     borderColor: Colors.transparent,
-                                    borderRadius: 10,
-                                    borderWidth: 1,
-                                    buttonSize: 50,
+                                    borderRadius: 10.0,
+                                    borderWidth: 1.0,
+                                    buttonSize: 50.0,
                                     fillColor: FlutterFlowTheme.of(context)
                                         .primaryBtnText,
                                     icon: Icon(
                                       Icons.arrow_right_alt,
                                       color: Colors.black,
-                                      size: 30,
+                                      size: 30.0,
                                     ),
                                     onPressed: () async {
                                       await _model.pageViewController?.nextPage(
@@ -1779,8 +1805,8 @@ class _LogSignWidgetState extends State<LogSignWidget>
                         ),
                       ),
                       Padding(
-                        padding:
-                            EdgeInsetsDirectional.fromSTEB(30, 100, 30, 24),
+                        padding: EdgeInsetsDirectional.fromSTEB(
+                            30.0, 100.0, 30.0, 24.0),
                         child: Column(
                           mainAxisSize: MainAxisSize.max,
                           mainAxisAlignment: MainAxisAlignment.start,
@@ -1789,17 +1815,17 @@ class _LogSignWidgetState extends State<LogSignWidget>
                             Stack(
                               children: [
                                 Align(
-                                  alignment: AlignmentDirectional(-1.08, 0),
+                                  alignment: AlignmentDirectional(-1.08, 0.0),
                                   child: FlutterFlowIconButton(
                                     borderColor: Colors.transparent,
-                                    borderRadius: 30,
-                                    borderWidth: 1,
-                                    buttonSize: 40,
+                                    borderRadius: 30.0,
+                                    borderWidth: 1.0,
+                                    buttonSize: 40.0,
                                     icon: Icon(
                                       Icons.arrow_back_outlined,
                                       color: FlutterFlowTheme.of(context)
                                           .primaryText,
-                                      size: 20,
+                                      size: 20.0,
                                     ),
                                     onPressed: () async {
                                       await _model.pageViewController
@@ -1818,23 +1844,25 @@ class _LogSignWidgetState extends State<LogSignWidget>
                               children: [
                                 Padding(
                                   padding: EdgeInsetsDirectional.fromSTEB(
-                                      0, 44, 0, 0),
+                                      0.0, 44.0, 0.0, 0.0),
                                   child: Row(
                                     mainAxisSize: MainAxisSize.max,
                                     children: [
                                       Container(
-                                        height: 50,
+                                        height: 50.0,
                                         decoration: BoxDecoration(),
-                                        alignment: AlignmentDirectional(-1, 0),
+                                        alignment:
+                                            AlignmentDirectional(-1.0, 0.0),
                                       ),
                                       Container(
-                                        height: 50,
+                                        height: 50.0,
                                         decoration: BoxDecoration(),
-                                        alignment: AlignmentDirectional(-1, 0),
+                                        alignment:
+                                            AlignmentDirectional(-1.0, 0.0),
                                         child: Padding(
                                           padding:
                                               EdgeInsetsDirectional.fromSTEB(
-                                                  0, 0, 16, 0),
+                                                  0.0, 0.0, 16.0, 0.0),
                                           child: Text(
                                             'Create your username 🤩',
                                             style: FlutterFlowTheme.of(context)
@@ -1856,7 +1884,7 @@ class _LogSignWidgetState extends State<LogSignWidget>
                                 ),
                                 Padding(
                                   padding: EdgeInsetsDirectional.fromSTEB(
-                                      0, 12, 0, 0),
+                                      0.0, 12.0, 0.0, 0.0),
                                   child: Row(
                                     mainAxisSize: MainAxisSize.max,
                                     children: [
@@ -1883,11 +1911,11 @@ class _LogSignWidgetState extends State<LogSignWidget>
                                 ),
                                 Padding(
                                   padding: EdgeInsetsDirectional.fromSTEB(
-                                      0, 24, 0, 0),
+                                      0.0, 24.0, 0.0, 0.0),
                                   child: Container(
                                     width: double.infinity,
                                     decoration: BoxDecoration(
-                                      borderRadius: BorderRadius.circular(12),
+                                      borderRadius: BorderRadius.circular(12.0),
                                     ),
                                     child: TextFormField(
                                       controller: _model.textController4,
@@ -1912,35 +1940,35 @@ class _LogSignWidgetState extends State<LogSignWidget>
                                         enabledBorder: UnderlineInputBorder(
                                           borderSide: BorderSide(
                                             color: Colors.black,
-                                            width: 1,
+                                            width: 1.0,
                                           ),
                                           borderRadius:
-                                              BorderRadius.circular(0),
+                                              BorderRadius.circular(0.0),
                                         ),
                                         focusedBorder: UnderlineInputBorder(
                                           borderSide: BorderSide(
                                             color: Color(0x00000000),
-                                            width: 1,
+                                            width: 1.0,
                                           ),
                                           borderRadius:
-                                              BorderRadius.circular(0),
+                                              BorderRadius.circular(0.0),
                                         ),
                                         errorBorder: UnderlineInputBorder(
                                           borderSide: BorderSide(
                                             color: Color(0x00000000),
-                                            width: 1,
+                                            width: 1.0,
                                           ),
                                           borderRadius:
-                                              BorderRadius.circular(0),
+                                              BorderRadius.circular(0.0),
                                         ),
                                         focusedErrorBorder:
                                             UnderlineInputBorder(
                                           borderSide: BorderSide(
                                             color: Color(0x00000000),
-                                            width: 1,
+                                            width: 1.0,
                                           ),
                                           borderRadius:
-                                              BorderRadius.circular(0),
+                                              BorderRadius.circular(0.0),
                                         ),
                                       ),
                                       style: FlutterFlowTheme.of(context)
@@ -1948,7 +1976,7 @@ class _LogSignWidgetState extends State<LogSignWidget>
                                           .override(
                                             fontFamily: 'Montserrat',
                                             color: Colors.black,
-                                            fontSize: 14,
+                                            fontSize: 14.0,
                                             useGoogleFonts: GoogleFonts.asMap()
                                                 .containsKey(
                                                     FlutterFlowTheme.of(context)
@@ -1962,7 +1990,7 @@ class _LogSignWidgetState extends State<LogSignWidget>
                                 ),
                                 Padding(
                                   padding: EdgeInsetsDirectional.fromSTEB(
-                                      0, 30, 0, 60),
+                                      0.0, 30.0, 0.0, 60.0),
                                   child: Row(
                                     mainAxisSize: MainAxisSize.max,
                                     mainAxisAlignment: MainAxisAlignment.end,
@@ -2035,8 +2063,14 @@ class _LogSignWidgetState extends State<LogSignWidget>
                                         },
                                         text: 'Create!',
                                         options: FFButtonOptions(
-                                          width: 150,
-                                          height: 50,
+                                          width: 150.0,
+                                          height: 50.0,
+                                          padding:
+                                              EdgeInsetsDirectional.fromSTEB(
+                                                  0.0, 0.0, 0.0, 0.0),
+                                          iconPadding:
+                                              EdgeInsetsDirectional.fromSTEB(
+                                                  0.0, 0.0, 0.0, 0.0),
                                           color: FlutterFlowTheme.of(context)
                                               .primaryColor,
                                           textStyle:
@@ -2045,7 +2079,7 @@ class _LogSignWidgetState extends State<LogSignWidget>
                                                   .override(
                                                     fontFamily: 'Archivo Black',
                                                     color: Colors.white,
-                                                    fontSize: 18,
+                                                    fontSize: 18.0,
                                                     fontWeight: FontWeight.w500,
                                                     useGoogleFonts: GoogleFonts
                                                             .asMap()
@@ -2054,10 +2088,10 @@ class _LogSignWidgetState extends State<LogSignWidget>
                                                                     context)
                                                                 .subtitle2Family),
                                                   ),
-                                          elevation: 3,
+                                          elevation: 3.0,
                                           borderSide: BorderSide(
                                             color: Colors.transparent,
-                                            width: 1,
+                                            width: 1.0,
                                           ),
                                         ),
                                       ),
@@ -2072,8 +2106,8 @@ class _LogSignWidgetState extends State<LogSignWidget>
                       Stack(
                         children: [
                           Padding(
-                            padding:
-                                EdgeInsetsDirectional.fromSTEB(30, 100, 30, 24),
+                            padding: EdgeInsetsDirectional.fromSTEB(
+                                30.0, 100.0, 30.0, 24.0),
                             child: Column(
                               mainAxisSize: MainAxisSize.max,
                               mainAxisAlignment: MainAxisAlignment.start,
@@ -2085,23 +2119,24 @@ class _LogSignWidgetState extends State<LogSignWidget>
                                   children: [
                                     Padding(
                                       padding: EdgeInsetsDirectional.fromSTEB(
-                                          0, 84, 0, 0),
+                                          0.0, 84.0, 0.0, 0.0),
                                       child: Row(
                                         mainAxisSize: MainAxisSize.max,
                                         children: [
                                           Container(
-                                            height: 50,
+                                            height: 50.0,
                                             decoration: BoxDecoration(),
                                             alignment:
-                                                AlignmentDirectional(-1, 0),
+                                                AlignmentDirectional(-1.0, 0.0),
                                           ),
                                           Container(
                                             decoration: BoxDecoration(),
                                             alignment:
-                                                AlignmentDirectional(-1, 0),
+                                                AlignmentDirectional(-1.0, 0.0),
                                             child: Padding(
                                               padding: EdgeInsetsDirectional
-                                                  .fromSTEB(0, 0, 16, 0),
+                                                  .fromSTEB(
+                                                      0.0, 0.0, 16.0, 0.0),
                                               child: Text(
                                                 'You\'re all set!  👏✨',
                                                 style:
@@ -2126,14 +2161,14 @@ class _LogSignWidgetState extends State<LogSignWidget>
                                     ),
                                     Padding(
                                       padding: EdgeInsetsDirectional.fromSTEB(
-                                          0, 0, 16, 0),
+                                          0.0, 0.0, 16.0, 0.0),
                                       child: Text(
                                         'Now let\'s help make fitness social! ',
                                         style: FlutterFlowTheme.of(context)
                                             .title1
                                             .override(
                                               fontFamily: 'Archivo Black',
-                                              fontSize: 18,
+                                              fontSize: 18.0,
                                               fontWeight: FontWeight.w500,
                                               useGoogleFonts:
                                                   GoogleFonts.asMap()
@@ -2147,7 +2182,7 @@ class _LogSignWidgetState extends State<LogSignWidget>
                                     ),
                                     Padding(
                                       padding: EdgeInsetsDirectional.fromSTEB(
-                                          0, 30, 0, 60),
+                                          0.0, 30.0, 0.0, 60.0),
                                       child: Row(
                                         mainAxisSize: MainAxisSize.max,
                                         mainAxisAlignment:
@@ -2155,16 +2190,16 @@ class _LogSignWidgetState extends State<LogSignWidget>
                                         children: [
                                           FlutterFlowIconButton(
                                             borderColor: Colors.transparent,
-                                            borderRadius: 10,
-                                            borderWidth: 1,
-                                            buttonSize: 50,
+                                            borderRadius: 10.0,
+                                            borderWidth: 1.0,
+                                            buttonSize: 50.0,
                                             fillColor:
                                                 FlutterFlowTheme.of(context)
                                                     .primaryBtnText,
                                             icon: Icon(
                                               Icons.arrow_right_alt,
                                               color: Colors.black,
-                                              size: 30,
+                                              size: 30.0,
                                             ),
                                             onPressed: () async {
                                               context.pushNamed('HomePage');
@@ -2180,7 +2215,7 @@ class _LogSignWidgetState extends State<LogSignWidget>
                             ),
                           ),
                           Align(
-                            alignment: AlignmentDirectional(0, 1),
+                            alignment: AlignmentDirectional(0.0, 1.0),
                             child: Image.asset(
                               'assets/images/decoration1.png',
                               width: double.infinity,

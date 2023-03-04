@@ -1,6 +1,6 @@
-import '../flutter_flow/flutter_flow_theme.dart';
-import '../flutter_flow/flutter_flow_util.dart';
-import '../flutter_flow/flutter_flow_widgets.dart';
+import '/flutter_flow/flutter_flow_theme.dart';
+import '/flutter_flow/flutter_flow_util.dart';
+import '/flutter_flow/flutter_flow_widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
@@ -55,8 +55,10 @@ class _CompleteButtonWidgetState extends State<CompleteButtonWidget> {
       },
       text: 'Complete',
       options: FFButtonOptions(
-        width: 110,
-        height: 40,
+        width: 110.0,
+        height: 40.0,
+        padding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
+        iconPadding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
         color: Color(0xFF59CD72),
         textStyle: FlutterFlowTheme.of(context).subtitle2.override(
               fontFamily: 'Archivo Black',
@@ -64,12 +66,12 @@ class _CompleteButtonWidgetState extends State<CompleteButtonWidget> {
               useGoogleFonts: GoogleFonts.asMap()
                   .containsKey(FlutterFlowTheme.of(context).subtitle2Family),
             ),
-        elevation: 10,
+        elevation: 10.0,
         borderSide: BorderSide(
           color: Colors.transparent,
-          width: 1,
+          width: 1.0,
         ),
-        borderRadius: BorderRadius.circular(8),
+        borderRadius: BorderRadius.circular(8.0),
       ),
     );
   }

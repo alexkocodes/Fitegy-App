@@ -145,7 +145,7 @@ class _NavBarPageState extends State<NavBarPage> {
           BottomNavigationBarItem(
             icon: Icon(
               Icons.home_filled,
-              size: 24,
+              size: 24.0,
             ),
             label: 'Home',
             tooltip: '',
@@ -153,7 +153,7 @@ class _NavBarPageState extends State<NavBarPage> {
           BottomNavigationBarItem(
             icon: Icon(
               Icons.add,
-              size: 24,
+              size: 24.0,
             ),
             label: 'Create',
             tooltip: '',
@@ -161,7 +161,7 @@ class _NavBarPageState extends State<NavBarPage> {
           BottomNavigationBarItem(
             icon: Icon(
               Icons.clear_all_outlined,
-              size: 24,
+              size: 24.0,
             ),
             label: 'Library',
             tooltip: '',
@@ -169,7 +169,7 @@ class _NavBarPageState extends State<NavBarPage> {
           BottomNavigationBarItem(
             icon: Icon(
               Icons.person_sharp,
-              size: 24,
+              size: 24.0,
             ),
             label: 'Account',
             tooltip: '',

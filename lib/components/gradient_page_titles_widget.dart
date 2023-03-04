@@ -1,6 +1,6 @@
-import '../flutter_flow/flutter_flow_icon_button.dart';
-import '../flutter_flow/flutter_flow_theme.dart';
-import '../flutter_flow/flutter_flow_util.dart';
+import '/flutter_flow/flutter_flow_icon_button.dart';
+import '/flutter_flow/flutter_flow_theme.dart';
+import '/flutter_flow/flutter_flow_util.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
@@ -50,7 +50,7 @@ class _GradientPageTitlesWidgetState extends State<GradientPageTitlesWidget> {
     context.watch<FFAppState>();
 
     return Padding(
-      padding: EdgeInsetsDirectional.fromSTEB(30, 20, 30, 20),
+      padding: EdgeInsetsDirectional.fromSTEB(30.0, 20.0, 30.0, 20.0),
       child: Column(
         mainAxisSize: MainAxisSize.min,
         mainAxisAlignment: MainAxisAlignment.start,
@@ -61,16 +61,16 @@ class _GradientPageTitlesWidgetState extends State<GradientPageTitlesWidget> {
               Align(
                 alignment: AlignmentDirectional(-1.1, 0.12),
                 child: Padding(
-                  padding: EdgeInsetsDirectional.fromSTEB(0, 30, 0, 0),
+                  padding: EdgeInsetsDirectional.fromSTEB(0.0, 30.0, 0.0, 0.0),
                   child: FlutterFlowIconButton(
                     borderColor: Colors.transparent,
-                    borderRadius: 30,
-                    borderWidth: 1,
-                    buttonSize: 50,
+                    borderRadius: 30.0,
+                    borderWidth: 1.0,
+                    buttonSize: 50.0,
                     icon: Icon(
                       Icons.keyboard_arrow_left_sharp,
                       color: FlutterFlowTheme.of(context).primaryText,
-                      size: 30,
+                      size: 30.0,
                     ),
                     onPressed: () async {
                       context.pop();
@@ -81,8 +81,8 @@ class _GradientPageTitlesWidgetState extends State<GradientPageTitlesWidget> {
             ],
           ),
           Wrap(
-            spacing: 0,
-            runSpacing: 0,
+            spacing: 0.0,
+            runSpacing: 0.0,
             alignment: WrapAlignment.start,
             crossAxisAlignment: WrapCrossAlignment.start,
             direction: Axis.horizontal,
@@ -93,13 +93,13 @@ class _GradientPageTitlesWidgetState extends State<GradientPageTitlesWidget> {
               Container(
                 decoration: BoxDecoration(),
                 child: Padding(
-                  padding: EdgeInsetsDirectional.fromSTEB(5, 0, 0, 0),
+                  padding: EdgeInsetsDirectional.fromSTEB(5.0, 0.0, 0.0, 0.0),
                   child: Text(
                     widget.title!,
                     style: FlutterFlowTheme.of(context).title1.override(
                           fontFamily: 'Inter',
                           color: FlutterFlowTheme.of(context).secondaryText,
-                          fontSize: 23,
+                          fontSize: 23.0,
                           fontWeight: FontWeight.w600,
                           useGoogleFonts: GoogleFonts.asMap().containsKey(
                               FlutterFlowTheme.of(context).title1Family),
@@ -110,13 +110,13 @@ class _GradientPageTitlesWidgetState extends State<GradientPageTitlesWidget> {
               Container(
                 decoration: BoxDecoration(),
                 child: Padding(
-                  padding: EdgeInsetsDirectional.fromSTEB(5, 0, 0, 0),
+                  padding: EdgeInsetsDirectional.fromSTEB(5.0, 0.0, 0.0, 0.0),
                   child: GradientText(
                     widget.subtitle!,
                     style: FlutterFlowTheme.of(context).bodyText2.override(
                           fontFamily: 'Inter',
                           color: FlutterFlowTheme.of(context).primaryColor,
-                          fontSize: 23,
+                          fontSize: 23.0,
                           fontWeight: FontWeight.w600,
                           useGoogleFonts: GoogleFonts.asMap().containsKey(
                               FlutterFlowTheme.of(context).bodyText2Family),
@@ -133,12 +133,12 @@ class _GradientPageTitlesWidgetState extends State<GradientPageTitlesWidget> {
             ],
           ),
           Padding(
-            padding: EdgeInsetsDirectional.fromSTEB(5, 0, 0, 0),
+            padding: EdgeInsetsDirectional.fromSTEB(5.0, 0.0, 0.0, 0.0),
             child: Column(
               mainAxisSize: MainAxisSize.max,
               children: [
                 Divider(
-                  thickness: 1,
+                  thickness: 1.0,
                   color: Color(0xFFCFCFCF),
                 ),
               ],

@@ -1,10 +1,10 @@
-import '../backend/backend.dart';
-import '../components/challenge_card_widget.dart';
-import '../components/empty_widget.dart';
-import '../flutter_flow/flutter_flow_animations.dart';
-import '../flutter_flow/flutter_flow_theme.dart';
-import '../flutter_flow/flutter_flow_util.dart';
-import '../flutter_flow/flutter_flow_widgets.dart';
+import '/backend/backend.dart';
+import '/components/challenge_card_widget.dart';
+import '/components/empty_widget.dart';
+import '/flutter_flow/flutter_flow_animations.dart';
+import '/flutter_flow/flutter_flow_theme.dart';
+import '/flutter_flow/flutter_flow_util.dart';
+import '/flutter_flow/flutter_flow_widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:flutter_animate/flutter_animate.dart';
@@ -33,15 +33,15 @@ class _ChallengeBottomSheetWidgetState extends State<ChallengeBottomSheetWidget>
           curve: Curves.easeInOut,
           delay: 0.ms,
           duration: 1000.ms,
-          begin: Offset(0, 100),
-          end: Offset(0, 0),
+          begin: Offset(0.0, 100.0),
+          end: Offset(0.0, 0.0),
         ),
         FadeEffect(
           curve: Curves.easeInOut,
           delay: 0.ms,
           duration: 1000.ms,
-          begin: 0,
-          end: 1,
+          begin: 0.0,
+          end: 1.0,
         ),
       ],
     ),
@@ -73,10 +73,10 @@ class _ChallengeBottomSheetWidgetState extends State<ChallengeBottomSheetWidget>
     return Container(
       decoration: BoxDecoration(
         color: FlutterFlowTheme.of(context).primaryBackground,
-        borderRadius: BorderRadius.circular(20),
+        borderRadius: BorderRadius.circular(20.0),
       ),
       child: Padding(
-        padding: EdgeInsetsDirectional.fromSTEB(30, 40, 30, 0),
+        padding: EdgeInsetsDirectional.fromSTEB(30.0, 40.0, 30.0, 0.0),
         child: Column(
           mainAxisSize: MainAxisSize.max,
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -87,19 +87,20 @@ class _ChallengeBottomSheetWidgetState extends State<ChallengeBottomSheetWidget>
                 color: FlutterFlowTheme.of(context).secondaryBackground,
               ),
               child: Padding(
-                padding: EdgeInsetsDirectional.fromSTEB(0, 0, 15, 0),
+                padding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 15.0, 0.0),
                 child: Row(
                   mainAxisSize: MainAxisSize.max,
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Padding(
-                      padding: EdgeInsetsDirectional.fromSTEB(15, 0, 0, 0),
+                      padding:
+                          EdgeInsetsDirectional.fromSTEB(15.0, 0.0, 0.0, 0.0),
                       child: Text(
                         'Select a challenge you want \nto embed in your post',
                         style: FlutterFlowTheme.of(context).bodyText1.override(
                               fontFamily:
                                   FlutterFlowTheme.of(context).bodyText1Family,
-                              fontSize: 15,
+                              fontSize: 15.0,
                               fontWeight: FontWeight.w600,
                               useGoogleFonts: GoogleFonts.asMap().containsKey(
                                   FlutterFlowTheme.of(context).bodyText1Family),
@@ -112,8 +113,12 @@ class _ChallengeBottomSheetWidgetState extends State<ChallengeBottomSheetWidget>
                       },
                       text: 'Select',
                       options: FFButtonOptions(
-                        width: 100,
-                        height: 40,
+                        width: 100.0,
+                        height: 40.0,
+                        padding:
+                            EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
+                        iconPadding:
+                            EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
                         color: Color(0xFF4791FF),
                         textStyle: FlutterFlowTheme.of(context)
                             .subtitle2
@@ -123,12 +128,12 @@ class _ChallengeBottomSheetWidgetState extends State<ChallengeBottomSheetWidget>
                               useGoogleFonts: GoogleFonts.asMap().containsKey(
                                   FlutterFlowTheme.of(context).subtitle2Family),
                             ),
-                        elevation: 5,
+                        elevation: 5.0,
                         borderSide: BorderSide(
                           color: Colors.transparent,
-                          width: 1,
+                          width: 1.0,
                         ),
-                        borderRadius: BorderRadius.circular(8),
+                        borderRadius: BorderRadius.circular(8.0),
                       ),
                     ),
                   ],
@@ -137,7 +142,7 @@ class _ChallengeBottomSheetWidgetState extends State<ChallengeBottomSheetWidget>
             ),
             Expanded(
               child: Padding(
-                padding: EdgeInsetsDirectional.fromSTEB(0, 25, 0, 0),
+                padding: EdgeInsetsDirectional.fromSTEB(0.0, 25.0, 0.0, 0.0),
                 child: DefaultTabController(
                   length: 3,
                   initialIndex: 0,
@@ -150,7 +155,7 @@ class _ChallengeBottomSheetWidgetState extends State<ChallengeBottomSheetWidget>
                             .bodyText1
                             .override(
                               fontFamily: 'Archivo Black',
-                              fontSize: 13,
+                              fontSize: 13.0,
                               useGoogleFonts: GoogleFonts.asMap().containsKey(
                                   FlutterFlowTheme.of(context).bodyText1Family),
                             ),
@@ -172,8 +177,8 @@ class _ChallengeBottomSheetWidgetState extends State<ChallengeBottomSheetWidget>
                         child: TabBarView(
                           children: [
                             Padding(
-                              padding:
-                                  EdgeInsetsDirectional.fromSTEB(0, 15, 0, 0),
+                              padding: EdgeInsetsDirectional.fromSTEB(
+                                  0.0, 15.0, 0.0, 0.0),
                               child: StreamBuilder<List<ChallengesRecord>>(
                                 stream: queryChallengesRecord(
                                   queryBuilder: (challengesRecord) =>
@@ -188,8 +193,8 @@ class _ChallengeBottomSheetWidgetState extends State<ChallengeBottomSheetWidget>
                                   if (!snapshot.hasData) {
                                     return Center(
                                       child: SizedBox(
-                                        width: 40,
-                                        height: 40,
+                                        width: 40.0,
+                                        height: 40.0,
                                         child: CircularProgressIndicator(
                                           color: FlutterFlowTheme.of(context)
                                               .lineColor,
@@ -215,8 +220,8 @@ class _ChallengeBottomSheetWidgetState extends State<ChallengeBottomSheetWidget>
                                     gridDelegate:
                                         SliverGridDelegateWithFixedCrossAxisCount(
                                       crossAxisCount: 2,
-                                      crossAxisSpacing: 10,
-                                      mainAxisSpacing: 30,
+                                      crossAxisSpacing: 10.0,
+                                      mainAxisSpacing: 30.0,
                                       childAspectRatio: 0.95,
                                     ),
                                     scrollDirection: Axis.vertical,
@@ -246,8 +251,8 @@ class _ChallengeBottomSheetWidgetState extends State<ChallengeBottomSheetWidget>
                               ),
                             ),
                             Padding(
-                              padding:
-                                  EdgeInsetsDirectional.fromSTEB(0, 15, 0, 0),
+                              padding: EdgeInsetsDirectional.fromSTEB(
+                                  0.0, 15.0, 0.0, 0.0),
                               child: StreamBuilder<List<ChallengesRecord>>(
                                 stream: queryChallengesRecord(
                                   queryBuilder: (challengesRecord) =>
@@ -263,8 +268,8 @@ class _ChallengeBottomSheetWidgetState extends State<ChallengeBottomSheetWidget>
                                   if (!snapshot.hasData) {
                                     return Center(
                                       child: SizedBox(
-                                        width: 40,
-                                        height: 40,
+                                        width: 40.0,
+                                        height: 40.0,
                                         child: CircularProgressIndicator(
                                           color: FlutterFlowTheme.of(context)
                                               .lineColor,
@@ -290,8 +295,8 @@ class _ChallengeBottomSheetWidgetState extends State<ChallengeBottomSheetWidget>
                                     gridDelegate:
                                         SliverGridDelegateWithFixedCrossAxisCount(
                                       crossAxisCount: 2,
-                                      crossAxisSpacing: 10,
-                                      mainAxisSpacing: 30,
+                                      crossAxisSpacing: 10.0,
+                                      mainAxisSpacing: 30.0,
                                       childAspectRatio: 0.95,
                                     ),
                                     scrollDirection: Axis.vertical,
@@ -303,7 +308,7 @@ class _ChallengeBottomSheetWidgetState extends State<ChallengeBottomSheetWidget>
                                               gridViewIndex];
                                       return Padding(
                                         padding: EdgeInsetsDirectional.fromSTEB(
-                                            15, 0, 15, 0),
+                                            15.0, 0.0, 15.0, 0.0),
                                         child: InkWell(
                                           onTap: () async {
                                             context
@@ -321,9 +326,9 @@ class _ChallengeBottomSheetWidgetState extends State<ChallengeBottomSheetWidget>
                                             decoration: BoxDecoration(
                                               boxShadow: [
                                                 BoxShadow(
-                                                  blurRadius: 12,
+                                                  blurRadius: 12.0,
                                                   color: Color(0x33000000),
-                                                  offset: Offset(0, 5),
+                                                  offset: Offset(0.0, 5.0),
                                                 )
                                               ],
                                               gradient: LinearGradient(
@@ -331,18 +336,19 @@ class _ChallengeBottomSheetWidgetState extends State<ChallengeBottomSheetWidget>
                                                   Color(0xFFE6A0FF),
                                                   Color(0xFF9AE1FF)
                                                 ],
-                                                stops: [0, 1],
+                                                stops: [0.0, 1.0],
                                                 begin: AlignmentDirectional(
-                                                    -0.34, -1),
+                                                    -0.34, -1.0),
                                                 end: AlignmentDirectional(
-                                                    0.34, 1),
+                                                    0.34, 1.0),
                                               ),
                                               borderRadius:
-                                                  BorderRadius.circular(20),
+                                                  BorderRadius.circular(20.0),
                                             ),
                                             child: Padding(
                                               padding: EdgeInsetsDirectional
-                                                  .fromSTEB(15, 15, 15, 15),
+                                                  .fromSTEB(
+                                                      15.0, 15.0, 15.0, 15.0),
                                               child: Column(
                                                 mainAxisSize: MainAxisSize.max,
                                                 mainAxisAlignment:
@@ -382,7 +388,10 @@ class _ChallengeBottomSheetWidgetState extends State<ChallengeBottomSheetWidget>
                                                         padding:
                                                             EdgeInsetsDirectional
                                                                 .fromSTEB(
-                                                                    0, 5, 0, 0),
+                                                                    0.0,
+                                                                    5.0,
+                                                                    0.0,
+                                                                    0.0),
                                                         child: Text(
                                                           dateTimeFormat(
                                                               'yMMMd',
@@ -398,7 +407,7 @@ class _ChallengeBottomSheetWidgetState extends State<ChallengeBottomSheetWidget>
                                                                 color: FlutterFlowTheme.of(
                                                                         context)
                                                                     .primaryBtnText,
-                                                                fontSize: 12,
+                                                                fontSize: 12.0,
                                                                 fontWeight:
                                                                     FontWeight
                                                                         .normal,
@@ -420,7 +429,7 @@ class _ChallengeBottomSheetWidgetState extends State<ChallengeBottomSheetWidget>
                                                     children: [
                                                       Image.asset(
                                                         'assets/images/Hole.png',
-                                                        width: 15,
+                                                        width: 15.0,
                                                         fit: BoxFit.cover,
                                                       ),
                                                     ],
@@ -438,8 +447,8 @@ class _ChallengeBottomSheetWidgetState extends State<ChallengeBottomSheetWidget>
                               ),
                             ),
                             Padding(
-                              padding:
-                                  EdgeInsetsDirectional.fromSTEB(0, 15, 0, 0),
+                              padding: EdgeInsetsDirectional.fromSTEB(
+                                  0.0, 15.0, 0.0, 0.0),
                               child: StreamBuilder<List<ChallengesRecord>>(
                                 stream: queryChallengesRecord(
                                   queryBuilder: (challengesRecord) =>
@@ -454,8 +463,8 @@ class _ChallengeBottomSheetWidgetState extends State<ChallengeBottomSheetWidget>
                                   if (!snapshot.hasData) {
                                     return Center(
                                       child: SizedBox(
-                                        width: 40,
-                                        height: 40,
+                                        width: 40.0,
+                                        height: 40.0,
                                         child: CircularProgressIndicator(
                                           color: FlutterFlowTheme.of(context)
                                               .lineColor,
@@ -481,8 +490,8 @@ class _ChallengeBottomSheetWidgetState extends State<ChallengeBottomSheetWidget>
                                     gridDelegate:
                                         SliverGridDelegateWithFixedCrossAxisCount(
                                       crossAxisCount: 2,
-                                      crossAxisSpacing: 10,
-                                      mainAxisSpacing: 30,
+                                      crossAxisSpacing: 10.0,
+                                      mainAxisSpacing: 30.0,
                                       childAspectRatio: 0.95,
                                     ),
                                     scrollDirection: Axis.vertical,

@@ -1,9 +1,9 @@
-import '../backend/backend.dart';
-import '../components/challenge_card_widget.dart';
-import '../components/empty_widget.dart';
-import '../flutter_flow/flutter_flow_animations.dart';
-import '../flutter_flow/flutter_flow_theme.dart';
-import '../flutter_flow/flutter_flow_util.dart';
+import '/backend/backend.dart';
+import '/components/challenge_card_widget.dart';
+import '/components/empty_widget.dart';
+import '/flutter_flow/flutter_flow_animations.dart';
+import '/flutter_flow/flutter_flow_theme.dart';
+import '/flutter_flow/flutter_flow_util.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:flutter_animate/flutter_animate.dart';
@@ -34,15 +34,15 @@ class _MyChallengesWidgetState extends State<MyChallengesWidget>
           curve: Curves.easeInOut,
           delay: 0.ms,
           duration: 1000.ms,
-          begin: Offset(0, 100),
-          end: Offset(0, 0),
+          begin: Offset(0.0, 100.0),
+          end: Offset(0.0, 0.0),
         ),
         FadeEffect(
           curve: Curves.easeInOut,
           delay: 0.ms,
           duration: 1000.ms,
-          begin: 0,
-          end: 1,
+          begin: 0.0,
+          end: 1.0,
         ),
       ],
     ),
@@ -79,20 +79,21 @@ class _MyChallengesWidgetState extends State<MyChallengesWidget>
               color: FlutterFlowTheme.of(context).primaryBackground,
             ),
             child: Padding(
-              padding: EdgeInsetsDirectional.fromSTEB(30, 40, 30, 0),
+              padding: EdgeInsetsDirectional.fromSTEB(30.0, 40.0, 30.0, 0.0),
               child: Column(
                 mainAxisSize: MainAxisSize.max,
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Padding(
-                    padding: EdgeInsetsDirectional.fromSTEB(18, 0, 0, 0),
+                    padding:
+                        EdgeInsetsDirectional.fromSTEB(18.0, 0.0, 0.0, 0.0),
                     child: Text(
                       'All your challenges, in \none place. ',
                       style: FlutterFlowTheme.of(context).bodyText1.override(
                             fontFamily:
                                 FlutterFlowTheme.of(context).bodyText1Family,
-                            fontSize: 26,
+                            fontSize: 26.0,
                             fontWeight: FontWeight.w600,
                             useGoogleFonts: GoogleFonts.asMap().containsKey(
                                 FlutterFlowTheme.of(context).bodyText1Family),
@@ -101,7 +102,8 @@ class _MyChallengesWidgetState extends State<MyChallengesWidget>
                   ),
                   Expanded(
                     child: Padding(
-                      padding: EdgeInsetsDirectional.fromSTEB(0, 25, 0, 0),
+                      padding:
+                          EdgeInsetsDirectional.fromSTEB(0.0, 25.0, 0.0, 0.0),
                       child: DefaultTabController(
                         length: 3,
                         initialIndex: 0,
@@ -115,7 +117,7 @@ class _MyChallengesWidgetState extends State<MyChallengesWidget>
                                   .bodyText1
                                   .override(
                                     fontFamily: 'Archivo Black',
-                                    fontSize: 13,
+                                    fontSize: 13.0,
                                     useGoogleFonts: GoogleFonts.asMap()
                                         .containsKey(
                                             FlutterFlowTheme.of(context)
@@ -140,7 +142,7 @@ class _MyChallengesWidgetState extends State<MyChallengesWidget>
                                 children: [
                                   Padding(
                                     padding: EdgeInsetsDirectional.fromSTEB(
-                                        0, 15, 0, 0),
+                                        0.0, 15.0, 0.0, 0.0),
                                     child:
                                         StreamBuilder<List<ChallengesRecord>>(
                                       stream: queryChallengesRecord(
@@ -157,8 +159,8 @@ class _MyChallengesWidgetState extends State<MyChallengesWidget>
                                         if (!snapshot.hasData) {
                                           return Center(
                                             child: SizedBox(
-                                              width: 40,
-                                              height: 40,
+                                              width: 40.0,
+                                              height: 40.0,
                                               child: CircularProgressIndicator(
                                                 color:
                                                     FlutterFlowTheme.of(context)
@@ -187,8 +189,8 @@ class _MyChallengesWidgetState extends State<MyChallengesWidget>
                                           gridDelegate:
                                               SliverGridDelegateWithFixedCrossAxisCount(
                                             crossAxisCount: 2,
-                                            crossAxisSpacing: 10,
-                                            mainAxisSpacing: 30,
+                                            crossAxisSpacing: 10.0,
+                                            mainAxisSpacing: 30.0,
                                             childAspectRatio: 0.95,
                                           ),
                                           scrollDirection: Axis.vertical,
@@ -222,7 +224,7 @@ class _MyChallengesWidgetState extends State<MyChallengesWidget>
                                   ),
                                   Padding(
                                     padding: EdgeInsetsDirectional.fromSTEB(
-                                        0, 15, 0, 0),
+                                        0.0, 15.0, 0.0, 0.0),
                                     child:
                                         StreamBuilder<List<ChallengesRecord>>(
                                       stream: queryChallengesRecord(
@@ -239,8 +241,8 @@ class _MyChallengesWidgetState extends State<MyChallengesWidget>
                                         if (!snapshot.hasData) {
                                           return Center(
                                             child: SizedBox(
-                                              width: 40,
-                                              height: 40,
+                                              width: 40.0,
+                                              height: 40.0,
                                               child: CircularProgressIndicator(
                                                 color:
                                                     FlutterFlowTheme.of(context)
@@ -269,8 +271,8 @@ class _MyChallengesWidgetState extends State<MyChallengesWidget>
                                           gridDelegate:
                                               SliverGridDelegateWithFixedCrossAxisCount(
                                             crossAxisCount: 2,
-                                            crossAxisSpacing: 10,
-                                            mainAxisSpacing: 30,
+                                            crossAxisSpacing: 10.0,
+                                            mainAxisSpacing: 30.0,
                                             childAspectRatio: 0.95,
                                           ),
                                           scrollDirection: Axis.vertical,
@@ -284,7 +286,8 @@ class _MyChallengesWidgetState extends State<MyChallengesWidget>
                                                     gridViewIndex];
                                             return Padding(
                                               padding: EdgeInsetsDirectional
-                                                  .fromSTEB(15, 0, 15, 0),
+                                                  .fromSTEB(
+                                                      15.0, 0.0, 15.0, 0.0),
                                               child: InkWell(
                                                 onTap: () async {
                                                   context.pushNamed(
@@ -302,10 +305,11 @@ class _MyChallengesWidgetState extends State<MyChallengesWidget>
                                                   decoration: BoxDecoration(
                                                     boxShadow: [
                                                       BoxShadow(
-                                                        blurRadius: 12,
+                                                        blurRadius: 12.0,
                                                         color:
                                                             Color(0x33000000),
-                                                        offset: Offset(0, 5),
+                                                        offset:
+                                                            Offset(0.0, 5.0),
                                                       )
                                                     ],
                                                     gradient: LinearGradient(
@@ -313,22 +317,25 @@ class _MyChallengesWidgetState extends State<MyChallengesWidget>
                                                         Color(0xFFE6A0FF),
                                                         Color(0xFF9AE1FF)
                                                       ],
-                                                      stops: [0, 1],
+                                                      stops: [0.0, 1.0],
                                                       begin:
                                                           AlignmentDirectional(
-                                                              -0.34, -1),
+                                                              -0.34, -1.0),
                                                       end: AlignmentDirectional(
-                                                          0.34, 1),
+                                                          0.34, 1.0),
                                                     ),
                                                     borderRadius:
                                                         BorderRadius.circular(
-                                                            20),
+                                                            20.0),
                                                   ),
                                                   child: Padding(
                                                     padding:
                                                         EdgeInsetsDirectional
                                                             .fromSTEB(
-                                                                15, 15, 15, 15),
+                                                                15.0,
+                                                                15.0,
+                                                                15.0,
+                                                                15.0),
                                                     child: Column(
                                                       mainAxisSize:
                                                           MainAxisSize.max,
@@ -368,10 +375,10 @@ class _MyChallengesWidgetState extends State<MyChallengesWidget>
                                                               padding:
                                                                   EdgeInsetsDirectional
                                                                       .fromSTEB(
-                                                                          0,
-                                                                          5,
-                                                                          0,
-                                                                          0),
+                                                                          0.0,
+                                                                          5.0,
+                                                                          0.0,
+                                                                          0.0),
                                                               child: Text(
                                                                 dateTimeFormat(
                                                                     'yMMMd',
@@ -388,7 +395,7 @@ class _MyChallengesWidgetState extends State<MyChallengesWidget>
                                                                               context)
                                                                           .primaryBtnText,
                                                                       fontSize:
-                                                                          12,
+                                                                          12.0,
                                                                       fontWeight:
                                                                           FontWeight
                                                                               .normal,
@@ -410,7 +417,7 @@ class _MyChallengesWidgetState extends State<MyChallengesWidget>
                                                           children: [
                                                             Image.asset(
                                                               'assets/images/Hole.png',
-                                                              width: 15,
+                                                              width: 15.0,
                                                               fit: BoxFit.cover,
                                                             ),
                                                           ],
@@ -429,7 +436,7 @@ class _MyChallengesWidgetState extends State<MyChallengesWidget>
                                   ),
                                   Padding(
                                     padding: EdgeInsetsDirectional.fromSTEB(
-                                        0, 15, 0, 0),
+                                        0.0, 15.0, 0.0, 0.0),
                                     child:
                                         StreamBuilder<List<ChallengesRecord>>(
                                       stream: queryChallengesRecord(
@@ -446,8 +453,8 @@ class _MyChallengesWidgetState extends State<MyChallengesWidget>
                                         if (!snapshot.hasData) {
                                           return Center(
                                             child: SizedBox(
-                                              width: 40,
-                                              height: 40,
+                                              width: 40.0,
+                                              height: 40.0,
                                               child: CircularProgressIndicator(
                                                 color:
                                                     FlutterFlowTheme.of(context)
@@ -476,8 +483,8 @@ class _MyChallengesWidgetState extends State<MyChallengesWidget>
                                           gridDelegate:
                                               SliverGridDelegateWithFixedCrossAxisCount(
                                             crossAxisCount: 2,
-                                            crossAxisSpacing: 10,
-                                            mainAxisSpacing: 30,
+                                            crossAxisSpacing: 10.0,
+                                            mainAxisSpacing: 30.0,
                                             childAspectRatio: 0.95,
                                           ),
                                           scrollDirection: Axis.vertical,
