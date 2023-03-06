@@ -1,3 +1,5 @@
+import 'package:easy_debounce/easy_debounce.dart';
+
 import '../backend/backend.dart';
 import '../components/user_card_small_widget.dart';
 import '../flutter_flow/flutter_flow_icon_button.dart';
@@ -35,6 +37,8 @@ class _InviteWidgetState extends State<InviteWidget> {
   void initState() {
     super.initState();
     _model = createModel(context, () => InviteModel());
+
+    _model.textController ??= TextEditingController();
   }
 
   @override
@@ -47,16 +51,6 @@ class _InviteWidgetState extends State<InviteWidget> {
 
   @override
   Widget build(BuildContext context) {
-    final db = FirebaseFirestore.instance;
-    Future<String?> getImageURL(String uid) async {
-      final imageURL = await db
-          .collection("user")
-          .doc(uid)
-          .get()
-          .then((value) => value.data()!['photo_url']);
-      return imageURL;
-    }
-
     return Scaffold(
       key: scaffoldKey,
       backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
@@ -108,47 +102,108 @@ class _InviteWidgetState extends State<InviteWidget> {
                     Padding(
                       padding: EdgeInsetsDirectional.fromSTEB(0, 20, 0, 0),
                       child: Container(
-                        width: MediaQuery.of(context).size.width,
-                        decoration: BoxDecoration(
-                          color: Color(0xFFF4F4F4),
-                          borderRadius: BorderRadius.circular(40),
-                        ),
-                        child: Padding(
-                          padding:
-                              EdgeInsetsDirectional.fromSTEB(24, 10, 16, 10),
-                          child: Row(
-                            mainAxisSize: MainAxisSize.max,
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              Row(
-                                mainAxisSize: MainAxisSize.max,
-                                children: [
-                                  Icon(
-                                    Icons.search_outlined,
-                                    color: Color(0xFFCFCFCF),
-                                    size: 28,
-                                  ),
-                                  Text(
-                                    'Search ',
-                                    style: FlutterFlowTheme.of(context)
-                                        .bodyText2
-                                        .override(
-                                          fontFamily: 'Inter',
-                                          color: Color(0xFFCFCFCF),
-                                          fontSize: 23,
-                                          fontWeight: FontWeight.normal,
-                                          useGoogleFonts: GoogleFonts.asMap()
-                                              .containsKey(
-                                                  FlutterFlowTheme.of(context)
-                                                      .bodyText2Family),
-                                        ),
-                                  ),
-                                ],
-                              ),
-                            ],
+                          width: MediaQuery.of(context).size.width,
+                          decoration: BoxDecoration(
+                            color: Color(0xFFF4F4F4),
+                            borderRadius: BorderRadius.circular(40),
                           ),
-                        ),
-                      ),
+                          child: TextFormField(
+                            controller: _model.textController,
+                            onChanged: (_) => EasyDebounce.debounce(
+                              '_model.textController',
+                              Duration(milliseconds: 1000),
+                              () => setState(() {}),
+                            ),
+                            autofocus: true,
+                            obscureText: false,
+                            decoration: InputDecoration(
+                              hintText: 'Search',
+                              hintStyle: FlutterFlowTheme.of(context)
+                                  .bodyText2
+                                  .override(
+                                    fontFamily: FlutterFlowTheme.of(context)
+                                        .bodyText2Family,
+                                    color: Color(0xFFCFCFCF),
+                                    fontSize: 20,
+                                    fontWeight: FontWeight.w500,
+                                    useGoogleFonts: GoogleFonts.asMap()
+                                        .containsKey(
+                                            FlutterFlowTheme.of(context)
+                                                .bodyText2Family),
+                                  ),
+                              enabledBorder: UnderlineInputBorder(
+                                borderSide: BorderSide(
+                                  color: Color(0x00000000),
+                                  width: 1,
+                                ),
+                                borderRadius: const BorderRadius.only(
+                                  topLeft: Radius.circular(4.0),
+                                  topRight: Radius.circular(4.0),
+                                ),
+                              ),
+                              focusedBorder: UnderlineInputBorder(
+                                borderSide: BorderSide(
+                                  color: Color(0x00000000),
+                                  width: 1,
+                                ),
+                                borderRadius: const BorderRadius.only(
+                                  topLeft: Radius.circular(4.0),
+                                  topRight: Radius.circular(4.0),
+                                ),
+                              ),
+                              errorBorder: UnderlineInputBorder(
+                                borderSide: BorderSide(
+                                  color: Color(0x00000000),
+                                  width: 1,
+                                ),
+                                borderRadius: const BorderRadius.only(
+                                  topLeft: Radius.circular(4.0),
+                                  topRight: Radius.circular(4.0),
+                                ),
+                              ),
+                              focusedErrorBorder: UnderlineInputBorder(
+                                borderSide: BorderSide(
+                                  color: Color(0x00000000),
+                                  width: 1,
+                                ),
+                                borderRadius: const BorderRadius.only(
+                                  topLeft: Radius.circular(4.0),
+                                  topRight: Radius.circular(4.0),
+                                ),
+                              ),
+                              prefixIcon: Icon(
+                                Icons.search_rounded,
+                                color: Color(0xFFCFCFCF),
+                              ),
+                              suffixIcon: _model.textController!.text.isNotEmpty
+                                  ? InkWell(
+                                      onTap: () async {
+                                        _model.textController?.clear();
+                                        setState(() {});
+                                      },
+                                      child: Icon(
+                                        Icons.clear,
+                                        color: Color(0xFFCFCFCF),
+                                        size: 22,
+                                      ),
+                                    )
+                                  : null,
+                            ),
+                            style: FlutterFlowTheme.of(context)
+                                .bodyText1
+                                .override(
+                                  fontFamily: FlutterFlowTheme.of(context)
+                                      .bodyText1Family,
+                                  color: FlutterFlowTheme.of(context)
+                                      .secondaryText,
+                                  fontSize: 20,
+                                  useGoogleFonts: GoogleFonts.asMap()
+                                      .containsKey(FlutterFlowTheme.of(context)
+                                          .bodyText1Family),
+                                ),
+                            validator: _model.textControllerValidator
+                                .asValidator(context),
+                          )),
                     ),
                   ],
                 ),
@@ -250,7 +305,9 @@ class _InviteWidgetState extends State<InviteWidget> {
                               return UserCardSmallWidget(
                                 key: Key(
                                     'Key046_${listViewIndex}_of_${_model.pagingController!.itemList!.length}'),
-                                imageURL: listViewFriendsRecord.photoUrl,
+                                imageURL: listViewFriendsRecord.photoUrl == ""
+                                    ? 'https://images.unsplash.com/photo-1574158622682-e40e69881006?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2333&q=80'
+                                    : listViewFriendsRecord.photoUrl,
                                 username: listViewFriendsRecord.username,
                                 emoji: listViewFriendsRecord.emoji,
                               );

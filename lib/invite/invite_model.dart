@@ -15,6 +15,9 @@ import 'package:provider/provider.dart';
 class InviteModel extends FlutterFlowModel {
   ///  State fields for stateful widgets in this page.
 
+  // State field(s) for TextField widget.
+  TextEditingController? textController;
+  String? Function(BuildContext, String?)? textControllerValidator;
   // State field(s) for ListView widget.
   PagingController<DocumentSnapshot?, FriendsRecord>? pagingController;
   Query? pagingQuery;
@@ -25,6 +28,7 @@ class InviteModel extends FlutterFlowModel {
   void initState(BuildContext context) {}
 
   void dispose() {
+    textController?.dispose();
     streamSubscriptions.forEach((s) => s?.cancel());
   }
 
