@@ -5,6 +5,7 @@ import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:easy_debounce/easy_debounce.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
@@ -34,6 +35,8 @@ class _InviteWidgetState extends State<InviteWidget> {
   void initState() {
     super.initState();
     _model = createModel(context, () => InviteModel());
+
+    _model.textController ??= TextEditingController();
   }
 
   @override
@@ -105,40 +108,101 @@ class _InviteWidgetState extends State<InviteWidget> {
                           color: Color(0xFFF4F4F4),
                           borderRadius: BorderRadius.circular(40.0),
                         ),
-                        child: Padding(
-                          padding: EdgeInsetsDirectional.fromSTEB(
-                              24.0, 10.0, 16.0, 10.0),
-                          child: Row(
-                            mainAxisSize: MainAxisSize.max,
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              Row(
-                                mainAxisSize: MainAxisSize.max,
-                                children: [
-                                  Icon(
-                                    Icons.search_outlined,
-                                    color: Color(0xFFCFCFCF),
-                                    size: 28.0,
-                                  ),
-                                  Text(
-                                    'Search ',
-                                    style: FlutterFlowTheme.of(context)
-                                        .bodyText2
-                                        .override(
-                                          fontFamily: 'Inter',
-                                          color: Color(0xFFCFCFCF),
-                                          fontSize: 23.0,
-                                          fontWeight: FontWeight.normal,
-                                          useGoogleFonts: GoogleFonts.asMap()
-                                              .containsKey(
-                                                  FlutterFlowTheme.of(context)
-                                                      .bodyText2Family),
-                                        ),
-                                  ),
-                                ],
-                              ),
-                            ],
+                        child: TextFormField(
+                          controller: _model.textController,
+                          onChanged: (_) => EasyDebounce.debounce(
+                            '_model.textController',
+                            Duration(milliseconds: 1000),
+                            () => setState(() {}),
                           ),
+                          autofocus: true,
+                          obscureText: false,
+                          decoration: InputDecoration(
+                            hintText: 'Search',
+                            hintStyle: FlutterFlowTheme.of(context)
+                                .bodyText2
+                                .override(
+                                  fontFamily: FlutterFlowTheme.of(context)
+                                      .bodyText2Family,
+                                  color: Color(0xFFCFCFCF),
+                                  fontSize: 20.0,
+                                  fontWeight: FontWeight.w500,
+                                  useGoogleFonts: GoogleFonts.asMap()
+                                      .containsKey(FlutterFlowTheme.of(context)
+                                          .bodyText2Family),
+                                ),
+                            enabledBorder: UnderlineInputBorder(
+                              borderSide: BorderSide(
+                                color: Color(0x00000000),
+                                width: 1.0,
+                              ),
+                              borderRadius: const BorderRadius.only(
+                                topLeft: Radius.circular(4.0),
+                                topRight: Radius.circular(4.0),
+                              ),
+                            ),
+                            focusedBorder: UnderlineInputBorder(
+                              borderSide: BorderSide(
+                                color: Color(0x00000000),
+                                width: 1.0,
+                              ),
+                              borderRadius: const BorderRadius.only(
+                                topLeft: Radius.circular(4.0),
+                                topRight: Radius.circular(4.0),
+                              ),
+                            ),
+                            errorBorder: UnderlineInputBorder(
+                              borderSide: BorderSide(
+                                color: Color(0x00000000),
+                                width: 1.0,
+                              ),
+                              borderRadius: const BorderRadius.only(
+                                topLeft: Radius.circular(4.0),
+                                topRight: Radius.circular(4.0),
+                              ),
+                            ),
+                            focusedErrorBorder: UnderlineInputBorder(
+                              borderSide: BorderSide(
+                                color: Color(0x00000000),
+                                width: 1.0,
+                              ),
+                              borderRadius: const BorderRadius.only(
+                                topLeft: Radius.circular(4.0),
+                                topRight: Radius.circular(4.0),
+                              ),
+                            ),
+                            prefixIcon: Icon(
+                              Icons.search_rounded,
+                              color: Color(0xFFCFCFCF),
+                            ),
+                            suffixIcon: _model.textController!.text.isNotEmpty
+                                ? InkWell(
+                                    onTap: () async {
+                                      _model.textController?.clear();
+                                      setState(() {});
+                                    },
+                                    child: Icon(
+                                      Icons.clear,
+                                      color: Color(0xFFCFCFCF),
+                                      size: 22.0,
+                                    ),
+                                  )
+                                : null,
+                          ),
+                          style: FlutterFlowTheme.of(context)
+                              .bodyText1
+                              .override(
+                                fontFamily: FlutterFlowTheme.of(context)
+                                    .bodyText1Family,
+                                color:
+                                    FlutterFlowTheme.of(context).secondaryText,
+                                fontSize: 20.0,
+                                useGoogleFonts: GoogleFonts.asMap().containsKey(
+                                    FlutterFlowTheme.of(context)
+                                        .bodyText1Family),
+                              ),
+                          validator: _model.textControllerValidator
+                              .asValidator(context),
                         ),
                       ),
                     ),
