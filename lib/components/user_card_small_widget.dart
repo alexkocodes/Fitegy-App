@@ -56,7 +56,6 @@ class _UserCardSmallWidgetState extends State<UserCardSmallWidget> {
 
   @override
   Widget build(BuildContext context) {
-    print(widget.emoji);
     return Padding(
       padding: EdgeInsetsDirectional.fromSTEB(0, 10, 0, 0),
       child: InkWell(

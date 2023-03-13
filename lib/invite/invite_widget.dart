@@ -1,4 +1,5 @@
 import 'package:easy_debounce/easy_debounce.dart';
+import 'package:fitegy/auth/auth_util.dart';
 
 import '../backend/backend.dart';
 import '../components/user_card_small_widget.dart';
@@ -256,8 +257,9 @@ class _InviteWidgetState extends State<InviteWidget> {
                             _model.pagingController!
                                 .addPageRequestListener((nextPageMarker) {
                               queryFriendsRecordPage(
+                                parent: currentUserReference,
                                 queryBuilder: (friendsRecord) =>
-                                    friendsRecord.orderBy('display_name'),
+                                    friendsRecord.orderBy('username'),
                                 nextPageMarker: nextPageMarker,
                                 pageSize: 10,
                                 isStream: true,
