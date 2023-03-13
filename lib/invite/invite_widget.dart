@@ -32,7 +32,7 @@ class _InviteWidgetState extends State<InviteWidget> {
 
   final scaffoldKey = GlobalKey<ScaffoldState>();
   final _unfocusNode = FocusNode();
-
+  var selectedFriends = <String>[];
   @override
   void initState() {
     super.initState();
@@ -49,8 +49,21 @@ class _InviteWidgetState extends State<InviteWidget> {
     super.dispose();
   }
 
+  void getUID(String uid) {
+    // add uid to selectedFriends, but only if it's not already there
+    if (!selectedFriends.contains(uid)) {
+      selectedFriends.add(uid);
+    }
+    // if it's already there
+    else {
+      selectedFriends.remove(uid);
+    }
+    print(selectedFriends);
+  }
+
   @override
   Widget build(BuildContext context) {
+    print(selectedFriends);
     return Scaffold(
       key: scaffoldKey,
       backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
@@ -83,7 +96,7 @@ class _InviteWidgetState extends State<InviteWidget> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Padding(
-                padding: EdgeInsetsDirectional.fromSTEB(30, 0, 30, 20),
+                padding: EdgeInsetsDirectional.fromSTEB(30, 0, 30, 10),
                 child: Column(
                   mainAxisSize: MainAxisSize.min,
                   crossAxisAlignment: CrossAxisAlignment.center,
@@ -310,6 +323,11 @@ class _InviteWidgetState extends State<InviteWidget> {
                                     : listViewFriendsRecord.photoUrl,
                                 username: listViewFriendsRecord.username,
                                 emoji: listViewFriendsRecord.emoji,
+                                color:
+                                    listViewIndex % 2 == 0 ? "grey" : "white",
+                                showCheck: false,
+                                uid: listViewFriendsRecord.uid,
+                                callback: getUID,
                               );
                             },
                           ),
