@@ -162,7 +162,7 @@ class _MyAccountWidgetState extends State<MyAccountWidget> {
                         textStyle: FlutterFlowTheme.of(context)
                             .bodyText1
                             .override(
-                              fontFamily: 'Lexend Deca',
+                              fontFamily: FlutterFlowTheme.of(context).bodyText1Family,
                               color: FlutterFlowTheme.of(context).primaryColor,
                               fontSize: 14.0,
                               fontWeight: FontWeight.normal,
