@@ -1,5 +1,6 @@
 import 'package:fitegy/flutter_flow/upload_media.dart';
 
+import '../auth/auth_util.dart';
 import '../backend/backend.dart';
 import '../components/challenge_card_widget.dart';
 import '../components/empty_widget.dart';
@@ -120,6 +121,7 @@ class _MyChallengesWidgetState extends State<MyChallengesWidget>
                                     child:
                                         StreamBuilder<List<ChallengesRecord>>(
                                       stream: queryChallengesRecord(
+                                        parent: currentUserReference,
                                         queryBuilder: (challengesRecord) =>
                                             challengesRecord
                                                 .where('status',
@@ -206,6 +208,7 @@ class _MyChallengesWidgetState extends State<MyChallengesWidget>
                                     child:
                                         StreamBuilder<List<ChallengesRecord>>(
                                       stream: queryChallengesRecord(
+                                        parent: currentUserReference,
                                         queryBuilder: (challengesRecord) =>
                                             challengesRecord
                                                 .where('status',
@@ -291,6 +294,7 @@ class _MyChallengesWidgetState extends State<MyChallengesWidget>
                                     child:
                                         StreamBuilder<List<ChallengesRecord>>(
                                       stream: queryChallengesRecord(
+                                        parent: currentUserReference,
                                         queryBuilder: (challengesRecord) =>
                                             challengesRecord
                                                 .where('status',
