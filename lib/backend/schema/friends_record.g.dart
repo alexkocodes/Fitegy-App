@@ -34,13 +34,6 @@ class _$FriendsRecordSerializer implements StructuredSerializer<FriendsRecord> {
         ..add(serializers.serialize(value,
             specifiedType: const FullType(String)));
     }
-    value = object.uid;
-    if (value != null) {
-      result
-        ..add('uid')
-        ..add(serializers.serialize(value,
-            specifiedType: const FullType(String)));
-    }
     value = object.firstName;
     if (value != null) {
       result
@@ -68,6 +61,14 @@ class _$FriendsRecordSerializer implements StructuredSerializer<FriendsRecord> {
         ..add('username')
         ..add(serializers.serialize(value,
             specifiedType: const FullType(String)));
+    }
+    value = object.uid;
+    if (value != null) {
+      result
+        ..add('uid')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(
+                DocumentReference, const [const FullType.nullable(Object)])));
     }
     value = object.ffRef;
     if (value != null) {
@@ -100,10 +101,6 @@ class _$FriendsRecordSerializer implements StructuredSerializer<FriendsRecord> {
           result.photoUrl = serializers.deserialize(value,
               specifiedType: const FullType(String)) as String?;
           break;
-        case 'uid':
-          result.uid = serializers.deserialize(value,
-              specifiedType: const FullType(String)) as String?;
-          break;
         case 'first_name':
           result.firstName = serializers.deserialize(value,
               specifiedType: const FullType(String)) as String?;
@@ -119,6 +116,12 @@ class _$FriendsRecordSerializer implements StructuredSerializer<FriendsRecord> {
         case 'username':
           result.username = serializers.deserialize(value,
               specifiedType: const FullType(String)) as String?;
+          break;
+        case 'uid':
+          result.uid = serializers.deserialize(value,
+              specifiedType: const FullType(DocumentReference, const [
+                const FullType.nullable(Object)
+              ])) as DocumentReference<Object?>?;
           break;
         case 'Document__Reference__Field':
           result.ffRef = serializers.deserialize(value,
@@ -139,8 +142,6 @@ class _$FriendsRecord extends FriendsRecord {
   @override
   final String? photoUrl;
   @override
-  final String? uid;
-  @override
   final String? firstName;
   @override
   final String? lastName;
@@ -148,6 +149,8 @@ class _$FriendsRecord extends FriendsRecord {
   final String? emoji;
   @override
   final String? username;
+  @override
+  final DocumentReference<Object?>? uid;
   @override
   final DocumentReference<Object?>? ffRef;
 
@@ -157,11 +160,11 @@ class _$FriendsRecord extends FriendsRecord {
   _$FriendsRecord._(
       {this.displayName,
       this.photoUrl,
-      this.uid,
       this.firstName,
       this.lastName,
       this.emoji,
       this.username,
+      this.uid,
       this.ffRef})
       : super._();
 
@@ -178,11 +181,11 @@ class _$FriendsRecord extends FriendsRecord {
     return other is FriendsRecord &&
         displayName == other.displayName &&
         photoUrl == other.photoUrl &&
-        uid == other.uid &&
         firstName == other.firstName &&
         lastName == other.lastName &&
         emoji == other.emoji &&
         username == other.username &&
+        uid == other.uid &&
         ffRef == other.ffRef;
   }
 
@@ -196,11 +199,11 @@ class _$FriendsRecord extends FriendsRecord {
                         $jc(
                             $jc($jc(0, displayName.hashCode),
                                 photoUrl.hashCode),
-                            uid.hashCode),
-                        firstName.hashCode),
-                    lastName.hashCode),
-                emoji.hashCode),
-            username.hashCode),
+                            firstName.hashCode),
+                        lastName.hashCode),
+                    emoji.hashCode),
+                username.hashCode),
+            uid.hashCode),
         ffRef.hashCode));
   }
 
@@ -209,11 +212,11 @@ class _$FriendsRecord extends FriendsRecord {
     return (newBuiltValueToStringHelper(r'FriendsRecord')
           ..add('displayName', displayName)
           ..add('photoUrl', photoUrl)
-          ..add('uid', uid)
           ..add('firstName', firstName)
           ..add('lastName', lastName)
           ..add('emoji', emoji)
           ..add('username', username)
+          ..add('uid', uid)
           ..add('ffRef', ffRef))
         .toString();
   }
@@ -231,10 +234,6 @@ class FriendsRecordBuilder
   String? get photoUrl => _$this._photoUrl;
   set photoUrl(String? photoUrl) => _$this._photoUrl = photoUrl;
 
-  String? _uid;
-  String? get uid => _$this._uid;
-  set uid(String? uid) => _$this._uid = uid;
-
   String? _firstName;
   String? get firstName => _$this._firstName;
   set firstName(String? firstName) => _$this._firstName = firstName;
@@ -251,6 +250,10 @@ class FriendsRecordBuilder
   String? get username => _$this._username;
   set username(String? username) => _$this._username = username;
 
+  DocumentReference<Object?>? _uid;
+  DocumentReference<Object?>? get uid => _$this._uid;
+  set uid(DocumentReference<Object?>? uid) => _$this._uid = uid;
+
   DocumentReference<Object?>? _ffRef;
   DocumentReference<Object?>? get ffRef => _$this._ffRef;
   set ffRef(DocumentReference<Object?>? ffRef) => _$this._ffRef = ffRef;
@@ -264,11 +267,11 @@ class FriendsRecordBuilder
     if ($v != null) {
       _displayName = $v.displayName;
       _photoUrl = $v.photoUrl;
-      _uid = $v.uid;
       _firstName = $v.firstName;
       _lastName = $v.lastName;
       _emoji = $v.emoji;
       _username = $v.username;
+      _uid = $v.uid;
       _ffRef = $v.ffRef;
       _$v = null;
     }
@@ -294,11 +297,11 @@ class FriendsRecordBuilder
         new _$FriendsRecord._(
             displayName: displayName,
             photoUrl: photoUrl,
-            uid: uid,
             firstName: firstName,
             lastName: lastName,
             emoji: emoji,
             username: username,
+            uid: uid,
             ffRef: ffRef);
     replace(_$result);
     return _$result;

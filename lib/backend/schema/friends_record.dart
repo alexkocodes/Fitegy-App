@@ -16,8 +16,6 @@ abstract class FriendsRecord
   @BuiltValueField(wireName: 'photo_url')
   String? get photoUrl;
 
-  String? get uid;
-
   @BuiltValueField(wireName: 'first_name')
   String? get firstName;
 
@@ -28,6 +26,8 @@ abstract class FriendsRecord
 
   String? get username;
 
+  DocumentReference? get uid;
+
   @BuiltValueField(wireName: kDocumentReferenceField)
   DocumentReference? get ffRef;
   DocumentReference get reference => ffRef!;
@@ -37,7 +37,6 @@ abstract class FriendsRecord
   static void _initializeBuilder(FriendsRecordBuilder builder) => builder
     ..displayName = ''
     ..photoUrl = ''
-    ..uid = ''
     ..firstName = ''
     ..lastName = ''
     ..emoji = ''
@@ -72,11 +71,11 @@ abstract class FriendsRecord
 Map<String, dynamic> createFriendsRecordData({
   String? displayName,
   String? photoUrl,
-  String? uid,
   String? firstName,
   String? lastName,
   String? emoji,
   String? username,
+  DocumentReference? uid,
 }) {
   final firestoreData = serializers.toFirestore(
     FriendsRecord.serializer,
@@ -84,11 +83,11 @@ Map<String, dynamic> createFriendsRecordData({
       (f) => f
         ..displayName = displayName
         ..photoUrl = photoUrl
-        ..uid = uid
         ..firstName = firstName
         ..lastName = lastName
         ..emoji = emoji
-        ..username = username,
+        ..username = username
+        ..uid = uid,
     ),
   );
 
