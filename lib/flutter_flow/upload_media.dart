@@ -231,10 +231,10 @@ bool validateFileFormat(String filePath, BuildContext context) {
 
 Future<SelectedMedia?> selectFile({
   String? storageFolderPath,
-  List<String> allowedExtensions = const ['pdf'],
+  List<String>? allowedExtensions,
 }) async {
   final pickedFiles = await FilePicker.platform.pickFiles(
-    type: FileType.custom,
+    type: allowedExtensions != null ? FileType.custom : FileType.any,
     allowedExtensions: allowedExtensions,
     withData: true,
   );

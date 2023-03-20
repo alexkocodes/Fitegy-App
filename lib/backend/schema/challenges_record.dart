@@ -36,6 +36,9 @@ abstract class ChallengesRecord
   @BuiltValueField(wireName: 'color_scheme')
   int? get colorScheme;
 
+  @BuiltValueField(wireName: 'original_reference')
+  DocumentReference? get originalReference;
+
   @BuiltValueField(wireName: kDocumentReferenceField)
   DocumentReference? get ffRef;
   DocumentReference get reference => ffRef!;
@@ -87,6 +90,7 @@ Map<String, dynamic> createChallengesRecordData({
   String? comments,
   String? id,
   int? colorScheme,
+  DocumentReference? originalReference,
 }) {
   final firestoreData = serializers.toFirestore(
     ChallengesRecord.serializer,
@@ -101,7 +105,8 @@ Map<String, dynamic> createChallengesRecordData({
         ..status = status
         ..comments = comments
         ..id = id
-        ..colorScheme = colorScheme,
+        ..colorScheme = colorScheme
+        ..originalReference = originalReference,
     ),
   );
 

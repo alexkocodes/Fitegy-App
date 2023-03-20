@@ -222,6 +222,7 @@ class _MyAccountWidgetState extends State<MyAccountWidget> {
                     onPressed: () async {
                       GoRouter.of(context).prepareAuthEvent();
                       await signOut();
+                      GoRouter.of(context).clearRedirectLocation();
 
                       context.goNamedAuth('Landing', mounted);
                     },

@@ -39,16 +39,6 @@
           "queryScope": "COLLECTION_GROUP"
         }
       ]
-    },
-    {
-      "collectionGroup": "friends",
-      "fieldPath": "display_name",
-      "indexes": [
-        {
-          "order": "ASCENDING",
-          "queryScope": "COLLECTION_GROUP"
-        }
-      ]
     }
   ]
 }

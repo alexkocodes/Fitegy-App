@@ -8,6 +8,7 @@ import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_toggle_icon.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
+import '/flutter_flow/form_field_controller.dart';
 import '/flutter_flow/upload_media.dart';
 import 'dart:ui';
 import '/flutter_flow/random_data_util.dart' as random_data;
@@ -1041,9 +1042,6 @@ class _CreateWidgetState extends State<CreateWidget> {
                                                 'active_participants': [
                                                   currentUserReference
                                                 ],
-                                                'invited_participants': [
-                                                  currentUserReference
-                                                ],
                                               };
                                               await ChallengesRecord.createDoc(
                                                       currentUserReference!)
@@ -1516,9 +1514,13 @@ class _CreateWidgetState extends State<CreateWidget> {
                                               mainAxisSize: MainAxisSize.max,
                                               children: [
                                                 FlutterFlowDropDown<String>(
-                                                  initialOption:
-                                                      _model.dropDownValue ??=
-                                                          'Public',
+                                                  controller: _model
+                                                          .dropDownController ??=
+                                                      FormFieldController<
+                                                          String>(
+                                                    _model.dropDownValue ??=
+                                                        'Public',
+                                                  ),
                                                   options: [
                                                     'Public',
                                                     'Private'

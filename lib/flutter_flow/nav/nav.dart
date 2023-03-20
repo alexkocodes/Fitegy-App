@@ -241,6 +241,7 @@ extension GoRouterExtensions on GoRouter {
           : appState.updateNotifyOnAuthChange(false);
   bool shouldRedirect(bool ignoreRedirect) =>
       !ignoreRedirect && appState.hasRedirect();
+  void clearRedirectLocation() => appState.clearRedirectLocation();
   void setRedirectLocationIfUnset(String location) =>
       (routerDelegate.refreshListenable as AppStateNotifier)
           .updateNotifyOnAuthChange(false);

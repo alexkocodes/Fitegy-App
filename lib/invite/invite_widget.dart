@@ -1,3 +1,4 @@
+import '/auth/auth_util.dart';
 import '/backend/backend.dart';
 import '/components/user_card_small_widget.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
@@ -223,7 +224,7 @@ class _InviteWidgetState extends State<InviteWidget> {
                           pagingController: () {
                             final Query<Object?> Function(Query<Object?>)
                                 queryBuilder = (friendsRecord) =>
-                                    friendsRecord.orderBy('display_name');
+                                    friendsRecord.orderBy('username');
                             if (_model.pagingController != null) {
                               final query =
                                   queryBuilder(FriendsRecord.collection());
@@ -245,8 +246,9 @@ class _InviteWidgetState extends State<InviteWidget> {
                             _model.pagingController!
                                 .addPageRequestListener((nextPageMarker) {
                               queryFriendsRecordPage(
+                                parent: currentUserReference,
                                 queryBuilder: (friendsRecord) =>
-                                    friendsRecord.orderBy('display_name'),
+                                    friendsRecord.orderBy('username'),
                                 nextPageMarker: nextPageMarker,
                                 pageSize: 10,
                                 isStream: true,
