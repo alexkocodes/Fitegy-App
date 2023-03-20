@@ -4,6 +4,7 @@ import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:flutter_animate/flutter_animate.dart';
@@ -21,6 +22,7 @@ class ChallengeDetailsWidget extends StatefulWidget {
     this.comments,
     this.id,
     this.color,
+    this.challengeReference,
   }) : super(key: key);
 
   final String? title;
@@ -29,6 +31,7 @@ class ChallengeDetailsWidget extends StatefulWidget {
   final String? comments;
   final String? id;
   final int? color;
+  final DocumentReference? challengeReference;
 
   @override
   _ChallengeDetailsWidgetState createState() => _ChallengeDetailsWidgetState();
@@ -354,7 +357,15 @@ class _ChallengeDetailsWidgetState extends State<ChallengeDetailsWidget>
                                 ),
                                 FFButtonWidget(
                                   onPressed: () async {
-                                    context.pushNamed('Invite');
+                                    context.pushNamed(
+                                      'Invite',
+                                      queryParams: {
+                                        'challengeReference': serializeParam(
+                                          widget.challengeReference,
+                                          ParamType.DocumentReference,
+                                        ),
+                                      }.withoutNulls,
+                                    );
                                   },
                                   text: 'Invite 🔥 ',
                                   options: FFButtonOptions(

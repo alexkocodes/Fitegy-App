@@ -244,6 +244,8 @@ class _ChallengeBottomSheetWidgetState extends State<ChallengeBottomSheetWidget>
                                         id: gridViewChallengesRecord.id,
                                         color: gridViewChallengesRecord
                                             .colorScheme,
+                                        documentId:
+                                            gridViewChallengesRecord.reference,
                                       );
                                     },
                                   );
@@ -514,6 +516,8 @@ class _ChallengeBottomSheetWidgetState extends State<ChallengeBottomSheetWidget>
                                         id: gridViewChallengesRecord.id,
                                         color: gridViewChallengesRecord
                                             .colorScheme,
+                                        documentId:
+                                            gridViewChallengesRecord.reference,
                                       );
                                     },
                                   );

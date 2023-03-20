@@ -1,6 +1,7 @@
 import '/flutter_flow/flutter_flow_animations.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:flutter_animate/flutter_animate.dart';
@@ -18,6 +19,7 @@ class ChallengeCardWidget extends StatefulWidget {
     this.comments,
     this.id,
     this.color,
+    this.documentId,
   }) : super(key: key);
 
   final String? title;
@@ -26,6 +28,7 @@ class ChallengeCardWidget extends StatefulWidget {
   final String? comments;
   final String? id;
   final int? color;
+  final DocumentReference? documentId;
 
   @override
   _ChallengeCardWidgetState createState() => _ChallengeCardWidgetState();
@@ -118,6 +121,10 @@ class _ChallengeCardWidgetState extends State<ChallengeCardWidget>
               'color': serializeParam(
                 widget.color,
                 ParamType.int,
+              ),
+              'challengeReference': serializeParam(
+                widget.documentId,
+                ParamType.DocumentReference,
               ),
             }.withoutNulls,
           );

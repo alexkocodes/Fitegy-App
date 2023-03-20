@@ -218,6 +218,9 @@ class _MyChallengesWidgetState extends State<MyChallengesWidget>
                                               id: gridViewChallengesRecord.id,
                                               color: gridViewChallengesRecord
                                                   .colorScheme,
+                                              documentId:
+                                                  gridViewChallengesRecord
+                                                      .reference,
                                             );
                                           },
                                         );
@@ -512,6 +515,9 @@ class _MyChallengesWidgetState extends State<MyChallengesWidget>
                                               id: gridViewChallengesRecord.id,
                                               color: gridViewChallengesRecord
                                                   .colorScheme,
+                                              documentId:
+                                                  gridViewChallengesRecord
+                                                      .reference,
                                             );
                                           },
                                         );
