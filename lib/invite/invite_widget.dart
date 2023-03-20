@@ -34,11 +34,11 @@ class _InviteWidgetState extends State<InviteWidget> {
   final scaffoldKey = GlobalKey<ScaffoldState>();
   final _unfocusNode = FocusNode();
   var selectedFriends = <String>[];
+
   @override
   void initState() {
     super.initState();
     _model = createModel(context, () => InviteModel());
-
     _model.textController ??= TextEditingController();
   }
 
@@ -59,6 +59,7 @@ class _InviteWidgetState extends State<InviteWidget> {
     else {
       selectedFriends.remove(uid);
     }
+
     print(selectedFriends);
   }
 
@@ -289,7 +290,6 @@ class _InviteWidgetState extends State<InviteWidget> {
                                       }.values.toList();
                                     }
                                   });
-                                  setState(() {});
                                 });
                                 _model.streamSubscriptions
                                     .add(streamSubscription);
@@ -327,7 +327,6 @@ class _InviteWidgetState extends State<InviteWidget> {
                                 emoji: listViewFriendsRecord.emoji,
                                 color:
                                     listViewIndex % 2 == 0 ? "grey" : "white",
-                                showCheck: false,
                                 uid: listViewFriendsRecord.uid,
                                 callback: getUID,
                               );

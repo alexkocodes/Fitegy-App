@@ -21,6 +21,7 @@ class ChallengeCardWidget extends StatefulWidget {
     this.destination,
     this.callback,
     this.showCheck,
+    this.document_id,
   }) : super(key: key);
 
   final String? title;
@@ -33,6 +34,8 @@ class ChallengeCardWidget extends StatefulWidget {
   final String? destination;
   final Function? callback;
   final bool? showCheck;
+  final String? document_id;
+
   @override
   _ChallengeCardWidgetState createState() => _ChallengeCardWidgetState();
 }

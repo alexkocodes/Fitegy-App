@@ -178,6 +178,7 @@ class _MyChallengesWidgetState extends State<MyChallengesWidget>
                                             final gridViewChallengesRecord =
                                                 gridViewChallengesRecordList[
                                                     gridViewIndex];
+
                                             return ChallengeCardWidget(
                                               key: Key(
                                                   'ChallengeCard_${gridViewIndex}'),
@@ -196,6 +197,9 @@ class _MyChallengesWidgetState extends State<MyChallengesWidget>
                                                   .colorScheme,
                                               index: gridViewIndex,
                                               destination: "challenge details",
+                                              document_id:
+                                                  gridViewChallengesRecord
+                                                      .reference.id,
                                             );
                                           },
                                         );
@@ -282,6 +286,9 @@ class _MyChallengesWidgetState extends State<MyChallengesWidget>
                                                   .colorScheme,
                                               index: gridViewIndex,
                                               destination: "challenge details",
+                                              document_id:
+                                                  gridViewChallengesRecord
+                                                      .reference.id,
                                             );
                                           },
                                         );
@@ -368,6 +375,9 @@ class _MyChallengesWidgetState extends State<MyChallengesWidget>
                                                   .colorScheme,
                                               index: gridViewIndex,
                                               destination: "challenge details",
+                                              document_id:
+                                                  gridViewChallengesRecord
+                                                      .reference.id,
                                             );
                                           },
                                         );

@@ -14,7 +14,6 @@ class UserCardSmallWidget extends StatefulWidget {
     String? username,
     this.emoji,
     this.color,
-    this.showCheck,
     required this.callback,
     this.uid,
   })  : this.username = username ?? '',
@@ -24,7 +23,6 @@ class UserCardSmallWidget extends StatefulWidget {
   final String username;
   final String? emoji;
   final String? color;
-  bool? showCheck;
   Function callback;
   final String? uid;
 
@@ -34,7 +32,7 @@ class UserCardSmallWidget extends StatefulWidget {
 
 class _UserCardSmallWidgetState extends State<UserCardSmallWidget> {
   late UserCardSmallModel _model;
-
+  var showCheck = false;
   @override
   void setState(VoidCallback callback) {
     super.setState(callback);
@@ -61,7 +59,7 @@ class _UserCardSmallWidgetState extends State<UserCardSmallWidget> {
       child: InkWell(
         onTap: () {
           setState(() {
-            widget.showCheck = !widget.showCheck!;
+            showCheck = !showCheck!;
             widget.callback(widget.uid);
           });
         },
@@ -80,7 +78,7 @@ class _UserCardSmallWidgetState extends State<UserCardSmallWidget> {
                 Row(
                   mainAxisSize: MainAxisSize.max,
                   children: [
-                    widget.showCheck == true
+                    showCheck == true
                         ? Image.asset(
                             'assets/images/check.png',
                             width: 25,

@@ -858,7 +858,7 @@ class _CreateChallengePageWidgetState extends State<CreateChallengePageWidget> {
                                   ),
                                 ),
                                 'active_participants': [currentUserReference],
-                                'invited_participants': [currentUserReference],
+                                'invited_participants': [],
                               };
                               await ChallengesRecord.createDoc(
                                       currentUserReference!)
