@@ -24,7 +24,7 @@ class UserCardSmallWidget extends StatefulWidget {
   final String? emoji;
   final String? color;
   Function callback;
-  final String? uid;
+  final DocumentReference? uid;
 
   @override
   _UserCardSmallWidgetState createState() => _UserCardSmallWidgetState();

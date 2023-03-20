@@ -46,7 +46,7 @@ class _InviteWidgetState extends State<InviteWidget> {
 
   final scaffoldKey = GlobalKey<ScaffoldState>();
   final _unfocusNode = FocusNode();
-  var selectedFriends = <String>[];
+  var selectedFriends = <DocumentReference>[];
 
   @override
   void initState() {
@@ -63,22 +63,22 @@ class _InviteWidgetState extends State<InviteWidget> {
     super.dispose();
   }
 
-  void getUID(String uid) {
+  void getUID(DocumentReference uid) {
     // add uid to selectedFriends, but only if it's not already there
     if (!selectedFriends.contains(uid)) {
-      selectedFriends.add(uid);
+      setState(() {
+        selectedFriends.add(uid);
+      });
+    } else {
+      setState(() {
+        selectedFriends.remove(uid);
+      });
     }
-    // if it's already there
-    else {
-      selectedFriends.remove(uid);
-    }
-
     print(selectedFriends);
   }
 
   @override
   Widget build(BuildContext context) {
-    print(selectedFriends);
     return Scaffold(
       key: scaffoldKey,
       backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
@@ -394,9 +394,14 @@ class _InviteWidgetState extends State<InviteWidget> {
                                       // ],
                                       // 'invited_participants': selectedFriends,
                                     };
-                                    await ChallengesRecord.createDoc(
-                                            currentUserReference!)
-                                        .set(challengesCreateData);
+                                    // create document for each friend selected
+                                    for (var friend in selectedFriends) {
+                                      challengesCreateData[
+                                              'invited_participants']
+                                          .add(friend);
+                                      await ChallengesRecord.createDoc(friend)
+                                          .set(challengesCreateData);
+                                    }
 
                                     context.pushNamed('InviteSent');
                                   },
