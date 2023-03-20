@@ -849,13 +849,6 @@ class _CreateChallengePageWidgetState extends State<CreateChallengePageWidget> {
                                   status: 'active',
                                   colorScheme: buttonIndex,
                                   comments: commentsController!.text,
-                                  id: random_data.randomString(
-                                    8,
-                                    10,
-                                    true,
-                                    true,
-                                    true,
-                                  ),
                                 ),
                                 'active_participants': [currentUserReference],
                                 'invited_participants': [],

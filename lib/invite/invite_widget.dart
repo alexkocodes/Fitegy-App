@@ -15,14 +15,27 @@ import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
 import 'package:provider/provider.dart';
 import 'invite_model.dart';
 export 'invite_model.dart';
+import '../flutter_flow/random_data_util.dart' as random_data;
 
 class InviteWidget extends StatefulWidget {
   const InviteWidget({
+    this.title,
+    this.details,
+    this.createdAt,
+    this.createBy,
+    this.colorScheme,
+    this.comments,
     Key? key,
     this.challengeReference,
   }) : super(key: key);
 
   final DocumentReference? challengeReference;
+  final String? title;
+  final String? details;
+  final DateTime? createdAt;
+  final DocumentReference? createBy;
+  final int? colorScheme;
+  final String? comments;
 
   @override
   _InviteWidgetState createState() => _InviteWidgetState();
@@ -364,6 +377,27 @@ class _InviteWidgetState extends State<InviteWidget> {
                                 ),
                                 FFButtonWidget(
                                   onPressed: () async {
+                                    final challengesCreateData = {
+                                      ...createChallengesRecordData(
+                                        title: widget.title,
+                                        details: widget.details,
+                                        createdAt: getCurrentTimestamp,
+                                        createBy: widget.createBy,
+                                        status: 'invited',
+                                        colorScheme: widget.colorScheme,
+                                        comments: widget.comments,
+                                        originalReference:
+                                            widget.challengeReference,
+                                      ),
+                                      // 'active_participants': [
+                                      //   currentUserReference
+                                      // ],
+                                      // 'invited_participants': selectedFriends,
+                                    };
+                                    await ChallengesRecord.createDoc(
+                                            currentUserReference!)
+                                        .set(challengesCreateData);
+
                                     context.pushNamed('InviteSent');
                                   },
                                   text: 'Send',
