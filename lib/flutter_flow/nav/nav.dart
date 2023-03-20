@@ -132,8 +132,13 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
                 details: params.getParam('details', ParamType.String),
                 comments: params.getParam('comments', ParamType.String),
                 path: params.getParam('path', ParamType.String),
-                color: params.getParam('color', ParamType.int),
+                colorScheme: params.getParam('colorScheme', ParamType.int),
                 type: params.getParam('type', ParamType.String),
+                challengeReference: params.getParam(
+                    'challengeReference',
+                    ParamType.DocumentReference,
+                    false,
+                    ['users', 'challenges']),
               ),
             ),
             FFRoute(
@@ -141,11 +146,6 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
               path: 'challengeCompleted',
               builder: (context, params) => ChallengeCompletedWidget(),
             ),
-            // FFRoute(
-            //   name: 'CreatePost',
-            //   path: 'createPost',
-            //   builder: (context, params) => CreatePostWidget(),
-            // ),
             FFRoute(
               name: 'ChallengeSelected',
               path: 'challengeSelected',
@@ -165,8 +165,17 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
               name: 'Invite',
               path: 'invite',
               builder: (context, params) => InviteWidget(
-                challengeReference: params.getParam('challengeReference',
-                    ParamType.DocumentReference, false, 'challenges'),
+                title: params.getParam('title', ParamType.String),
+                details: params.getParam('details', ParamType.String),
+                comments: params.getParam('comments', ParamType.String),
+                path: params.getParam('path', ParamType.String),
+                colorScheme: params.getParam('colorScheme', ParamType.int),
+                type: params.getParam('type', ParamType.String),
+                challengeReference: params.getParam(
+                    'challengeReference',
+                    ParamType.DocumentReference,
+                    false,
+                    ['users', 'challenges']),
               ),
             ),
             FFRoute(
@@ -285,7 +294,7 @@ class FFParameters {
     String paramName,
     ParamType type, [
     bool isList = false,
-    String? collectionName,
+    List<String>? collectionNamePath,
   ]) {
     if (futureParamValues.containsKey(paramName)) {
       return futureParamValues[paramName];
@@ -299,7 +308,7 @@ class FFParameters {
       return param;
     }
     // Return serialized value.
-    return deserializeParam<T>(param, type, isList, collectionName);
+    return deserializeParam<T>(param, type, isList, collectionNamePath);
   }
 }
 

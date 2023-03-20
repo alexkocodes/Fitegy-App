@@ -21,21 +21,25 @@ class InviteWidget extends StatefulWidget {
   const InviteWidget({
     this.title,
     this.details,
-    this.createdAt,
-    this.createBy,
     this.colorScheme,
     this.comments,
     Key? key,
     this.challengeReference,
+    this.path,
+    this.type,
+    this.time,
+    this.createBy,
   }) : super(key: key);
 
   final DocumentReference? challengeReference;
   final String? title;
   final String? details;
-  final DateTime? createdAt;
   final DocumentReference? createBy;
   final int? colorScheme;
   final String? comments;
+  final String? path;
+  final String? type;
+  final DateTime? time;
 
   @override
   _InviteWidgetState createState() => _InviteWidgetState();
@@ -377,31 +381,59 @@ class _InviteWidgetState extends State<InviteWidget> {
                                 ),
                                 FFButtonWidget(
                                   onPressed: () async {
+                                    // if no friend is selected, show an alert box and do nothing
+                                    if (selectedFriends.isEmpty) {
+                                      await showDialog(
+                                        context: context,
+                                        builder: (alertContext) {
+                                          return AlertDialog(
+                                            title: Text('No friend selected!'),
+                                            content: Text(
+                                                'Please select at least one friend to invite.'),
+                                            actions: [
+                                              TextButton(
+                                                onPressed: () =>
+                                                    Navigator.pop(alertContext),
+                                                child: Text('OK'),
+                                              ),
+                                            ],
+                                          );
+                                        },
+                                      );
+                                      return;
+                                    }
+
                                     final challengesCreateData = {
                                       ...createChallengesRecordData(
                                         title: widget.title,
                                         details: widget.details,
-                                        createdAt: getCurrentTimestamp,
-                                        createBy: widget.createBy,
+                                        createdAt: widget.time,
+                                        createBy: currentUserReference,
                                         status: 'invited',
                                         colorScheme: widget.colorScheme,
                                         comments: widget.comments,
                                         originalReference:
                                             widget.challengeReference,
                                       ),
-                                      // 'active_participants': [
-                                      //   currentUserReference
-                                      // ],
-                                      // 'invited_participants': selectedFriends,
+                                      'active_participants': [
+                                        currentUserReference
+                                      ],
+                                      'invited_participants': selectedFriends,
                                     };
+
                                     // create document for each friend selected
                                     for (var friend in selectedFriends) {
-                                      challengesCreateData[
-                                              'invited_participants']
-                                          .add(friend);
                                       await ChallengesRecord.createDoc(friend)
                                           .set(challengesCreateData);
                                     }
+
+                                    final challengesUpdateData = {
+                                      'invited_participants':
+                                          FieldValue.arrayUnion(
+                                              selectedFriends),
+                                    };
+                                    await widget.challengeReference!.update(
+                                        challengesUpdateData); // update original challenge
 
                                     context.pushNamed('InviteSent');
                                   },

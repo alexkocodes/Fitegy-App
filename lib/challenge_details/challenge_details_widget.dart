@@ -18,8 +18,9 @@ class ChallengeDetailsWidget extends StatefulWidget {
     this.details,
     this.comments,
     this.path,
-    this.color,
+    this.colorScheme,
     this.type,
+    this.challengeReference,
   }) : super(key: key);
 
   final String? title;
@@ -27,8 +28,9 @@ class ChallengeDetailsWidget extends StatefulWidget {
   final String? details;
   final String? comments;
   final String? path;
-  final int? color;
+  final int? colorScheme;
   final String? type;
+  final DocumentReference? challengeReference;
 
   @override
   _ChallengeDetailsWidgetState createState() => _ChallengeDetailsWidgetState();
@@ -129,7 +131,8 @@ class _ChallengeDetailsWidgetState extends State<ChallengeDetailsWidget> {
                                     )
                                   ],
                                   gradient: LinearGradient(
-                                    colors: colorSchemes[widget.color! - 1],
+                                    colors:
+                                        colorSchemes[widget.colorScheme! - 1],
                                     stops: [0, 1],
                                     begin: AlignmentDirectional(-0.34, -1),
                                     end: AlignmentDirectional(0.34, 1),
@@ -389,7 +392,44 @@ class _ChallengeDetailsWidgetState extends State<ChallengeDetailsWidget> {
                                               ),
                                               FFButtonWidget(
                                                 onPressed: () async {
-                                                  context.pushNamed('Invite');
+                                                  context.pushNamed(
+                                                    'Invite',
+                                                    queryParams: {
+                                                      'title': serializeParam(
+                                                        widget.title,
+                                                        ParamType.String,
+                                                      ),
+                                                      'time': serializeParam(
+                                                        widget.time,
+                                                        ParamType.DateTime,
+                                                      ),
+                                                      'details': serializeParam(
+                                                        widget.details,
+                                                        ParamType.String,
+                                                      ),
+                                                      'comments':
+                                                          serializeParam(
+                                                        widget.comments,
+                                                        ParamType.String,
+                                                      ),
+                                                      'path': serializeParam(
+                                                        widget.path,
+                                                        ParamType.String,
+                                                      ),
+                                                      'colorScheme':
+                                                          serializeParam(
+                                                        widget.colorScheme,
+                                                        ParamType.int,
+                                                      ),
+                                                      'challengeReference':
+                                                          serializeParam(
+                                                        widget
+                                                            .challengeReference,
+                                                        ParamType
+                                                            .DocumentReference,
+                                                      ),
+                                                    }.withoutNulls,
+                                                  );
                                                 },
                                                 text: 'Invite 🔥 ',
                                                 options: FFButtonOptions(

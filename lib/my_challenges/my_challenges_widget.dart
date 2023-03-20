@@ -193,13 +193,14 @@ class _MyChallengesWidgetState extends State<MyChallengesWidget>
                                               path: gridViewChallengesRecord
                                                   .reference.path
                                                   .toString(),
-                                              color: gridViewChallengesRecord
-                                                  .colorScheme,
+                                              colorScheme:
+                                                  gridViewChallengesRecord
+                                                      .colorScheme,
                                               index: gridViewIndex,
                                               destination: "challenge details",
-                                              document_id:
+                                              documentId:
                                                   gridViewChallengesRecord
-                                                      .reference.id,
+                                                      .reference,
                                             );
                                           },
                                         );
@@ -282,13 +283,14 @@ class _MyChallengesWidgetState extends State<MyChallengesWidget>
                                               path: gridViewChallengesRecord
                                                   .reference.path
                                                   .toString(),
-                                              color: gridViewChallengesRecord
-                                                  .colorScheme,
+                                              colorScheme:
+                                                  gridViewChallengesRecord
+                                                      .colorScheme,
                                               index: gridViewIndex,
                                               destination: "challenge details",
-                                              document_id:
+                                              documentId:
                                                   gridViewChallengesRecord
-                                                      .reference.id,
+                                                      .reference,
                                             );
                                           },
                                         );
@@ -357,6 +359,7 @@ class _MyChallengesWidgetState extends State<MyChallengesWidget>
                                             final gridViewChallengesRecord =
                                                 gridViewChallengesRecordList[
                                                     gridViewIndex];
+
                                             return ChallengeCardWidget(
                                               key: Key(
                                                   'ChallengeCard_${gridViewIndex}'),
@@ -371,13 +374,14 @@ class _MyChallengesWidgetState extends State<MyChallengesWidget>
                                               path: gridViewChallengesRecord
                                                   .reference.path
                                                   .toString(),
-                                              color: gridViewChallengesRecord
-                                                  .colorScheme,
+                                              colorScheme:
+                                                  gridViewChallengesRecord
+                                                      .colorScheme,
                                               index: gridViewIndex,
                                               destination: "challenge details",
-                                              document_id:
+                                              documentId:
                                                   gridViewChallengesRecord
-                                                      .reference.id,
+                                                      .reference,
                                             );
                                           },
                                         );

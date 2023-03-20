@@ -237,7 +237,7 @@ class _ChallengeBottomSheetWidgetState extends State<ChallengeBottomSheetWidget>
                                         path: gridViewChallengesRecord
                                             .reference.path
                                             .toString(),
-                                        color: gridViewChallengesRecord
+                                        colorScheme: gridViewChallengesRecord
                                             .colorScheme,
                                         index: gridViewIndex,
                                         destination: "select",
@@ -328,7 +328,7 @@ class _ChallengeBottomSheetWidgetState extends State<ChallengeBottomSheetWidget>
                                         path: gridViewChallengesRecord
                                             .reference.path
                                             .toString(),
-                                        color: gridViewChallengesRecord
+                                        colorScheme: gridViewChallengesRecord
                                             .colorScheme,
                                         index: gridViewIndex,
                                         destination: "select",
@@ -418,7 +418,7 @@ class _ChallengeBottomSheetWidgetState extends State<ChallengeBottomSheetWidget>
                                         path: gridViewChallengesRecord
                                             .reference.path
                                             .toString(),
-                                        color: gridViewChallengesRecord
+                                        colorScheme: gridViewChallengesRecord
                                             .colorScheme,
                                         index: gridViewIndex,
                                         destination: "select",
