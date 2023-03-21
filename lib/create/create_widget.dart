@@ -971,7 +971,7 @@ class _CreateWidgetState extends State<CreateWidget>
                                               options: FFButtonOptions(
                                                 elevation: 0,
                                                 width: 160,
-                                                height: 100,
+                                                height: 200,
                                                 color:
                                                     FlutterFlowTheme.of(context)
                                                         .lineColor,

@@ -117,11 +117,9 @@ class _PostWidgetState extends State<PostWidget> {
                                             snapshot.data.toString(),
                                             fit: BoxFit.fitHeight,
                                           );
-                                        } else if (!snapshot.hasData) {
+                                        } else {
                                           return Image.network(
                                               'https://images.unsplash.com/photo-1574158622682-e40e69881006?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2333&q=80');
-                                        } else {
-                                          return CircularProgressIndicator();
                                         }
                                       }),
                                 ),
@@ -229,7 +227,7 @@ class _PostWidgetState extends State<PostWidget> {
                                           child: Text(
                                             status == "active"
                                                 ? "In Progress"
-                                                : "Completed",
+                                                : status,
                                             style: FlutterFlowTheme.of(context)
                                                 .bodyText1
                                                 .override(

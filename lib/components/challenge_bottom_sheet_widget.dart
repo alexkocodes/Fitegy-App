@@ -1,5 +1,6 @@
 import 'package:fitegy/auth/auth_util.dart';
 import 'package:fitegy/components/challenge_card_widget.dart';
+import 'package:flutter/cupertino.dart';
 
 import '../backend/backend.dart';
 import '../backend/schema/challenges_record.dart';
@@ -13,6 +14,7 @@ import 'package:flutter_animate/flutter_animate.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 import 'empty_widget.dart';
+import 'package:flutter_platform_alert/flutter_platform_alert.dart';
 
 class ChallengeBottomSheetWidget extends StatefulWidget {
   const ChallengeBottomSheetWidget({Key? key}) : super(key: key);
@@ -90,7 +92,17 @@ class _ChallengeBottomSheetWidgetState extends State<ChallengeBottomSheetWidget>
                     ),
                     FFButtonWidget(
                       onPressed: () async {
-                        Navigator.pop(context, selectedData);
+                        if (selectedData["selectedPath"] == "") {
+                          // show alert box
+                          await FlutterPlatformAlert.showAlert(
+                            windowTitle: 'Oh NO!',
+                            text:
+                                'You didn\'t select any challenge. Please select a challenge to continue.',
+                            iconStyle: IconStyle.information,
+                          );
+                        } else {
+                          Navigator.pop(context, selectedData);
+                        }
                       },
                       text: 'Select',
                       options: FFButtonOptions(
