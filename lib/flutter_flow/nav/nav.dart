@@ -168,6 +168,7 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
                 title: params.getParam('title', ParamType.String),
                 details: params.getParam('details', ParamType.String),
                 comments: params.getParam('comments', ParamType.String),
+                time: params.getParam('time', ParamType.DateTime),
                 path: params.getParam('path', ParamType.String),
                 colorScheme: params.getParam('colorScheme', ParamType.int),
                 type: params.getParam('type', ParamType.String),

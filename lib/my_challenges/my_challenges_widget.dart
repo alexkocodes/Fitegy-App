@@ -240,6 +240,7 @@ class _MyChallengesWidgetState extends State<MyChallengesWidget>
                                         List<ChallengesRecord>
                                             gridViewChallengesRecordList =
                                             snapshot.data!;
+
                                         if (gridViewChallengesRecordList
                                             .isEmpty) {
                                           return Center(
@@ -252,6 +253,7 @@ class _MyChallengesWidgetState extends State<MyChallengesWidget>
                                             ),
                                           );
                                         }
+
                                         return GridView.builder(
                                           gridDelegate:
                                               SliverGridDelegateWithFixedCrossAxisCount(
@@ -327,9 +329,11 @@ class _MyChallengesWidgetState extends State<MyChallengesWidget>
                                             ),
                                           );
                                         }
+
                                         List<ChallengesRecord>
                                             gridViewChallengesRecordList =
                                             snapshot.data!;
+
                                         if (gridViewChallengesRecordList
                                             .isEmpty) {
                                           return Center(
@@ -342,6 +346,7 @@ class _MyChallengesWidgetState extends State<MyChallengesWidget>
                                             ),
                                           );
                                         }
+
                                         return GridView.builder(
                                           gridDelegate:
                                               SliverGridDelegateWithFixedCrossAxisCount(
