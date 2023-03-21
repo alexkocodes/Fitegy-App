@@ -1,3 +1,4 @@
+import 'package:fitegy/auth/auth_util.dart';
 import 'package:fitegy/components/challenge_card_widget.dart';
 
 import '../backend/backend.dart';
@@ -173,6 +174,7 @@ class _ChallengeBottomSheetWidgetState extends State<ChallengeBottomSheetWidget>
                                   EdgeInsetsDirectional.fromSTEB(0, 30, 0, 0),
                               child: StreamBuilder<List<ChallengesRecord>>(
                                 stream: queryChallengesRecord(
+                                  parent: currentUserReference,
                                   queryBuilder: (challengesRecord) =>
                                       challengesRecord
                                           .where('status', isEqualTo: 'active')
@@ -265,6 +267,7 @@ class _ChallengeBottomSheetWidgetState extends State<ChallengeBottomSheetWidget>
                                   EdgeInsetsDirectional.fromSTEB(0, 30, 0, 0),
                               child: StreamBuilder<List<ChallengesRecord>>(
                                 stream: queryChallengesRecord(
+                                  parent: currentUserReference,
                                   queryBuilder: (challengesRecord) =>
                                       challengesRecord
                                           .where('status',
@@ -356,6 +359,7 @@ class _ChallengeBottomSheetWidgetState extends State<ChallengeBottomSheetWidget>
                                   EdgeInsetsDirectional.fromSTEB(0, 30, 0, 0),
                               child: StreamBuilder<List<ChallengesRecord>>(
                                 stream: queryChallengesRecord(
+                                  parent: currentUserReference,
                                   queryBuilder: (challengesRecord) =>
                                       challengesRecord
                                           .where('status', isEqualTo: 'invited')

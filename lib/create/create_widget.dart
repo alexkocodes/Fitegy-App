@@ -634,8 +634,8 @@ class _CreateWidgetState extends State<CreateWidget>
                                         decoration: BoxDecoration(
                                           shape: BoxShape.circle,
                                         ),
-                                        child: Image.asset(
-                                          'assets/images/307268498_667368784785166_1846770177358214149_n.jpg',
+                                        child: Image.network(
+                                          currentUserPhoto,
                                         ),
                                       ),
                                       Padding(
