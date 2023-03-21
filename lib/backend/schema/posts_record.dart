@@ -38,6 +38,9 @@ abstract class PostsRecord implements Built<PostsRecord, PostsRecordBuilder> {
   @BuiltValueField(wireName: 'display_name')
   String? get displayName;
 
+  @BuiltValueField(wireName: 'author_image')
+  String? get authorImage;
+
   @BuiltValueField(wireName: kDocumentReferenceField)
   DocumentReference? get ffRef;
   DocumentReference get reference => ffRef!;
@@ -52,7 +55,8 @@ abstract class PostsRecord implements Built<PostsRecord, PostsRecordBuilder> {
     ..private = ''
     ..location = ''
     ..status = ''
-    ..displayName = '';
+    ..displayName = ''
+    ..authorImage = '';
 
   static Query<Map<String, dynamic>> collection([DocumentReference? parent]) =>
       parent != null
@@ -90,6 +94,7 @@ Map<String, dynamic> createPostsRecordData({
   String? location,
   String? status,
   String? displayName,
+  String? authorImage,
 }) {
   final firestoreData = serializers.toFirestore(
     PostsRecord.serializer,
@@ -105,7 +110,8 @@ Map<String, dynamic> createPostsRecordData({
         ..inPostChallenge = inPostChallenge
         ..location = location
         ..status = status
-        ..displayName = displayName,
+        ..displayName = displayName
+        ..authorImage = authorImage,
     ),
   );
 

@@ -1,3 +1,5 @@
+import '/auth/auth_util.dart';
+import '/backend/backend.dart';
 import '/components/complete_button_widget.dart';
 import '/flutter_flow/flutter_flow_animations.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
@@ -350,10 +352,21 @@ class _ChallengeDetailsWidgetState extends State<ChallengeDetailsWidget>
                               mainAxisSize: MainAxisSize.max,
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
-                                wrapWithModel(
-                                  model: _model.completeButtonModel,
-                                  updateCallback: () => setState(() {}),
-                                  child: CompleteButtonWidget(),
+                                InkWell(
+                                  onTap: () async {
+                                    final challengesUpdateData = {
+                                      'invited_participants':
+                                          FieldValue.arrayUnion(
+                                              [currentUserReference]),
+                                    };
+                                    await widget.challengeReference!
+                                        .update(challengesUpdateData);
+                                  },
+                                  child: wrapWithModel(
+                                    model: _model.completeButtonModel,
+                                    updateCallback: () => setState(() {}),
+                                    child: CompleteButtonWidget(),
+                                  ),
                                 ),
                                 FFButtonWidget(
                                   onPressed: () async {

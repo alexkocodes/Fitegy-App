@@ -157,11 +157,6 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
               builder: (context, params) => PostPostedWidget(),
             ),
             FFRoute(
-              name: 'CreatePostV2',
-              path: 'createPostV2',
-              builder: (context, params) => CreatePostV2Widget(),
-            ),
-            FFRoute(
               name: 'Invite',
               path: 'invite',
               builder: (context, params) => InviteWidget(
