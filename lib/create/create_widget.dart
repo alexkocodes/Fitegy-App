@@ -519,10 +519,13 @@ class _CreateWidgetState extends State<CreateWidget>
                                                         return;
                                                       }
                                                     }
-                                                    ;
 
                                                     final postsCreateData = {
                                                       ...createPostsRecordData(
+                                                          authorImage:
+                                                              currentUserPhoto,
+                                                          displayName:
+                                                              currentUserDisplayName,
                                                           postDescription:
                                                               textController!
                                                                   .text,

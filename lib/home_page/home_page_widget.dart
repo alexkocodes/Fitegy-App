@@ -159,7 +159,6 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                             key: Key('Post_${listViewIndex}'),
                             name: listViewPostsRecord.displayName,
                             location: listViewPostsRecord.location,
-                            status: listViewPostsRecord.status,
                             description: listViewPostsRecord.postDescription,
                             likeCount: valueOrDefault<int>(
                               listViewPostsRecord.likes!.toList().length,
