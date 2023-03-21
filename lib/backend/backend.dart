@@ -1,6 +1,7 @@
 import 'package:built_value/serializer.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:fitegy/backend/schema/friends_record.dart';
 
 import '../flutter_flow/flutter_flow_util.dart';
 
@@ -17,6 +18,7 @@ export 'schema/serializers.dart';
 export 'schema/users_record.dart';
 export 'schema/posts_record.dart';
 export 'schema/challenges_record.dart';
+export 'schema/friends_record.dart';
 
 /// Functions to query UsersRecords (as a Stream and as a Future).
 Stream<List<UsersRecord>> queryUsersRecord({
@@ -150,6 +152,50 @@ Future<FFFirestorePage<ChallengesRecord>> queryChallengesRecordPage({
       isStream: isStream,
     );
 
+/// Functions to query FriendsRecords (as a Stream and as a Future).
+Stream<List<FriendsRecord>> queryFriendsRecord({
+  DocumentReference? parent,
+  Query Function(Query)? queryBuilder,
+  int limit = -1,
+  bool singleRecord = false,
+}) =>
+    queryCollection(
+      FriendsRecord.collection(parent),
+      FriendsRecord.serializer,
+      queryBuilder: queryBuilder,
+      limit: limit,
+      singleRecord: singleRecord,
+    );
+
+Future<List<FriendsRecord>> queryFriendsRecordOnce({
+  DocumentReference? parent,
+  Query Function(Query)? queryBuilder,
+  int limit = -1,
+  bool singleRecord = false,
+}) =>
+    queryCollectionOnce(
+      FriendsRecord.collection(parent),
+      FriendsRecord.serializer,
+      queryBuilder: queryBuilder,
+      limit: limit,
+      singleRecord: singleRecord,
+    );
+
+Future<FFFirestorePage<FriendsRecord>> queryFriendsRecordPage({
+  DocumentReference? parent,
+  Query Function(Query)? queryBuilder,
+  DocumentSnapshot? nextPageMarker,
+  required int pageSize,
+  required bool isStream,
+}) =>
+    queryCollectionPage(
+      FriendsRecord.collection(parent),
+      FriendsRecord.serializer,
+      queryBuilder: queryBuilder,
+      nextPageMarker: nextPageMarker,
+      pageSize: pageSize,
+      isStream: isStream,
+    );
 Stream<List<T>> queryCollection<T>(Query collection, Serializer<T> serializer,
     {Query Function(Query)? queryBuilder,
     int limit = -1,

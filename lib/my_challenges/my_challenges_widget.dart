@@ -1,5 +1,6 @@
 import 'package:fitegy/flutter_flow/upload_media.dart';
 
+import '../auth/auth_util.dart';
 import '../backend/backend.dart';
 import '../components/challenge_card_widget.dart';
 import '../components/empty_widget.dart';
@@ -120,6 +121,7 @@ class _MyChallengesWidgetState extends State<MyChallengesWidget>
                                     child:
                                         StreamBuilder<List<ChallengesRecord>>(
                                       stream: queryChallengesRecord(
+                                        parent: currentUserReference,
                                         queryBuilder: (challengesRecord) =>
                                             challengesRecord
                                                 .where('status',
@@ -176,6 +178,7 @@ class _MyChallengesWidgetState extends State<MyChallengesWidget>
                                             final gridViewChallengesRecord =
                                                 gridViewChallengesRecordList[
                                                     gridViewIndex];
+
                                             return ChallengeCardWidget(
                                               key: Key(
                                                   'ChallengeCard_${gridViewIndex}'),
@@ -190,10 +193,14 @@ class _MyChallengesWidgetState extends State<MyChallengesWidget>
                                               path: gridViewChallengesRecord
                                                   .reference.path
                                                   .toString(),
-                                              color: gridViewChallengesRecord
-                                                  .colorScheme,
+                                              colorScheme:
+                                                  gridViewChallengesRecord
+                                                      .colorScheme,
                                               index: gridViewIndex,
                                               destination: "challenge details",
+                                              documentId:
+                                                  gridViewChallengesRecord
+                                                      .reference,
                                             );
                                           },
                                         );
@@ -206,6 +213,7 @@ class _MyChallengesWidgetState extends State<MyChallengesWidget>
                                     child:
                                         StreamBuilder<List<ChallengesRecord>>(
                                       stream: queryChallengesRecord(
+                                        parent: currentUserReference,
                                         queryBuilder: (challengesRecord) =>
                                             challengesRecord
                                                 .where('status',
@@ -232,6 +240,7 @@ class _MyChallengesWidgetState extends State<MyChallengesWidget>
                                         List<ChallengesRecord>
                                             gridViewChallengesRecordList =
                                             snapshot.data!;
+
                                         if (gridViewChallengesRecordList
                                             .isEmpty) {
                                           return Center(
@@ -244,6 +253,7 @@ class _MyChallengesWidgetState extends State<MyChallengesWidget>
                                             ),
                                           );
                                         }
+
                                         return GridView.builder(
                                           gridDelegate:
                                               SliverGridDelegateWithFixedCrossAxisCount(
@@ -275,10 +285,14 @@ class _MyChallengesWidgetState extends State<MyChallengesWidget>
                                               path: gridViewChallengesRecord
                                                   .reference.path
                                                   .toString(),
-                                              color: gridViewChallengesRecord
-                                                  .colorScheme,
+                                              colorScheme:
+                                                  gridViewChallengesRecord
+                                                      .colorScheme,
                                               index: gridViewIndex,
                                               destination: "challenge details",
+                                              documentId:
+                                                  gridViewChallengesRecord
+                                                      .reference,
                                             );
                                           },
                                         );
@@ -291,6 +305,7 @@ class _MyChallengesWidgetState extends State<MyChallengesWidget>
                                     child:
                                         StreamBuilder<List<ChallengesRecord>>(
                                       stream: queryChallengesRecord(
+                                        parent: currentUserReference,
                                         queryBuilder: (challengesRecord) =>
                                             challengesRecord
                                                 .where('status',
@@ -314,9 +329,11 @@ class _MyChallengesWidgetState extends State<MyChallengesWidget>
                                             ),
                                           );
                                         }
+
                                         List<ChallengesRecord>
                                             gridViewChallengesRecordList =
                                             snapshot.data!;
+
                                         if (gridViewChallengesRecordList
                                             .isEmpty) {
                                           return Center(
@@ -329,6 +346,7 @@ class _MyChallengesWidgetState extends State<MyChallengesWidget>
                                             ),
                                           );
                                         }
+
                                         return GridView.builder(
                                           gridDelegate:
                                               SliverGridDelegateWithFixedCrossAxisCount(
@@ -346,6 +364,7 @@ class _MyChallengesWidgetState extends State<MyChallengesWidget>
                                             final gridViewChallengesRecord =
                                                 gridViewChallengesRecordList[
                                                     gridViewIndex];
+
                                             return ChallengeCardWidget(
                                               key: Key(
                                                   'ChallengeCard_${gridViewIndex}'),
@@ -360,10 +379,14 @@ class _MyChallengesWidgetState extends State<MyChallengesWidget>
                                               path: gridViewChallengesRecord
                                                   .reference.path
                                                   .toString(),
-                                              color: gridViewChallengesRecord
-                                                  .colorScheme,
+                                              colorScheme:
+                                                  gridViewChallengesRecord
+                                                      .colorScheme,
                                               index: gridViewIndex,
                                               destination: "challenge details",
+                                              documentId:
+                                                  gridViewChallengesRecord
+                                                      .reference,
                                             );
                                           },
                                         );

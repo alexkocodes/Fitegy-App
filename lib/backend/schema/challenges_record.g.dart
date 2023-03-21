@@ -97,6 +97,14 @@ class _$ChallengesRecordSerializer
         ..add('color_scheme')
         ..add(serializers.serialize(value, specifiedType: const FullType(int)));
     }
+    value = object.originalReference;
+    if (value != null) {
+      result
+        ..add('original_reference')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(
+                DocumentReference, const [const FullType.nullable(Object)])));
+    }
     value = object.ffRef;
     if (value != null) {
       result
@@ -168,6 +176,12 @@ class _$ChallengesRecordSerializer
           result.colorScheme = serializers.deserialize(value,
               specifiedType: const FullType(int)) as int?;
           break;
+        case 'original_reference':
+          result.originalReference = serializers.deserialize(value,
+              specifiedType: const FullType(DocumentReference, const [
+                const FullType.nullable(Object)
+              ])) as DocumentReference<Object?>?;
+          break;
         case 'Document__Reference__Field':
           result.ffRef = serializers.deserialize(value,
               specifiedType: const FullType(DocumentReference, const [
@@ -203,6 +217,8 @@ class _$ChallengesRecord extends ChallengesRecord {
   @override
   final int? colorScheme;
   @override
+  final DocumentReference<Object?>? originalReference;
+  @override
   final DocumentReference<Object?>? ffRef;
 
   factory _$ChallengesRecord(
@@ -220,6 +236,7 @@ class _$ChallengesRecord extends ChallengesRecord {
       this.comments,
       this.id,
       this.colorScheme,
+      this.originalReference,
       this.ffRef})
       : super._();
 
@@ -245,6 +262,7 @@ class _$ChallengesRecord extends ChallengesRecord {
         comments == other.comments &&
         id == other.id &&
         colorScheme == other.colorScheme &&
+        originalReference == other.originalReference &&
         ffRef == other.ffRef;
   }
 
@@ -259,16 +277,18 @@ class _$ChallengesRecord extends ChallengesRecord {
                             $jc(
                                 $jc(
                                     $jc(
-                                        $jc($jc(0, title.hashCode),
-                                            details.hashCode),
-                                        createdAt.hashCode),
-                                    createBy.hashCode),
-                                activeParticipants.hashCode),
-                            invitedParticipants.hashCode),
-                        status.hashCode),
-                    comments.hashCode),
-                id.hashCode),
-            colorScheme.hashCode),
+                                        $jc(
+                                            $jc($jc(0, title.hashCode),
+                                                details.hashCode),
+                                            createdAt.hashCode),
+                                        createBy.hashCode),
+                                    activeParticipants.hashCode),
+                                invitedParticipants.hashCode),
+                            status.hashCode),
+                        comments.hashCode),
+                    id.hashCode),
+                colorScheme.hashCode),
+            originalReference.hashCode),
         ffRef.hashCode));
   }
 
@@ -285,6 +305,7 @@ class _$ChallengesRecord extends ChallengesRecord {
           ..add('comments', comments)
           ..add('id', id)
           ..add('colorScheme', colorScheme)
+          ..add('originalReference', originalReference)
           ..add('ffRef', ffRef))
         .toString();
   }
@@ -343,6 +364,12 @@ class ChallengesRecordBuilder
   int? get colorScheme => _$this._colorScheme;
   set colorScheme(int? colorScheme) => _$this._colorScheme = colorScheme;
 
+  DocumentReference<Object?>? _originalReference;
+  DocumentReference<Object?>? get originalReference =>
+      _$this._originalReference;
+  set originalReference(DocumentReference<Object?>? originalReference) =>
+      _$this._originalReference = originalReference;
+
   DocumentReference<Object?>? _ffRef;
   DocumentReference<Object?>? get ffRef => _$this._ffRef;
   set ffRef(DocumentReference<Object?>? ffRef) => _$this._ffRef = ffRef;
@@ -364,6 +391,7 @@ class ChallengesRecordBuilder
       _comments = $v.comments;
       _id = $v.id;
       _colorScheme = $v.colorScheme;
+      _originalReference = $v.originalReference;
       _ffRef = $v.ffRef;
       _$v = null;
     }
@@ -399,6 +427,7 @@ class ChallengesRecordBuilder
               comments: comments,
               id: id,
               colorScheme: colorScheme,
+              originalReference: originalReference,
               ffRef: ffRef);
     } catch (_) {
       late String _$failedField;

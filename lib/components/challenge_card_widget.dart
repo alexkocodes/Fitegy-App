@@ -16,11 +16,12 @@ class ChallengeCardWidget extends StatefulWidget {
     this.details,
     this.comments,
     this.path,
-    this.color,
+    this.colorScheme,
     this.index,
     this.destination,
     this.callback,
     this.showCheck,
+    this.documentId,
   }) : super(key: key);
 
   final String? title;
@@ -28,11 +29,13 @@ class ChallengeCardWidget extends StatefulWidget {
   final String? details;
   final String? comments;
   final String? path;
-  final int? color;
+  final int? colorScheme;
   final int? index;
   final String? destination;
   final Function? callback;
   final bool? showCheck;
+  final DocumentReference? documentId;
+
   @override
   _ChallengeCardWidgetState createState() => _ChallengeCardWidgetState();
 }
@@ -137,6 +140,7 @@ class _ChallengeCardWidgetState extends State<ChallengeCardWidget>
     var title;
     var time;
     var color;
+
     return Padding(
       padding: EdgeInsetsDirectional.fromSTEB(18, 0, 15, 20),
       child: InkWell(
@@ -165,9 +169,13 @@ class _ChallengeCardWidgetState extends State<ChallengeCardWidget>
                   widget.path,
                   ParamType.String,
                 ),
-                'color': serializeParam(
-                  widget.color,
+                'colorScheme': serializeParam(
+                  widget.colorScheme,
                   ParamType.int,
+                ),
+                'challengeReference': serializeParam(
+                  widget.documentId,
+                  ParamType.DocumentReference,
                 ),
               }.withoutNulls,
             );
@@ -180,7 +188,7 @@ class _ChallengeCardWidgetState extends State<ChallengeCardWidget>
               path = widget.path!;
               title = widget.title;
               time = widget.time;
-              color = widget.color;
+              color = widget.colorScheme;
               widget.callback!(
                 index,
                 path,
@@ -222,8 +230,8 @@ class _ChallengeCardWidgetState extends State<ChallengeCardWidget>
                   widget.path,
                   ParamType.String,
                 ),
-                'color': serializeParam(
-                  widget.color,
+                'colorScheme': serializeParam(
+                  widget.colorScheme,
                   ParamType.int,
                 ),
                 'type': serializeParam(
@@ -255,7 +263,7 @@ class _ChallengeCardWidgetState extends State<ChallengeCardWidget>
                   )
                 ],
                 gradient: LinearGradient(
-                  colors: colorSchemes[widget.color! - 1],
+                  colors: colorSchemes[widget.colorScheme! - 1],
                   stops: [0, 1],
                   begin: AlignmentDirectional(-0.34, -1),
                   end: AlignmentDirectional(0.34, 1),
