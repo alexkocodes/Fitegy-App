@@ -1,3 +1,5 @@
+import 'package:cached_network_image/cached_network_image.dart';
+
 import '../auth/auth_util.dart';
 import '../components/post_action_bar_widget.dart';
 import '../flutter_flow/flutter_flow_icon_button.dart';
@@ -105,6 +107,7 @@ class _PostWidgetState extends State<PostWidget> {
                               child: AuthUserStreamWidget(
                                 builder: (context) => Container(
                                   width: 40,
+                                  height: 40,
                                   clipBehavior: Clip.antiAlias,
                                   decoration: BoxDecoration(
                                     shape: BoxShape.circle,
@@ -113,13 +116,22 @@ class _PostWidgetState extends State<PostWidget> {
                                       future: getAuthorImage(widget.authorRef!),
                                       builder: (context, snapshot) {
                                         if (snapshot.hasData) {
-                                          return Image.network(
-                                            snapshot.data.toString(),
-                                            fit: BoxFit.fitHeight,
+                                          // return Image.network(
+                                          //   snapshot.data.toString(),
+                                          //   fit: BoxFit.fitHeight,
+                                          // );
+                                          return CachedNetworkImage(
+                                            fit: BoxFit.cover,
+                                            fadeInDuration:
+                                                Duration(milliseconds: 500),
+                                            imageUrl: valueOrDefault<String>(
+                                              snapshot.data.toString(),
+                                              'https://images.unsplash.com/photo-1574158622682-e40e69881006?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2333&q=80',
+                                            ),
                                           );
                                         } else {
                                           return Image.network(
-                                              'https://images.unsplash.com/photo-1574158622682-e40e69881006?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2333&q=80');
+                                              "https://images.unsplash.com/photo-1574158622682-e40e69881006?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2333&q=80");
                                         }
                                       }),
                                 ),
