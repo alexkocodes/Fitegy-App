@@ -19,7 +19,7 @@ class PostWidget extends StatefulWidget {
     this.likeCount,
     this.challenge,
     this.imageURLs,
-    this.authorImage,
+    this.authorRef,
   }) : super(key: key);
 
   final String? name;
@@ -28,7 +28,7 @@ class PostWidget extends StatefulWidget {
   final int? likeCount;
   final DocumentReference? challenge;
   final List<String>? imageURLs;
-  final String? authorImage;
+  final DocumentReference? authorRef;
 
   @override
   _PostWidgetState createState() => _PostWidgetState();
@@ -42,16 +42,19 @@ Future<String> getChallengeStatus(DocumentReference challenge) async {
   return challengeStatus;
 }
 
+// create an async function to get the author's profile image and return a string
+Future<String> getAuthorImage(DocumentReference authorRef) async {
+  final authorData = await authorRef.get();
+  final authorImage = authorData.get('photo_url');
+  return authorImage;
+}
+
 class _PostWidgetState extends State<PostWidget> {
   @override
   Widget build(BuildContext context) {
     final _imageProviders =
         widget.imageURLs?.map((e) => Image.network(e).image).toList();
-    // if the challenge is not null, get the challenge status
-    // and store it in a variable
-    if (widget.challenge != null) {
-      final getStatus = getChallengeStatus(widget.challenge!);
-    }
+
     return Padding(
       padding: EdgeInsetsDirectional.fromSTEB(25, 10, 25, 10),
       child: Container(
@@ -106,11 +109,21 @@ class _PostWidgetState extends State<PostWidget> {
                                   decoration: BoxDecoration(
                                     shape: BoxShape.circle,
                                   ),
-                                  child: Image.network(
-                                    widget.authorImage ??
-                                        'https://images.unsplash.com/photo-1574158622682-e40e69881006?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2333&q=80',
-                                    fit: BoxFit.fitHeight,
-                                  ),
+                                  child: FutureBuilder(
+                                      future: getAuthorImage(widget.authorRef!),
+                                      builder: (context, snapshot) {
+                                        if (snapshot.hasData) {
+                                          return Image.network(
+                                            snapshot.data.toString(),
+                                            fit: BoxFit.fitHeight,
+                                          );
+                                        } else if (!snapshot.hasData) {
+                                          return Image.network(
+                                              'https://images.unsplash.com/photo-1574158622682-e40e69881006?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2333&q=80');
+                                        } else {
+                                          return CircularProgressIndicator();
+                                        }
+                                      }),
                                 ),
                               ),
                             ),

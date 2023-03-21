@@ -166,6 +166,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                             ),
                             challenge: listViewPostsRecord.inPostChallenge,
                             imageURLs: listViewPostsRecord.postImages!.toList(),
+                            authorRef: listViewPostsRecord.postUser,
                           );
                         },
                       ),
