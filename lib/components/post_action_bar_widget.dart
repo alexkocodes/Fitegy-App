@@ -57,7 +57,6 @@ class _PostActionBarWidgetState extends State<PostActionBarWidget> {
                   }
 
                   liked = !liked;
-                  print(liked);
                 },
                 child: Stack(
                   children: [
@@ -69,8 +68,13 @@ class _PostActionBarWidgetState extends State<PostActionBarWidget> {
                         borderWidth: 0,
                         buttonSize: 40,
                         icon: Icon(
-                          Icons.favorite_border_rounded,
-                          color: Color(0xFFCFCFCF),
+                          liked
+                              ? Icons.favorite
+                              : Icons.favorite_border_rounded,
+                          color: liked
+                              ? Colors
+                                  .pink // FlutterFlowTheme.of(context).primaryColor
+                              : Color(0xFFCFCFCF),
                           size: 20,
                         ),
                       ),
