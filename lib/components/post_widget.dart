@@ -22,6 +22,8 @@ class PostWidget extends StatefulWidget {
     this.challenge,
     this.imageURLs,
     this.authorRef,
+    this.postRef,
+    this.liked,
   }) : super(key: key);
 
   final String? name;
@@ -31,6 +33,8 @@ class PostWidget extends StatefulWidget {
   final DocumentReference? challenge;
   final List<String>? imageURLs;
   final DocumentReference? authorRef;
+  final DocumentReference? postRef;
+  final bool? liked;
 
   @override
   _PostWidgetState createState() => _PostWidgetState();
@@ -343,7 +347,9 @@ class _PostWidgetState extends State<PostWidget> {
                   : Container(),
               Divider(),
               PostActionBarWidget(
+                postRef: widget.postRef,
                 likeCount: widget.likeCount,
+                liked: widget.liked,
               ),
             ],
           ),

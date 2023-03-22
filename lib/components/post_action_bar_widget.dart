@@ -1,3 +1,7 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:flutter_platform_alert/flutter_platform_alert.dart';
+
+import '../auth/auth_util.dart';
 import '../flutter_flow/flutter_flow_icon_button.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_util.dart';
@@ -7,10 +11,14 @@ import 'package:google_fonts/google_fonts.dart';
 class PostActionBarWidget extends StatefulWidget {
   const PostActionBarWidget({
     Key? key,
+    this.postRef,
     this.likeCount,
+    this.liked,
   }) : super(key: key);
 
+  final DocumentReference? postRef;
   final int? likeCount;
+  final bool? liked;
 
   @override
   _PostActionBarWidgetState createState() => _PostActionBarWidgetState();
@@ -19,6 +27,7 @@ class PostActionBarWidget extends StatefulWidget {
 class _PostActionBarWidgetState extends State<PostActionBarWidget> {
   @override
   Widget build(BuildContext context) {
+    var liked = widget.liked!;
     return Container(
       width: double.infinity,
       decoration: BoxDecoration(
@@ -36,7 +45,19 @@ class _PostActionBarWidgetState extends State<PostActionBarWidget> {
               child: InkWell(
                 borderRadius: BorderRadius.circular(20),
                 onTap: () {
-                  print('IconButton pressed ...');
+                  //add the current user to the like lists
+                  if (liked == false) {
+                    widget.postRef!.update({
+                      'likes': FieldValue.arrayUnion([currentUserReference])
+                    });
+                  } else {
+                    widget.postRef!.update({
+                      'likes': FieldValue.arrayRemove([currentUserReference])
+                    });
+                  }
+
+                  liked = !liked;
+                  print(liked);
                 },
                 child: Stack(
                   children: [
@@ -88,7 +109,7 @@ class _PostActionBarWidgetState extends State<PostActionBarWidget> {
               color: Colors.transparent,
               child: InkWell(
                 onTap: () {
-                  print('IconButton pressed ...');
+                  // show an alert box saying coming soon
                 },
                 borderRadius: BorderRadius.circular(20),
                 child: Stack(

@@ -2,6 +2,7 @@ import 'dart:io';
 
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
+import '../auth/auth_util.dart';
 import '../backend/backend.dart';
 import '../components/post_widget.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
@@ -167,6 +168,10 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                             challenge: listViewPostsRecord.inPostChallenge,
                             imageURLs: listViewPostsRecord.postImages!.toList(),
                             authorRef: listViewPostsRecord.postUser,
+                            postRef: listViewPostsRecord.reference,
+                            liked: listViewPostsRecord.likes!.contains(
+                              currentUserReference,
+                            ),
                           );
                         },
                       ),
