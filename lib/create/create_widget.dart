@@ -704,6 +704,7 @@ class _CreateWidgetState extends State<CreateWidget>
                                                   .fromSTEB(6, 4, 0, 0),
                                               child: SelectionArea(
                                                   child: Text(
+                                                // get current location
                                                 'Abu Dhabi',
                                                 style:
                                                     FlutterFlowTheme.of(context)

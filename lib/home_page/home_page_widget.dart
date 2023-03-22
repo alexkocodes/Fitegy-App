@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 import '../backend/backend.dart';
@@ -37,9 +39,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
         ),
         backgroundColor: FlutterFlowTheme.of(context).primaryColor,
         onPressed: () {
-          // context.pushNamed(
-          //   "MyChallenges",
-          // );
+          context.pushNamed("PostPage");
         },
       ),
       key: scaffoldKey,

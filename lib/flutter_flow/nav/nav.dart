@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:fitegy/post_page/post_page.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:page_transition/page_transition.dart';
@@ -178,6 +179,11 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
               name: 'InviteSent',
               path: 'inviteSent',
               builder: (context, params) => InviteSentWidget(),
+            ),
+            FFRoute(
+              name: 'PostPage',
+              path: 'postPage',
+              builder: (context, params) => PostPage(),
             )
           ].map((r) => r.toRoute(appStateNotifier)).toList(),
         ).toRoute(appStateNotifier),
