@@ -31,128 +31,155 @@ class _PostActionBarWidgetState extends State<PostActionBarWidget> {
         children: [
           Container(
             width: 70,
-            child: Stack(
-              children: [
-                Align(
-                  alignment: AlignmentDirectional(-1.07, 0),
-                  child: FlutterFlowIconButton(
-                    borderColor: Colors.transparent,
-                    borderRadius: 30,
-                    borderWidth: 0,
-                    buttonSize: 40,
-                    icon: Icon(
-                      Icons.favorite_border_rounded,
-                      color: Color(0xFFCFCFCF),
-                      size: 20,
-                    ),
-                    onPressed: () {
-                      print('IconButton pressed ...');
-                    },
-                  ),
-                ),
-                Align(
-                  alignment: AlignmentDirectional(0.45, -0.12),
-                  child: Padding(
-                    padding: EdgeInsetsDirectional.fromSTEB(0, 12, 0, 0),
-                    child: Text(
-                      valueOrDefault<String>(
-                        widget.likeCount?.toString(),
-                        '0',
+            child: Material(
+              color: Colors.transparent,
+              child: InkWell(
+                borderRadius: BorderRadius.circular(20),
+                onTap: () {
+                  print('IconButton pressed ...');
+                },
+                child: Stack(
+                  children: [
+                    Align(
+                      alignment: AlignmentDirectional(-1.07, 0),
+                      child: FlutterFlowIconButton(
+                        borderColor: Colors.transparent,
+                        borderRadius: 30,
+                        borderWidth: 0,
+                        buttonSize: 40,
+                        icon: Icon(
+                          Icons.favorite_border_rounded,
+                          color: Color(0xFFCFCFCF),
+                          size: 20,
+                        ),
                       ),
-                      style: FlutterFlowTheme.of(context).bodyText1.override(
-                            fontFamily:
-                                FlutterFlowTheme.of(context).bodyText1Family,
-                            color: Color(0xFFCFCFCF),
-                            fontSize: 13,
-                            useGoogleFonts: GoogleFonts.asMap().containsKey(
-                                FlutterFlowTheme.of(context).bodyText1Family),
-                          ),
                     ),
-                  ),
+                    Align(
+                      alignment: AlignmentDirectional(0.45, -0.12),
+                      child: Padding(
+                        padding: EdgeInsetsDirectional.fromSTEB(0, 12, 0, 0),
+                        child: Text(
+                          valueOrDefault<String>(
+                            widget.likeCount?.toString(),
+                            '0',
+                          ),
+                          style: FlutterFlowTheme.of(context)
+                              .bodyText1
+                              .override(
+                                fontFamily: FlutterFlowTheme.of(context)
+                                    .bodyText1Family,
+                                color: Color(0xFFCFCFCF),
+                                fontSize: 13,
+                                useGoogleFonts: GoogleFonts.asMap().containsKey(
+                                    FlutterFlowTheme.of(context)
+                                        .bodyText1Family),
+                              ),
+                        ),
+                      ),
+                    ),
+                  ],
                 ),
-              ],
+              ),
             ),
           ),
           Container(
             width: 100,
-            child: Stack(
-              children: [
-                Align(
-                  alignment: AlignmentDirectional(-1.09, 0),
-                  child: FlutterFlowIconButton(
-                    borderColor: Colors.transparent,
-                    borderRadius: 30,
-                    borderWidth: 0,
-                    buttonSize: 40,
-                    icon: Icon(
-                      Icons.mode_comment_outlined,
-                      color: Color(0xFFCFCFCF),
-                      size: 18,
+            child: Material(
+              color: Colors.transparent,
+              child: InkWell(
+                onTap: () {
+                  print('IconButton pressed ...');
+                },
+                borderRadius: BorderRadius.circular(20),
+                child: Stack(
+                  children: [
+                    Align(
+                      alignment: AlignmentDirectional(-1.09, 0),
+                      child: FlutterFlowIconButton(
+                        borderColor: Colors.transparent,
+                        borderRadius: 30,
+                        borderWidth: 0,
+                        buttonSize: 40,
+                        icon: Icon(
+                          Icons.mode_comment_outlined,
+                          color: Color(0xFFCFCFCF),
+                          size: 18,
+                        ),
+                      ),
                     ),
-                    onPressed: () {
-                      print('IconButton pressed ...');
-                    },
-                  ),
-                ),
-                Align(
-                  alignment: AlignmentDirectional(0.8, 0.52),
-                  child: Padding(
-                    padding: EdgeInsetsDirectional.fromSTEB(0, 12, 0, 0),
-                    child: Text(
-                      'Comments',
-                      style: FlutterFlowTheme.of(context).bodyText1.override(
-                            fontFamily:
-                                FlutterFlowTheme.of(context).bodyText1Family,
-                            color: Color(0xFFCFCFCF),
-                            fontSize: 13,
-                            useGoogleFonts: GoogleFonts.asMap().containsKey(
-                                FlutterFlowTheme.of(context).bodyText1Family),
-                          ),
+                    Align(
+                      alignment: AlignmentDirectional(0.8, 0.52),
+                      child: Padding(
+                        padding: EdgeInsetsDirectional.fromSTEB(0, 12, 0, 0),
+                        child: Text(
+                          'Comments',
+                          style: FlutterFlowTheme.of(context)
+                              .bodyText1
+                              .override(
+                                fontFamily: FlutterFlowTheme.of(context)
+                                    .bodyText1Family,
+                                color: Color(0xFFCFCFCF),
+                                fontSize: 13,
+                                useGoogleFonts: GoogleFonts.asMap().containsKey(
+                                    FlutterFlowTheme.of(context)
+                                        .bodyText1Family),
+                              ),
+                        ),
+                      ),
                     ),
-                  ),
+                  ],
                 ),
-              ],
+              ),
             ),
           ),
           Container(
             width: 120,
-            child: Stack(
-              children: [
-                Align(
-                  alignment: AlignmentDirectional(0.8, 0.1),
-                  child: Padding(
-                    padding: EdgeInsetsDirectional.fromSTEB(0, 12, 0, 0),
-                    child: Text(
-                      'See Challenge',
-                      style: FlutterFlowTheme.of(context).bodyText1.override(
-                            fontFamily:
-                                FlutterFlowTheme.of(context).bodyText1Family,
-                            color: Color(0xFFCFCFCF),
-                            fontSize: 13,
-                            useGoogleFonts: GoogleFonts.asMap().containsKey(
-                                FlutterFlowTheme.of(context).bodyText1Family),
-                          ),
+            child: Material(
+              color: Colors.transparent,
+              child: InkWell(
+                onTap: () {
+                  print('IconButton pressed ...');
+                },
+                borderRadius: BorderRadius.circular(20),
+                child: Stack(
+                  children: [
+                    Align(
+                      alignment: AlignmentDirectional(0.8, 0.1),
+                      child: Padding(
+                        padding: EdgeInsetsDirectional.fromSTEB(0, 12, 0, 0),
+                        child: Text(
+                          'See Challenge',
+                          style: FlutterFlowTheme.of(context)
+                              .bodyText1
+                              .override(
+                                fontFamily: FlutterFlowTheme.of(context)
+                                    .bodyText1Family,
+                                color: Color(0xFFCFCFCF),
+                                fontSize: 13,
+                                useGoogleFonts: GoogleFonts.asMap().containsKey(
+                                    FlutterFlowTheme.of(context)
+                                        .bodyText1Family),
+                              ),
+                        ),
+                      ),
                     ),
-                  ),
-                ),
-                Align(
-                  alignment: AlignmentDirectional(-1.09, -1.59),
-                  child: FlutterFlowIconButton(
-                    borderColor: Colors.transparent,
-                    borderRadius: 30,
-                    borderWidth: 0,
-                    buttonSize: 40,
-                    icon: Icon(
-                      Icons.local_fire_department_outlined,
-                      color: Color(0xFFCFCFCF),
-                      size: 20,
+                    Align(
+                      alignment: AlignmentDirectional(-1.09, -1.59),
+                      child: FlutterFlowIconButton(
+                        borderColor: Colors.transparent,
+                        borderRadius: 30,
+                        borderWidth: 0,
+                        buttonSize: 40,
+                        icon: Icon(
+                          Icons.local_fire_department_outlined,
+                          color: Color(0xFFCFCFCF),
+                          size: 20,
+                        ),
+                      ),
                     ),
-                    onPressed: () {
-                      print('IconButton pressed ...');
-                    },
-                  ),
+                  ],
                 ),
-              ],
+              ),
             ),
           ),
         ],
