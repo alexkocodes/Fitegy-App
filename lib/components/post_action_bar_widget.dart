@@ -18,6 +18,7 @@ class PostActionBarWidget extends StatefulWidget {
     this.challengeReference,
     this.postReference,
     this.callback,
+    this.onPage,
   }) : super(key: key);
 
   final DocumentReference? postRef;
@@ -26,6 +27,7 @@ class PostActionBarWidget extends StatefulWidget {
   final DocumentReference? challengeReference;
   final DocumentReference? postReference;
   final Function? callback;
+  final String? onPage;
 
   @override
   _PostActionBarWidgetState createState() => _PostActionBarWidgetState();
@@ -184,28 +186,33 @@ class _PostActionBarWidgetState extends State<PostActionBarWidget> {
               child: InkWell(
                 onTap: () {
                   HapticFeedback.lightImpact();
-                  if (widget.challengeReference != null) {
-                    context.pushNamed(
-                      "InPostChallengePage",
-                      queryParams: {
-                        'challengeReference': serializeParam(
-                          widget.challengeReference,
-                          ParamType.DocumentReference,
-                        ),
-                        'postReference': serializeParam(
-                          widget.postReference,
-                          ParamType.DocumentReference,
-                        ),
-                      }.withoutNulls,
-                    );
+                  print(widget.onPage);
+                  if (widget.onPage == 'InPostChallengePage') {
+                    // do nothing
                   } else {
-                    // show an alert box saying this user didn't include a challenge in their post
-                    FlutterPlatformAlert.showAlert(
-                      windowTitle: 'Nothing to see here!',
-                      text:
-                          'The user did not include a challenge in this post.',
-                      iconStyle: IconStyle.information,
-                    );
+                    if (widget.challengeReference != null) {
+                      context.pushNamed(
+                        "InPostChallengePage",
+                        queryParams: {
+                          'challengeReference': serializeParam(
+                            widget.challengeReference,
+                            ParamType.DocumentReference,
+                          ),
+                          'postReference': serializeParam(
+                            widget.postReference,
+                            ParamType.DocumentReference,
+                          ),
+                        }.withoutNulls,
+                      );
+                    } else {
+                      // show an alert box saying this user didn't include a challenge in their post
+                      FlutterPlatformAlert.showAlert(
+                        windowTitle: 'Nothing to see here!',
+                        text:
+                            'The user did not include a challenge in this post.',
+                        iconStyle: IconStyle.information,
+                      );
+                    }
                   }
                 },
                 borderRadius: BorderRadius.circular(20),
@@ -222,7 +229,9 @@ class _PostActionBarWidgetState extends State<PostActionBarWidget> {
                               .override(
                                 fontFamily: FlutterFlowTheme.of(context)
                                     .bodyText1Family,
-                                color: Color(0xFFCFCFCF),
+                                color: widget.onPage == "InPostChallengePage"
+                                    ? Color(0xFF99EDFF)
+                                    : Color(0xFFCFCFCF),
                                 fontSize: 13,
                                 useGoogleFonts: GoogleFonts.asMap().containsKey(
                                     FlutterFlowTheme.of(context)
@@ -240,7 +249,9 @@ class _PostActionBarWidgetState extends State<PostActionBarWidget> {
                         buttonSize: 40,
                         icon: Icon(
                           Icons.local_fire_department_outlined,
-                          color: Color(0xFFCFCFCF),
+                          color: widget.onPage == "InPostChallengePage"
+                              ? Color(0xFF99EDFF)
+                              : Color(0xFFCFCFCF),
                           size: 20,
                         ),
                       ),

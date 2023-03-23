@@ -25,6 +25,7 @@ class PostWidget extends StatefulWidget {
     this.postRef,
     this.liked,
     this.callback,
+    this.onPage,
   }) : super(key: key);
 
   final String? name;
@@ -37,6 +38,7 @@ class PostWidget extends StatefulWidget {
   final DocumentReference? postRef;
   final bool? liked;
   final Function? callback;
+  final String? onPage;
 
   @override
   _PostWidgetState createState() => _PostWidgetState();
@@ -62,7 +64,7 @@ class _PostWidgetState extends State<PostWidget> {
   Widget build(BuildContext context) {
     final _imageProviders =
         widget.imageURLs?.map((e) => Image.network(e).image).toList();
-
+    print(widget.onPage);
     return Padding(
       padding: EdgeInsetsDirectional.fromSTEB(25, 10, 25, 10),
       child: Container(
@@ -355,6 +357,7 @@ class _PostWidgetState extends State<PostWidget> {
                 challengeReference: widget.challenge,
                 postReference: widget.postRef,
                 callback: widget.callback,
+                onPage: widget.onPage,
               ),
             ],
           ),

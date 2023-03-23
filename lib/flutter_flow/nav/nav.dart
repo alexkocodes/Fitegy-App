@@ -1,6 +1,6 @@
 import 'dart:async';
 
-import 'package:fitegy/in_post_challenge/challenge_details_widget.dart';
+import 'package:fitegy/in_post_challenge/in_post_challenge.dart';
 import 'package:fitegy/post_page/post_page.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';

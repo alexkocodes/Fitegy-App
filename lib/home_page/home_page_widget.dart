@@ -177,6 +177,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                               currentUserReference,
                             ),
                             callback: callback,
+                            onPage: 'HomePage',
                           );
                         },
                       ),

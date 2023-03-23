@@ -138,6 +138,7 @@ class _InPostChallengeWidgetState extends State<InPostChallengeWidget> {
                                   callback: () {
                                     setState(() {});
                                   },
+                                  onPage: "InPostChallengePage",
                                 ),
                                 Padding(
                                   padding: EdgeInsetsDirectional.fromSTEB(
