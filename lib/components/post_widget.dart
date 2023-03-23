@@ -24,6 +24,7 @@ class PostWidget extends StatefulWidget {
     this.authorRef,
     this.postRef,
     this.liked,
+    this.callback,
   }) : super(key: key);
 
   final String? name;
@@ -35,6 +36,7 @@ class PostWidget extends StatefulWidget {
   final DocumentReference? authorRef;
   final DocumentReference? postRef;
   final bool? liked;
+  final Function? callback;
 
   @override
   _PostWidgetState createState() => _PostWidgetState();
@@ -350,6 +352,9 @@ class _PostWidgetState extends State<PostWidget> {
                 postRef: widget.postRef,
                 likeCount: widget.likeCount,
                 liked: widget.liked,
+                challengeReference: widget.challenge,
+                postReference: widget.postRef,
+                callback: widget.callback,
               ),
             ],
           ),

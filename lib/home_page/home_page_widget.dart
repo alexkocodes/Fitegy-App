@@ -31,6 +31,10 @@ class _HomePageWidgetState extends State<HomePageWidget> {
     super.dispose();
   }
 
+  void callback() {
+    setState(() {});
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -172,6 +176,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                             liked: listViewPostsRecord.likes!.contains(
                               currentUserReference,
                             ),
+                            callback: callback,
                           );
                         },
                       ),

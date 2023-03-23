@@ -1,4 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_platform_alert/flutter_platform_alert.dart';
 
 import '../auth/auth_util.dart';
@@ -14,11 +15,17 @@ class PostActionBarWidget extends StatefulWidget {
     this.postRef,
     this.likeCount,
     this.liked,
+    this.challengeReference,
+    this.postReference,
+    this.callback,
   }) : super(key: key);
 
   final DocumentReference? postRef;
   final int? likeCount;
   final bool? liked;
+  final DocumentReference? challengeReference;
+  final DocumentReference? postReference;
+  final Function? callback;
 
   @override
   _PostActionBarWidgetState createState() => _PostActionBarWidgetState();
@@ -26,8 +33,13 @@ class PostActionBarWidget extends StatefulWidget {
 
 class _PostActionBarWidgetState extends State<PostActionBarWidget> {
   @override
+  void initState() {
+    super.initState();
+  }
+
+  @override
   Widget build(BuildContext context) {
-    var liked = widget.liked!;
+    var _liked = widget.liked!;
     return Container(
       width: double.infinity,
       decoration: BoxDecoration(
@@ -44,9 +56,10 @@ class _PostActionBarWidgetState extends State<PostActionBarWidget> {
               color: Colors.transparent,
               child: InkWell(
                 borderRadius: BorderRadius.circular(20),
-                onTap: () {
+                onTap: () async {
+                  HapticFeedback.lightImpact();
                   //add the current user to the like lists
-                  if (liked == false) {
+                  if (_liked == false) {
                     widget.postRef!.update({
                       'likes': FieldValue.arrayUnion([currentUserReference])
                     });
@@ -55,8 +68,9 @@ class _PostActionBarWidgetState extends State<PostActionBarWidget> {
                       'likes': FieldValue.arrayRemove([currentUserReference])
                     });
                   }
-
-                  liked = !liked;
+                  _liked = !_liked;
+                  setState(() {});
+                  widget.callback!();
                 },
                 child: Stack(
                   children: [
@@ -68,10 +82,10 @@ class _PostActionBarWidgetState extends State<PostActionBarWidget> {
                         borderWidth: 0,
                         buttonSize: 40,
                         icon: Icon(
-                          liked
+                          _liked
                               ? Icons.favorite
                               : Icons.favorite_border_rounded,
-                          color: liked
+                          color: _liked
                               ? Colors
                                   .pink // FlutterFlowTheme.of(context).primaryColor
                               : Color(0xFFCFCFCF),
@@ -85,7 +99,7 @@ class _PostActionBarWidgetState extends State<PostActionBarWidget> {
                         padding: EdgeInsetsDirectional.fromSTEB(0, 12, 0, 0),
                         child: Text(
                           valueOrDefault<String>(
-                            widget.likeCount?.toString(),
+                            widget.likeCount.toString(),
                             '0',
                           ),
                           style: FlutterFlowTheme.of(context)
@@ -113,7 +127,13 @@ class _PostActionBarWidgetState extends State<PostActionBarWidget> {
               color: Colors.transparent,
               child: InkWell(
                 onTap: () {
-                  // show an alert box saying coming soon
+                  HapticFeedback.lightImpact();
+                  FlutterPlatformAlert.showAlert(
+                    windowTitle: 'Coming soon!',
+                    text:
+                        'This feature is coming soon. Please bear with us while we work on it. ☺️',
+                    iconStyle: IconStyle.information,
+                  );
                 },
                 borderRadius: BorderRadius.circular(20),
                 child: Stack(
@@ -163,7 +183,30 @@ class _PostActionBarWidgetState extends State<PostActionBarWidget> {
               color: Colors.transparent,
               child: InkWell(
                 onTap: () {
-                  print('IconButton pressed ...');
+                  HapticFeedback.lightImpact();
+                  if (widget.challengeReference != null) {
+                    context.pushNamed(
+                      "InPostChallengePage",
+                      queryParams: {
+                        'challengeReference': serializeParam(
+                          widget.challengeReference,
+                          ParamType.DocumentReference,
+                        ),
+                        'postReference': serializeParam(
+                          widget.postReference,
+                          ParamType.DocumentReference,
+                        ),
+                      }.withoutNulls,
+                    );
+                  } else {
+                    // show an alert box saying this user didn't include a challenge in their post
+                    FlutterPlatformAlert.showAlert(
+                      windowTitle: 'Nothing to see here!',
+                      text:
+                          'The user did not include a challenge in this post.',
+                      iconStyle: IconStyle.information,
+                    );
+                  }
                 },
                 borderRadius: BorderRadius.circular(20),
                 child: Stack(

@@ -380,8 +380,6 @@ class _ChallengeDetailsWidgetState extends State<ChallengeDetailsWidget> {
                                             ),
                                           );
                                         }
-                                        final rowChallengesRecord =
-                                            snapshot.data!;
 
                                         return Row(
                                             mainAxisSize: MainAxisSize.max,

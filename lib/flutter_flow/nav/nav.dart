@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:fitegy/in_post_challenge/challenge_details_widget.dart';
 import 'package:fitegy/post_page/post_page.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
@@ -184,6 +185,19 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
               name: 'PostPage',
               path: 'postPage',
               builder: (context, params) => PostPage(),
+            ),
+            FFRoute(
+              name: 'InPostChallengePage',
+              path: 'inPostChallengePage',
+              builder: (context, params) => InPostChallengeWidget(
+                challengeReference: params.getParam(
+                    'challengeReference',
+                    ParamType.DocumentReference,
+                    false,
+                    ['users', 'challenges']),
+                postReference: params.getParam('postReference',
+                    ParamType.DocumentReference, false, ['users', 'posts']),
+              ),
             )
           ].map((r) => r.toRoute(appStateNotifier)).toList(),
         ).toRoute(appStateNotifier),
