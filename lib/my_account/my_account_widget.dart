@@ -4,7 +4,7 @@ import '/backend/firebase_storage/storage.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
-import '/flutter_flow/upload_media.dart';
+import '/flutter_flow/upload_data.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
@@ -105,7 +105,7 @@ class _MyAccountWidgetState extends State<MyAccountWidget> {
                         if (selectedMedia != null &&
                             selectedMedia.every((m) =>
                                 validateFileFormat(m.storagePath, context))) {
-                          setState(() => _model.isMediaUploading = true);
+                          setState(() => _model.isDataUploading = true);
                           var selectedUploadedFiles = <FFUploadedFile>[];
                           var downloadUrls = <String>[];
                           try {
@@ -128,7 +128,7 @@ class _MyAccountWidgetState extends State<MyAccountWidget> {
                                 .map((u) => u!)
                                 .toList();
                           } finally {
-                            _model.isMediaUploading = false;
+                            _model.isDataUploading = false;
                           }
                           if (selectedUploadedFiles.length ==
                                   selectedMedia.length &&

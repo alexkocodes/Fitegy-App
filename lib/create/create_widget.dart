@@ -9,7 +9,7 @@ import '/flutter_flow/flutter_flow_toggle_icon.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import '/flutter_flow/form_field_controller.dart';
-import '/flutter_flow/upload_media.dart';
+import '/flutter_flow/upload_data.dart';
 import 'dart:ui';
 import '/flutter_flow/random_data_util.dart' as random_data;
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -1278,6 +1278,9 @@ class _CreateWidgetState extends State<CreateWidget> {
                             sigmaY: 2.0,
                           ),
                           child: Container(
+                            constraints: BoxConstraints(
+                              maxHeight: 100.0,
+                            ),
                             decoration: BoxDecoration(
                               color: Color(0x61FFFFFF),
                             ),
@@ -1565,6 +1568,7 @@ class _CreateWidgetState extends State<CreateWidget> {
                                                       .fromSTEB(
                                                           10.0, 4.0, 4.0, 4.0),
                                                   hidesUnderline: true,
+                                                  isSearchable: false,
                                                 ),
                                               ],
                                             ),
@@ -1752,6 +1756,7 @@ class _CreateWidgetState extends State<CreateWidget> {
                                         await showModalBottomSheet(
                                           isScrollControlled: true,
                                           backgroundColor: Colors.transparent,
+                                          barrierColor: Color(0x00000000),
                                           context: context,
                                           builder: (context) {
                                             return Padding(
@@ -1810,6 +1815,11 @@ class _CreateWidgetState extends State<CreateWidget> {
                                 ],
                               ),
                             ),
+                            FaIcon(
+                              FontAwesomeIcons.angleDoubleDown,
+                              color: Colors.black,
+                              size: 24.0,
+                            ),
                           ],
                         ),
                       ),
@@ -1830,7 +1840,7 @@ class _CreateWidgetState extends State<CreateWidget> {
                               if (selectedMedia != null &&
                                   selectedMedia.every((m) => validateFileFormat(
                                       m.storagePath, context))) {
-                                setState(() => _model.isMediaUploading = true);
+                                setState(() => _model.isDataUploading = true);
                                 var selectedUploadedFiles = <FFUploadedFile>[];
                                 var downloadUrls = <String>[];
                                 try {
@@ -1860,7 +1870,7 @@ class _CreateWidgetState extends State<CreateWidget> {
                                 } finally {
                                   ScaffoldMessenger.of(context)
                                       .hideCurrentSnackBar();
-                                  _model.isMediaUploading = false;
+                                  _model.isDataUploading = false;
                                 }
                                 if (selectedUploadedFiles.length ==
                                         selectedMedia.length &&
@@ -1875,7 +1885,7 @@ class _CreateWidgetState extends State<CreateWidget> {
                                 } else {
                                   setState(() {});
                                   showUploadMessage(
-                                      context, 'Failed to upload media');
+                                      context, 'Failed to upload data');
                                   return;
                                 }
                               }
@@ -1915,6 +1925,7 @@ class _CreateWidgetState extends State<CreateWidget> {
                               await showModalBottomSheet(
                                 isScrollControlled: true,
                                 backgroundColor: Colors.transparent,
+                                barrierColor: Color(0x00000000),
                                 context: context,
                                 builder: (context) {
                                   return Padding(

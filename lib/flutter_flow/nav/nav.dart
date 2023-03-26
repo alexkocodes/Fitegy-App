@@ -171,6 +171,11 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
               name: 'InviteSent',
               path: 'inviteSent',
               builder: (context, params) => InviteSentWidget(),
+            ),
+            FFRoute(
+              name: 'profile',
+              path: 'Profile',
+              builder: (context, params) => ProfileWidget(),
             )
           ].map((r) => r.toRoute(appStateNotifier)).toList(),
         ),

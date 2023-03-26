@@ -141,6 +141,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                       }(),
                       padding: EdgeInsets.zero,
                       shrinkWrap: true,
+                      reverse: false,
                       scrollDirection: Axis.vertical,
                       builderDelegate: PagedChildBuilderDelegate<PostsRecord>(
                         // Customize what your widget looks like when it's loading the first page.
@@ -163,7 +164,6 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                 'Keyity_${listViewIndex}_of_${_model.pagingController!.itemList!.length}'),
                             name: listViewPostsRecord.displayName,
                             location: listViewPostsRecord.location,
-                            status: listViewPostsRecord.status,
                             description: listViewPostsRecord.postDescription,
                             likeCount:
                                 listViewPostsRecord.likes!.toList().length,

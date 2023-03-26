@@ -16,3 +16,4 @@ export '/challenge_selected/challenge_selected_widget.dart'
 export '/post_posted/post_posted_widget.dart' show PostPostedWidget;
 export '/invite/invite_widget.dart' show InviteWidget;
 export '/invite_sent/invite_sent_widget.dart' show InviteSentWidget;
+export '/profile/profile_widget.dart' show ProfileWidget;

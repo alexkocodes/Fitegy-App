@@ -287,6 +287,7 @@ class _InviteWidgetState extends State<InviteWidget> {
                             return _model.pagingController!;
                           }(),
                           padding: EdgeInsets.zero,
+                          reverse: false,
                           scrollDirection: Axis.vertical,
                           builderDelegate:
                               PagedChildBuilderDelegate<FriendsRecord>(

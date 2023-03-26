@@ -378,6 +378,13 @@ class _ChallengeDetailsWidgetState extends State<ChallengeDetailsWidget>
                                           ParamType.DocumentReference,
                                         ),
                                       }.withoutNulls,
+                                      extra: <String, dynamic>{
+                                        kTransitionInfoKey: TransitionInfo(
+                                          hasTransition: true,
+                                          transitionType:
+                                              PageTransitionType.bottomToTop,
+                                        ),
+                                      },
                                     );
                                   },
                                   text: 'Invite 🔥 ',

@@ -89,6 +89,13 @@ class _$UsersRecordSerializer implements StructuredSerializer<UsersRecord> {
         ..add(serializers.serialize(value,
             specifiedType: const FullType(String)));
     }
+    value = object.bio;
+    if (value != null) {
+      result
+        ..add('bio')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(String)));
+    }
     value = object.ffRef;
     if (value != null) {
       result
@@ -151,6 +158,10 @@ class _$UsersRecordSerializer implements StructuredSerializer<UsersRecord> {
           result.emoji = serializers.deserialize(value,
               specifiedType: const FullType(String)) as String?;
           break;
+        case 'bio':
+          result.bio = serializers.deserialize(value,
+              specifiedType: const FullType(String)) as String?;
+          break;
         case 'Document__Reference__Field':
           result.ffRef = serializers.deserialize(value,
               specifiedType: const FullType(DocumentReference, const [
@@ -186,6 +197,8 @@ class _$UsersRecord extends UsersRecord {
   @override
   final String? emoji;
   @override
+  final String? bio;
+  @override
   final DocumentReference<Object?>? ffRef;
 
   factory _$UsersRecord([void Function(UsersRecordBuilder)? updates]) =>
@@ -202,6 +215,7 @@ class _$UsersRecord extends UsersRecord {
       this.lastName,
       this.displayName,
       this.emoji,
+      this.bio,
       this.ffRef})
       : super._();
 
@@ -226,31 +240,27 @@ class _$UsersRecord extends UsersRecord {
         lastName == other.lastName &&
         displayName == other.displayName &&
         emoji == other.emoji &&
+        bio == other.bio &&
         ffRef == other.ffRef;
   }
 
   @override
   int get hashCode {
-    return $jf($jc(
-        $jc(
-            $jc(
-                $jc(
-                    $jc(
-                        $jc(
-                            $jc(
-                                $jc(
-                                    $jc(
-                                        $jc($jc(0, email.hashCode),
-                                            photoUrl.hashCode),
-                                        uid.hashCode),
-                                    createdTime.hashCode),
-                                phoneNumber.hashCode),
-                            username.hashCode),
-                        firstName.hashCode),
-                    lastName.hashCode),
-                displayName.hashCode),
-            emoji.hashCode),
-        ffRef.hashCode));
+    var _$hash = 0;
+    _$hash = $jc(_$hash, email.hashCode);
+    _$hash = $jc(_$hash, photoUrl.hashCode);
+    _$hash = $jc(_$hash, uid.hashCode);
+    _$hash = $jc(_$hash, createdTime.hashCode);
+    _$hash = $jc(_$hash, phoneNumber.hashCode);
+    _$hash = $jc(_$hash, username.hashCode);
+    _$hash = $jc(_$hash, firstName.hashCode);
+    _$hash = $jc(_$hash, lastName.hashCode);
+    _$hash = $jc(_$hash, displayName.hashCode);
+    _$hash = $jc(_$hash, emoji.hashCode);
+    _$hash = $jc(_$hash, bio.hashCode);
+    _$hash = $jc(_$hash, ffRef.hashCode);
+    _$hash = $jf(_$hash);
+    return _$hash;
   }
 
   @override
@@ -266,6 +276,7 @@ class _$UsersRecord extends UsersRecord {
           ..add('lastName', lastName)
           ..add('displayName', displayName)
           ..add('emoji', emoji)
+          ..add('bio', bio)
           ..add('ffRef', ffRef))
         .toString();
   }
@@ -314,6 +325,10 @@ class UsersRecordBuilder implements Builder<UsersRecord, UsersRecordBuilder> {
   String? get emoji => _$this._emoji;
   set emoji(String? emoji) => _$this._emoji = emoji;
 
+  String? _bio;
+  String? get bio => _$this._bio;
+  set bio(String? bio) => _$this._bio = bio;
+
   DocumentReference<Object?>? _ffRef;
   DocumentReference<Object?>? get ffRef => _$this._ffRef;
   set ffRef(DocumentReference<Object?>? ffRef) => _$this._ffRef = ffRef;
@@ -335,6 +350,7 @@ class UsersRecordBuilder implements Builder<UsersRecord, UsersRecordBuilder> {
       _lastName = $v.lastName;
       _displayName = $v.displayName;
       _emoji = $v.emoji;
+      _bio = $v.bio;
       _ffRef = $v.ffRef;
       _$v = null;
     }
@@ -368,10 +384,11 @@ class UsersRecordBuilder implements Builder<UsersRecord, UsersRecordBuilder> {
             lastName: lastName,
             displayName: displayName,
             emoji: emoji,
+            bio: bio,
             ffRef: ffRef);
     replace(_$result);
     return _$result;
   }
 }
 
-// ignore_for_file: always_put_control_body_on_new_line,always_specify_types,annotate_overrides,avoid_annotating_with_dynamic,avoid_as,avoid_catches_without_on_clauses,avoid_returning_this,deprecated_member_use_from_same_package,lines_longer_than_80_chars,no_leading_underscores_for_local_identifiers,omit_local_variable_types,prefer_expression_function_bodies,sort_constructors_first,test_types_in_equals,unnecessary_const,unnecessary_new,unnecessary_lambdas
+// ignore_for_file: deprecated_member_use_from_same_package,type=lint
