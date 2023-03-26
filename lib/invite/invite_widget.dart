@@ -100,7 +100,7 @@ class _InviteWidgetState extends State<InviteWidget> {
             size: 30,
           ),
           onPressed: () async {
-            context.pop();
+            context.safePop();
           },
         ),
         actions: [],

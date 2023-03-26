@@ -70,7 +70,7 @@ class _ChallengeDetailsWidgetState extends State<ChallengeDetailsWidget> {
                 size: 30,
               ),
               onPressed: () async {
-                context.pop();
+                context.safePop();
               },
             ),
             actions: [],

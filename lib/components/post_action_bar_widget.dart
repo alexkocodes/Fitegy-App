@@ -186,7 +186,7 @@ class _PostActionBarWidgetState extends State<PostActionBarWidget> {
               child: InkWell(
                 onTap: () {
                   HapticFeedback.lightImpact();
-                  print(widget.onPage);
+
                   if (widget.onPage == 'InPostChallengePage') {
                     // do nothing
                   } else {

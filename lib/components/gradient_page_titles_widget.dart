@@ -47,7 +47,7 @@ class _GradientPageTitlesWidgetState extends State<GradientPageTitlesWidget> {
                       size: 30,
                     ),
                     onPressed: () async {
-                      context.pop();
+                      context.safePop();
                     },
                   ),
                 ),

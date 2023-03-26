@@ -11,15 +11,6 @@ abstract class UsersRecord implements Built<UsersRecord, UsersRecordBuilder> {
 
   String? get email;
 
-  @BuiltValueField(wireName: 'display_name')
-  String? get displayName;
-
-  @BuiltValueField(wireName: 'first_name')
-  String? get firstName;
-
-  @BuiltValueField(wireName: 'last_name')
-  String? get lastName;
-
   @BuiltValueField(wireName: 'photo_url')
   String? get photoUrl;
 
@@ -33,19 +24,34 @@ abstract class UsersRecord implements Built<UsersRecord, UsersRecordBuilder> {
 
   String? get username;
 
+  @BuiltValueField(wireName: 'first_name')
+  String? get firstName;
+
+  @BuiltValueField(wireName: 'last_name')
+  String? get lastName;
+
+  @BuiltValueField(wireName: 'display_name')
+  String? get displayName;
+
+  String? get emoji;
+
+  String? get bio;
+
   @BuiltValueField(wireName: kDocumentReferenceField)
   DocumentReference? get ffRef;
   DocumentReference get reference => ffRef!;
 
   static void _initializeBuilder(UsersRecordBuilder builder) => builder
     ..email = ''
-    ..displayName = ''
     ..photoUrl = ''
     ..uid = ''
     ..phoneNumber = ''
     ..username = ''
     ..firstName = ''
-    ..lastName = '';
+    ..lastName = ''
+    ..displayName = ''
+    ..emoji = ''
+    ..bio = '';
 
   static CollectionReference get collection =>
       FirebaseFirestore.instance.collection('users');
@@ -70,7 +76,6 @@ abstract class UsersRecord implements Built<UsersRecord, UsersRecordBuilder> {
 
 Map<String, dynamic> createUsersRecordData({
   String? email,
-  String? displayName,
   String? photoUrl,
   String? uid,
   DateTime? createdTime,
@@ -78,20 +83,25 @@ Map<String, dynamic> createUsersRecordData({
   String? username,
   String? firstName,
   String? lastName,
+  String? displayName,
+  String? emoji,
+  String? bio,
 }) {
   final firestoreData = serializers.toFirestore(
     UsersRecord.serializer,
     UsersRecord(
       (u) => u
         ..email = email
-        ..displayName = displayName
         ..photoUrl = photoUrl
         ..uid = uid
         ..createdTime = createdTime
         ..phoneNumber = phoneNumber
         ..username = username
         ..firstName = firstName
-        ..lastName = lastName,
+        ..lastName = lastName
+        ..displayName = displayName
+        ..emoji = emoji
+        ..bio = bio,
     ),
   );
 

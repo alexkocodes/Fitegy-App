@@ -80,7 +80,7 @@ class _InPostChallengeWidgetState extends State<InPostChallengeWidget> {
                 size: 30,
               ),
               onPressed: () async {
-                context.pop();
+                context.safePop();
               },
             ),
             actions: [],

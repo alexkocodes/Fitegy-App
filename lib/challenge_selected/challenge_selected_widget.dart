@@ -102,7 +102,7 @@ class _ChallengeSelectedWidgetState extends State<ChallengeSelectedWidget>
                                 size: 30,
                               ),
                               onPressed: () async {
-                                context.pop();
+                                context.safePop();
                               },
                             ),
                           ),
@@ -536,7 +536,7 @@ class _ChallengeSelectedWidgetState extends State<ChallengeSelectedWidget>
                           children: [
                             FFButtonWidget(
                               onPressed: () async {
-                                context.pop();
+                                context.safePop();
                               },
                               text: 'Cancel',
                               options: FFButtonOptions(

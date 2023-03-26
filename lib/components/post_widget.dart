@@ -1,4 +1,5 @@
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:fitegy/profile/profile_widget.dart';
 
 import '../auth/auth_util.dart';
 import '../components/post_action_bar_widget.dart';
@@ -64,7 +65,7 @@ class _PostWidgetState extends State<PostWidget> {
   Widget build(BuildContext context) {
     final _imageProviders =
         widget.imageURLs?.map((e) => Image.network(e).image).toList();
-    print(widget.onPage);
+
     return Padding(
       padding: EdgeInsetsDirectional.fromSTEB(25, 10, 25, 10),
       child: Container(
@@ -157,25 +158,39 @@ class _PostWidgetState extends State<PostWidget> {
                                     children: [
                                       Container(
                                         width: 150,
-                                        child: Text(
-                                          widget.name!,
-                                          overflow: TextOverflow.clip,
-                                          style: FlutterFlowTheme.of(context)
-                                              .bodyText1
-                                              .override(
-                                                fontFamily: 'Inter',
-                                                color:
-                                                    FlutterFlowTheme.of(context)
-                                                        .primaryColor,
-                                                fontSize: 15,
-                                                fontWeight: FontWeight.w600,
-                                                useGoogleFonts: GoogleFonts
-                                                        .asMap()
-                                                    .containsKey(
-                                                        FlutterFlowTheme.of(
-                                                                context)
-                                                            .bodyText1Family),
-                                              ),
+                                        child: InkWell(
+                                          onTap: () async {
+                                            context.pushNamed(
+                                              'ProfilePage',
+                                              queryParams: {
+                                                'userRef': serializeParam(
+                                                  widget.authorRef,
+                                                  ParamType.DocumentReference,
+                                                ),
+                                                "name": widget.name,
+                                              }.withoutNulls,
+                                            );
+                                          },
+                                          child: Text(
+                                            widget.name!,
+                                            overflow: TextOverflow.clip,
+                                            style: FlutterFlowTheme.of(context)
+                                                .bodyText1
+                                                .override(
+                                                  fontFamily: 'Inter',
+                                                  color: FlutterFlowTheme.of(
+                                                          context)
+                                                      .primaryColor,
+                                                  fontSize: 15,
+                                                  fontWeight: FontWeight.w600,
+                                                  useGoogleFonts: GoogleFonts
+                                                          .asMap()
+                                                      .containsKey(
+                                                          FlutterFlowTheme.of(
+                                                                  context)
+                                                              .bodyText1Family),
+                                                ),
+                                          ),
                                         ),
                                       )
                                     ],
