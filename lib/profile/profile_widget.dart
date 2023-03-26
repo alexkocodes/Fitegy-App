@@ -63,10 +63,15 @@ class _ProfileWidgetState extends State<ProfileWidget> {
     return authorImage;
   }
 
+  // create an async function to get the author's emoji and return a string
+  Future<String> getAuthorEmoji(DocumentReference authorRef) async {
+    final authorData = await authorRef.get();
+    final authorEmoji = authorData.get('emoji');
+    return authorEmoji;
+  }
+
   @override
   Widget build(BuildContext context) {
-    print(currentUserReference);
-    print(widget.authorRef);
     return Scaffold(
       key: scaffoldKey,
       backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
@@ -202,7 +207,9 @@ class _ProfileWidgetState extends State<ProfileWidget> {
                                       textStyle: FlutterFlowTheme.of(context)
                                           .bodyText1
                                           .override(
-                                            fontFamily: 'Lexend Deca',
+                                            fontFamily:
+                                                FlutterFlowTheme.of(context)
+                                                    .bodyText1Family,
                                             color: FlutterFlowTheme.of(context)
                                                 .secondaryText,
                                             fontSize: 10,
@@ -292,7 +299,7 @@ class _ProfileWidgetState extends State<ProfileWidget> {
                                                   .bodyText2Family,
                                           color: FlutterFlowTheme.of(context)
                                               .customColor4,
-                                          fontWeight: FontWeight.w300,
+                                          fontWeight: FontWeight.w500,
                                           useGoogleFonts: GoogleFonts.asMap()
                                               .containsKey(
                                                   FlutterFlowTheme.of(context)
@@ -331,6 +338,8 @@ class _ProfileWidgetState extends State<ProfileWidget> {
                               mainAxisSize: MainAxisSize.max,
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
+                                // if we are already friends, show that we are friends
+
                                 FFButtonWidget(
                                   onPressed: () {
                                     print('Button pressed ...');
@@ -370,44 +379,52 @@ class _ProfileWidgetState extends State<ProfileWidget> {
                                   padding: EdgeInsetsDirectional.fromSTEB(
                                       10, 0, 0, 0),
                                   child: AuthUserStreamWidget(
-                                    builder: (context) => FFButtonWidget(
-                                      onPressed: () {
-                                        print('Button pressed ...');
-                                      },
-                                      text: valueOrDefault(
-                                          currentUserDocument?.emoji, ''),
-                                      options: FFButtonOptions(
-                                        width: 45,
-                                        height: 45,
-                                        padding: EdgeInsetsDirectional.fromSTEB(
-                                            0, 0, 0, 0),
-                                        iconPadding:
-                                            EdgeInsetsDirectional.fromSTEB(
-                                                0, 0, 0, 0),
-                                        color: Color(0xFFE9E6F2),
-                                        textStyle: FlutterFlowTheme.of(context)
-                                            .subtitle2
-                                            .override(
-                                              fontFamily:
+                                    builder: (context) => FutureBuilder(
+                                        future:
+                                            getAuthorEmoji(widget.authorRef!),
+                                        builder: (context, snapshot) {
+                                          return FFButtonWidget(
+                                            onPressed: () {},
+                                            text: snapshot.data.toString() !=
+                                                    'null'
+                                                ? snapshot.data.toString()
+                                                : '👋',
+                                            options: FFButtonOptions(
+                                              width: 45,
+                                              height: 45,
+                                              padding: EdgeInsetsDirectional
+                                                  .fromSTEB(0, 0, 0, 0),
+                                              iconPadding: EdgeInsetsDirectional
+                                                  .fromSTEB(0, 0, 0, 0),
+                                              color: Color(0xFFE9E6F2),
+                                              textStyle:
                                                   FlutterFlowTheme.of(context)
-                                                      .subtitle2Family,
-                                              color:
-                                                  FlutterFlowTheme.of(context)
-                                                      .primaryBackground,
-                                              useGoogleFonts:
-                                                  GoogleFonts.asMap()
-                                                      .containsKey(
-                                                          FlutterFlowTheme.of(
-                                                                  context)
-                                                              .subtitle2Family),
+                                                      .subtitle2
+                                                      .override(
+                                                        fontFamily:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .subtitle2Family,
+                                                        color: FlutterFlowTheme
+                                                                .of(context)
+                                                            .primaryBackground,
+                                                        useGoogleFonts: GoogleFonts
+                                                                .asMap()
+                                                            .containsKey(
+                                                                FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .subtitle2Family),
+                                                        fontSize: 23,
+                                                      ),
+                                              borderSide: BorderSide(
+                                                color: Colors.transparent,
+                                                width: 1,
+                                              ),
+                                              borderRadius:
+                                                  BorderRadius.circular(15),
                                             ),
-                                        borderSide: BorderSide(
-                                          color: Colors.transparent,
-                                          width: 1,
-                                        ),
-                                        borderRadius: BorderRadius.circular(15),
-                                      ),
-                                    ),
+                                          );
+                                        }),
                                   ),
                                 ),
                               ],
