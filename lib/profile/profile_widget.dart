@@ -391,6 +391,27 @@ class _ProfileWidgetState extends State<ProfileWidget> {
                       ),
                     ),
                   ),
+                  Align(
+                    alignment: AlignmentDirectional(-0.93, -0.97),
+                    child: Padding(
+                      padding:
+                          EdgeInsetsDirectional.fromSTEB(0.0, 20.0, 0.0, 0.0),
+                      child: FlutterFlowIconButton(
+                        borderColor: Colors.transparent,
+                        borderRadius: 30.0,
+                        borderWidth: 1.0,
+                        buttonSize: 60.0,
+                        icon: Icon(
+                          Icons.chevron_left_sharp,
+                          color: FlutterFlowTheme.of(context).primaryBackground,
+                          size: 30.0,
+                        ),
+                        onPressed: () async {
+                          context.safePop();
+                        },
+                      ),
+                    ),
+                  ),
                 ],
               ),
               Padding(
