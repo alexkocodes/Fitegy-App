@@ -1,3 +1,4 @@
+import '/auth/auth_util.dart';
 import '/backend/backend.dart';
 import '/components/post_widget.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
@@ -105,6 +106,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                         _model.pagingController!
                             .addPageRequestListener((nextPageMarker) {
                           queryPostsRecordPage(
+                            parent: currentUserReference,
                             queryBuilder: (postsRecord) => postsRecord
                                 .orderBy('time_posted', descending: true),
                             nextPageMarker: nextPageMarker,
