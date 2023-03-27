@@ -94,6 +94,7 @@ dependencies:
   detectable_text_field: ^2.0.4
   easy_image_viewer: ^1.2.0
   flutter_platform_alert: ^0.3.0
+  animated_loading_border: ^0.0.1
 
 dev_dependencies:
   build_runner: 2.4.1

@@ -78,7 +78,11 @@ class _InviteWidgetState extends State<InviteWidget> {
         selectedFriends.remove(uid);
       });
     }
-    print(selectedFriends);
+  }
+
+  Future<Map> getFriendInfo(DocumentReference uid) async {
+    final data = await uid.get();
+    return data.data() as Map;
   }
 
   @override
@@ -253,7 +257,7 @@ class _InviteWidgetState extends State<InviteWidget> {
                           pagingController: () {
                             final Query<Object?> Function(Query<Object?>)
                                 queryBuilder = (friendsRecord) =>
-                                    friendsRecord.orderBy('display_name');
+                                    friendsRecord.orderBy('username');
                             if (_model.pagingController != null) {
                               final query =
                                   queryBuilder(FriendsRecord.collection());
@@ -334,18 +338,32 @@ class _InviteWidgetState extends State<InviteWidget> {
                               final listViewFriendsRecord = _model
                                   .pagingController!.itemList![listViewIndex];
 
-                              return UserCardSmallWidget(
-                                key: Key(
-                                    'Key046_${listViewIndex}_of_${_model.pagingController!.itemList!.length}'),
-                                imageURL: listViewFriendsRecord.photoUrl == ""
-                                    ? 'https://images.unsplash.com/photo-1574158622682-e40e69881006?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2333&q=80'
-                                    : listViewFriendsRecord.photoUrl,
-                                username: listViewFriendsRecord.username,
-                                emoji: listViewFriendsRecord.emoji,
-                                color:
-                                    listViewIndex % 2 == 0 ? "grey" : "white",
-                                uid: listViewFriendsRecord.uid,
-                                callback: getUID,
+                              return FutureBuilder(
+                                future:
+                                    getFriendInfo(listViewFriendsRecord.uid!),
+                                builder: (context, snapshot) {
+                                  if (!snapshot.hasData) {
+                                    return Container();
+                                  }
+                                  final friendData = snapshot.data as Map;
+
+                                  return UserCardSmallWidget(
+                                    key: Key(
+                                        'Key046_${listViewIndex}_of_${_model.pagingController!.itemList!.length}'),
+                                    imageURL: friendData['photo_url'] == ""
+                                        ? 'https://images.unsplash.com/photo-1574158622682-e40e69881006?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2333&q=80'
+                                        : friendData['photo_url'],
+                                    username: friendData['username'],
+                                    emoji: friendData.containsKey('emoji')
+                                        ? friendData['emoji']
+                                        : '👋',
+                                    color: listViewIndex % 2 == 0
+                                        ? "grey"
+                                        : "white",
+                                    uid: listViewFriendsRecord.uid,
+                                    callback: getUID,
+                                  );
+                                },
                               );
                             },
                           ),

@@ -151,7 +151,7 @@ class _InPostChallengeWidgetState extends State<InPostChallengeWidget> {
                                 ),
                                 Padding(
                                   padding: EdgeInsetsDirectional.fromSTEB(
-                                      30, 20, 30, 0),
+                                      30, 20, 30, 100),
                                   child: Column(
                                     children: [
                                       Container(

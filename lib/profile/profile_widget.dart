@@ -1,4 +1,6 @@
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:fitegy/auth/firebase_user_provider.dart';
+import 'package:flutter_platform_alert/flutter_platform_alert.dart';
 import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
 
 import '../components/post_widget.dart';
@@ -19,6 +21,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'profile_model.dart';
 export 'profile_model.dart';
+import 'package:animated_loading_border/animated_loading_border.dart';
 
 class ProfileWidget extends StatefulWidget {
   const ProfileWidget({
@@ -70,8 +73,23 @@ class _ProfileWidgetState extends State<ProfileWidget> {
     return authorEmoji;
   }
 
+  // create a function to fetch user data and the author's username
+  Future<Map> getData(DocumentReference authorRef) async {
+    final userData = await currentUserReference!.get();
+    final authorData = await authorRef.get();
+    final authorUsername = authorData.get('username');
+    // make this into a map
+    final data = {
+      'userData': userData.data(),
+      'authorUsername': authorUsername,
+    };
+    return data;
+  }
+
   @override
   Widget build(BuildContext context) {
+    final db = FirebaseFirestore.instance;
+
     return Scaffold(
       key: scaffoldKey,
       backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
@@ -284,8 +302,13 @@ class _ProfileWidgetState extends State<ProfileWidget> {
                             mainAxisSize: MainAxisSize.min,
                             children: [
                               Padding(
-                                padding:
-                                    EdgeInsetsDirectional.fromSTEB(0, 15, 0, 0),
+                                padding: EdgeInsetsDirectional.fromSTEB(
+                                    0,
+                                    (widget.authorRef == currentUserReference)
+                                        ? 0
+                                        : 15,
+                                    0,
+                                    0),
                                 child: AuthUserStreamWidget(
                                   builder: (context) => Text(
                                     valueOrDefault(currentUserDocument?.bio,
@@ -313,7 +336,7 @@ class _ProfileWidgetState extends State<ProfileWidget> {
                                   borderColor: Colors.transparent,
                                   borderRadius: 30,
                                   borderWidth: 1,
-                                  buttonSize: 30,
+                                  buttonSize: 40,
                                   icon: Icon(
                                     Icons.mode_edit,
                                     color:
@@ -338,43 +361,225 @@ class _ProfileWidgetState extends State<ProfileWidget> {
                               mainAxisSize: MainAxisSize.max,
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
-                                // if we are already friends, show that we are friends
+                                (widget.authorRef == currentUserReference)
+                                    ? Container()
+                                    : FutureBuilder(
+                                        future: getData(widget.authorRef!),
+                                        builder: (context, snapshot) {
+                                          if (!snapshot.hasData) {
+                                            return Expanded(
+                                              child: Center(
+                                                child:
+                                                    CircularProgressIndicator(),
+                                              ),
+                                            );
+                                          } else {
+                                            final friendsList = (snapshot.data
+                                                        as Map)["userData"]
+                                                    ['friends'] ??
+                                                [] as List;
+                                            final currentUserUsername =
+                                                (snapshot.data
+                                                        as Map)["userData"]
+                                                    ["username"];
 
-                                FFButtonWidget(
-                                  onPressed: () {
-                                    print('Button pressed ...');
-                                  },
-                                  text: 'Add Friend',
-                                  options: FFButtonOptions(
-                                    width: 280,
-                                    height: 45,
-                                    padding: EdgeInsetsDirectional.fromSTEB(
-                                        0, 0, 0, 0),
-                                    iconPadding: EdgeInsetsDirectional.fromSTEB(
-                                        0, 0, 0, 0),
-                                    color: FlutterFlowTheme.of(context)
-                                        .customColor4,
-                                    textStyle: FlutterFlowTheme.of(context)
-                                        .subtitle2
-                                        .override(
-                                          fontFamily:
-                                              FlutterFlowTheme.of(context)
-                                                  .subtitle2Family,
-                                          color: Colors.white,
-                                          fontSize: 20,
-                                          fontWeight: FontWeight.w600,
-                                          useGoogleFonts: GoogleFonts.asMap()
-                                              .containsKey(
-                                                  FlutterFlowTheme.of(context)
-                                                      .subtitle2Family),
-                                        ),
-                                    borderSide: BorderSide(
-                                      color: Colors.transparent,
-                                      width: 1,
-                                    ),
-                                    borderRadius: BorderRadius.circular(15),
-                                  ),
-                                ),
+                                            final currentUserDisplayName =
+                                                (snapshot.data
+                                                        as Map)["userData"]
+                                                    ["displayName"];
+                                            final authorUsername = (snapshot
+                                                .data as Map)["authorUsername"];
+
+                                            if (friendsList
+                                                .contains(widget.authorRef)) {
+                                              return FFButtonWidget(
+                                                onPressed: () async {
+                                                  // remove the current user to the other user's friends list, and vice versa
+                                                  // open a dialog to confirm
+                                                  final result =
+                                                      await FlutterPlatformAlert
+                                                          .showAlert(
+                                                    windowTitle: 'Confirm',
+                                                    text:
+                                                        'Are you sure you want to remove this user from your friends list?',
+                                                    iconStyle:
+                                                        IconStyle.question,
+                                                    alertStyle: AlertButtonStyle
+                                                        .yesNoCancel,
+                                                  );
+
+                                                  if (result ==
+                                                      AlertButton.yesButton) {
+                                                    widget.authorRef!.update({
+                                                      'friends': FieldValue
+                                                          .arrayRemove([
+                                                        currentUserReference
+                                                      ])
+                                                    });
+                                                    currentUserReference!
+                                                        .update({
+                                                      'friends': FieldValue
+                                                          .arrayRemove([
+                                                        widget.authorRef
+                                                      ])
+                                                    });
+                                                    setState(() {});
+                                                  } else {
+                                                    return;
+                                                  }
+
+                                                  var docs =
+                                                      await currentUserReference!
+                                                          .collection('friends')
+                                                          .where("uid",
+                                                              isEqualTo: widget
+                                                                  .authorRef)
+                                                          .get();
+                                                  docs.docs.forEach((doc) {
+                                                    doc.reference.delete();
+                                                  });
+
+                                                  // final userFriendsUpdateData =
+                                                  //     createFriendsRecordData(
+                                                  //   uid: widget.authorRef,
+                                                  //   displayName: widget.name,
+                                                  // );
+
+                                                  // await FriendsRecord.createDoc(
+                                                  //         currentUserReference!)
+                                                  //     .set(
+                                                  //         userFriendsUpdateData);
+
+                                                  // final userFriendsUpdateData2 =
+                                                  //     createFriendsRecordData(
+                                                  //   uid: currentUserReference,
+                                                  //   displayName: widget.name,
+                                                  // );
+
+                                                  // await FriendsRecord.createDoc(
+                                                  //         widget.authorRef!)
+                                                  //     .set(
+                                                  //         userFriendsUpdateData2);
+                                                },
+                                                text: 'You are friends',
+                                                options: FFButtonOptions(
+                                                  width: 280,
+                                                  height: 45,
+                                                  textStyle:
+                                                      FlutterFlowTheme.of(
+                                                              context)
+                                                          .subtitle2
+                                                          .override(
+                                                            fontFamily:
+                                                                FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .subtitle2Family,
+                                                            color: Colors.white,
+                                                            fontSize: 20,
+                                                            fontWeight:
+                                                                FontWeight.w600,
+                                                            useGoogleFonts: GoogleFonts
+                                                                    .asMap()
+                                                                .containsKey(
+                                                                    FlutterFlowTheme.of(
+                                                                            context)
+                                                                        .subtitle2Family),
+                                                          ),
+                                                  borderSide: BorderSide(
+                                                    color: Colors.transparent,
+                                                    width: 1,
+                                                  ),
+                                                  borderRadius:
+                                                      BorderRadius.circular(15),
+                                                ),
+                                              );
+                                            } else {
+                                              return FFButtonWidget(
+                                                onPressed: () async {
+                                                  // add the current user to the other user's friends list, and vice versa
+                                                  widget.authorRef!.update({
+                                                    'friends':
+                                                        FieldValue.arrayUnion([
+                                                      currentUserReference
+                                                    ])
+                                                  });
+                                                  currentUserReference!.update({
+                                                    'friends':
+                                                        FieldValue.arrayUnion(
+                                                            [widget.authorRef])
+                                                  });
+
+                                                  setState(() {});
+
+                                                  final userFriendsUpdateData =
+                                                      createFriendsRecordData(
+                                                    uid: widget.authorRef,
+                                                    displayName: widget.name,
+                                                    username: authorUsername,
+                                                  );
+
+                                                  await FriendsRecord.createDoc(
+                                                          currentUserReference!)
+                                                      .set(
+                                                          userFriendsUpdateData);
+
+                                                  final userFriendsUpdateData2 =
+                                                      createFriendsRecordData(
+                                                    uid: currentUserReference,
+                                                    displayName:
+                                                        currentUserDisplayName,
+                                                    username:
+                                                        currentUserUsername,
+                                                  );
+
+                                                  await FriendsRecord.createDoc(
+                                                          widget.authorRef!)
+                                                      .set(
+                                                          userFriendsUpdateData2);
+                                                },
+                                                text: 'Add Friend',
+                                                options: FFButtonOptions(
+                                                  width: 280,
+                                                  height: 45,
+                                                  padding: EdgeInsetsDirectional
+                                                      .fromSTEB(0, 0, 0, 0),
+                                                  iconPadding:
+                                                      EdgeInsetsDirectional
+                                                          .fromSTEB(0, 0, 0, 0),
+                                                  color: FlutterFlowTheme.of(
+                                                          context)
+                                                      .customColor4,
+                                                  textStyle:
+                                                      FlutterFlowTheme.of(
+                                                              context)
+                                                          .subtitle2
+                                                          .override(
+                                                            fontFamily:
+                                                                FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .subtitle2Family,
+                                                            color: Colors.white,
+                                                            fontSize: 20,
+                                                            fontWeight:
+                                                                FontWeight.w600,
+                                                            useGoogleFonts: GoogleFonts
+                                                                    .asMap()
+                                                                .containsKey(
+                                                                    FlutterFlowTheme.of(
+                                                                            context)
+                                                                        .subtitle2Family),
+                                                          ),
+                                                  borderSide: BorderSide(
+                                                    color: Colors.transparent,
+                                                    width: 1,
+                                                  ),
+                                                  borderRadius:
+                                                      BorderRadius.circular(15),
+                                                ),
+                                              );
+                                            }
+                                          }
+                                        }),
                                 Padding(
                                   padding: EdgeInsetsDirectional.fromSTEB(
                                       10, 0, 0, 0),

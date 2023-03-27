@@ -25,6 +25,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "4.7.0"
+  animated_loading_border:
+    dependency: "direct main"
+    description:
+      name: animated_loading_border
+      sha256: e0d3f53a006a49d2fb936c21ab0e609e9c0e8a4948d6c2ad4472179f2e35d107
+      url: "https://pub.dev"
+    source: hosted
+    version: "0.0.1"
   archive:
     dependency: transitive
     description:

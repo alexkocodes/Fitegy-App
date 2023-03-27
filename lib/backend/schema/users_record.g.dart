@@ -96,6 +96,14 @@ class _$UsersRecordSerializer implements StructuredSerializer<UsersRecord> {
         ..add(serializers.serialize(value,
             specifiedType: const FullType(String)));
     }
+    value = object.friends;
+    if (value != null) {
+      result
+        ..add('friends')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(
+                DocumentReference, const [const FullType.nullable(Object)])));
+    }
     value = object.ffRef;
     if (value != null) {
       result
@@ -162,6 +170,12 @@ class _$UsersRecordSerializer implements StructuredSerializer<UsersRecord> {
           result.bio = serializers.deserialize(value,
               specifiedType: const FullType(String)) as String?;
           break;
+        case 'friends':
+          result.friends = serializers.deserialize(value,
+              specifiedType: const FullType(DocumentReference, const [
+                const FullType.nullable(Object)
+              ])) as DocumentReference<Object?>?;
+          break;
         case 'Document__Reference__Field':
           result.ffRef = serializers.deserialize(value,
               specifiedType: const FullType(DocumentReference, const [
@@ -199,6 +213,8 @@ class _$UsersRecord extends UsersRecord {
   @override
   final String? bio;
   @override
+  final DocumentReference<Object?>? friends;
+  @override
   final DocumentReference<Object?>? ffRef;
 
   factory _$UsersRecord([void Function(UsersRecordBuilder)? updates]) =>
@@ -216,6 +232,7 @@ class _$UsersRecord extends UsersRecord {
       this.displayName,
       this.emoji,
       this.bio,
+      this.friends,
       this.ffRef})
       : super._();
 
@@ -241,6 +258,7 @@ class _$UsersRecord extends UsersRecord {
         displayName == other.displayName &&
         emoji == other.emoji &&
         bio == other.bio &&
+        friends == other.friends &&
         ffRef == other.ffRef;
   }
 
@@ -256,17 +274,19 @@ class _$UsersRecord extends UsersRecord {
                                 $jc(
                                     $jc(
                                         $jc(
-                                            $jc($jc(0, email.hashCode),
-                                                photoUrl.hashCode),
-                                            uid.hashCode),
-                                        createdTime.hashCode),
-                                    phoneNumber.hashCode),
-                                username.hashCode),
-                            firstName.hashCode),
-                        lastName.hashCode),
-                    displayName.hashCode),
-                emoji.hashCode),
-            bio.hashCode),
+                                            $jc(
+                                                $jc($jc(0, email.hashCode),
+                                                    photoUrl.hashCode),
+                                                uid.hashCode),
+                                            createdTime.hashCode),
+                                        phoneNumber.hashCode),
+                                    username.hashCode),
+                                firstName.hashCode),
+                            lastName.hashCode),
+                        displayName.hashCode),
+                    emoji.hashCode),
+                bio.hashCode),
+            friends.hashCode),
         ffRef.hashCode));
   }
 
@@ -284,6 +304,7 @@ class _$UsersRecord extends UsersRecord {
           ..add('displayName', displayName)
           ..add('emoji', emoji)
           ..add('bio', bio)
+          ..add('friends', friends)
           ..add('ffRef', ffRef))
         .toString();
   }
@@ -336,6 +357,10 @@ class UsersRecordBuilder implements Builder<UsersRecord, UsersRecordBuilder> {
   String? get bio => _$this._bio;
   set bio(String? bio) => _$this._bio = bio;
 
+  DocumentReference<Object?>? _friends;
+  DocumentReference<Object?>? get friends => _$this._friends;
+  set friends(DocumentReference<Object?>? friends) => _$this._friends = friends;
+
   DocumentReference<Object?>? _ffRef;
   DocumentReference<Object?>? get ffRef => _$this._ffRef;
   set ffRef(DocumentReference<Object?>? ffRef) => _$this._ffRef = ffRef;
@@ -358,6 +383,7 @@ class UsersRecordBuilder implements Builder<UsersRecord, UsersRecordBuilder> {
       _displayName = $v.displayName;
       _emoji = $v.emoji;
       _bio = $v.bio;
+      _friends = $v.friends;
       _ffRef = $v.ffRef;
       _$v = null;
     }
@@ -392,6 +418,7 @@ class UsersRecordBuilder implements Builder<UsersRecord, UsersRecordBuilder> {
             displayName: displayName,
             emoji: emoji,
             bio: bio,
+            friends: friends,
             ffRef: ffRef);
     replace(_$result);
     return _$result;

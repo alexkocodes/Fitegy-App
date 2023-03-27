@@ -1930,22 +1930,25 @@ class _LogSignWidgetState extends State<LogSignWidget>
 
                                               final usersCreateData =
                                                   createUsersRecordData(
-                                                email: newEmailController!.text,
-                                                displayName:
-                                                    textController1!.text,
-                                                uid: random_data.randomString(
-                                                  8,
-                                                  10,
-                                                  true,
-                                                  true,
-                                                  true,
-                                                ),
-                                                createdTime:
-                                                    getCurrentTimestamp,
-                                                username: textController3!.text,
-                                                photoUrl:
-                                                    'https://images.unsplash.com/photo-1574158622682-e40e69881006?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2333&q=80',
-                                              );
+                                                      email: newEmailController!
+                                                          .text,
+                                                      displayName:
+                                                          textController1!.text,
+                                                      uid: random_data
+                                                          .randomString(
+                                                        8,
+                                                        10,
+                                                        true,
+                                                        true,
+                                                        true,
+                                                      ),
+                                                      createdTime:
+                                                          getCurrentTimestamp,
+                                                      username:
+                                                          textController3!.text,
+                                                      photoUrl:
+                                                          'https://images.unsplash.com/photo-1574158622682-e40e69881006?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2333&q=80',
+                                                      emoji: "👋");
                                               await UsersRecord.collection
                                                   .doc(user.uid)
                                                   .update(usersCreateData);
