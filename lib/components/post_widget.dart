@@ -54,10 +54,15 @@ Future<String> getChallengeStatus(DocumentReference challenge) async {
 }
 
 // create an async function to get the author's profile image and return a string
-Future<String> getAuthorImage(DocumentReference authorRef) async {
+Future<Map> getAuthorData(DocumentReference authorRef) async {
   final authorData = await authorRef.get();
   final authorImage = authorData.get('photo_url');
-  return authorImage;
+  final authorName = authorData.get('display_name');
+  final data = {
+    'authorImage': authorImage,
+    'authorName': authorName,
+  };
+  return data;
 }
 
 class _PostWidgetState extends State<PostWidget> {
@@ -122,19 +127,18 @@ class _PostWidgetState extends State<PostWidget> {
                                     shape: BoxShape.circle,
                                   ),
                                   child: FutureBuilder(
-                                      future: getAuthorImage(widget.authorRef!),
+                                      future: getAuthorData(widget.authorRef!),
                                       builder: (context, snapshot) {
                                         if (snapshot.hasData) {
-                                          // return Image.network(
-                                          //   snapshot.data.toString(),
-                                          //   fit: BoxFit.fitHeight,
-                                          // );
+                                          final data = snapshot.data as Map;
+                                          final authorImageURL =
+                                              data['authorImage'];
                                           return CachedNetworkImage(
                                             fit: BoxFit.cover,
                                             fadeInDuration:
                                                 Duration(milliseconds: 500),
                                             imageUrl: valueOrDefault<String>(
-                                              snapshot.data.toString(),
+                                              authorImageURL,
                                               'https://images.unsplash.com/photo-1574158622682-e40e69881006?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2333&q=80',
                                             ),
                                           );
@@ -171,26 +175,40 @@ class _PostWidgetState extends State<PostWidget> {
                                               }.withoutNulls,
                                             );
                                           },
-                                          child: Text(
-                                            widget.name!,
-                                            overflow: TextOverflow.clip,
-                                            style: FlutterFlowTheme.of(context)
-                                                .bodyText1
-                                                .override(
-                                                  fontFamily: 'Inter',
-                                                  color: FlutterFlowTheme.of(
+                                          child: FutureBuilder(
+                                              future: getAuthorData(
+                                                  widget.authorRef!),
+                                              builder: (context, snapshot) {
+                                                if (!snapshot.hasData) {
+                                                  return Container();
+                                                }
+                                                final data =
+                                                    snapshot.data as Map;
+                                                final name = data['authorName'];
+                                                return Text(
+                                                  name,
+                                                  overflow: TextOverflow.clip,
+                                                  style: FlutterFlowTheme.of(
                                                           context)
-                                                      .primaryColor,
-                                                  fontSize: 15,
-                                                  fontWeight: FontWeight.w600,
-                                                  useGoogleFonts: GoogleFonts
-                                                          .asMap()
-                                                      .containsKey(
-                                                          FlutterFlowTheme.of(
-                                                                  context)
-                                                              .bodyText1Family),
-                                                ),
-                                          ),
+                                                      .bodyText1
+                                                      .override(
+                                                        fontFamily: 'Inter',
+                                                        color:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .primaryColor,
+                                                        fontSize: 15,
+                                                        fontWeight:
+                                                            FontWeight.w600,
+                                                        useGoogleFonts: GoogleFonts
+                                                                .asMap()
+                                                            .containsKey(
+                                                                FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .bodyText1Family),
+                                                      ),
+                                                );
+                                              }),
                                         ),
                                       )
                                     ],
