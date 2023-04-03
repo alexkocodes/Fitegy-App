@@ -594,10 +594,10 @@ class _EditProfilesWidgetState extends State<EditProfilesWidget> {
                         EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
                     color: FlutterFlowTheme.of(context).secondaryText,
                     textStyle: FlutterFlowTheme.of(context).titleSmall.override(
-                          fontFamily: 'Lexend Deca',
+                          fontFamily: 'Inter',
                           color: Colors.white,
-                          fontSize: 16.0,
-                          fontWeight: FontWeight.normal,
+                          fontSize: 20.0,
+                          fontWeight: FontWeight.w500,
                           useGoogleFonts: GoogleFonts.asMap().containsKey(
                               FlutterFlowTheme.of(context).titleSmallFamily),
                         ),
@@ -606,6 +606,7 @@ class _EditProfilesWidgetState extends State<EditProfilesWidget> {
                       color: Colors.transparent,
                       width: 1.0,
                     ),
+                    borderRadius: BorderRadius.circular(15.0),
                   ),
                 ),
               ),
