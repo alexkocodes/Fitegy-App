@@ -17,14 +17,29 @@ abstract class FlutterFlowTheme {
     return LightModeTheme();
   }
 
-  late Color primaryColor;
-  late Color secondaryColor;
-  late Color tertiaryColor;
+  @Deprecated('Use primary instead')
+  Color get primaryColor => primary;
+  @Deprecated('Use secondary instead')
+  Color get secondaryColor => secondary;
+  @Deprecated('Use tertiary instead')
+  Color get tertiaryColor => tertiary;
+
+  late Color primary;
+  late Color secondary;
+  late Color tertiary;
   late Color alternate;
-  late Color primaryBackground;
-  late Color secondaryBackground;
   late Color primaryText;
   late Color secondaryText;
+  late Color primaryBackground;
+  late Color secondaryBackground;
+  late Color accent1;
+  late Color accent2;
+  late Color accent3;
+  late Color accent4;
+  late Color success;
+  late Color warning;
+  late Color error;
+  late Color info;
 
   late Color primaryBtnText;
   late Color lineColor;
@@ -40,20 +55,65 @@ abstract class FlutterFlowTheme {
   late Color tertiary400;
   late Color textColor;
 
-  String get title1Family => typography.title1Family;
-  TextStyle get title1 => typography.title1;
-  String get title2Family => typography.title2Family;
-  TextStyle get title2 => typography.title2;
-  String get title3Family => typography.title3Family;
-  TextStyle get title3 => typography.title3;
-  String get subtitle1Family => typography.subtitle1Family;
-  TextStyle get subtitle1 => typography.subtitle1;
-  String get subtitle2Family => typography.subtitle2Family;
-  TextStyle get subtitle2 => typography.subtitle2;
-  String get bodyText1Family => typography.bodyText1Family;
-  TextStyle get bodyText1 => typography.bodyText1;
-  String get bodyText2Family => typography.bodyText2Family;
-  TextStyle get bodyText2 => typography.bodyText2;
+  @Deprecated('Use displaySmallFamily instead')
+  String get title1Family => displaySmallFamily;
+  @Deprecated('Use displaySmall instead')
+  TextStyle get title1 => typography.displaySmall;
+  @Deprecated('Use headlineMediumFamily instead')
+  String get title2Family => typography.headlineMediumFamily;
+  @Deprecated('Use headlineMedium instead')
+  TextStyle get title2 => typography.headlineMedium;
+  @Deprecated('Use headlineSmallFamily instead')
+  String get title3Family => typography.headlineSmallFamily;
+  @Deprecated('Use headlineSmall instead')
+  TextStyle get title3 => typography.headlineSmall;
+  @Deprecated('Use titleMediumFamily instead')
+  String get subtitle1Family => typography.titleMediumFamily;
+  @Deprecated('Use titleMedium instead')
+  TextStyle get subtitle1 => typography.titleMedium;
+  @Deprecated('Use titleSmallFamily instead')
+  String get subtitle2Family => typography.titleSmallFamily;
+  @Deprecated('Use titleSmall instead')
+  TextStyle get subtitle2 => typography.titleSmall;
+  @Deprecated('Use bodyMediumFamily instead')
+  String get bodyText1Family => typography.bodyMediumFamily;
+  @Deprecated('Use bodyMedium instead')
+  TextStyle get bodyText1 => typography.bodyMedium;
+  @Deprecated('Use bodySmallFamily instead')
+  String get bodyText2Family => typography.bodySmallFamily;
+  @Deprecated('Use bodySmall instead')
+  TextStyle get bodyText2 => typography.bodySmall;
+
+  String get displayLargeFamily => typography.displayLargeFamily;
+  TextStyle get displayLarge => typography.displayLarge;
+  String get displayMediumFamily => typography.displayMediumFamily;
+  TextStyle get displayMedium => typography.displayMedium;
+  String get displaySmallFamily => typography.displaySmallFamily;
+  TextStyle get displaySmall => typography.displaySmall;
+  String get headlineLargeFamily => typography.headlineLargeFamily;
+  TextStyle get headlineLarge => typography.headlineLarge;
+  String get headlineMediumFamily => typography.headlineMediumFamily;
+  TextStyle get headlineMedium => typography.headlineMedium;
+  String get headlineSmallFamily => typography.headlineSmallFamily;
+  TextStyle get headlineSmall => typography.headlineSmall;
+  String get titleLargeFamily => typography.titleLargeFamily;
+  TextStyle get titleLarge => typography.titleLarge;
+  String get titleMediumFamily => typography.titleMediumFamily;
+  TextStyle get titleMedium => typography.titleMedium;
+  String get titleSmallFamily => typography.titleSmallFamily;
+  TextStyle get titleSmall => typography.titleSmall;
+  String get labelLargeFamily => typography.labelLargeFamily;
+  TextStyle get labelLarge => typography.labelLarge;
+  String get labelMediumFamily => typography.labelMediumFamily;
+  TextStyle get labelMedium => typography.labelMedium;
+  String get labelSmallFamily => typography.labelSmallFamily;
+  TextStyle get labelSmall => typography.labelSmall;
+  String get bodyLargeFamily => typography.bodyLargeFamily;
+  TextStyle get bodyLarge => typography.bodyLarge;
+  String get bodyMediumFamily => typography.bodyMediumFamily;
+  TextStyle get bodyMedium => typography.bodyMedium;
+  String get bodySmallFamily => typography.bodySmallFamily;
+  TextStyle get bodySmall => typography.bodySmall;
 
   Typography get typography => {
         DeviceSize.mobile: MobileTypography(this),
@@ -74,14 +134,29 @@ DeviceSize getDeviceSize(BuildContext context) {
 }
 
 class LightModeTheme extends FlutterFlowTheme {
-  late Color primaryColor = const Color(0xFF3B3F6B);
-  late Color secondaryColor = const Color(0xFF34DAFF);
-  late Color tertiaryColor = const Color(0xFFFDFF9B);
+  @Deprecated('Use primary instead')
+  Color get primaryColor => primary;
+  @Deprecated('Use secondary instead')
+  Color get secondaryColor => secondary;
+  @Deprecated('Use tertiary instead')
+  Color get tertiaryColor => tertiary;
+
+  late Color primary = const Color(0xFF3B3F6B);
+  late Color secondary = const Color(0xFF34DAFF);
+  late Color tertiary = const Color(0xFFFDFF9B);
   late Color alternate = const Color(0xFFFF5963);
-  late Color primaryBackground = const Color(0xFFFFFFFF);
-  late Color secondaryBackground = const Color(0xFFFFFFFF);
   late Color primaryText = const Color(0xFF3B3F6B);
   late Color secondaryText = const Color(0xFF000000);
+  late Color primaryBackground = const Color(0xFFFFFFFF);
+  late Color secondaryBackground = const Color(0xFFFFFFFF);
+  late Color accent1 = const Color(0xFF616161);
+  late Color accent2 = const Color(0xFF757575);
+  late Color accent3 = const Color(0xFFE0E0E0);
+  late Color accent4 = const Color(0xFFEEEEEE);
+  late Color success = const Color(0xFF04A24C);
+  late Color warning = const Color(0xFFFCDC0C);
+  late Color error = const Color(0xFFE21C3D);
+  late Color info = const Color(0xFF1C4494);
 
   late Color primaryBtnText = Color(0xFFFFFFFF);
   late Color lineColor = Color(0xFFE0E3E7);
@@ -99,20 +174,36 @@ class LightModeTheme extends FlutterFlowTheme {
 }
 
 abstract class Typography {
-  String get title1Family;
-  TextStyle get title1;
-  String get title2Family;
-  TextStyle get title2;
-  String get title3Family;
-  TextStyle get title3;
-  String get subtitle1Family;
-  TextStyle get subtitle1;
-  String get subtitle2Family;
-  TextStyle get subtitle2;
-  String get bodyText1Family;
-  TextStyle get bodyText1;
-  String get bodyText2Family;
-  TextStyle get bodyText2;
+  String get displayLargeFamily;
+  TextStyle get displayLarge;
+  String get displayMediumFamily;
+  TextStyle get displayMedium;
+  String get displaySmallFamily;
+  TextStyle get displaySmall;
+  String get headlineLargeFamily;
+  TextStyle get headlineLarge;
+  String get headlineMediumFamily;
+  TextStyle get headlineMedium;
+  String get headlineSmallFamily;
+  TextStyle get headlineSmall;
+  String get titleLargeFamily;
+  TextStyle get titleLarge;
+  String get titleMediumFamily;
+  TextStyle get titleMedium;
+  String get titleSmallFamily;
+  TextStyle get titleSmall;
+  String get labelLargeFamily;
+  TextStyle get labelLarge;
+  String get labelMediumFamily;
+  TextStyle get labelMedium;
+  String get labelSmallFamily;
+  TextStyle get labelSmall;
+  String get bodyLargeFamily;
+  TextStyle get bodyLarge;
+  String get bodyMediumFamily;
+  TextStyle get bodyMedium;
+  String get bodySmallFamily;
+  TextStyle get bodySmall;
 }
 
 class MobileTypography extends Typography {
@@ -120,50 +211,103 @@ class MobileTypography extends Typography {
 
   final FlutterFlowTheme theme;
 
-  String get title1Family => 'Inter';
-  TextStyle get title1 => TextStyle(
+  String get displayLargeFamily => 'Inter';
+  TextStyle get displayLarge => TextStyle(
+        fontFamily: 'Inter',
+        color: theme.primaryText,
+        fontWeight: FontWeight.normal,
+        fontSize: 57.0,
+      );
+  String get displayMediumFamily => 'Inter';
+  TextStyle get displayMedium => TextStyle(
+        fontFamily: 'Inter',
+        color: theme.primaryText,
+        fontWeight: FontWeight.normal,
+        fontSize: 45.0,
+      );
+  String get displaySmallFamily => 'Inter';
+  TextStyle get displaySmall => TextStyle(
         fontFamily: 'Inter',
         color: theme.primaryText,
         fontWeight: FontWeight.w600,
         fontSize: 24.0,
       );
-  String get title2Family => 'Inter';
-  TextStyle get title2 => TextStyle(
+  String get headlineLargeFamily => 'Inter';
+  TextStyle get headlineLarge => TextStyle(
+        fontFamily: 'Inter',
+        color: theme.primaryText,
+        fontWeight: FontWeight.normal,
+        fontSize: 32.0,
+      );
+  String get headlineMediumFamily => 'Inter';
+  TextStyle get headlineMedium => TextStyle(
         fontFamily: 'Inter',
         color: theme.secondaryText,
         fontWeight: FontWeight.w600,
         fontSize: 22.0,
       );
-  String get title3Family => 'Inter';
-  TextStyle get title3 => TextStyle(
+  String get headlineSmallFamily => 'Inter';
+  TextStyle get headlineSmall => TextStyle(
         fontFamily: 'Inter',
         color: theme.primaryText,
         fontWeight: FontWeight.w600,
         fontSize: 20.0,
       );
-  String get subtitle1Family => 'Inter';
-  TextStyle get subtitle1 => TextStyle(
+  String get titleLargeFamily => 'Inter';
+  TextStyle get titleLarge => TextStyle(
+        fontFamily: 'Inter',
+        color: theme.primaryText,
+        fontWeight: FontWeight.w500,
+        fontSize: 22.0,
+      );
+  String get titleMediumFamily => 'Inter';
+  TextStyle get titleMedium => TextStyle(
         fontFamily: 'Inter',
         color: theme.primaryText,
         fontWeight: FontWeight.w600,
         fontSize: 18.0,
       );
-  String get subtitle2Family => 'Inter';
-  TextStyle get subtitle2 => TextStyle(
+  String get titleSmallFamily => 'Inter';
+  TextStyle get titleSmall => TextStyle(
         fontFamily: 'Inter',
         color: theme.secondaryText,
         fontWeight: FontWeight.w600,
         fontSize: 16.0,
       );
-  String get bodyText1Family => 'Inter';
-  TextStyle get bodyText1 => TextStyle(
+  String get labelLargeFamily => 'Inter';
+  TextStyle get labelLarge => TextStyle(
         fontFamily: 'Inter',
         color: theme.primaryText,
         fontWeight: FontWeight.w500,
         fontSize: 14.0,
       );
-  String get bodyText2Family => 'Inter';
-  TextStyle get bodyText2 => TextStyle(
+  String get labelMediumFamily => 'Inter';
+  TextStyle get labelMedium => TextStyle(
+        fontFamily: 'Inter',
+        color: theme.primaryText,
+        fontWeight: FontWeight.w500,
+        fontSize: 12.0,
+      );
+  String get labelSmallFamily => 'Inter';
+  TextStyle get labelSmall => TextStyle(
+        fontFamily: 'Inter',
+        color: theme.primaryText,
+        fontWeight: FontWeight.w500,
+        fontSize: 11.0,
+      );
+  String get bodyLargeFamily => '';
+  TextStyle get bodyLarge => GoogleFonts.getFont(
+        'Roboto',
+      );
+  String get bodyMediumFamily => 'Inter';
+  TextStyle get bodyMedium => TextStyle(
+        fontFamily: 'Inter',
+        color: theme.primaryText,
+        fontWeight: FontWeight.w500,
+        fontSize: 14.0,
+      );
+  String get bodySmallFamily => 'Inter';
+  TextStyle get bodySmall => TextStyle(
         fontFamily: 'Inter',
         color: theme.secondaryText,
         fontWeight: FontWeight.w300,
@@ -176,50 +320,103 @@ class TabletTypography extends Typography {
 
   final FlutterFlowTheme theme;
 
-  String get title1Family => 'Inter';
-  TextStyle get title1 => TextStyle(
+  String get displayLargeFamily => 'Inter';
+  TextStyle get displayLarge => TextStyle(
+        fontFamily: 'Inter',
+        color: theme.primaryText,
+        fontWeight: FontWeight.normal,
+        fontSize: 57.0,
+      );
+  String get displayMediumFamily => 'Inter';
+  TextStyle get displayMedium => TextStyle(
+        fontFamily: 'Inter',
+        color: theme.primaryText,
+        fontWeight: FontWeight.normal,
+        fontSize: 45.0,
+      );
+  String get displaySmallFamily => 'Inter';
+  TextStyle get displaySmall => TextStyle(
         fontFamily: 'Inter',
         color: theme.primaryText,
         fontWeight: FontWeight.w600,
         fontSize: 24.0,
       );
-  String get title2Family => 'Inter';
-  TextStyle get title2 => TextStyle(
+  String get headlineLargeFamily => 'Inter';
+  TextStyle get headlineLarge => TextStyle(
+        fontFamily: 'Inter',
+        color: theme.primaryText,
+        fontWeight: FontWeight.normal,
+        fontSize: 32.0,
+      );
+  String get headlineMediumFamily => 'Inter';
+  TextStyle get headlineMedium => TextStyle(
         fontFamily: 'Inter',
         color: theme.secondaryText,
         fontWeight: FontWeight.w600,
         fontSize: 22.0,
       );
-  String get title3Family => 'Inter';
-  TextStyle get title3 => TextStyle(
+  String get headlineSmallFamily => 'Inter';
+  TextStyle get headlineSmall => TextStyle(
         fontFamily: 'Inter',
         color: theme.primaryText,
         fontWeight: FontWeight.w600,
         fontSize: 20.0,
       );
-  String get subtitle1Family => 'Inter';
-  TextStyle get subtitle1 => TextStyle(
+  String get titleLargeFamily => 'Inter';
+  TextStyle get titleLarge => TextStyle(
+        fontFamily: 'Inter',
+        color: theme.primaryText,
+        fontWeight: FontWeight.w500,
+        fontSize: 22.0,
+      );
+  String get titleMediumFamily => 'Inter';
+  TextStyle get titleMedium => TextStyle(
         fontFamily: 'Inter',
         color: theme.primaryText,
         fontWeight: FontWeight.w500,
         fontSize: 18.0,
       );
-  String get subtitle2Family => 'Inter';
-  TextStyle get subtitle2 => TextStyle(
+  String get titleSmallFamily => 'Inter';
+  TextStyle get titleSmall => TextStyle(
         fontFamily: 'Inter',
         color: theme.secondaryText,
         fontWeight: FontWeight.w500,
         fontSize: 16.0,
       );
-  String get bodyText1Family => 'Inter';
-  TextStyle get bodyText1 => TextStyle(
+  String get labelLargeFamily => 'Inter';
+  TextStyle get labelLarge => TextStyle(
         fontFamily: 'Inter',
         color: theme.primaryText,
         fontWeight: FontWeight.w500,
         fontSize: 14.0,
       );
-  String get bodyText2Family => 'Inter';
-  TextStyle get bodyText2 => TextStyle(
+  String get labelMediumFamily => 'Inter';
+  TextStyle get labelMedium => TextStyle(
+        fontFamily: 'Inter',
+        color: theme.primaryText,
+        fontWeight: FontWeight.w500,
+        fontSize: 12.0,
+      );
+  String get labelSmallFamily => 'Inter';
+  TextStyle get labelSmall => TextStyle(
+        fontFamily: 'Inter',
+        color: theme.primaryText,
+        fontWeight: FontWeight.w500,
+        fontSize: 11.0,
+      );
+  String get bodyLargeFamily => '';
+  TextStyle get bodyLarge => GoogleFonts.getFont(
+        'Roboto',
+      );
+  String get bodyMediumFamily => 'Inter';
+  TextStyle get bodyMedium => TextStyle(
+        fontFamily: 'Inter',
+        color: theme.primaryText,
+        fontWeight: FontWeight.w500,
+        fontSize: 14.0,
+      );
+  String get bodySmallFamily => 'Inter';
+  TextStyle get bodySmall => TextStyle(
         fontFamily: 'Inter',
         color: theme.secondaryText,
         fontWeight: FontWeight.w300,
@@ -232,50 +429,103 @@ class DesktopTypography extends Typography {
 
   final FlutterFlowTheme theme;
 
-  String get title1Family => 'Inter';
-  TextStyle get title1 => TextStyle(
+  String get displayLargeFamily => 'Inter';
+  TextStyle get displayLarge => TextStyle(
+        fontFamily: 'Inter',
+        color: theme.primaryText,
+        fontWeight: FontWeight.normal,
+        fontSize: 57.0,
+      );
+  String get displayMediumFamily => 'Inter';
+  TextStyle get displayMedium => TextStyle(
+        fontFamily: 'Inter',
+        color: theme.primaryText,
+        fontWeight: FontWeight.normal,
+        fontSize: 45.0,
+      );
+  String get displaySmallFamily => 'Inter';
+  TextStyle get displaySmall => TextStyle(
         fontFamily: 'Inter',
         color: theme.primaryText,
         fontWeight: FontWeight.w600,
         fontSize: 24.0,
       );
-  String get title2Family => 'Inter';
-  TextStyle get title2 => TextStyle(
+  String get headlineLargeFamily => 'Inter';
+  TextStyle get headlineLarge => TextStyle(
+        fontFamily: 'Inter',
+        color: theme.primaryText,
+        fontWeight: FontWeight.normal,
+        fontSize: 32.0,
+      );
+  String get headlineMediumFamily => 'Inter';
+  TextStyle get headlineMedium => TextStyle(
         fontFamily: 'Inter',
         color: theme.secondaryText,
         fontWeight: FontWeight.w600,
         fontSize: 22.0,
       );
-  String get title3Family => 'Inter';
-  TextStyle get title3 => TextStyle(
+  String get headlineSmallFamily => 'Inter';
+  TextStyle get headlineSmall => TextStyle(
         fontFamily: 'Inter',
         color: theme.primaryText,
         fontWeight: FontWeight.w600,
         fontSize: 20.0,
       );
-  String get subtitle1Family => 'Inter';
-  TextStyle get subtitle1 => TextStyle(
+  String get titleLargeFamily => 'Inter';
+  TextStyle get titleLarge => TextStyle(
+        fontFamily: 'Inter',
+        color: theme.primaryText,
+        fontWeight: FontWeight.w500,
+        fontSize: 22.0,
+      );
+  String get titleMediumFamily => 'Inter';
+  TextStyle get titleMedium => TextStyle(
         fontFamily: 'Inter',
         color: theme.primaryText,
         fontWeight: FontWeight.w500,
         fontSize: 18.0,
       );
-  String get subtitle2Family => 'Inter';
-  TextStyle get subtitle2 => TextStyle(
+  String get titleSmallFamily => 'Inter';
+  TextStyle get titleSmall => TextStyle(
         fontFamily: 'Inter',
         color: theme.secondaryText,
         fontWeight: FontWeight.w500,
         fontSize: 16.0,
       );
-  String get bodyText1Family => 'Inter';
-  TextStyle get bodyText1 => TextStyle(
+  String get labelLargeFamily => 'Inter';
+  TextStyle get labelLarge => TextStyle(
         fontFamily: 'Inter',
         color: theme.primaryText,
         fontWeight: FontWeight.w500,
         fontSize: 14.0,
       );
-  String get bodyText2Family => 'Inter';
-  TextStyle get bodyText2 => TextStyle(
+  String get labelMediumFamily => 'Inter';
+  TextStyle get labelMedium => TextStyle(
+        fontFamily: 'Inter',
+        color: theme.primaryText,
+        fontWeight: FontWeight.w500,
+        fontSize: 12.0,
+      );
+  String get labelSmallFamily => 'Inter';
+  TextStyle get labelSmall => TextStyle(
+        fontFamily: 'Inter',
+        color: theme.primaryText,
+        fontWeight: FontWeight.w500,
+        fontSize: 11.0,
+      );
+  String get bodyLargeFamily => '';
+  TextStyle get bodyLarge => GoogleFonts.getFont(
+        'Roboto',
+      );
+  String get bodyMediumFamily => 'Inter';
+  TextStyle get bodyMedium => TextStyle(
+        fontFamily: 'Inter',
+        color: theme.primaryText,
+        fontWeight: FontWeight.w500,
+        fontSize: 14.0,
+      );
+  String get bodySmallFamily => 'Inter';
+  TextStyle get bodySmall => TextStyle(
         fontFamily: 'Inter',
         color: theme.secondaryText,
         fontWeight: FontWeight.w300,

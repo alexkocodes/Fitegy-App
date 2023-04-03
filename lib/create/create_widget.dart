@@ -1,5 +1,6 @@
 import 'dart:io';
 
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:detectable_text_field/detector/sample_regular_expressions.dart';
 import 'package:detectable_text_field/widgets/detectable_editable_text.dart';
 import 'package:detectable_text_field/widgets/detectable_text_field.dart';
@@ -634,8 +635,28 @@ class _CreateWidgetState extends State<CreateWidget>
                                         decoration: BoxDecoration(
                                           shape: BoxShape.circle,
                                         ),
-                                        child: Image.network(
-                                          currentUserPhoto,
+                                        child: FutureBuilder(
+                                          future: currentUserReference!
+                                              .get()
+                                              .then((value) => value.data()
+                                                  as Map<String, dynamic>),
+                                          builder: (context, snapshot) {
+                                            if (!snapshot.hasData) {
+                                              return Center(
+                                                child:
+                                                    CircularProgressIndicator(),
+                                              );
+                                            }
+                                            final data = snapshot.data
+                                                as Map<String, dynamic>;
+                                            return CachedNetworkImage(
+                                              imageUrl: valueOrDefault<String>(
+                                                data['photo_url'],
+                                                'https://images.unsplash.com/photo-1574158622682-e40e69881006?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2333&q=80',
+                                              ),
+                                              fit: BoxFit.fitWidth,
+                                            );
+                                          },
                                         ),
                                       ),
                                       Padding(

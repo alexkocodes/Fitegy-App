@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:fitegy/edit_profiles/edit_profiles_widget.dart';
 import 'package:fitegy/in_post_challenge/in_post_challenge.dart';
 import 'package:fitegy/post_page/post_page.dart';
 import 'package:fitegy/profile/profile_widget.dart';
@@ -207,6 +208,15 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
                 authorRef: params.getParam(
                     'userRef', ParamType.DocumentReference, false, ['users']),
                 name: params.getParam('name', ParamType.String),
+              ),
+            ),
+            FFRoute(
+              name: 'EditProfile',
+              path: 'editProfile',
+              builder: (context, params) => EditProfilesWidget(
+                name: params.getParam("name", ParamType.String),
+                bio: params.getParam("bio", ParamType.String),
+                emoji: params.getParam("emoji", ParamType.String),
               ),
             ),
           ].map((r) => r.toRoute(appStateNotifier)).toList(),
