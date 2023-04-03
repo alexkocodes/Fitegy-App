@@ -31,10 +31,14 @@ class _EditProfilesWidgetState extends State<EditProfilesWidget> {
     super.initState();
     _model = createModel(context, () => EditProfilesModel());
 
-    _model.yourNameController ??= TextEditingController();
-    _model.yourEmailController ??= TextEditingController();
-    _model.yourBioController ??= TextEditingController();
-    _model.yourEmojiController ??= TextEditingController();
+    _model.yourNameController ??=
+        TextEditingController(text: currentUserDisplayName);
+    _model.yourEmailController ??=
+        TextEditingController(text: currentUserEmail);
+    _model.yourBioController ??= TextEditingController(
+        text: valueOrDefault(currentUserDocument?.bio, ''));
+    _model.yourEmojiController ??= TextEditingController(
+        text: valueOrDefault(currentUserDocument?.emoji, ''));
   }
 
   @override
@@ -239,62 +243,70 @@ class _EditProfilesWidgetState extends State<EditProfilesWidget> {
             ),
             Padding(
               padding: EdgeInsetsDirectional.fromSTEB(20.0, 0.0, 20.0, 16.0),
-              child: TextFormField(
-                controller: _model.yourNameController,
-                obscureText: false,
-                decoration: InputDecoration(
-                  labelText: 'Your Name',
-                  labelStyle: FlutterFlowTheme.of(context).bodySmall.override(
-                        fontFamily:
-                            FlutterFlowTheme.of(context).bodySmallFamily,
-                        color: FlutterFlowTheme.of(context).accent3,
-                        useGoogleFonts: GoogleFonts.asMap().containsKey(
-                            FlutterFlowTheme.of(context).bodySmallFamily),
+              child: AuthUserStreamWidget(
+                builder: (context) => TextFormField(
+                  controller: _model.yourNameController,
+                  obscureText: false,
+                  decoration: InputDecoration(
+                    labelText: 'Your Name',
+                    labelStyle: FlutterFlowTheme.of(context).bodySmall.override(
+                          fontFamily:
+                              FlutterFlowTheme.of(context).bodySmallFamily,
+                          color: FlutterFlowTheme.of(context).accent3,
+                          useGoogleFonts: GoogleFonts.asMap().containsKey(
+                              FlutterFlowTheme.of(context).bodySmallFamily),
+                        ),
+                    hintStyle: FlutterFlowTheme.of(context).bodySmall.override(
+                          fontFamily:
+                              FlutterFlowTheme.of(context).bodySmallFamily,
+                          fontWeight: FontWeight.normal,
+                          useGoogleFonts: GoogleFonts.asMap().containsKey(
+                              FlutterFlowTheme.of(context).bodySmallFamily),
+                        ),
+                    enabledBorder: OutlineInputBorder(
+                      borderSide: BorderSide(
+                        color: Color(0x9295A1AC),
+                        width: 1.0,
                       ),
-                  hintStyle: FlutterFlowTheme.of(context).bodySmall.override(
-                        fontFamily:
-                            FlutterFlowTheme.of(context).bodySmallFamily,
-                        fontWeight: FontWeight.normal,
-                        useGoogleFonts: GoogleFonts.asMap().containsKey(
-                            FlutterFlowTheme.of(context).bodySmallFamily),
+                      borderRadius: BorderRadius.circular(15.0),
+                    ),
+                    focusedBorder: OutlineInputBorder(
+                      borderSide: BorderSide(
+                        color: Color(0x00000000),
+                        width: 1.0,
                       ),
-                  enabledBorder: OutlineInputBorder(
-                    borderSide: BorderSide(
-                      color: Color(0x9295A1AC),
-                      width: 1.0,
+                      borderRadius: BorderRadius.circular(15.0),
                     ),
-                    borderRadius: BorderRadius.circular(15.0),
-                  ),
-                  focusedBorder: OutlineInputBorder(
-                    borderSide: BorderSide(
-                      color: Color(0x00000000),
-                      width: 1.0,
+                    errorBorder: OutlineInputBorder(
+                      borderSide: BorderSide(
+                        color: Color(0x00000000),
+                        width: 1.0,
+                      ),
+                      borderRadius: BorderRadius.circular(15.0),
                     ),
-                    borderRadius: BorderRadius.circular(15.0),
-                  ),
-                  errorBorder: OutlineInputBorder(
-                    borderSide: BorderSide(
-                      color: Color(0x00000000),
-                      width: 1.0,
+                    focusedErrorBorder: OutlineInputBorder(
+                      borderSide: BorderSide(
+                        color: Color(0x00000000),
+                        width: 1.0,
+                      ),
+                      borderRadius: BorderRadius.circular(15.0),
                     ),
-                    borderRadius: BorderRadius.circular(15.0),
+                    filled: true,
+                    fillColor: FlutterFlowTheme.of(context).secondaryBackground,
+                    contentPadding:
+                        EdgeInsetsDirectional.fromSTEB(20.0, 24.0, 0.0, 24.0),
                   ),
-                  focusedErrorBorder: OutlineInputBorder(
-                    borderSide: BorderSide(
-                      color: Color(0x00000000),
-                      width: 1.0,
-                    ),
-                    borderRadius: BorderRadius.circular(15.0),
-                  ),
-                  filled: true,
-                  fillColor: FlutterFlowTheme.of(context).secondaryBackground,
-                  contentPadding:
-                      EdgeInsetsDirectional.fromSTEB(20.0, 24.0, 0.0, 24.0),
+                  style: FlutterFlowTheme.of(context).bodyMedium.override(
+                        fontFamily:
+                            FlutterFlowTheme.of(context).bodyMediumFamily,
+                        color: FlutterFlowTheme.of(context).secondaryText,
+                        useGoogleFonts: GoogleFonts.asMap().containsKey(
+                            FlutterFlowTheme.of(context).bodyMediumFamily),
+                      ),
+                  maxLines: null,
+                  validator:
+                      _model.yourNameControllerValidator.asValidator(context),
                 ),
-                style: FlutterFlowTheme.of(context).bodyMedium,
-                maxLines: null,
-                validator:
-                    _model.yourNameControllerValidator.asValidator(context),
               ),
             ),
             Padding(
@@ -351,7 +363,12 @@ class _EditProfilesWidgetState extends State<EditProfilesWidget> {
                   contentPadding:
                       EdgeInsetsDirectional.fromSTEB(20.0, 24.0, 0.0, 24.0),
                 ),
-                style: FlutterFlowTheme.of(context).bodyMedium,
+                style: FlutterFlowTheme.of(context).bodyMedium.override(
+                      fontFamily: FlutterFlowTheme.of(context).bodyMediumFamily,
+                      color: FlutterFlowTheme.of(context).secondaryText,
+                      useGoogleFonts: GoogleFonts.asMap().containsKey(
+                          FlutterFlowTheme.of(context).bodyMediumFamily),
+                    ),
                 maxLines: null,
                 validator:
                     _model.yourEmailControllerValidator.asValidator(context),
@@ -359,118 +376,134 @@ class _EditProfilesWidgetState extends State<EditProfilesWidget> {
             ),
             Padding(
               padding: EdgeInsetsDirectional.fromSTEB(20.0, 0.0, 20.0, 16.0),
-              child: TextFormField(
-                controller: _model.yourBioController,
-                obscureText: false,
-                decoration: InputDecoration(
-                  labelText: 'Bio',
-                  labelStyle: FlutterFlowTheme.of(context).bodySmall.override(
-                        fontFamily:
-                            FlutterFlowTheme.of(context).bodySmallFamily,
-                        color: FlutterFlowTheme.of(context).accent3,
-                        useGoogleFonts: GoogleFonts.asMap().containsKey(
-                            FlutterFlowTheme.of(context).bodySmallFamily),
+              child: AuthUserStreamWidget(
+                builder: (context) => TextFormField(
+                  controller: _model.yourBioController,
+                  obscureText: false,
+                  decoration: InputDecoration(
+                    labelText: 'Bio',
+                    labelStyle: FlutterFlowTheme.of(context).bodySmall.override(
+                          fontFamily:
+                              FlutterFlowTheme.of(context).bodySmallFamily,
+                          color: FlutterFlowTheme.of(context).accent3,
+                          useGoogleFonts: GoogleFonts.asMap().containsKey(
+                              FlutterFlowTheme.of(context).bodySmallFamily),
+                        ),
+                    hintStyle: FlutterFlowTheme.of(context).bodySmall.override(
+                          fontFamily:
+                              FlutterFlowTheme.of(context).bodySmallFamily,
+                          color: FlutterFlowTheme.of(context).accent3,
+                          fontWeight: FontWeight.normal,
+                          useGoogleFonts: GoogleFonts.asMap().containsKey(
+                              FlutterFlowTheme.of(context).bodySmallFamily),
+                        ),
+                    enabledBorder: OutlineInputBorder(
+                      borderSide: BorderSide(
+                        color: Color(0x9295A1AC),
+                        width: 1.0,
                       ),
-                  hintStyle: FlutterFlowTheme.of(context).bodySmall.override(
-                        fontFamily:
-                            FlutterFlowTheme.of(context).bodySmallFamily,
-                        color: FlutterFlowTheme.of(context).accent3,
-                        fontWeight: FontWeight.normal,
-                        useGoogleFonts: GoogleFonts.asMap().containsKey(
-                            FlutterFlowTheme.of(context).bodySmallFamily),
+                      borderRadius: BorderRadius.circular(15.0),
+                    ),
+                    focusedBorder: OutlineInputBorder(
+                      borderSide: BorderSide(
+                        color: Color(0x00000000),
+                        width: 1.0,
                       ),
-                  enabledBorder: OutlineInputBorder(
-                    borderSide: BorderSide(
-                      color: Color(0x9295A1AC),
-                      width: 1.0,
+                      borderRadius: BorderRadius.circular(15.0),
                     ),
-                    borderRadius: BorderRadius.circular(15.0),
-                  ),
-                  focusedBorder: OutlineInputBorder(
-                    borderSide: BorderSide(
-                      color: Color(0x00000000),
-                      width: 1.0,
+                    errorBorder: OutlineInputBorder(
+                      borderSide: BorderSide(
+                        color: Color(0x00000000),
+                        width: 1.0,
+                      ),
+                      borderRadius: BorderRadius.circular(15.0),
                     ),
-                    borderRadius: BorderRadius.circular(15.0),
-                  ),
-                  errorBorder: OutlineInputBorder(
-                    borderSide: BorderSide(
-                      color: Color(0x00000000),
-                      width: 1.0,
+                    focusedErrorBorder: OutlineInputBorder(
+                      borderSide: BorderSide(
+                        color: Color(0x00000000),
+                        width: 1.0,
+                      ),
+                      borderRadius: BorderRadius.circular(15.0),
                     ),
-                    borderRadius: BorderRadius.circular(15.0),
+                    filled: true,
+                    fillColor: FlutterFlowTheme.of(context).secondaryBackground,
+                    contentPadding:
+                        EdgeInsetsDirectional.fromSTEB(20.0, 24.0, 0.0, 24.0),
                   ),
-                  focusedErrorBorder: OutlineInputBorder(
-                    borderSide: BorderSide(
-                      color: Color(0x00000000),
-                      width: 1.0,
-                    ),
-                    borderRadius: BorderRadius.circular(15.0),
-                  ),
-                  filled: true,
-                  fillColor: FlutterFlowTheme.of(context).secondaryBackground,
-                  contentPadding:
-                      EdgeInsetsDirectional.fromSTEB(20.0, 24.0, 0.0, 24.0),
+                  style: FlutterFlowTheme.of(context).bodyMedium.override(
+                        fontFamily:
+                            FlutterFlowTheme.of(context).bodyMediumFamily,
+                        color: FlutterFlowTheme.of(context).secondaryText,
+                        useGoogleFonts: GoogleFonts.asMap().containsKey(
+                            FlutterFlowTheme.of(context).bodyMediumFamily),
+                      ),
+                  textAlign: TextAlign.start,
+                  maxLines: 3,
+                  validator:
+                      _model.yourBioControllerValidator.asValidator(context),
                 ),
-                style: FlutterFlowTheme.of(context).bodyMedium,
-                textAlign: TextAlign.start,
-                maxLines: 3,
-                validator:
-                    _model.yourBioControllerValidator.asValidator(context),
               ),
             ),
             Padding(
               padding: EdgeInsetsDirectional.fromSTEB(20.0, 0.0, 20.0, 16.0),
-              child: TextFormField(
-                controller: _model.yourEmojiController,
-                obscureText: false,
-                decoration: InputDecoration(
-                  labelText: 'Your current emoji ',
-                  labelStyle: FlutterFlowTheme.of(context).bodySmall.override(
-                        fontFamily:
-                            FlutterFlowTheme.of(context).bodySmallFamily,
-                        color: FlutterFlowTheme.of(context).accent3,
-                        useGoogleFonts: GoogleFonts.asMap().containsKey(
-                            FlutterFlowTheme.of(context).bodySmallFamily),
+              child: AuthUserStreamWidget(
+                builder: (context) => TextFormField(
+                  controller: _model.yourEmojiController,
+                  obscureText: false,
+                  decoration: InputDecoration(
+                    labelText: 'Your current emoji ',
+                    labelStyle: FlutterFlowTheme.of(context).bodySmall.override(
+                          fontFamily:
+                              FlutterFlowTheme.of(context).bodySmallFamily,
+                          color: FlutterFlowTheme.of(context).accent3,
+                          useGoogleFonts: GoogleFonts.asMap().containsKey(
+                              FlutterFlowTheme.of(context).bodySmallFamily),
+                        ),
+                    hintStyle: FlutterFlowTheme.of(context).bodySmall,
+                    enabledBorder: OutlineInputBorder(
+                      borderSide: BorderSide(
+                        color: Color(0x9295A1AC),
+                        width: 1.0,
                       ),
-                  hintStyle: FlutterFlowTheme.of(context).bodySmall,
-                  enabledBorder: OutlineInputBorder(
-                    borderSide: BorderSide(
-                      color: Color(0x9295A1AC),
-                      width: 1.0,
+                      borderRadius: BorderRadius.circular(15.0),
                     ),
-                    borderRadius: BorderRadius.circular(15.0),
-                  ),
-                  focusedBorder: OutlineInputBorder(
-                    borderSide: BorderSide(
-                      color: Color(0x00000000),
-                      width: 1.0,
+                    focusedBorder: OutlineInputBorder(
+                      borderSide: BorderSide(
+                        color: Color(0x00000000),
+                        width: 1.0,
+                      ),
+                      borderRadius: BorderRadius.circular(15.0),
                     ),
-                    borderRadius: BorderRadius.circular(15.0),
-                  ),
-                  errorBorder: OutlineInputBorder(
-                    borderSide: BorderSide(
-                      color: Color(0x00000000),
-                      width: 1.0,
+                    errorBorder: OutlineInputBorder(
+                      borderSide: BorderSide(
+                        color: Color(0x00000000),
+                        width: 1.0,
+                      ),
+                      borderRadius: BorderRadius.circular(15.0),
                     ),
-                    borderRadius: BorderRadius.circular(15.0),
-                  ),
-                  focusedErrorBorder: OutlineInputBorder(
-                    borderSide: BorderSide(
-                      color: Color(0x00000000),
-                      width: 1.0,
+                    focusedErrorBorder: OutlineInputBorder(
+                      borderSide: BorderSide(
+                        color: Color(0x00000000),
+                        width: 1.0,
+                      ),
+                      borderRadius: BorderRadius.circular(15.0),
                     ),
-                    borderRadius: BorderRadius.circular(15.0),
+                    filled: true,
+                    fillColor: FlutterFlowTheme.of(context).secondaryBackground,
+                    contentPadding:
+                        EdgeInsetsDirectional.fromSTEB(20.0, 24.0, 0.0, 24.0),
                   ),
-                  filled: true,
-                  fillColor: FlutterFlowTheme.of(context).secondaryBackground,
-                  contentPadding:
-                      EdgeInsetsDirectional.fromSTEB(20.0, 24.0, 0.0, 24.0),
+                  style: FlutterFlowTheme.of(context).bodyMedium.override(
+                        fontFamily:
+                            FlutterFlowTheme.of(context).bodyMediumFamily,
+                        color: FlutterFlowTheme.of(context).secondaryText,
+                        useGoogleFonts: GoogleFonts.asMap().containsKey(
+                            FlutterFlowTheme.of(context).bodyMediumFamily),
+                      ),
+                  maxLines: null,
+                  validator:
+                      _model.yourEmojiControllerValidator.asValidator(context),
                 ),
-                style: FlutterFlowTheme.of(context).bodyMedium,
-                maxLines: null,
-                validator:
-                    _model.yourEmojiControllerValidator.asValidator(context),
               ),
             ),
             Padding(
