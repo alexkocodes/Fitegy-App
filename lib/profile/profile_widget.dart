@@ -22,6 +22,7 @@ import 'package:provider/provider.dart';
 import 'profile_model.dart';
 export 'profile_model.dart';
 import 'package:animated_loading_border/animated_loading_border.dart';
+import 'package:shimmer/shimmer.dart';
 
 class ProfileWidget extends StatefulWidget {
   const ProfileWidget({
@@ -78,18 +79,18 @@ class _ProfileWidgetState extends State<ProfileWidget> {
     final userData = await currentUserReference!.get();
     final authorData = await authorRef.get();
     final authorUsername = authorData.get('username');
+    final displayName = authorData.get('display_name');
     // make this into a map
     final data = {
       'userData': userData.data(),
       'authorUsername': authorUsername,
+      'displayName': displayName,
     };
     return data;
   }
 
   @override
   Widget build(BuildContext context) {
-    final db = FirebaseFirestore.instance;
-
     return Scaffold(
       key: scaffoldKey,
       backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
@@ -102,21 +103,6 @@ class _ProfileWidgetState extends State<ProfileWidget> {
             Stack(
               alignment: AlignmentDirectional(0, -1),
               children: [
-                // a container with gradient background
-                // Container(
-                //   width: double.infinity,
-                //   height: 300,
-                //   decoration: BoxDecoration(
-                //     gradient: LinearGradient(
-                //       colors: [
-                //         FlutterFlowTheme.of(context).primaryColor,
-                //         FlutterFlowTheme.of(context).secondaryColor,
-                //       ],
-                //       begin: AlignmentDirectional(0, 0),
-                //       end: AlignmentDirectional(0, 1),
-                //     ),
-                //   ),
-                // ),
                 Image.network(
                   'https://images.unsplash.com/photo-1592194996308-7b43878e84a6?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=987&q=80',
                   width: MediaQuery.of(context).size.width,
@@ -255,22 +241,68 @@ class _ProfileWidgetState extends State<ProfileWidget> {
                               mainAxisSize: MainAxisSize.min,
                               children: [
                                 AuthUserStreamWidget(
-                                  builder: (context) => Text(
-                                    widget.name!,
-                                    style: FlutterFlowTheme.of(context)
-                                        .title1
-                                        .override(
-                                          fontFamily:
-                                              FlutterFlowTheme.of(context)
-                                                  .title1Family,
-                                          fontSize: 18,
-                                          useGoogleFonts: GoogleFonts.asMap()
-                                              .containsKey(
+                                  builder: (context) => FutureBuilder(
+                                    future: getData(widget
+                                        .authorRef!), // get the author data
+                                    builder: (context, snapshot) {
+                                      if (!snapshot.hasData) {
+                                        return Shimmer.fromColors(
+                                          baseColor: Colors.grey[300]!,
+                                          highlightColor: Colors.white,
+                                          child: Container(
+                                            decoration: BoxDecoration(
+                                              color: Color.fromARGB(
+                                                  115, 238, 238, 238),
+                                              borderRadius:
+                                                  BorderRadius.circular(8),
+                                            ),
+                                            child: Text(
+                                              "",
+                                              style:
                                                   FlutterFlowTheme.of(context)
-                                                      .title1Family),
-                                          color: Colors.black,
-                                          fontWeight: FontWeight.bold,
-                                        ),
+                                                      .title1
+                                                      .override(
+                                                        fontFamily:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .title1Family,
+                                                        fontSize: 23,
+                                                        useGoogleFonts: GoogleFonts
+                                                                .asMap()
+                                                            .containsKey(
+                                                                FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .title1Family),
+                                                        color: Colors.black,
+                                                        fontWeight:
+                                                            FontWeight.bold,
+                                                      ),
+                                            ),
+                                          ),
+                                        );
+                                      }
+                                      final data = snapshot.data as Map;
+                                      final name = data['displayName'];
+                                      return Text(
+                                        name!,
+                                        style: FlutterFlowTheme.of(context)
+                                            .title1
+                                            .override(
+                                              fontFamily:
+                                                  FlutterFlowTheme.of(context)
+                                                      .title1Family,
+                                              fontSize: 23,
+                                              useGoogleFonts:
+                                                  GoogleFonts.asMap()
+                                                      .containsKey(
+                                                          FlutterFlowTheme.of(
+                                                                  context)
+                                                              .title1Family),
+                                              color: Colors.black,
+                                              fontWeight: FontWeight.bold,
+                                            ),
+                                      );
+                                    },
                                   ),
                                 ),
                                 // if we are on our own profile, show the edit button
@@ -370,7 +402,22 @@ class _ProfileWidgetState extends State<ProfileWidget> {
                                             return Expanded(
                                               child: Center(
                                                 child:
-                                                    CircularProgressIndicator(),
+                                                    // CircularProgressIndicator(),
+                                                    Shimmer.fromColors(
+                                                  baseColor: Colors.grey[300]!,
+                                                  highlightColor: Colors.white,
+                                                  child: Container(
+                                                    width: 280,
+                                                    height: 45,
+                                                    decoration: BoxDecoration(
+                                                      color: Color.fromARGB(
+                                                          115, 238, 238, 238),
+                                                      borderRadius:
+                                                          BorderRadius.circular(
+                                                              8),
+                                                    ),
+                                                  ),
+                                                ),
                                               ),
                                             );
                                           } else {
@@ -438,30 +485,8 @@ class _ProfileWidgetState extends State<ProfileWidget> {
                                                   docs.docs.forEach((doc) {
                                                     doc.reference.delete();
                                                   });
-
-                                                  // final userFriendsUpdateData =
-                                                  //     createFriendsRecordData(
-                                                  //   uid: widget.authorRef,
-                                                  //   displayName: widget.name,
-                                                  // );
-
-                                                  // await FriendsRecord.createDoc(
-                                                  //         currentUserReference!)
-                                                  //     .set(
-                                                  //         userFriendsUpdateData);
-
-                                                  // final userFriendsUpdateData2 =
-                                                  //     createFriendsRecordData(
-                                                  //   uid: currentUserReference,
-                                                  //   displayName: widget.name,
-                                                  // );
-
-                                                  // await FriendsRecord.createDoc(
-                                                  //         widget.authorRef!)
-                                                  //     .set(
-                                                  //         userFriendsUpdateData2);
                                                 },
-                                                text: 'You are friends',
+                                                text: 'You are friends!',
                                                 options: FFButtonOptions(
                                                   width: 280,
                                                   height: 45,
@@ -684,8 +709,17 @@ class _ProfileWidgetState extends State<ProfileWidget> {
                                   ),
                                 );
                               } else {
-                                return Image.network(
-                                    "https://images.unsplash.com/photo-1574158622682-e40e69881006?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2333&q=80");
+                                return Shimmer.fromColors(
+                                  baseColor: Colors.grey[300]!,
+                                  highlightColor: Colors.white,
+                                  child: Container(
+                                    // height: 35,
+                                    decoration: BoxDecoration(
+                                      color: Color.fromARGB(115, 238, 238, 238),
+                                      borderRadius: BorderRadius.circular(8),
+                                    ),
+                                  ),
+                                );
                               }
                             },
                           ),
