@@ -19,7 +19,7 @@ import 'package:provider/provider.dart';
 class MyAccountModel extends FlutterFlowModel {
   ///  State fields for stateful widgets in this page.
 
-  bool isMediaUploading = false;
+  bool isDataUploading = false;
   FFUploadedFile uploadedLocalFile =
       FFUploadedFile(bytes: Uint8List.fromList([]));
   String uploadedFileUrl = '';

@@ -44,7 +44,7 @@ class _ProfileWidgetState extends State<ProfileWidget> {
   List<StreamSubscription?> _streamSubscriptions = [];
 
   final scaffoldKey = GlobalKey<ScaffoldState>();
-  final _unfocusNode = FocusNode();
+  // final _unfocusNode = FocusNode();
 
   @override
   void initState() {
@@ -56,7 +56,7 @@ class _ProfileWidgetState extends State<ProfileWidget> {
   void dispose() {
     _model.dispose();
 
-    _unfocusNode.dispose();
+    // _unfocusNode.dispose();
     super.dispose();
   }
 
@@ -95,11 +95,10 @@ class _ProfileWidgetState extends State<ProfileWidget> {
       key: scaffoldKey,
       backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
       body: GestureDetector(
-        onTap: () => FocusScope.of(context).requestFocus(_unfocusNode),
+        // onTap: () => FocusScope.of(context).requestFocus(_unfocusNode),
         child: Column(
           mainAxisSize: MainAxisSize.max,
           children: [
-            // Generated code for this Stack Widget...
             Stack(
               alignment: AlignmentDirectional(0, -1),
               children: [
@@ -130,110 +129,111 @@ class _ProfileWidgetState extends State<ProfileWidget> {
                         mainAxisSize: MainAxisSize.max,
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          (currentUserReference == widget.authorRef)
-                              ? Padding(
-                                  padding: EdgeInsetsDirectional.fromSTEB(
-                                      0, 70, 0, 0),
-                                  child: FFButtonWidget(
-                                    onPressed: () async {
-                                      final selectedMedia =
-                                          await selectMediaWithSourceBottomSheet(
-                                        context: context,
-                                        allowPhoto: true,
-                                        pickerFontFamily: 'Inter',
-                                      );
-                                      if (selectedMedia != null &&
-                                          selectedMedia.every((m) =>
-                                              validateFileFormat(
-                                                  m.storagePath, context))) {
-                                        setState(() =>
-                                            _model.isDataUploading = true);
-                                        var selectedUploadedFiles =
-                                            <FFUploadedFile>[];
-                                        var downloadUrls = <String>[];
-                                        try {
-                                          selectedUploadedFiles = selectedMedia
-                                              .map((m) => FFUploadedFile(
-                                                    name: m.storagePath
-                                                        .split('/')
-                                                        .last,
-                                                    bytes: m.bytes,
-                                                    height:
-                                                        m.dimensions?.height,
-                                                    width: m.dimensions?.width,
-                                                  ))
-                                              .toList();
-                                          downloadUrls = (await Future.wait(
-                                            selectedMedia.map(
-                                              (m) async => await uploadData(
-                                                  m.storagePath, m.bytes),
-                                            ),
-                                          ))
-                                              .where((u) => u != null)
-                                              .map((u) => u!)
-                                              .toList();
-                                        } finally {
-                                          _model.isDataUploading = false;
-                                        }
-                                        if (selectedUploadedFiles.length ==
-                                                selectedMedia.length &&
-                                            downloadUrls.length ==
-                                                selectedMedia.length) {
-                                          setState(() {
-                                            _model.uploadedLocalFile =
-                                                selectedUploadedFiles.first;
-                                            _model.uploadedFileUrl =
-                                                downloadUrls.first;
-                                          });
-                                        } else {
-                                          setState(() {});
-                                          return;
-                                        }
-                                      }
-                                      final usersUpdateData =
-                                          createUsersRecordData(
-                                        photoUrl: _model.uploadedFileUrl,
-                                      );
-                                      await currentUserReference!
-                                          .update(usersUpdateData);
-                                    },
-                                    text: 'Change Photo',
-                                    options: FFButtonOptions(
-                                      width: 100,
-                                      height: 30,
-                                      padding: EdgeInsetsDirectional.fromSTEB(
-                                          0, 0, 0, 0),
-                                      iconPadding:
-                                          EdgeInsetsDirectional.fromSTEB(
-                                              0, 0, 0, 0),
-                                      color: FlutterFlowTheme.of(context)
-                                          .primaryBackground,
-                                      textStyle: FlutterFlowTheme.of(context)
-                                          .bodyText1
-                                          .override(
-                                            fontFamily:
-                                                FlutterFlowTheme.of(context)
-                                                    .bodyText1Family,
-                                            color: FlutterFlowTheme.of(context)
-                                                .secondaryText,
-                                            fontSize: 10,
-                                            fontWeight: FontWeight.w300,
-                                            useGoogleFonts: GoogleFonts.asMap()
-                                                .containsKey(
-                                                    FlutterFlowTheme.of(context)
-                                                        .bodyText1Family),
-                                          ),
-                                      elevation: 1,
-                                      borderSide: BorderSide(
-                                        color: Colors.transparent,
-                                        width: 1,
-                                      ),
-                                    ),
-                                  ),
-                                )
-                              : Container(
-                                  height: 70,
-                                ),
+                          // (currentUserReference == widget.authorRef)
+                          //     ? Padding(
+                          //         padding: EdgeInsetsDirectional.fromSTEB(
+                          //             0, 70, 0, 0),
+                          //         child: FFButtonWidget(
+                          //           onPressed: () async {
+                          //             final selectedMedia =
+                          //                 await selectMediaWithSourceBottomSheet(
+                          //               context: context,
+                          //               allowPhoto: true,
+                          //               pickerFontFamily: 'Inter',
+                          //             );
+                          //             if (selectedMedia != null &&
+                          //                 selectedMedia.every((m) =>
+                          //                     validateFileFormat(
+                          //                         m.storagePath, context))) {
+                          //               setState(() =>
+                          //                   _model.isDataUploading = true);
+                          //               var selectedUploadedFiles =
+                          //                   <FFUploadedFile>[];
+                          //               var downloadUrls = <String>[];
+                          //               try {
+                          //                 selectedUploadedFiles = selectedMedia
+                          //                     .map((m) => FFUploadedFile(
+                          //                           name: m.storagePath
+                          //                               .split('/')
+                          //                               .last,
+                          //                           bytes: m.bytes,
+                          //                           height:
+                          //                               m.dimensions?.height,
+                          //                           width: m.dimensions?.width,
+                          //                         ))
+                          //                     .toList();
+                          //                 downloadUrls = (await Future.wait(
+                          //                   selectedMedia.map(
+                          //                     (m) async => await uploadData(
+                          //                         m.storagePath, m.bytes),
+                          //                   ),
+                          //                 ))
+                          //                     .where((u) => u != null)
+                          //                     .map((u) => u!)
+                          //                     .toList();
+                          //               } finally {
+                          //                 _model.isDataUploading = false;
+                          //               }
+                          //               if (selectedUploadedFiles.length ==
+                          //                       selectedMedia.length &&
+                          //                   downloadUrls.length ==
+                          //                       selectedMedia.length) {
+                          //                 setState(() {
+                          //                   _model.uploadedLocalFile =
+                          //                       selectedUploadedFiles.first;
+                          //                   _model.uploadedFileUrl =
+                          //                       downloadUrls.first;
+                          //                 });
+                          //               } else {
+                          //                 setState(() {});
+                          //                 return;
+                          //               }
+                          //             }
+                          //             final usersUpdateData =
+                          //                 createUsersRecordData(
+                          //               photoUrl: _model.uploadedFileUrl,
+                          //             );
+                          //             await currentUserReference!
+                          //                 .update(usersUpdateData);
+                          //           },
+                          //           text: 'Change Photo',
+                          //           options: FFButtonOptions(
+                          //             width: 100,
+                          //             height: 30,
+                          //             padding: EdgeInsetsDirectional.fromSTEB(
+                          //                 0, 0, 0, 0),
+                          //             iconPadding:
+                          //                 EdgeInsetsDirectional.fromSTEB(
+                          //                     0, 0, 0, 0),
+                          //             color: FlutterFlowTheme.of(context)
+                          //                 .primaryBackground,
+                          //             textStyle: FlutterFlowTheme.of(context)
+                          //                 .bodyText1
+                          //                 .override(
+                          //                   fontFamily:
+                          //                       FlutterFlowTheme.of(context)
+                          //                           .bodyText1Family,
+                          //                   color: FlutterFlowTheme.of(context)
+                          //                       .secondaryText,
+                          //                   fontSize: 10,
+                          //                   fontWeight: FontWeight.w300,
+                          //                   useGoogleFonts: GoogleFonts.asMap()
+                          //                       .containsKey(
+                          //                           FlutterFlowTheme.of(context)
+                          //                               .bodyText1Family),
+                          //                 ),
+                          //             elevation: 1,
+                          //             borderSide: BorderSide(
+                          //               color: Colors.transparent,
+                          //               width: 1,
+                          //             ),
+                          //           ),
+                          //         ),
+                          //       )
+                          // :
+                          Container(
+                            height: 70,
+                          ),
                           Padding(
                             padding:
                                 EdgeInsetsDirectional.fromSTEB(0, 10, 0, 0),
@@ -291,7 +291,7 @@ class _ProfileWidgetState extends State<ProfileWidget> {
                                               fontFamily:
                                                   FlutterFlowTheme.of(context)
                                                       .title1Family,
-                                              fontSize: 23,
+                                              fontSize: 20,
                                               useGoogleFonts:
                                                   GoogleFonts.asMap()
                                                       .containsKey(
@@ -305,28 +305,6 @@ class _ProfileWidgetState extends State<ProfileWidget> {
                                     },
                                   ),
                                 ),
-                                // if we are on our own profile, show the edit button
-                                if (currentUserReference == widget.authorRef)
-                                  FlutterFlowIconButton(
-                                    borderColor: Colors.transparent,
-                                    borderRadius: 30,
-                                    borderWidth: 1,
-                                    buttonSize: 40,
-                                    icon: Icon(
-                                      Icons.mode_edit,
-                                      color: FlutterFlowTheme.of(context)
-                                          .lineColor,
-                                      size: 20,
-                                    ),
-                                    onPressed: () async {
-                                      // final usersUpdateData =
-                                      //     createUsersRecordData(
-                                      //   displayName: '',
-                                      // );
-                                      // await currentUserReference!
-                                      //     .update(usersUpdateData);
-                                    },
-                                  ),
                               ],
                             ),
                           ),
@@ -334,13 +312,8 @@ class _ProfileWidgetState extends State<ProfileWidget> {
                             mainAxisSize: MainAxisSize.min,
                             children: [
                               Padding(
-                                padding: EdgeInsetsDirectional.fromSTEB(
-                                    0,
-                                    (widget.authorRef == currentUserReference)
-                                        ? 0
-                                        : 15,
-                                    0,
-                                    0),
+                                padding:
+                                    EdgeInsetsDirectional.fromSTEB(0, 15, 0, 0),
                                 child: AuthUserStreamWidget(
                                   builder: (context) => Text(
                                     valueOrDefault(currentUserDocument?.bio,
@@ -363,27 +336,27 @@ class _ProfileWidgetState extends State<ProfileWidget> {
                                   ),
                                 ),
                               ),
-                              if (currentUserReference == widget.authorRef)
-                                FlutterFlowIconButton(
-                                  borderColor: Colors.transparent,
-                                  borderRadius: 30,
-                                  borderWidth: 1,
-                                  buttonSize: 40,
-                                  icon: Icon(
-                                    Icons.mode_edit,
-                                    color:
-                                        FlutterFlowTheme.of(context).lineColor,
-                                    size: 20,
-                                  ),
-                                  onPressed: () async {
-                                    final usersUpdateData =
-                                        createUsersRecordData(
-                                      bio: '',
-                                    );
-                                    await currentUserReference!
-                                        .update(usersUpdateData);
-                                  },
-                                ),
+                              // if (currentUserReference == widget.authorRef)
+                              //   FlutterFlowIconButton(
+                              //     borderColor: Colors.transparent,
+                              //     borderRadius: 30,
+                              //     borderWidth: 1,
+                              //     buttonSize: 40,
+                              //     icon: Icon(
+                              //       Icons.mode_edit,
+                              //       color:
+                              //           FlutterFlowTheme.of(context).lineColor,
+                              //       size: 20,
+                              //     ),
+                              //     onPressed: () async {
+                              //       final usersUpdateData =
+                              //           createUsersRecordData(
+                              //         bio: '',
+                              //       );
+                              //       await currentUserReference!
+                              //           .update(usersUpdateData);
+                              //     },
+                              //   ),
                             ],
                           ),
                           Padding(
