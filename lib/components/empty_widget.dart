@@ -52,11 +52,11 @@ class _EmptyWidgetState extends State<EmptyWidget> {
           SelectionArea(
               child: Text(
             'Nothing here ',
-            style: FlutterFlowTheme.of(context).bodyText1.override(
+            style: FlutterFlowTheme.of(context).bodyMedium.override(
                   fontFamily: 'Archivo Black',
                   fontSize: 30.0,
                   useGoogleFonts: GoogleFonts.asMap().containsKey(
-                      FlutterFlowTheme.of(context).bodyText1Family),
+                      FlutterFlowTheme.of(context).bodyMediumFamily),
                 ),
           )),
         ],

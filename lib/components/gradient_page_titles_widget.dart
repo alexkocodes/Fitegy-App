@@ -96,13 +96,13 @@ class _GradientPageTitlesWidgetState extends State<GradientPageTitlesWidget> {
                   padding: EdgeInsetsDirectional.fromSTEB(5.0, 0.0, 0.0, 0.0),
                   child: Text(
                     widget.title!,
-                    style: FlutterFlowTheme.of(context).title1.override(
+                    style: FlutterFlowTheme.of(context).displaySmall.override(
                           fontFamily: 'Inter',
                           color: FlutterFlowTheme.of(context).secondaryText,
                           fontSize: 23.0,
                           fontWeight: FontWeight.w600,
                           useGoogleFonts: GoogleFonts.asMap().containsKey(
-                              FlutterFlowTheme.of(context).title1Family),
+                              FlutterFlowTheme.of(context).displaySmallFamily),
                         ),
                   ),
                 ),
@@ -113,17 +113,17 @@ class _GradientPageTitlesWidgetState extends State<GradientPageTitlesWidget> {
                   padding: EdgeInsetsDirectional.fromSTEB(5.0, 0.0, 0.0, 0.0),
                   child: GradientText(
                     widget.subtitle!,
-                    style: FlutterFlowTheme.of(context).bodyText2.override(
+                    style: FlutterFlowTheme.of(context).bodySmall.override(
                           fontFamily: 'Inter',
-                          color: FlutterFlowTheme.of(context).primaryColor,
+                          color: FlutterFlowTheme.of(context).primary,
                           fontSize: 23.0,
                           fontWeight: FontWeight.w600,
                           useGoogleFonts: GoogleFonts.asMap().containsKey(
-                              FlutterFlowTheme.of(context).bodyText2Family),
+                              FlutterFlowTheme.of(context).bodySmallFamily),
                         ),
                     colors: [
                       Color(0xFFDA7DFD),
-                      FlutterFlowTheme.of(context).secondaryColor
+                      FlutterFlowTheme.of(context).secondary
                     ],
                     gradientDirection: GradientDirection.ltr,
                     gradientType: GradientType.linear,

@@ -70,12 +70,15 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                           EdgeInsetsDirectional.fromSTEB(25.0, 0.0, 20.0, 20.0),
                       child: Text(
                         'See what your\nfriends are doing...',
-                        style: FlutterFlowTheme.of(context).title2.override(
+                        style: FlutterFlowTheme.of(context)
+                            .headlineMedium
+                            .override(
                               fontFamily: 'Inter',
-                              color: FlutterFlowTheme.of(context).primaryColor,
+                              color: FlutterFlowTheme.of(context).primary,
                               fontSize: 25.0,
                               useGoogleFonts: GoogleFonts.asMap().containsKey(
-                                  FlutterFlowTheme.of(context).title2Family),
+                                  FlutterFlowTheme.of(context)
+                                      .headlineMediumFamily),
                             ),
                       ),
                     ),

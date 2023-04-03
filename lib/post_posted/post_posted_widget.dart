@@ -163,11 +163,14 @@ class _PostPostedWidgetState extends State<PostPostedWidget>
                     children: [
                       Text(
                         'Posted! 🥳',
-                        style: FlutterFlowTheme.of(context).title2.override(
+                        style: FlutterFlowTheme.of(context)
+                            .headlineMedium
+                            .override(
                               fontFamily: 'Archivo Black',
                               fontSize: 40.0,
                               useGoogleFonts: GoogleFonts.asMap().containsKey(
-                                  FlutterFlowTheme.of(context).title2Family),
+                                  FlutterFlowTheme.of(context)
+                                      .headlineMediumFamily),
                             ),
                       ).animateOnPageLoad(
                           animationsMap['textOnPageLoadAnimation1']!),
@@ -177,7 +180,7 @@ class _PostPostedWidgetState extends State<PostPostedWidget>
                         child: Text(
                           'Your friends love seeing what you do!',
                           style: FlutterFlowTheme.of(context)
-                              .bodyText1
+                              .bodyMedium
                               .override(
                                 fontFamily: 'Archivo Black',
                                 color:
@@ -185,7 +188,7 @@ class _PostPostedWidgetState extends State<PostPostedWidget>
                                 fontSize: 20.0,
                                 useGoogleFonts: GoogleFonts.asMap().containsKey(
                                     FlutterFlowTheme.of(context)
-                                        .bodyText1Family),
+                                        .bodyMediumFamily),
                               ),
                         ).animateOnPageLoad(
                             animationsMap['textOnPageLoadAnimation2']!),

@@ -96,7 +96,7 @@ class _ChallengeDetailsWidgetState extends State<ChallengeDetailsWidget>
               borderWidth: 1.0,
               icon: Icon(
                 Icons.keyboard_arrow_left_outlined,
-                color: FlutterFlowTheme.of(context).primaryColor,
+                color: FlutterFlowTheme.of(context).primary,
                 size: 30.0,
               ),
               onPressed: () async {
@@ -132,15 +132,15 @@ class _ChallengeDetailsWidgetState extends State<ChallengeDetailsWidget>
                           child: Text(
                             'Here are your challenge details. Want a friend to join you? 🤔',
                             style: FlutterFlowTheme.of(context)
-                                .bodyText1
+                                .bodyMedium
                                 .override(
                                   fontFamily: FlutterFlowTheme.of(context)
-                                      .bodyText1Family,
+                                      .bodyMediumFamily,
                                   fontSize: 25.0,
                                   fontWeight: FontWeight.w600,
                                   useGoogleFonts: GoogleFonts.asMap()
                                       .containsKey(FlutterFlowTheme.of(context)
-                                          .bodyText1Family),
+                                          .bodyMediumFamily),
                                 ),
                           ),
                         ),
@@ -189,7 +189,7 @@ class _ChallengeDetailsWidgetState extends State<ChallengeDetailsWidget>
                                             'Can your friends do this? 😏',
                                           ),
                                           style: FlutterFlowTheme.of(context)
-                                              .bodyText1
+                                              .bodyMedium
                                               .override(
                                                 fontFamily: 'Archivo Black',
                                                 color:
@@ -201,7 +201,7 @@ class _ChallengeDetailsWidgetState extends State<ChallengeDetailsWidget>
                                                     .containsKey(
                                                         FlutterFlowTheme.of(
                                                                 context)
-                                                            .bodyText1Family),
+                                                            .bodyMediumFamily),
                                               ),
                                         ),
                                         Padding(
@@ -215,12 +215,12 @@ class _ChallengeDetailsWidgetState extends State<ChallengeDetailsWidget>
                                               'Some time in the past...',
                                             ),
                                             style: FlutterFlowTheme.of(context)
-                                                .bodyText1
+                                                .bodyMedium
                                                 .override(
                                                   fontFamily:
                                                       FlutterFlowTheme.of(
                                                               context)
-                                                          .bodyText1Family,
+                                                          .bodyMediumFamily,
                                                   color: FlutterFlowTheme.of(
                                                           context)
                                                       .primaryBtnText,
@@ -231,7 +231,7 @@ class _ChallengeDetailsWidgetState extends State<ChallengeDetailsWidget>
                                                       .containsKey(
                                                           FlutterFlowTheme.of(
                                                                   context)
-                                                              .bodyText1Family),
+                                                              .bodyMediumFamily),
                                                 ),
                                           ),
                                         ),
@@ -245,12 +245,12 @@ class _ChallengeDetailsWidgetState extends State<ChallengeDetailsWidget>
                                               'No details here 😮',
                                             ),
                                             style: FlutterFlowTheme.of(context)
-                                                .bodyText1
+                                                .bodyMedium
                                                 .override(
                                                   fontFamily:
                                                       FlutterFlowTheme.of(
                                                               context)
-                                                          .bodyText1Family,
+                                                          .bodyMediumFamily,
                                                   color: FlutterFlowTheme.of(
                                                           context)
                                                       .primaryBackground,
@@ -261,7 +261,7 @@ class _ChallengeDetailsWidgetState extends State<ChallengeDetailsWidget>
                                                       .containsKey(
                                                           FlutterFlowTheme.of(
                                                                   context)
-                                                              .bodyText1Family),
+                                                              .bodyMediumFamily),
                                                   lineHeight: 1.5,
                                                 ),
                                           ),
@@ -280,12 +280,12 @@ class _ChallengeDetailsWidgetState extends State<ChallengeDetailsWidget>
                                           child: Text(
                                             'Additional Comments',
                                             style: FlutterFlowTheme.of(context)
-                                                .bodyText1
+                                                .bodyMedium
                                                 .override(
                                                   fontFamily:
                                                       FlutterFlowTheme.of(
                                                               context)
-                                                          .bodyText1Family,
+                                                          .bodyMediumFamily,
                                                   color: FlutterFlowTheme.of(
                                                           context)
                                                       .primaryBackground,
@@ -294,7 +294,7 @@ class _ChallengeDetailsWidgetState extends State<ChallengeDetailsWidget>
                                                       .containsKey(
                                                           FlutterFlowTheme.of(
                                                                   context)
-                                                              .bodyText1Family),
+                                                              .bodyMediumFamily),
                                                 ),
                                           ),
                                         ),
@@ -308,12 +308,12 @@ class _ChallengeDetailsWidgetState extends State<ChallengeDetailsWidget>
                                               'No comments. ',
                                             ),
                                             style: FlutterFlowTheme.of(context)
-                                                .bodyText1
+                                                .bodyMedium
                                                 .override(
                                                   fontFamily:
                                                       FlutterFlowTheme.of(
                                                               context)
-                                                          .bodyText1Family,
+                                                          .bodyMediumFamily,
                                                   color: FlutterFlowTheme.of(
                                                           context)
                                                       .primaryBackground,
@@ -324,7 +324,7 @@ class _ChallengeDetailsWidgetState extends State<ChallengeDetailsWidget>
                                                       .containsKey(
                                                           FlutterFlowTheme.of(
                                                                   context)
-                                                              .bodyText1Family),
+                                                              .bodyMediumFamily),
                                                   lineHeight: 1.5,
                                                 ),
                                           ),
@@ -398,14 +398,14 @@ class _ChallengeDetailsWidgetState extends State<ChallengeDetailsWidget>
                                     color: FlutterFlowTheme.of(context)
                                         .secondaryText,
                                     textStyle: FlutterFlowTheme.of(context)
-                                        .subtitle2
+                                        .titleSmall
                                         .override(
                                           fontFamily: 'Archivo Black',
                                           color: Colors.white,
                                           useGoogleFonts: GoogleFonts.asMap()
                                               .containsKey(
                                                   FlutterFlowTheme.of(context)
-                                                      .subtitle2Family),
+                                                      .titleSmallFamily),
                                         ),
                                     elevation: 10.0,
                                     borderSide: BorderSide(
@@ -461,14 +461,14 @@ class _ChallengeDetailsWidgetState extends State<ChallengeDetailsWidget>
                                     color:
                                         FlutterFlowTheme.of(context).alternate,
                                     textStyle: FlutterFlowTheme.of(context)
-                                        .subtitle2
+                                        .titleSmall
                                         .override(
                                           fontFamily: 'Archivo Black',
                                           color: Colors.white,
                                           useGoogleFonts: GoogleFonts.asMap()
                                               .containsKey(
                                                   FlutterFlowTheme.of(context)
-                                                      .subtitle2Family),
+                                                      .titleSmallFamily),
                                         ),
                                     elevation: 10.0,
                                     borderSide: BorderSide(

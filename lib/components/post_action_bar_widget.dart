@@ -86,13 +86,13 @@ class _PostActionBarWidgetState extends State<PostActionBarWidget> {
                         widget.likeCount?.toString(),
                         '0',
                       ),
-                      style: FlutterFlowTheme.of(context).bodyText1.override(
+                      style: FlutterFlowTheme.of(context).bodyMedium.override(
                             fontFamily:
-                                FlutterFlowTheme.of(context).bodyText1Family,
+                                FlutterFlowTheme.of(context).bodyMediumFamily,
                             color: Color(0xFFCFCFCF),
                             fontSize: 13.0,
                             useGoogleFonts: GoogleFonts.asMap().containsKey(
-                                FlutterFlowTheme.of(context).bodyText1Family),
+                                FlutterFlowTheme.of(context).bodyMediumFamily),
                           ),
                     ),
                   ),
@@ -128,13 +128,13 @@ class _PostActionBarWidgetState extends State<PostActionBarWidget> {
                         EdgeInsetsDirectional.fromSTEB(0.0, 12.0, 0.0, 0.0),
                     child: Text(
                       'Comments',
-                      style: FlutterFlowTheme.of(context).bodyText1.override(
+                      style: FlutterFlowTheme.of(context).bodyMedium.override(
                             fontFamily:
-                                FlutterFlowTheme.of(context).bodyText1Family,
+                                FlutterFlowTheme.of(context).bodyMediumFamily,
                             color: Color(0xFFCFCFCF),
                             fontSize: 13.0,
                             useGoogleFonts: GoogleFonts.asMap().containsKey(
-                                FlutterFlowTheme.of(context).bodyText1Family),
+                                FlutterFlowTheme.of(context).bodyMediumFamily),
                           ),
                     ),
                   ),
@@ -153,13 +153,13 @@ class _PostActionBarWidgetState extends State<PostActionBarWidget> {
                         EdgeInsetsDirectional.fromSTEB(0.0, 12.0, 0.0, 0.0),
                     child: Text(
                       'See Challenge',
-                      style: FlutterFlowTheme.of(context).bodyText1.override(
+                      style: FlutterFlowTheme.of(context).bodyMedium.override(
                             fontFamily:
-                                FlutterFlowTheme.of(context).bodyText1Family,
+                                FlutterFlowTheme.of(context).bodyMediumFamily,
                             color: Color(0xFFCFCFCF),
                             fontSize: 13.0,
                             useGoogleFonts: GoogleFonts.asMap().containsKey(
-                                FlutterFlowTheme.of(context).bodyText1Family),
+                                FlutterFlowTheme.of(context).bodyMediumFamily),
                           ),
                     ),
                   ),

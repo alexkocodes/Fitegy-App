@@ -166,7 +166,7 @@ class _ProfileWidgetState extends State<ProfileWidget> {
                                     color: FlutterFlowTheme.of(context)
                                         .primaryBackground,
                                     textStyle: FlutterFlowTheme.of(context)
-                                        .bodyText1
+                                        .bodyMedium
                                         .override(
                                           fontFamily: 'Lexend Deca',
                                           color: FlutterFlowTheme.of(context)
@@ -176,7 +176,7 @@ class _ProfileWidgetState extends State<ProfileWidget> {
                                           useGoogleFonts: GoogleFonts.asMap()
                                               .containsKey(
                                                   FlutterFlowTheme.of(context)
-                                                      .bodyText1Family),
+                                                      .bodyMediumFamily),
                                         ),
                                     elevation: 1.0,
                                     borderSide: BorderSide(
@@ -196,17 +196,17 @@ class _ProfileWidgetState extends State<ProfileWidget> {
                                     builder: (context) => Text(
                                       currentUserDisplayName,
                                       style: FlutterFlowTheme.of(context)
-                                          .title1
+                                          .displaySmall
                                           .override(
                                             fontFamily:
                                                 FlutterFlowTheme.of(context)
-                                                    .title1Family,
+                                                    .displaySmallFamily,
                                             fontSize: 18.0,
                                             fontWeight: FontWeight.bold,
                                             useGoogleFonts: GoogleFonts.asMap()
                                                 .containsKey(
                                                     FlutterFlowTheme.of(context)
-                                                        .title1Family),
+                                                        .displaySmallFamily),
                                           ),
                                     ),
                                   ),
@@ -243,18 +243,18 @@ class _ProfileWidgetState extends State<ProfileWidget> {
                                     valueOrDefault(
                                         currentUserDocument?.bio, ''),
                                     style: FlutterFlowTheme.of(context)
-                                        .bodyText1
+                                        .bodyMedium
                                         .override(
                                           fontFamily:
                                               FlutterFlowTheme.of(context)
-                                                  .bodyText1Family,
+                                                  .bodyMediumFamily,
                                           color: FlutterFlowTheme.of(context)
                                               .customColor4,
                                           fontWeight: FontWeight.w300,
                                           useGoogleFonts: GoogleFonts.asMap()
                                               .containsKey(
                                                   FlutterFlowTheme.of(context)
-                                                      .bodyText1Family),
+                                                      .bodyMediumFamily),
                                         ),
                                   ),
                                 ),
@@ -306,19 +306,20 @@ class _ProfileWidgetState extends State<ProfileWidget> {
                                       color: FlutterFlowTheme.of(context)
                                           .customColor4,
                                       textStyle: FlutterFlowTheme.of(context)
-                                          .subtitle2
+                                          .titleSmall
                                           .override(
                                             fontFamily:
                                                 FlutterFlowTheme.of(context)
-                                                    .subtitle2Family,
+                                                    .titleSmallFamily,
                                             color: Colors.white,
                                             fontSize: 20.0,
                                             fontWeight: FontWeight.w600,
                                             useGoogleFonts: GoogleFonts.asMap()
                                                 .containsKey(
                                                     FlutterFlowTheme.of(context)
-                                                        .subtitle2Family),
+                                                        .titleSmallFamily),
                                           ),
+                                      elevation: 2.0,
                                       borderSide: BorderSide(
                                         color: Colors.transparent,
                                         width: 1.0,
@@ -348,11 +349,11 @@ class _ProfileWidgetState extends State<ProfileWidget> {
                                           color: Color(0xFFE9E6F2),
                                           textStyle: FlutterFlowTheme.of(
                                                   context)
-                                              .subtitle2
+                                              .titleSmall
                                               .override(
                                                 fontFamily:
                                                     FlutterFlowTheme.of(context)
-                                                        .subtitle2Family,
+                                                        .titleSmallFamily,
                                                 color:
                                                     FlutterFlowTheme.of(context)
                                                         .primaryBackground,
@@ -361,8 +362,9 @@ class _ProfileWidgetState extends State<ProfileWidget> {
                                                     .containsKey(
                                                         FlutterFlowTheme.of(
                                                                 context)
-                                                            .subtitle2Family),
+                                                            .titleSmallFamily),
                                               ),
+                                          elevation: 2.0,
                                           borderSide: BorderSide(
                                             color: Colors.transparent,
                                             width: 1.0,
@@ -438,31 +440,31 @@ class _ProfileWidgetState extends State<ProfileWidget> {
                           Text(
                             '26',
                             style: FlutterFlowTheme.of(context)
-                                .bodyText1
+                                .bodyMedium
                                 .override(
                                   fontFamily: FlutterFlowTheme.of(context)
-                                      .bodyText1Family,
+                                      .bodyMediumFamily,
                                   color: FlutterFlowTheme.of(context)
                                       .secondaryText,
                                   fontSize: 30.0,
                                   fontWeight: FontWeight.w600,
                                   useGoogleFonts: GoogleFonts.asMap()
                                       .containsKey(FlutterFlowTheme.of(context)
-                                          .bodyText1Family),
+                                          .bodyMediumFamily),
                                 ),
                           ),
                           Text(
                             'Completed',
                             style: FlutterFlowTheme.of(context)
-                                .bodyText1
+                                .bodyMedium
                                 .override(
                                   fontFamily: FlutterFlowTheme.of(context)
-                                      .bodyText1Family,
+                                      .bodyMediumFamily,
                                   color: FlutterFlowTheme.of(context).grayIcon,
                                   fontWeight: FontWeight.w300,
                                   useGoogleFonts: GoogleFonts.asMap()
                                       .containsKey(FlutterFlowTheme.of(context)
-                                          .bodyText1Family),
+                                          .bodyMediumFamily),
                                 ),
                           ),
                         ],
@@ -478,31 +480,31 @@ class _ProfileWidgetState extends State<ProfileWidget> {
                           Text(
                             '528',
                             style: FlutterFlowTheme.of(context)
-                                .bodyText1
+                                .bodyMedium
                                 .override(
                                   fontFamily: FlutterFlowTheme.of(context)
-                                      .bodyText1Family,
+                                      .bodyMediumFamily,
                                   color: FlutterFlowTheme.of(context)
                                       .secondaryText,
                                   fontSize: 30.0,
                                   fontWeight: FontWeight.w600,
                                   useGoogleFonts: GoogleFonts.asMap()
                                       .containsKey(FlutterFlowTheme.of(context)
-                                          .bodyText1Family),
+                                          .bodyMediumFamily),
                                 ),
                           ),
                           Text(
                             'Friends',
                             style: FlutterFlowTheme.of(context)
-                                .bodyText1
+                                .bodyMedium
                                 .override(
                                   fontFamily: FlutterFlowTheme.of(context)
-                                      .bodyText1Family,
+                                      .bodyMediumFamily,
                                   color: FlutterFlowTheme.of(context).grayIcon,
                                   fontWeight: FontWeight.w300,
                                   useGoogleFonts: GoogleFonts.asMap()
                                       .containsKey(FlutterFlowTheme.of(context)
-                                          .bodyText1Family),
+                                          .bodyMediumFamily),
                                 ),
                           ),
                         ],
@@ -518,31 +520,31 @@ class _ProfileWidgetState extends State<ProfileWidget> {
                           Text(
                             '42',
                             style: FlutterFlowTheme.of(context)
-                                .bodyText1
+                                .bodyMedium
                                 .override(
                                   fontFamily: FlutterFlowTheme.of(context)
-                                      .bodyText1Family,
+                                      .bodyMediumFamily,
                                   color: FlutterFlowTheme.of(context)
                                       .secondaryText,
                                   fontSize: 30.0,
                                   fontWeight: FontWeight.w600,
                                   useGoogleFonts: GoogleFonts.asMap()
                                       .containsKey(FlutterFlowTheme.of(context)
-                                          .bodyText1Family),
+                                          .bodyMediumFamily),
                                 ),
                           ),
                           Text(
                             'Streaks',
                             style: FlutterFlowTheme.of(context)
-                                .bodyText1
+                                .bodyMedium
                                 .override(
                                   fontFamily: FlutterFlowTheme.of(context)
-                                      .bodyText1Family,
+                                      .bodyMediumFamily,
                                   color: FlutterFlowTheme.of(context).grayIcon,
                                   fontWeight: FontWeight.w300,
                                   useGoogleFonts: GoogleFonts.asMap()
                                       .containsKey(FlutterFlowTheme.of(context)
-                                          .bodyText1Family),
+                                          .bodyMediumFamily),
                                 ),
                           ),
                         ],

@@ -163,11 +163,14 @@ class _InviteSentWidgetState extends State<InviteSentWidget>
                     children: [
                       Text(
                         'Sent! 🤩',
-                        style: FlutterFlowTheme.of(context).title2.override(
+                        style: FlutterFlowTheme.of(context)
+                            .headlineMedium
+                            .override(
                               fontFamily: 'Archivo Black',
                               fontSize: 40.0,
                               useGoogleFonts: GoogleFonts.asMap().containsKey(
-                                  FlutterFlowTheme.of(context).title2Family),
+                                  FlutterFlowTheme.of(context)
+                                      .headlineMediumFamily),
                             ),
                       ).animateOnPageLoad(
                           animationsMap['textOnPageLoadAnimation1']!),
@@ -177,7 +180,7 @@ class _InviteSentWidgetState extends State<InviteSentWidget>
                         child: Text(
                           'They must so excited to join your challenge!',
                           style: FlutterFlowTheme.of(context)
-                              .bodyText1
+                              .bodyMedium
                               .override(
                                 fontFamily: 'Archivo Black',
                                 color:
@@ -185,7 +188,7 @@ class _InviteSentWidgetState extends State<InviteSentWidget>
                                 fontSize: 20.0,
                                 useGoogleFonts: GoogleFonts.asMap().containsKey(
                                     FlutterFlowTheme.of(context)
-                                        .bodyText1Family),
+                                        .bodyMediumFamily),
                               ),
                         ).animateOnPageLoad(
                             animationsMap['textOnPageLoadAnimation2']!),

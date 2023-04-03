@@ -89,7 +89,7 @@ class _CreateChallengePageWidgetState extends State<CreateChallengePageWidget> {
                               child: Text(
                                 'Challenge yourself with a',
                                 style: FlutterFlowTheme.of(context)
-                                    .title1
+                                    .displaySmall
                                     .override(
                                       fontFamily: 'Inter',
                                       color: FlutterFlowTheme.of(context)
@@ -99,7 +99,7 @@ class _CreateChallengePageWidgetState extends State<CreateChallengePageWidget> {
                                       useGoogleFonts: GoogleFonts.asMap()
                                           .containsKey(
                                               FlutterFlowTheme.of(context)
-                                                  .title1Family),
+                                                  .displaySmallFamily),
                                     ),
                               ),
                             ),
@@ -112,21 +112,21 @@ class _CreateChallengePageWidgetState extends State<CreateChallengePageWidget> {
                               child: GradientText(
                                 'new goal.',
                                 style: FlutterFlowTheme.of(context)
-                                    .bodyText2
+                                    .bodySmall
                                     .override(
                                       fontFamily: 'Inter',
-                                      color: FlutterFlowTheme.of(context)
-                                          .primaryColor,
+                                      color:
+                                          FlutterFlowTheme.of(context).primary,
                                       fontSize: 23.0,
                                       fontWeight: FontWeight.w600,
                                       useGoogleFonts: GoogleFonts.asMap()
                                           .containsKey(
                                               FlutterFlowTheme.of(context)
-                                                  .bodyText2Family),
+                                                  .bodySmallFamily),
                                     ),
                                 colors: [
                                   Color(0xFFDA7DFD),
-                                  FlutterFlowTheme.of(context).secondaryColor
+                                  FlutterFlowTheme.of(context).secondary
                                 ],
                                 gradientDirection: GradientDirection.ltr,
                                 gradientType: GradientType.linear,
@@ -153,13 +153,13 @@ class _CreateChallengePageWidgetState extends State<CreateChallengePageWidget> {
                 ),
                 Text(
                   'Challenge Name: ',
-                  style: FlutterFlowTheme.of(context).bodyText1.override(
+                  style: FlutterFlowTheme.of(context).bodyMedium.override(
                         fontFamily:
-                            FlutterFlowTheme.of(context).bodyText1Family,
+                            FlutterFlowTheme.of(context).bodyMediumFamily,
                         color: FlutterFlowTheme.of(context).secondaryText,
                         fontSize: 16.0,
                         useGoogleFonts: GoogleFonts.asMap().containsKey(
-                            FlutterFlowTheme.of(context).bodyText1Family),
+                            FlutterFlowTheme.of(context).bodyMediumFamily),
                       ),
                 ),
                 Padding(
@@ -182,22 +182,22 @@ class _CreateChallengePageWidgetState extends State<CreateChallengePageWidget> {
                       obscureText: false,
                       decoration: InputDecoration(
                         labelStyle: FlutterFlowTheme.of(context)
-                            .bodyText2
+                            .bodySmall
                             .override(
                               fontFamily: 'Montserrat',
                               color: Color(0xFFB1B1B1),
                               fontWeight: FontWeight.w300,
                               useGoogleFonts: GoogleFonts.asMap().containsKey(
-                                  FlutterFlowTheme.of(context).bodyText2Family),
+                                  FlutterFlowTheme.of(context).bodySmallFamily),
                             ),
                         hintText: 'Use a fun name!',
                         hintStyle: FlutterFlowTheme.of(context)
-                            .bodyText2
+                            .bodySmall
                             .override(
                               fontFamily: 'Inter',
                               color: Color(0xFFB1B1B1),
                               useGoogleFonts: GoogleFonts.asMap().containsKey(
-                                  FlutterFlowTheme.of(context).bodyText2Family),
+                                  FlutterFlowTheme.of(context).bodySmallFamily),
                             ),
                         enabledBorder: OutlineInputBorder(
                           borderSide: BorderSide(
@@ -235,12 +235,12 @@ class _CreateChallengePageWidgetState extends State<CreateChallengePageWidget> {
                           color: FlutterFlowTheme.of(context).lineColor,
                         ),
                       ),
-                      style: FlutterFlowTheme.of(context).bodyText1.override(
+                      style: FlutterFlowTheme.of(context).bodyMedium.override(
                             fontFamily: 'Inter',
                             color: FlutterFlowTheme.of(context).secondaryText,
                             fontSize: 14.0,
                             useGoogleFonts: GoogleFonts.asMap().containsKey(
-                                FlutterFlowTheme.of(context).bodyText1Family),
+                                FlutterFlowTheme.of(context).bodyMediumFamily),
                           ),
                       validator:
                           _model.textController1Validator.asValidator(context),
@@ -249,13 +249,13 @@ class _CreateChallengePageWidgetState extends State<CreateChallengePageWidget> {
                 ),
                 Text(
                   'Challenge Details:',
-                  style: FlutterFlowTheme.of(context).bodyText1.override(
+                  style: FlutterFlowTheme.of(context).bodyMedium.override(
                         fontFamily:
-                            FlutterFlowTheme.of(context).bodyText1Family,
+                            FlutterFlowTheme.of(context).bodyMediumFamily,
                         color: FlutterFlowTheme.of(context).secondaryText,
                         fontSize: 16.0,
                         useGoogleFonts: GoogleFonts.asMap().containsKey(
-                            FlutterFlowTheme.of(context).bodyText1Family),
+                            FlutterFlowTheme.of(context).bodyMediumFamily),
                       ),
                 ),
                 Padding(
@@ -278,23 +278,23 @@ class _CreateChallengePageWidgetState extends State<CreateChallengePageWidget> {
                       obscureText: false,
                       decoration: InputDecoration(
                         labelStyle: FlutterFlowTheme.of(context)
-                            .bodyText2
+                            .bodySmall
                             .override(
                               fontFamily: 'Montserrat',
                               color: Color(0xFFB1B1B1),
                               fontWeight: FontWeight.w300,
                               useGoogleFonts: GoogleFonts.asMap().containsKey(
-                                  FlutterFlowTheme.of(context).bodyText2Family),
+                                  FlutterFlowTheme.of(context).bodySmallFamily),
                             ),
                         hintText: 'What\'s your challenge about?',
                         hintStyle: FlutterFlowTheme.of(context)
-                            .bodyText2
+                            .bodySmall
                             .override(
                               fontFamily: 'Inter',
                               color: Color(0xFFB1B1B1),
                               fontWeight: FontWeight.w300,
                               useGoogleFonts: GoogleFonts.asMap().containsKey(
-                                  FlutterFlowTheme.of(context).bodyText2Family),
+                                  FlutterFlowTheme.of(context).bodySmallFamily),
                             ),
                         enabledBorder: OutlineInputBorder(
                           borderSide: BorderSide(
@@ -330,12 +330,12 @@ class _CreateChallengePageWidgetState extends State<CreateChallengePageWidget> {
                         contentPadding: EdgeInsetsDirectional.fromSTEB(
                             15.0, 20.0, 15.0, 20.0),
                       ),
-                      style: FlutterFlowTheme.of(context).bodyText1.override(
+                      style: FlutterFlowTheme.of(context).bodyMedium.override(
                             fontFamily: 'Inter',
                             color: FlutterFlowTheme.of(context).secondaryText,
                             fontSize: 14.0,
                             useGoogleFonts: GoogleFonts.asMap().containsKey(
-                                FlutterFlowTheme.of(context).bodyText1Family),
+                                FlutterFlowTheme.of(context).bodyMediumFamily),
                           ),
                       textAlign: TextAlign.start,
                       maxLines: 8,
@@ -347,13 +347,13 @@ class _CreateChallengePageWidgetState extends State<CreateChallengePageWidget> {
                 ),
                 Text(
                   'Comments? 🤓',
-                  style: FlutterFlowTheme.of(context).bodyText1.override(
+                  style: FlutterFlowTheme.of(context).bodyMedium.override(
                         fontFamily:
-                            FlutterFlowTheme.of(context).bodyText1Family,
+                            FlutterFlowTheme.of(context).bodyMediumFamily,
                         color: FlutterFlowTheme.of(context).secondaryText,
                         fontSize: 16.0,
                         useGoogleFonts: GoogleFonts.asMap().containsKey(
-                            FlutterFlowTheme.of(context).bodyText1Family),
+                            FlutterFlowTheme.of(context).bodyMediumFamily),
                       ),
                 ),
                 Padding(
@@ -376,23 +376,23 @@ class _CreateChallengePageWidgetState extends State<CreateChallengePageWidget> {
                       obscureText: false,
                       decoration: InputDecoration(
                         labelStyle: FlutterFlowTheme.of(context)
-                            .bodyText2
+                            .bodySmall
                             .override(
                               fontFamily: 'Montserrat',
                               color: Color(0xFFB1B1B1),
                               fontWeight: FontWeight.w300,
                               useGoogleFonts: GoogleFonts.asMap().containsKey(
-                                  FlutterFlowTheme.of(context).bodyText2Family),
+                                  FlutterFlowTheme.of(context).bodySmallFamily),
                             ),
                         hintText: 'Anything special about this challenge?',
                         hintStyle: FlutterFlowTheme.of(context)
-                            .bodyText2
+                            .bodySmall
                             .override(
                               fontFamily: 'Inter',
                               color: Color(0xFFB1B1B1),
                               fontWeight: FontWeight.w300,
                               useGoogleFonts: GoogleFonts.asMap().containsKey(
-                                  FlutterFlowTheme.of(context).bodyText2Family),
+                                  FlutterFlowTheme.of(context).bodySmallFamily),
                             ),
                         enabledBorder: OutlineInputBorder(
                           borderSide: BorderSide(
@@ -428,12 +428,12 @@ class _CreateChallengePageWidgetState extends State<CreateChallengePageWidget> {
                         contentPadding: EdgeInsetsDirectional.fromSTEB(
                             15.0, 20.0, 15.0, 20.0),
                       ),
-                      style: FlutterFlowTheme.of(context).bodyText1.override(
+                      style: FlutterFlowTheme.of(context).bodyMedium.override(
                             fontFamily: 'Inter',
                             color: FlutterFlowTheme.of(context).secondaryText,
                             fontSize: 14.0,
                             useGoogleFonts: GoogleFonts.asMap().containsKey(
-                                FlutterFlowTheme.of(context).bodyText1Family),
+                                FlutterFlowTheme.of(context).bodyMediumFamily),
                           ),
                       textAlign: TextAlign.start,
                       maxLines: null,
@@ -445,13 +445,13 @@ class _CreateChallengePageWidgetState extends State<CreateChallengePageWidget> {
                 ),
                 Text(
                   'Who to challenge?',
-                  style: FlutterFlowTheme.of(context).bodyText1.override(
+                  style: FlutterFlowTheme.of(context).bodyMedium.override(
                         fontFamily:
-                            FlutterFlowTheme.of(context).bodyText1Family,
+                            FlutterFlowTheme.of(context).bodyMediumFamily,
                         color: FlutterFlowTheme.of(context).secondaryText,
                         fontSize: 16.0,
                         useGoogleFonts: GoogleFonts.asMap().containsKey(
-                            FlutterFlowTheme.of(context).bodyText1Family),
+                            FlutterFlowTheme.of(context).bodyMediumFamily),
                       ),
                 ),
                 Padding(
@@ -474,22 +474,22 @@ class _CreateChallengePageWidgetState extends State<CreateChallengePageWidget> {
                       obscureText: false,
                       decoration: InputDecoration(
                         labelStyle: FlutterFlowTheme.of(context)
-                            .bodyText2
+                            .bodySmall
                             .override(
                               fontFamily: 'Montserrat',
                               color: Color(0xFFB1B1B1),
                               fontWeight: FontWeight.w300,
                               useGoogleFonts: GoogleFonts.asMap().containsKey(
-                                  FlutterFlowTheme.of(context).bodyText2Family),
+                                  FlutterFlowTheme.of(context).bodySmallFamily),
                             ),
                         hintText: 'Challenge your friends! ',
                         hintStyle: FlutterFlowTheme.of(context)
-                            .bodyText2
+                            .bodySmall
                             .override(
                               fontFamily: 'Inter',
                               color: Color(0xFFB1B1B1),
                               useGoogleFonts: GoogleFonts.asMap().containsKey(
-                                  FlutterFlowTheme.of(context).bodyText2Family),
+                                  FlutterFlowTheme.of(context).bodySmallFamily),
                             ),
                         enabledBorder: OutlineInputBorder(
                           borderSide: BorderSide(
@@ -527,12 +527,12 @@ class _CreateChallengePageWidgetState extends State<CreateChallengePageWidget> {
                           color: FlutterFlowTheme.of(context).lineColor,
                         ),
                       ),
-                      style: FlutterFlowTheme.of(context).bodyText1.override(
+                      style: FlutterFlowTheme.of(context).bodyMedium.override(
                             fontFamily: 'Inter',
                             color: Colors.black,
                             fontSize: 14.0,
                             useGoogleFonts: GoogleFonts.asMap().containsKey(
-                                FlutterFlowTheme.of(context).bodyText1Family),
+                                FlutterFlowTheme.of(context).bodyMediumFamily),
                           ),
                       validator:
                           _model.textController4Validator.asValidator(context),
@@ -567,16 +567,16 @@ class _CreateChallengePageWidgetState extends State<CreateChallengePageWidget> {
                               child: Text(
                                 'Select a color theme:',
                                 style: FlutterFlowTheme.of(context)
-                                    .bodyText1
+                                    .bodyMedium
                                     .override(
                                       fontFamily: FlutterFlowTheme.of(context)
-                                          .bodyText1Family,
+                                          .bodyMediumFamily,
                                       color: FlutterFlowTheme.of(context)
                                           .secondaryText,
                                       useGoogleFonts: GoogleFonts.asMap()
                                           .containsKey(
                                               FlutterFlowTheme.of(context)
-                                                  .bodyText1Family),
+                                                  .bodyMediumFamily),
                                     ),
                               ),
                             ),
@@ -680,16 +680,16 @@ class _CreateChallengePageWidgetState extends State<CreateChallengePageWidget> {
                             child: Text(
                               'Set to Private: ',
                               style: FlutterFlowTheme.of(context)
-                                  .bodyText1
+                                  .bodyMedium
                                   .override(
                                     fontFamily: FlutterFlowTheme.of(context)
-                                        .bodyText1Family,
+                                        .bodyMediumFamily,
                                     color: FlutterFlowTheme.of(context)
                                         .secondaryText,
                                     useGoogleFonts: GoogleFonts.asMap()
                                         .containsKey(
                                             FlutterFlowTheme.of(context)
-                                                .bodyText1Family),
+                                                .bodyMediumFamily),
                                   ),
                             ),
                           ),
@@ -703,8 +703,7 @@ class _CreateChallengePageWidgetState extends State<CreateChallengePageWidget> {
                               value: FFAppState().isChallengePrivate,
                               onIcon: Icon(
                                 Icons.check_circle,
-                                color:
-                                    FlutterFlowTheme.of(context).secondaryColor,
+                                color: FlutterFlowTheme.of(context).secondary,
                                 size: 20.0,
                               ),
                               offIcon: Icon(
@@ -775,14 +774,14 @@ class _CreateChallengePageWidgetState extends State<CreateChallengePageWidget> {
                               0.0, 0.0, 0.0, 0.0),
                           color: FlutterFlowTheme.of(context).secondaryText,
                           textStyle: FlutterFlowTheme.of(context)
-                              .subtitle2
+                              .titleSmall
                               .override(
                                 fontFamily: 'Inter',
                                 color: Colors.white,
                                 fontWeight: FontWeight.bold,
                                 useGoogleFonts: GoogleFonts.asMap().containsKey(
                                     FlutterFlowTheme.of(context)
-                                        .subtitle2Family),
+                                        .titleSmallFamily),
                               ),
                           elevation: 5.0,
                           borderSide: BorderSide(

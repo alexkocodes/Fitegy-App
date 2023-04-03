@@ -91,13 +91,13 @@ class _MyChallengesWidgetState extends State<MyChallengesWidget>
                         EdgeInsetsDirectional.fromSTEB(18.0, 0.0, 0.0, 0.0),
                     child: Text(
                       'All your challenges, in \none place. ',
-                      style: FlutterFlowTheme.of(context).bodyText1.override(
+                      style: FlutterFlowTheme.of(context).bodyMedium.override(
                             fontFamily:
-                                FlutterFlowTheme.of(context).bodyText1Family,
+                                FlutterFlowTheme.of(context).bodyMediumFamily,
                             fontSize: 26.0,
                             fontWeight: FontWeight.w600,
                             useGoogleFonts: GoogleFonts.asMap().containsKey(
-                                FlutterFlowTheme.of(context).bodyText1Family),
+                                FlutterFlowTheme.of(context).bodyMediumFamily),
                           ),
                     ),
                   ),
@@ -115,14 +115,14 @@ class _MyChallengesWidgetState extends State<MyChallengesWidget>
                                   FlutterFlowTheme.of(context).secondaryText,
                               unselectedLabelColor: Color(0x9C868686),
                               labelStyle: FlutterFlowTheme.of(context)
-                                  .bodyText1
+                                  .bodyMedium
                                   .override(
                                     fontFamily: 'Archivo Black',
                                     fontSize: 13.0,
                                     useGoogleFonts: GoogleFonts.asMap()
                                         .containsKey(
                                             FlutterFlowTheme.of(context)
-                                                .bodyText1Family),
+                                                .bodyMediumFamily),
                                   ),
                               indicatorColor:
                                   FlutterFlowTheme.of(context).primaryBtnText,
@@ -363,7 +363,7 @@ class _MyChallengesWidgetState extends State<MyChallengesWidget>
                                                                   .title!,
                                                               style: FlutterFlowTheme
                                                                       .of(context)
-                                                                  .bodyText1
+                                                                  .bodyMedium
                                                                   .override(
                                                                     fontFamily:
                                                                         'Archivo Black',
@@ -373,7 +373,7 @@ class _MyChallengesWidgetState extends State<MyChallengesWidget>
                                                                     useGoogleFonts: GoogleFonts
                                                                             .asMap()
                                                                         .containsKey(
-                                                                            FlutterFlowTheme.of(context).bodyText1Family),
+                                                                            FlutterFlowTheme.of(context).bodyMediumFamily),
                                                                   ),
                                                             ),
                                                             Padding(
@@ -391,11 +391,11 @@ class _MyChallengesWidgetState extends State<MyChallengesWidget>
                                                                         .createdAt!),
                                                                 style: FlutterFlowTheme.of(
                                                                         context)
-                                                                    .bodyText1
+                                                                    .bodyMedium
                                                                     .override(
                                                                       fontFamily:
                                                                           FlutterFlowTheme.of(context)
-                                                                              .bodyText1Family,
+                                                                              .bodyMediumFamily,
                                                                       color: FlutterFlowTheme.of(
                                                                               context)
                                                                           .primaryBtnText,
@@ -407,7 +407,7 @@ class _MyChallengesWidgetState extends State<MyChallengesWidget>
                                                                       useGoogleFonts: GoogleFonts
                                                                               .asMap()
                                                                           .containsKey(
-                                                                              FlutterFlowTheme.of(context).bodyText1Family),
+                                                                              FlutterFlowTheme.of(context).bodyMediumFamily),
                                                                     ),
                                                               ),
                                                             ),

@@ -12,6 +12,7 @@ import '/flutter_flow/form_field_controller.dart';
 import '/flutter_flow/upload_data.dart';
 import 'dart:ui';
 import '/flutter_flow/random_data_util.dart' as random_data;
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -164,7 +165,7 @@ class _CreateWidgetState extends State<CreateWidget> {
                                                     'Challenge yourself with a',
                                                     style: FlutterFlowTheme.of(
                                                             context)
-                                                        .title1
+                                                        .displaySmall
                                                         .override(
                                                           fontFamily: 'Inter',
                                                           color: FlutterFlowTheme
@@ -178,7 +179,7 @@ class _CreateWidgetState extends State<CreateWidget> {
                                                               .containsKey(
                                                                   FlutterFlowTheme.of(
                                                                           context)
-                                                                      .title1Family),
+                                                                      .displaySmallFamily),
                                                         ),
                                                   ),
                                                 ),
@@ -193,12 +194,12 @@ class _CreateWidgetState extends State<CreateWidget> {
                                                     'new goal.',
                                                     style: FlutterFlowTheme.of(
                                                             context)
-                                                        .bodyText2
+                                                        .bodySmall
                                                         .override(
                                                           fontFamily: 'Inter',
                                                           color: FlutterFlowTheme
                                                                   .of(context)
-                                                              .primaryColor,
+                                                              .primary,
                                                           fontSize: 23.0,
                                                           fontWeight:
                                                               FontWeight.w600,
@@ -207,13 +208,13 @@ class _CreateWidgetState extends State<CreateWidget> {
                                                               .containsKey(
                                                                   FlutterFlowTheme.of(
                                                                           context)
-                                                                      .bodyText2Family),
+                                                                      .bodySmallFamily),
                                                         ),
                                                     colors: [
                                                       Color(0xFFDA7DFD),
                                                       FlutterFlowTheme.of(
                                                               context)
-                                                          .secondaryColor
+                                                          .secondary
                                                     ],
                                                     gradientDirection:
                                                         GradientDirection.ltr,
@@ -244,18 +245,18 @@ class _CreateWidgetState extends State<CreateWidget> {
                                     Text(
                                       'Challenge Name: ',
                                       style: FlutterFlowTheme.of(context)
-                                          .bodyText1
+                                          .bodyMedium
                                           .override(
                                             fontFamily:
                                                 FlutterFlowTheme.of(context)
-                                                    .bodyText1Family,
+                                                    .bodyMediumFamily,
                                             color: FlutterFlowTheme.of(context)
                                                 .secondaryText,
                                             fontSize: 16.0,
                                             useGoogleFonts: GoogleFonts.asMap()
                                                 .containsKey(
                                                     FlutterFlowTheme.of(context)
-                                                        .bodyText1Family),
+                                                        .bodyMediumFamily),
                                           ),
                                     ),
                                     Padding(
@@ -282,7 +283,7 @@ class _CreateWidgetState extends State<CreateWidget> {
                                           decoration: InputDecoration(
                                             labelStyle:
                                                 FlutterFlowTheme.of(context)
-                                                    .bodyText2
+                                                    .bodySmall
                                                     .override(
                                                       fontFamily: 'Montserrat',
                                                       color: Color(0xFFB1B1B1),
@@ -293,12 +294,12 @@ class _CreateWidgetState extends State<CreateWidget> {
                                                           .containsKey(
                                                               FlutterFlowTheme.of(
                                                                       context)
-                                                                  .bodyText2Family),
+                                                                  .bodySmallFamily),
                                                     ),
                                             hintText: 'Use a fun name!',
                                             hintStyle:
                                                 FlutterFlowTheme.of(context)
-                                                    .bodyText2
+                                                    .bodySmall
                                                     .override(
                                                       fontFamily: 'Inter',
                                                       color: Color(0xFFB1B1B1),
@@ -307,7 +308,7 @@ class _CreateWidgetState extends State<CreateWidget> {
                                                           .containsKey(
                                                               FlutterFlowTheme.of(
                                                                       context)
-                                                                  .bodyText2Family),
+                                                                  .bodySmallFamily),
                                                     ),
                                             enabledBorder: OutlineInputBorder(
                                               borderSide: BorderSide(
@@ -354,7 +355,7 @@ class _CreateWidgetState extends State<CreateWidget> {
                                             ),
                                           ),
                                           style: FlutterFlowTheme.of(context)
-                                              .bodyText1
+                                              .bodyMedium
                                               .override(
                                                 fontFamily: 'Inter',
                                                 color:
@@ -366,7 +367,7 @@ class _CreateWidgetState extends State<CreateWidget> {
                                                     .containsKey(
                                                         FlutterFlowTheme.of(
                                                                 context)
-                                                            .bodyText1Family),
+                                                            .bodyMediumFamily),
                                               ),
                                           validator: _model
                                               .textController1Validator
@@ -377,18 +378,18 @@ class _CreateWidgetState extends State<CreateWidget> {
                                     Text(
                                       'Challenge Details:',
                                       style: FlutterFlowTheme.of(context)
-                                          .bodyText1
+                                          .bodyMedium
                                           .override(
                                             fontFamily:
                                                 FlutterFlowTheme.of(context)
-                                                    .bodyText1Family,
+                                                    .bodyMediumFamily,
                                             color: FlutterFlowTheme.of(context)
                                                 .secondaryText,
                                             fontSize: 16.0,
                                             useGoogleFonts: GoogleFonts.asMap()
                                                 .containsKey(
                                                     FlutterFlowTheme.of(context)
-                                                        .bodyText1Family),
+                                                        .bodyMediumFamily),
                                           ),
                                     ),
                                     Padding(
@@ -415,7 +416,7 @@ class _CreateWidgetState extends State<CreateWidget> {
                                           decoration: InputDecoration(
                                             labelStyle:
                                                 FlutterFlowTheme.of(context)
-                                                    .bodyText2
+                                                    .bodySmall
                                                     .override(
                                                       fontFamily: 'Montserrat',
                                                       color: Color(0xFFB1B1B1),
@@ -426,13 +427,13 @@ class _CreateWidgetState extends State<CreateWidget> {
                                                           .containsKey(
                                                               FlutterFlowTheme.of(
                                                                       context)
-                                                                  .bodyText2Family),
+                                                                  .bodySmallFamily),
                                                     ),
                                             hintText:
                                                 'What\'s your challenge about?',
                                             hintStyle:
                                                 FlutterFlowTheme.of(context)
-                                                    .bodyText2
+                                                    .bodySmall
                                                     .override(
                                                       fontFamily: 'Inter',
                                                       color: Color(0xFFB1B1B1),
@@ -443,7 +444,7 @@ class _CreateWidgetState extends State<CreateWidget> {
                                                           .containsKey(
                                                               FlutterFlowTheme.of(
                                                                       context)
-                                                                  .bodyText2Family),
+                                                                  .bodySmallFamily),
                                                     ),
                                             enabledBorder: OutlineInputBorder(
                                               borderSide: BorderSide(
@@ -487,7 +488,7 @@ class _CreateWidgetState extends State<CreateWidget> {
                                                     15.0, 20.0, 15.0, 20.0),
                                           ),
                                           style: FlutterFlowTheme.of(context)
-                                              .bodyText1
+                                              .bodyMedium
                                               .override(
                                                 fontFamily: 'Inter',
                                                 color:
@@ -499,7 +500,7 @@ class _CreateWidgetState extends State<CreateWidget> {
                                                     .containsKey(
                                                         FlutterFlowTheme.of(
                                                                 context)
-                                                            .bodyText1Family),
+                                                            .bodyMediumFamily),
                                               ),
                                           textAlign: TextAlign.start,
                                           maxLines: 8,
@@ -513,18 +514,18 @@ class _CreateWidgetState extends State<CreateWidget> {
                                     Text(
                                       'Comments? 🤓',
                                       style: FlutterFlowTheme.of(context)
-                                          .bodyText1
+                                          .bodyMedium
                                           .override(
                                             fontFamily:
                                                 FlutterFlowTheme.of(context)
-                                                    .bodyText1Family,
+                                                    .bodyMediumFamily,
                                             color: FlutterFlowTheme.of(context)
                                                 .secondaryText,
                                             fontSize: 16.0,
                                             useGoogleFonts: GoogleFonts.asMap()
                                                 .containsKey(
                                                     FlutterFlowTheme.of(context)
-                                                        .bodyText1Family),
+                                                        .bodyMediumFamily),
                                           ),
                                     ),
                                     Padding(
@@ -551,7 +552,7 @@ class _CreateWidgetState extends State<CreateWidget> {
                                           decoration: InputDecoration(
                                             labelStyle:
                                                 FlutterFlowTheme.of(context)
-                                                    .bodyText2
+                                                    .bodySmall
                                                     .override(
                                                       fontFamily: 'Montserrat',
                                                       color: Color(0xFFB1B1B1),
@@ -562,13 +563,13 @@ class _CreateWidgetState extends State<CreateWidget> {
                                                           .containsKey(
                                                               FlutterFlowTheme.of(
                                                                       context)
-                                                                  .bodyText2Family),
+                                                                  .bodySmallFamily),
                                                     ),
                                             hintText:
                                                 'Anything special about this challenge?',
                                             hintStyle:
                                                 FlutterFlowTheme.of(context)
-                                                    .bodyText2
+                                                    .bodySmall
                                                     .override(
                                                       fontFamily: 'Inter',
                                                       color: Color(0xFFB1B1B1),
@@ -579,7 +580,7 @@ class _CreateWidgetState extends State<CreateWidget> {
                                                           .containsKey(
                                                               FlutterFlowTheme.of(
                                                                       context)
-                                                                  .bodyText2Family),
+                                                                  .bodySmallFamily),
                                                     ),
                                             enabledBorder: OutlineInputBorder(
                                               borderSide: BorderSide(
@@ -623,7 +624,7 @@ class _CreateWidgetState extends State<CreateWidget> {
                                                     15.0, 20.0, 15.0, 20.0),
                                           ),
                                           style: FlutterFlowTheme.of(context)
-                                              .bodyText1
+                                              .bodyMedium
                                               .override(
                                                 fontFamily: 'Inter',
                                                 color:
@@ -635,7 +636,7 @@ class _CreateWidgetState extends State<CreateWidget> {
                                                     .containsKey(
                                                         FlutterFlowTheme.of(
                                                                 context)
-                                                            .bodyText1Family),
+                                                            .bodyMediumFamily),
                                               ),
                                           textAlign: TextAlign.start,
                                           maxLines: null,
@@ -649,18 +650,18 @@ class _CreateWidgetState extends State<CreateWidget> {
                                     Text(
                                       'Who to challenge?',
                                       style: FlutterFlowTheme.of(context)
-                                          .bodyText1
+                                          .bodyMedium
                                           .override(
                                             fontFamily:
                                                 FlutterFlowTheme.of(context)
-                                                    .bodyText1Family,
+                                                    .bodyMediumFamily,
                                             color: FlutterFlowTheme.of(context)
                                                 .secondaryText,
                                             fontSize: 16.0,
                                             useGoogleFonts: GoogleFonts.asMap()
                                                 .containsKey(
                                                     FlutterFlowTheme.of(context)
-                                                        .bodyText1Family),
+                                                        .bodyMediumFamily),
                                           ),
                                     ),
                                     Padding(
@@ -687,7 +688,7 @@ class _CreateWidgetState extends State<CreateWidget> {
                                           decoration: InputDecoration(
                                             labelStyle:
                                                 FlutterFlowTheme.of(context)
-                                                    .bodyText2
+                                                    .bodySmall
                                                     .override(
                                                       fontFamily: 'Montserrat',
                                                       color: Color(0xFFB1B1B1),
@@ -698,13 +699,13 @@ class _CreateWidgetState extends State<CreateWidget> {
                                                           .containsKey(
                                                               FlutterFlowTheme.of(
                                                                       context)
-                                                                  .bodyText2Family),
+                                                                  .bodySmallFamily),
                                                     ),
                                             hintText:
                                                 'Challenge your friends! ',
                                             hintStyle:
                                                 FlutterFlowTheme.of(context)
-                                                    .bodyText2
+                                                    .bodySmall
                                                     .override(
                                                       fontFamily: 'Inter',
                                                       color: Color(0xFFB1B1B1),
@@ -713,7 +714,7 @@ class _CreateWidgetState extends State<CreateWidget> {
                                                           .containsKey(
                                                               FlutterFlowTheme.of(
                                                                       context)
-                                                                  .bodyText2Family),
+                                                                  .bodySmallFamily),
                                                     ),
                                             enabledBorder: OutlineInputBorder(
                                               borderSide: BorderSide(
@@ -761,7 +762,7 @@ class _CreateWidgetState extends State<CreateWidget> {
                                             ),
                                           ),
                                           style: FlutterFlowTheme.of(context)
-                                              .bodyText1
+                                              .bodyMedium
                                               .override(
                                                 fontFamily: 'Inter',
                                                 color: Colors.black,
@@ -771,7 +772,7 @@ class _CreateWidgetState extends State<CreateWidget> {
                                                     .containsKey(
                                                         FlutterFlowTheme.of(
                                                                 context)
-                                                            .bodyText1Family),
+                                                            .bodyMediumFamily),
                                               ),
                                           validator: _model
                                               .textController4Validator
@@ -815,12 +816,12 @@ class _CreateWidgetState extends State<CreateWidget> {
                                                     'Select a color theme:',
                                                     style: FlutterFlowTheme.of(
                                                             context)
-                                                        .bodyText1
+                                                        .bodyMedium
                                                         .override(
                                                           fontFamily:
                                                               FlutterFlowTheme.of(
                                                                       context)
-                                                                  .bodyText1Family,
+                                                                  .bodyMediumFamily,
                                                           color: FlutterFlowTheme
                                                                   .of(context)
                                                               .secondaryText,
@@ -829,7 +830,7 @@ class _CreateWidgetState extends State<CreateWidget> {
                                                               .containsKey(
                                                                   FlutterFlowTheme.of(
                                                                           context)
-                                                                      .bodyText1Family),
+                                                                      .bodyMediumFamily),
                                                         ),
                                                   ),
                                                 ),
@@ -956,12 +957,12 @@ class _CreateWidgetState extends State<CreateWidget> {
                                                   'Set to Private: ',
                                                   style: FlutterFlowTheme.of(
                                                           context)
-                                                      .bodyText1
+                                                      .bodyMedium
                                                       .override(
                                                         fontFamily:
                                                             FlutterFlowTheme.of(
                                                                     context)
-                                                                .bodyText1Family,
+                                                                .bodyMediumFamily,
                                                         color:
                                                             FlutterFlowTheme.of(
                                                                     context)
@@ -971,7 +972,7 @@ class _CreateWidgetState extends State<CreateWidget> {
                                                             .containsKey(
                                                                 FlutterFlowTheme.of(
                                                                         context)
-                                                                    .bodyText1Family),
+                                                                    .bodyMediumFamily),
                                                       ),
                                                 ),
                                               ),
@@ -991,7 +992,7 @@ class _CreateWidgetState extends State<CreateWidget> {
                                                     Icons.check_circle,
                                                     color: FlutterFlowTheme.of(
                                                             context)
-                                                        .secondaryColor,
+                                                        .secondary,
                                                     size: 20.0,
                                                   ),
                                                   offIcon: Icon(
@@ -1080,7 +1081,7 @@ class _CreateWidgetState extends State<CreateWidget> {
                                                       .secondaryText,
                                               textStyle:
                                                   FlutterFlowTheme.of(context)
-                                                      .subtitle2
+                                                      .titleSmall
                                                       .override(
                                                         fontFamily: 'Inter',
                                                         color: Colors.white,
@@ -1091,7 +1092,7 @@ class _CreateWidgetState extends State<CreateWidget> {
                                                             .containsKey(
                                                                 FlutterFlowTheme.of(
                                                                         context)
-                                                                    .subtitle2Family),
+                                                                    .titleSmallFamily),
                                                       ),
                                               elevation: 5.0,
                                               borderSide: BorderSide(
@@ -1135,18 +1136,19 @@ class _CreateWidgetState extends State<CreateWidget> {
                                 10.0, 0.0, 16.0, 0.0),
                             child: Text(
                               'Create',
-                              style:
-                                  FlutterFlowTheme.of(context).title1.override(
-                                        fontFamily: 'Inter',
-                                        color: FlutterFlowTheme.of(context)
-                                            .secondaryText,
-                                        fontSize: 30.0,
-                                        fontWeight: FontWeight.bold,
-                                        useGoogleFonts: GoogleFonts.asMap()
-                                            .containsKey(
-                                                FlutterFlowTheme.of(context)
-                                                    .title1Family),
-                                      ),
+                              style: FlutterFlowTheme.of(context)
+                                  .displaySmall
+                                  .override(
+                                    fontFamily: 'Inter',
+                                    color: FlutterFlowTheme.of(context)
+                                        .secondaryText,
+                                    fontSize: 30.0,
+                                    fontWeight: FontWeight.bold,
+                                    useGoogleFonts: GoogleFonts.asMap()
+                                        .containsKey(
+                                            FlutterFlowTheme.of(context)
+                                                .displaySmallFamily),
+                                  ),
                             ),
                           ),
                           Padding(
@@ -1155,17 +1157,16 @@ class _CreateWidgetState extends State<CreateWidget> {
                             child: Text(
                               'Choose create mode to create \na new challenge.',
                               style: FlutterFlowTheme.of(context)
-                                  .bodyText2
+                                  .bodySmall
                                   .override(
                                     fontFamily: 'Inter',
-                                    color: FlutterFlowTheme.of(context)
-                                        .primaryColor,
+                                    color: FlutterFlowTheme.of(context).primary,
                                     fontSize: 18.0,
                                     fontWeight: FontWeight.w600,
                                     useGoogleFonts: GoogleFonts.asMap()
                                         .containsKey(
                                             FlutterFlowTheme.of(context)
-                                                .bodyText2Family),
+                                                .bodySmallFamily),
                                   ),
                             ),
                           ),
@@ -1230,13 +1231,16 @@ class _CreateWidgetState extends State<CreateWidget> {
                           EdgeInsetsDirectional.fromSTEB(20.0, 10.0, 16.0, 0.0),
                       child: Text(
                         'Post',
-                        style: FlutterFlowTheme.of(context).title1.override(
+                        style: FlutterFlowTheme.of(context)
+                            .displaySmall
+                            .override(
                               fontFamily: 'Inter',
                               color: FlutterFlowTheme.of(context).secondaryText,
                               fontSize: 30.0,
                               fontWeight: FontWeight.bold,
                               useGoogleFonts: GoogleFonts.asMap().containsKey(
-                                  FlutterFlowTheme.of(context).title1Family),
+                                  FlutterFlowTheme.of(context)
+                                      .displaySmallFamily),
                             ),
                       ),
                     ),
@@ -1245,13 +1249,13 @@ class _CreateWidgetState extends State<CreateWidget> {
                           EdgeInsetsDirectional.fromSTEB(20.0, 10.0, 0.0, 0.0),
                       child: Text(
                         'Choose post mode to make \na new post.',
-                        style: FlutterFlowTheme.of(context).bodyText2.override(
+                        style: FlutterFlowTheme.of(context).bodySmall.override(
                               fontFamily: 'Inter',
-                              color: FlutterFlowTheme.of(context).primaryColor,
+                              color: FlutterFlowTheme.of(context).primary,
                               fontSize: 18.0,
                               fontWeight: FontWeight.w600,
                               useGoogleFonts: GoogleFonts.asMap().containsKey(
-                                  FlutterFlowTheme.of(context).bodyText2Family),
+                                  FlutterFlowTheme.of(context).bodySmallFamily),
                             ),
                       ),
                     ),
@@ -1331,12 +1335,12 @@ class _CreateWidgetState extends State<CreateWidget> {
                                                       .primaryBtnText,
                                                   textStyle: FlutterFlowTheme
                                                           .of(context)
-                                                      .subtitle2
+                                                      .titleSmall
                                                       .override(
                                                         fontFamily:
                                                             FlutterFlowTheme.of(
                                                                     context)
-                                                                .subtitle2Family,
+                                                                .titleSmallFamily,
                                                         color:
                                                             FlutterFlowTheme.of(
                                                                     context)
@@ -1349,8 +1353,9 @@ class _CreateWidgetState extends State<CreateWidget> {
                                                             .containsKey(
                                                                 FlutterFlowTheme.of(
                                                                         context)
-                                                                    .subtitle2Family),
+                                                                    .titleSmallFamily),
                                                       ),
+                                                  elevation: 2.0,
                                                   borderSide: BorderSide(
                                                     color: Colors.transparent,
                                                     width: 1.0,
@@ -1434,7 +1439,7 @@ class _CreateWidgetState extends State<CreateWidget> {
                                                   textStyle:
                                                       FlutterFlowTheme.of(
                                                               context)
-                                                          .subtitle2
+                                                          .titleSmall
                                                           .override(
                                                             fontFamily: 'Inter',
                                                             color: Colors.white,
@@ -1445,7 +1450,7 @@ class _CreateWidgetState extends State<CreateWidget> {
                                                                 .containsKey(
                                                                     FlutterFlowTheme.of(
                                                                             context)
-                                                                        .subtitle2Family),
+                                                                        .titleSmallFamily),
                                                           ),
                                                   elevation: 4.0,
                                                   borderSide: BorderSide(
@@ -1494,15 +1499,17 @@ class _CreateWidgetState extends State<CreateWidget> {
                                   Row(
                                     mainAxisSize: MainAxisSize.max,
                                     children: [
-                                      Container(
-                                        width: 50.0,
-                                        height: 50.0,
-                                        clipBehavior: Clip.antiAlias,
-                                        decoration: BoxDecoration(
-                                          shape: BoxShape.circle,
-                                        ),
-                                        child: Image.asset(
-                                          'assets/images/307268498_667368784785166_1846770177358214149_n.jpg',
+                                      AuthUserStreamWidget(
+                                        builder: (context) => Container(
+                                          width: 50.0,
+                                          height: 50.0,
+                                          clipBehavior: Clip.antiAlias,
+                                          decoration: BoxDecoration(
+                                            shape: BoxShape.circle,
+                                          ),
+                                          child: CachedNetworkImage(
+                                            imageUrl: currentUserPhoto,
+                                          ),
                                         ),
                                       ),
                                       Padding(
@@ -1535,12 +1542,12 @@ class _CreateWidgetState extends State<CreateWidget> {
                                                   height: 26.0,
                                                   textStyle: FlutterFlowTheme
                                                           .of(context)
-                                                      .bodyText1
+                                                      .bodyMedium
                                                       .override(
                                                         fontFamily:
                                                             FlutterFlowTheme.of(
                                                                     context)
-                                                                .bodyText1Family,
+                                                                .bodyMediumFamily,
                                                         color:
                                                             Color(0xFF99EDFF),
                                                         fontSize: 12.0,
@@ -1549,7 +1556,7 @@ class _CreateWidgetState extends State<CreateWidget> {
                                                             .containsKey(
                                                                 FlutterFlowTheme.of(
                                                                         context)
-                                                                    .bodyText1Family),
+                                                                    .bodyMediumFamily),
                                                       ),
                                                   hintText: 'Please select...',
                                                   icon: Icon(
@@ -1580,12 +1587,12 @@ class _CreateWidgetState extends State<CreateWidget> {
                                                 'Abu Dhabi',
                                                 style:
                                                     FlutterFlowTheme.of(context)
-                                                        .bodyText1
+                                                        .bodyMedium
                                                         .override(
                                                           fontFamily:
                                                               FlutterFlowTheme.of(
                                                                       context)
-                                                                  .bodyText1Family,
+                                                                  .bodyMediumFamily,
                                                           color:
                                                               Color(0xFF9A9A9A),
                                                           fontSize: 12.0,
@@ -1596,7 +1603,7 @@ class _CreateWidgetState extends State<CreateWidget> {
                                                               .containsKey(
                                                                   FlutterFlowTheme.of(
                                                                           context)
-                                                                      .bodyText1Family),
+                                                                      .bodyMediumFamily),
                                                         ),
                                               )),
                                             ),
@@ -1626,7 +1633,7 @@ class _CreateWidgetState extends State<CreateWidget> {
                                           decoration: InputDecoration(
                                             labelStyle:
                                                 FlutterFlowTheme.of(context)
-                                                    .bodyText2
+                                                    .bodySmall
                                                     .override(
                                                       fontFamily: 'Montserrat',
                                                       color: Color(0xFFB1B1B1),
@@ -1637,13 +1644,13 @@ class _CreateWidgetState extends State<CreateWidget> {
                                                           .containsKey(
                                                               FlutterFlowTheme.of(
                                                                       context)
-                                                                  .bodyText2Family),
+                                                                  .bodySmallFamily),
                                                     ),
                                             hintText:
                                                 'What do you want your friends to know?',
                                             hintStyle:
                                                 FlutterFlowTheme.of(context)
-                                                    .bodyText2
+                                                    .bodySmall
                                                     .override(
                                                       fontFamily: 'Inter',
                                                       color: Color(0xFFB1B1B1),
@@ -1654,7 +1661,7 @@ class _CreateWidgetState extends State<CreateWidget> {
                                                           .containsKey(
                                                               FlutterFlowTheme.of(
                                                                       context)
-                                                                  .bodyText2Family),
+                                                                  .bodySmallFamily),
                                                     ),
                                             enabledBorder: OutlineInputBorder(
                                               borderSide: BorderSide(
@@ -1695,12 +1702,12 @@ class _CreateWidgetState extends State<CreateWidget> {
                                                     .secondaryBackground,
                                           ),
                                           style: FlutterFlowTheme.of(context)
-                                              .bodyText1
+                                              .bodyMedium
                                               .override(
                                                 fontFamily: 'Inter',
                                                 color:
                                                     FlutterFlowTheme.of(context)
-                                                        .primaryColor,
+                                                        .primary,
                                                 fontSize: 14.0,
                                                 fontWeight: FontWeight.w500,
                                                 useGoogleFonts: GoogleFonts
@@ -1708,7 +1715,7 @@ class _CreateWidgetState extends State<CreateWidget> {
                                                     .containsKey(
                                                         FlutterFlowTheme.of(
                                                                 context)
-                                                            .bodyText1Family),
+                                                            .bodyMediumFamily),
                                               ),
                                           textAlign: TextAlign.start,
                                           maxLines: null,
@@ -1737,7 +1744,7 @@ class _CreateWidgetState extends State<CreateWidget> {
                                       child: Text(
                                     'Let your friends know which challenge you\'re talking about :)',
                                     style: FlutterFlowTheme.of(context)
-                                        .bodyText1
+                                        .bodyMedium
                                         .override(
                                           fontFamily: 'Inter',
                                           color: Color(0xFFB1B1B1),
@@ -1745,7 +1752,7 @@ class _CreateWidgetState extends State<CreateWidget> {
                                           useGoogleFonts: GoogleFonts.asMap()
                                               .containsKey(
                                                   FlutterFlowTheme.of(context)
-                                                      .bodyText1Family),
+                                                      .bodyMediumFamily),
                                         ),
                                   )),
                                   Padding(
@@ -1790,19 +1797,20 @@ class _CreateWidgetState extends State<CreateWidget> {
                                         color: FlutterFlowTheme.of(context)
                                             .lineColor,
                                         textStyle: FlutterFlowTheme.of(context)
-                                            .subtitle2
+                                            .titleSmall
                                             .override(
                                               fontFamily:
                                                   FlutterFlowTheme.of(context)
-                                                      .subtitle2Family,
+                                                      .titleSmallFamily,
                                               color: Colors.white,
-                                              useGoogleFonts:
-                                                  GoogleFonts.asMap()
-                                                      .containsKey(
-                                                          FlutterFlowTheme.of(
-                                                                  context)
-                                                              .subtitle2Family),
+                                              useGoogleFonts: GoogleFonts
+                                                      .asMap()
+                                                  .containsKey(
+                                                      FlutterFlowTheme.of(
+                                                              context)
+                                                          .titleSmallFamily),
                                             ),
+                                        elevation: 2.0,
                                         borderSide: BorderSide(
                                           color: Colors.transparent,
                                           width: 1.0,
@@ -1903,16 +1911,17 @@ class _CreateWidgetState extends State<CreateWidget> {
                                   0.0, 0.0, 0.0, 0.0),
                               color: Color(0x003B3F6B),
                               textStyle: FlutterFlowTheme.of(context)
-                                  .subtitle2
+                                  .titleSmall
                                   .override(
                                     fontFamily: FlutterFlowTheme.of(context)
-                                        .subtitle2Family,
+                                        .titleSmallFamily,
                                     color: Colors.white,
                                     useGoogleFonts: GoogleFonts.asMap()
                                         .containsKey(
                                             FlutterFlowTheme.of(context)
-                                                .subtitle2Family),
+                                                .titleSmallFamily),
                                   ),
+                              elevation: 2.0,
                               borderSide: BorderSide(
                                 color: Colors.transparent,
                                 width: 1.0,
@@ -1953,16 +1962,17 @@ class _CreateWidgetState extends State<CreateWidget> {
                                   0.0, 0.0, 0.0, 0.0),
                               color: Color(0x003B3F6B),
                               textStyle: FlutterFlowTheme.of(context)
-                                  .subtitle2
+                                  .titleSmall
                                   .override(
                                     fontFamily: FlutterFlowTheme.of(context)
-                                        .subtitle2Family,
+                                        .titleSmallFamily,
                                     color: Colors.white,
                                     useGoogleFonts: GoogleFonts.asMap()
                                         .containsKey(
                                             FlutterFlowTheme.of(context)
-                                                .subtitle2Family),
+                                                .titleSmallFamily),
                                   ),
+                              elevation: 2.0,
                               borderSide: BorderSide(
                                 color: Colors.transparent,
                                 width: 1.0,
@@ -1987,16 +1997,17 @@ class _CreateWidgetState extends State<CreateWidget> {
                                   0.0, 0.0, 0.0, 0.0),
                               color: Color(0x003B3F6B),
                               textStyle: FlutterFlowTheme.of(context)
-                                  .subtitle2
+                                  .titleSmall
                                   .override(
                                     fontFamily: FlutterFlowTheme.of(context)
-                                        .subtitle2Family,
+                                        .titleSmallFamily,
                                     color: Colors.white,
                                     useGoogleFonts: GoogleFonts.asMap()
                                         .containsKey(
                                             FlutterFlowTheme.of(context)
-                                                .subtitle2Family),
+                                                .titleSmallFamily),
                                   ),
+                              elevation: 2.0,
                               borderSide: BorderSide(
                                 color: Colors.transparent,
                                 width: 1.0,

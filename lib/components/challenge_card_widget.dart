@@ -161,12 +161,12 @@ class _ChallengeCardWidgetState extends State<ChallengeCardWidget>
                   children: [
                     Text(
                       widget.title!,
-                      style: FlutterFlowTheme.of(context).bodyText1.override(
+                      style: FlutterFlowTheme.of(context).bodyMedium.override(
                             fontFamily: 'Archivo Black',
                             color: FlutterFlowTheme.of(context)
                                 .secondaryBackground,
                             useGoogleFonts: GoogleFonts.asMap().containsKey(
-                                FlutterFlowTheme.of(context).bodyText1Family),
+                                FlutterFlowTheme.of(context).bodyMediumFamily),
                           ),
                     ),
                     Padding(
@@ -174,15 +174,16 @@ class _ChallengeCardWidgetState extends State<ChallengeCardWidget>
                           EdgeInsetsDirectional.fromSTEB(0.0, 5.0, 0.0, 0.0),
                       child: Text(
                         dateTimeFormat('yMMMd', widget.time),
-                        style: FlutterFlowTheme.of(context).bodyText1.override(
+                        style: FlutterFlowTheme.of(context).bodyMedium.override(
                               fontFamily:
-                                  FlutterFlowTheme.of(context).bodyText1Family,
+                                  FlutterFlowTheme.of(context).bodyMediumFamily,
                               color:
                                   FlutterFlowTheme.of(context).primaryBtnText,
                               fontSize: 12.0,
                               fontWeight: FontWeight.normal,
                               useGoogleFonts: GoogleFonts.asMap().containsKey(
-                                  FlutterFlowTheme.of(context).bodyText1Family),
+                                  FlutterFlowTheme.of(context)
+                                      .bodyMediumFamily),
                             ),
                       ),
                     ),

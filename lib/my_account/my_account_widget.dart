@@ -158,16 +158,16 @@ class _MyAccountWidgetState extends State<MyAccountWidget> {
                         iconPadding:
                             EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
                         color: FlutterFlowTheme.of(context).primaryBackground,
-                        textStyle: FlutterFlowTheme.of(context)
-                            .bodyText1
-                            .override(
-                              fontFamily: 'Lexend Deca',
-                              color: FlutterFlowTheme.of(context).primaryColor,
-                              fontSize: 14.0,
-                              fontWeight: FontWeight.normal,
-                              useGoogleFonts: GoogleFonts.asMap().containsKey(
-                                  FlutterFlowTheme.of(context).bodyText1Family),
-                            ),
+                        textStyle:
+                            FlutterFlowTheme.of(context).bodyMedium.override(
+                                  fontFamily: 'Lexend Deca',
+                                  color: FlutterFlowTheme.of(context).primary,
+                                  fontSize: 14.0,
+                                  fontWeight: FontWeight.normal,
+                                  useGoogleFonts: GoogleFonts.asMap()
+                                      .containsKey(FlutterFlowTheme.of(context)
+                                          .bodyMediumFamily),
+                                ),
                         elevation: 1.0,
                         borderSide: BorderSide(
                           color: Colors.transparent,
@@ -194,16 +194,16 @@ class _MyAccountWidgetState extends State<MyAccountWidget> {
                           EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
                       iconPadding:
                           EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
-                      color: FlutterFlowTheme.of(context).primaryColor,
+                      color: FlutterFlowTheme.of(context).primary,
                       textStyle: FlutterFlowTheme.of(context)
-                          .subtitle2
+                          .titleSmall
                           .override(
                             fontFamily: 'Lexend Deca',
                             color: Colors.white,
                             fontSize: 16.0,
                             fontWeight: FontWeight.normal,
                             useGoogleFonts: GoogleFonts.asMap().containsKey(
-                                FlutterFlowTheme.of(context).subtitle2Family),
+                                FlutterFlowTheme.of(context).titleSmallFamily),
                           ),
                       elevation: 2.0,
                       borderSide: BorderSide(
@@ -234,16 +234,16 @@ class _MyAccountWidgetState extends State<MyAccountWidget> {
                           EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
                       iconPadding:
                           EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
-                      color: FlutterFlowTheme.of(context).primaryColor,
+                      color: FlutterFlowTheme.of(context).primary,
                       textStyle: FlutterFlowTheme.of(context)
-                          .subtitle2
+                          .titleSmall
                           .override(
                             fontFamily: 'Lexend Deca',
                             color: Colors.white,
                             fontSize: 16.0,
                             fontWeight: FontWeight.normal,
                             useGoogleFonts: GoogleFonts.asMap().containsKey(
-                                FlutterFlowTheme.of(context).subtitle2Family),
+                                FlutterFlowTheme.of(context).titleSmallFamily),
                           ),
                       elevation: 2.0,
                       borderSide: BorderSide(

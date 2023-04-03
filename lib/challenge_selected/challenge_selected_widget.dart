@@ -132,7 +132,7 @@ class _ChallengeSelectedWidgetState extends State<ChallengeSelectedWidget>
                               child: Text(
                                 'Let your friends know you want their ',
                                 style: FlutterFlowTheme.of(context)
-                                    .title1
+                                    .displaySmall
                                     .override(
                                       fontFamily: 'Inter',
                                       color: FlutterFlowTheme.of(context)
@@ -142,7 +142,7 @@ class _ChallengeSelectedWidgetState extends State<ChallengeSelectedWidget>
                                       useGoogleFonts: GoogleFonts.asMap()
                                           .containsKey(
                                               FlutterFlowTheme.of(context)
-                                                  .title1Family),
+                                                  .displaySmallFamily),
                                     ),
                               ),
                             ),
@@ -152,21 +152,20 @@ class _ChallengeSelectedWidgetState extends State<ChallengeSelectedWidget>
                             child: GradientText(
                               'company.',
                               style: FlutterFlowTheme.of(context)
-                                  .bodyText2
+                                  .bodySmall
                                   .override(
                                     fontFamily: 'Inter',
-                                    color: FlutterFlowTheme.of(context)
-                                        .primaryColor,
+                                    color: FlutterFlowTheme.of(context).primary,
                                     fontSize: 23.0,
                                     fontWeight: FontWeight.w600,
                                     useGoogleFonts: GoogleFonts.asMap()
                                         .containsKey(
                                             FlutterFlowTheme.of(context)
-                                                .bodyText2Family),
+                                                .bodySmallFamily),
                                   ),
                               colors: [
                                 Color(0xFFDA7DFD),
-                                FlutterFlowTheme.of(context).secondaryColor
+                                FlutterFlowTheme.of(context).secondary
                               ],
                               gradientDirection: GradientDirection.ltr,
                               gradientType: GradientType.linear,
@@ -209,17 +208,17 @@ class _ChallengeSelectedWidgetState extends State<ChallengeSelectedWidget>
                             Text(
                               'Write something...',
                               style: FlutterFlowTheme.of(context)
-                                  .bodyText1
+                                  .bodyMedium
                                   .override(
                                     fontFamily: FlutterFlowTheme.of(context)
-                                        .bodyText1Family,
+                                        .bodyMediumFamily,
                                     color: FlutterFlowTheme.of(context)
                                         .secondaryText,
                                     fontSize: 16.0,
                                     useGoogleFonts: GoogleFonts.asMap()
                                         .containsKey(
                                             FlutterFlowTheme.of(context)
-                                                .bodyText1Family),
+                                                .bodyMediumFamily),
                                   ),
                             ),
                             Padding(
@@ -245,7 +244,7 @@ class _ChallengeSelectedWidgetState extends State<ChallengeSelectedWidget>
                                   obscureText: false,
                                   decoration: InputDecoration(
                                     labelStyle: FlutterFlowTheme.of(context)
-                                        .bodyText2
+                                        .bodySmall
                                         .override(
                                           fontFamily: 'Montserrat',
                                           color: Color(0xFFB1B1B1),
@@ -253,19 +252,19 @@ class _ChallengeSelectedWidgetState extends State<ChallengeSelectedWidget>
                                           useGoogleFonts: GoogleFonts.asMap()
                                               .containsKey(
                                                   FlutterFlowTheme.of(context)
-                                                      .bodyText2Family),
+                                                      .bodySmallFamily),
                                         ),
                                     hintText:
                                         'What do you want your friends to know?',
                                     hintStyle: FlutterFlowTheme.of(context)
-                                        .bodyText2
+                                        .bodySmall
                                         .override(
                                           fontFamily: 'Montserrat',
                                           color: Color(0xFFB1B1B1),
                                           useGoogleFonts: GoogleFonts.asMap()
                                               .containsKey(
                                                   FlutterFlowTheme.of(context)
-                                                      .bodyText2Family),
+                                                      .bodySmallFamily),
                                         ),
                                     enabledBorder: OutlineInputBorder(
                                       borderSide: BorderSide(
@@ -303,7 +302,7 @@ class _ChallengeSelectedWidgetState extends State<ChallengeSelectedWidget>
                                             15.0, 20.0, 15.0, 20.0),
                                   ),
                                   style: FlutterFlowTheme.of(context)
-                                      .bodyText1
+                                      .bodyMedium
                                       .override(
                                         fontFamily: 'Montserrat',
                                         color: Colors.black,
@@ -311,7 +310,7 @@ class _ChallengeSelectedWidgetState extends State<ChallengeSelectedWidget>
                                         useGoogleFonts: GoogleFonts.asMap()
                                             .containsKey(
                                                 FlutterFlowTheme.of(context)
-                                                    .bodyText1Family),
+                                                    .bodyMediumFamily),
                                       ),
                                   textAlign: TextAlign.start,
                                   maxLines: 10,
@@ -336,11 +335,11 @@ class _ChallengeSelectedWidgetState extends State<ChallengeSelectedWidget>
                                         child: Text(
                                           'Embed a challenge in your post:',
                                           style: FlutterFlowTheme.of(context)
-                                              .bodyText1
+                                              .bodyMedium
                                               .override(
                                                 fontFamily:
                                                     FlutterFlowTheme.of(context)
-                                                        .bodyText1Family,
+                                                        .bodyMediumFamily,
                                                 color:
                                                     FlutterFlowTheme.of(context)
                                                         .secondaryText,
@@ -350,7 +349,7 @@ class _ChallengeSelectedWidgetState extends State<ChallengeSelectedWidget>
                                                     .containsKey(
                                                         FlutterFlowTheme.of(
                                                                 context)
-                                                            .bodyText1Family),
+                                                            .bodyMediumFamily),
                                               ),
                                         ),
                                       ),
@@ -397,7 +396,7 @@ class _ChallengeSelectedWidgetState extends State<ChallengeSelectedWidget>
                                                 .secondaryText,
                                             textStyle:
                                                 FlutterFlowTheme.of(context)
-                                                    .subtitle2
+                                                    .titleSmall
                                                     .override(
                                                       fontFamily: 'Inter',
                                                       color: Colors.white,
@@ -409,7 +408,7 @@ class _ChallengeSelectedWidgetState extends State<ChallengeSelectedWidget>
                                                           .containsKey(
                                                               FlutterFlowTheme.of(
                                                                       context)
-                                                                  .subtitle2Family),
+                                                                  .titleSmallFamily),
                                                     ),
                                             elevation: 5.0,
                                             borderSide: BorderSide(
@@ -483,7 +482,7 @@ class _ChallengeSelectedWidgetState extends State<ChallengeSelectedWidget>
                                                   'Alex\'s Spring Break Run',
                                                   style: FlutterFlowTheme.of(
                                                           context)
-                                                      .bodyText1
+                                                      .bodyMedium
                                                       .override(
                                                         fontFamily:
                                                             'Archivo Black',
@@ -495,7 +494,7 @@ class _ChallengeSelectedWidgetState extends State<ChallengeSelectedWidget>
                                                             .containsKey(
                                                                 FlutterFlowTheme.of(
                                                                         context)
-                                                                    .bodyText1Family),
+                                                                    .bodyMediumFamily),
                                                       ),
                                                 ),
                                                 Padding(
@@ -506,12 +505,12 @@ class _ChallengeSelectedWidgetState extends State<ChallengeSelectedWidget>
                                                     'Oct 10th, 22',
                                                     style: FlutterFlowTheme.of(
                                                             context)
-                                                        .bodyText1
+                                                        .bodyMedium
                                                         .override(
                                                           fontFamily:
                                                               FlutterFlowTheme.of(
                                                                       context)
-                                                                  .bodyText1Family,
+                                                                  .bodyMediumFamily,
                                                           color: FlutterFlowTheme
                                                                   .of(context)
                                                               .primaryBtnText,
@@ -523,7 +522,7 @@ class _ChallengeSelectedWidgetState extends State<ChallengeSelectedWidget>
                                                               .containsKey(
                                                                   FlutterFlowTheme.of(
                                                                           context)
-                                                                      .bodyText1Family),
+                                                                      .bodyMediumFamily),
                                                         ),
                                                   ),
                                                 ),
@@ -575,7 +574,7 @@ class _ChallengeSelectedWidgetState extends State<ChallengeSelectedWidget>
                                 color:
                                     FlutterFlowTheme.of(context).secondaryText,
                                 textStyle: FlutterFlowTheme.of(context)
-                                    .subtitle2
+                                    .titleSmall
                                     .override(
                                       fontFamily: 'Inter',
                                       color: Colors.white,
@@ -583,7 +582,7 @@ class _ChallengeSelectedWidgetState extends State<ChallengeSelectedWidget>
                                       useGoogleFonts: GoogleFonts.asMap()
                                           .containsKey(
                                               FlutterFlowTheme.of(context)
-                                                  .subtitle2Family),
+                                                  .titleSmallFamily),
                                     ),
                                 elevation: 5.0,
                                 borderSide: BorderSide(
@@ -617,7 +616,7 @@ class _ChallengeSelectedWidgetState extends State<ChallengeSelectedWidget>
                                 color:
                                     FlutterFlowTheme.of(context).secondaryText,
                                 textStyle: FlutterFlowTheme.of(context)
-                                    .subtitle2
+                                    .titleSmall
                                     .override(
                                       fontFamily: 'Inter',
                                       color: Colors.white,
@@ -625,7 +624,7 @@ class _ChallengeSelectedWidgetState extends State<ChallengeSelectedWidget>
                                       useGoogleFonts: GoogleFonts.asMap()
                                           .containsKey(
                                               FlutterFlowTheme.of(context)
-                                                  .subtitle2Family),
+                                                  .titleSmallFamily),
                                     ),
                                 elevation: 5.0,
                                 borderSide: BorderSide(

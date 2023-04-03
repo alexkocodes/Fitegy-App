@@ -60,11 +60,11 @@ class _CompleteButtonWidgetState extends State<CompleteButtonWidget> {
         padding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
         iconPadding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
         color: Color(0xFF59CD72),
-        textStyle: FlutterFlowTheme.of(context).subtitle2.override(
+        textStyle: FlutterFlowTheme.of(context).titleSmall.override(
               fontFamily: 'Archivo Black',
               color: Colors.white,
               useGoogleFonts: GoogleFonts.asMap()
-                  .containsKey(FlutterFlowTheme.of(context).subtitle2Family),
+                  .containsKey(FlutterFlowTheme.of(context).titleSmallFamily),
             ),
         elevation: 10.0,
         borderSide: BorderSide(

@@ -172,14 +172,14 @@ class _ChallengeCreatedWidgetState extends State<ChallengeCreatedWidget>
                             Text(
                               widget.title!,
                               style: FlutterFlowTheme.of(context)
-                                  .bodyText1
+                                  .bodyMedium
                                   .override(
                                     fontFamily: 'Archivo Black',
                                     fontSize: 16.0,
                                     useGoogleFonts: GoogleFonts.asMap()
                                         .containsKey(
                                             FlutterFlowTheme.of(context)
-                                                .bodyText1Family),
+                                                .bodyMediumFamily),
                                   ),
                             ),
                             Padding(
@@ -188,16 +188,16 @@ class _ChallengeCreatedWidgetState extends State<ChallengeCreatedWidget>
                               child: Text(
                                 dateTimeFormat('yMMMd', getCurrentTimestamp),
                                 style: FlutterFlowTheme.of(context)
-                                    .bodyText1
+                                    .bodyMedium
                                     .override(
                                       fontFamily: FlutterFlowTheme.of(context)
-                                          .bodyText1Family,
+                                          .bodyMediumFamily,
                                       fontSize: 10.0,
                                       fontWeight: FontWeight.w500,
                                       useGoogleFonts: GoogleFonts.asMap()
                                           .containsKey(
                                               FlutterFlowTheme.of(context)
-                                                  .bodyText1Family),
+                                                  .bodyMediumFamily),
                                     ),
                               ),
                             ),

@@ -438,7 +438,7 @@ class _LandingWidgetState extends State<LandingWidget>
                                                           'Start a fitness challenge today, on Fitegy.',
                                                           style: FlutterFlowTheme
                                                                   .of(context)
-                                                              .bodyText1
+                                                              .bodyMedium
                                                               .override(
                                                                 fontFamily:
                                                                     'Archivo Black',
@@ -453,7 +453,7 @@ class _LandingWidgetState extends State<LandingWidget>
                                                                         .asMap()
                                                                     .containsKey(
                                                                         FlutterFlowTheme.of(context)
-                                                                            .bodyText1Family),
+                                                                            .bodyMediumFamily),
                                                                 lineHeight: 1.3,
                                                               ),
                                                         ).animateOnPageLoad(
@@ -476,7 +476,7 @@ class _LandingWidgetState extends State<LandingWidget>
                                                             'Create fun fitness challenges and invite your friends to complete them together!',
                                                             style: FlutterFlowTheme
                                                                     .of(context)
-                                                                .bodyText1
+                                                                .bodyMedium
                                                                 .override(
                                                                   fontFamily:
                                                                       'Inter',
@@ -490,7 +490,7 @@ class _LandingWidgetState extends State<LandingWidget>
                                                                           .asMap()
                                                                       .containsKey(
                                                                           FlutterFlowTheme.of(context)
-                                                                              .bodyText1Family),
+                                                                              .bodyMediumFamily),
                                                                   lineHeight:
                                                                       1.3,
                                                                 ),
@@ -573,7 +573,7 @@ class _LandingWidgetState extends State<LandingWidget>
                                                             textStyle:
                                                                 FlutterFlowTheme.of(
                                                                         context)
-                                                                    .subtitle2
+                                                                    .titleSmall
                                                                     .override(
                                                                       fontFamily:
                                                                           'Archivo Black',
@@ -588,8 +588,9 @@ class _LandingWidgetState extends State<LandingWidget>
                                                                       useGoogleFonts: GoogleFonts
                                                                               .asMap()
                                                                           .containsKey(
-                                                                              FlutterFlowTheme.of(context).subtitle2Family),
+                                                                              FlutterFlowTheme.of(context).titleSmallFamily),
                                                                     ),
+                                                            elevation: 2.0,
                                                             borderSide:
                                                                 BorderSide(
                                                               color: Colors
@@ -623,11 +624,11 @@ class _LandingWidgetState extends State<LandingWidget>
                                                           'Already have account?',
                                                           style: FlutterFlowTheme
                                                                   .of(context)
-                                                              .bodyText1
+                                                              .bodyMedium
                                                               .override(
                                                                 fontFamily: FlutterFlowTheme.of(
                                                                         context)
-                                                                    .bodyText1Family,
+                                                                    .bodyMediumFamily,
                                                                 color: FlutterFlowTheme.of(
                                                                         context)
                                                                     .secondaryText,
@@ -638,7 +639,7 @@ class _LandingWidgetState extends State<LandingWidget>
                                                                         .asMap()
                                                                     .containsKey(
                                                                         FlutterFlowTheme.of(context)
-                                                                            .bodyText1Family),
+                                                                            .bodyMediumFamily),
                                                               ),
                                                         ),
                                                         Padding(
@@ -681,11 +682,11 @@ class _LandingWidgetState extends State<LandingWidget>
                                                               'Log in',
                                                               style: FlutterFlowTheme
                                                                       .of(context)
-                                                                  .bodyText1
+                                                                  .bodyMedium
                                                                   .override(
                                                                     fontFamily:
                                                                         FlutterFlowTheme.of(context)
-                                                                            .bodyText1Family,
+                                                                            .bodyMediumFamily,
                                                                     color: FlutterFlowTheme.of(
                                                                             context)
                                                                         .primaryBackground,
@@ -695,7 +696,7 @@ class _LandingWidgetState extends State<LandingWidget>
                                                                     useGoogleFonts: GoogleFonts
                                                                             .asMap()
                                                                         .containsKey(
-                                                                            FlutterFlowTheme.of(context).bodyText1Family),
+                                                                            FlutterFlowTheme.of(context).bodyMediumFamily),
                                                                   ),
                                                             ),
                                                           ),
@@ -762,7 +763,7 @@ class _LandingWidgetState extends State<LandingWidget>
                                                           'Fitness made social.',
                                                           style: FlutterFlowTheme
                                                                   .of(context)
-                                                              .bodyText1
+                                                              .bodyMedium
                                                               .override(
                                                                 fontFamily:
                                                                     'Archivo Black',
@@ -777,7 +778,7 @@ class _LandingWidgetState extends State<LandingWidget>
                                                                         .asMap()
                                                                     .containsKey(
                                                                         FlutterFlowTheme.of(context)
-                                                                            .bodyText1Family),
+                                                                            .bodyMediumFamily),
                                                                 lineHeight: 1.3,
                                                               ),
                                                         ).animateOnPageLoad(
@@ -800,7 +801,7 @@ class _LandingWidgetState extends State<LandingWidget>
                                                             'Fitegy is all about making fitness fun and collaborative. Exercising alone and bored?\nFitegy got you.',
                                                             style: FlutterFlowTheme
                                                                     .of(context)
-                                                                .bodyText1
+                                                                .bodyMedium
                                                                 .override(
                                                                   fontFamily:
                                                                       'Inter',
@@ -814,7 +815,7 @@ class _LandingWidgetState extends State<LandingWidget>
                                                                           .asMap()
                                                                       .containsKey(
                                                                           FlutterFlowTheme.of(context)
-                                                                              .bodyText1Family),
+                                                                              .bodyMediumFamily),
                                                                   lineHeight:
                                                                       1.3,
                                                                 ),
@@ -897,7 +898,7 @@ class _LandingWidgetState extends State<LandingWidget>
                                                             textStyle:
                                                                 FlutterFlowTheme.of(
                                                                         context)
-                                                                    .subtitle2
+                                                                    .titleSmall
                                                                     .override(
                                                                       fontFamily:
                                                                           'Archivo Black',
@@ -912,8 +913,9 @@ class _LandingWidgetState extends State<LandingWidget>
                                                                       useGoogleFonts: GoogleFonts
                                                                               .asMap()
                                                                           .containsKey(
-                                                                              FlutterFlowTheme.of(context).subtitle2Family),
+                                                                              FlutterFlowTheme.of(context).titleSmallFamily),
                                                                     ),
+                                                            elevation: 2.0,
                                                             borderSide:
                                                                 BorderSide(
                                                               color: Colors
@@ -947,11 +949,11 @@ class _LandingWidgetState extends State<LandingWidget>
                                                           'Already have account?',
                                                           style: FlutterFlowTheme
                                                                   .of(context)
-                                                              .bodyText1
+                                                              .bodyMedium
                                                               .override(
                                                                 fontFamily: FlutterFlowTheme.of(
                                                                         context)
-                                                                    .bodyText1Family,
+                                                                    .bodyMediumFamily,
                                                                 color: FlutterFlowTheme.of(
                                                                         context)
                                                                     .secondaryText,
@@ -962,7 +964,7 @@ class _LandingWidgetState extends State<LandingWidget>
                                                                         .asMap()
                                                                     .containsKey(
                                                                         FlutterFlowTheme.of(context)
-                                                                            .bodyText1Family),
+                                                                            .bodyMediumFamily),
                                                               ),
                                                         ),
                                                         Padding(
@@ -1005,11 +1007,11 @@ class _LandingWidgetState extends State<LandingWidget>
                                                               'Log in',
                                                               style: FlutterFlowTheme
                                                                       .of(context)
-                                                                  .bodyText1
+                                                                  .bodyMedium
                                                                   .override(
                                                                     fontFamily:
                                                                         FlutterFlowTheme.of(context)
-                                                                            .bodyText1Family,
+                                                                            .bodyMediumFamily,
                                                                     color: FlutterFlowTheme.of(
                                                                             context)
                                                                         .primaryBackground,
@@ -1019,7 +1021,7 @@ class _LandingWidgetState extends State<LandingWidget>
                                                                     useGoogleFonts: GoogleFonts
                                                                             .asMap()
                                                                         .containsKey(
-                                                                            FlutterFlowTheme.of(context).bodyText1Family),
+                                                                            FlutterFlowTheme.of(context).bodyMediumFamily),
                                                                   ),
                                                             ),
                                                           ),
@@ -1085,7 +1087,7 @@ class _LandingWidgetState extends State<LandingWidget>
                                                           'Track and grow,\nwith friends.',
                                                           style: FlutterFlowTheme
                                                                   .of(context)
-                                                              .bodyText1
+                                                              .bodyMedium
                                                               .override(
                                                                 fontFamily:
                                                                     'Archivo Black',
@@ -1100,7 +1102,7 @@ class _LandingWidgetState extends State<LandingWidget>
                                                                         .asMap()
                                                                     .containsKey(
                                                                         FlutterFlowTheme.of(context)
-                                                                            .bodyText1Family),
+                                                                            .bodyMediumFamily),
                                                                 lineHeight: 1.3,
                                                               ),
                                                         ).animateOnPageLoad(
@@ -1123,7 +1125,7 @@ class _LandingWidgetState extends State<LandingWidget>
                                                             'Track your performance and progress with others. Let\'s keep each other accountable. ',
                                                             style: FlutterFlowTheme
                                                                     .of(context)
-                                                                .bodyText1
+                                                                .bodyMedium
                                                                 .override(
                                                                   fontFamily:
                                                                       'Inter',
@@ -1137,7 +1139,7 @@ class _LandingWidgetState extends State<LandingWidget>
                                                                           .asMap()
                                                                       .containsKey(
                                                                           FlutterFlowTheme.of(context)
-                                                                              .bodyText1Family),
+                                                                              .bodyMediumFamily),
                                                                   lineHeight:
                                                                       1.3,
                                                                 ),
@@ -1220,7 +1222,7 @@ class _LandingWidgetState extends State<LandingWidget>
                                                             textStyle:
                                                                 FlutterFlowTheme.of(
                                                                         context)
-                                                                    .subtitle2
+                                                                    .titleSmall
                                                                     .override(
                                                                       fontFamily:
                                                                           'Archivo Black',
@@ -1235,8 +1237,9 @@ class _LandingWidgetState extends State<LandingWidget>
                                                                       useGoogleFonts: GoogleFonts
                                                                               .asMap()
                                                                           .containsKey(
-                                                                              FlutterFlowTheme.of(context).subtitle2Family),
+                                                                              FlutterFlowTheme.of(context).titleSmallFamily),
                                                                     ),
+                                                            elevation: 2.0,
                                                             borderSide:
                                                                 BorderSide(
                                                               color: Colors
@@ -1270,11 +1273,11 @@ class _LandingWidgetState extends State<LandingWidget>
                                                           'New member?',
                                                           style: FlutterFlowTheme
                                                                   .of(context)
-                                                              .bodyText1
+                                                              .bodyMedium
                                                               .override(
                                                                 fontFamily: FlutterFlowTheme.of(
                                                                         context)
-                                                                    .bodyText1Family,
+                                                                    .bodyMediumFamily,
                                                                 color: FlutterFlowTheme.of(
                                                                         context)
                                                                     .secondaryText,
@@ -1285,7 +1288,7 @@ class _LandingWidgetState extends State<LandingWidget>
                                                                         .asMap()
                                                                     .containsKey(
                                                                         FlutterFlowTheme.of(context)
-                                                                            .bodyText1Family),
+                                                                            .bodyMediumFamily),
                                                               ),
                                                         ),
                                                         Padding(
@@ -1328,11 +1331,11 @@ class _LandingWidgetState extends State<LandingWidget>
                                                               'Sign up',
                                                               style: FlutterFlowTheme
                                                                       .of(context)
-                                                                  .bodyText1
+                                                                  .bodyMedium
                                                                   .override(
                                                                     fontFamily:
                                                                         FlutterFlowTheme.of(context)
-                                                                            .bodyText1Family,
+                                                                            .bodyMediumFamily,
                                                                     color: FlutterFlowTheme.of(
                                                                             context)
                                                                         .primaryBackground,
@@ -1342,7 +1345,7 @@ class _LandingWidgetState extends State<LandingWidget>
                                                                     useGoogleFonts: GoogleFonts
                                                                             .asMap()
                                                                         .containsKey(
-                                                                            FlutterFlowTheme.of(context).bodyText1Family),
+                                                                            FlutterFlowTheme.of(context).bodyMediumFamily),
                                                                   ),
                                                             ),
                                                           ),

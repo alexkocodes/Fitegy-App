@@ -92,13 +92,13 @@ class _UserCardSmallWidgetState extends State<UserCardSmallWidget> {
                     child: SelectionArea(
                         child: Text(
                       widget.username,
-                      style: FlutterFlowTheme.of(context).bodyText1.override(
+                      style: FlutterFlowTheme.of(context).bodyMedium.override(
                             fontFamily: 'Inter',
                             color: Color(0xFFCFCFCF),
                             fontSize: 17.0,
                             fontWeight: FontWeight.normal,
                             useGoogleFonts: GoogleFonts.asMap().containsKey(
-                                FlutterFlowTheme.of(context).bodyText1Family),
+                                FlutterFlowTheme.of(context).bodyMediumFamily),
                           ),
                     )),
                   ),
@@ -107,11 +107,11 @@ class _UserCardSmallWidgetState extends State<UserCardSmallWidget> {
               SelectionArea(
                   child: Text(
                 widget.emoji!,
-                style: FlutterFlowTheme.of(context).bodyText1.override(
-                      fontFamily: FlutterFlowTheme.of(context).bodyText1Family,
+                style: FlutterFlowTheme.of(context).bodyMedium.override(
+                      fontFamily: FlutterFlowTheme.of(context).bodyMediumFamily,
                       fontSize: 20.0,
                       useGoogleFonts: GoogleFonts.asMap().containsKey(
-                          FlutterFlowTheme.of(context).bodyText1Family),
+                          FlutterFlowTheme.of(context).bodyMediumFamily),
                     ),
               )),
             ],

@@ -200,22 +200,22 @@ class _LogSignWidgetState extends State<LogSignWidget>
                                       TabBar(
                                         isScrollable: true,
                                         labelColor: FlutterFlowTheme.of(context)
-                                            .primaryColor,
+                                            .primary,
                                         labelStyle: FlutterFlowTheme.of(context)
-                                            .title1
+                                            .displaySmall
                                             .override(
                                               fontFamily: 'Archivo Black',
                                               fontWeight: FontWeight.w500,
-                                              useGoogleFonts:
-                                                  GoogleFonts.asMap()
-                                                      .containsKey(
-                                                          FlutterFlowTheme.of(
-                                                                  context)
-                                                              .title1Family),
+                                              useGoogleFonts: GoogleFonts
+                                                      .asMap()
+                                                  .containsKey(
+                                                      FlutterFlowTheme.of(
+                                                              context)
+                                                          .displaySmallFamily),
                                             ),
                                         indicatorColor:
                                             FlutterFlowTheme.of(context)
-                                                .primaryColor,
+                                                .primary,
                                         tabs: [
                                           Tab(
                                             text: 'Log In',
@@ -241,13 +241,13 @@ class _LogSignWidgetState extends State<LogSignWidget>
                                                     'Welcome back! 😉',
                                                     style: FlutterFlowTheme.of(
                                                             context)
-                                                        .bodyText2
+                                                        .bodySmall
                                                         .override(
                                                           fontFamily:
                                                               'Montserrat',
                                                           color: FlutterFlowTheme
                                                                   .of(context)
-                                                              .primaryColor,
+                                                              .primary,
                                                           fontWeight:
                                                               FontWeight.w500,
                                                           useGoogleFonts: GoogleFonts
@@ -255,7 +255,7 @@ class _LogSignWidgetState extends State<LogSignWidget>
                                                               .containsKey(
                                                                   FlutterFlowTheme.of(
                                                                           context)
-                                                                      .bodyText2Family),
+                                                                      .bodySmallFamily),
                                                         ),
                                                   ),
                                                   Padding(
@@ -291,7 +291,7 @@ class _LogSignWidgetState extends State<LogSignWidget>
                                                           labelStyle:
                                                               FlutterFlowTheme.of(
                                                                       context)
-                                                                  .bodyText2
+                                                                  .bodySmall
                                                                   .override(
                                                                     fontFamily:
                                                                         'Montserrat',
@@ -303,14 +303,14 @@ class _LogSignWidgetState extends State<LogSignWidget>
                                                                     useGoogleFonts: GoogleFonts
                                                                             .asMap()
                                                                         .containsKey(
-                                                                            FlutterFlowTheme.of(context).bodyText2Family),
+                                                                            FlutterFlowTheme.of(context).bodySmallFamily),
                                                                   ),
                                                           hintText:
                                                               'Your email address or username',
                                                           hintStyle:
                                                               FlutterFlowTheme.of(
                                                                       context)
-                                                                  .bodyText2
+                                                                  .bodySmall
                                                                   .override(
                                                                     fontFamily:
                                                                         'Montserrat',
@@ -319,7 +319,7 @@ class _LogSignWidgetState extends State<LogSignWidget>
                                                                     useGoogleFonts: GoogleFonts
                                                                             .asMap()
                                                                         .containsKey(
-                                                                            FlutterFlowTheme.of(context).bodyText2Family),
+                                                                            FlutterFlowTheme.of(context).bodySmallFamily),
                                                                   ),
                                                           enabledBorder:
                                                               OutlineInputBorder(
@@ -395,7 +395,7 @@ class _LogSignWidgetState extends State<LogSignWidget>
                                                         style:
                                                             FlutterFlowTheme.of(
                                                                     context)
-                                                                .bodyText1
+                                                                .bodyMedium
                                                                 .override(
                                                                   fontFamily:
                                                                       'Montserrat',
@@ -407,7 +407,7 @@ class _LogSignWidgetState extends State<LogSignWidget>
                                                                           .asMap()
                                                                       .containsKey(
                                                                           FlutterFlowTheme.of(context)
-                                                                              .bodyText1Family),
+                                                                              .bodyMediumFamily),
                                                                 ),
                                                         validator: _model
                                                             .logInEmailControllerValidator
@@ -450,7 +450,7 @@ class _LogSignWidgetState extends State<LogSignWidget>
                                                           labelStyle:
                                                               FlutterFlowTheme.of(
                                                                       context)
-                                                                  .bodyText2
+                                                                  .bodySmall
                                                                   .override(
                                                                     fontFamily:
                                                                         'Montserrat',
@@ -461,13 +461,13 @@ class _LogSignWidgetState extends State<LogSignWidget>
                                                                     useGoogleFonts: GoogleFonts
                                                                             .asMap()
                                                                         .containsKey(
-                                                                            FlutterFlowTheme.of(context).bodyText2Family),
+                                                                            FlutterFlowTheme.of(context).bodySmallFamily),
                                                                   ),
                                                           hintText: 'Password',
                                                           hintStyle:
                                                               FlutterFlowTheme.of(
                                                                       context)
-                                                                  .bodyText2
+                                                                  .bodySmall
                                                                   .override(
                                                                     fontFamily:
                                                                         'Montserrat',
@@ -478,7 +478,7 @@ class _LogSignWidgetState extends State<LogSignWidget>
                                                                     useGoogleFonts: GoogleFonts
                                                                             .asMap()
                                                                         .containsKey(
-                                                                            FlutterFlowTheme.of(context).bodyText2Family),
+                                                                            FlutterFlowTheme.of(context).bodySmallFamily),
                                                                   ),
                                                           enabledBorder:
                                                               OutlineInputBorder(
@@ -576,7 +576,7 @@ class _LogSignWidgetState extends State<LogSignWidget>
                                                         style:
                                                             FlutterFlowTheme.of(
                                                                     context)
-                                                                .bodyText1
+                                                                .bodyMedium
                                                                 .override(
                                                                   fontFamily:
                                                                       'Montserrat',
@@ -586,7 +586,7 @@ class _LogSignWidgetState extends State<LogSignWidget>
                                                                           .asMap()
                                                                       .containsKey(
                                                                           FlutterFlowTheme.of(context)
-                                                                              .bodyText1Family),
+                                                                              .bodyMediumFamily),
                                                                 ),
                                                         validator: _model
                                                             .logInPassControllerValidator
@@ -651,11 +651,11 @@ class _LogSignWidgetState extends State<LogSignWidget>
                                                                         0.0),
                                                             color: FlutterFlowTheme
                                                                     .of(context)
-                                                                .primaryColor,
+                                                                .primary,
                                                             textStyle:
                                                                 FlutterFlowTheme.of(
                                                                         context)
-                                                                    .subtitle2
+                                                                    .titleSmall
                                                                     .override(
                                                                       fontFamily:
                                                                           'Archivo Black',
@@ -669,7 +669,7 @@ class _LogSignWidgetState extends State<LogSignWidget>
                                                                       useGoogleFonts: GoogleFonts
                                                                               .asMap()
                                                                           .containsKey(
-                                                                              FlutterFlowTheme.of(context).subtitle2Family),
+                                                                              FlutterFlowTheme.of(context).titleSmallFamily),
                                                                     ),
                                                             elevation: 3.0,
                                                             borderSide:
@@ -706,13 +706,13 @@ class _LogSignWidgetState extends State<LogSignWidget>
                                                           'Let\'s get you set up!',
                                                           style: FlutterFlowTheme
                                                                   .of(context)
-                                                              .bodyText2
+                                                              .bodySmall
                                                               .override(
                                                                 fontFamily:
                                                                     'Montserrat',
                                                                 color: FlutterFlowTheme.of(
                                                                         context)
-                                                                    .primaryColor,
+                                                                    .primary,
                                                                 fontWeight:
                                                                     FontWeight
                                                                         .w500,
@@ -720,7 +720,7 @@ class _LogSignWidgetState extends State<LogSignWidget>
                                                                         .asMap()
                                                                     .containsKey(
                                                                         FlutterFlowTheme.of(context)
-                                                                            .bodyText2Family),
+                                                                            .bodySmallFamily),
                                                               ),
                                                         ),
                                                       ],
@@ -749,7 +749,7 @@ class _LogSignWidgetState extends State<LogSignWidget>
                                                           labelStyle:
                                                               FlutterFlowTheme.of(
                                                                       context)
-                                                                  .bodyText2
+                                                                  .bodySmall
                                                                   .override(
                                                                     fontFamily:
                                                                         'Montserrat',
@@ -761,12 +761,12 @@ class _LogSignWidgetState extends State<LogSignWidget>
                                                                     useGoogleFonts: GoogleFonts
                                                                             .asMap()
                                                                         .containsKey(
-                                                                            FlutterFlowTheme.of(context).bodyText2Family),
+                                                                            FlutterFlowTheme.of(context).bodySmallFamily),
                                                                   ),
                                                           hintStyle:
                                                               FlutterFlowTheme.of(
                                                                       context)
-                                                                  .bodyText2,
+                                                                  .bodySmall,
                                                           enabledBorder:
                                                               UnderlineInputBorder(
                                                             borderSide:
@@ -823,7 +823,7 @@ class _LogSignWidgetState extends State<LogSignWidget>
                                                         style:
                                                             FlutterFlowTheme.of(
                                                                     context)
-                                                                .bodyText1
+                                                                .bodyMedium
                                                                 .override(
                                                                   fontFamily:
                                                                       'Montserrat',
@@ -835,7 +835,7 @@ class _LogSignWidgetState extends State<LogSignWidget>
                                                                           .asMap()
                                                                       .containsKey(
                                                                           FlutterFlowTheme.of(context)
-                                                                              .bodyText1Family),
+                                                                              .bodyMediumFamily),
                                                                 ),
                                                         textAlign:
                                                             TextAlign.start,
@@ -861,7 +861,7 @@ class _LogSignWidgetState extends State<LogSignWidget>
                                                         labelStyle:
                                                             FlutterFlowTheme.of(
                                                                     context)
-                                                                .bodyText2
+                                                                .bodySmall
                                                                 .override(
                                                                   fontFamily:
                                                                       'Montserrat',
@@ -874,12 +874,12 @@ class _LogSignWidgetState extends State<LogSignWidget>
                                                                           .asMap()
                                                                       .containsKey(
                                                                           FlutterFlowTheme.of(context)
-                                                                              .bodyText2Family),
+                                                                              .bodySmallFamily),
                                                                 ),
                                                         hintStyle:
                                                             FlutterFlowTheme.of(
                                                                     context)
-                                                                .bodyText2,
+                                                                .bodySmall,
                                                         enabledBorder:
                                                             UnderlineInputBorder(
                                                           borderSide:
@@ -935,7 +935,7 @@ class _LogSignWidgetState extends State<LogSignWidget>
                                                       style:
                                                           FlutterFlowTheme.of(
                                                                   context)
-                                                              .bodyText1
+                                                              .bodyMedium
                                                               .override(
                                                                 fontFamily:
                                                                     'Montserrat',
@@ -946,7 +946,7 @@ class _LogSignWidgetState extends State<LogSignWidget>
                                                                         .asMap()
                                                                     .containsKey(
                                                                         FlutterFlowTheme.of(context)
-                                                                            .bodyText1Family),
+                                                                            .bodyMediumFamily),
                                                               ),
                                                       textAlign:
                                                           TextAlign.start,
@@ -1033,16 +1033,16 @@ class _LogSignWidgetState extends State<LogSignWidget>
                                   Text(
                                     'OR',
                                     style: FlutterFlowTheme.of(context)
-                                        .bodyText2
+                                        .bodySmall
                                         .override(
                                           fontFamily:
                                               FlutterFlowTheme.of(context)
-                                                  .bodyText2Family,
+                                                  .bodySmallFamily,
                                           color: Color(0xB3FFFFFF),
                                           useGoogleFonts: GoogleFonts.asMap()
                                               .containsKey(
                                                   FlutterFlowTheme.of(context)
-                                                      .bodyText2Family),
+                                                      .bodySmallFamily),
                                         ),
                                   ),
                                   Container(
@@ -1234,15 +1234,15 @@ class _LogSignWidgetState extends State<LogSignWidget>
                                         child: Text(
                                           'Welcome ',
                                           style: FlutterFlowTheme.of(context)
-                                              .title1
+                                              .displaySmall
                                               .override(
                                                 fontFamily: 'Archivo Black',
-                                                useGoogleFonts:
-                                                    GoogleFonts.asMap()
-                                                        .containsKey(
-                                                            FlutterFlowTheme.of(
-                                                                    context)
-                                                                .title1Family),
+                                                useGoogleFonts: GoogleFonts
+                                                        .asMap()
+                                                    .containsKey(
+                                                        FlutterFlowTheme.of(
+                                                                context)
+                                                            .displaySmallFamily),
                                               ),
                                         ),
                                       ),
@@ -1250,29 +1250,29 @@ class _LogSignWidgetState extends State<LogSignWidget>
                                           child: Text(
                                         _model.firstNameController.text,
                                         style: FlutterFlowTheme.of(context)
-                                            .title1
+                                            .displaySmall
                                             .override(
                                               fontFamily: 'Archivo Black',
-                                              useGoogleFonts:
-                                                  GoogleFonts.asMap()
-                                                      .containsKey(
-                                                          FlutterFlowTheme.of(
-                                                                  context)
-                                                              .title1Family),
+                                              useGoogleFonts: GoogleFonts
+                                                      .asMap()
+                                                  .containsKey(
+                                                      FlutterFlowTheme.of(
+                                                              context)
+                                                          .displaySmallFamily),
                                             ),
                                       )),
                                       Text(
                                         ' 💛 ',
                                         style: FlutterFlowTheme.of(context)
-                                            .title1
+                                            .displaySmall
                                             .override(
                                               fontFamily: 'Archivo Black',
-                                              useGoogleFonts:
-                                                  GoogleFonts.asMap()
-                                                      .containsKey(
-                                                          FlutterFlowTheme.of(
-                                                                  context)
-                                                              .title1Family),
+                                              useGoogleFonts: GoogleFonts
+                                                      .asMap()
+                                                  .containsKey(
+                                                      FlutterFlowTheme.of(
+                                                              context)
+                                                          .displaySmallFamily),
                                             ),
                                       ),
                                     ],
@@ -1287,19 +1287,19 @@ class _LogSignWidgetState extends State<LogSignWidget>
                                       Text(
                                         'What\'s your email address?',
                                         style: FlutterFlowTheme.of(context)
-                                            .bodyText2
+                                            .bodySmall
                                             .override(
                                               fontFamily: 'Montserrat',
                                               color:
                                                   FlutterFlowTheme.of(context)
-                                                      .primaryColor,
+                                                      .primary,
                                               fontWeight: FontWeight.w500,
                                               useGoogleFonts:
                                                   GoogleFonts.asMap()
                                                       .containsKey(
                                                           FlutterFlowTheme.of(
                                                                   context)
-                                                              .bodyText2Family),
+                                                              .bodySmallFamily),
                                             ),
                                       ),
                                     ],
@@ -1324,7 +1324,7 @@ class _LogSignWidgetState extends State<LogSignWidget>
                                       decoration: InputDecoration(
                                         labelText: 'Email',
                                         labelStyle: FlutterFlowTheme.of(context)
-                                            .bodyText2
+                                            .bodySmall
                                             .override(
                                               fontFamily: 'Montserrat',
                                               color: Color(0x7D3B3F6B),
@@ -1334,10 +1334,10 @@ class _LogSignWidgetState extends State<LogSignWidget>
                                                       .containsKey(
                                                           FlutterFlowTheme.of(
                                                                   context)
-                                                              .bodyText2Family),
+                                                              .bodySmallFamily),
                                             ),
                                         hintStyle: FlutterFlowTheme.of(context)
-                                            .bodyText2,
+                                            .bodySmall,
                                         enabledBorder: UnderlineInputBorder(
                                           borderSide: BorderSide(
                                             color: Colors.black,
@@ -1388,7 +1388,7 @@ class _LogSignWidgetState extends State<LogSignWidget>
                                             : null,
                                       ),
                                       style: FlutterFlowTheme.of(context)
-                                          .bodyText1
+                                          .bodyMedium
                                           .override(
                                             fontFamily: 'Montserrat',
                                             color: Colors.black,
@@ -1396,7 +1396,7 @@ class _LogSignWidgetState extends State<LogSignWidget>
                                             useGoogleFonts: GoogleFonts.asMap()
                                                 .containsKey(
                                                     FlutterFlowTheme.of(context)
-                                                        .bodyText1Family),
+                                                        .bodyMediumFamily),
                                           ),
                                       textAlign: TextAlign.start,
                                       validator: _model
@@ -1497,7 +1497,7 @@ class _LogSignWidgetState extends State<LogSignWidget>
                                           child: Text(
                                             'Password? 🔐',
                                             style: FlutterFlowTheme.of(context)
-                                                .title1
+                                                .displaySmall
                                                 .override(
                                                   fontFamily: 'Archivo Black',
                                                   useGoogleFonts: GoogleFonts
@@ -1505,7 +1505,7 @@ class _LogSignWidgetState extends State<LogSignWidget>
                                                       .containsKey(
                                                           FlutterFlowTheme.of(
                                                                   context)
-                                                              .title1Family),
+                                                              .displaySmallFamily),
                                                 ),
                                           ),
                                         ),
@@ -1522,19 +1522,19 @@ class _LogSignWidgetState extends State<LogSignWidget>
                                       Text(
                                         'Set a strong password :)',
                                         style: FlutterFlowTheme.of(context)
-                                            .bodyText2
+                                            .bodySmall
                                             .override(
                                               fontFamily: 'Montserrat',
                                               color:
                                                   FlutterFlowTheme.of(context)
-                                                      .primaryColor,
+                                                      .primary,
                                               fontWeight: FontWeight.w500,
                                               useGoogleFonts:
                                                   GoogleFonts.asMap()
                                                       .containsKey(
                                                           FlutterFlowTheme.of(
                                                                   context)
-                                                              .bodyText2Family),
+                                                              .bodySmallFamily),
                                             ),
                                       ),
                                     ],
@@ -1558,7 +1558,7 @@ class _LogSignWidgetState extends State<LogSignWidget>
                                           labelText: 'Password',
                                           labelStyle:
                                               FlutterFlowTheme.of(context)
-                                                  .bodyText2
+                                                  .bodySmall
                                                   .override(
                                                     fontFamily: 'Montserrat',
                                                     color: Color(0x7D3B3F6B),
@@ -1568,11 +1568,11 @@ class _LogSignWidgetState extends State<LogSignWidget>
                                                         .containsKey(
                                                             FlutterFlowTheme.of(
                                                                     context)
-                                                                .bodyText2Family),
+                                                                .bodySmallFamily),
                                                   ),
                                           hintStyle:
                                               FlutterFlowTheme.of(context)
-                                                  .bodyText2,
+                                                  .bodySmall,
                                           enabledBorder: UnderlineInputBorder(
                                             borderSide: BorderSide(
                                               color: Colors.black,
@@ -1624,17 +1624,17 @@ class _LogSignWidgetState extends State<LogSignWidget>
                                           ),
                                         ),
                                         style: FlutterFlowTheme.of(context)
-                                            .bodyText1
+                                            .bodyMedium
                                             .override(
                                               fontFamily: 'Montserrat',
                                               color: Colors.black,
                                               fontSize: 14.0,
-                                              useGoogleFonts:
-                                                  GoogleFonts.asMap()
-                                                      .containsKey(
-                                                          FlutterFlowTheme.of(
-                                                                  context)
-                                                              .bodyText1Family),
+                                              useGoogleFonts: GoogleFonts
+                                                      .asMap()
+                                                  .containsKey(
+                                                      FlutterFlowTheme.of(
+                                                              context)
+                                                          .bodyMediumFamily),
                                             ),
                                         textAlign: TextAlign.start,
                                         validator: _model
@@ -1650,16 +1650,16 @@ class _LogSignWidgetState extends State<LogSignWidget>
                                   child: Text(
                                     'Confirm your password:',
                                     style: FlutterFlowTheme.of(context)
-                                        .bodyText2
+                                        .bodySmall
                                         .override(
                                           fontFamily: 'Montserrat',
                                           color: FlutterFlowTheme.of(context)
-                                              .primaryColor,
+                                              .primary,
                                           fontWeight: FontWeight.w500,
                                           useGoogleFonts: GoogleFonts.asMap()
                                               .containsKey(
                                                   FlutterFlowTheme.of(context)
-                                                      .bodyText2Family),
+                                                      .bodySmallFamily),
                                         ),
                                   ),
                                 ),
@@ -1683,7 +1683,7 @@ class _LogSignWidgetState extends State<LogSignWidget>
                                           labelText: 'Password',
                                           labelStyle:
                                               FlutterFlowTheme.of(context)
-                                                  .bodyText2
+                                                  .bodySmall
                                                   .override(
                                                     fontFamily: 'Montserrat',
                                                     color: Color(0x7D3B3F6B),
@@ -1693,11 +1693,11 @@ class _LogSignWidgetState extends State<LogSignWidget>
                                                         .containsKey(
                                                             FlutterFlowTheme.of(
                                                                     context)
-                                                                .bodyText2Family),
+                                                                .bodySmallFamily),
                                                   ),
                                           hintStyle:
                                               FlutterFlowTheme.of(context)
-                                                  .bodyText2,
+                                                  .bodySmall,
                                           enabledBorder: UnderlineInputBorder(
                                             borderSide: BorderSide(
                                               color: Colors.black,
@@ -1750,17 +1750,17 @@ class _LogSignWidgetState extends State<LogSignWidget>
                                           ),
                                         ),
                                         style: FlutterFlowTheme.of(context)
-                                            .bodyText1
+                                            .bodyMedium
                                             .override(
                                               fontFamily: 'Montserrat',
                                               color: Colors.black,
                                               fontSize: 14.0,
-                                              useGoogleFonts:
-                                                  GoogleFonts.asMap()
-                                                      .containsKey(
-                                                          FlutterFlowTheme.of(
-                                                                  context)
-                                                              .bodyText1Family),
+                                              useGoogleFonts: GoogleFonts
+                                                      .asMap()
+                                                  .containsKey(
+                                                      FlutterFlowTheme.of(
+                                                              context)
+                                                          .bodyMediumFamily),
                                             ),
                                         textAlign: TextAlign.start,
                                         validator: _model
@@ -1866,7 +1866,7 @@ class _LogSignWidgetState extends State<LogSignWidget>
                                           child: Text(
                                             'Create your username 🤩',
                                             style: FlutterFlowTheme.of(context)
-                                                .title1
+                                                .displaySmall
                                                 .override(
                                                   fontFamily: 'Archivo Black',
                                                   useGoogleFonts: GoogleFonts
@@ -1874,7 +1874,7 @@ class _LogSignWidgetState extends State<LogSignWidget>
                                                       .containsKey(
                                                           FlutterFlowTheme.of(
                                                                   context)
-                                                              .title1Family),
+                                                              .displaySmallFamily),
                                                 ),
                                           ),
                                         ),
@@ -1891,19 +1891,19 @@ class _LogSignWidgetState extends State<LogSignWidget>
                                       Text(
                                         'Use something simple and unique \nso your friends can easily find you! ',
                                         style: FlutterFlowTheme.of(context)
-                                            .bodyText2
+                                            .bodySmall
                                             .override(
                                               fontFamily: 'Montserrat',
                                               color:
                                                   FlutterFlowTheme.of(context)
-                                                      .primaryColor,
+                                                      .primary,
                                               fontWeight: FontWeight.w500,
                                               useGoogleFonts:
                                                   GoogleFonts.asMap()
                                                       .containsKey(
                                                           FlutterFlowTheme.of(
                                                                   context)
-                                                              .bodyText2Family),
+                                                              .bodySmallFamily),
                                             ),
                                       ),
                                     ],
@@ -1923,7 +1923,7 @@ class _LogSignWidgetState extends State<LogSignWidget>
                                       decoration: InputDecoration(
                                         labelText: '@',
                                         labelStyle: FlutterFlowTheme.of(context)
-                                            .bodyText2
+                                            .bodySmall
                                             .override(
                                               fontFamily: 'Montserrat',
                                               color: Color(0x7D3B3F6B),
@@ -1933,10 +1933,10 @@ class _LogSignWidgetState extends State<LogSignWidget>
                                                       .containsKey(
                                                           FlutterFlowTheme.of(
                                                                   context)
-                                                              .bodyText2Family),
+                                                              .bodySmallFamily),
                                             ),
                                         hintStyle: FlutterFlowTheme.of(context)
-                                            .bodyText2,
+                                            .bodySmall,
                                         enabledBorder: UnderlineInputBorder(
                                           borderSide: BorderSide(
                                             color: Colors.black,
@@ -1972,7 +1972,7 @@ class _LogSignWidgetState extends State<LogSignWidget>
                                         ),
                                       ),
                                       style: FlutterFlowTheme.of(context)
-                                          .bodyText1
+                                          .bodyMedium
                                           .override(
                                             fontFamily: 'Montserrat',
                                             color: Colors.black,
@@ -1980,7 +1980,7 @@ class _LogSignWidgetState extends State<LogSignWidget>
                                             useGoogleFonts: GoogleFonts.asMap()
                                                 .containsKey(
                                                     FlutterFlowTheme.of(context)
-                                                        .bodyText1Family),
+                                                        .bodyMediumFamily),
                                           ),
                                       textAlign: TextAlign.start,
                                       validator: _model.textController4Validator
@@ -2072,10 +2072,10 @@ class _LogSignWidgetState extends State<LogSignWidget>
                                               EdgeInsetsDirectional.fromSTEB(
                                                   0.0, 0.0, 0.0, 0.0),
                                           color: FlutterFlowTheme.of(context)
-                                              .primaryColor,
+                                              .primary,
                                           textStyle:
                                               FlutterFlowTheme.of(context)
-                                                  .subtitle2
+                                                  .titleSmall
                                                   .override(
                                                     fontFamily: 'Archivo Black',
                                                     color: Colors.white,
@@ -2086,7 +2086,7 @@ class _LogSignWidgetState extends State<LogSignWidget>
                                                         .containsKey(
                                                             FlutterFlowTheme.of(
                                                                     context)
-                                                                .subtitle2Family),
+                                                                .titleSmallFamily),
                                                   ),
                                           elevation: 3.0,
                                           borderSide: BorderSide(
@@ -2141,7 +2141,7 @@ class _LogSignWidgetState extends State<LogSignWidget>
                                                 'You\'re all set!  👏✨',
                                                 style:
                                                     FlutterFlowTheme.of(context)
-                                                        .title1
+                                                        .displaySmall
                                                         .override(
                                                           fontFamily:
                                                               'Archivo Black',
@@ -2150,7 +2150,7 @@ class _LogSignWidgetState extends State<LogSignWidget>
                                                               .containsKey(
                                                                   FlutterFlowTheme.of(
                                                                           context)
-                                                                      .title1Family),
+                                                                      .displaySmallFamily),
                                                         ),
                                               ).animateOnPageLoad(animationsMap[
                                                   'textOnPageLoadAnimation1']!),
@@ -2165,17 +2165,17 @@ class _LogSignWidgetState extends State<LogSignWidget>
                                       child: Text(
                                         'Now let\'s help make fitness social! ',
                                         style: FlutterFlowTheme.of(context)
-                                            .title1
+                                            .displaySmall
                                             .override(
                                               fontFamily: 'Archivo Black',
                                               fontSize: 18.0,
                                               fontWeight: FontWeight.w500,
-                                              useGoogleFonts:
-                                                  GoogleFonts.asMap()
-                                                      .containsKey(
-                                                          FlutterFlowTheme.of(
-                                                                  context)
-                                                              .title1Family),
+                                              useGoogleFonts: GoogleFonts
+                                                      .asMap()
+                                                  .containsKey(
+                                                      FlutterFlowTheme.of(
+                                                              context)
+                                                          .displaySmallFamily),
                                             ),
                                       ).animateOnPageLoad(animationsMap[
                                           'textOnPageLoadAnimation2']!),

@@ -65,7 +65,7 @@ class _InviteWidgetState extends State<InviteWidget> {
           buttonSize: 60.0,
           icon: Icon(
             Icons.keyboard_arrow_left_outlined,
-            color: FlutterFlowTheme.of(context).primaryColor,
+            color: FlutterFlowTheme.of(context).primary,
             size: 30.0,
           ),
           onPressed: () async {
@@ -93,11 +93,12 @@ class _InviteWidgetState extends State<InviteWidget> {
                         child: Text(
                       'Challenge your friends! 🔥',
                       textAlign: TextAlign.center,
-                      style: FlutterFlowTheme.of(context).title1.override(
+                      style: FlutterFlowTheme.of(context).displaySmall.override(
                             fontFamily: 'Archivo Black',
                             fontSize: 24.0,
                             useGoogleFonts: GoogleFonts.asMap().containsKey(
-                                FlutterFlowTheme.of(context).title1Family),
+                                FlutterFlowTheme.of(context)
+                                    .displaySmallFamily),
                           ),
                     )),
                     Padding(
@@ -121,16 +122,16 @@ class _InviteWidgetState extends State<InviteWidget> {
                           decoration: InputDecoration(
                             hintText: 'Search',
                             hintStyle: FlutterFlowTheme.of(context)
-                                .bodyText2
+                                .bodySmall
                                 .override(
                                   fontFamily: FlutterFlowTheme.of(context)
-                                      .bodyText2Family,
+                                      .bodySmallFamily,
                                   color: Color(0xFFCFCFCF),
                                   fontSize: 20.0,
                                   fontWeight: FontWeight.w500,
                                   useGoogleFonts: GoogleFonts.asMap()
                                       .containsKey(FlutterFlowTheme.of(context)
-                                          .bodyText2Family),
+                                          .bodySmallFamily),
                                 ),
                             enabledBorder: UnderlineInputBorder(
                               borderSide: BorderSide(
@@ -191,16 +192,16 @@ class _InviteWidgetState extends State<InviteWidget> {
                                 : null,
                           ),
                           style: FlutterFlowTheme.of(context)
-                              .bodyText1
+                              .bodyMedium
                               .override(
                                 fontFamily: FlutterFlowTheme.of(context)
-                                    .bodyText1Family,
+                                    .bodyMediumFamily,
                                 color:
                                     FlutterFlowTheme.of(context).secondaryText,
                                 fontSize: 20.0,
                                 useGoogleFonts: GoogleFonts.asMap().containsKey(
                                     FlutterFlowTheme.of(context)
-                                        .bodyText1Family),
+                                        .bodyMediumFamily),
                               ),
                           validator: _model.textControllerValidator
                               .asValidator(context),
@@ -223,8 +224,7 @@ class _InviteWidgetState extends State<InviteWidget> {
                             FriendsRecord>(
                           pagingController: () {
                             final Query<Object?> Function(Query<Object?>)
-                                queryBuilder = (friendsRecord) =>
-                                    friendsRecord.orderBy('username');
+                                queryBuilder = (friendsRecord) => friendsRecord;
                             if (_model.pagingController != null) {
                               final query =
                                   queryBuilder(FriendsRecord.collection());
@@ -247,10 +247,9 @@ class _InviteWidgetState extends State<InviteWidget> {
                                 .addPageRequestListener((nextPageMarker) {
                               queryFriendsRecordPage(
                                 parent: currentUserReference,
-                                queryBuilder: (friendsRecord) =>
-                                    friendsRecord.orderBy('username'),
+                                queryBuilder: (friendsRecord) => friendsRecord,
                                 nextPageMarker: nextPageMarker,
-                                pageSize: 10,
+                                pageSize: 25,
                                 isStream: true,
                               ).then((page) {
                                 _model.pagingController!.appendPage(
@@ -360,14 +359,14 @@ class _InviteWidgetState extends State<InviteWidget> {
                                     color: FlutterFlowTheme.of(context)
                                         .secondaryText,
                                     textStyle: FlutterFlowTheme.of(context)
-                                        .subtitle2
+                                        .titleSmall
                                         .override(
                                           fontFamily: 'Archivo Black',
                                           color: Colors.white,
                                           useGoogleFonts: GoogleFonts.asMap()
                                               .containsKey(
                                                   FlutterFlowTheme.of(context)
-                                                      .subtitle2Family),
+                                                      .titleSmallFamily),
                                         ),
                                     elevation: 10.0,
                                     borderSide: BorderSide(

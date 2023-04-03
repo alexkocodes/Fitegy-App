@@ -97,13 +97,14 @@ class _ChallengeBottomSheetWidgetState extends State<ChallengeBottomSheetWidget>
                           EdgeInsetsDirectional.fromSTEB(15.0, 0.0, 0.0, 0.0),
                       child: Text(
                         'Select a challenge you want \nto embed in your post',
-                        style: FlutterFlowTheme.of(context).bodyText1.override(
+                        style: FlutterFlowTheme.of(context).bodyMedium.override(
                               fontFamily:
-                                  FlutterFlowTheme.of(context).bodyText1Family,
+                                  FlutterFlowTheme.of(context).bodyMediumFamily,
                               fontSize: 15.0,
                               fontWeight: FontWeight.w600,
                               useGoogleFonts: GoogleFonts.asMap().containsKey(
-                                  FlutterFlowTheme.of(context).bodyText1Family),
+                                  FlutterFlowTheme.of(context)
+                                      .bodyMediumFamily),
                             ),
                       ),
                     ),
@@ -120,14 +121,14 @@ class _ChallengeBottomSheetWidgetState extends State<ChallengeBottomSheetWidget>
                         iconPadding:
                             EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
                         color: Color(0xFF4791FF),
-                        textStyle: FlutterFlowTheme.of(context)
-                            .subtitle2
-                            .override(
-                              fontFamily: 'Archivo Black',
-                              color: Colors.white,
-                              useGoogleFonts: GoogleFonts.asMap().containsKey(
-                                  FlutterFlowTheme.of(context).subtitle2Family),
-                            ),
+                        textStyle:
+                            FlutterFlowTheme.of(context).titleSmall.override(
+                                  fontFamily: 'Archivo Black',
+                                  color: Colors.white,
+                                  useGoogleFonts: GoogleFonts.asMap()
+                                      .containsKey(FlutterFlowTheme.of(context)
+                                          .titleSmallFamily),
+                                ),
                         elevation: 5.0,
                         borderSide: BorderSide(
                           color: Colors.transparent,
@@ -151,14 +152,14 @@ class _ChallengeBottomSheetWidgetState extends State<ChallengeBottomSheetWidget>
                       TabBar(
                         labelColor: FlutterFlowTheme.of(context).secondaryText,
                         unselectedLabelColor: Color(0x9C868686),
-                        labelStyle: FlutterFlowTheme.of(context)
-                            .bodyText1
-                            .override(
-                              fontFamily: 'Archivo Black',
-                              fontSize: 13.0,
-                              useGoogleFonts: GoogleFonts.asMap().containsKey(
-                                  FlutterFlowTheme.of(context).bodyText1Family),
-                            ),
+                        labelStyle:
+                            FlutterFlowTheme.of(context).bodyMedium.override(
+                                  fontFamily: 'Archivo Black',
+                                  fontSize: 13.0,
+                                  useGoogleFonts: GoogleFonts.asMap()
+                                      .containsKey(FlutterFlowTheme.of(context)
+                                          .bodyMediumFamily),
+                                ),
                         indicatorColor:
                             FlutterFlowTheme.of(context).primaryBtnText,
                         tabs: [
@@ -372,7 +373,7 @@ class _ChallengeBottomSheetWidgetState extends State<ChallengeBottomSheetWidget>
                                                         style:
                                                             FlutterFlowTheme.of(
                                                                     context)
-                                                                .bodyText1
+                                                                .bodyMedium
                                                                 .override(
                                                                   fontFamily:
                                                                       'Archivo Black',
@@ -383,7 +384,7 @@ class _ChallengeBottomSheetWidgetState extends State<ChallengeBottomSheetWidget>
                                                                           .asMap()
                                                                       .containsKey(
                                                                           FlutterFlowTheme.of(context)
-                                                                              .bodyText1Family),
+                                                                              .bodyMediumFamily),
                                                                 ),
                                                       ),
                                                       Padding(
@@ -401,11 +402,11 @@ class _ChallengeBottomSheetWidgetState extends State<ChallengeBottomSheetWidget>
                                                                   .createdAt!),
                                                           style: FlutterFlowTheme
                                                                   .of(context)
-                                                              .bodyText1
+                                                              .bodyMedium
                                                               .override(
                                                                 fontFamily: FlutterFlowTheme.of(
                                                                         context)
-                                                                    .bodyText1Family,
+                                                                    .bodyMediumFamily,
                                                                 color: FlutterFlowTheme.of(
                                                                         context)
                                                                     .primaryBtnText,
@@ -417,7 +418,7 @@ class _ChallengeBottomSheetWidgetState extends State<ChallengeBottomSheetWidget>
                                                                         .asMap()
                                                                     .containsKey(
                                                                         FlutterFlowTheme.of(context)
-                                                                            .bodyText1Family),
+                                                                            .bodyMediumFamily),
                                                               ),
                                                         ),
                                                       ),
