@@ -104,6 +104,13 @@ class _$UsersRecordSerializer implements StructuredSerializer<UsersRecord> {
             specifiedType: const FullType(
                 DocumentReference, const [const FullType.nullable(Object)])));
     }
+    value = object.bannerUrl;
+    if (value != null) {
+      result
+        ..add('banner_url')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(String)));
+    }
     value = object.ffRef;
     if (value != null) {
       result
@@ -176,6 +183,10 @@ class _$UsersRecordSerializer implements StructuredSerializer<UsersRecord> {
                 const FullType.nullable(Object)
               ])) as DocumentReference<Object?>?;
           break;
+        case 'banner_url':
+          result.bannerUrl = serializers.deserialize(value,
+              specifiedType: const FullType(String)) as String?;
+          break;
         case 'Document__Reference__Field':
           result.ffRef = serializers.deserialize(value,
               specifiedType: const FullType(DocumentReference, const [
@@ -215,6 +226,8 @@ class _$UsersRecord extends UsersRecord {
   @override
   final DocumentReference<Object?>? friends;
   @override
+  final String? bannerUrl;
+  @override
   final DocumentReference<Object?>? ffRef;
 
   factory _$UsersRecord([void Function(UsersRecordBuilder)? updates]) =>
@@ -233,6 +246,7 @@ class _$UsersRecord extends UsersRecord {
       this.emoji,
       this.bio,
       this.friends,
+      this.bannerUrl,
       this.ffRef})
       : super._();
 
@@ -259,6 +273,7 @@ class _$UsersRecord extends UsersRecord {
         emoji == other.emoji &&
         bio == other.bio &&
         friends == other.friends &&
+        bannerUrl == other.bannerUrl &&
         ffRef == other.ffRef;
   }
 
@@ -277,6 +292,7 @@ class _$UsersRecord extends UsersRecord {
     _$hash = $jc(_$hash, emoji.hashCode);
     _$hash = $jc(_$hash, bio.hashCode);
     _$hash = $jc(_$hash, friends.hashCode);
+    _$hash = $jc(_$hash, bannerUrl.hashCode);
     _$hash = $jc(_$hash, ffRef.hashCode);
     _$hash = $jf(_$hash);
     return _$hash;
@@ -297,6 +313,7 @@ class _$UsersRecord extends UsersRecord {
           ..add('emoji', emoji)
           ..add('bio', bio)
           ..add('friends', friends)
+          ..add('bannerUrl', bannerUrl)
           ..add('ffRef', ffRef))
         .toString();
   }
@@ -353,6 +370,10 @@ class UsersRecordBuilder implements Builder<UsersRecord, UsersRecordBuilder> {
   DocumentReference<Object?>? get friends => _$this._friends;
   set friends(DocumentReference<Object?>? friends) => _$this._friends = friends;
 
+  String? _bannerUrl;
+  String? get bannerUrl => _$this._bannerUrl;
+  set bannerUrl(String? bannerUrl) => _$this._bannerUrl = bannerUrl;
+
   DocumentReference<Object?>? _ffRef;
   DocumentReference<Object?>? get ffRef => _$this._ffRef;
   set ffRef(DocumentReference<Object?>? ffRef) => _$this._ffRef = ffRef;
@@ -376,6 +397,7 @@ class UsersRecordBuilder implements Builder<UsersRecord, UsersRecordBuilder> {
       _emoji = $v.emoji;
       _bio = $v.bio;
       _friends = $v.friends;
+      _bannerUrl = $v.bannerUrl;
       _ffRef = $v.ffRef;
       _$v = null;
     }
@@ -411,6 +433,7 @@ class UsersRecordBuilder implements Builder<UsersRecord, UsersRecordBuilder> {
             emoji: emoji,
             bio: bio,
             friends: friends,
+            bannerUrl: bannerUrl,
             ffRef: ffRef);
     replace(_$result);
     return _$result;
