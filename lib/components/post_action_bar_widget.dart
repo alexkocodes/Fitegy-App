@@ -71,8 +71,9 @@ class _PostActionBarWidgetState extends State<PostActionBarWidget> {
                     });
                   }
                   _liked = !_liked;
-                  setState(() {});
-                  widget.callback!();
+                  if (this.mounted) {
+                    setState(() {});
+                  }
                 },
                 child: Stack(
                   children: [

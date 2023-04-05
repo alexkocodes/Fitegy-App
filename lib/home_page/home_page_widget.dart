@@ -32,7 +32,9 @@ class _HomePageWidgetState extends State<HomePageWidget> {
   }
 
   void callback() {
-    setState(() {});
+    if (mounted) {
+      setState(() {});
+    }
   }
 
   @override

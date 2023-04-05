@@ -283,7 +283,7 @@ class _MyAccountWidgetState extends State<MyAccountWidget> {
                                                             FlutterFlowTheme.of(
                                                                     context)
                                                                 .title1Family,
-                                                        fontSize: 23,
+                                                        fontSize: 20,
                                                         useGoogleFonts: GoogleFonts
                                                                 .asMap()
                                                             .containsKey(
@@ -408,27 +408,6 @@ class _MyAccountWidgetState extends State<MyAccountWidget> {
                                   ),
                                 ),
                               ),
-                              // if (currentUserReference == widget.authorRef)
-                              //   FlutterFlowIconButton(
-                              //     borderColor: Colors.transparent,
-                              //     borderRadius: 30,
-                              //     borderWidth: 1,
-                              //     buttonSize: 40,
-                              //     icon: Icon(
-                              //       Icons.mode_edit,
-                              //       color:
-                              //           FlutterFlowTheme.of(context).lineColor,
-                              //       size: 20,
-                              //     ),
-                              //     onPressed: () async {
-                              //       final usersUpdateData =
-                              //           createUsersRecordData(
-                              //         bio: '',
-                              //       );
-                              //       await currentUserReference!
-                              //           .update(usersUpdateData);
-                              //     },
-                              //   ),
                             ],
                           ),
                           Padding(
@@ -441,14 +420,6 @@ class _MyAccountWidgetState extends State<MyAccountWidget> {
                                 (currentUserReference == currentUserReference)
                                     ? FFButtonWidget(
                                         onPressed: () async {
-                                          // GoRouter.of(context)
-                                          //     .prepareAuthEvent();
-                                          // await signOut();
-                                          // GoRouter.of(context)
-                                          //     .clearRedirectLocation();
-
-                                          // context.goNamedAuth(
-                                          //     'Landing', mounted);
                                           context.pushNamed(
                                             'EditProfile',
                                             queryParams: {
@@ -727,6 +698,8 @@ class _MyAccountWidgetState extends State<MyAccountWidget> {
                                         builder: (context, snapshot) {
                                           if (snapshot.hasData) {
                                             emoji = snapshot.data.toString();
+                                          } else {
+                                            emoji = '👋';
                                           }
                                           return FFButtonWidget(
                                             onPressed: () {},
@@ -787,7 +760,7 @@ class _MyAccountWidgetState extends State<MyAccountWidget> {
                       0,
                       0),
                   child: Align(
-                    alignment: AlignmentDirectional(-0.03, -1),
+                    alignment: AlignmentDirectional(0, -1),
                     child: Container(
                       width: MediaQuery.of(context).size.width * 0.25,
                       height: MediaQuery.of(context).size.width * 0.25,

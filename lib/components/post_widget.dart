@@ -121,47 +121,63 @@ class _PostWidgetState extends State<PostWidget> {
                               Align(
                                 alignment: AlignmentDirectional(0, 0),
                                 child: AuthUserStreamWidget(
-                                  builder: (context) => Container(
-                                    width: 40,
-                                    height: 40,
-                                    clipBehavior: Clip.antiAlias,
-                                    decoration: BoxDecoration(
-                                      shape: BoxShape.circle,
+                                  builder: (context) => InkWell(
+                                    onTap: () async {
+                                      context.pushNamed(
+                                        'ProfilePage',
+                                        queryParams: {
+                                          'userRef': serializeParam(
+                                            widget.authorRef,
+                                            ParamType.DocumentReference,
+                                          ),
+                                          "name": widget.name,
+                                        }.withoutNulls,
+                                      );
+                                    },
+                                    child: Container(
+                                      width: 40,
+                                      height: 40,
+                                      clipBehavior: Clip.antiAlias,
+                                      decoration: BoxDecoration(
+                                        shape: BoxShape.circle,
+                                      ),
+                                      child: FutureBuilder(
+                                          future:
+                                              getAuthorData(widget.authorRef!),
+                                          builder: (context, snapshot) {
+                                            if (snapshot.hasData) {
+                                              final data = snapshot.data as Map;
+                                              final authorImageURL =
+                                                  data['authorImage'];
+                                              return CachedNetworkImage(
+                                                fit: BoxFit.cover,
+                                                fadeInDuration:
+                                                    Duration(milliseconds: 500),
+                                                imageUrl:
+                                                    valueOrDefault<String>(
+                                                  authorImageURL,
+                                                  'https://images.unsplash.com/photo-1574158622682-e40e69881006?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2333&q=80',
+                                                ),
+                                              );
+                                            } else {
+                                              return Shimmer.fromColors(
+                                                baseColor: Colors.grey[300]!,
+                                                highlightColor:
+                                                    Colors.grey[100]!,
+                                                child: Container(
+                                                  width: MediaQuery.of(context)
+                                                      .size
+                                                      .width,
+                                                  height: MediaQuery.of(context)
+                                                          .size
+                                                          .height *
+                                                      0.3,
+                                                  color: Colors.grey[300],
+                                                ),
+                                              );
+                                            }
+                                          }),
                                     ),
-                                    child: FutureBuilder(
-                                        future:
-                                            getAuthorData(widget.authorRef!),
-                                        builder: (context, snapshot) {
-                                          if (snapshot.hasData) {
-                                            final data = snapshot.data as Map;
-                                            final authorImageURL =
-                                                data['authorImage'];
-                                            return CachedNetworkImage(
-                                              fit: BoxFit.cover,
-                                              fadeInDuration:
-                                                  Duration(milliseconds: 500),
-                                              imageUrl: valueOrDefault<String>(
-                                                authorImageURL,
-                                                'https://images.unsplash.com/photo-1574158622682-e40e69881006?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2333&q=80',
-                                              ),
-                                            );
-                                          } else {
-                                            return Shimmer.fromColors(
-                                              baseColor: Colors.grey[300]!,
-                                              highlightColor: Colors.grey[100]!,
-                                              child: Container(
-                                                width: MediaQuery.of(context)
-                                                    .size
-                                                    .width,
-                                                height: MediaQuery.of(context)
-                                                        .size
-                                                        .height *
-                                                    0.3,
-                                                color: Colors.grey[300],
-                                              ),
-                                            );
-                                          }
-                                        }),
                                   ),
                                 ),
                               ),

@@ -60,6 +60,12 @@ class _ProfileWidgetState extends State<ProfileWidget> {
     super.dispose();
   }
 
+  void callback() {
+    if (mounted) {
+      setState(() {});
+    }
+  }
+
   // create an async function to get the author's profile image and return a string
   Future<String> getAuthorImage(DocumentReference authorRef) async {
     final authorData = await authorRef.get();
@@ -85,12 +91,16 @@ class _ProfileWidgetState extends State<ProfileWidget> {
       'userData': userData.data(),
       'authorUsername': authorUsername,
       'displayName': displayName,
+      'authorData': authorData.data(),
     };
     return data;
   }
 
   @override
   Widget build(BuildContext context) {
+    var name;
+    var bio;
+    var emoji;
     return Scaffold(
       key: scaffoldKey,
       backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
@@ -102,11 +112,30 @@ class _ProfileWidgetState extends State<ProfileWidget> {
             Stack(
               alignment: AlignmentDirectional(0, -1),
               children: [
-                Image.network(
-                  'https://images.unsplash.com/photo-1592194996308-7b43878e84a6?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=987&q=80',
-                  width: MediaQuery.of(context).size.width,
-                  height: MediaQuery.of(context).size.height * 0.3,
-                  fit: BoxFit.cover,
+                FutureBuilder(
+                  future: getData(widget.authorRef!),
+                  builder: (context, snapshot) {
+                    if (snapshot.hasData) {
+                      final data = snapshot.data as Map;
+                      final authorData = data['authorData'];
+                      return CachedNetworkImage(
+                        imageUrl: valueOrDefault(authorData['banner_url'],
+                            'https://images.unsplash.com/photo-1618397746666-63405ce5d015?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1674&q=80'),
+                        width: MediaQuery.of(context).size.width,
+                        height: MediaQuery.of(context).size.height * 0.3,
+                        fit: BoxFit.cover,
+                      );
+                    }
+                    return Shimmer.fromColors(
+                      baseColor: Colors.grey[300]!,
+                      highlightColor: Colors.grey[100]!,
+                      child: Container(
+                        width: MediaQuery.of(context).size.width,
+                        height: MediaQuery.of(context).size.height * 0.3,
+                        color: Colors.grey[300],
+                      ),
+                    );
+                  },
                 ),
                 Padding(
                   padding: EdgeInsetsDirectional.fromSTEB(20, 150, 20, 0),
@@ -129,108 +158,6 @@ class _ProfileWidgetState extends State<ProfileWidget> {
                         mainAxisSize: MainAxisSize.max,
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          // (currentUserReference == widget.authorRef)
-                          //     ? Padding(
-                          //         padding: EdgeInsetsDirectional.fromSTEB(
-                          //             0, 70, 0, 0),
-                          //         child: FFButtonWidget(
-                          //           onPressed: () async {
-                          //             final selectedMedia =
-                          //                 await selectMediaWithSourceBottomSheet(
-                          //               context: context,
-                          //               allowPhoto: true,
-                          //               pickerFontFamily: 'Inter',
-                          //             );
-                          //             if (selectedMedia != null &&
-                          //                 selectedMedia.every((m) =>
-                          //                     validateFileFormat(
-                          //                         m.storagePath, context))) {
-                          //               setState(() =>
-                          //                   _model.isDataUploading = true);
-                          //               var selectedUploadedFiles =
-                          //                   <FFUploadedFile>[];
-                          //               var downloadUrls = <String>[];
-                          //               try {
-                          //                 selectedUploadedFiles = selectedMedia
-                          //                     .map((m) => FFUploadedFile(
-                          //                           name: m.storagePath
-                          //                               .split('/')
-                          //                               .last,
-                          //                           bytes: m.bytes,
-                          //                           height:
-                          //                               m.dimensions?.height,
-                          //                           width: m.dimensions?.width,
-                          //                         ))
-                          //                     .toList();
-                          //                 downloadUrls = (await Future.wait(
-                          //                   selectedMedia.map(
-                          //                     (m) async => await uploadData(
-                          //                         m.storagePath, m.bytes),
-                          //                   ),
-                          //                 ))
-                          //                     .where((u) => u != null)
-                          //                     .map((u) => u!)
-                          //                     .toList();
-                          //               } finally {
-                          //                 _model.isDataUploading = false;
-                          //               }
-                          //               if (selectedUploadedFiles.length ==
-                          //                       selectedMedia.length &&
-                          //                   downloadUrls.length ==
-                          //                       selectedMedia.length) {
-                          //                 setState(() {
-                          //                   _model.uploadedLocalFile =
-                          //                       selectedUploadedFiles.first;
-                          //                   _model.uploadedFileUrl =
-                          //                       downloadUrls.first;
-                          //                 });
-                          //               } else {
-                          //                 setState(() {});
-                          //                 return;
-                          //               }
-                          //             }
-                          //             final usersUpdateData =
-                          //                 createUsersRecordData(
-                          //               photoUrl: _model.uploadedFileUrl,
-                          //             );
-                          //             await currentUserReference!
-                          //                 .update(usersUpdateData);
-                          //           },
-                          //           text: 'Change Photo',
-                          //           options: FFButtonOptions(
-                          //             width: 100,
-                          //             height: 30,
-                          //             padding: EdgeInsetsDirectional.fromSTEB(
-                          //                 0, 0, 0, 0),
-                          //             iconPadding:
-                          //                 EdgeInsetsDirectional.fromSTEB(
-                          //                     0, 0, 0, 0),
-                          //             color: FlutterFlowTheme.of(context)
-                          //                 .primaryBackground,
-                          //             textStyle: FlutterFlowTheme.of(context)
-                          //                 .bodyText1
-                          //                 .override(
-                          //                   fontFamily:
-                          //                       FlutterFlowTheme.of(context)
-                          //                           .bodyText1Family,
-                          //                   color: FlutterFlowTheme.of(context)
-                          //                       .secondaryText,
-                          //                   fontSize: 10,
-                          //                   fontWeight: FontWeight.w300,
-                          //                   useGoogleFonts: GoogleFonts.asMap()
-                          //                       .containsKey(
-                          //                           FlutterFlowTheme.of(context)
-                          //                               .bodyText1Family),
-                          //                 ),
-                          //             elevation: 1,
-                          //             borderSide: BorderSide(
-                          //               color: Colors.transparent,
-                          //               width: 1,
-                          //             ),
-                          //           ),
-                          //         ),
-                          //       )
-                          // :
                           Container(
                             height: 70,
                           ),
@@ -239,6 +166,7 @@ class _ProfileWidgetState extends State<ProfileWidget> {
                                 EdgeInsetsDirectional.fromSTEB(0, 10, 0, 0),
                             child: Row(
                               mainAxisSize: MainAxisSize.min,
+                              mainAxisAlignment: MainAxisAlignment.center,
                               children: [
                                 AuthUserStreamWidget(
                                   builder: (context) => FutureBuilder(
@@ -266,7 +194,7 @@ class _ProfileWidgetState extends State<ProfileWidget> {
                                                             FlutterFlowTheme.of(
                                                                     context)
                                                                 .title1Family,
-                                                        fontSize: 23,
+                                                        fontSize: 20,
                                                         useGoogleFonts: GoogleFonts
                                                                 .asMap()
                                                             .containsKey(
@@ -282,7 +210,7 @@ class _ProfileWidgetState extends State<ProfileWidget> {
                                         );
                                       }
                                       final data = snapshot.data as Map;
-                                      final name = data['displayName'];
+                                      name = data['displayName'];
                                       return Text(
                                         name!,
                                         style: FlutterFlowTheme.of(context)
@@ -315,48 +243,76 @@ class _ProfileWidgetState extends State<ProfileWidget> {
                                 padding:
                                     EdgeInsetsDirectional.fromSTEB(0, 15, 0, 0),
                                 child: AuthUserStreamWidget(
-                                  builder: (context) => Text(
-                                    valueOrDefault(currentUserDocument?.bio,
-                                        'Just joined Fitegy! Come challenge me!'),
-                                    style: FlutterFlowTheme.of(context)
-                                        .bodyText2
-                                        .override(
-                                          fontSize: 13,
-                                          fontFamily:
-                                              FlutterFlowTheme.of(context)
-                                                  .bodyText2Family,
-                                          color: FlutterFlowTheme.of(context)
-                                              .customColor4,
-                                          fontWeight: FontWeight.w500,
-                                          useGoogleFonts: GoogleFonts.asMap()
-                                              .containsKey(
-                                                  FlutterFlowTheme.of(context)
-                                                      .bodyText2Family),
-                                        ),
+                                  builder: (context) => Center(
+                                    child: FutureBuilder(
+                                      future: getData(widget.authorRef!),
+                                      builder: (context, snapshot) {
+                                        if (!snapshot.hasData) {
+                                          return Shimmer.fromColors(
+                                            baseColor: Colors.grey[300]!,
+                                            highlightColor: Colors.white,
+                                            child: Container(
+                                              decoration: BoxDecoration(
+                                                color: Color.fromARGB(
+                                                    115, 238, 238, 238),
+                                                borderRadius:
+                                                    BorderRadius.circular(8),
+                                              ),
+                                              child: Text(
+                                                "",
+                                                style:
+                                                    FlutterFlowTheme.of(context)
+                                                        .bodyText1
+                                                        .override(
+                                                          fontFamily:
+                                                              FlutterFlowTheme.of(
+                                                                      context)
+                                                                  .bodyText1Family,
+                                                          fontSize: 13,
+                                                          useGoogleFonts: GoogleFonts
+                                                                  .asMap()
+                                                              .containsKey(
+                                                                  FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .bodyText1Family),
+                                                          color: Colors.black,
+                                                          fontWeight:
+                                                              FontWeight.normal,
+                                                        ),
+                                              ),
+                                            ),
+                                          );
+                                        }
+                                        final data = snapshot.data as Map;
+                                        bio = data['authorData']['bio'];
+                                        return Text(
+                                          valueOrDefault(bio,
+                                              'Just joined Fitegy! Come challenge me!'),
+                                          maxLines: 20,
+                                          style: FlutterFlowTheme.of(context)
+                                              .bodyText2
+                                              .override(
+                                                fontSize: 13,
+                                                fontFamily:
+                                                    FlutterFlowTheme.of(context)
+                                                        .bodyText2Family,
+                                                color:
+                                                    FlutterFlowTheme.of(context)
+                                                        .customColor4,
+                                                fontWeight: FontWeight.w500,
+                                                useGoogleFonts: GoogleFonts
+                                                        .asMap()
+                                                    .containsKey(
+                                                        FlutterFlowTheme.of(
+                                                                context)
+                                                            .bodyText2Family),
+                                              ),
+                                        );
+                                      },
+                                    ),
                                   ),
                                 ),
                               ),
-                              // if (currentUserReference == widget.authorRef)
-                              //   FlutterFlowIconButton(
-                              //     borderColor: Colors.transparent,
-                              //     borderRadius: 30,
-                              //     borderWidth: 1,
-                              //     buttonSize: 40,
-                              //     icon: Icon(
-                              //       Icons.mode_edit,
-                              //       color:
-                              //           FlutterFlowTheme.of(context).lineColor,
-                              //       size: 20,
-                              //     ),
-                              //     onPressed: () async {
-                              //       final usersUpdateData =
-                              //           createUsersRecordData(
-                              //         bio: '',
-                              //       );
-                              //       await currentUserReference!
-                              //           .update(usersUpdateData);
-                              //     },
-                              //   ),
                             ],
                           ),
                           Padding(
@@ -366,10 +322,66 @@ class _ProfileWidgetState extends State<ProfileWidget> {
                               mainAxisSize: MainAxisSize.max,
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
-                                (widget.authorRef == currentUserReference)
-                                    ? Container()
+                                (currentUserReference == currentUserReference)
+                                    ? FFButtonWidget(
+                                        onPressed: () async {
+                                          context.pushNamed(
+                                            'EditProfile',
+                                            queryParams: {
+                                              'name': serializeParam(
+                                                name,
+                                                ParamType.String,
+                                              ),
+                                              'bio': serializeParam(
+                                                bio,
+                                                ParamType.String,
+                                              ),
+                                              'emoji': serializeParam(
+                                                emoji,
+                                                ParamType.String,
+                                              ),
+                                            }.withoutNulls,
+                                          );
+                                        },
+                                        text: 'Edit Profile',
+                                        options: FFButtonOptions(
+                                          width: 280,
+                                          height: 45,
+                                          padding:
+                                              EdgeInsetsDirectional.fromSTEB(
+                                                  0.0, 0.0, 0.0, 0.0),
+                                          iconPadding:
+                                              EdgeInsetsDirectional.fromSTEB(
+                                                  0.0, 0.0, 0.0, 0.0),
+                                          color: FlutterFlowTheme.of(context)
+                                              .primaryColor,
+                                          textStyle: FlutterFlowTheme.of(
+                                                  context)
+                                              .subtitle2
+                                              .override(
+                                                fontFamily:
+                                                    FlutterFlowTheme.of(context)
+                                                        .subtitle2Family,
+                                                color: Colors.white,
+                                                fontSize: 20,
+                                                fontWeight: FontWeight.w600,
+                                                useGoogleFonts: GoogleFonts
+                                                        .asMap()
+                                                    .containsKey(
+                                                        FlutterFlowTheme.of(
+                                                                context)
+                                                            .subtitle2Family),
+                                              ),
+                                          borderSide: BorderSide(
+                                            color: Colors.transparent,
+                                            width: 1,
+                                          ),
+                                          borderRadius:
+                                              BorderRadius.circular(15),
+                                        ),
+                                      )
                                     : FutureBuilder(
-                                        future: getData(widget.authorRef!),
+                                        future: getData(currentUserReference!),
                                         builder: (context, snapshot) {
                                           if (!snapshot.hasData) {
                                             return Expanded(
@@ -443,7 +455,9 @@ class _ProfileWidgetState extends State<ProfileWidget> {
                                                         widget.authorRef
                                                       ])
                                                     });
-                                                    setState(() {});
+                                                    if (mounted) {
+                                                      setState(() {});
+                                                    }
                                                   } else {
                                                     return;
                                                   }
@@ -507,7 +521,9 @@ class _ProfileWidgetState extends State<ProfileWidget> {
                                                             [widget.authorRef])
                                                   });
 
-                                                  setState(() {});
+                                                  if (mounted) {
+                                                    setState(() {});
+                                                  }
 
                                                   final userFriendsUpdateData =
                                                       createFriendsRecordData(
@@ -586,6 +602,11 @@ class _ProfileWidgetState extends State<ProfileWidget> {
                                         future:
                                             getAuthorEmoji(widget.authorRef!),
                                         builder: (context, snapshot) {
+                                          if (snapshot.hasData) {
+                                            emoji = snapshot.data.toString();
+                                          } else {
+                                            emoji = '👋';
+                                          }
                                           return FFButtonWidget(
                                             onPressed: () {},
                                             text: snapshot.data.toString() !=
@@ -645,7 +666,7 @@ class _ProfileWidgetState extends State<ProfileWidget> {
                       0,
                       0),
                   child: Align(
-                    alignment: AlignmentDirectional(-0.03, -1),
+                    alignment: AlignmentDirectional(0, -1),
                     child: Container(
                       width: MediaQuery.of(context).size.width * 0.25,
                       height: MediaQuery.of(context).size.width * 0.25,
@@ -910,7 +931,9 @@ class _ProfileWidgetState extends State<ProfileWidget> {
                             }.values.toList();
                           }
                         });
-                        setState(() {});
+                        if (mounted) {
+                          setState(() {});
+                        }
                       });
                       _streamSubscriptions.add(streamSubscription);
                     });
@@ -963,9 +986,5 @@ class _ProfileWidgetState extends State<ProfileWidget> {
         ),
       ),
     );
-  }
-
-  callback() {
-    setState(() {});
   }
 }
