@@ -52,140 +52,210 @@ class _HomePageWidgetState extends State<HomePageWidget> {
       key: scaffoldKey,
       backgroundColor: Colors.white,
       body: SafeArea(
-        child: GestureDetector(
-          onTap: () => FocusScope.of(context).unfocus(),
-          child: Container(
-            width: double.infinity,
-            height: double.infinity,
-            decoration: BoxDecoration(
-              color: FlutterFlowTheme.of(context).secondaryBackground,
-            ),
-            child: Container(
-              width: double.infinity,
-              height: double.infinity,
-              decoration: BoxDecoration(
-                color: Colors.white,
-                shape: BoxShape.rectangle,
-              ),
-              child: Column(
-                mainAxisSize: MainAxisSize.max,
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  if (FFAppState().firstTime)
-                    Padding(
-                      padding: EdgeInsetsDirectional.fromSTEB(25, 0, 20, 20),
-                      child: Text(
-                        'See what your\nfriends are doing...',
-                        style: FlutterFlowTheme.of(context).title2.override(
-                              fontFamily: 'Inter',
-                              color: FlutterFlowTheme.of(context).primaryColor,
-                              fontSize: 25,
-                              useGoogleFonts: GoogleFonts.asMap().containsKey(
-                                  FlutterFlowTheme.of(context).title2Family),
-                            ),
-                      ),
-                    ),
-                  Expanded(
-                    child:
-                        PagedListView<DocumentSnapshot<Object?>?, PostsRecord>(
-                      pagingController: () {
-                        final Query<Object?> Function(Query<Object?>)
-                            queryBuilder = (postsRecord) => postsRecord
-                                .orderBy('time_posted', descending: true);
-                        if (_pagingController != null) {
-                          final query = queryBuilder(
-                            PostsRecord.collection(),
-                          );
-                          if (query != _pagingQuery) {
-                            // The query has changed
-                            _pagingQuery = query;
-                            _streamSubscriptions.forEach((s) => s?.cancel());
-                            _streamSubscriptions.clear();
-                            _pagingController!.refresh();
-                          }
-                          return _pagingController!;
-                        }
-
-                        _pagingController =
-                            PagingController(firstPageKey: null);
-                        _pagingQuery = queryBuilder(PostsRecord.collection());
-                        _pagingController!
-                            .addPageRequestListener((nextPageMarker) {
-                          queryPostsRecordPage(
-                            queryBuilder: (postsRecord) => postsRecord,
-                            nextPageMarker: nextPageMarker,
-                            pageSize: 8,
-                            isStream: true,
-                          ).then((page) {
-                            _pagingController!.appendPage(
-                              page.data,
-                              page.nextPageMarker,
-                            );
-                            final streamSubscription =
-                                page.dataStream?.listen((data) {
-                              final itemIndexes = _pagingController!.itemList!
-                                  .asMap()
-                                  .map((k, v) => MapEntry(v.reference.id, k));
-                              data.forEach((item) {
-                                final index = itemIndexes[item.reference.id];
-                                final items = _pagingController!.itemList!;
-                                if (index != null) {
-                                  items.replaceRange(index, index + 1, [item]);
-                                  _pagingController!.itemList = {
-                                    for (var item in items) item.reference: item
-                                  }.values.toList();
-                                }
-                              });
-                              setState(() {});
-                            });
-                            _streamSubscriptions.add(streamSubscription);
-                          });
-                        });
-                        return _pagingController!;
-                      }(),
-                      padding: EdgeInsets.zero,
-                      shrinkWrap: true,
-                      scrollDirection: Axis.vertical,
-                      builderDelegate: PagedChildBuilderDelegate<PostsRecord>(
-                        // Customize what your widget looks like when it's loading the first page.
-                        firstPageProgressIndicatorBuilder: (_) => Center(
-                          child: SizedBox(
-                            width: 40,
-                            height: 40,
-                            child: CircularProgressIndicator(
-                              color: FlutterFlowTheme.of(context).primaryColor,
-                            ),
-                          ),
-                        ),
-
-                        itemBuilder: (context, _, listViewIndex) {
-                          final listViewPostsRecord =
-                              _pagingController!.itemList![listViewIndex];
-
-                          return PostWidget(
-                            key: Key('Post_${listViewIndex}'),
-                            name: listViewPostsRecord.displayName,
-                            location: listViewPostsRecord.location,
-                            description: listViewPostsRecord.postDescription,
-                            likeCount: valueOrDefault<int>(
-                              listViewPostsRecord.likes!.toList().length,
-                              0,
-                            ),
-                            challenge: listViewPostsRecord.inPostChallenge,
-                            imageURLs: listViewPostsRecord.postImages!.toList(),
-                            authorRef: listViewPostsRecord.postUser,
-                            postRef: listViewPostsRecord.reference,
-                            liked: listViewPostsRecord.likes!.contains(
-                              currentUserReference,
-                            ),
-                            callback: callback,
-                            onPage: 'HomePage',
-                          );
-                        },
-                      ),
+        child: NestedScrollView(
+          headerSliverBuilder: (context, innerBoxIsScrolled) {
+            return [
+              SliverAppBar(
+                // bottom: PreferredSize(
+                //   preferredSize: const Size.fromHeight(0),
+                //   child: Text(
+                //     'See what your friends are up to...',
+                //     style: FlutterFlowTheme.of(context).title2.override(
+                //           fontFamily: 'Inter',
+                //           color: FlutterFlowTheme.of(context).primaryColor,
+                //           fontSize: 20,
+                //           useGoogleFonts: GoogleFonts.asMap().containsKey(
+                //               FlutterFlowTheme.of(context).title2Family),
+                //         ),
+                //   ),
+                // ),
+                backgroundColor: Colors.white,
+                automaticallyImplyLeading: true,
+                leading: Padding(
+                  padding: EdgeInsetsDirectional.fromSTEB(20, 0, 0, 0),
+                  child: Container(
+                    width: 0,
+                    child: Image.asset(
+                      'assets/images/fitegy_logo.png',
+                      width: 80,
+                      height: 80,
+                      fit: BoxFit.fitWidth,
                     ),
                   ),
+                ),
+                leadingWidth: 100,
+                floating: true,
+                snap: true,
+                elevation: 0,
+                // flexibleSpace: FlexibleSpaceBar(
+                //   centerTitle: false,
+                //   title:
+                //       // if (FFAppState().firstTime)
+                //       Text(
+                //     'Fitegy',
+                //     style: FlutterFlowTheme.of(context).title2.override(
+                //           fontFamily: 'Inter',
+                //           color: FlutterFlowTheme.of(context).primaryColor,
+                //           fontSize: 20,
+                //           useGoogleFonts: GoogleFonts.asMap().containsKey(
+                //               FlutterFlowTheme.of(context).title2Family),
+                //         ),
+                //   ),
+                // ),
+                actions: [
+                  // Padding(
+                  //   padding: EdgeInsetsDirectional.fromSTEB(0, 0, 20, 0),
+                  //   child: InkWell(
+                  //     onTap: () async {},
+                  //     child: Padding(
+                  //       padding: EdgeInsetsDirectional.fromSTEB(0, 0, 20, 0),
+                  //       child: Container(
+                  //         width: 40,
+                  //         height: 40,
+                  //         clipBehavior: Clip.antiAlias,
+                  //         decoration: BoxDecoration(
+                  //           shape: BoxShape.circle,
+                  //         ),
+                  //         child: Image.network(
+                  //           valueOrDefault<String>(
+                  //             currentUserPhoto,
+                  //             'https://picsum.photos/seed/1/600',
+                  //           ),
+                  //         ),
+                  //       ),
+                  //     ),
+                  //   ),
+                  // )
                 ],
+              )
+            ];
+          },
+          body: GestureDetector(
+            onTap: () => FocusScope.of(context).unfocus(),
+            child: Container(
+              width: double.infinity,
+              height: MediaQuery.of(context).size.height,
+              decoration: BoxDecoration(
+                color: FlutterFlowTheme.of(context).secondaryBackground,
+              ),
+              child: Container(
+                width: double.infinity,
+                height: MediaQuery.of(context).size.height,
+                decoration: BoxDecoration(
+                  color: Colors.white,
+                  shape: BoxShape.rectangle,
+                ),
+                child: Column(
+                  mainAxisSize: MainAxisSize.min,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Flexible(
+                      child: PagedListView<DocumentSnapshot<Object?>?,
+                          PostsRecord>(
+                        primary: true,
+                        pagingController: () {
+                          final Query<Object?> Function(Query<Object?>)
+                              queryBuilder = (postsRecord) => postsRecord
+                                  .orderBy('time_posted', descending: true);
+                          if (_pagingController != null) {
+                            final query = queryBuilder(
+                              PostsRecord.collection(),
+                            );
+                            if (query != _pagingQuery) {
+                              // The query has changed
+                              _pagingQuery = query;
+                              _streamSubscriptions.forEach((s) => s?.cancel());
+                              _streamSubscriptions.clear();
+                              _pagingController!.refresh();
+                            }
+                            return _pagingController!;
+                          }
+
+                          _pagingController =
+                              PagingController(firstPageKey: null);
+                          _pagingQuery = queryBuilder(PostsRecord.collection());
+                          _pagingController!
+                              .addPageRequestListener((nextPageMarker) {
+                            queryPostsRecordPage(
+                              queryBuilder: (postsRecord) => postsRecord,
+                              nextPageMarker: nextPageMarker,
+                              pageSize: 8,
+                              isStream: true,
+                            ).then((page) {
+                              _pagingController!.appendPage(
+                                page.data,
+                                page.nextPageMarker,
+                              );
+                              final streamSubscription =
+                                  page.dataStream?.listen((data) {
+                                final itemIndexes = _pagingController!.itemList!
+                                    .asMap()
+                                    .map((k, v) => MapEntry(v.reference.id, k));
+                                data.forEach((item) {
+                                  final index = itemIndexes[item.reference.id];
+                                  final items = _pagingController!.itemList!;
+                                  if (index != null) {
+                                    items
+                                        .replaceRange(index, index + 1, [item]);
+                                    _pagingController!.itemList = {
+                                      for (var item in items)
+                                        item.reference: item
+                                    }.values.toList();
+                                  }
+                                });
+                                setState(() {});
+                              });
+                              _streamSubscriptions.add(streamSubscription);
+                            });
+                          });
+                          return _pagingController!;
+                        }(),
+                        padding: EdgeInsets.zero,
+                        shrinkWrap: true,
+                        scrollDirection: Axis.vertical,
+                        builderDelegate: PagedChildBuilderDelegate<PostsRecord>(
+                          // Customize what your widget looks like when it's loading the first page.
+                          firstPageProgressIndicatorBuilder: (_) => Center(
+                            child: SizedBox(
+                              width: 40,
+                              height: 40,
+                              child: CircularProgressIndicator(
+                                color:
+                                    FlutterFlowTheme.of(context).primaryColor,
+                              ),
+                            ),
+                          ),
+
+                          itemBuilder: (context, _, listViewIndex) {
+                            final listViewPostsRecord =
+                                _pagingController!.itemList![listViewIndex];
+
+                            return PostWidget(
+                              key: Key('Post_${listViewIndex}'),
+                              name: listViewPostsRecord.displayName,
+                              location: listViewPostsRecord.location,
+                              description: listViewPostsRecord.postDescription,
+                              likeCount: valueOrDefault<int>(
+                                listViewPostsRecord.likes!.toList().length,
+                                0,
+                              ),
+                              challenge: listViewPostsRecord.inPostChallenge,
+                              imageURLs:
+                                  listViewPostsRecord.postImages!.toList(),
+                              authorRef: listViewPostsRecord.postUser,
+                              postRef: listViewPostsRecord.reference,
+                              liked: listViewPostsRecord.likes!.contains(
+                                currentUserReference,
+                              ),
+                              callback: callback,
+                              onPage: 'HomePage',
+                            );
+                          },
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
               ),
             ),
           ),
