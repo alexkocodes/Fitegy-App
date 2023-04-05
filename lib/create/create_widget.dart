@@ -41,8 +41,6 @@ class _CreateWidgetState extends State<CreateWidget> {
     super.initState();
     _model = createModel(context, () => CreateModel());
 
-    getCurrentUserLocation(defaultLocation: LatLng(0.0, 0.0), cached: true)
-        .then((loc) => setState(() => currentUserLocationValue = loc));
     _model.textController1 ??= TextEditingController();
     _model.textController2 ??= TextEditingController();
     _model.commentsController ??= TextEditingController();
@@ -61,20 +59,6 @@ class _CreateWidgetState extends State<CreateWidget> {
   @override
   Widget build(BuildContext context) {
     context.watch<FFAppState>();
-    if (currentUserLocationValue == null) {
-      return Container(
-        color: FlutterFlowTheme.of(context).primaryBackground,
-        child: Center(
-          child: SizedBox(
-            width: 40.0,
-            height: 40.0,
-            child: CircularProgressIndicator(
-              color: FlutterFlowTheme.of(context).primaryBtnText,
-            ),
-          ),
-        ),
-      );
-    }
 
     return Scaffold(
       key: scaffoldKey,
@@ -1600,8 +1584,7 @@ class _CreateWidgetState extends State<CreateWidget> {
                                                   .fromSTEB(6.0, 4.0, 0.0, 0.0),
                                               child: SelectionArea(
                                                   child: Text(
-                                                currentUserLocationValue!
-                                                    .toString(),
+                                                'Abu Dhabi',
                                                 style:
                                                     FlutterFlowTheme.of(context)
                                                         .bodyMedium
@@ -1839,11 +1822,6 @@ class _CreateWidgetState extends State<CreateWidget> {
                                   ),
                                 ],
                               ),
-                            ),
-                            FaIcon(
-                              FontAwesomeIcons.angleDoubleDown,
-                              color: Colors.black,
-                              size: 24.0,
                             ),
                           ],
                         ),

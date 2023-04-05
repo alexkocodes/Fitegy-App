@@ -437,21 +437,49 @@ class _ProfileWidgetState extends State<ProfileWidget> {
                         mainAxisSize: MainAxisSize.max,
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          Text(
-                            '26',
-                            style: FlutterFlowTheme.of(context)
-                                .bodyMedium
-                                .override(
-                                  fontFamily: FlutterFlowTheme.of(context)
-                                      .bodyMediumFamily,
-                                  color: FlutterFlowTheme.of(context)
-                                      .secondaryText,
-                                  fontSize: 30.0,
-                                  fontWeight: FontWeight.w600,
-                                  useGoogleFonts: GoogleFonts.asMap()
-                                      .containsKey(FlutterFlowTheme.of(context)
-                                          .bodyMediumFamily),
+                          FutureBuilder<int>(
+                            future: queryChallengesRecordCount(
+                              parent: currentUserReference,
+                              queryBuilder: (challengesRecord) =>
+                                  challengesRecord.where('status',
+                                      isEqualTo: 'completed'),
+                            ),
+                            builder: (context, snapshot) {
+                              // Customize what your widget looks like when it's loading.
+                              if (!snapshot.hasData) {
+                                return Center(
+                                  child: SizedBox(
+                                    width: 40.0,
+                                    height: 40.0,
+                                    child: CircularProgressIndicator(
+                                      color: FlutterFlowTheme.of(context)
+                                          .primaryBtnText,
+                                    ),
+                                  ),
+                                );
+                              }
+                              int textCount = snapshot.data!;
+                              return Text(
+                                valueOrDefault<String>(
+                                  textCount.toString(),
+                                  '?',
                                 ),
+                                style: FlutterFlowTheme.of(context)
+                                    .bodyMedium
+                                    .override(
+                                      fontFamily: FlutterFlowTheme.of(context)
+                                          .bodyMediumFamily,
+                                      color: FlutterFlowTheme.of(context)
+                                          .secondaryText,
+                                      fontSize: 30.0,
+                                      fontWeight: FontWeight.w600,
+                                      useGoogleFonts: GoogleFonts.asMap()
+                                          .containsKey(
+                                              FlutterFlowTheme.of(context)
+                                                  .bodyMediumFamily),
+                                    ),
+                              );
+                            },
                           ),
                           Text(
                             'Completed',
