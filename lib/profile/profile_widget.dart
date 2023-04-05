@@ -1,5 +1,6 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:fitegy/auth/firebase_user_provider.dart';
+import 'package:fitegy/components/profile_stats_bar_widget.dart';
 import 'package:flutter_platform_alert/flutter_platform_alert.dart';
 import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
 
@@ -322,7 +323,7 @@ class _ProfileWidgetState extends State<ProfileWidget> {
                               mainAxisSize: MainAxisSize.max,
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
-                                (currentUserReference == currentUserReference)
+                                (widget.authorRef == currentUserReference)
                                     ? FFButtonWidget(
                                         onPressed: () async {
                                           context.pushNamed(
@@ -744,144 +745,7 @@ class _ProfileWidgetState extends State<ProfileWidget> {
                 ),
               ],
             ),
-            Padding(
-              padding: EdgeInsetsDirectional.fromSTEB(20.0, 30.0, 20.0, 20.0),
-              child: Container(
-                height: 80.0,
-                decoration: BoxDecoration(
-                  color: Color.fromARGB(255, 248, 249, 252),
-                  borderRadius: BorderRadius.circular(30.0),
-                ),
-                child: Row(
-                  mainAxisSize: MainAxisSize.max,
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                  children: [
-                    Column(
-                      mainAxisSize: MainAxisSize.max,
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Text(
-                          '26',
-                          style: FlutterFlowTheme.of(context)
-                              .bodyText1
-                              .override(
-                                fontFamily: FlutterFlowTheme.of(context)
-                                    .bodyText1Family,
-                                color:
-                                    FlutterFlowTheme.of(context).secondaryText,
-                                fontSize: 30.0,
-                                fontWeight: FontWeight.w600,
-                                useGoogleFonts: GoogleFonts.asMap().containsKey(
-                                    FlutterFlowTheme.of(context)
-                                        .bodyText1Family),
-                              ),
-                        ),
-                        Text(
-                          'Completed',
-                          style: FlutterFlowTheme.of(context)
-                              .bodyText1
-                              .override(
-                                fontFamily: FlutterFlowTheme.of(context)
-                                    .bodyText1Family,
-                                color: FlutterFlowTheme.of(context).grayIcon,
-                                fontWeight: FontWeight.w300,
-                                useGoogleFonts: GoogleFonts.asMap().containsKey(
-                                    FlutterFlowTheme.of(context)
-                                        .bodyText1Family),
-                              ),
-                        ),
-                      ],
-                    ),
-                    Padding(
-                      padding: EdgeInsetsDirectional.fromSTEB(0, 15, 0, 15),
-                      child: VerticalDivider(
-                        thickness: 2.0,
-                        color: FlutterFlowTheme.of(context).lineColor,
-                      ),
-                    ),
-                    Column(
-                      mainAxisSize: MainAxisSize.max,
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Text(
-                          '528',
-                          style: FlutterFlowTheme.of(context)
-                              .bodyText1
-                              .override(
-                                fontFamily: FlutterFlowTheme.of(context)
-                                    .bodyText1Family,
-                                color:
-                                    FlutterFlowTheme.of(context).secondaryText,
-                                fontSize: 30.0,
-                                fontWeight: FontWeight.w600,
-                                useGoogleFonts: GoogleFonts.asMap().containsKey(
-                                    FlutterFlowTheme.of(context)
-                                        .bodyText1Family),
-                              ),
-                        ),
-                        Text(
-                          'Friends',
-                          style: FlutterFlowTheme.of(context)
-                              .bodyText1
-                              .override(
-                                fontFamily: FlutterFlowTheme.of(context)
-                                    .bodyText1Family,
-                                color: FlutterFlowTheme.of(context).grayIcon,
-                                fontWeight: FontWeight.w300,
-                                useGoogleFonts: GoogleFonts.asMap().containsKey(
-                                    FlutterFlowTheme.of(context)
-                                        .bodyText1Family),
-                              ),
-                        ),
-                      ],
-                    ),
-                    Padding(
-                      padding: EdgeInsetsDirectional.fromSTEB(0, 15, 0, 15),
-                      child: VerticalDivider(
-                        thickness: 2.0,
-                        color: FlutterFlowTheme.of(context).lineColor,
-                      ),
-                    ),
-                    Column(
-                      mainAxisSize: MainAxisSize.max,
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Text(
-                          '42',
-                          style: FlutterFlowTheme.of(context)
-                              .bodyText1
-                              .override(
-                                fontFamily: FlutterFlowTheme.of(context)
-                                    .bodyText1Family,
-                                color:
-                                    FlutterFlowTheme.of(context).secondaryText,
-                                fontSize: 30.0,
-                                fontWeight: FontWeight.w600,
-                                useGoogleFonts: GoogleFonts.asMap().containsKey(
-                                    FlutterFlowTheme.of(context)
-                                        .bodyText1Family),
-                              ),
-                        ),
-                        Text(
-                          'Streaks',
-                          style: FlutterFlowTheme.of(context)
-                              .bodyText1
-                              .override(
-                                fontFamily: FlutterFlowTheme.of(context)
-                                    .bodyText1Family,
-                                color: FlutterFlowTheme.of(context).grayIcon,
-                                fontWeight: FontWeight.w300,
-                                useGoogleFonts: GoogleFonts.asMap().containsKey(
-                                    FlutterFlowTheme.of(context)
-                                        .bodyText1Family),
-                              ),
-                        ),
-                      ],
-                    ),
-                  ],
-                ),
-              ),
-            ),
+            ProfileStatesBar(authorRef: widget.authorRef!),
             Expanded(
               child: PagedListView<DocumentSnapshot<Object?>?, PostsRecord>(
                 pagingController: () {
@@ -947,8 +811,8 @@ class _ProfileWidgetState extends State<ProfileWidget> {
                   // Customize what your widget looks like when it's loading the first page.
                   firstPageProgressIndicatorBuilder: (_) => Center(
                     child: SizedBox(
-                      width: 40,
-                      height: 40,
+                      width: 35,
+                      height: 35,
                       child: CircularProgressIndicator(
                         color: FlutterFlowTheme.of(context).primaryColor,
                       ),
