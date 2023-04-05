@@ -1,5 +1,6 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:fitegy/profile/profile_widget.dart';
+import 'package:shimmer/shimmer.dart';
 
 import '../auth/auth_util.dart';
 import '../components/post_action_bar_widget.dart';
@@ -111,129 +112,146 @@ class _PostWidgetState extends State<PostWidget> {
                           color:
                               FlutterFlowTheme.of(context).secondaryBackground,
                         ),
-                        child: Row(
-                          mainAxisSize: MainAxisSize.max,
-                          mainAxisAlignment: MainAxisAlignment.start,
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Align(
-                              alignment: AlignmentDirectional(0, 0),
-                              child: AuthUserStreamWidget(
-                                builder: (context) => Container(
-                                  width: 40,
-                                  height: 40,
-                                  clipBehavior: Clip.antiAlias,
-                                  decoration: BoxDecoration(
-                                    shape: BoxShape.circle,
+                        child: IntrinsicHeight(
+                          child: Row(
+                            mainAxisSize: MainAxisSize.max,
+                            mainAxisAlignment: MainAxisAlignment.start,
+                            crossAxisAlignment: CrossAxisAlignment.stretch,
+                            children: [
+                              Align(
+                                alignment: AlignmentDirectional(0, 0),
+                                child: AuthUserStreamWidget(
+                                  builder: (context) => Container(
+                                    width: 40,
+                                    height: 40,
+                                    clipBehavior: Clip.antiAlias,
+                                    decoration: BoxDecoration(
+                                      shape: BoxShape.circle,
+                                    ),
+                                    child: FutureBuilder(
+                                        future:
+                                            getAuthorData(widget.authorRef!),
+                                        builder: (context, snapshot) {
+                                          if (snapshot.hasData) {
+                                            final data = snapshot.data as Map;
+                                            final authorImageURL =
+                                                data['authorImage'];
+                                            return CachedNetworkImage(
+                                              fit: BoxFit.cover,
+                                              fadeInDuration:
+                                                  Duration(milliseconds: 500),
+                                              imageUrl: valueOrDefault<String>(
+                                                authorImageURL,
+                                                'https://images.unsplash.com/photo-1574158622682-e40e69881006?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2333&q=80',
+                                              ),
+                                            );
+                                          } else {
+                                            return Shimmer.fromColors(
+                                              baseColor: Colors.grey[300]!,
+                                              highlightColor: Colors.grey[100]!,
+                                              child: Container(
+                                                width: MediaQuery.of(context)
+                                                    .size
+                                                    .width,
+                                                height: MediaQuery.of(context)
+                                                        .size
+                                                        .height *
+                                                    0.3,
+                                                color: Colors.grey[300],
+                                              ),
+                                            );
+                                          }
+                                        }),
                                   ),
-                                  child: FutureBuilder(
-                                      future: getAuthorData(widget.authorRef!),
-                                      builder: (context, snapshot) {
-                                        if (snapshot.hasData) {
-                                          final data = snapshot.data as Map;
-                                          final authorImageURL =
-                                              data['authorImage'];
-                                          return CachedNetworkImage(
-                                            fit: BoxFit.cover,
-                                            fadeInDuration:
-                                                Duration(milliseconds: 500),
-                                            imageUrl: valueOrDefault<String>(
-                                              authorImageURL,
-                                              'https://images.unsplash.com/photo-1574158622682-e40e69881006?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2333&q=80',
-                                            ),
-                                          );
-                                        } else {
-                                          return Image.network(
-                                              "https://images.unsplash.com/photo-1574158622682-e40e69881006?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2333&q=80");
-                                        }
-                                      }),
                                 ),
                               ),
-                            ),
-                            Padding(
-                              padding:
-                                  EdgeInsetsDirectional.fromSTEB(10, 0, 0, 0),
-                              child: Column(
-                                mainAxisSize: MainAxisSize.max,
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Wrap(
-                                    direction: Axis.vertical,
-                                    children: [
-                                      Container(
-                                        width: 150,
-                                        child: InkWell(
-                                          onTap: () async {
-                                            context.pushNamed(
-                                              'ProfilePage',
-                                              queryParams: {
-                                                'userRef': serializeParam(
-                                                  widget.authorRef,
-                                                  ParamType.DocumentReference,
-                                                ),
-                                                "name": widget.name,
-                                              }.withoutNulls,
-                                            );
-                                          },
-                                          child: FutureBuilder(
-                                              future: getAuthorData(
-                                                  widget.authorRef!),
-                                              builder: (context, snapshot) {
-                                                if (!snapshot.hasData) {
-                                                  return Container();
-                                                }
-                                                final data =
-                                                    snapshot.data as Map;
-                                                final name = data['authorName'];
-                                                return Text(
-                                                  name,
-                                                  overflow: TextOverflow.clip,
-                                                  style: FlutterFlowTheme.of(
-                                                          context)
-                                                      .bodyText1
-                                                      .override(
-                                                        fontFamily: 'Inter',
-                                                        color:
-                                                            FlutterFlowTheme.of(
-                                                                    context)
-                                                                .primaryColor,
-                                                        fontSize: 15,
-                                                        fontWeight:
-                                                            FontWeight.w600,
-                                                        useGoogleFonts: GoogleFonts
-                                                                .asMap()
-                                                            .containsKey(
-                                                                FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .bodyText1Family),
-                                                      ),
-                                                );
-                                              }),
-                                        ),
-                                      )
-                                    ],
-                                  ),
-                                  Text(
-                                    widget.location!,
-                                    style: FlutterFlowTheme.of(context)
-                                        .bodyText1
-                                        .override(
-                                          fontFamily:
-                                              FlutterFlowTheme.of(context)
-                                                  .bodyText1Family,
-                                          color: Color(0xFFB1B1B1),
-                                          fontSize: 10,
-                                          fontWeight: FontWeight.w300,
-                                          useGoogleFonts: GoogleFonts.asMap()
-                                              .containsKey(
-                                                  FlutterFlowTheme.of(context)
-                                                      .bodyText1Family),
-                                        ),
-                                  ),
-                                ],
+                              Padding(
+                                padding:
+                                    EdgeInsetsDirectional.fromSTEB(10, 0, 0, 0),
+                                child: Column(
+                                  mainAxisSize: MainAxisSize.max,
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceAround,
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Wrap(
+                                      direction: Axis.vertical,
+                                      children: [
+                                        Container(
+                                          width: 150,
+                                          child: InkWell(
+                                            onTap: () async {
+                                              context.pushNamed(
+                                                'ProfilePage',
+                                                queryParams: {
+                                                  'userRef': serializeParam(
+                                                    widget.authorRef,
+                                                    ParamType.DocumentReference,
+                                                  ),
+                                                  "name": widget.name,
+                                                }.withoutNulls,
+                                              );
+                                            },
+                                            child: FutureBuilder(
+                                                future: getAuthorData(
+                                                    widget.authorRef!),
+                                                builder: (context, snapshot) {
+                                                  if (!snapshot.hasData) {
+                                                    return Container();
+                                                  }
+                                                  final data =
+                                                      snapshot.data as Map;
+                                                  final name =
+                                                      data['authorName'];
+                                                  return Text(
+                                                    name,
+                                                    overflow: TextOverflow.clip,
+                                                    style: FlutterFlowTheme.of(
+                                                            context)
+                                                        .bodyText1
+                                                        .override(
+                                                          fontFamily: 'Inter',
+                                                          color: FlutterFlowTheme
+                                                                  .of(context)
+                                                              .primaryColor,
+                                                          fontSize: 15,
+                                                          fontWeight:
+                                                              FontWeight.w600,
+                                                          useGoogleFonts: GoogleFonts
+                                                                  .asMap()
+                                                              .containsKey(
+                                                                  FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .bodyText1Family),
+                                                        ),
+                                                  );
+                                                }),
+                                          ),
+                                        )
+                                      ],
+                                    ),
+                                    Text(
+                                      widget.location!,
+                                      style: FlutterFlowTheme.of(context)
+                                          .bodyText1
+                                          .override(
+                                            fontFamily:
+                                                FlutterFlowTheme.of(context)
+                                                    .bodyText1Family,
+                                            color: Color(0xFFB1B1B1),
+                                            fontSize: 10,
+                                            fontWeight: FontWeight.w300,
+                                            useGoogleFonts: GoogleFonts.asMap()
+                                                .containsKey(
+                                                    FlutterFlowTheme.of(context)
+                                                        .bodyText1Family),
+                                          ),
+                                    ),
+                                  ],
+                                ),
                               ),
-                            ),
-                          ],
+                            ],
+                          ),
                         ),
                       ),
                       Container(
