@@ -72,11 +72,11 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                 backgroundColor: Colors.white,
                 automaticallyImplyLeading: true,
                 leading: Padding(
-                  padding: EdgeInsetsDirectional.fromSTEB(20, 0, 0, 0),
+                  padding: EdgeInsetsDirectional.fromSTEB(25, 0, 0, 0),
                   child: Container(
                     width: 0,
                     child: Image.asset(
-                      'assets/images/fitegy_logo.png',
+                      'assets/images/fitegy_logo_dark.png',
                       width: 80,
                       height: 80,
                       fit: BoxFit.fitWidth,
