@@ -42,7 +42,8 @@ class _HomePageWidgetState extends State<HomePageWidget> {
     return Scaffold(
       floatingActionButton: FloatingActionButton(
         child: Icon(
-          Icons.add,
+          FontAwesomeIcons.featherAlt,
+          size: 20,
         ),
         backgroundColor: FlutterFlowTheme.of(context).primaryColor,
         onPressed: () {

@@ -74,6 +74,7 @@ class _PostActionBarWidgetState extends State<PostActionBarWidget> {
                   if (this.mounted) {
                     setState(() {});
                   }
+                  widget.callback!();
                 },
                 child: Stack(
                   children: [
