@@ -60,12 +60,12 @@ class _CreateWidgetState extends State<CreateWidget> {
   Widget build(BuildContext context) {
     context.watch<FFAppState>();
 
-    return Scaffold(
-      key: scaffoldKey,
-      backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
-      body: GestureDetector(
-        onTap: () => FocusScope.of(context).requestFocus(_unfocusNode),
-        child: Container(
+    return GestureDetector(
+      onTap: () => FocusScope.of(context).requestFocus(_unfocusNode),
+      child: Scaffold(
+        key: scaffoldKey,
+        backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
+        body: Container(
           decoration: BoxDecoration(
             gradient: LinearGradient(
               colors: [Color(0xFFFDFF91), Color(0x3034DAFF)],
@@ -1765,17 +1765,23 @@ class _CreateWidgetState extends State<CreateWidget> {
                                           backgroundColor: Colors.transparent,
                                           barrierColor: Color(0x00000000),
                                           context: context,
-                                          builder: (context) {
-                                            return Padding(
-                                              padding: MediaQuery.of(context)
-                                                  .viewInsets,
-                                              child: Container(
-                                                height: MediaQuery.of(context)
-                                                        .size
-                                                        .height *
-                                                    0.8,
-                                                child:
-                                                    ChallengeBottomSheetWidget(),
+                                          builder: (bottomSheetContext) {
+                                            return GestureDetector(
+                                              onTap: () => FocusScope.of(
+                                                      context)
+                                                  .requestFocus(_unfocusNode),
+                                              child: Padding(
+                                                padding: MediaQuery.of(
+                                                        bottomSheetContext)
+                                                    .viewInsets,
+                                                child: Container(
+                                                  height: MediaQuery.of(context)
+                                                          .size
+                                                          .height *
+                                                      0.8,
+                                                  child:
+                                                      ChallengeBottomSheetWidget(),
+                                                ),
                                               ),
                                             );
                                           },
@@ -1931,14 +1937,19 @@ class _CreateWidgetState extends State<CreateWidget> {
                                 backgroundColor: Colors.transparent,
                                 barrierColor: Color(0x00000000),
                                 context: context,
-                                builder: (context) {
-                                  return Padding(
-                                    padding: MediaQuery.of(context).viewInsets,
-                                    child: Container(
-                                      height:
-                                          MediaQuery.of(context).size.height *
-                                              0.8,
-                                      child: ChallengeBottomSheetWidget(),
+                                builder: (bottomSheetContext) {
+                                  return GestureDetector(
+                                    onTap: () => FocusScope.of(context)
+                                        .requestFocus(_unfocusNode),
+                                    child: Padding(
+                                      padding: MediaQuery.of(bottomSheetContext)
+                                          .viewInsets,
+                                      child: Container(
+                                        height:
+                                            MediaQuery.of(context).size.height *
+                                                0.8,
+                                        child: ChallengeBottomSheetWidget(),
+                                      ),
                                     ),
                                   );
                                 },

@@ -3,6 +3,7 @@ import '/backend/backend.dart';
 import '/components/post_widget.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
+import 'package:easy_debounce/easy_debounce.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
@@ -27,6 +28,8 @@ class _HomePageWidgetState extends State<HomePageWidget> {
   void initState() {
     super.initState();
     _model = createModel(context, () => HomePageModel());
+
+    _model.textController ??= TextEditingController();
   }
 
   @override
@@ -41,12 +44,12 @@ class _HomePageWidgetState extends State<HomePageWidget> {
   Widget build(BuildContext context) {
     context.watch<FFAppState>();
 
-    return Scaffold(
-      key: scaffoldKey,
-      backgroundColor: Colors.white,
-      body: SafeArea(
-        child: GestureDetector(
-          onTap: () => FocusScope.of(context).requestFocus(_unfocusNode),
+    return GestureDetector(
+      onTap: () => FocusScope.of(context).requestFocus(_unfocusNode),
+      child: Scaffold(
+        key: scaffoldKey,
+        backgroundColor: Colors.white,
+        body: SafeArea(
           child: Container(
             width: double.infinity,
             height: double.infinity,
@@ -64,24 +67,122 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                 mainAxisSize: MainAxisSize.max,
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  if (FFAppState().firstTime)
-                    Padding(
-                      padding:
-                          EdgeInsetsDirectional.fromSTEB(25.0, 0.0, 20.0, 20.0),
-                      child: Text(
-                        'See what your\nfriends are doing...',
-                        style: FlutterFlowTheme.of(context)
-                            .headlineMedium
-                            .override(
-                              fontFamily: 'Inter',
-                              color: FlutterFlowTheme.of(context).primary,
-                              fontSize: 25.0,
-                              useGoogleFonts: GoogleFonts.asMap().containsKey(
-                                  FlutterFlowTheme.of(context)
-                                      .headlineMediumFamily),
+                  Padding(
+                    padding:
+                        EdgeInsetsDirectional.fromSTEB(12.0, 8.0, 12.0, 8.0),
+                    child: Container(
+                      width: double.infinity,
+                      height: 60.0,
+                      decoration: BoxDecoration(
+                        color: FlutterFlowTheme.of(context).gray200,
+                        borderRadius: BorderRadius.circular(12.0),
+                      ),
+                      child: Padding(
+                        padding:
+                            EdgeInsetsDirectional.fromSTEB(8.0, 0.0, 8.0, 0.0),
+                        child: Row(
+                          mainAxisSize: MainAxisSize.max,
+                          children: [
+                            Padding(
+                              padding: EdgeInsetsDirectional.fromSTEB(
+                                  4.0, 0.0, 4.0, 0.0),
+                              child: InkWell(
+                                onTap: () async {
+                                  setState(
+                                      () => _model.algoliaSearchResults = null);
+                                  await UsersRecord.search(
+                                    term: _model.textController.text,
+                                  )
+                                      .then((r) =>
+                                          _model.algoliaSearchResults = r)
+                                      .onError((_, __) =>
+                                          _model.algoliaSearchResults = [])
+                                      .whenComplete(() => setState(() {}));
+                                },
+                                child: Icon(
+                                  Icons.search_rounded,
+                                  color: Color(0xFFACB9C4),
+                                  size: 24.0,
+                                ),
+                              ),
                             ),
+                            Expanded(
+                              child: Padding(
+                                padding: EdgeInsetsDirectional.fromSTEB(
+                                    4.0, 0.0, 0.0, 0.0),
+                                child: TextFormField(
+                                  controller: _model.textController,
+                                  onChanged: (_) => EasyDebounce.debounce(
+                                    '_model.textController',
+                                    Duration(milliseconds: 2000),
+                                    () => setState(() {}),
+                                  ),
+                                  obscureText: false,
+                                  decoration: InputDecoration(
+                                    hintText: 'Search...',
+                                    enabledBorder: UnderlineInputBorder(
+                                      borderSide: BorderSide(
+                                        color: Color(0x00000000),
+                                        width: 1.0,
+                                      ),
+                                      borderRadius: const BorderRadius.only(
+                                        topLeft: Radius.circular(4.0),
+                                        topRight: Radius.circular(4.0),
+                                      ),
+                                    ),
+                                    focusedBorder: UnderlineInputBorder(
+                                      borderSide: BorderSide(
+                                        color: Color(0x00000000),
+                                        width: 1.0,
+                                      ),
+                                      borderRadius: const BorderRadius.only(
+                                        topLeft: Radius.circular(4.0),
+                                        topRight: Radius.circular(4.0),
+                                      ),
+                                    ),
+                                    errorBorder: UnderlineInputBorder(
+                                      borderSide: BorderSide(
+                                        color: Color(0x00000000),
+                                        width: 1.0,
+                                      ),
+                                      borderRadius: const BorderRadius.only(
+                                        topLeft: Radius.circular(4.0),
+                                        topRight: Radius.circular(4.0),
+                                      ),
+                                    ),
+                                    focusedErrorBorder: UnderlineInputBorder(
+                                      borderSide: BorderSide(
+                                        color: Color(0x00000000),
+                                        width: 1.0,
+                                      ),
+                                      borderRadius: const BorderRadius.only(
+                                        topLeft: Radius.circular(4.0),
+                                        topRight: Radius.circular(4.0),
+                                      ),
+                                    ),
+                                  ),
+                                  style: FlutterFlowTheme.of(context)
+                                      .bodyMedium
+                                      .override(
+                                        fontFamily: 'Clash Display',
+                                        color: Color(0xFF95A1AC),
+                                        fontSize: 14.0,
+                                        fontWeight: FontWeight.normal,
+                                        useGoogleFonts: GoogleFonts.asMap()
+                                            .containsKey(
+                                                FlutterFlowTheme.of(context)
+                                                    .bodyMediumFamily),
+                                      ),
+                                  validator: _model.textControllerValidator
+                                      .asValidator(context),
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
                       ),
                     ),
+                  ),
                   Expanded(
                     child:
                         PagedListView<DocumentSnapshot<Object?>?, PostsRecord>(

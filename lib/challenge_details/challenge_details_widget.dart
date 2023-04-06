@@ -80,39 +80,39 @@ class _ChallengeDetailsWidgetState extends State<ChallengeDetailsWidget>
   Widget build(BuildContext context) {
     context.watch<FFAppState>();
 
-    return Scaffold(
-      key: scaffoldKey,
-      backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
-      body: NestedScrollView(
-        headerSliverBuilder: (context, _) => [
-          SliverAppBar(
-            pinned: false,
-            floating: false,
-            backgroundColor: Colors.white,
-            automaticallyImplyLeading: false,
-            leading: FlutterFlowIconButton(
-              borderColor: Colors.transparent,
-              borderRadius: 30.0,
-              borderWidth: 1.0,
-              icon: Icon(
-                Icons.keyboard_arrow_left_outlined,
-                color: FlutterFlowTheme.of(context).primary,
-                size: 30.0,
+    return GestureDetector(
+      onTap: () => FocusScope.of(context).requestFocus(_unfocusNode),
+      child: Scaffold(
+        key: scaffoldKey,
+        backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
+        body: NestedScrollView(
+          headerSliverBuilder: (context, _) => [
+            SliverAppBar(
+              pinned: false,
+              floating: false,
+              backgroundColor: Colors.white,
+              automaticallyImplyLeading: false,
+              leading: FlutterFlowIconButton(
+                borderColor: Colors.transparent,
+                borderRadius: 30.0,
+                borderWidth: 1.0,
+                icon: Icon(
+                  Icons.keyboard_arrow_left_outlined,
+                  color: FlutterFlowTheme.of(context).primary,
+                  size: 30.0,
+                ),
+                onPressed: () async {
+                  context.pop();
+                },
               ),
-              onPressed: () async {
-                context.pop();
-              },
-            ),
-            actions: [],
-            centerTitle: false,
-            elevation: 0.0,
-          )
-        ],
-        body: Builder(
-          builder: (context) {
-            return SafeArea(
-              child: GestureDetector(
-                onTap: () => FocusScope.of(context).requestFocus(_unfocusNode),
+              actions: [],
+              centerTitle: false,
+              elevation: 0.0,
+            )
+          ],
+          body: Builder(
+            builder: (context) {
+              return SafeArea(
                 child: Container(
                   width: double.infinity,
                   height: double.infinity,
@@ -486,9 +486,9 @@ class _ChallengeDetailsWidgetState extends State<ChallengeDetailsWidget>
                     ),
                   ),
                 ),
-              ),
-            );
-          },
+              );
+            },
+          ),
         ),
       ),
     );

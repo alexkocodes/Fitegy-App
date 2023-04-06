@@ -145,11 +145,11 @@ class _LogSignWidgetState extends State<LogSignWidget>
   Widget build(BuildContext context) {
     context.watch<FFAppState>();
 
-    return Scaffold(
-      key: scaffoldKey,
-      body: GestureDetector(
-        onTap: () => FocusScope.of(context).requestFocus(_unfocusNode),
-        child: Container(
+    return GestureDetector(
+      onTap: () => FocusScope.of(context).requestFocus(_unfocusNode),
+      child: Scaffold(
+        key: scaffoldKey,
+        body: Container(
           decoration: BoxDecoration(
             color: FlutterFlowTheme.of(context).secondaryBackground,
             image: DecorationImage(
