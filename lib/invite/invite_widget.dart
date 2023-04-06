@@ -115,7 +115,17 @@ class _InviteWidgetState extends State<InviteWidget> {
                           onChanged: (_) => EasyDebounce.debounce(
                             '_model.textController',
                             Duration(milliseconds: 1000),
-                            () => setState(() {}),
+                            () async {
+                              setState(
+                                  () => _model.algoliaSearchResults = null);
+                              await UsersRecord.search(
+                                term: _model.textController.text,
+                              )
+                                  .then((r) => _model.algoliaSearchResults = r)
+                                  .onError((_, __) =>
+                                      _model.algoliaSearchResults = [])
+                                  .whenComplete(() => setState(() {}));
+                            },
                           ),
                           autofocus: true,
                           obscureText: false,
@@ -181,6 +191,17 @@ class _InviteWidgetState extends State<InviteWidget> {
                                 ? InkWell(
                                     onTap: () async {
                                       _model.textController?.clear();
+                                      setState(() =>
+                                          _model.algoliaSearchResults = null);
+                                      await UsersRecord.search(
+                                        term: _model.textController.text,
+                                      )
+                                          .then((r) =>
+                                              _model.algoliaSearchResults = r)
+                                          .onError((_, __) =>
+                                              _model.algoliaSearchResults = [])
+                                          .whenComplete(() => setState(() {}));
+
                                       setState(() {});
                                     },
                                     child: Icon(
