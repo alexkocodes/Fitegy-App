@@ -70,7 +70,7 @@ class _InviteWidgetState extends State<InviteWidget> {
     });
   }
 
-  void filter() {
+  void filter() async {
     List<FriendsRecord> results = [];
     if (_model.textController.text.isEmpty) {
       // if the search field is empty or only contains white-space, we'll display all users
@@ -81,6 +81,23 @@ class _InviteWidgetState extends State<InviteWidget> {
               .toLowerCase()
               .contains(_model.textController.text.toLowerCase()))
           .toList();
+
+      if (results.isEmpty) {
+        setState(() => _model.algoliaSearchResults = null);
+        await UsersRecord.search(
+          term: _model.textController.text,
+        )
+            .then((r) => _model.algoliaSearchResults = r)
+            .onError((_, __) => _model.algoliaSearchResults = [])
+            .whenComplete(() => setState(() {
+                  // find overlapping users between the search results and the friends list
+                  results = _allFriends
+                      .where((friend) => _model.algoliaSearchResults!
+                          .any((user) => friend.uid == user.ffRef))
+                      .toList();
+                  _model.pagingController!.itemList = results;
+                }));
+      }
     }
     setState(() {
       _model.pagingController!.itemList = results;
@@ -175,40 +192,9 @@ class _InviteWidgetState extends State<InviteWidget> {
                             controller: _model.textController,
                             onChanged: (_) => EasyDebounce.debounce(
                               '_model.textController',
-                              Duration(milliseconds: 1000),
+                              Duration(milliseconds: 0),
                               () async {
-                                setState(
-                                    () => _model.algoliaSearchResults = null);
-                                await UsersRecord.search(
-                                  term: _model.textController.text,
-                                )
-                                    .then(
-                                        (r) => _model.algoliaSearchResults = r)
-                                    .onError((_, __) =>
-                                        _model.algoliaSearchResults = [])
-                                    .whenComplete(
-                                      () => setState(
-                                        () {
-                                          filter();
-                                          // find overlapping users between the search results and the items in the paging controller based on the user reference
-                                          // final overlappingUsers = _model
-                                          //     .algoliaSearchResults!
-                                          //     .where((element) => _model
-                                          //         .pagingController!.itemList!
-                                          //         .any((item) =>
-                                          //             item.uid ==
-                                          //             element.ffRef))
-                                          //     .toList();
-                                          // print("overlapping users");
-                                          // print(overlappingUsers);
-                                          // if there is overlapping user found, display them by changing the paging list to the overlapping list
-                                          // if (overlappingUsers.isNotEmpty) {
-                                          //   _model.pagingController!
-                                          //       .itemList = overlappingUsers;
-                                          // }
-                                        },
-                                      ),
-                                    );
+                                filter();
                               },
                             ),
                             autofocus: true,
@@ -276,7 +262,9 @@ class _InviteWidgetState extends State<InviteWidget> {
                                   ? InkWell(
                                       onTap: () async {
                                         _model.textController?.clear();
-                                        setState(() {});
+                                        setState(() {
+                                          filter();
+                                        });
                                       },
                                       child: Icon(
                                         Icons.clear,

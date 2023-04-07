@@ -438,9 +438,9 @@ class _ChallengeBottomSheetWidgetState extends State<ChallengeBottomSheetWidget>
                                             .colorScheme,
                                         index: gridViewIndex,
                                         destination: "select",
-                                        callback: (index, path, title, time,
-                                                color, status) =>
-                                            setState(() {
+                                        callback:
+                                            (index, path, title, time, color) =>
+                                                setState(() {
                                           selectedIndex = index;
                                           selectedData["selectedPath"] = path;
                                           selectedData["selectedTitle"] = title;

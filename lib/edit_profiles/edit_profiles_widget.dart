@@ -708,12 +708,8 @@ class _EditProfilesWidgetState extends State<EditProfilesWidget> {
                             emoji: _model.yourEmojiController!.text,
                           );
                           await currentUserReference!.update(usersUpdateData);
-                          // // log out
-                          // GoRouter.of(context).prepareAuthEvent();
-                          // await signOut();
-                          // GoRouter.of(context).clearRedirectLocation();
-
-                          // context.goNamedAuth('Landing', mounted);
+                          // safe pop
+                          context.safePop();
                         },
                         text: 'Save Changes',
                         options: FFButtonOptions(
