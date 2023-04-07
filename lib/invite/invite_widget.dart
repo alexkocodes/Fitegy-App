@@ -1,5 +1,7 @@
 import 'package:easy_debounce/easy_debounce.dart';
 import 'package:fitegy/auth/auth_util.dart';
+import 'package:fitegy/auth/firebase_user_provider.dart';
+import 'package:flutter_platform_alert/flutter_platform_alert.dart';
 
 import '../backend/backend.dart';
 import '../components/user_card_small_widget.dart';
@@ -51,12 +53,38 @@ class _InviteWidgetState extends State<InviteWidget> {
   final scaffoldKey = GlobalKey<ScaffoldState>();
   final _unfocusNode = FocusNode();
   var selectedFriends = <DocumentReference>[];
+  var _allFriends = <FriendsRecord>[];
 
   @override
   void initState() {
     super.initState();
     _model = createModel(context, () => InviteModel());
     _model.textController ??= TextEditingController();
+    queryFriendsRecordOnce(
+      parent: currentUserReference,
+      queryBuilder: (friendsRecord) => friendsRecord.orderBy('username'),
+    ).then((value) {
+      setState(() {
+        _allFriends = value;
+      });
+    });
+  }
+
+  void filter() {
+    List<FriendsRecord> results = [];
+    if (_model.textController.text.isEmpty) {
+      // if the search field is empty or only contains white-space, we'll display all users
+      results = _allFriends;
+    } else {
+      results = _allFriends
+          .where((user) => user.username!
+              .toLowerCase()
+              .contains(_model.textController.text.toLowerCase()))
+          .toList();
+    }
+    setState(() {
+      _model.pagingController!.itemList = results;
+    });
   }
 
   @override
@@ -161,7 +189,23 @@ class _InviteWidgetState extends State<InviteWidget> {
                                     .whenComplete(
                                       () => setState(
                                         () {
-                                          print(_model.algoliaSearchResults);
+                                          filter();
+                                          // find overlapping users between the search results and the items in the paging controller based on the user reference
+                                          // final overlappingUsers = _model
+                                          //     .algoliaSearchResults!
+                                          //     .where((element) => _model
+                                          //         .pagingController!.itemList!
+                                          //         .any((item) =>
+                                          //             item.uid ==
+                                          //             element.ffRef))
+                                          //     .toList();
+                                          // print("overlapping users");
+                                          // print(overlappingUsers);
+                                          // if there is overlapping user found, display them by changing the paging list to the overlapping list
+                                          // if (overlappingUsers.isNotEmpty) {
+                                          //   _model.pagingController!
+                                          //       .itemList = overlappingUsers;
+                                          // }
                                         },
                                       ),
                                     );
@@ -379,6 +423,8 @@ class _InviteWidgetState extends State<InviteWidget> {
                                         : "white",
                                     uid: listViewFriendsRecord.uid,
                                     callback: getUID,
+                                    initialCheck: selectedFriends
+                                        .contains(listViewFriendsRecord.uid),
                                   );
                                 },
                               );
@@ -418,22 +464,10 @@ class _InviteWidgetState extends State<InviteWidget> {
                                   onPressed: () async {
                                     // if no friend is selected, show an alert box and do nothing
                                     if (selectedFriends.isEmpty) {
-                                      await showDialog(
-                                        context: context,
-                                        builder: (alertContext) {
-                                          return AlertDialog(
-                                            title: Text('No friend selected!'),
-                                            content: Text(
-                                                'Please select at least one friend to invite.'),
-                                            actions: [
-                                              TextButton(
-                                                onPressed: () =>
-                                                    Navigator.pop(alertContext),
-                                                child: Text('OK'),
-                                              ),
-                                            ],
-                                          );
-                                        },
+                                      await FlutterPlatformAlert.showAlert(
+                                        windowTitle: 'No friend selected',
+                                        text:
+                                            'Please select at least one friend to invite',
                                       );
                                       return;
                                     }

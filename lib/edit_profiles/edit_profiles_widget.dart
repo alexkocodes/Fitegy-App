@@ -46,8 +46,9 @@ class _EditProfilesWidgetState extends State<EditProfilesWidget> {
     _model.yourNameController ??= TextEditingController(text: widget.name);
     _model.yourEmailController ??=
         TextEditingController(text: currentUserEmail);
-    _model.yourBioController ??=
-        TextEditingController(text: valueOrDefault(widget.bio, ''));
+    _model.yourBioController ??= TextEditingController(
+        text: valueOrDefault(
+            widget.bio, 'Just joined Fitegy! Come challenge me!'));
     _model.yourEmojiController ??=
         TextEditingController(text: valueOrDefault(widget.emoji, '👋'));
   }
@@ -74,7 +75,58 @@ class _EditProfilesWidgetState extends State<EditProfilesWidget> {
             iconTheme: IconThemeData(
                 color: FlutterFlowTheme.of(context).secondaryText),
             automaticallyImplyLeading: true,
-            actions: [],
+            actions: [
+              // log out icon
+              // FlutterFlowIconButton(
+              //   borderColor: Colors.transparent,
+              //   borderRadius: 30,
+              //   buttonSize: 50,
+              //   icon: Icon(
+              //     Icons.logout,
+              //     color: FlutterFlowTheme.of(context).secondaryText,
+              //     size: 25,
+              //   ),
+              //   onPressed: () async {
+              //     // log out
+              //     GoRouter.of(context).prepareAuthEvent();
+              //     await signOut();
+              //     GoRouter.of(context).clearRedirectLocation();
+
+              //     context.goNamedAuth('Landing', mounted);
+              //   },
+              // )
+
+              // log out text button
+              Padding(
+                padding: EdgeInsetsDirectional.fromSTEB(0, 0, 12, 0),
+                child: FFButtonWidget(
+                  onPressed: () async {
+                    // log out
+                    GoRouter.of(context).prepareAuthEvent();
+                    await signOut();
+                    GoRouter.of(context).clearRedirectLocation();
+
+                    context.goNamedAuth('Landing', mounted);
+                  },
+                  text: 'Log Out',
+                  options: FFButtonOptions(
+                    width: 100,
+                    height: 40,
+                    elevation: 0,
+                    color: Colors.transparent,
+                    textStyle: FlutterFlowTheme.of(context).subtitle2.override(
+                          fontFamily: 'Inter',
+                          color: FlutterFlowTheme.of(context).secondaryText,
+                        ),
+                    borderSide: BorderSide(
+                      color: Colors.transparent,
+                      width: 1,
+                    ),
+                    borderRadius: BorderRadius.circular(12),
+                  ),
+                ),
+              )
+            ],
             centerTitle: true,
             elevation: 0,
           )
@@ -548,7 +600,7 @@ class _EditProfilesWidgetState extends State<EditProfilesWidget> {
                                       'https://images.unsplash.com/photo-1618397746666-63405ce5d015?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1674&q=80',
                                   width: MediaQuery.of(context).size.width,
                                   height:
-                                      MediaQuery.of(context).size.height * 0.2,
+                                      MediaQuery.of(context).size.height * 0.1,
                                   fit: BoxFit.cover,
                                 );
                               }
@@ -656,7 +708,12 @@ class _EditProfilesWidgetState extends State<EditProfilesWidget> {
                             emoji: _model.yourEmojiController!.text,
                           );
                           await currentUserReference!.update(usersUpdateData);
-                          context.safePop();
+                          // // log out
+                          // GoRouter.of(context).prepareAuthEvent();
+                          // await signOut();
+                          // GoRouter.of(context).clearRedirectLocation();
+
+                          // context.goNamedAuth('Landing', mounted);
                         },
                         text: 'Save Changes',
                         options: FFButtonOptions(

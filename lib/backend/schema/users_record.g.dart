@@ -101,8 +101,10 @@ class _$UsersRecordSerializer implements StructuredSerializer<UsersRecord> {
       result
         ..add('friends')
         ..add(serializers.serialize(value,
-            specifiedType: const FullType(
-                DocumentReference, const [const FullType.nullable(Object)])));
+            specifiedType: const FullType(BuiltList, const [
+              const FullType(
+                  DocumentReference, const [const FullType.nullable(Object)])
+            ])));
     }
     value = object.bannerUrl;
     if (value != null) {
@@ -178,10 +180,11 @@ class _$UsersRecordSerializer implements StructuredSerializer<UsersRecord> {
               specifiedType: const FullType(String)) as String?;
           break;
         case 'friends':
-          result.friends = serializers.deserialize(value,
-              specifiedType: const FullType(DocumentReference, const [
-                const FullType.nullable(Object)
-              ])) as DocumentReference<Object?>?;
+          result.friends.replace(serializers.deserialize(value,
+              specifiedType: const FullType(BuiltList, const [
+                const FullType(
+                    DocumentReference, const [const FullType.nullable(Object)])
+              ]))! as BuiltList<Object?>);
           break;
         case 'banner_url':
           result.bannerUrl = serializers.deserialize(value,
@@ -224,7 +227,7 @@ class _$UsersRecord extends UsersRecord {
   @override
   final String? bio;
   @override
-  final DocumentReference<Object?>? friends;
+  final BuiltList<DocumentReference<Object?>>? friends;
   @override
   final String? bannerUrl;
   @override
@@ -375,9 +378,11 @@ class UsersRecordBuilder implements Builder<UsersRecord, UsersRecordBuilder> {
   String? get bio => _$this._bio;
   set bio(String? bio) => _$this._bio = bio;
 
-  DocumentReference<Object?>? _friends;
-  DocumentReference<Object?>? get friends => _$this._friends;
-  set friends(DocumentReference<Object?>? friends) => _$this._friends = friends;
+  ListBuilder<DocumentReference<Object?>>? _friends;
+  ListBuilder<DocumentReference<Object?>> get friends =>
+      _$this._friends ??= new ListBuilder<DocumentReference<Object?>>();
+  set friends(ListBuilder<DocumentReference<Object?>>? friends) =>
+      _$this._friends = friends;
 
   String? _bannerUrl;
   String? get bannerUrl => _$this._bannerUrl;
@@ -405,7 +410,7 @@ class UsersRecordBuilder implements Builder<UsersRecord, UsersRecordBuilder> {
       _displayName = $v.displayName;
       _emoji = $v.emoji;
       _bio = $v.bio;
-      _friends = $v.friends;
+      _friends = $v.friends?.toBuilder();
       _bannerUrl = $v.bannerUrl;
       _ffRef = $v.ffRef;
       _$v = null;
@@ -428,22 +433,35 @@ class UsersRecordBuilder implements Builder<UsersRecord, UsersRecordBuilder> {
   UsersRecord build() => _build();
 
   _$UsersRecord _build() {
-    final _$result = _$v ??
-        new _$UsersRecord._(
-            email: email,
-            photoUrl: photoUrl,
-            uid: uid,
-            createdTime: createdTime,
-            phoneNumber: phoneNumber,
-            username: username,
-            firstName: firstName,
-            lastName: lastName,
-            displayName: displayName,
-            emoji: emoji,
-            bio: bio,
-            friends: friends,
-            bannerUrl: bannerUrl,
-            ffRef: ffRef);
+    _$UsersRecord _$result;
+    try {
+      _$result = _$v ??
+          new _$UsersRecord._(
+              email: email,
+              photoUrl: photoUrl,
+              uid: uid,
+              createdTime: createdTime,
+              phoneNumber: phoneNumber,
+              username: username,
+              firstName: firstName,
+              lastName: lastName,
+              displayName: displayName,
+              emoji: emoji,
+              bio: bio,
+              friends: _friends?.build(),
+              bannerUrl: bannerUrl,
+              ffRef: ffRef);
+    } catch (_) {
+      late String _$failedField;
+      try {
+        _$failedField = 'friends';
+        _friends?.build();
+      } catch (e) {
+        throw new BuiltValueNestedFieldError(
+            r'UsersRecord', _$failedField, e.toString());
+      }
+      rethrow;
+    }
     replace(_$result);
     return _$result;
   }

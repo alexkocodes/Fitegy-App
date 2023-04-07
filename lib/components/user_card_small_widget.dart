@@ -16,6 +16,7 @@ class UserCardSmallWidget extends StatefulWidget {
     this.color,
     required this.callback,
     this.uid,
+    this.initialCheck,
   })  : this.username = username ?? '',
         super(key: key);
 
@@ -23,8 +24,9 @@ class UserCardSmallWidget extends StatefulWidget {
   final String username;
   final String? emoji;
   final String? color;
-  Function callback;
+  final Function callback;
   final DocumentReference? uid;
+  final bool? initialCheck;
 
   @override
   _UserCardSmallWidgetState createState() => _UserCardSmallWidgetState();
@@ -32,7 +34,7 @@ class UserCardSmallWidget extends StatefulWidget {
 
 class _UserCardSmallWidgetState extends State<UserCardSmallWidget> {
   late UserCardSmallModel _model;
-  var showCheck = false;
+
   @override
   void setState(VoidCallback callback) {
     super.setState(callback);
@@ -54,6 +56,7 @@ class _UserCardSmallWidgetState extends State<UserCardSmallWidget> {
 
   @override
   Widget build(BuildContext context) {
+    var showCheck = widget.initialCheck;
     return Padding(
       padding: EdgeInsetsDirectional.fromSTEB(0, 10, 0, 0),
       child: InkWell(

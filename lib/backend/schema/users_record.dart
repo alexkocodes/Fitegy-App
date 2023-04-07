@@ -41,7 +41,7 @@ abstract class UsersRecord implements Built<UsersRecord, UsersRecordBuilder> {
 
   String? get bio;
 
-  DocumentReference? get friends;
+  BuiltList<DocumentReference>? get friends;
 
   @BuiltValueField(wireName: 'banner_url')
   String? get bannerUrl;
@@ -88,7 +88,7 @@ abstract class UsersRecord implements Built<UsersRecord, UsersRecordBuilder> {
           ..displayName = snapshot.data['display_name']
           ..emoji = snapshot.data['emoji']
           ..bio = snapshot.data['bio']
-          ..friends = safeGet(() => toRef(snapshot.data['friends']))
+          ..friends = safeGet(() => snapshot.data['friends'])
           ..bannerUrl = snapshot.data['banner_url']
           ..ffRef = UsersRecord.collection.doc(snapshot.objectID),
       );
@@ -130,7 +130,6 @@ Map<String, dynamic> createUsersRecordData({
   String? displayName,
   String? emoji,
   String? bio,
-  DocumentReference? friends,
   String? bannerUrl,
 }) {
   final firestoreData = serializers.toFirestore(
@@ -148,7 +147,7 @@ Map<String, dynamic> createUsersRecordData({
         ..displayName = displayName
         ..emoji = emoji
         ..bio = bio
-        ..friends = friends
+        ..friends = null
         ..bannerUrl = bannerUrl,
     ),
   );

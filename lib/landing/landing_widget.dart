@@ -393,7 +393,7 @@ class _LandingWidgetState extends State<LandingWidget>
                                                 mainAxisSize: MainAxisSize.max,
                                                 children: [
                                                   Image.asset(
-                                                    'assets/images/Fitegy_(1).png',
+                                                    'assets/images/fitegy_logo.png',
                                                     width: 100,
                                                     fit: BoxFit.cover,
                                                   ).animateOnPageLoad(animationsMap[
@@ -696,7 +696,7 @@ class _LandingWidgetState extends State<LandingWidget>
                                                 mainAxisSize: MainAxisSize.max,
                                                 children: [
                                                   Image.asset(
-                                                    'assets/images/Fitegy_(1).png',
+                                                    'assets/images/fitegy_logo.png',
                                                     width: 100,
                                                     fit: BoxFit.cover,
                                                   ).animateOnPageLoad(animationsMap[
@@ -999,7 +999,7 @@ class _LandingWidgetState extends State<LandingWidget>
                                                 mainAxisSize: MainAxisSize.max,
                                                 children: [
                                                   Image.asset(
-                                                    'assets/images/Fitegy_(1).png',
+                                                    'assets/images/fitegy_logo.png',
                                                     width: 100,
                                                     fit: BoxFit.cover,
                                                   ),

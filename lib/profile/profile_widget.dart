@@ -416,8 +416,8 @@ class _ProfileWidgetState extends State<ProfileWidget> {
                                                 ),
                                               )
                                             : FutureBuilder(
-                                                future: getData(
-                                                    currentUserReference!),
+                                                future:
+                                                    getData(widget.authorRef!),
                                                 builder: (context, snapshot) {
                                                   if (!snapshot.hasData) {
                                                     return Flexible(
@@ -464,9 +464,11 @@ class _ProfileWidgetState extends State<ProfileWidget> {
                                                         (snapshot.data as Map)[
                                                                 "userData"]
                                                             ["displayName"];
+
                                                     final authorUsername =
                                                         (snapshot.data as Map)[
-                                                            "authorUsername"];
+                                                                "authorData"]
+                                                            ["username"];
 
                                                     if (friendsList.contains(
                                                         widget.authorRef)) {
@@ -522,6 +524,20 @@ class _ProfileWidgetState extends State<ProfileWidget> {
                                                                               .authorRef)
                                                                   .get();
                                                           docs.docs
+                                                              .forEach((doc) {
+                                                            doc.reference
+                                                                .delete();
+                                                          });
+
+                                                          var docs2 = await widget
+                                                              .authorRef!
+                                                              .collection(
+                                                                  'friends')
+                                                              .where("uid",
+                                                                  isEqualTo:
+                                                                      currentUserReference)
+                                                              .get();
+                                                          docs2.docs
                                                               .forEach((doc) {
                                                             doc.reference
                                                                 .delete();
