@@ -121,52 +121,54 @@ class _NavBarPageState extends State<NavBarPage> {
     final currentIndex = tabs.keys.toList().indexOf(_currentPageName);
     return Scaffold(
       body: _currentPage ?? tabs[_currentPageName],
-      bottomNavigationBar: BottomNavigationBar(
-        currentIndex: currentIndex,
-        onTap: (i) => setState(() {
-          _currentPage = null;
-          _currentPageName = tabs.keys.toList()[i];
-        }),
-        backgroundColor: Colors.white,
-        selectedItemColor: Color(0xFF3B3F6B),
-        unselectedItemColor: Color(0x53000000),
-        showSelectedLabels: false,
-        showUnselectedLabels: false,
-        type: BottomNavigationBarType.fixed,
-        items: <BottomNavigationBarItem>[
-          BottomNavigationBarItem(
-            icon: Icon(
-              Icons.home_filled,
-              size: 24,
+      bottomNavigationBar: SizedBox(
+        child: BottomNavigationBar(
+          currentIndex: currentIndex,
+          onTap: (i) => setState(() {
+            _currentPage = null;
+            _currentPageName = tabs.keys.toList()[i];
+          }),
+          backgroundColor: Colors.white,
+          selectedItemColor: Color(0xFF3B3F6B),
+          unselectedItemColor: Color(0x53000000),
+          showSelectedLabels: false,
+          showUnselectedLabels: false,
+          type: BottomNavigationBarType.fixed,
+          items: <BottomNavigationBarItem>[
+            BottomNavigationBarItem(
+              icon: Icon(
+                Icons.home_filled,
+                size: 24,
+              ),
+              label: 'Home',
+              tooltip: '',
             ),
-            label: 'Home',
-            tooltip: '',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(
-              Icons.add,
-              size: 24,
+            BottomNavigationBarItem(
+              icon: Icon(
+                Icons.add,
+                size: 24,
+              ),
+              label: 'Create',
+              tooltip: '',
             ),
-            label: 'Create',
-            tooltip: '',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(
-              Icons.clear_all_outlined,
-              size: 24,
+            BottomNavigationBarItem(
+              icon: Icon(
+                Icons.clear_all_outlined,
+                size: 24,
+              ),
+              label: 'Library',
+              tooltip: '',
             ),
-            label: 'Library',
-            tooltip: '',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(
-              Icons.person_sharp,
-              size: 24,
-            ),
-            label: 'Account',
-            tooltip: '',
-          )
-        ],
+            BottomNavigationBarItem(
+              icon: Icon(
+                Icons.person_sharp,
+                size: 24,
+              ),
+              label: 'Account',
+              tooltip: '',
+            )
+          ],
+        ),
       ),
     );
   }

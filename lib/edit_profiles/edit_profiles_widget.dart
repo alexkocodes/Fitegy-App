@@ -235,6 +235,8 @@ class _EditProfilesWidgetState extends State<EditProfilesWidget> {
                                 setState(() {});
                                 return;
                               }
+                            } else {
+                              return;
                             }
 
                             final usersUpdateData = createUsersRecordData(
@@ -661,8 +663,9 @@ class _EditProfilesWidgetState extends State<EditProfilesWidget> {
                             setState(() {});
                             return;
                           }
+                        } else {
+                          return;
                         }
-
                         final usersUpdateData = createUsersRecordData(
                           bannerUrl: _model.uploadedFileUrl2,
                         );

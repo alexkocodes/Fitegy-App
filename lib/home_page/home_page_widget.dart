@@ -70,8 +70,8 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                 //         ),
                 //   ),
                 // ),
+                toolbarHeight: 40,
                 backgroundColor: Colors.white,
-                automaticallyImplyLeading: true,
                 leading: Padding(
                   padding: EdgeInsetsDirectional.fromSTEB(25, 0, 0, 0),
                   child: Container(
@@ -88,45 +88,35 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                 floating: true,
                 snap: true,
                 elevation: 0,
-                // flexibleSpace: FlexibleSpaceBar(
-                //   centerTitle: false,
-                //   title:
-                //       // if (FFAppState().firstTime)
-                //       Text(
-                //     'Fitegy',
-                //     style: FlutterFlowTheme.of(context).title2.override(
-                //           fontFamily: 'Inter',
-                //           color: FlutterFlowTheme.of(context).primaryColor,
-                //           fontSize: 20,
-                //           useGoogleFonts: GoogleFonts.asMap().containsKey(
-                //               FlutterFlowTheme.of(context).title2Family),
-                //         ),
-                //   ),
-                // ),
                 actions: [
-                  // Padding(
-                  //   padding: EdgeInsetsDirectional.fromSTEB(0, 0, 20, 0),
-                  //   child: InkWell(
-                  //     onTap: () async {},
-                  //     child: Padding(
-                  //       padding: EdgeInsetsDirectional.fromSTEB(0, 0, 20, 0),
-                  //       child: Container(
-                  //         width: 40,
-                  //         height: 40,
-                  //         clipBehavior: Clip.antiAlias,
-                  //         decoration: BoxDecoration(
-                  //           shape: BoxShape.circle,
-                  //         ),
-                  //         child: Image.network(
-                  //           valueOrDefault<String>(
-                  //             currentUserPhoto,
-                  //             'https://picsum.photos/seed/1/600',
-                  //           ),
-                  //         ),
-                  //       ),
-                  //     ),
-                  //   ),
-                  // )
+                  // search icon, and notification icon
+                  Padding(
+                    padding: EdgeInsetsDirectional.fromSTEB(0, 0, 25, 0),
+                    child: Row(
+                      mainAxisSize: MainAxisSize.max,
+                      children: [
+                        InkWell(
+                          onTap: () async {},
+                          child: Icon(
+                            Icons.search,
+                            color: FlutterFlowTheme.of(context).primaryColor,
+                            size: 24,
+                          ),
+                        ),
+                        Padding(
+                          padding: EdgeInsetsDirectional.fromSTEB(10, 0, 0, 0),
+                          child: InkWell(
+                            onTap: () async {},
+                            child: Icon(
+                              Icons.notifications_none_outlined,
+                              color: FlutterFlowTheme.of(context).primaryColor,
+                              size: 24,
+                            ),
+                          ),
+                        )
+                      ],
+                    ),
+                  )
                 ],
               )
             ];

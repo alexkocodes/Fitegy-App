@@ -66,13 +66,15 @@ class _InPostChallengeWidgetState extends State<InPostChallengeWidget> {
       body: NestedScrollView(
         headerSliverBuilder: (context, _) => [
           SliverAppBar(
+            toolbarHeight: 40,
             pinned: false,
-            floating: false,
+            floating: true,
+            snap: true,
             backgroundColor: Colors.white,
-            automaticallyImplyLeading: false,
+            automaticallyImplyLeading: true,
             leading: FlutterFlowIconButton(
               borderColor: Colors.transparent,
-              borderRadius: 30,
+              borderRadius: 20,
               borderWidth: 1,
               icon: Icon(
                 Icons.keyboard_arrow_left_outlined,

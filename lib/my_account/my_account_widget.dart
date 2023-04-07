@@ -96,6 +96,7 @@ class _MyAccountWidgetState extends State<MyAccountWidget> {
       body: SafeArea(
         top: false,
         child: SingleChildScrollView(
+          primary: true,
           child: Column(
             mainAxisSize: MainAxisSize.min,
             children: [
@@ -148,108 +149,6 @@ class _MyAccountWidgetState extends State<MyAccountWidget> {
                           mainAxisSize: MainAxisSize.max,
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
-                            // (currentUserReference == widget.authorRef)
-                            //     ? Padding(
-                            //         padding: EdgeInsetsDirectional.fromSTEB(
-                            //             0, 70, 0, 0),
-                            //         child: FFButtonWidget(
-                            //           onPressed: () async {
-                            //             final selectedMedia =
-                            //                 await selectMediaWithSourceBottomSheet(
-                            //               context: context,
-                            //               allowPhoto: true,
-                            //               pickerFontFamily: 'Inter',
-                            //             );
-                            //             if (selectedMedia != null &&
-                            //                 selectedMedia.every((m) =>
-                            //                     validateFileFormat(
-                            //                         m.storagePath, context))) {
-                            //               setState(() =>
-                            //                   _model.isDataUploading = true);
-                            //               var selectedUploadedFiles =
-                            //                   <FFUploadedFile>[];
-                            //               var downloadUrls = <String>[];
-                            //               try {
-                            //                 selectedUploadedFiles = selectedMedia
-                            //                     .map((m) => FFUploadedFile(
-                            //                           name: m.storagePath
-                            //                               .split('/')
-                            //                               .last,
-                            //                           bytes: m.bytes,
-                            //                           height:
-                            //                               m.dimensions?.height,
-                            //                           width: m.dimensions?.width,
-                            //                         ))
-                            //                     .toList();
-                            //                 downloadUrls = (await Future.wait(
-                            //                   selectedMedia.map(
-                            //                     (m) async => await uploadData(
-                            //                         m.storagePath, m.bytes),
-                            //                   ),
-                            //                 ))
-                            //                     .where((u) => u != null)
-                            //                     .map((u) => u!)
-                            //                     .toList();
-                            //               } finally {
-                            //                 _model.isDataUploading = false;
-                            //               }
-                            //               if (selectedUploadedFiles.length ==
-                            //                       selectedMedia.length &&
-                            //                   downloadUrls.length ==
-                            //                       selectedMedia.length) {
-                            //                 setState(() {
-                            //                   _model.uploadedLocalFile =
-                            //                       selectedUploadedFiles.first;
-                            //                   _model.uploadedFileUrl =
-                            //                       downloadUrls.first;
-                            //                 });
-                            //               } else {
-                            //                 setState(() {});
-                            //                 return;
-                            //               }
-                            //             }
-                            //             final usersUpdateData =
-                            //                 createUsersRecordData(
-                            //               photoUrl: _model.uploadedFileUrl,
-                            //             );
-                            //             await currentUserReference!
-                            //                 .update(usersUpdateData);
-                            //           },
-                            //           text: 'Change Photo',
-                            //           options: FFButtonOptions(
-                            //             width: 100,
-                            //             height: 30,
-                            //             padding: EdgeInsetsDirectional.fromSTEB(
-                            //                 0, 0, 0, 0),
-                            //             iconPadding:
-                            //                 EdgeInsetsDirectional.fromSTEB(
-                            //                     0, 0, 0, 0),
-                            //             color: FlutterFlowTheme.of(context)
-                            //                 .primaryBackground,
-                            //             textStyle: FlutterFlowTheme.of(context)
-                            //                 .bodyText1
-                            //                 .override(
-                            //                   fontFamily:
-                            //                       FlutterFlowTheme.of(context)
-                            //                           .bodyText1Family,
-                            //                   color: FlutterFlowTheme.of(context)
-                            //                       .secondaryText,
-                            //                   fontSize: 10,
-                            //                   fontWeight: FontWeight.w300,
-                            //                   useGoogleFonts: GoogleFonts.asMap()
-                            //                       .containsKey(
-                            //                           FlutterFlowTheme.of(context)
-                            //                               .bodyText1Family),
-                            //                 ),
-                            //             elevation: 1,
-                            //             borderSide: BorderSide(
-                            //               color: Colors.transparent,
-                            //               width: 1,
-                            //             ),
-                            //           ),
-                            //         ),
-                            //       )
-                            // :
                             Container(
                               height: 70,
                             ),
@@ -842,6 +741,7 @@ class _MyAccountWidgetState extends State<MyAccountWidget> {
               ProfileStatesBar(authorRef: currentUserReference),
               Flexible(
                 child: PagedListView<DocumentSnapshot<Object?>?, PostsRecord>(
+                  primary: false,
                   pagingController: () {
                     final Query<Object?> Function(Query<Object?>) queryBuilder =
                         (postsRecord) => postsRecord.orderBy('time_posted',
