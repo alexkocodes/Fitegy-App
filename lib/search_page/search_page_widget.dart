@@ -89,6 +89,15 @@ class _SearchPageWidgetState extends State<SearchPageWidget> {
                 padding: EdgeInsetsDirectional.fromSTEB(16.0, 4.0, 16.0, 0.0),
                 child: TextFormField(
                   controller: _model.textController,
+                  onFieldSubmitted: (_) async {
+                    setState(() => _model.algoliaSearchResults = null);
+                    await UsersRecord.search(
+                      term: _model.textController.text,
+                    )
+                        .then((r) => _model.algoliaSearchResults = r)
+                        .onError((_, __) => _model.algoliaSearchResults = [])
+                        .whenComplete(() => setState(() {}));
+                  },
                   obscureText: false,
                   decoration: InputDecoration(
                     labelText: 'Search for friends...',

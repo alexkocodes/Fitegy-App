@@ -14,6 +14,8 @@ class SearchPageModel extends FlutterFlowModel {
   // State field(s) for TextField widget.
   TextEditingController? textController;
   String? Function(BuildContext, String?)? textControllerValidator;
+  // Algolia Search Results from action on TextField
+  List<UsersRecord>? algoliaSearchResults = [];
   Completer<List<UsersRecord>>? algoliaRequestCompleter;
 
   /// Initialization and disposal methods.
