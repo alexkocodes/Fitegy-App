@@ -18,3 +18,4 @@ export '/invite/invite_widget.dart' show InviteWidget;
 export '/invite_sent/invite_sent_widget.dart' show InviteSentWidget;
 export '/profile/profile_widget.dart' show ProfileWidget;
 export '/edit_profiles/edit_profiles_widget.dart' show EditProfilesWidget;
+export '/search_page/search_page_widget.dart' show SearchPageWidget;

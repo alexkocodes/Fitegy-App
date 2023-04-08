@@ -181,6 +181,11 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
               name: 'EditProfiles',
               path: 'editProfiles',
               builder: (context, params) => EditProfilesWidget(),
+            ),
+            FFRoute(
+              name: 'SearchPage',
+              path: 'searchPage',
+              builder: (context, params) => SearchPageWidget(),
             )
           ].map((r) => r.toRoute(appStateNotifier)).toList(),
         ),
