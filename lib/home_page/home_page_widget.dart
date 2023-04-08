@@ -1,5 +1,7 @@
 import 'dart:io';
 
+import 'package:fitegy/flutter_flow/flutter_flow_icon_button.dart';
+import 'package:fitegy/flutter_flow/flutter_flow_widgets.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 import '../auth/auth_util.dart';
@@ -95,23 +97,27 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                     child: Row(
                       mainAxisSize: MainAxisSize.max,
                       children: [
-                        InkWell(
-                          onTap: () async {},
-                          child: Icon(
+                        FlutterFlowIconButton(
+                          buttonSize: 45,
+                          borderRadius: 60,
+                          onPressed: () {
+                            // push to the search page
+                            context.pushNamed('SearchPage');
+                          },
+                          icon: Icon(
                             Icons.search,
                             color: FlutterFlowTheme.of(context).primaryColor,
                             size: 24,
                           ),
                         ),
-                        Padding(
-                          padding: EdgeInsetsDirectional.fromSTEB(10, 0, 0, 0),
-                          child: InkWell(
-                            onTap: () async {},
-                            child: Icon(
-                              Icons.notifications_none_outlined,
-                              color: FlutterFlowTheme.of(context).primaryColor,
-                              size: 24,
-                            ),
+                        FlutterFlowIconButton(
+                          buttonSize: 45,
+                          onPressed: () {},
+                          borderRadius: 60,
+                          icon: Icon(
+                            Icons.notifications_none_outlined,
+                            color: FlutterFlowTheme.of(context).primaryColor,
+                            size: 24,
                           ),
                         )
                       ],

@@ -7,6 +7,7 @@ import 'package:fitegy/profile/profile_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:page_transition/page_transition.dart';
+import '../../search_page/search_page_widget.dart';
 import '../flutter_flow_theme.dart';
 import '../../backend/backend.dart';
 import '../../auth/firebase_user_provider.dart';
@@ -218,6 +219,11 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
                 bio: params.getParam("bio", ParamType.String),
                 emoji: params.getParam("emoji", ParamType.String),
               ),
+            ),
+            FFRoute(
+              name: 'SearchPage',
+              path: 'searchPage',
+              builder: (context, params) => SearchPageWidget(),
             ),
           ].map((r) => r.toRoute(appStateNotifier)).toList(),
         ).toRoute(appStateNotifier),
