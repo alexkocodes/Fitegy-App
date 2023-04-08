@@ -3,9 +3,10 @@ import '/components/user_preview_card_widget.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
-import 'dart:async';
+import 'package:easy_debounce/easy_debounce.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
 import 'package:provider/provider.dart';
 
 class SearchPageModel extends FlutterFlowModel {
@@ -16,7 +17,10 @@ class SearchPageModel extends FlutterFlowModel {
   String? Function(BuildContext, String?)? textControllerValidator;
   // Algolia Search Results from action on TextField
   List<UsersRecord>? algoliaSearchResults = [];
-  Completer<List<UsersRecord>>? algoliaRequestCompleter;
+  // State field(s) for ListView widget.
+  PagingController<DocumentSnapshot?, UsersRecord>? pagingController;
+  Query? pagingQuery;
+  List<StreamSubscription?> streamSubscriptions = [];
 
   /// Initialization and disposal methods.
 
@@ -24,22 +28,9 @@ class SearchPageModel extends FlutterFlowModel {
 
   void dispose() {
     textController?.dispose();
+    streamSubscriptions.forEach((s) => s?.cancel());
   }
 
   /// Additional helper methods are added here.
 
-  Future waitForAlgoliaRequestCompleted({
-    double minWait = 0,
-    double maxWait = double.infinity,
-  }) async {
-    final stopwatch = Stopwatch()..start();
-    while (true) {
-      await Future.delayed(Duration(milliseconds: 50));
-      final timeElapsed = stopwatch.elapsedMilliseconds;
-      final requestComplete = algoliaRequestCompleter?.isCompleted ?? false;
-      if (timeElapsed > maxWait || (requestComplete && timeElapsed > minWait)) {
-        break;
-      }
-    }
-  }
 }

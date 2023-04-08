@@ -3,9 +3,10 @@ import '/components/user_preview_card_widget.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
-import 'dart:async';
+import 'package:easy_debounce/easy_debounce.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
 import 'package:provider/provider.dart';
 import 'search_page_model.dart';
 export 'search_page_model.dart';
@@ -89,15 +90,19 @@ class _SearchPageWidgetState extends State<SearchPageWidget> {
                 padding: EdgeInsetsDirectional.fromSTEB(16.0, 4.0, 16.0, 0.0),
                 child: TextFormField(
                   controller: _model.textController,
-                  onFieldSubmitted: (_) async {
-                    setState(() => _model.algoliaSearchResults = null);
-                    await UsersRecord.search(
-                      term: _model.textController.text,
-                    )
-                        .then((r) => _model.algoliaSearchResults = r)
-                        .onError((_, __) => _model.algoliaSearchResults = [])
-                        .whenComplete(() => setState(() {}));
-                  },
+                  onChanged: (_) => EasyDebounce.debounce(
+                    '_model.textController',
+                    Duration(milliseconds: 2000),
+                    () async {
+                      setState(() => _model.algoliaSearchResults = null);
+                      await UsersRecord.search(
+                        term: _model.textController.text,
+                      )
+                          .then((r) => _model.algoliaSearchResults = r)
+                          .onError((_, __) => _model.algoliaSearchResults = [])
+                          .whenComplete(() => setState(() {}));
+                    },
+                  ),
                   obscureText: false,
                   decoration: InputDecoration(
                     labelText: 'Search for friends...',
@@ -160,62 +165,92 @@ class _SearchPageWidgetState extends State<SearchPageWidget> {
               Expanded(
                 child: Padding(
                   padding: EdgeInsetsDirectional.fromSTEB(8.0, 8.0, 8.0, 0.0),
-                  child: FutureBuilder<List<UsersRecord>>(
-                    future: (_model.algoliaRequestCompleter ??=
-                            Completer<List<UsersRecord>>()
-                              ..complete(UsersRecord.search(
-                                term: _model.textController.text,
-                              )))
-                        .future,
-                    builder: (context, snapshot) {
-                      // Customize what your widget looks like when it's loading.
-                      if (!snapshot.hasData) {
-                        return Center(
-                          child: SizedBox(
-                            width: 40.0,
-                            height: 40.0,
-                            child: CircularProgressIndicator(
-                              color: FlutterFlowTheme.of(context).primary,
-                            ),
-                          ),
-                        );
+                  child: PagedListView<DocumentSnapshot<Object?>?, UsersRecord>(
+                    pagingController: () {
+                      final Query<Object?> Function(Query<Object?>)
+                          queryBuilder =
+                          (usersRecord) => usersRecord.orderBy('display_name');
+                      if (_model.pagingController != null) {
+                        final query = queryBuilder(UsersRecord.collection);
+                        if (query != _model.pagingQuery) {
+                          // The query has changed
+                          _model.pagingQuery = query;
+                          _model.streamSubscriptions
+                              .forEach((s) => s?.cancel());
+                          _model.streamSubscriptions.clear();
+                          _model.pagingController!.refresh();
+                        }
+                        return _model.pagingController!;
                       }
-                      List<UsersRecord> listViewUsersRecordList =
-                          snapshot.data!;
-                      // Customize what your widget looks like with no search results.
-                      if (snapshot.data!.isEmpty) {
-                        return Container(
-                          height: 100,
-                          child: Center(
-                            child: Text('No results.'),
+
+                      _model.pagingController =
+                          PagingController(firstPageKey: null);
+                      _model.pagingQuery = queryBuilder(UsersRecord.collection);
+                      _model.pagingController!
+                          .addPageRequestListener((nextPageMarker) {
+                        queryUsersRecordPage(
+                          queryBuilder: (usersRecord) =>
+                              usersRecord.orderBy('display_name'),
+                          nextPageMarker: nextPageMarker,
+                          pageSize: 14,
+                          isStream: true,
+                        ).then((page) {
+                          _model.pagingController!.appendPage(
+                            page.data,
+                            page.nextPageMarker,
+                          );
+                          final streamSubscription =
+                              page.dataStream?.listen((data) {
+                            data.forEach((item) {
+                              final itemIndexes = _model
+                                  .pagingController!.itemList!
+                                  .asMap()
+                                  .map((k, v) => MapEntry(v.reference.id, k));
+                              final index = itemIndexes[item.reference.id];
+                              final items = _model.pagingController!.itemList!;
+                              if (index != null) {
+                                items.replaceRange(index, index + 1, [item]);
+                                _model.pagingController!.itemList = {
+                                  for (var item in items) item.reference: item
+                                }.values.toList();
+                              }
+                            });
+                            setState(() {});
+                          });
+                          _model.streamSubscriptions.add(streamSubscription);
+                        });
+                      });
+                      return _model.pagingController!;
+                    }(),
+                    padding: EdgeInsets.zero,
+                    reverse: false,
+                    scrollDirection: Axis.vertical,
+                    builderDelegate: PagedChildBuilderDelegate<UsersRecord>(
+                      // Customize what your widget looks like when it's loading the first page.
+                      firstPageProgressIndicatorBuilder: (_) => Center(
+                        child: SizedBox(
+                          width: 40.0,
+                          height: 40.0,
+                          child: CircularProgressIndicator(
+                            color: FlutterFlowTheme.of(context).primary,
                           ),
-                        );
-                      }
-                      return RefreshIndicator(
-                        onRefresh: () async {
-                          setState(() => _model.algoliaRequestCompleter = null);
-                          await _model.waitForAlgoliaRequestCompleted();
-                        },
-                        child: ListView.builder(
-                          padding: EdgeInsets.zero,
-                          scrollDirection: Axis.vertical,
-                          itemCount: listViewUsersRecordList.length,
-                          itemBuilder: (context, listViewIndex) {
-                            final listViewUsersRecord =
-                                listViewUsersRecordList[listViewIndex];
-                            return UserPreviewCardWidget(
-                              key: Key(
-                                  'Keyp9h_${listViewIndex}_of_${listViewUsersRecordList.length}'),
-                              displayName: listViewUsersRecord.displayName,
-                              username: listViewUsersRecord.username,
-                              emoji: listViewUsersRecord.emoji,
-                              userRef: listViewUsersRecord.reference,
-                              imageURL: listViewUsersRecord.photoUrl,
-                            );
-                          },
                         ),
-                      );
-                    },
+                      ),
+
+                      itemBuilder: (context, _, listViewIndex) {
+                        final listViewUsersRecord =
+                            _model.pagingController!.itemList![listViewIndex];
+                        return UserPreviewCardWidget(
+                          key: Key(
+                              'Keyp9h_${listViewIndex}_of_${_model.pagingController!.itemList!.length}'),
+                          displayName: listViewUsersRecord.displayName,
+                          username: listViewUsersRecord.username,
+                          emoji: listViewUsersRecord.emoji,
+                          userRef: listViewUsersRecord.reference,
+                          imageURL: listViewUsersRecord.photoUrl,
+                        );
+                      },
+                    ),
                   ),
                 ),
               ),
