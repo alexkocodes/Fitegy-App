@@ -166,8 +166,7 @@ class _SearchPageWidgetState extends State<SearchPageWidget> {
                             width: 40.0,
                             height: 40.0,
                             child: CircularProgressIndicator(
-                              color:
-                                  FlutterFlowTheme.of(context).primaryBtnText,
+                              color: FlutterFlowTheme.of(context).primary,
                             ),
                           ),
                         );
