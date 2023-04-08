@@ -63,7 +63,6 @@ class _UserPreviewCardWidgetState extends State<UserPreviewCardWidget>
         context.pushNamed('profile');
       },
       child: Container(
-        width: 100.0,
         decoration: BoxDecoration(
           color: Colors.white,
           boxShadow: [
