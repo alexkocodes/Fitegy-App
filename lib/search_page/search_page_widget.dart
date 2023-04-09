@@ -1,4 +1,6 @@
+import '/auth/auth_util.dart';
 import '/backend/backend.dart';
+import '/components/empty_widget.dart';
 import '/components/user_preview_card_widget.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
@@ -82,179 +84,235 @@ class _SearchPageWidgetState extends State<SearchPageWidget> {
           elevation: 0.0,
         ),
         body: SafeArea(
-          child: Column(
-            mainAxisSize: MainAxisSize.max,
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Padding(
-                padding: EdgeInsetsDirectional.fromSTEB(16.0, 4.0, 16.0, 0.0),
-                child: TextFormField(
-                  controller: _model.textController,
-                  onChanged: (_) => EasyDebounce.debounce(
-                    '_model.textController',
-                    Duration(milliseconds: 2000),
-                    () async {
-                      setState(() => _model.algoliaSearchResults = null);
-                      await UsersRecord.search(
-                        term: _model.textController.text,
-                      )
-                          .then((r) => _model.algoliaSearchResults = r)
-                          .onError((_, __) => _model.algoliaSearchResults = [])
-                          .whenComplete(() => setState(() {}));
-                    },
-                  ),
-                  obscureText: false,
-                  decoration: InputDecoration(
-                    labelText: 'Search for friends...',
-                    labelStyle: FlutterFlowTheme.of(context).bodySmall.override(
-                          fontFamily: 'Inter',
-                          color: Color(0xFF57636C),
+          child: Padding(
+            padding: EdgeInsetsDirectional.fromSTEB(20.0, 0.0, 20.0, 0.0),
+            child: Column(
+              mainAxisSize: MainAxisSize.max,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Padding(
+                  padding: EdgeInsetsDirectional.fromSTEB(0.0, 4.0, 0.0, 0.0),
+                  child: TextFormField(
+                    controller: _model.textController,
+                    onChanged: (_) => EasyDebounce.debounce(
+                      '_model.textController',
+                      Duration(milliseconds: 2000),
+                      () async {
+                        setState(() => _model.algoliaSearchResults = null);
+                        await UsersRecord.search(
+                          term: _model.textController.text,
+                        )
+                            .then((r) => _model.algoliaSearchResults = r)
+                            .onError(
+                                (_, __) => _model.algoliaSearchResults = [])
+                            .whenComplete(() => setState(() {}));
+                      },
+                    ),
+                    obscureText: false,
+                    decoration: InputDecoration(
+                      labelText: 'Search for friends...',
+                      labelStyle: FlutterFlowTheme.of(context)
+                          .bodySmall
+                          .override(
+                            fontFamily: 'Inter',
+                            color: Color(0xFF57636C),
+                            fontSize: 14.0,
+                            fontWeight: FontWeight.normal,
+                            useGoogleFonts: GoogleFonts.asMap().containsKey(
+                                FlutterFlowTheme.of(context).bodySmallFamily),
+                          ),
+                      enabledBorder: OutlineInputBorder(
+                        borderSide: BorderSide(
+                          color: Color(0x00000000),
+                          width: 1.0,
+                        ),
+                        borderRadius: BorderRadius.circular(30.0),
+                      ),
+                      focusedBorder: OutlineInputBorder(
+                        borderSide: BorderSide(
+                          color: Color(0x00000000),
+                          width: 1.0,
+                        ),
+                        borderRadius: BorderRadius.circular(30.0),
+                      ),
+                      errorBorder: OutlineInputBorder(
+                        borderSide: BorderSide(
+                          color: Color(0x00000000),
+                          width: 1.0,
+                        ),
+                        borderRadius: BorderRadius.circular(30.0),
+                      ),
+                      focusedErrorBorder: OutlineInputBorder(
+                        borderSide: BorderSide(
+                          color: Color(0x00000000),
+                          width: 1.0,
+                        ),
+                        borderRadius: BorderRadius.circular(30.0),
+                      ),
+                      filled: true,
+                      fillColor: Color(0xFFF1F4F8),
+                      prefixIcon: Icon(
+                        Icons.search_outlined,
+                        color: Color(0xFF57636C),
+                      ),
+                    ),
+                    style: FlutterFlowTheme.of(context).bodyMedium.override(
+                          fontFamily: 'Outfit',
+                          color: Color(0xFF1D2429),
                           fontSize: 14.0,
                           fontWeight: FontWeight.normal,
                           useGoogleFonts: GoogleFonts.asMap().containsKey(
-                              FlutterFlowTheme.of(context).bodySmallFamily),
+                              FlutterFlowTheme.of(context).bodyMediumFamily),
                         ),
-                    enabledBorder: OutlineInputBorder(
-                      borderSide: BorderSide(
-                        color: Color(0x00000000),
-                        width: 1.0,
-                      ),
-                      borderRadius: BorderRadius.circular(30.0),
-                    ),
-                    focusedBorder: OutlineInputBorder(
-                      borderSide: BorderSide(
-                        color: Color(0x00000000),
-                        width: 1.0,
-                      ),
-                      borderRadius: BorderRadius.circular(30.0),
-                    ),
-                    errorBorder: OutlineInputBorder(
-                      borderSide: BorderSide(
-                        color: Color(0x00000000),
-                        width: 1.0,
-                      ),
-                      borderRadius: BorderRadius.circular(30.0),
-                    ),
-                    focusedErrorBorder: OutlineInputBorder(
-                      borderSide: BorderSide(
-                        color: Color(0x00000000),
-                        width: 1.0,
-                      ),
-                      borderRadius: BorderRadius.circular(30.0),
-                    ),
-                    filled: true,
-                    fillColor: Color(0xFFF1F4F8),
-                    prefixIcon: Icon(
-                      Icons.search_outlined,
-                      color: Color(0xFF57636C),
-                    ),
+                    maxLines: null,
+                    validator:
+                        _model.textControllerValidator.asValidator(context),
                   ),
-                  style: FlutterFlowTheme.of(context).bodyMedium.override(
-                        fontFamily: 'Outfit',
-                        color: Color(0xFF1D2429),
-                        fontSize: 14.0,
-                        fontWeight: FontWeight.normal,
-                        useGoogleFonts: GoogleFonts.asMap().containsKey(
-                            FlutterFlowTheme.of(context).bodyMediumFamily),
-                      ),
-                  maxLines: null,
-                  validator:
-                      _model.textControllerValidator.asValidator(context),
                 ),
-              ),
-              Expanded(
-                child: Padding(
-                  padding: EdgeInsetsDirectional.fromSTEB(8.0, 8.0, 8.0, 0.0),
-                  child: PagedListView<DocumentSnapshot<Object?>?, UsersRecord>(
-                    pagingController: () {
-                      final Query<Object?> Function(Query<Object?>)
-                          queryBuilder =
-                          (usersRecord) => usersRecord.orderBy('display_name');
-                      if (_model.pagingController != null) {
-                        final query = queryBuilder(UsersRecord.collection);
-                        if (query != _model.pagingQuery) {
-                          // The query has changed
-                          _model.pagingQuery = query;
-                          _model.streamSubscriptions
-                              .forEach((s) => s?.cancel());
-                          _model.streamSubscriptions.clear();
-                          _model.pagingController!.refresh();
-                        }
-                        return _model.pagingController!;
+                Expanded(
+                  child: FutureBuilder<List<UsersRecord>>(
+                    future: queryUsersRecordOnce(
+                      queryBuilder: (usersRecord) =>
+                          usersRecord.orderBy('display_name'),
+                      limit: 14,
+                    ),
+                    builder: (context, snapshot) {
+                      // Customize what your widget looks like when it's loading.
+                      if (!snapshot.hasData) {
+                        return Center(
+                          child: SizedBox(
+                            width: 40.0,
+                            height: 40.0,
+                            child: CircularProgressIndicator(
+                              color:
+                                  FlutterFlowTheme.of(context).primaryBtnText,
+                            ),
+                          ),
+                        );
                       }
-
-                      _model.pagingController =
-                          PagingController(firstPageKey: null);
-                      _model.pagingQuery = queryBuilder(UsersRecord.collection);
-                      _model.pagingController!
-                          .addPageRequestListener((nextPageMarker) {
-                        queryUsersRecordPage(
-                          queryBuilder: (usersRecord) =>
-                              usersRecord.orderBy('display_name'),
-                          nextPageMarker: nextPageMarker,
-                          pageSize: 14,
-                          isStream: true,
-                        ).then((page) {
-                          _model.pagingController!.appendPage(
-                            page.data,
-                            page.nextPageMarker,
-                          );
-                          final streamSubscription =
-                              page.dataStream?.listen((data) {
-                            data.forEach((item) {
-                              final itemIndexes = _model
-                                  .pagingController!.itemList!
-                                  .asMap()
-                                  .map((k, v) => MapEntry(v.reference.id, k));
-                              final index = itemIndexes[item.reference.id];
-                              final items = _model.pagingController!.itemList!;
-                              if (index != null) {
-                                items.replaceRange(index, index + 1, [item]);
-                                _model.pagingController!.itemList = {
-                                  for (var item in items) item.reference: item
-                                }.values.toList();
+                      List<UsersRecord> containerUsersRecordList = snapshot
+                          .data!
+                          .where((u) => u.uid != currentUserUid)
+                          .toList();
+                      return Container(
+                        width: double.infinity,
+                        height: double.infinity,
+                        decoration: BoxDecoration(
+                          color:
+                              FlutterFlowTheme.of(context).secondaryBackground,
+                        ),
+                        child: Padding(
+                          padding: EdgeInsetsDirectional.fromSTEB(
+                              0.0, 20.0, 0.0, 0.0),
+                          child: PagedListView<DocumentSnapshot<Object?>?,
+                              UsersRecord>(
+                            pagingController: () {
+                              final Query<Object?> Function(Query<Object?>)
+                                  queryBuilder = (usersRecord) =>
+                                      usersRecord.orderBy('display_name');
+                              if (_model.pagingController != null) {
+                                final query =
+                                    queryBuilder(UsersRecord.collection);
+                                if (query != _model.pagingQuery) {
+                                  // The query has changed
+                                  _model.pagingQuery = query;
+                                  _model.streamSubscriptions
+                                      .forEach((s) => s?.cancel());
+                                  _model.streamSubscriptions.clear();
+                                  _model.pagingController!.refresh();
+                                }
+                                return _model.pagingController!;
                               }
-                            });
-                            setState(() {});
-                          });
-                          _model.streamSubscriptions.add(streamSubscription);
-                        });
-                      });
-                      return _model.pagingController!;
-                    }(),
-                    padding: EdgeInsets.zero,
-                    reverse: false,
-                    scrollDirection: Axis.vertical,
-                    builderDelegate: PagedChildBuilderDelegate<UsersRecord>(
-                      // Customize what your widget looks like when it's loading the first page.
-                      firstPageProgressIndicatorBuilder: (_) => Center(
-                        child: SizedBox(
-                          width: 40.0,
-                          height: 40.0,
-                          child: CircularProgressIndicator(
-                            color: FlutterFlowTheme.of(context).primary,
+
+                              _model.pagingController =
+                                  PagingController(firstPageKey: null);
+                              _model.pagingQuery =
+                                  queryBuilder(UsersRecord.collection);
+                              _model.pagingController!
+                                  .addPageRequestListener((nextPageMarker) {
+                                queryUsersRecordPage(
+                                  queryBuilder: (usersRecord) =>
+                                      usersRecord.orderBy('display_name'),
+                                  nextPageMarker: nextPageMarker,
+                                  pageSize: 14,
+                                  isStream: true,
+                                ).then((page) {
+                                  _model.pagingController!.appendPage(
+                                    page.data,
+                                    page.nextPageMarker,
+                                  );
+                                  final streamSubscription =
+                                      page.dataStream?.listen((data) {
+                                    data.forEach((item) {
+                                      final itemIndexes = _model
+                                          .pagingController!.itemList!
+                                          .asMap()
+                                          .map((k, v) =>
+                                              MapEntry(v.reference.id, k));
+                                      final index =
+                                          itemIndexes[item.reference.id];
+                                      final items =
+                                          _model.pagingController!.itemList!;
+                                      if (index != null) {
+                                        items.replaceRange(
+                                            index, index + 1, [item]);
+                                        _model.pagingController!.itemList = {
+                                          for (var item in items)
+                                            item.reference: item
+                                        }.values.toList();
+                                      }
+                                    });
+                                    setState(() {});
+                                  });
+                                  _model.streamSubscriptions
+                                      .add(streamSubscription);
+                                });
+                              });
+                              return _model.pagingController!;
+                            }(),
+                            padding: EdgeInsets.zero,
+                            reverse: false,
+                            scrollDirection: Axis.vertical,
+                            builderDelegate:
+                                PagedChildBuilderDelegate<UsersRecord>(
+                              // Customize what your widget looks like when it's loading the first page.
+                              firstPageProgressIndicatorBuilder: (_) => Center(
+                                child: SizedBox(
+                                  width: 40.0,
+                                  height: 40.0,
+                                  child: CircularProgressIndicator(
+                                    color: FlutterFlowTheme.of(context).primary,
+                                  ),
+                                ),
+                              ),
+                              noItemsFoundIndicatorBuilder: (_) => Center(
+                                child: Container(
+                                  width:
+                                      MediaQuery.of(context).size.width * 0.5,
+                                  child: EmptyWidget(),
+                                ),
+                              ),
+                              itemBuilder: (context, _, listViewIndex) {
+                                final listViewUsersRecord = _model
+                                    .pagingController!.itemList![listViewIndex];
+                                return UserPreviewCardWidget(
+                                  key: Key(
+                                      'Keyugi_${listViewIndex}_of_${_model.pagingController!.itemList!.length}'),
+                                  imageURL: listViewUsersRecord.photoUrl,
+                                  displayName: listViewUsersRecord.displayName,
+                                  username: listViewUsersRecord.username,
+                                  emoji: listViewUsersRecord.emoji,
+                                );
+                              },
+                            ),
                           ),
                         ),
-                      ),
-
-                      itemBuilder: (context, _, listViewIndex) {
-                        final listViewUsersRecord =
-                            _model.pagingController!.itemList![listViewIndex];
-                        return UserPreviewCardWidget(
-                          key: Key(
-                              'Keyp9h_${listViewIndex}_of_${_model.pagingController!.itemList!.length}'),
-                          displayName: listViewUsersRecord.displayName,
-                          username: listViewUsersRecord.username,
-                          emoji: listViewUsersRecord.emoji,
-                          userRef: listViewUsersRecord.reference,
-                          imageURL: listViewUsersRecord.photoUrl,
-                        );
-                      },
-                    ),
+                      );
+                    },
                   ),
                 ),
-              ),
-            ],
+              ],
+            ),
           ),
         ),
       ),

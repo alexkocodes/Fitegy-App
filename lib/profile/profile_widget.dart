@@ -1,7 +1,6 @@
 import '/auth/auth_util.dart';
 import '/backend/backend.dart';
 import '/backend/firebase_storage/storage.dart';
-import '/components/post_widget.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
@@ -601,50 +600,6 @@ class _ProfileWidgetState extends State<ProfileWidget> {
                       ],
                     ),
                   ),
-                ),
-                Column(
-                  mainAxisSize: MainAxisSize.max,
-                  children: [
-                    StreamBuilder<List<PostsRecord>>(
-                      stream: queryPostsRecord(
-                        parent: currentUserReference,
-                        queryBuilder: (postsRecord) =>
-                            postsRecord.orderBy('time_posted'),
-                        limit: 10,
-                      ),
-                      builder: (context, snapshot) {
-                        // Customize what your widget looks like when it's loading.
-                        if (!snapshot.hasData) {
-                          return Center(
-                            child: SizedBox(
-                              width: 40.0,
-                              height: 40.0,
-                              child: CircularProgressIndicator(
-                                color:
-                                    FlutterFlowTheme.of(context).primaryBtnText,
-                              ),
-                            ),
-                          );
-                        }
-                        List<PostsRecord> postPostsRecordList = snapshot.data!;
-                        return wrapWithModel(
-                          model: _model.postModel,
-                          updateCallback: () => setState(() {}),
-                          child: PostWidget(
-                            name: postPostsRecordList.first.displayName,
-                            location: postPostsRecordList.first.location,
-                            description:
-                                postPostsRecordList.first.postDescription,
-                            likeCount: postPostsRecordList.first.likes!
-                                .toList()
-                                .length,
-                            challenge:
-                                postPostsRecordList.first.inPostChallenge,
-                          ),
-                        );
-                      },
-                    ),
-                  ],
                 ),
               ],
             ),

@@ -1,3 +1,4 @@
+import '/components/post_bottom_sheet_widget.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
@@ -121,24 +122,6 @@ class _PostActionBarWidgetState extends State<PostActionBarWidget> {
                     },
                   ),
                 ),
-                Align(
-                  alignment: AlignmentDirectional(0.8, 0.52),
-                  child: Padding(
-                    padding:
-                        EdgeInsetsDirectional.fromSTEB(0.0, 12.0, 0.0, 0.0),
-                    child: Text(
-                      'Comments',
-                      style: FlutterFlowTheme.of(context).bodyMedium.override(
-                            fontFamily:
-                                FlutterFlowTheme.of(context).bodyMediumFamily,
-                            color: Color(0xFFCFCFCF),
-                            fontSize: 13.0,
-                            useGoogleFonts: GoogleFonts.asMap().containsKey(
-                                FlutterFlowTheme.of(context).bodyMediumFamily),
-                          ),
-                    ),
-                  ),
-                ),
               ],
             ),
           ),
@@ -146,24 +129,6 @@ class _PostActionBarWidgetState extends State<PostActionBarWidget> {
             width: 120.0,
             child: Stack(
               children: [
-                Align(
-                  alignment: AlignmentDirectional(0.8, 0.1),
-                  child: Padding(
-                    padding:
-                        EdgeInsetsDirectional.fromSTEB(0.0, 12.0, 0.0, 0.0),
-                    child: Text(
-                      'See Challenge',
-                      style: FlutterFlowTheme.of(context).bodyMedium.override(
-                            fontFamily:
-                                FlutterFlowTheme.of(context).bodyMediumFamily,
-                            color: Color(0xFFCFCFCF),
-                            fontSize: 13.0,
-                            useGoogleFonts: GoogleFonts.asMap().containsKey(
-                                FlutterFlowTheme.of(context).bodyMediumFamily),
-                          ),
-                    ),
-                  ),
-                ),
                 Align(
                   alignment: AlignmentDirectional(-1.09, -1.59),
                   child: FlutterFlowIconButton(
@@ -178,6 +143,45 @@ class _PostActionBarWidgetState extends State<PostActionBarWidget> {
                     ),
                     onPressed: () {
                       print('IconButton pressed ...');
+                    },
+                  ),
+                ),
+              ],
+            ),
+          ),
+          Container(
+            width: 120.0,
+            child: Stack(
+              children: [
+                Align(
+                  alignment: AlignmentDirectional(-1.09, -1.59),
+                  child: FlutterFlowIconButton(
+                    borderColor: Colors.transparent,
+                    borderRadius: 30.0,
+                    borderWidth: 0.0,
+                    buttonSize: 40.0,
+                    icon: Icon(
+                      Icons.ios_share,
+                      color: Color(0xFFCFCFCF),
+                      size: 20.0,
+                    ),
+                    onPressed: () async {
+                      await showModalBottomSheet(
+                        isScrollControlled: true,
+                        backgroundColor: Color(0x66616161),
+                        isDismissible: false,
+                        context: context,
+                        builder: (bottomSheetContext) {
+                          return Padding(
+                            padding:
+                                MediaQuery.of(bottomSheetContext).viewInsets,
+                            child: Container(
+                              height: MediaQuery.of(context).size.height * 0.3,
+                              child: PostBottomSheetWidget(),
+                            ),
+                          );
+                        },
+                      ).then((value) => setState(() {}));
                     },
                   ),
                 ),

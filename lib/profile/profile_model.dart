@@ -1,7 +1,6 @@
 import '/auth/auth_util.dart';
 import '/backend/backend.dart';
 import '/backend/firebase_storage/storage.dart';
-import '/components/post_widget.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
@@ -20,18 +19,11 @@ class ProfileModel extends FlutterFlowModel {
       FFUploadedFile(bytes: Uint8List.fromList([]));
   String uploadedFileUrl = '';
 
-  // Model for Post component.
-  late PostModel postModel;
-
   /// Initialization and disposal methods.
 
-  void initState(BuildContext context) {
-    postModel = createModel(context, () => PostModel());
-  }
+  void initState(BuildContext context) {}
 
-  void dispose() {
-    postModel.dispose();
-  }
+  void dispose() {}
 
   /// Additional helper methods are added here.
 

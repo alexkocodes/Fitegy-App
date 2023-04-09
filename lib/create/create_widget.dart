@@ -1413,6 +1413,9 @@ class _CreateWidgetState extends State<CreateWidget> {
                                                       ),
                                                       'post_images': _model
                                                           .uploadedFileUrls,
+                                                      'likes': [
+                                                        currentUserReference
+                                                      ],
                                                     };
                                                     await PostsRecord.createDoc(
                                                             currentUserReference!)
