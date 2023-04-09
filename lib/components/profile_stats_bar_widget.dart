@@ -118,9 +118,14 @@ class _ProfileStatesBarState extends State<ProfileStatesBar> {
                         ),
                       );
                     }
+
                     final data = snapshot.data as Map<String, dynamic>;
+                    // if friends is a field in data
+
                     return Text(
-                      data['friends'].length.toString(),
+                      data['friends'] == null
+                          ? "0"
+                          : data['friends'].length.toString(),
                       style: FlutterFlowTheme.of(context).bodyText1.override(
                             fontFamily:
                                 FlutterFlowTheme.of(context).bodyText1Family,

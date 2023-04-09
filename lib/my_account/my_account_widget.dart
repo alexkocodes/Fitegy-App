@@ -4,6 +4,7 @@ import 'package:fitegy/components/profile_stats_bar_widget.dart';
 import 'package:flutter_platform_alert/flutter_platform_alert.dart';
 import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
 
+import '../components/empty_widget.dart';
 import '../components/post_widget.dart';
 import '../flutter_flow/flutter_flow_model.dart';
 // import '../flutter_flow/upload_media.dart';
@@ -104,7 +105,9 @@ class _MyAccountWidgetState extends State<MyAccountWidget> {
                 alignment: AlignmentDirectional(0, -1),
                 children: [
                   FutureBuilder(
-                    future: getData(currentUserReference!),
+                    future: currentUserReference != null
+                        ? getData(currentUserReference!)
+                        : null, // get the author data
                     builder: (context, snapshot) {
                       if (snapshot.hasData) {
                         final data = snapshot.data as Map;
@@ -160,8 +163,9 @@ class _MyAccountWidgetState extends State<MyAccountWidget> {
                                 children: [
                                   AuthUserStreamWidget(
                                     builder: (context) => FutureBuilder(
-                                      future: getData(
-                                          currentUserReference!), // get the author data
+                                      future: currentUserReference != null
+                                          ? getData(currentUserReference!)
+                                          : null, // get the author data
                                       builder: (context, snapshot) {
                                         if (!snapshot.hasData) {
                                           return Shimmer.fromColors(
@@ -232,82 +236,77 @@ class _MyAccountWidgetState extends State<MyAccountWidget> {
                                 Padding(
                                   padding: EdgeInsetsDirectional.fromSTEB(
                                       0, 15, 0, 0),
-                                  child: SizedBox(
-                                    width:
-                                        MediaQuery.of(context).size.width * 0.7,
-                                    child: AuthUserStreamWidget(
-                                      builder: (context) => Center(
-                                        child: FutureBuilder(
-                                          future:
-                                              getData(currentUserReference!),
-                                          builder: (context, snapshot) {
-                                            if (!snapshot.hasData) {
-                                              return Shimmer.fromColors(
-                                                baseColor: Colors.grey[300]!,
-                                                highlightColor: Colors.white,
-                                                child: Container(
-                                                  decoration: BoxDecoration(
-                                                    color: Color.fromARGB(
-                                                        115, 238, 238, 238),
-                                                    borderRadius:
-                                                        BorderRadius.circular(
-                                                            8),
-                                                  ),
-                                                  child: Text(
-                                                    "",
-                                                    style: FlutterFlowTheme.of(
-                                                            context)
-                                                        .bodyText1
-                                                        .override(
-                                                          fontFamily:
-                                                              FlutterFlowTheme.of(
-                                                                      context)
-                                                                  .bodyText1Family,
-                                                          fontSize: 13,
-                                                          useGoogleFonts: GoogleFonts
-                                                                  .asMap()
-                                                              .containsKey(
-                                                                  FlutterFlowTheme.of(
-                                                                          context)
-                                                                      .bodyText1Family),
-                                                          color: Colors.black,
-                                                          fontWeight:
-                                                              FontWeight.normal,
-                                                        ),
-                                                  ),
+                                  child: AuthUserStreamWidget(
+                                    builder: (context) => Center(
+                                      child: FutureBuilder(
+                                        future: currentUserReference != null
+                                            ? getData(currentUserReference!)
+                                            : null, // get the author data
+                                        builder: (context, snapshot) {
+                                          if (!snapshot.hasData) {
+                                            return Shimmer.fromColors(
+                                              baseColor: Colors.grey[300]!,
+                                              highlightColor: Colors.white,
+                                              child: Container(
+                                                decoration: BoxDecoration(
+                                                  color: Color.fromARGB(
+                                                      115, 238, 238, 238),
+                                                  borderRadius:
+                                                      BorderRadius.circular(8),
                                                 ),
-                                              );
-                                            }
-                                            final data = snapshot.data as Map;
-
-                                            bio = data['userData']['bio'];
-                                            return Text(
-                                              valueOrDefault(bio,
-                                                  'Just joined Fitegy! Come challenge me!'),
-                                              maxLines: 20,
-                                              style: FlutterFlowTheme.of(
-                                                      context)
-                                                  .bodyText2
-                                                  .override(
-                                                    fontSize: 13,
-                                                    fontFamily:
-                                                        FlutterFlowTheme.of(
-                                                                context)
-                                                            .bodyText2Family,
-                                                    color: FlutterFlowTheme.of(
-                                                            context)
-                                                        .customColor4,
-                                                    fontWeight: FontWeight.w500,
-                                                    useGoogleFonts: GoogleFonts
-                                                            .asMap()
-                                                        .containsKey(
+                                                child: Text(
+                                                  "",
+                                                  style: FlutterFlowTheme.of(
+                                                          context)
+                                                      .bodyText1
+                                                      .override(
+                                                        fontFamily:
                                                             FlutterFlowTheme.of(
                                                                     context)
-                                                                .bodyText2Family),
-                                                  ),
+                                                                .bodyText1Family,
+                                                        fontSize: 13,
+                                                        useGoogleFonts: GoogleFonts
+                                                                .asMap()
+                                                            .containsKey(
+                                                                FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .bodyText1Family),
+                                                        color: Colors.black,
+                                                        fontWeight:
+                                                            FontWeight.normal,
+                                                      ),
+                                                ),
+                                              ),
                                             );
-                                          },
-                                        ),
+                                          }
+                                          final data = snapshot.data as Map;
+
+                                          bio = data['userData']['bio'];
+                                          return Text(
+                                            valueOrDefault(bio,
+                                                'Just joined Fitegy! Come challenge me!'),
+                                            maxLines: 20,
+                                            style: FlutterFlowTheme.of(context)
+                                                .bodyText2
+                                                .override(
+                                                  fontSize: 13,
+                                                  fontFamily:
+                                                      FlutterFlowTheme.of(
+                                                              context)
+                                                          .bodyText2Family,
+                                                  color: FlutterFlowTheme.of(
+                                                          context)
+                                                      .customColor4,
+                                                  fontWeight: FontWeight.w500,
+                                                  useGoogleFonts: GoogleFonts
+                                                          .asMap()
+                                                      .containsKey(
+                                                          FlutterFlowTheme.of(
+                                                                  context)
+                                                              .bodyText2Family),
+                                                ),
+                                          );
+                                        },
                                       ),
                                     ),
                                   ),
@@ -383,8 +382,9 @@ class _MyAccountWidgetState extends State<MyAccountWidget> {
                                           ),
                                         )
                                       : FutureBuilder(
-                                          future:
-                                              getData(currentUserReference!),
+                                          future: currentUserReference != null
+                                              ? getData(currentUserReference!)
+                                              : null, // get the author data
                                           builder: (context, snapshot) {
                                             if (!snapshot.hasData) {
                                               return Flexible(
@@ -611,8 +611,10 @@ class _MyAccountWidgetState extends State<MyAccountWidget> {
                                         10, 0, 0, 0),
                                     child: AuthUserStreamWidget(
                                       builder: (context) => FutureBuilder(
-                                          future: getAuthorEmoji(
-                                              currentUserReference!),
+                                          future: currentUserReference != null
+                                              ? getAuthorEmoji(
+                                                  currentUserReference!)
+                                              : null, // get the author data
                                           builder: (context, snapshot) {
                                             if (snapshot.hasData) {
                                               emoji = snapshot.data.toString();
@@ -704,7 +706,9 @@ class _MyAccountWidgetState extends State<MyAccountWidget> {
                               shape: BoxShape.circle,
                             ),
                             child: FutureBuilder(
-                              future: getAuthorImage(currentUserReference!),
+                              future: currentUserReference != null
+                                  ? getAuthorImage(currentUserReference!)
+                                  : null, // get the author data
                               builder: (context, snapshot) {
                                 if (snapshot.hasData) {
                                   return CachedNetworkImage(
@@ -810,7 +814,17 @@ class _MyAccountWidgetState extends State<MyAccountWidget> {
                         ),
                       ),
                     ),
-
+                    noItemsFoundIndicatorBuilder: (_) => Center(
+                        child: Padding(
+                      padding: EdgeInsetsDirectional.fromSTEB(0, 50, 0, 0),
+                      child: Text(
+                        'No posts found',
+                        style: FlutterFlowTheme.of(context).titleSmall.override(
+                              fontFamily: 'Inter',
+                              color: FlutterFlowTheme.of(context).gray200,
+                            ),
+                      ),
+                    )),
                     itemBuilder: (context, _, listViewIndex) {
                       final listViewPostsRecord =
                           _pagingController!.itemList![listViewIndex];

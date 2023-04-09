@@ -1934,14 +1934,11 @@ class _LogSignWidgetState extends State<LogSignWidget>
                                                           .text,
                                                       displayName:
                                                           textController1!.text,
-                                                      uid: random_data
-                                                          .randomString(
-                                                        8,
-                                                        10,
-                                                        true,
-                                                        true,
-                                                        true,
-                                                      ),
+                                                      uid: user.uid,
+                                                      bannerUrl:
+                                                          "https://images.unsplash.com/photo-1618397746666-63405ce5d015?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1674&q=80",
+                                                      bio:
+                                                          "Just joined Fitegy! 🤩",
                                                       createdTime:
                                                           getCurrentTimestamp,
                                                       username:
@@ -1960,12 +1957,6 @@ class _LogSignWidgetState extends State<LogSignWidget>
                                                     Duration(milliseconds: 300),
                                                 curve: Curves.ease,
                                               );
-                                              // await Future.delayed(
-                                              //     const Duration(
-                                              //         milliseconds: 10000));
-
-                                              // context.goNamedAuth(
-                                              //     'HomePage', mounted);
                                             },
                                             text: 'Create!',
                                             options: FFButtonOptions(
