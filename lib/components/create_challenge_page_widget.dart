@@ -759,60 +759,6 @@ class _CreateChallengePageWidgetState extends State<CreateChallengePageWidget> {
                       ],
                     ),
                   ),
-                  Row(
-                    mainAxisSize: MainAxisSize.max,
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    children: [
-                      Expanded(
-                        child: Stack(
-                          alignment:
-                              AlignmentDirectional(0, -0.050000000000000044),
-                          children: [
-                            Align(
-                              alignment: AlignmentDirectional(-1, 0.2),
-                              child: Text(
-                                'Set to Private: ',
-                                style: FlutterFlowTheme.of(context)
-                                    .bodyText1
-                                    .override(
-                                      fontFamily: FlutterFlowTheme.of(context)
-                                          .bodyText1Family,
-                                      color: FlutterFlowTheme.of(context)
-                                          .secondaryText,
-                                      useGoogleFonts: GoogleFonts.asMap()
-                                          .containsKey(
-                                              FlutterFlowTheme.of(context)
-                                                  .bodyText1Family),
-                                    ),
-                              ),
-                            ),
-                            Align(
-                              alignment: AlignmentDirectional(-0.43, 0),
-                              child: ToggleIcon(
-                                onPressed: () async {
-                                  setState(() =>
-                                      FFAppState().isChallengePrivate =
-                                          !FFAppState().isChallengePrivate);
-                                },
-                                value: FFAppState().isChallengePrivate,
-                                onIcon: Icon(
-                                  Icons.check_circle,
-                                  color: FlutterFlowTheme.of(context)
-                                      .secondaryColor,
-                                  size: 20,
-                                ),
-                                offIcon: Icon(
-                                  Icons.check_circle_outline_sharp,
-                                  color: Color(0xA1868686),
-                                  size: 20,
-                                ),
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                    ],
-                  ),
                   Padding(
                     padding: EdgeInsetsDirectional.fromSTEB(0, 10, 0, 0),
                     child: Row(

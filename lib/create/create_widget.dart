@@ -165,12 +165,12 @@ class _CreateWidgetState extends State<CreateWidget>
                             alignment: AlignmentDirectional(-1.1, 0.12),
                             child: Padding(
                               padding:
-                                  EdgeInsetsDirectional.fromSTEB(0, 30, 0, 0),
+                                  EdgeInsetsDirectional.fromSTEB(0, 40, 0, 0),
                               child: FlutterFlowIconButton(
                                 borderColor: Colors.transparent,
                                 borderRadius: 30,
                                 borderWidth: 1,
-                                buttonSize: 50,
+                                buttonSize: 40,
                                 icon: Icon(
                                   Icons.keyboard_arrow_left_sharp,
                                   color:
@@ -549,6 +549,7 @@ class _CreateWidgetState extends State<CreateWidget>
                                                                           "selectedPath"])),
                                                       'post_images':
                                                           uploadedFileUrls,
+                                                      'likes': [],
                                                     };
                                                     await PostsRecord.createDoc(
                                                             currentUserReference!)

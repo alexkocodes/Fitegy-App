@@ -166,7 +166,7 @@ class _ChallengeDetailsWidgetState extends State<ChallengeDetailsWidget> {
                                                   color: FlutterFlowTheme.of(
                                                           context)
                                                       .secondaryBackground,
-                                                  fontSize: 18,
+                                                  fontSize: 20,
                                                   useGoogleFonts: GoogleFonts
                                                           .asMap()
                                                       .containsKey(
@@ -229,8 +229,8 @@ class _ChallengeDetailsWidgetState extends State<ChallengeDetailsWidget> {
                                                     color: FlutterFlowTheme.of(
                                                             context)
                                                         .primaryBackground,
-                                                    fontSize: 12,
-                                                    fontWeight: FontWeight.w300,
+                                                    fontSize: 18,
+                                                    fontWeight: FontWeight.w600,
                                                     useGoogleFonts: GoogleFonts
                                                             .asMap()
                                                         .containsKey(
@@ -294,7 +294,7 @@ class _ChallengeDetailsWidgetState extends State<ChallengeDetailsWidget> {
                                                     color: FlutterFlowTheme.of(
                                                             context)
                                                         .primaryBackground,
-                                                    fontSize: 12,
+                                                    fontSize: 15,
                                                     fontWeight: FontWeight.w300,
                                                     useGoogleFonts: GoogleFonts
                                                             .asMap()

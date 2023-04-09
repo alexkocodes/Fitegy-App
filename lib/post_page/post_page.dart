@@ -302,6 +302,7 @@ class _PostPageState extends State<PostPage> with TickerProviderStateMixin {
                                                             selectedChallengeData[
                                                                 "selectedPath"])),
                                                 'post_images': uploadedFileUrls,
+                                                'likes': [],
                                               };
                                               await PostsRecord.createDoc(
                                                       currentUserReference!)

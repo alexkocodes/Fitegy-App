@@ -398,13 +398,24 @@ class _PostWidgetState extends State<PostWidget> {
                                         doubleTapZoomable: true);
                                   },
                                   child: Hero(
-                                    tag: 'imageTag',
+                                    tag: imageUrls[imageUrlsIndex],
                                     transitionOnUserGestures: true,
                                     child: ClipRRect(
                                       borderRadius: BorderRadius.circular(15),
-                                      child: Image.network(
-                                        imageUrls[imageUrlsIndex],
+                                      child: CachedNetworkImage(
+                                        imageUrl: imageUrls[imageUrlsIndex],
                                         fit: BoxFit.cover,
+                                        progressIndicatorBuilder:
+                                            (context, url, progress) {
+                                          return Shimmer.fromColors(
+                                              baseColor: Colors.grey[300]!,
+                                              highlightColor: Colors.grey[100]!,
+                                              child: Container(
+                                                color: Colors.grey,
+                                              ),
+                                              period:
+                                                  Duration(milliseconds: 1000));
+                                        },
                                       ),
                                     ),
                                   ),
