@@ -1,4 +1,5 @@
 import 'package:fitegy/flutter_flow/flutter_flow_animations.dart';
+import 'package:flutter_platform_alert/flutter_platform_alert.dart';
 
 import '../backend/backend.dart';
 
@@ -464,39 +465,17 @@ class _ChallengeDetailsWidgetState extends State<ChallengeDetailsWidget> {
                                               FFButtonWidget(
                                                 onPressed: () async {
                                                   var confirmDialogResponse =
-                                                      await showDialog<bool>(
-                                                            context: context,
-                                                            builder:
-                                                                (alertDialogContext) {
-                                                              return AlertDialog(
-                                                                title: Text(
-                                                                    'Delete This Challenge'),
-                                                                content: Text(
-                                                                    'Are you sure you want to delete this challenge?'),
-                                                                actions: [
-                                                                  TextButton(
-                                                                    onPressed: () =>
-                                                                        Navigator.pop(
-                                                                            alertDialogContext,
-                                                                            false),
-                                                                    child: Text(
-                                                                        'Cancel'),
-                                                                  ),
-                                                                  TextButton(
-                                                                    onPressed: () =>
-                                                                        Navigator.pop(
-                                                                            alertDialogContext,
-                                                                            true),
-                                                                    child: Text(
-                                                                        'Confirm'),
-                                                                  ),
-                                                                ],
-                                                              );
-                                                            },
-                                                          ) ??
-                                                          false;
-                                                  if (confirmDialogResponse) {
-                                                    print("deleting");
+                                                      await FlutterPlatformAlert
+                                                          .showAlert(
+                                                    windowTitle:
+                                                        "Delete This Challenge",
+                                                    text:
+                                                        "Are you sure you want to delete this challenge?",
+                                                    alertStyle:
+                                                        AlertButtonStyle.yesNo,
+                                                  );
+                                                  if (confirmDialogResponse ==
+                                                      AlertButton.yesButton) {
                                                     await db
                                                         .doc(widget.path!)
                                                         .delete();
@@ -515,8 +494,8 @@ class _ChallengeDetailsWidgetState extends State<ChallengeDetailsWidget> {
                                                                     300),
                                                           ),
                                                         });
-                                                  } else if (!confirmDialogResponse) {
-                                                    Navigator.pop(context);
+                                                  } else {
+                                                    return;
                                                   }
                                                 },
                                                 text: 'Delete',

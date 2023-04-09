@@ -1,3 +1,5 @@
+import 'package:flutter_platform_alert/flutter_platform_alert.dart';
+
 import '../auth/auth_util.dart';
 import '../backend/backend.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
@@ -768,23 +770,12 @@ class _CreateChallengePageWidgetState extends State<CreateChallengePageWidget> {
                         FFButtonWidget(
                           onPressed: () async {
                             if (textController1!.text == '') {
-                              await showDialog(
-                                  context: context,
-                                  builder: (alertDialogContext) {
-                                    return AlertDialog(
-                                      title: Text(
-                                          'Challenge name can\'t be empty!'),
-                                      content: Text(
-                                          'Try something like: Spring Break Saadiyat 4k Run Challenge 🏃‍♂️'),
-                                      actions: [
-                                        TextButton(
-                                          onPressed: () =>
-                                              Navigator.pop(alertDialogContext),
-                                          child: Text('Ok'),
-                                        ),
-                                      ],
-                                    );
-                                  });
+                              await FlutterPlatformAlert.showAlert(
+                                windowTitle: "Challenge name can\'t be empty!",
+                                text:
+                                    "Try something like: Spring Break Saadiyat 4k Run Challenge 🏃‍♂️",
+                                iconStyle: IconStyle.information,
+                              );
                             } else {
                               final challengesCreateData = {
                                 ...createChallengesRecordData(

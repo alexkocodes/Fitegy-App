@@ -101,6 +101,7 @@ class _UserCardSmallWidgetState extends State<UserCardSmallWidget> {
                         ),
                         child: Image.network(
                           widget.imageURL!,
+                          fit: BoxFit.cover,
                         ),
                       ),
                     ),

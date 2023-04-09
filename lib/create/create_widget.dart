@@ -9,6 +9,7 @@ import 'package:fitegy/components/selected_challenge.dart';
 import 'package:flutter_animate/effects/fade_effect.dart';
 import 'package:flutter_animate/effects/move_effect.dart';
 import 'package:flutter_animate/flutter_animate.dart';
+import 'package:flutter_platform_alert/flutter_platform_alert.dart';
 
 import '../auth/auth_util.dart';
 import '../backend/backend.dart';
@@ -441,31 +442,16 @@ class _CreateWidgetState extends State<CreateWidget>
                                               ),
                                               FFButtonWidget(
                                                 onPressed: () async {
-                                                  // currentUserLocationValue =
-                                                  //     await getCurrentUserLocation(
-                                                  //         defaultLocation:
-                                                  //             LatLng(0.0, 0.0));
                                                   if (textController!.text ==
                                                       '') {
-                                                    await showDialog(
-                                                      context: context,
-                                                      builder:
-                                                          (alertDialogContext) {
-                                                        return AlertDialog(
-                                                          title: Text(
-                                                              'Post can\'t be empty!'),
-                                                          content: Text(
-                                                              'Come on! Type something for your post 🤓'),
-                                                          actions: [
-                                                            TextButton(
-                                                              onPressed: () =>
-                                                                  Navigator.pop(
-                                                                      alertDialogContext),
-                                                              child: Text('Ok'),
-                                                            ),
-                                                          ],
-                                                        );
-                                                      },
+                                                    await FlutterPlatformAlert
+                                                        .showAlert(
+                                                      windowTitle:
+                                                          'Post can\'t be empty!',
+                                                      text:
+                                                          'Come on! Type something for your post 🤓',
+                                                      iconStyle:
+                                                          IconStyle.information,
                                                     );
                                                   } else {
                                                     if (toBeUploaded != null &&

@@ -3,6 +3,7 @@ import 'package:fitegy/auth/firebase_user_provider.dart';
 import 'package:fitegy/components/profile_stats_bar_widget.dart';
 import 'package:flutter_platform_alert/flutter_platform_alert.dart';
 import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
+import 'package:scrolls_to_top/scrolls_to_top.dart';
 
 import '../components/post_widget.dart';
 import '../flutter_flow/flutter_flow_model.dart';
@@ -97,18 +98,23 @@ class _ProfileWidgetState extends State<ProfileWidget> {
     return data;
   }
 
+  Future<void> _onScrollsToTop(ScrollsToTopEvent event) async {
+    print("tapped");
+    _pagingController!.refresh();
+  }
+
   @override
   Widget build(BuildContext context) {
     var name;
     var bio;
     var emoji;
-    return Scaffold(
-      extendBodyBehindAppBar: true,
-      key: scaffoldKey,
-      backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
-      body: SafeArea(
-        top: false,
-        child: Builder(builder: (context) {
+    return ScrollsToTop(
+      onScrollsToTop: _onScrollsToTop,
+      child: Scaffold(
+        extendBodyBehindAppBar: true,
+        key: scaffoldKey,
+        backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
+        body: Builder(builder: (context) {
           return SingleChildScrollView(
             primary: true,
             child: Column(
@@ -460,7 +466,7 @@ class _ProfileWidgetState extends State<ProfileWidget> {
                                                             IconStyle.question,
                                                         alertStyle:
                                                             AlertButtonStyle
-                                                                .yesNoCancel,
+                                                                .yesNo,
                                                       );
 
                                                       if (result ==

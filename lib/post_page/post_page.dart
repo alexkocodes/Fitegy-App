@@ -10,6 +10,7 @@ import 'package:fitegy/components/selected_challenge.dart';
 import 'package:flutter_animate/effects/fade_effect.dart';
 import 'package:flutter_animate/effects/move_effect.dart';
 import 'package:flutter_animate/flutter_animate.dart';
+import 'package:flutter_platform_alert/flutter_platform_alert.dart';
 
 import '../auth/auth_util.dart';
 import '../backend/backend.dart';
@@ -206,29 +207,15 @@ class _PostPageState extends State<PostPage> with TickerProviderStateMixin {
                                         ),
                                         FFButtonWidget(
                                           onPressed: () async {
-                                            // currentUserLocationValue =
-                                            //     await getCurrentUserLocation(
-                                            //         defaultLocation:
-                                            //             LatLng(0.0, 0.0));
                                             if (textController!.text == '') {
-                                              await showDialog(
-                                                context: context,
-                                                builder: (alertDialogContext) {
-                                                  return AlertDialog(
-                                                    title: Text(
-                                                        'Post can\'t be empty!'),
-                                                    content: Text(
-                                                        'Come on! Type something for your post 🤓'),
-                                                    actions: [
-                                                      TextButton(
-                                                        onPressed: () =>
-                                                            Navigator.pop(
-                                                                alertDialogContext),
-                                                        child: Text('Ok'),
-                                                      ),
-                                                    ],
-                                                  );
-                                                },
+                                              await FlutterPlatformAlert
+                                                  .showAlert(
+                                                windowTitle:
+                                                    'Post can\'t be empty!',
+                                                text:
+                                                    'Come on! Type something for your post 🤓',
+                                                iconStyle:
+                                                    IconStyle.information,
                                               );
                                             } else {
                                               if (toBeUploaded != null &&
@@ -754,9 +741,13 @@ class _PostPageState extends State<PostPage> with TickerProviderStateMixin {
                       onPressed: () async {
                         final List<XFile>? selectedImages =
                             await imagePicker.pickMultiImage(imageQuality: 70);
+                        if (selectedImages == null) {
+                          return;
+                        }
                         if (selectedImages!.isNotEmpty) {
                           imageFileList!.addAll(selectedImages);
                         }
+
                         var selectedMedia = await Future.wait(
                           selectedImages.asMap().entries.map(
                             (e) async {
@@ -765,6 +756,7 @@ class _PostPageState extends State<PostPage> with TickerProviderStateMixin {
                               final mediaBytes = await media.readAsBytes();
                               final path = storagePath(
                                   currentUserUid, media.name, false, index);
+
                               return SelectedMedia(
                                 path,
                                 mediaBytes,
