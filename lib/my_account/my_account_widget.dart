@@ -463,7 +463,9 @@ class _MyAccountWidgetState extends State<MyAccountWidget> {
                                                           currentUserReference
                                                         ])
                                                       });
-                                                      setState(() {});
+                                                      if (mounted) {
+                                                        setState(() {});
+                                                      }
                                                     } else {
                                                       return;
                                                     }
@@ -531,7 +533,9 @@ class _MyAccountWidgetState extends State<MyAccountWidget> {
                                                       ])
                                                     });
 
-                                                    setState(() {});
+                                                    if (mounted) {
+                                                      setState(() {});
+                                                    }
 
                                                     final userFriendsUpdateData =
                                                         createFriendsRecordData(
@@ -793,7 +797,9 @@ class _MyAccountWidgetState extends State<MyAccountWidget> {
                               }.values.toList();
                             }
                           });
-                          setState(() {});
+                          if (mounted) {
+                            setState(() {});
+                          }
                         });
                         _streamSubscriptions.add(streamSubscription);
                       });
@@ -846,7 +852,7 @@ class _MyAccountWidgetState extends State<MyAccountWidget> {
                           currentUserReference,
                         ),
                         callback: callback,
-                        onPage: 'HomePage',
+                        onPage: 'ProfilePage',
                       );
                     },
                   ),
@@ -859,7 +865,9 @@ class _MyAccountWidgetState extends State<MyAccountWidget> {
     );
   }
 
-  callback() {
-    setState(() {});
+  void callback() {
+    if (mounted) {
+      setState(() {});
+    }
   }
 }
