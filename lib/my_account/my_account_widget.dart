@@ -444,7 +444,7 @@ class _MyAccountWidgetState extends State<MyAccountWidget> {
                                                           IconStyle.question,
                                                       alertStyle:
                                                           AlertButtonStyle
-                                                              .yesNoCancel,
+                                                              .yesNo,
                                                     );
 
                                                     if (result ==
