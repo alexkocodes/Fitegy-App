@@ -1,3 +1,7 @@
+import 'package:cached_network_image/cached_network_image.dart';
+import 'package:fitegy/profile/profile_widget.dart';
+import 'package:shimmer/shimmer.dart';
+
 import '../auth/auth_util.dart';
 import '../components/post_action_bar_widget.dart';
 import '../flutter_flow/flutter_flow_icon_button.dart';
@@ -15,23 +19,51 @@ class PostWidget extends StatefulWidget {
     Key? key,
     this.name,
     this.location,
-    this.status,
     this.description,
     this.likeCount,
     this.challenge,
     this.imageURLs,
+    this.authorRef,
+    this.postRef,
+    this.liked,
+    this.callback,
+    this.onPage,
   }) : super(key: key);
 
   final String? name;
   final String? location;
-  final String? status;
   final String? description;
   final int? likeCount;
   final DocumentReference? challenge;
   final List<String>? imageURLs;
+  final DocumentReference? authorRef;
+  final DocumentReference? postRef;
+  final bool? liked;
+  final Function? callback;
+  final String? onPage;
 
   @override
   _PostWidgetState createState() => _PostWidgetState();
+}
+
+// create an async function to get the challenge status
+// and return a string
+Future<String> getChallengeStatus(DocumentReference challenge) async {
+  final challengeData = await challenge.get();
+  final challengeStatus = challengeData.get('status');
+  return challengeStatus;
+}
+
+// create an async function to get the author's profile image and return a string
+Future<Map> getAuthorData(DocumentReference authorRef) async {
+  final authorData = await authorRef.get();
+  final authorImage = authorData.get('photo_url');
+  final authorName = authorData.get('display_name');
+  final data = {
+    'authorImage': authorImage,
+    'authorName': authorName,
+  };
+  return data;
 }
 
 class _PostWidgetState extends State<PostWidget> {
@@ -39,6 +71,7 @@ class _PostWidgetState extends State<PostWidget> {
   Widget build(BuildContext context) {
     final _imageProviders =
         widget.imageURLs?.map((e) => Image.network(e).image).toList();
+
     return Padding(
       padding: EdgeInsetsDirectional.fromSTEB(25, 10, 25, 10),
       child: Container(
@@ -55,7 +88,7 @@ class _PostWidgetState extends State<PostWidget> {
           borderRadius: BorderRadius.circular(10),
         ),
         child: Padding(
-          padding: EdgeInsetsDirectional.fromSTEB(20, 10, 20, 10),
+          padding: EdgeInsetsDirectional.fromSTEB(20, 20, 20, 10),
           child: Column(
             mainAxisSize: MainAxisSize.max,
             mainAxisAlignment: MainAxisAlignment.start,
@@ -65,131 +98,249 @@ class _PostWidgetState extends State<PostWidget> {
                 padding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 5),
                 child: Container(
                   width: double.infinity,
-                  height: 35,
                   decoration: BoxDecoration(
                     color: FlutterFlowTheme.of(context).secondaryBackground,
                   ),
                   child: Row(
                     mainAxisSize: MainAxisSize.max,
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Container(
-                        width: 150,
-                        height: 100,
+                        width: 200,
                         decoration: BoxDecoration(
                           color:
                               FlutterFlowTheme.of(context).secondaryBackground,
                         ),
-                        child: Row(
-                          mainAxisSize: MainAxisSize.max,
-                          mainAxisAlignment: MainAxisAlignment.start,
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Align(
-                              alignment: AlignmentDirectional(0, 0),
-                              child: AuthUserStreamWidget(
-                                builder: (context) => Container(
-                                  clipBehavior: Clip.antiAlias,
-                                  decoration: BoxDecoration(
-                                    shape: BoxShape.circle,
-                                  ),
-                                  child: Image.asset(
-                                    'assets/images/273002726_1101444370691406_4784853650561083952_n.jpg',
-                                    fit: BoxFit.fitHeight,
+                        child: IntrinsicHeight(
+                          child: Row(
+                            mainAxisSize: MainAxisSize.max,
+                            mainAxisAlignment: MainAxisAlignment.start,
+                            crossAxisAlignment: CrossAxisAlignment.stretch,
+                            children: [
+                              Align(
+                                alignment: AlignmentDirectional(0, 0),
+                                child: AuthUserStreamWidget(
+                                  builder: (context) => InkWell(
+                                    onTap: () async {
+                                      context.pushNamed(
+                                        'ProfilePage',
+                                        queryParams: {
+                                          'userRef': serializeParam(
+                                            widget.authorRef,
+                                            ParamType.DocumentReference,
+                                          ),
+                                          "name": widget.name,
+                                        }.withoutNulls,
+                                      );
+                                    },
+                                    child: Container(
+                                      width: 40,
+                                      height: 40,
+                                      clipBehavior: Clip.antiAlias,
+                                      decoration: BoxDecoration(
+                                        shape: BoxShape.circle,
+                                      ),
+                                      child: FutureBuilder(
+                                          future:
+                                              getAuthorData(widget.authorRef!),
+                                          builder: (context, snapshot) {
+                                            if (snapshot.hasData) {
+                                              final data = snapshot.data as Map;
+                                              final authorImageURL =
+                                                  data['authorImage'];
+                                              return CachedNetworkImage(
+                                                fit: BoxFit.cover,
+                                                fadeInDuration:
+                                                    Duration(milliseconds: 500),
+                                                imageUrl:
+                                                    valueOrDefault<String>(
+                                                  authorImageURL,
+                                                  'https://images.unsplash.com/photo-1574158622682-e40e69881006?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2333&q=80',
+                                                ),
+                                              );
+                                            } else {
+                                              return Shimmer.fromColors(
+                                                baseColor: Colors.grey[300]!,
+                                                highlightColor:
+                                                    Colors.grey[100]!,
+                                                child: Container(
+                                                  width: MediaQuery.of(context)
+                                                      .size
+                                                      .width,
+                                                  height: MediaQuery.of(context)
+                                                          .size
+                                                          .height *
+                                                      0.3,
+                                                  color: Colors.grey[300],
+                                                ),
+                                              );
+                                            }
+                                          }),
+                                    ),
                                   ),
                                 ),
                               ),
-                            ),
-                            Padding(
-                              padding:
-                                  EdgeInsetsDirectional.fromSTEB(10, 0, 0, 0),
-                              child: Column(
-                                mainAxisSize: MainAxisSize.max,
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Text(
-                                    widget.name!,
-                                    style: FlutterFlowTheme.of(context)
-                                        .bodyText1
-                                        .override(
-                                          fontFamily: 'Inter',
-                                          color: FlutterFlowTheme.of(context)
-                                              .primaryColor,
-                                          fontSize: 15,
-                                          fontWeight: FontWeight.w600,
-                                          useGoogleFonts: GoogleFonts.asMap()
-                                              .containsKey(
-                                                  FlutterFlowTheme.of(context)
-                                                      .bodyText1Family),
-                                        ),
-                                  ),
-                                  Text(
-                                    widget.location!,
-                                    style: FlutterFlowTheme.of(context)
-                                        .bodyText1
-                                        .override(
-                                          fontFamily:
-                                              FlutterFlowTheme.of(context)
-                                                  .bodyText1Family,
-                                          color: Color(0xFFB1B1B1),
-                                          fontSize: 10,
-                                          fontWeight: FontWeight.w300,
-                                          useGoogleFonts: GoogleFonts.asMap()
-                                              .containsKey(
-                                                  FlutterFlowTheme.of(context)
-                                                      .bodyText1Family),
-                                        ),
-                                  ),
-                                ],
+                              Padding(
+                                padding:
+                                    EdgeInsetsDirectional.fromSTEB(10, 0, 0, 0),
+                                child: Column(
+                                  mainAxisSize: MainAxisSize.max,
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceAround,
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Wrap(
+                                      direction: Axis.vertical,
+                                      children: [
+                                        Container(
+                                          width: 150,
+                                          child: InkWell(
+                                            onTap: () async {
+                                              context.pushNamed(
+                                                'ProfilePage',
+                                                queryParams: {
+                                                  'userRef': serializeParam(
+                                                    widget.authorRef,
+                                                    ParamType.DocumentReference,
+                                                  ),
+                                                  "name": widget.name,
+                                                }.withoutNulls,
+                                              );
+                                            },
+                                            child: FutureBuilder(
+                                                future: getAuthorData(
+                                                    widget.authorRef!),
+                                                builder: (context, snapshot) {
+                                                  if (!snapshot.hasData) {
+                                                    return Container();
+                                                  }
+                                                  final data =
+                                                      snapshot.data as Map;
+                                                  final name =
+                                                      data['authorName'];
+                                                  return Text(
+                                                    name,
+                                                    overflow: TextOverflow.clip,
+                                                    style: FlutterFlowTheme.of(
+                                                            context)
+                                                        .bodyText1
+                                                        .override(
+                                                          fontFamily: 'Inter',
+                                                          color: FlutterFlowTheme
+                                                                  .of(context)
+                                                              .primaryColor,
+                                                          fontSize: 15,
+                                                          fontWeight:
+                                                              FontWeight.w600,
+                                                          useGoogleFonts: GoogleFonts
+                                                                  .asMap()
+                                                              .containsKey(
+                                                                  FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .bodyText1Family),
+                                                        ),
+                                                  );
+                                                }),
+                                          ),
+                                        )
+                                      ],
+                                    ),
+                                    Text(
+                                      widget.location!,
+                                      style: FlutterFlowTheme.of(context)
+                                          .bodyText1
+                                          .override(
+                                            fontFamily:
+                                                FlutterFlowTheme.of(context)
+                                                    .bodyText1Family,
+                                            color: Color(0xFFB1B1B1),
+                                            fontSize: 10,
+                                            fontWeight: FontWeight.w300,
+                                            useGoogleFonts: GoogleFonts.asMap()
+                                                .containsKey(
+                                                    FlutterFlowTheme.of(context)
+                                                        .bodyText1Family),
+                                          ),
+                                    ),
+                                  ],
+                                ),
                               ),
-                            ),
-                          ],
+                            ],
+                          ),
                         ),
                       ),
                       Container(
                         width: 100,
-                        height: 100,
-                        child: Stack(
-                          children: [
-                            Align(
-                              alignment: AlignmentDirectional(-0.55, 0),
-                              child: Icon(
-                                widget.status == "Completed"
-                                    ? Icons.check_circle_outline_outlined
-                                    : Icons.auto_awesome,
-                                color: widget.status == "Completed"
-                                    ? Color(0xFF92FF6B)
-                                    : Color(0xFFE6A0FF),
-                                size: 13,
-                              ),
-                            ),
-                            Align(
-                              alignment: AlignmentDirectional(1, -0.3),
-                              child: Padding(
-                                padding:
-                                    EdgeInsetsDirectional.fromSTEB(0, 4, 0, 0),
-                                child: Text(
-                                  widget.status!,
-                                  style: FlutterFlowTheme.of(context)
-                                      .bodyText1
-                                      .override(
-                                        fontFamily: FlutterFlowTheme.of(context)
-                                            .bodyText1Family,
-                                        color: widget.status == "Completed"
-                                            ? Color(0xFF92FF6B)
-                                            : Color(0xFFE6A0FF),
-                                        fontSize: 12,
-                                        fontWeight: FontWeight.normal,
-                                        useGoogleFonts: GoogleFonts.asMap()
-                                            .containsKey(
-                                                FlutterFlowTheme.of(context)
-                                                    .bodyText1Family),
+                        child: widget.challenge == null
+                            ? Container()
+                            : FutureBuilder(
+                                future: getChallengeStatus(widget.challenge!),
+                                builder: (context, snapshot) {
+                                  var status = "";
+                                  if (snapshot.hasData) {
+                                    status = "${snapshot.data}";
+                                  }
+                                  return Stack(
+                                    children: [
+                                      Align(
+                                        alignment:
+                                            AlignmentDirectional(-0.55, 0),
+                                        child: Padding(
+                                          padding:
+                                              EdgeInsetsDirectional.fromSTEB(
+                                                  0, 5, 0, 0),
+                                          child: status != ""
+                                              ? Icon(
+                                                  status == "completed"
+                                                      ? Icons
+                                                          .check_circle_outline_outlined
+                                                      : Icons.auto_awesome,
+                                                  color: status == "completed"
+                                                      ? Color(0xFF92FF6B)
+                                                      : Color(0xFFE6A0FF),
+                                                  size: 13,
+                                                )
+                                              : Container(),
+                                        ),
                                       ),
-                                ),
+                                      Align(
+                                        alignment:
+                                            AlignmentDirectional(1, -0.3),
+                                        child: Padding(
+                                          padding:
+                                              EdgeInsetsDirectional.fromSTEB(
+                                                  0, 4, 0, 0),
+                                          child: Text(
+                                            status == "active"
+                                                ? "In Progress"
+                                                : status,
+                                            style: FlutterFlowTheme.of(context)
+                                                .bodyText1
+                                                .override(
+                                                  fontFamily:
+                                                      FlutterFlowTheme.of(
+                                                              context)
+                                                          .bodyText1Family,
+                                                  color: status == "completed"
+                                                      ? Color(0xFF92FF6B)
+                                                      : Color(0xFFE6A0FF),
+                                                  fontSize: 12,
+                                                  fontWeight: FontWeight.normal,
+                                                  useGoogleFonts: GoogleFonts
+                                                          .asMap()
+                                                      .containsKey(
+                                                          FlutterFlowTheme.of(
+                                                                  context)
+                                                              .bodyText1Family),
+                                                ),
+                                          ),
+                                        ),
+                                      ),
+                                    ],
+                                  );
+                                },
                               ),
-                            ),
-                          ],
-                        ),
                       ),
                     ],
                   ),
@@ -209,7 +360,7 @@ class _PostWidgetState extends State<PostWidget> {
                             fontFamily:
                                 FlutterFlowTheme.of(context).bodyText1Family,
                             color: FlutterFlowTheme.of(context).secondaryText,
-                            fontWeight: FontWeight.normal,
+                            fontWeight: FontWeight.w500,
                             useGoogleFonts: GoogleFonts.asMap().containsKey(
                                 FlutterFlowTheme.of(context).bodyText1Family),
                           ),
@@ -267,7 +418,13 @@ class _PostWidgetState extends State<PostWidget> {
                   : Container(),
               Divider(),
               PostActionBarWidget(
+                postRef: widget.postRef,
                 likeCount: widget.likeCount,
+                liked: widget.liked,
+                challengeReference: widget.challenge,
+                postReference: widget.postRef,
+                callback: widget.callback,
+                onPage: widget.onPage,
               ),
             ],
           ),

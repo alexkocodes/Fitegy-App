@@ -1,5 +1,7 @@
 import 'package:easy_debounce/easy_debounce.dart';
 import 'package:fitegy/auth/auth_util.dart';
+import 'package:fitegy/auth/firebase_user_provider.dart';
+import 'package:flutter_platform_alert/flutter_platform_alert.dart';
 
 import '../backend/backend.dart';
 import '../components/user_card_small_widget.dart';
@@ -51,12 +53,55 @@ class _InviteWidgetState extends State<InviteWidget> {
   final scaffoldKey = GlobalKey<ScaffoldState>();
   final _unfocusNode = FocusNode();
   var selectedFriends = <DocumentReference>[];
+  var _allFriends = <FriendsRecord>[];
 
   @override
   void initState() {
     super.initState();
     _model = createModel(context, () => InviteModel());
     _model.textController ??= TextEditingController();
+    queryFriendsRecordOnce(
+      parent: currentUserReference,
+      queryBuilder: (friendsRecord) => friendsRecord.orderBy('username'),
+    ).then((value) {
+      setState(() {
+        _allFriends = value;
+      });
+    });
+  }
+
+  void filter() async {
+    List<FriendsRecord> results = [];
+    if (_model.textController.text.isEmpty) {
+      // if the search field is empty or only contains white-space, we'll display all users
+      results = _allFriends;
+    } else {
+      results = _allFriends
+          .where((user) => user.username!
+              .toLowerCase()
+              .contains(_model.textController.text.toLowerCase()))
+          .toList();
+
+      if (results.isEmpty) {
+        setState(() => _model.algoliaSearchResults = null);
+        await UsersRecord.search(
+          term: _model.textController.text,
+        )
+            .then((r) => _model.algoliaSearchResults = r)
+            .onError((_, __) => _model.algoliaSearchResults = [])
+            .whenComplete(() => setState(() {
+                  // find overlapping users between the search results and the friends list
+                  results = _allFriends
+                      .where((friend) => _model.algoliaSearchResults!
+                          .any((user) => friend.uid == user.ffRef))
+                      .toList();
+                  _model.pagingController!.itemList = results;
+                }));
+      }
+    }
+    setState(() {
+      _model.pagingController!.itemList = results;
+    });
   }
 
   @override
@@ -78,7 +123,11 @@ class _InviteWidgetState extends State<InviteWidget> {
         selectedFriends.remove(uid);
       });
     }
-    print(selectedFriends);
+  }
+
+  Future<Map> getFriendInfo(DocumentReference uid) async {
+    final data = await uid.get();
+    return data.data() as Map;
   }
 
   @override
@@ -100,7 +149,7 @@ class _InviteWidgetState extends State<InviteWidget> {
             size: 30,
           ),
           onPressed: () async {
-            context.pop();
+            context.safePop();
           },
         ),
         actions: [],
@@ -143,8 +192,10 @@ class _InviteWidgetState extends State<InviteWidget> {
                             controller: _model.textController,
                             onChanged: (_) => EasyDebounce.debounce(
                               '_model.textController',
-                              Duration(milliseconds: 1000),
-                              () => setState(() {}),
+                              Duration(milliseconds: 0),
+                              () async {
+                                filter();
+                              },
                             ),
                             autofocus: true,
                             obscureText: false,
@@ -211,7 +262,9 @@ class _InviteWidgetState extends State<InviteWidget> {
                                   ? InkWell(
                                       onTap: () async {
                                         _model.textController?.clear();
-                                        setState(() {});
+                                        setState(() {
+                                          filter();
+                                        });
                                       },
                                       child: Icon(
                                         Icons.clear,
@@ -253,7 +306,7 @@ class _InviteWidgetState extends State<InviteWidget> {
                           pagingController: () {
                             final Query<Object?> Function(Query<Object?>)
                                 queryBuilder = (friendsRecord) =>
-                                    friendsRecord.orderBy('display_name');
+                                    friendsRecord.orderBy('username');
                             if (_model.pagingController != null) {
                               final query =
                                   queryBuilder(FriendsRecord.collection());
@@ -334,18 +387,34 @@ class _InviteWidgetState extends State<InviteWidget> {
                               final listViewFriendsRecord = _model
                                   .pagingController!.itemList![listViewIndex];
 
-                              return UserCardSmallWidget(
-                                key: Key(
-                                    'Key046_${listViewIndex}_of_${_model.pagingController!.itemList!.length}'),
-                                imageURL: listViewFriendsRecord.photoUrl == ""
-                                    ? 'https://images.unsplash.com/photo-1574158622682-e40e69881006?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2333&q=80'
-                                    : listViewFriendsRecord.photoUrl,
-                                username: listViewFriendsRecord.username,
-                                emoji: listViewFriendsRecord.emoji,
-                                color:
-                                    listViewIndex % 2 == 0 ? "grey" : "white",
-                                uid: listViewFriendsRecord.uid,
-                                callback: getUID,
+                              return FutureBuilder(
+                                future:
+                                    getFriendInfo(listViewFriendsRecord.uid!),
+                                builder: (context, snapshot) {
+                                  if (!snapshot.hasData) {
+                                    return Container();
+                                  }
+                                  final friendData = snapshot.data as Map;
+
+                                  return UserCardSmallWidget(
+                                    key: Key(
+                                        'Key046_${listViewIndex}_of_${_model.pagingController!.itemList!.length}'),
+                                    imageURL: friendData['photo_url'] == ""
+                                        ? 'https://images.unsplash.com/photo-1574158622682-e40e69881006?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2333&q=80'
+                                        : friendData['photo_url'],
+                                    username: friendData['username'],
+                                    emoji: friendData.containsKey('emoji')
+                                        ? friendData['emoji']
+                                        : '👋',
+                                    color: listViewIndex % 2 == 0
+                                        ? "grey"
+                                        : "white",
+                                    uid: listViewFriendsRecord.uid,
+                                    callback: getUID,
+                                    initialCheck: selectedFriends
+                                        .contains(listViewFriendsRecord.uid),
+                                  );
+                                },
                               );
                             },
                           ),
@@ -383,22 +452,10 @@ class _InviteWidgetState extends State<InviteWidget> {
                                   onPressed: () async {
                                     // if no friend is selected, show an alert box and do nothing
                                     if (selectedFriends.isEmpty) {
-                                      await showDialog(
-                                        context: context,
-                                        builder: (alertContext) {
-                                          return AlertDialog(
-                                            title: Text('No friend selected!'),
-                                            content: Text(
-                                                'Please select at least one friend to invite.'),
-                                            actions: [
-                                              TextButton(
-                                                onPressed: () =>
-                                                    Navigator.pop(alertContext),
-                                                child: Text('OK'),
-                                              ),
-                                            ],
-                                          );
-                                        },
+                                      await FlutterPlatformAlert.showAlert(
+                                        windowTitle: 'No friend selected',
+                                        text:
+                                            'Please select at least one friend to invite',
                                       );
                                       return;
                                     }

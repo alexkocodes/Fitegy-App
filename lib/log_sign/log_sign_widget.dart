@@ -1930,20 +1930,22 @@ class _LogSignWidgetState extends State<LogSignWidget>
 
                                               final usersCreateData =
                                                   createUsersRecordData(
-                                                email: newEmailController!.text,
-                                                displayName:
-                                                    textController1!.text,
-                                                uid: random_data.randomString(
-                                                  8,
-                                                  10,
-                                                  true,
-                                                  true,
-                                                  true,
-                                                ),
-                                                createdTime:
-                                                    getCurrentTimestamp,
-                                                username: textController3!.text,
-                                              );
+                                                      email: newEmailController!
+                                                          .text,
+                                                      displayName:
+                                                          textController1!.text,
+                                                      uid: user.uid,
+                                                      bannerUrl:
+                                                          "https://images.unsplash.com/photo-1618397746666-63405ce5d015?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1674&q=80",
+                                                      bio:
+                                                          "Just joined Fitegy! 🤩",
+                                                      createdTime:
+                                                          getCurrentTimestamp,
+                                                      username:
+                                                          textController3!.text,
+                                                      photoUrl:
+                                                          'https://images.unsplash.com/photo-1574158622682-e40e69881006?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2333&q=80',
+                                                      emoji: "👋");
                                               await UsersRecord.collection
                                                   .doc(user.uid)
                                                   .update(usersCreateData);
@@ -1955,12 +1957,6 @@ class _LogSignWidgetState extends State<LogSignWidget>
                                                     Duration(milliseconds: 300),
                                                 curve: Curves.ease,
                                               );
-                                              // await Future.delayed(
-                                              //     const Duration(
-                                              //         milliseconds: 10000));
-
-                                              // context.goNamedAuth(
-                                              //     'HomePage', mounted);
                                             },
                                             text: 'Create!',
                                             options: FFButtonOptions(

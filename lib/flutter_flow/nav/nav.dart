@@ -1,8 +1,13 @@
 import 'dart:async';
 
+import 'package:fitegy/edit_profiles/edit_profiles_widget.dart';
+import 'package:fitegy/in_post_challenge/in_post_challenge.dart';
+import 'package:fitegy/post_page/post_page.dart';
+import 'package:fitegy/profile/profile_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:page_transition/page_transition.dart';
+import '../../search_page/search_page_widget.dart';
 import '../flutter_flow_theme.dart';
 import '../../backend/backend.dart';
 import '../../auth/firebase_user_provider.dart';
@@ -157,11 +162,6 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
               builder: (context, params) => PostPostedWidget(),
             ),
             FFRoute(
-              name: 'CreatePostV2',
-              path: 'createPostV2',
-              builder: (context, params) => CreatePostV2Widget(),
-            ),
-            FFRoute(
               name: 'Invite',
               path: 'invite',
               builder: (context, params) => InviteWidget(
@@ -183,7 +183,48 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
               name: 'InviteSent',
               path: 'inviteSent',
               builder: (context, params) => InviteSentWidget(),
-            )
+            ),
+            FFRoute(
+              name: 'PostPage',
+              path: 'postPage',
+              builder: (context, params) => PostPage(),
+            ),
+            FFRoute(
+              name: 'InPostChallengePage',
+              path: 'inPostChallengePage',
+              builder: (context, params) => InPostChallengeWidget(
+                challengeReference: params.getParam(
+                    'challengeReference',
+                    ParamType.DocumentReference,
+                    false,
+                    ['users', 'challenges']),
+                postReference: params.getParam('postReference',
+                    ParamType.DocumentReference, false, ['users', 'posts']),
+              ),
+            ),
+            FFRoute(
+              name: 'ProfilePage',
+              path: 'profilePage',
+              builder: (context, params) => ProfileWidget(
+                authorRef: params.getParam(
+                    'userRef', ParamType.DocumentReference, false, ['users']),
+                name: params.getParam('name', ParamType.String),
+              ),
+            ),
+            FFRoute(
+              name: 'EditProfile',
+              path: 'editProfile',
+              builder: (context, params) => EditProfilesWidget(
+                name: params.getParam("name", ParamType.String),
+                bio: params.getParam("bio", ParamType.String),
+                emoji: params.getParam("emoji", ParamType.String),
+              ),
+            ),
+            FFRoute(
+              name: 'SearchPage',
+              path: 'searchPage',
+              builder: (context, params) => SearchPageWidget(),
+            ),
           ].map((r) => r.toRoute(appStateNotifier)).toList(),
         ).toRoute(appStateNotifier),
       ],
@@ -199,6 +240,16 @@ extension NavParamExtensions on Map<String, String?> {
 }
 
 extension NavigationExtensions on BuildContext {
+  void safePop() {
+    // If there is only one route on the stack, navigate to the initial
+    // page instead of popping.
+    if (GoRouter.of(this).routerDelegate.matches.length <= 1) {
+      go('/HomePage');
+    } else {
+      pop();
+    }
+  }
+
   void goNamedAuth(
     String name,
     bool mounted, {
@@ -243,6 +294,7 @@ extension GoRouterExtensions on GoRouter {
           : appState.updateNotifyOnAuthChange(false);
   bool shouldRedirect(bool ignoreRedirect) =>
       !ignoreRedirect && appState.hasRedirect();
+  void clearRedirectLocation() => appState.clearRedirectLocation();
   void setRedirectLocationIfUnset(String location) =>
       (routerDelegate.refreshListenable as AppStateNotifier)
           .updateNotifyOnAuthChange(false);

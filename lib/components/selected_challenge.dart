@@ -117,7 +117,9 @@ class _SelectedChallengeCardWidgetState
             scale: _scale!,
             child: Container(
               width: 160,
-              height: 100,
+              constraints: BoxConstraints(
+                maxHeight: 200,
+              ),
               decoration: BoxDecoration(
                 boxShadow: [
                   BoxShadow(

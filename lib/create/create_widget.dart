@@ -1,5 +1,6 @@
 import 'dart:io';
 
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:detectable_text_field/detector/sample_regular_expressions.dart';
 import 'package:detectable_text_field/widgets/detectable_editable_text.dart';
 import 'package:detectable_text_field/widgets/detectable_text_field.dart';
@@ -519,10 +520,13 @@ class _CreateWidgetState extends State<CreateWidget>
                                                         return;
                                                       }
                                                     }
-                                                    ;
 
                                                     final postsCreateData = {
                                                       ...createPostsRecordData(
+                                                          authorImage:
+                                                              currentUserPhoto,
+                                                          displayName:
+                                                              currentUserDisplayName,
                                                           postDescription:
                                                               textController!
                                                                   .text,
@@ -631,8 +635,28 @@ class _CreateWidgetState extends State<CreateWidget>
                                         decoration: BoxDecoration(
                                           shape: BoxShape.circle,
                                         ),
-                                        child: Image.asset(
-                                          'assets/images/307268498_667368784785166_1846770177358214149_n.jpg',
+                                        child: FutureBuilder(
+                                          future: currentUserReference!
+                                              .get()
+                                              .then((value) => value.data()
+                                                  as Map<String, dynamic>),
+                                          builder: (context, snapshot) {
+                                            if (!snapshot.hasData) {
+                                              return Center(
+                                                child:
+                                                    CircularProgressIndicator(),
+                                              );
+                                            }
+                                            final data = snapshot.data
+                                                as Map<String, dynamic>;
+                                            return CachedNetworkImage(
+                                              imageUrl: valueOrDefault<String>(
+                                                data['photo_url'],
+                                                'https://images.unsplash.com/photo-1574158622682-e40e69881006?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2333&q=80',
+                                              ),
+                                              fit: BoxFit.cover,
+                                            );
+                                          },
                                         ),
                                       ),
                                       Padding(
@@ -701,6 +725,7 @@ class _CreateWidgetState extends State<CreateWidget>
                                                   .fromSTEB(6, 4, 0, 0),
                                               child: SelectionArea(
                                                   child: Text(
+                                                // get current location
                                                 'Abu Dhabi',
                                                 style:
                                                     FlutterFlowTheme.of(context)
@@ -968,7 +993,7 @@ class _CreateWidgetState extends State<CreateWidget>
                                               options: FFButtonOptions(
                                                 elevation: 0,
                                                 width: 160,
-                                                height: 100,
+                                                height: 200,
                                                 color:
                                                     FlutterFlowTheme.of(context)
                                                         .lineColor,

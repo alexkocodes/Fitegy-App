@@ -23,23 +23,23 @@ abstract class PostsRecord implements Built<PostsRecord, PostsRecordBuilder> {
   @BuiltValueField(wireName: 'num_comments')
   int? get numComments;
 
-  @BuiltValueField(wireName: 'in_post_challenge')
-  DocumentReference? get inPostChallenge;
-
   @BuiltValueField(wireName: 'post_images')
   BuiltList<String>? get postImages;
 
-  @BuiltValueField(wireName: 'location')
-  String? get location;
-
-  @BuiltValueField(wireName: 'private')
   String? get private;
 
-  @BuiltValueField(wireName: 'status')
+  @BuiltValueField(wireName: 'in_post_challenge')
+  DocumentReference? get inPostChallenge;
+
+  String? get location;
+
   String? get status;
 
   @BuiltValueField(wireName: 'display_name')
   String? get displayName;
+
+  @BuiltValueField(wireName: 'author_image')
+  String? get authorImage;
 
   @BuiltValueField(wireName: kDocumentReferenceField)
   DocumentReference? get ffRef;
@@ -52,12 +52,12 @@ abstract class PostsRecord implements Built<PostsRecord, PostsRecordBuilder> {
     ..likes = ListBuilder()
     ..numComments = 0
     ..postImages = ListBuilder()
+    ..private = ''
     ..location = ''
-    ..private = "Private"
-    ..status = 'In Progress'
-    ..displayName = '';
+    ..status = ''
+    ..displayName = ''
+    ..authorImage = '';
 
-  // getting data from Firestore
   static Query<Map<String, dynamic>> collection([DocumentReference? parent]) =>
       parent != null
           ? parent.collection('posts')
@@ -89,11 +89,12 @@ Map<String, dynamic> createPostsRecordData({
   DocumentReference? postUser,
   DateTime? timePosted,
   int? numComments,
+  String? private,
   DocumentReference? inPostChallenge,
   String? location,
-  String? private,
   String? status,
   String? displayName,
+  String? authorImage,
 }) {
   final firestoreData = serializers.toFirestore(
     PostsRecord.serializer,
@@ -104,12 +105,13 @@ Map<String, dynamic> createPostsRecordData({
         ..timePosted = timePosted
         ..likes = null
         ..numComments = numComments
-        ..inPostChallenge = inPostChallenge
         ..postImages = null
-        ..location = location
         ..private = private
+        ..inPostChallenge = inPostChallenge
+        ..location = location
         ..status = status
-        ..displayName = displayName,
+        ..displayName = displayName
+        ..authorImage = authorImage,
     ),
   );
 

@@ -57,14 +57,6 @@ class _$PostsRecordSerializer implements StructuredSerializer<PostsRecord> {
         ..add('num_comments')
         ..add(serializers.serialize(value, specifiedType: const FullType(int)));
     }
-    value = object.inPostChallenge;
-    if (value != null) {
-      result
-        ..add('in_post_challenge')
-        ..add(serializers.serialize(value,
-            specifiedType: const FullType(
-                DocumentReference, const [const FullType.nullable(Object)])));
-    }
     value = object.postImages;
     if (value != null) {
       result
@@ -73,17 +65,25 @@ class _$PostsRecordSerializer implements StructuredSerializer<PostsRecord> {
             specifiedType:
                 const FullType(BuiltList, const [const FullType(String)])));
     }
-    value = object.location;
-    if (value != null) {
-      result
-        ..add('location')
-        ..add(serializers.serialize(value,
-            specifiedType: const FullType(String)));
-    }
     value = object.private;
     if (value != null) {
       result
         ..add('private')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(String)));
+    }
+    value = object.inPostChallenge;
+    if (value != null) {
+      result
+        ..add('in_post_challenge')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(
+                DocumentReference, const [const FullType.nullable(Object)])));
+    }
+    value = object.location;
+    if (value != null) {
+      result
+        ..add('location')
         ..add(serializers.serialize(value,
             specifiedType: const FullType(String)));
     }
@@ -98,6 +98,13 @@ class _$PostsRecordSerializer implements StructuredSerializer<PostsRecord> {
     if (value != null) {
       result
         ..add('display_name')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(String)));
+    }
+    value = object.authorImage;
+    if (value != null) {
+      result
+        ..add('author_image')
         ..add(serializers.serialize(value,
             specifiedType: const FullType(String)));
     }
@@ -148,24 +155,24 @@ class _$PostsRecordSerializer implements StructuredSerializer<PostsRecord> {
           result.numComments = serializers.deserialize(value,
               specifiedType: const FullType(int)) as int?;
           break;
-        case 'in_post_challenge':
-          result.inPostChallenge = serializers.deserialize(value,
-              specifiedType: const FullType(DocumentReference, const [
-                const FullType.nullable(Object)
-              ])) as DocumentReference<Object?>?;
-          break;
         case 'post_images':
           result.postImages.replace(serializers.deserialize(value,
                   specifiedType: const FullType(
                       BuiltList, const [const FullType(String)]))!
               as BuiltList<Object?>);
           break;
-        case 'location':
-          result.location = serializers.deserialize(value,
-              specifiedType: const FullType(String)) as String?;
-          break;
         case 'private':
           result.private = serializers.deserialize(value,
+              specifiedType: const FullType(String)) as String?;
+          break;
+        case 'in_post_challenge':
+          result.inPostChallenge = serializers.deserialize(value,
+              specifiedType: const FullType(DocumentReference, const [
+                const FullType.nullable(Object)
+              ])) as DocumentReference<Object?>?;
+          break;
+        case 'location':
+          result.location = serializers.deserialize(value,
               specifiedType: const FullType(String)) as String?;
           break;
         case 'status':
@@ -174,6 +181,10 @@ class _$PostsRecordSerializer implements StructuredSerializer<PostsRecord> {
           break;
         case 'display_name':
           result.displayName = serializers.deserialize(value,
+              specifiedType: const FullType(String)) as String?;
+          break;
+        case 'author_image':
+          result.authorImage = serializers.deserialize(value,
               specifiedType: const FullType(String)) as String?;
           break;
         case 'Document__Reference__Field':
@@ -201,17 +212,19 @@ class _$PostsRecord extends PostsRecord {
   @override
   final int? numComments;
   @override
-  final DocumentReference<Object?>? inPostChallenge;
-  @override
   final BuiltList<String>? postImages;
   @override
-  final String? location;
-  @override
   final String? private;
+  @override
+  final DocumentReference<Object?>? inPostChallenge;
+  @override
+  final String? location;
   @override
   final String? status;
   @override
   final String? displayName;
+  @override
+  final String? authorImage;
   @override
   final DocumentReference<Object?>? ffRef;
 
@@ -224,12 +237,13 @@ class _$PostsRecord extends PostsRecord {
       this.timePosted,
       this.likes,
       this.numComments,
-      this.inPostChallenge,
       this.postImages,
-      this.location,
       this.private,
+      this.inPostChallenge,
+      this.location,
       this.status,
       this.displayName,
+      this.authorImage,
       this.ffRef})
       : super._();
 
@@ -249,12 +263,13 @@ class _$PostsRecord extends PostsRecord {
         timePosted == other.timePosted &&
         likes == other.likes &&
         numComments == other.numComments &&
-        inPostChallenge == other.inPostChallenge &&
         postImages == other.postImages &&
-        location == other.location &&
         private == other.private &&
+        inPostChallenge == other.inPostChallenge &&
+        location == other.location &&
         status == other.status &&
         displayName == other.displayName &&
+        authorImage == other.authorImage &&
         ffRef == other.ffRef;
   }
 
@@ -271,18 +286,22 @@ class _$PostsRecord extends PostsRecord {
                                     $jc(
                                         $jc(
                                             $jc(
-                                                $jc(0,
-                                                    postDescription.hashCode),
-                                                postUser.hashCode),
-                                            timePosted.hashCode),
-                                        likes.hashCode),
-                                    numComments.hashCode),
-                                inPostChallenge.hashCode),
-                            postImages.hashCode),
+                                                $jc(
+                                                    $jc(
+                                                        0,
+                                                        postDescription
+                                                            .hashCode),
+                                                    postUser.hashCode),
+                                                timePosted.hashCode),
+                                            likes.hashCode),
+                                        numComments.hashCode),
+                                    postImages.hashCode),
+                                private.hashCode),
+                            inPostChallenge.hashCode),
                         location.hashCode),
-                    private.hashCode),
-                status.hashCode),
-            displayName.hashCode),
+                    status.hashCode),
+                displayName.hashCode),
+            authorImage.hashCode),
         ffRef.hashCode));
   }
 
@@ -294,12 +313,13 @@ class _$PostsRecord extends PostsRecord {
           ..add('timePosted', timePosted)
           ..add('likes', likes)
           ..add('numComments', numComments)
-          ..add('inPostChallenge', inPostChallenge)
           ..add('postImages', postImages)
-          ..add('location', location)
           ..add('private', private)
+          ..add('inPostChallenge', inPostChallenge)
+          ..add('location', location)
           ..add('status', status)
           ..add('displayName', displayName)
+          ..add('authorImage', authorImage)
           ..add('ffRef', ffRef))
         .toString();
   }
@@ -332,24 +352,24 @@ class PostsRecordBuilder implements Builder<PostsRecord, PostsRecordBuilder> {
   int? get numComments => _$this._numComments;
   set numComments(int? numComments) => _$this._numComments = numComments;
 
-  DocumentReference<Object?>? _inPostChallenge;
-  DocumentReference<Object?>? get inPostChallenge => _$this._inPostChallenge;
-  set inPostChallenge(DocumentReference<Object?>? inPostChallenge) =>
-      _$this._inPostChallenge = inPostChallenge;
-
   ListBuilder<String>? _postImages;
   ListBuilder<String> get postImages =>
       _$this._postImages ??= new ListBuilder<String>();
   set postImages(ListBuilder<String>? postImages) =>
       _$this._postImages = postImages;
 
-  String? _location;
-  String? get location => _$this._location;
-  set location(String? location) => _$this._location = location;
-
   String? _private;
   String? get private => _$this._private;
   set private(String? private) => _$this._private = private;
+
+  DocumentReference<Object?>? _inPostChallenge;
+  DocumentReference<Object?>? get inPostChallenge => _$this._inPostChallenge;
+  set inPostChallenge(DocumentReference<Object?>? inPostChallenge) =>
+      _$this._inPostChallenge = inPostChallenge;
+
+  String? _location;
+  String? get location => _$this._location;
+  set location(String? location) => _$this._location = location;
 
   String? _status;
   String? get status => _$this._status;
@@ -358,6 +378,10 @@ class PostsRecordBuilder implements Builder<PostsRecord, PostsRecordBuilder> {
   String? _displayName;
   String? get displayName => _$this._displayName;
   set displayName(String? displayName) => _$this._displayName = displayName;
+
+  String? _authorImage;
+  String? get authorImage => _$this._authorImage;
+  set authorImage(String? authorImage) => _$this._authorImage = authorImage;
 
   DocumentReference<Object?>? _ffRef;
   DocumentReference<Object?>? get ffRef => _$this._ffRef;
@@ -375,12 +399,13 @@ class PostsRecordBuilder implements Builder<PostsRecord, PostsRecordBuilder> {
       _timePosted = $v.timePosted;
       _likes = $v.likes?.toBuilder();
       _numComments = $v.numComments;
-      _inPostChallenge = $v.inPostChallenge;
       _postImages = $v.postImages?.toBuilder();
-      _location = $v.location;
       _private = $v.private;
+      _inPostChallenge = $v.inPostChallenge;
+      _location = $v.location;
       _status = $v.status;
       _displayName = $v.displayName;
+      _authorImage = $v.authorImage;
       _ffRef = $v.ffRef;
       _$v = null;
     }
@@ -411,12 +436,13 @@ class PostsRecordBuilder implements Builder<PostsRecord, PostsRecordBuilder> {
               timePosted: timePosted,
               likes: _likes?.build(),
               numComments: numComments,
-              inPostChallenge: inPostChallenge,
               postImages: _postImages?.build(),
-              location: location,
               private: private,
+              inPostChallenge: inPostChallenge,
+              location: location,
               status: status,
               displayName: displayName,
+              authorImage: authorImage,
               ffRef: ffRef);
     } catch (_) {
       late String _$failedField;
