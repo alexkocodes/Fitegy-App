@@ -3,6 +3,7 @@ import 'package:fitegy/auth/firebase_user_provider.dart';
 import 'package:fitegy/components/profile_stats_bar_widget.dart';
 import 'package:flutter_platform_alert/flutter_platform_alert.dart';
 import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
+import 'package:scrolls_to_top/scrolls_to_top.dart';
 
 import '../components/empty_widget.dart';
 import '../components/post_widget.dart';
@@ -86,17 +87,21 @@ class _MyAccountWidgetState extends State<MyAccountWidget> {
     return data;
   }
 
+  Future<void> _onScrollsToTop(ScrollsToTopEvent event) async {
+    _pagingController!.refresh();
+  }
+
   @override
   Widget build(BuildContext context) {
     var name;
     var bio;
     var emoji;
-    return Scaffold(
-      key: scaffoldKey,
-      backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
-      body: SafeArea(
-        top: false,
-        child: SingleChildScrollView(
+    return ScrollsToTop(
+      onScrollsToTop: _onScrollsToTop,
+      child: Scaffold(
+        key: scaffoldKey,
+        backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
+        body: SingleChildScrollView(
           primary: true,
           child: Column(
             mainAxisSize: MainAxisSize.min,
@@ -867,7 +872,9 @@ class _MyAccountWidgetState extends State<MyAccountWidget> {
 
   void callback() {
     if (mounted) {
-      setState(() {});
+      setState(() {
+        _pagingController!.refresh();
+      });
     }
   }
 }

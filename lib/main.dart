@@ -58,7 +58,6 @@ class _MyAppState extends State<MyApp> {
   @override
   void dispose() {
     authUserSub.cancel();
-
     super.dispose();
   }
 
@@ -106,16 +105,37 @@ class NavBarPage extends StatefulWidget {
   _NavBarPageState createState() => _NavBarPageState();
 }
 
-/// This is the private State class that goes with NavBarPage.
 class _NavBarPageState extends State<NavBarPage> {
   String _currentPageName = 'HomePage';
   late Widget? _currentPage;
+  PageController pageController = PageController();
 
+  int _selectedIndex = 0;
   @override
   void initState() {
     super.initState();
     _currentPageName = widget.initialPage ?? _currentPageName;
     _currentPage = widget.page;
+    pageController = PageController();
+  }
+
+  @override
+  void dispose() {
+    pageController.dispose();
+    super.dispose();
+  }
+
+  _onTapped(int index) {
+    setState(() {
+      _selectedIndex = index;
+    });
+    pageController.jumpToPage(index);
+  }
+
+  void onPageChanged(int index) {
+    setState(() {
+      _selectedIndex = index;
+    });
   }
 
   @override
@@ -126,15 +146,20 @@ class _NavBarPageState extends State<NavBarPage> {
       'MyChallenges': MyChallengesWidget(),
       'MyAccount': MyAccountWidget(),
     };
-    final currentIndex = tabs.keys.toList().indexOf(_currentPageName);
+    //final currentIndex = tabs.keys.toList().indexOf(_currentPageName);
     return Scaffold(
-      body: _currentPage ?? tabs[_currentPageName],
+      body: PageView(
+        children: tabs.values.toList(),
+        controller: pageController,
+        onPageChanged: onPageChanged,
+      ),
       bottomNavigationBar: SizedBox(
         child: BottomNavigationBar(
-          currentIndex: currentIndex,
+          currentIndex: _selectedIndex,
           onTap: (i) => setState(() {
-            _currentPage = null;
-            _currentPageName = tabs.keys.toList()[i];
+            // _currentPage = null;
+            // _currentPageName = tabs.keys.toList()[i];
+            _onTapped(i);
           }),
           backgroundColor: Colors.white,
           selectedItemColor: Color(0xFF3B3F6B),

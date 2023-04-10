@@ -99,7 +99,6 @@ class _ProfileWidgetState extends State<ProfileWidget> {
   }
 
   Future<void> _onScrollsToTop(ScrollsToTopEvent event) async {
-    print("tapped");
     _pagingController!.refresh();
   }
 
