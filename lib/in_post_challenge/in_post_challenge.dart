@@ -63,7 +63,6 @@ class _InPostChallengeWidgetState extends State<InPostChallengeWidget> {
 
   @override
   Widget build(BuildContext context) {
-    print(widget.callback!['callback']);
     return Scaffold(
       key: scaffoldKey,
       backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
