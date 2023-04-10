@@ -1,6 +1,7 @@
 import 'package:fitegy/components/post_widget.dart';
 import 'package:fitegy/flutter_flow/flutter_flow_animations.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
 
 import '../auth/auth_util.dart';
 import '../backend/backend.dart';
@@ -18,10 +19,12 @@ class InPostChallengeWidget extends StatefulWidget {
     Key? key,
     this.challengeReference,
     this.postReference,
+    this.callback,
   }) : super(key: key);
 
   final DocumentReference? challengeReference;
   final DocumentReference? postReference;
+  final Map? callback;
 
   @override
   _InPostChallengeWidgetState createState() => _InPostChallengeWidgetState();
@@ -60,6 +63,7 @@ class _InPostChallengeWidgetState extends State<InPostChallengeWidget> {
 
   @override
   Widget build(BuildContext context) {
+    print(widget.callback!['callback']);
     return Scaffold(
       key: scaffoldKey,
       backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
@@ -138,7 +142,11 @@ class _InPostChallengeWidgetState extends State<InPostChallengeWidget> {
                                   liked: post["likes"]
                                       .contains(currentUserReference),
                                   callback: () {
-                                    setState(() {});
+                                    setState(() {
+                                      widget.postReference!.delete();
+                                      context.safePop();
+                                      widget.callback!['callback']();
+                                    });
                                   },
                                   onPage: "InPostChallengePage",
                                 ),

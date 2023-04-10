@@ -40,10 +40,9 @@ class _HomePageWidgetState extends State<HomePageWidget>
   }
 
   void callback() {
+    _pagingController!.refresh();
     if (mounted) {
-      setState(() {
-        _pagingController!.refresh();
-      });
+      setState(() {});
     }
   }
 

@@ -16,10 +16,12 @@ class PostBottomSheetWidget extends StatefulWidget {
     Key? key,
     this.postRef,
     this.authorRef,
+    this.callback,
   }) : super(key: key);
 
   final DocumentReference? postRef;
   final DocumentReference? authorRef;
+  final Function? callback;
 
   @override
   _PostBottomSheetWidgetState createState() => _PostBottomSheetWidgetState();
@@ -156,6 +158,7 @@ class _PostBottomSheetWidgetState extends State<PostBottomSheetWidget> {
                             alertStyle: AlertButtonStyle.yesNo);
                         if (result == AlertButton.yesButton) {
                           await widget.postRef!.delete();
+                          widget.callback!();
                           Navigator.pop(context);
                         } else {
                           return;

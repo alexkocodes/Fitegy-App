@@ -64,7 +64,9 @@ class _ProfileWidgetState extends State<ProfileWidget> {
 
   void callback() {
     if (mounted) {
-      setState(() {});
+      setState(() {
+        _pagingController!.refresh();
+      });
     }
   }
 

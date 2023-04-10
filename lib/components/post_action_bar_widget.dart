@@ -183,6 +183,7 @@ class _PostActionBarWidgetState extends State<PostActionBarWidget> {
                             ParamType.DocumentReference,
                           ),
                         }.withoutNulls,
+                        extra: {"callback": widget.callback},
                       );
                     } else {
                       // show an alert box saying this user didn't include a challenge in their post
@@ -232,6 +233,7 @@ class _PostActionBarWidgetState extends State<PostActionBarWidget> {
                           child: PostBottomSheetWidget(
                             postRef: widget.postRef!,
                             authorRef: widget.authorReference!,
+                            callback: widget.callback,
                           ),
                         ),
                       );

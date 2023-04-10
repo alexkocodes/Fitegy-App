@@ -88,7 +88,8 @@ String? serializeParam(
       case ParamType.Document:
         final reference = (param as dynamic).reference as DocumentReference;
         return _serializeDocumentReference(reference);
-
+      case ParamType.Function:
+        return param;
       default:
         return null;
     }
@@ -177,6 +178,7 @@ enum ParamType {
   JSON,
   Document,
   DocumentReference,
+  Function,
 }
 
 dynamic deserializeParam<T>(
