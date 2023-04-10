@@ -436,6 +436,7 @@ class _PostWidgetState extends State<PostWidget> {
                 postReference: widget.postRef,
                 callback: widget.callback,
                 onPage: widget.onPage,
+                authorReference: widget.authorRef,
               ),
             ],
           ),

@@ -21,6 +21,7 @@ class PostActionBarWidget extends StatefulWidget {
     this.postReference,
     this.callback,
     this.onPage,
+    this.authorReference,
   }) : super(key: key);
 
   final DocumentReference? postRef;
@@ -30,6 +31,7 @@ class PostActionBarWidget extends StatefulWidget {
   final DocumentReference? postReference;
   final Function? callback;
   final String? onPage;
+  final DocumentReference? authorReference;
 
   @override
   _PostActionBarWidgetState createState() => _PostActionBarWidgetState();
@@ -218,24 +220,23 @@ class _PostActionBarWidgetState extends State<PostActionBarWidget> {
               color: Colors.transparent,
               child: InkWell(
                 onTap: () async {
-                  await showModalBottomSheet(
-                    elevation: 10,
+                  showModalBottomSheet(
                     isScrollControlled: true,
+                    backgroundColor: Colors.transparent,
                     context: context,
-                    builder: (bottomSheetContext) {
+                    builder: (context) {
                       return Padding(
-                        padding: MediaQuery.of(bottomSheetContext).viewInsets,
+                        padding: MediaQuery.of(context).viewInsets,
                         child: Container(
                           height: MediaQuery.of(context).size.height * 0.3,
                           child: PostBottomSheetWidget(
-                            postRef: widget.postRef,
+                            postRef: widget.postRef!,
+                            authorRef: widget.authorReference!,
                           ),
                         ),
                       );
                     },
-                  ).then((value) => setState(() {
-                        widget.callback!();
-                      }));
+                  ).then((value) => setState(() {}));
                 },
                 borderRadius: BorderRadius.circular(20),
                 child: Align(

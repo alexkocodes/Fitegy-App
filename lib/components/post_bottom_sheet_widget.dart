@@ -1,3 +1,4 @@
+import 'package:fitegy/auth/auth_util.dart';
 import 'package:flutter_platform_alert/flutter_platform_alert.dart';
 
 import '/flutter_flow/flutter_flow_theme.dart';
@@ -14,9 +15,11 @@ class PostBottomSheetWidget extends StatefulWidget {
   const PostBottomSheetWidget({
     Key? key,
     this.postRef,
+    this.authorRef,
   }) : super(key: key);
 
   final DocumentReference? postRef;
+  final DocumentReference? authorRef;
 
   @override
   _PostBottomSheetWidgetState createState() => _PostBottomSheetWidgetState();
@@ -61,8 +64,8 @@ class _PostBottomSheetWidgetState extends State<PostBottomSheetWidget> {
         borderRadius: BorderRadius.only(
           bottomLeft: Radius.circular(0.0),
           bottomRight: Radius.circular(0.0),
-          topLeft: Radius.circular(16.0),
-          topRight: Radius.circular(16.0),
+          topLeft: Radius.circular(20.0),
+          topRight: Radius.circular(20.0),
         ),
       ),
       child: Padding(
@@ -70,77 +73,123 @@ class _PostBottomSheetWidgetState extends State<PostBottomSheetWidget> {
         child: Column(
           mainAxisSize: MainAxisSize.max,
           children: [
-            FFButtonWidget(
-              onPressed: () async {
-                await FlutterPlatformAlert.showAlert(
-                    windowTitle: "Coming soon!",
-                    text:
-                        "Please bear with us while we work on this feature.😌",
-                    alertStyle: AlertButtonStyle.ok);
-              },
-              text: 'Edit Post',
-              options: FFButtonOptions(
-                width: double.infinity,
-                height: 60.0,
-                padding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
-                iconPadding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
-                color: FlutterFlowTheme.of(context).primary,
-                textStyle: FlutterFlowTheme.of(context).titleSmall.override(
-                      fontFamily: 'Inter',
-                      color: Colors.white,
-                      fontSize: 16.0,
-                      fontWeight: FontWeight.w600,
-                      useGoogleFonts: GoogleFonts.asMap().containsKey(
-                          FlutterFlowTheme.of(context).titleSmallFamily),
-                    ),
-                elevation: 10.0,
-                borderSide: BorderSide(
-                  color: Colors.transparent,
-                  width: 1.0,
-                ),
-                borderRadius: BorderRadius.circular(20.0),
-              ),
-            ),
-            Padding(
-              padding: EdgeInsetsDirectional.fromSTEB(0.0, 16.0, 0.0, 0.0),
-              child: FFButtonWidget(
-                onPressed: () async {
-                  final result = await FlutterPlatformAlert.showAlert(
-                      windowTitle: "Delete This Post?",
-                      text: "Are you sure you want to delete this post?",
-                      alertStyle: AlertButtonStyle.yesNo);
-                  if (result == AlertButton.yesButton) {
-                    await widget.postRef!.delete();
-                    Navigator.pop(context);
-                  } else {
-                    return;
-                  }
-                },
-                text: 'Delete Post',
-                options: FFButtonOptions(
-                  width: double.infinity,
-                  height: 60.0,
-                  padding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
-                  iconPadding:
-                      EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
-                  color: Color(0xFFFF5963),
-                  textStyle: FlutterFlowTheme.of(context).titleSmall.override(
-                        fontFamily: 'Inter',
-                        color: Colors.white,
-                        fontSize: 16.0,
-                        fontWeight: FontWeight.w600,
-                        useGoogleFonts: GoogleFonts.asMap().containsKey(
-                            FlutterFlowTheme.of(context).titleSmallFamily),
+            (widget.authorRef == currentUserReference)
+                ? FFButtonWidget(
+                    onPressed: () async {
+                      await FlutterPlatformAlert.showAlert(
+                          windowTitle: "Coming soon!",
+                          text:
+                              "Please bear with us while we work on this feature.😌",
+                          alertStyle: AlertButtonStyle.ok);
+                    },
+                    text: 'Edit Post',
+                    options: FFButtonOptions(
+                      width: double.infinity,
+                      height: 60.0,
+                      padding:
+                          EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
+                      iconPadding:
+                          EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
+                      color: FlutterFlowTheme.of(context).primary,
+                      textStyle: FlutterFlowTheme.of(context)
+                          .titleSmall
+                          .override(
+                            fontFamily: 'Inter',
+                            color: Colors.white,
+                            fontSize: 16.0,
+                            fontWeight: FontWeight.w600,
+                            useGoogleFonts: GoogleFonts.asMap().containsKey(
+                                FlutterFlowTheme.of(context).titleSmallFamily),
+                          ),
+                      elevation: 10.0,
+                      borderSide: BorderSide(
+                        color: Colors.transparent,
+                        width: 1.0,
                       ),
-                  elevation: 10.0,
-                  borderSide: BorderSide(
-                    color: Colors.transparent,
-                    width: 1.0,
+                      borderRadius: BorderRadius.circular(20.0),
+                    ),
+                  )
+                : FFButtonWidget(
+                    onPressed: () async {
+                      await FlutterPlatformAlert.showAlert(
+                          windowTitle: "Coming soon!",
+                          text:
+                              "Please bear with us while we work on this feature.😌",
+                          alertStyle: AlertButtonStyle.ok);
+                    },
+                    text: 'Share',
+                    options: FFButtonOptions(
+                      width: double.infinity,
+                      height: 60.0,
+                      padding:
+                          EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
+                      iconPadding:
+                          EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
+                      color: Color.fromARGB(255, 7, 193, 255),
+                      textStyle: FlutterFlowTheme.of(context)
+                          .titleSmall
+                          .override(
+                            fontFamily: 'Inter',
+                            color: Colors.white,
+                            fontSize: 16.0,
+                            fontWeight: FontWeight.w600,
+                            useGoogleFonts: GoogleFonts.asMap().containsKey(
+                                FlutterFlowTheme.of(context).titleSmallFamily),
+                          ),
+                      elevation: 10.0,
+                      borderSide: BorderSide(
+                        color: Colors.transparent,
+                        width: 1.0,
+                      ),
+                      borderRadius: BorderRadius.circular(20.0),
+                    ),
                   ),
-                  borderRadius: BorderRadius.circular(20.0),
-                ),
-              ),
-            ),
+            (widget.authorRef == currentUserReference)
+                ? Padding(
+                    padding:
+                        EdgeInsetsDirectional.fromSTEB(0.0, 16.0, 0.0, 0.0),
+                    child: FFButtonWidget(
+                      onPressed: () async {
+                        final result = await FlutterPlatformAlert.showAlert(
+                            windowTitle: "Delete This Post?",
+                            text: "Are you sure you want to delete this post?",
+                            alertStyle: AlertButtonStyle.yesNo);
+                        if (result == AlertButton.yesButton) {
+                          await widget.postRef!.delete();
+                          Navigator.pop(context);
+                        } else {
+                          return;
+                        }
+                      },
+                      text: 'Delete Post',
+                      options: FFButtonOptions(
+                        width: double.infinity,
+                        height: 60.0,
+                        padding:
+                            EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
+                        iconPadding:
+                            EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
+                        color: Color(0xFFFF5963),
+                        textStyle:
+                            FlutterFlowTheme.of(context).titleSmall.override(
+                                  fontFamily: 'Inter',
+                                  color: Colors.white,
+                                  fontSize: 16.0,
+                                  fontWeight: FontWeight.w600,
+                                  useGoogleFonts: GoogleFonts.asMap()
+                                      .containsKey(FlutterFlowTheme.of(context)
+                                          .titleSmallFamily),
+                                ),
+                        elevation: 10.0,
+                        borderSide: BorderSide(
+                          color: Colors.transparent,
+                          width: 1.0,
+                        ),
+                        borderRadius: BorderRadius.circular(20.0),
+                      ),
+                    ),
+                  )
+                : Container(),
             Padding(
               padding: EdgeInsetsDirectional.fromSTEB(0.0, 16.0, 0.0, 0.0),
               child: FFButtonWidget(
