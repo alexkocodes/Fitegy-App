@@ -33,6 +33,27 @@ class _HomePageWidgetState extends State<HomePageWidget>
   @override
   bool get wantKeepAlive => true;
 
+  var _showNewPosts = false;
+  @override
+  void initState() {
+    super.initState();
+    // queryPostsRecordCount().then((value) {
+    //   currentPostsCount = value;
+    // });
+    db.collectionGroup("posts").snapshots().listen((event) {
+      for (var change in event.docChanges) {
+        if (change.type == DocumentChangeType.added) {
+          print("Added post");
+          _showNewPosts = true;
+        } else if (change.type == DocumentChangeType.modified) {
+          print("Modified post");
+        } else if (change.type == DocumentChangeType.removed) {
+          print("Removed post");
+        }
+      }
+    });
+  }
+
   @override
   void dispose() {
     _streamSubscriptions.forEach((s) => s?.cancel());
@@ -42,8 +63,14 @@ class _HomePageWidgetState extends State<HomePageWidget>
   void callback() {
     _pagingController!.refresh();
     if (mounted) {
-      setState(() {});
+      setState(() {
+        _showNewPosts = false;
+      });
     }
+  }
+
+  void refreshDB() {
+    _pagingController!.refresh();
   }
 
   Future<void> _onScrollsToTop(ScrollsToTopEvent event) async {
@@ -55,27 +82,7 @@ class _HomePageWidgetState extends State<HomePageWidget>
     _pagingController!.refresh();
   }
 
-  var _showNewPosts = false;
-  // poll and check if there is new posts by checking the count of posts
-  // if there is new posts, refresh the page
-  Future<void> _pollForNewPosts() async {
-    queryPostsRecordCount().then((value) {
-      currentPostsCount = value;
-    });
-  }
-
-  bool newPost() {
-    queryPostsRecordCount().then((value) {
-      if (value > currentPostsCount) {
-        print(currentPostsCount);
-        print(value);
-        return true;
-      } else {
-        return false;
-      }
-    });
-    return false;
-  }
+  final db = FirebaseFirestore.instance;
 
   @override
   Widget build(BuildContext context) {
@@ -236,6 +243,7 @@ class _HomePageWidgetState extends State<HomePageWidget>
                                       page.data,
                                       page.nextPageMarker,
                                     );
+
                                     final streamSubscription =
                                         page.dataStream?.listen((data) {
                                       final itemIndexes = _pagingController!
@@ -256,9 +264,6 @@ class _HomePageWidgetState extends State<HomePageWidget>
                                               item.reference: item
                                           }.values.toList();
                                         }
-                                      });
-                                      setState(() {
-                                        _showNewPosts = newPost();
                                       });
                                     });
                                     _streamSubscriptions
@@ -312,6 +317,7 @@ class _HomePageWidgetState extends State<HomePageWidget>
                                     ),
                                     callback: callback,
                                     onPage: 'HomePage',
+                                    // refreshDB: refreshDB,
                                   );
                                 },
                               ),
@@ -322,46 +328,47 @@ class _HomePageWidgetState extends State<HomePageWidget>
                     ),
                   ),
                 ),
-                Padding(
-                  padding: EdgeInsetsDirectional.fromSTEB(0, 80, 0, 0),
-                  child: newPost()
-                      ? FFButtonWidget(
-                          onPressed: () {
-                            // scroll to top
-                            _scrollController.animateTo(
-                              0,
-                              duration: Duration(milliseconds: 300),
-                              curve: Curves.ease,
-                            );
-                            _pagingController!.refresh();
-                          },
-                          text: 'New Posts',
-                          icon: Icon(
-                            Icons.arrow_upward_sharp,
-                            size: 10,
-                          ),
-                          options: FFButtonOptions(
-                            width: 100,
-                            height: 30,
-                            padding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 0),
-                            iconPadding:
-                                EdgeInsetsDirectional.fromSTEB(0, 0, 0, 0),
-                            color: FlutterFlowTheme.of(context).primary,
-                            textStyle: TextStyle(
-                              color: Colors.white,
-                              fontWeight: FontWeight.normal,
-                              fontSize: 10,
-                              fontStyle: FontStyle.normal,
-                            ),
-                            borderSide: BorderSide(
-                              color: Colors.transparent,
-                              width: 1,
-                            ),
-                            borderRadius: BorderRadius.circular(30),
-                          ),
-                        )
-                      : Container(),
-                ),
+                if (_showNewPosts)
+                  Padding(
+                    padding: EdgeInsetsDirectional.fromSTEB(0, 80, 0, 0),
+                    child: FFButtonWidget(
+                      onPressed: () {
+                        // scroll to top
+                        _scrollController.animateTo(
+                          0,
+                          duration: Duration(milliseconds: 300),
+                          curve: Curves.ease,
+                        );
+                        _pagingController!.refresh();
+                        setState(() {
+                          _showNewPosts = false;
+                        });
+                      },
+                      text: 'New Posts',
+                      icon: Icon(
+                        Icons.arrow_upward_sharp,
+                        size: 10,
+                      ),
+                      options: FFButtonOptions(
+                        width: 100,
+                        height: 30,
+                        padding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 0),
+                        iconPadding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 0),
+                        color: FlutterFlowTheme.of(context).primary,
+                        textStyle: TextStyle(
+                          color: Colors.white,
+                          fontWeight: FontWeight.normal,
+                          fontSize: 10,
+                          fontStyle: FontStyle.normal,
+                        ),
+                        borderSide: BorderSide(
+                          color: Colors.transparent,
+                          width: 1,
+                        ),
+                        borderRadius: BorderRadius.circular(30),
+                      ),
+                    ),
+                  ),
               ]),
             ),
           ),
