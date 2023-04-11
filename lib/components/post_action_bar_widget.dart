@@ -40,14 +40,16 @@ class PostActionBarWidget extends StatefulWidget {
 }
 
 class _PostActionBarWidgetState extends State<PostActionBarWidget> {
+  var _liked = false;
   @override
   void initState() {
+    _liked = widget.liked!;
     super.initState();
   }
 
   @override
   Widget build(BuildContext context) {
-    var _liked = widget.liked!;
+    _liked = widget.liked!;
     return Container(
       width: double.infinity,
       decoration: BoxDecoration(
@@ -77,10 +79,10 @@ class _PostActionBarWidgetState extends State<PostActionBarWidget> {
                     });
                   }
                   _liked = !_liked;
+                  widget.callback!();
                   if (this.mounted) {
                     setState(() {});
                   }
-                  widget.callback!();
                 },
                 child: Stack(
                   children: [

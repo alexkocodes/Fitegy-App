@@ -67,7 +67,7 @@ class _SearchPageWidgetState extends State<SearchPageWidget> {
               size: 20,
             ),
             onPressed: () async {
-              context.pop();
+              context.safePop();
             },
           ),
           title: Text(

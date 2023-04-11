@@ -64,10 +64,12 @@ class _ProfileWidgetState extends State<ProfileWidget> {
 
   void callback() {
     if (mounted) {
-      setState(() {
-        _pagingController!.refresh();
-      });
+      setState(() {});
     }
+  }
+
+  void refresh() {
+    _pagingController!.refresh();
   }
 
   // create an async function to get the author's profile image and return a string
@@ -886,7 +888,20 @@ class _ProfileWidgetState extends State<ProfileWidget> {
                           ),
                         ),
                       ),
-
+                      noItemsFoundIndicatorBuilder: (_) => Center(
+                        child: Padding(
+                          padding: EdgeInsetsDirectional.fromSTEB(0, 50, 0, 0),
+                          child: Text(
+                            'No posts found',
+                            style: FlutterFlowTheme.of(context)
+                                .titleSmall
+                                .override(
+                                  fontFamily: 'Inter',
+                                  color: FlutterFlowTheme.of(context).gray200,
+                                ),
+                          ),
+                        ),
+                      ),
                       itemBuilder: (context, _, listViewIndex) {
                         final listViewPostsRecord =
                             _pagingController!.itemList![listViewIndex];
@@ -909,6 +924,7 @@ class _ProfileWidgetState extends State<ProfileWidget> {
                           ),
                           callback: callback,
                           onPage: 'HomePage',
+                          refresh: refresh,
                         );
                       },
                     ),

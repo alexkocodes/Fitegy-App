@@ -858,6 +858,7 @@ class _MyAccountWidgetState extends State<MyAccountWidget> {
                         ),
                         callback: callback,
                         onPage: 'ProfilePage',
+                        refresh: refresh,
                       );
                     },
                   ),
@@ -872,9 +873,11 @@ class _MyAccountWidgetState extends State<MyAccountWidget> {
 
   void callback() {
     if (mounted) {
-      setState(() {
-        _pagingController!.refresh();
-      });
+      setState(() {});
     }
+  }
+
+  void refresh() {
+    _pagingController!.refresh();
   }
 }

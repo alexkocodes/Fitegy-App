@@ -33,18 +33,17 @@ class _HomePageWidgetState extends State<HomePageWidget>
   @override
   bool get wantKeepAlive => true;
 
-  var _showNewPosts = false;
+  var _showNewPosts1 = false;
   @override
   void initState() {
     super.initState();
-    // queryPostsRecordCount().then((value) {
-    //   currentPostsCount = value;
-    // });
     db.collectionGroup("posts").snapshots().listen((event) {
       for (var change in event.docChanges) {
         if (change.type == DocumentChangeType.added) {
           print("Added post");
-          _showNewPosts = true;
+          setState(() {
+            _showNewPosts1 = true;
+          });
         } else if (change.type == DocumentChangeType.modified) {
           print("Modified post");
         } else if (change.type == DocumentChangeType.removed) {
@@ -63,7 +62,7 @@ class _HomePageWidgetState extends State<HomePageWidget>
   void callback() {
     if (mounted) {
       setState(() {
-        _showNewPosts = false;
+        // _showNewPosts = false;
       });
     }
   }
@@ -85,6 +84,7 @@ class _HomePageWidgetState extends State<HomePageWidget>
 
   @override
   Widget build(BuildContext context) {
+    var _showNewPosts = _showNewPosts1;
     super.build(context);
     return ScrollsToTop(
       onScrollsToTop: _onScrollsToTop,
@@ -339,9 +339,16 @@ class _HomePageWidgetState extends State<HomePageWidget>
                           duration: Duration(milliseconds: 300),
                           curve: Curves.ease,
                         );
+                        // scroll to top
+                        _scrollController.animateTo(
+                          0,
+                          duration: Duration(milliseconds: 300),
+                          curve: Curves.ease,
+                        );
                         _pagingController!.refresh();
                         setState(() {
                           _showNewPosts = false;
+                          _showNewPosts1 = false;
                         });
                       },
                       text: 'New Posts',

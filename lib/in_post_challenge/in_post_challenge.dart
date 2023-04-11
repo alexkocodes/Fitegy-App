@@ -127,6 +127,7 @@ class _InPostChallengeWidgetState extends State<InPostChallengeWidget> {
                                 PostWidget(
                                   callback: () {
                                     setState(() {});
+                                    //widget.extra!['callback']();
                                   },
                                   name: post["display_name"],
                                   location: post["location"],
