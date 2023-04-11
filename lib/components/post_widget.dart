@@ -28,6 +28,7 @@ class PostWidget extends StatefulWidget {
     this.liked,
     this.callback,
     this.onPage,
+    this.refresh,
   }) : super(key: key);
 
   final String? name;
@@ -41,6 +42,7 @@ class PostWidget extends StatefulWidget {
   final bool? liked;
   final Function? callback;
   final String? onPage;
+  final Function? refresh;
 
   @override
   _PostWidgetState createState() => _PostWidgetState();
@@ -437,6 +439,7 @@ class _PostWidgetState extends State<PostWidget> {
                 callback: widget.callback,
                 onPage: widget.onPage,
                 authorReference: widget.authorRef,
+                refresh: widget.refresh,
               ),
             ],
           ),

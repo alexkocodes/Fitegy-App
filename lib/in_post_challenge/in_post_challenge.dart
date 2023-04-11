@@ -19,12 +19,12 @@ class InPostChallengeWidget extends StatefulWidget {
     Key? key,
     this.challengeReference,
     this.postReference,
-    this.callback,
+    this.extra,
   }) : super(key: key);
 
   final DocumentReference? challengeReference;
   final DocumentReference? postReference;
-  final Map? callback;
+  final Map? extra;
 
   @override
   _InPostChallengeWidgetState createState() => _InPostChallengeWidgetState();
@@ -125,6 +125,9 @@ class _InPostChallengeWidgetState extends State<InPostChallengeWidget> {
                               mainAxisAlignment: MainAxisAlignment.start,
                               children: [
                                 PostWidget(
+                                  callback: () {
+                                    setState(() {});
+                                  },
                                   name: post["display_name"],
                                   location: post["location"],
                                   description: post["post_description"] ??
@@ -140,11 +143,11 @@ class _InPostChallengeWidgetState extends State<InPostChallengeWidget> {
                                   postRef: widget.postReference,
                                   liked: post["likes"]
                                       .contains(currentUserReference),
-                                  callback: () {
+                                  refresh: () {
                                     setState(() {
                                       widget.postReference!.delete();
                                       context.safePop();
-                                      widget.callback!['callback']();
+                                      widget.extra!['refresh']();
                                     });
                                   },
                                   onPage: "InPostChallengePage",

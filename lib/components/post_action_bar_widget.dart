@@ -22,6 +22,7 @@ class PostActionBarWidget extends StatefulWidget {
     this.callback,
     this.onPage,
     this.authorReference,
+    this.refresh,
   }) : super(key: key);
 
   final DocumentReference? postRef;
@@ -32,6 +33,7 @@ class PostActionBarWidget extends StatefulWidget {
   final Function? callback;
   final String? onPage;
   final DocumentReference? authorReference;
+  final Function? refresh;
 
   @override
   _PostActionBarWidgetState createState() => _PostActionBarWidgetState();
@@ -183,7 +185,10 @@ class _PostActionBarWidgetState extends State<PostActionBarWidget> {
                             ParamType.DocumentReference,
                           ),
                         }.withoutNulls,
-                        extra: {"callback": widget.callback},
+                        extra: {
+                          "refresh": widget.refresh,
+                          "callback": widget.callback
+                        },
                       );
                     } else {
                       // show an alert box saying this user didn't include a challenge in their post
@@ -233,7 +238,7 @@ class _PostActionBarWidgetState extends State<PostActionBarWidget> {
                           child: PostBottomSheetWidget(
                             postRef: widget.postRef!,
                             authorRef: widget.authorReference!,
-                            callback: widget.callback,
+                            refresh: widget.refresh,
                           ),
                         ),
                       );

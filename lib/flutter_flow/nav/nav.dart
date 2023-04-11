@@ -200,7 +200,7 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
                     ['users', 'challenges']),
                 postReference: params.getParam('postReference',
                     ParamType.DocumentReference, false, ['users', 'posts']),
-                callback: params.state.extra as Map,
+                extra: params.state.extra as Map,
               ),
             ),
             FFRoute(

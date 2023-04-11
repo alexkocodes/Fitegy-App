@@ -61,7 +61,6 @@ class _HomePageWidgetState extends State<HomePageWidget>
   }
 
   void callback() {
-    _pagingController!.refresh();
     if (mounted) {
       setState(() {
         _showNewPosts = false;
@@ -317,6 +316,7 @@ class _HomePageWidgetState extends State<HomePageWidget>
                                     ),
                                     callback: callback,
                                     onPage: 'HomePage',
+                                    refresh: refreshDB,
                                     // refreshDB: refreshDB,
                                   );
                                 },
