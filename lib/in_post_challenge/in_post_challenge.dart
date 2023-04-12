@@ -44,7 +44,17 @@ class _InPostChallengeWidgetState extends State<InPostChallengeWidget> {
 
   // create a function to fetch challenge data
   Future<Map> getChallengeData() async {
-    final challengeData = await widget.challengeReference!.get();
+    final challengeData = await widget.challengeReference!
+        .get()
+        .timeout(
+          Duration(seconds: 4),
+          onTimeout: () => throw TimeoutException(
+            'Timeout while fetching challenge data',
+          ),
+        )
+        .catchError((e) {
+      print(e);
+    });
     return challengeData.data() as Map;
   }
 
@@ -57,9 +67,17 @@ class _InPostChallengeWidgetState extends State<InPostChallengeWidget> {
   Future<Map> getData() async {
     final challengeData = await widget.challengeReference!.get();
     final postData = await widget.postReference!.get();
+    if (challengeData.exists == false || postData.exists == false) {
+      return {
+        'challengeData': {},
+        'postData': {},
+        'status': 'deleted',
+      };
+    }
     return {
       'challengeData': challengeData.data() as Map,
       'postData': postData.data() as Map,
+      'status': 'success',
     };
   }
 
@@ -115,6 +133,18 @@ class _InPostChallengeWidgetState extends State<InPostChallengeWidget> {
                           child: CircularProgressIndicator(),
                         );
                       } else {
+                        if (((snapshot.data as Map)['status'] == 'deleted')) {
+                          return Center(
+                            child: Text(
+                              'Challenge or post does not exist',
+                              style: FlutterFlowTheme.of(context)
+                                  .bodyMedium
+                                  .override(
+                                    fontFamily: 'Inter',
+                                  ),
+                            ),
+                          );
+                        }
                         final challenge =
                             (snapshot.data as Map)['challengeData'];
                         final post = (snapshot.data as Map)['postData'];

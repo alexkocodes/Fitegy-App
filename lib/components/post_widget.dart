@@ -450,7 +450,6 @@ class _PostWidgetState extends State<PostWidget> {
                 onPage: widget.onPage,
                 authorReference: widget.authorRef,
                 refresh: widget.refresh,
-                status: status,
               ),
             ],
           ),

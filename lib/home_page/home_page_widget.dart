@@ -61,7 +61,7 @@ class _HomePageWidgetState extends State<HomePageWidget>
     db.collectionGroup("posts").snapshots().listen((event) {
       for (var change in event.docChanges) {
         if (change.type == DocumentChangeType.added) {
-          print("Added post");
+          //print("Added post");
           setState(() {
             if (!_firstLoad) {
               _showNewPosts1 = true;
@@ -70,9 +70,9 @@ class _HomePageWidgetState extends State<HomePageWidget>
             }
           });
         } else if (change.type == DocumentChangeType.modified) {
-          print("Modified post");
+          //print("Modified post");
         } else if (change.type == DocumentChangeType.removed) {
-          print("Removed post");
+          //print("Removed post");
         }
       }
       _firstLoad = false;
