@@ -23,6 +23,7 @@ class PostActionBarWidget extends StatefulWidget {
     this.onPage,
     this.authorReference,
     this.refresh,
+    this.status,
   }) : super(key: key);
 
   final DocumentReference? postRef;
@@ -34,6 +35,7 @@ class PostActionBarWidget extends StatefulWidget {
   final String? onPage;
   final DocumentReference? authorReference;
   final Function? refresh;
+  final String? status;
 
   @override
   _PostActionBarWidgetState createState() => _PostActionBarWidgetState();
@@ -49,6 +51,7 @@ class _PostActionBarWidgetState extends State<PostActionBarWidget> {
 
   @override
   Widget build(BuildContext context) {
+    print(widget.status);
     _liked = widget.liked!;
     return Container(
       width: double.infinity,
@@ -170,7 +173,6 @@ class _PostActionBarWidgetState extends State<PostActionBarWidget> {
               child: InkWell(
                 onTap: () {
                   HapticFeedback.lightImpact();
-
                   if (widget.onPage == 'InPostChallengePage') {
                     // do nothing
                   } else {

@@ -116,6 +116,7 @@ class _HomePageWidgetState extends State<HomePageWidget>
       onScrollsToTop: _onScrollsToTop,
       child: Scaffold(
         floatingActionButton: FloatingActionButton(
+          heroTag: UniqueKey(),
           child: Icon(
             FontAwesomeIcons.featherAlt,
             size: 20,

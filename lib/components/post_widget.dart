@@ -69,6 +69,8 @@ Future<Map> getAuthorData(DocumentReference authorRef) async {
 }
 
 class _PostWidgetState extends State<PostWidget> {
+  var status = "Not Sure";
+
   @override
   Widget build(BuildContext context) {
     final _imageProviders =
@@ -279,11 +281,14 @@ class _PostWidgetState extends State<PostWidget> {
                             : FutureBuilder(
                                 future: getChallengeStatus(widget.challenge!),
                                 builder: (context, snapshot) {
-                                  var status = "";
                                   if (snapshot.hasData) {
                                     status = "${snapshot.data}";
+                                  } else {
+                                    status = "Not Sure";
                                   }
-                                  return Stack(
+                                  return Row(
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceEvenly,
                                     children: [
                                       Align(
                                         alignment:
@@ -292,14 +297,16 @@ class _PostWidgetState extends State<PostWidget> {
                                           padding:
                                               EdgeInsetsDirectional.fromSTEB(
                                                   0, 5, 0, 0),
-                                          child: status != ""
+                                          child: status != "" &&
+                                                  status != "Not Sure"
                                               ? Icon(
                                                   status == "completed"
                                                       ? Icons
                                                           .check_circle_outline_outlined
                                                       : Icons.auto_awesome,
                                                   color: status == "completed"
-                                                      ? Color(0xFF92FF6B)
+                                                      ? Color.fromARGB(
+                                                          255, 92, 246, 36)
                                                       : Color(0xFFE6A0FF),
                                                   size: 13,
                                                 )
@@ -316,7 +323,9 @@ class _PostWidgetState extends State<PostWidget> {
                                           child: Text(
                                             status == "active"
                                                 ? "In Progress"
-                                                : status,
+                                                : status != "Not Sure"
+                                                    ? status
+                                                    : "",
                                             style: FlutterFlowTheme.of(context)
                                                 .bodyText1
                                                 .override(
@@ -325,7 +334,8 @@ class _PostWidgetState extends State<PostWidget> {
                                                               context)
                                                           .bodyText1Family,
                                                   color: status == "completed"
-                                                      ? Color(0xFF92FF6B)
+                                                      ? Color.fromARGB(
+                                                          255, 92, 246, 36)
                                                       : Color(0xFFE6A0FF),
                                                   fontSize: 12,
                                                   fontWeight: FontWeight.normal,
@@ -349,7 +359,7 @@ class _PostWidgetState extends State<PostWidget> {
                 ),
               ),
               Padding(
-                padding: EdgeInsetsDirectional.fromSTEB(0, 10, 0, 10),
+                padding: EdgeInsetsDirectional.fromSTEB(0, 10, 0, 20),
                 child: Container(
                   decoration: BoxDecoration(
                     color: FlutterFlowTheme.of(context).secondaryBackground,
@@ -440,6 +450,7 @@ class _PostWidgetState extends State<PostWidget> {
                 onPage: widget.onPage,
                 authorReference: widget.authorRef,
                 refresh: widget.refresh,
+                status: status,
               ),
             ],
           ),

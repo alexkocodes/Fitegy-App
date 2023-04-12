@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:fitegy/components/post_widget.dart';
 import 'package:fitegy/flutter_flow/flutter_flow_animations.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
