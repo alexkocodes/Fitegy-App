@@ -1,7 +1,10 @@
 import 'dart:io';
 
+import 'package:fitegy/flutter_flow/flutter_flow_animations.dart';
 import 'package:fitegy/flutter_flow/flutter_flow_icon_button.dart';
 import 'package:fitegy/flutter_flow/flutter_flow_widgets.dart';
+import 'package:flutter_animate/effects/visibility_effect.dart';
+import 'package:flutter_animate/flutter_animate.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:scrolls_to_top/scrolls_to_top.dart';
 
@@ -34,6 +37,24 @@ class _HomePageWidgetState extends State<HomePageWidget>
   bool get wantKeepAlive => true;
 
   var _showNewPosts1 = false;
+  var _firstLoad = true;
+
+  final animationsMap = {
+    'buttonOnPageLoadAnimation': AnimationInfo(
+      trigger: AnimationTrigger.onPageLoad,
+      effects: [
+        VisibilityEffect(duration: 1.ms),
+        MoveEffect(
+          curve: Curves.elasticOut,
+          delay: 0.ms,
+          duration: 600.ms,
+          begin: Offset(0, -25),
+          end: Offset(0, 0),
+        ),
+      ],
+    ),
+  };
+
   @override
   void initState() {
     super.initState();
@@ -42,7 +63,11 @@ class _HomePageWidgetState extends State<HomePageWidget>
         if (change.type == DocumentChangeType.added) {
           print("Added post");
           setState(() {
-            _showNewPosts1 = true;
+            if (!_firstLoad) {
+              _showNewPosts1 = true;
+            } else {
+              _showNewPosts1 = false;
+            }
           });
         } else if (change.type == DocumentChangeType.modified) {
           print("Modified post");
@@ -50,6 +75,7 @@ class _HomePageWidgetState extends State<HomePageWidget>
           print("Removed post");
         }
       }
+      _firstLoad = false;
     });
   }
 
@@ -328,7 +354,7 @@ class _HomePageWidgetState extends State<HomePageWidget>
                     ),
                   ),
                 ),
-                if (_showNewPosts)
+                if (_showNewPosts && !_firstLoad)
                   Padding(
                     padding: EdgeInsetsDirectional.fromSTEB(0, 80, 0, 0),
                     child: FFButtonWidget(
@@ -357,6 +383,7 @@ class _HomePageWidgetState extends State<HomePageWidget>
                         size: 10,
                       ),
                       options: FFButtonOptions(
+                        elevation: 10,
                         width: 100,
                         height: 30,
                         padding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 0),
@@ -374,7 +401,8 @@ class _HomePageWidgetState extends State<HomePageWidget>
                         ),
                         borderRadius: BorderRadius.circular(30),
                       ),
-                    ),
+                    ).animateOnPageLoad(
+                        animationsMap['buttonOnPageLoadAnimation']!),
                   ),
               ]),
             ),
