@@ -274,8 +274,7 @@ class _InPostChallengeWidgetState extends State<InPostChallengeWidget> {
                                                                 0, 20, 0, 0),
                                                     child: Text(
                                                       valueOrDefault<String>(
-                                                        challenge[
-                                                            "description"],
+                                                        challenge["details"],
                                                         'No details here 😮',
                                                       ),
                                                       style:
@@ -289,10 +288,10 @@ class _InPostChallengeWidgetState extends State<InPostChallengeWidget> {
                                                                 color: FlutterFlowTheme.of(
                                                                         context)
                                                                     .primaryBackground,
-                                                                fontSize: 12,
+                                                                fontSize: 17,
                                                                 fontWeight:
                                                                     FontWeight
-                                                                        .w300,
+                                                                        .bold,
                                                                 useGoogleFonts: GoogleFonts
                                                                         .asMap()
                                                                     .containsKey(
