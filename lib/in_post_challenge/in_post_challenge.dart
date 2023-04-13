@@ -169,7 +169,7 @@ class _InPostChallengeWidgetState extends State<InPostChallengeWidget> {
                                     post["likes"].length,
                                     0,
                                   ),
-                                  challenge: challenge["in_post_challenge"],
+                                  challenge: post["in_post_challenge"],
                                   imageURLs:
                                       List<String>.from(post["post_images"]),
                                   authorRef: post["post_user"],

@@ -286,32 +286,44 @@ class _PostWidgetState extends State<PostWidget> {
                                   } else {
                                     status = "Not Sure";
                                   }
+                                  var icon;
+                                  var color;
+                                  String text = "";
+                                  switch (status) {
+                                    case "completed":
+                                      icon =
+                                          Icons.check_circle_outline_outlined;
+                                      color = Color.fromARGB(255, 92, 246, 36);
+                                      text = "Completed";
+                                      break;
+                                    case "active":
+                                      icon = Icons.auto_awesome;
+                                      color = Color(0xFFE6A0FF);
+                                      text = "In Progress";
+                                      break;
+                                    case "invited":
+                                      icon = Icons.auto_awesome;
+                                      color = Color.fromARGB(255, 54, 193, 252);
+                                      text = "Invited";
+                                      break;
+                                    default:
+                                      return Container();
+                                  }
                                   return Row(
-                                    mainAxisAlignment:
-                                        MainAxisAlignment.spaceEvenly,
+                                    mainAxisAlignment: MainAxisAlignment.end,
                                     children: [
                                       Align(
                                         alignment:
                                             AlignmentDirectional(-0.55, 0),
                                         child: Padding(
-                                          padding:
-                                              EdgeInsetsDirectional.fromSTEB(
-                                                  0, 5, 0, 0),
-                                          child: status != "" &&
-                                                  status != "Not Sure"
-                                              ? Icon(
-                                                  status == "completed"
-                                                      ? Icons
-                                                          .check_circle_outline_outlined
-                                                      : Icons.auto_awesome,
-                                                  color: status == "completed"
-                                                      ? Color.fromARGB(
-                                                          255, 92, 246, 36)
-                                                      : Color(0xFFE6A0FF),
-                                                  size: 13,
-                                                )
-                                              : Container(),
-                                        ),
+                                            padding:
+                                                EdgeInsetsDirectional.fromSTEB(
+                                                    0, 5, 5, 0),
+                                            child: Icon(
+                                              icon,
+                                              color: color,
+                                              size: 13,
+                                            )),
                                       ),
                                       Align(
                                         alignment:
@@ -321,11 +333,7 @@ class _PostWidgetState extends State<PostWidget> {
                                               EdgeInsetsDirectional.fromSTEB(
                                                   0, 4, 0, 0),
                                           child: Text(
-                                            status == "active"
-                                                ? "In Progress"
-                                                : status != "Not Sure"
-                                                    ? status
-                                                    : "",
+                                            text,
                                             style: FlutterFlowTheme.of(context)
                                                 .bodyText1
                                                 .override(
@@ -333,10 +341,7 @@ class _PostWidgetState extends State<PostWidget> {
                                                       FlutterFlowTheme.of(
                                                               context)
                                                           .bodyText1Family,
-                                                  color: status == "completed"
-                                                      ? Color.fromARGB(
-                                                          255, 92, 246, 36)
-                                                      : Color(0xFFE6A0FF),
+                                                  color: color,
                                                   fontSize: 12,
                                                   fontWeight: FontWeight.normal,
                                                   useGoogleFonts: GoogleFonts

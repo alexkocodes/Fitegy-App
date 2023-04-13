@@ -290,7 +290,7 @@ class _MyAccountWidgetState extends State<MyAccountWidget> {
                                           return Text(
                                             valueOrDefault(bio,
                                                 'Just joined Fitegy! Come challenge me!'),
-                                            maxLines: 20,
+                                            maxLines: 4,
                                             style: FlutterFlowTheme.of(context)
                                                 .bodyText2
                                                 .override(
@@ -327,63 +327,63 @@ class _MyAccountWidgetState extends State<MyAccountWidget> {
                                     MainAxisAlignment.spaceBetween,
                                 children: [
                                   (currentUserReference == currentUserReference)
-                                      ? FFButtonWidget(
-                                          onPressed: () async {
-                                            context.pushNamed(
-                                              'EditProfile',
-                                              queryParams: {
-                                                'name': serializeParam(
-                                                  name,
-                                                  ParamType.String,
-                                                ),
-                                                'bio': serializeParam(
-                                                  bio,
-                                                  ParamType.String,
-                                                ),
-                                                'emoji': serializeParam(
-                                                  emoji,
-                                                  ParamType.String,
-                                                ),
-                                              }.withoutNulls,
-                                            );
-                                          },
-                                          text: 'Edit Profile',
-                                          options: FFButtonOptions(
-                                            width: 280,
-                                            height: 45,
-                                            padding:
-                                                EdgeInsetsDirectional.fromSTEB(
-                                                    0.0, 0.0, 0.0, 0.0),
-                                            iconPadding:
-                                                EdgeInsetsDirectional.fromSTEB(
-                                                    0.0, 0.0, 0.0, 0.0),
-                                            color: FlutterFlowTheme.of(context)
-                                                .primaryColor,
-                                            textStyle:
-                                                FlutterFlowTheme.of(context)
-                                                    .subtitle2
-                                                    .override(
-                                                      fontFamily:
-                                                          FlutterFlowTheme.of(
-                                                                  context)
-                                                              .subtitle2Family,
-                                                      color: Colors.white,
-                                                      fontSize: 20,
-                                                      fontWeight:
-                                                          FontWeight.w600,
-                                                      useGoogleFonts: GoogleFonts
-                                                              .asMap()
-                                                          .containsKey(
-                                                              FlutterFlowTheme.of(
-                                                                      context)
-                                                                  .subtitle2Family),
-                                                    ),
-                                            borderSide: BorderSide(
-                                              color: Colors.transparent,
-                                              width: 1,
+                                      ? Expanded(
+                                          child: FFButtonWidget(
+                                            onPressed: () async {
+                                              context.pushNamed(
+                                                'EditProfile',
+                                                queryParams: {
+                                                  'name': serializeParam(
+                                                    name,
+                                                    ParamType.String,
+                                                  ),
+                                                  'bio': serializeParam(
+                                                    bio,
+                                                    ParamType.String,
+                                                  ),
+                                                  'emoji': serializeParam(
+                                                    emoji,
+                                                    ParamType.String,
+                                                  ),
+                                                }.withoutNulls,
+                                              );
+                                            },
+                                            text: 'Edit Profile',
+                                            options: FFButtonOptions(
+                                              height: 45,
+                                              padding: EdgeInsetsDirectional
+                                                  .fromSTEB(0.0, 0.0, 0.0, 0.0),
+                                              iconPadding: EdgeInsetsDirectional
+                                                  .fromSTEB(0.0, 0.0, 0.0, 0.0),
+                                              color:
+                                                  FlutterFlowTheme.of(context)
+                                                      .primaryColor,
+                                              textStyle:
+                                                  FlutterFlowTheme.of(context)
+                                                      .subtitle2
+                                                      .override(
+                                                        fontFamily:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .subtitle2Family,
+                                                        color: Colors.white,
+                                                        fontSize: 20,
+                                                        fontWeight:
+                                                            FontWeight.w600,
+                                                        useGoogleFonts: GoogleFonts
+                                                                .asMap()
+                                                            .containsKey(
+                                                                FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .subtitle2Family),
+                                                      ),
+                                              borderSide: BorderSide(
+                                                color: Colors.transparent,
+                                                width: 1,
+                                              ),
+                                              borderRadius:
+                                                  BorderRadius.circular(15),
                                             ),
-                                            borderRadius:
-                                                BorderRadius.circular(15),
                                           ),
                                         )
                                       : FutureBuilder(
@@ -614,7 +614,8 @@ class _MyAccountWidgetState extends State<MyAccountWidget> {
                                                 );
                                               }
                                             }
-                                          }),
+                                          },
+                                        ),
                                   Padding(
                                     padding: EdgeInsetsDirectional.fromSTEB(
                                         10, 0, 0, 0),

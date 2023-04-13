@@ -175,7 +175,7 @@ class _InviteWidgetState extends State<InviteWidget> {
                       textAlign: TextAlign.center,
                       style: FlutterFlowTheme.of(context).title1.override(
                             fontFamily: 'Archivo Black',
-                            fontSize: 24,
+                            fontSize: 23,
                             useGoogleFonts: GoogleFonts.asMap().containsKey(
                                 FlutterFlowTheme.of(context).title1Family),
                           ),
