@@ -260,7 +260,9 @@ class _HomePageWidgetState extends State<HomePageWidget>
                                 _pagingController!
                                     .addPageRequestListener((nextPageMarker) {
                                   queryPostsRecordPage(
-                                    queryBuilder: (postsRecord) => postsRecord,
+                                    queryBuilder: (postsRecord) =>
+                                        postsRecord.orderBy('time_posted',
+                                            descending: true),
                                     nextPageMarker: nextPageMarker,
                                     pageSize: 8,
                                     isStream: true,

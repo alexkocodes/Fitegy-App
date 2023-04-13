@@ -2,6 +2,20 @@
   "indexes": [
     {
       "collectionGroup": "challenges",
+      "queryScope": "COLLECTION",
+      "fields": [
+        {
+          "fieldPath": "status",
+          "order": "ASCENDING"
+        },
+        {
+          "fieldPath": "created_at",
+          "order": "DESCENDING"
+        }
+      ]
+    },
+    {
+      "collectionGroup": "challenges",
       "queryScope": "COLLECTION_GROUP",
       "fields": [
         {
@@ -22,16 +36,6 @@
       "indexes": [
         {
           "order": "DESCENDING",
-          "queryScope": "COLLECTION_GROUP"
-        }
-      ]
-    },
-    {
-      "collectionGroup": "friends",
-      "fieldPath": "display_name",
-      "indexes": [
-        {
-          "order": "ASCENDING",
           "queryScope": "COLLECTION_GROUP"
         }
       ]

@@ -855,7 +855,8 @@ class _ProfileWidgetState extends State<ProfileWidget> {
                           .addPageRequestListener((nextPageMarker) {
                         queryPostsRecordPage(
                           parent: widget.authorRef,
-                          queryBuilder: (postsRecord) => postsRecord,
+                          queryBuilder: (postsRecord) => postsRecord
+                              .orderBy('time_posted', descending: true),
                           nextPageMarker: nextPageMarker,
                           pageSize: 8,
                           isStream: true,

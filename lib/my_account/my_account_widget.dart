@@ -779,7 +779,8 @@ class _MyAccountWidgetState extends State<MyAccountWidget> {
                     _pagingController!.addPageRequestListener((nextPageMarker) {
                       queryPostsRecordPage(
                         parent: currentUserReference,
-                        queryBuilder: (postsRecord) => postsRecord,
+                        queryBuilder: (postsRecord) => postsRecord
+                            .orderBy('time_posted', descending: true),
                         nextPageMarker: nextPageMarker,
                         pageSize: 8,
                         isStream: true,
