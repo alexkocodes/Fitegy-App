@@ -109,7 +109,7 @@ class _ChallengeCompletedWidgetState extends State<ChallengeCompletedWidget>
               ),
             ),
             Align(
-              alignment: AlignmentDirectional(0.9, -0.94),
+              alignment: AlignmentDirectional(0.9, -0.9),
               child: FlutterFlowIconButton(
                 borderColor: Colors.transparent,
                 borderRadius: 30,
@@ -157,7 +157,7 @@ class _ChallengeCompletedWidgetState extends State<ChallengeCompletedWidget>
                       Padding(
                         padding: EdgeInsetsDirectional.fromSTEB(0, 10, 0, 0),
                         child: Text(
-                          'No one works harder than you, so here’s your reward: 3 points have been added into your wallet! :)',
+                          'No one works harder than you. Keep on crushing those challenges! :)',
                           style: FlutterFlowTheme.of(context)
                               .bodyText1
                               .override(

@@ -5,6 +5,7 @@ import 'package:fitegy/flutter_flow/flutter_flow_icon_button.dart';
 import 'package:fitegy/flutter_flow/flutter_flow_widgets.dart';
 import 'package:flutter_animate/effects/visibility_effect.dart';
 import 'package:flutter_animate/flutter_animate.dart';
+import 'package:flutter_platform_alert/flutter_platform_alert.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:scrolls_to_top/scrolls_to_top.dart';
 
@@ -188,7 +189,12 @@ class _HomePageWidgetState extends State<HomePageWidget>
                           ),
                           FlutterFlowIconButton(
                             buttonSize: 45,
-                            onPressed: () {},
+                            onPressed: () {
+                              FlutterPlatformAlert.showAlert(
+                                windowTitle: "I'm building it",
+                                text: "It's coming, I promise!🥹",
+                              );
+                            },
                             borderRadius: 60,
                             icon: Icon(
                               Icons.notifications_none_outlined,

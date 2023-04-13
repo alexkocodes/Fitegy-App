@@ -211,9 +211,11 @@ class _PostActionBarWidgetState extends State<PostActionBarWidget> {
                     borderWidth: 0,
                     buttonSize: 40,
                     icon: Icon(
-                      Icons.local_fire_department_outlined,
+                      widget.onPage == "InPostChallengePage"
+                          ? Icons.local_fire_department_rounded
+                          : Icons.local_fire_department_outlined,
                       color: widget.onPage == "InPostChallengePage"
-                          ? Color(0xFF99EDFF)
+                          ? Color.fromARGB(255, 252, 106, 106)
                           : Color(0xFFCFCFCF),
                       size: 20,
                     ),
