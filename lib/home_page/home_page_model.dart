@@ -1,10 +1,13 @@
-import '/auth/auth_util.dart';
 import '/backend/backend.dart';
 import '/components/post_widget.dart';
+import '/flutter_flow/flutter_flow_animations.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
-import 'package:easy_debounce/easy_debounce.dart';
+import '/flutter_flow/flutter_flow_widgets.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/scheduler.dart';
+import 'package:flutter/services.dart';
+import 'package:flutter_animate/flutter_animate.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
 import 'package:provider/provider.dart';
@@ -12,11 +15,6 @@ import 'package:provider/provider.dart';
 class HomePageModel extends FlutterFlowModel {
   ///  State fields for stateful widgets in this page.
 
-  // Algolia Search Results from action on Icon
-  List<UsersRecord>? algoliaSearchResults = [];
-  // State field(s) for TextField widget.
-  TextEditingController? textController;
-  String? Function(BuildContext, String?)? textControllerValidator;
   // State field(s) for ListView widget.
   PagingController<DocumentSnapshot?, PostsRecord>? pagingController;
   Query? pagingQuery;
@@ -27,7 +25,6 @@ class HomePageModel extends FlutterFlowModel {
   void initState(BuildContext context) {}
 
   void dispose() {
-    textController?.dispose();
     streamSubscriptions.forEach((s) => s?.cancel());
   }
 

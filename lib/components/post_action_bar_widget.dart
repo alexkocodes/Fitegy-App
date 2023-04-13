@@ -169,7 +169,6 @@ class _PostActionBarWidgetState extends State<PostActionBarWidget> {
                       await showModalBottomSheet(
                         isScrollControlled: true,
                         backgroundColor: Color(0x66616161),
-                        isDismissible: false,
                         context: context,
                         builder: (bottomSheetContext) {
                           return Padding(
