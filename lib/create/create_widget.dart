@@ -1130,37 +1130,6 @@ class _CreateWidgetState extends State<CreateWidget>
                               borderRadius: BorderRadius.circular(8),
                             ),
                           ),
-                          FFButtonWidget(
-                            onPressed: () {
-                              print('Button pressed ...');
-                            },
-                            text: '',
-                            icon: Icon(
-                              Icons.location_on,
-                              color: Color(0x9999EDFF),
-                              size: 30,
-                            ),
-                            options: FFButtonOptions(
-                              elevation: 0,
-                              color: Color(0x003B3F6B),
-                              textStyle: FlutterFlowTheme.of(context)
-                                  .subtitle2
-                                  .override(
-                                    fontFamily: FlutterFlowTheme.of(context)
-                                        .subtitle2Family,
-                                    color: Colors.white,
-                                    useGoogleFonts: GoogleFonts.asMap()
-                                        .containsKey(
-                                            FlutterFlowTheme.of(context)
-                                                .subtitle2Family),
-                                  ),
-                              borderSide: BorderSide(
-                                color: Colors.transparent,
-                                width: 1,
-                              ),
-                              borderRadius: BorderRadius.circular(8),
-                            ),
-                          ),
                         ],
                       ),
                     ),
