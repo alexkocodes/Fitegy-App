@@ -1,3 +1,6 @@
+import 'package:cached_network_image/cached_network_image.dart';
+import 'package:shimmer/shimmer.dart';
+
 import '../flutter_flow/flutter_flow_model.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_util.dart';
@@ -99,9 +102,18 @@ class _UserCardSmallWidgetState extends State<UserCardSmallWidget> {
                         decoration: BoxDecoration(
                           shape: BoxShape.circle,
                         ),
-                        child: Image.network(
-                          widget.imageURL!,
+                        child: CachedNetworkImage(
+                          imageUrl: widget.imageURL!,
                           fit: BoxFit.cover,
+                          progressIndicatorBuilder: (context, url, progress) {
+                            return Shimmer.fromColors(
+                                baseColor: Colors.grey[300]!,
+                                highlightColor: Colors.grey[100]!,
+                                child: Container(
+                                  color: Colors.grey,
+                                ),
+                                period: Duration(milliseconds: 1000));
+                          },
                         ),
                       ),
                     ),

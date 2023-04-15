@@ -208,7 +208,7 @@ class _ChallengeCreatedWidgetState extends State<ChallengeCreatedWidget>
               ).animateOnPageLoad(animationsMap['imageOnPageLoadAnimation4']!),
             ),
             Align(
-              alignment: AlignmentDirectional(0.85, 0.93),
+              alignment: AlignmentDirectional(0.8, -0.85),
               child: FlutterFlowIconButton(
                 borderColor: Colors.transparent,
                 borderRadius: 30,

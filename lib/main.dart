@@ -108,7 +108,7 @@ class NavBarPage extends StatefulWidget {
 
 class _NavBarPageState extends State<NavBarPage> {
   String _currentPageName = 'HomePage';
-  late Widget? _currentPage;
+  late Widget? _currentPage = widget.page;
   PageController pageController = PageController();
 
   int _selectedIndex = 0;
@@ -117,7 +117,11 @@ class _NavBarPageState extends State<NavBarPage> {
     super.initState();
     _currentPageName = widget.initialPage ?? _currentPageName;
     _currentPage = widget.page;
-    pageController = PageController();
+    // find the index of the initial page in the tabs map
+    final pages = ["HomePage", "Create", "MyChallenges", "MyAccount"];
+    pageController =
+        PageController(initialPage: pages.indexOf(_currentPageName));
+    _selectedIndex = pages.indexOf(_currentPageName);
   }
 
   @override
@@ -162,8 +166,8 @@ class _NavBarPageState extends State<NavBarPage> {
         child: BottomNavigationBar(
           currentIndex: _selectedIndex,
           onTap: (i) => setState(() {
-            // _currentPage = null;
-            // _currentPageName = tabs.keys.toList()[i];
+            _currentPage = null;
+            _currentPageName = tabs.keys.toList()[i];
             _onTapped(i);
           }),
           backgroundColor: Colors.white,

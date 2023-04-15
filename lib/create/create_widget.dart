@@ -465,11 +465,6 @@ class _CreateWidgetState extends State<CreateWidget>
                                                       var downloadUrls =
                                                           <String>[];
                                                       try {
-                                                        showUploadMessage(
-                                                          context,
-                                                          'Uploading file...',
-                                                          showLoading: true,
-                                                        );
                                                         downloadUrls =
                                                             (await Future.wait(
                                                           toBeUploaded.map(
@@ -495,9 +490,6 @@ class _CreateWidgetState extends State<CreateWidget>
                                                         setState(() =>
                                                             uploadedFileUrls =
                                                                 downloadUrls);
-                                                        showUploadMessage(
-                                                            context,
-                                                            'Success!');
                                                       } else {
                                                         setState(() {});
                                                         showUploadMessage(

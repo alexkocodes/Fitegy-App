@@ -109,7 +109,7 @@ class _ChallengeCompletedWidgetState extends State<ChallengeCompletedWidget>
               ),
             ),
             Align(
-              alignment: AlignmentDirectional(0.9, -0.9),
+              alignment: AlignmentDirectional(0.8, -0.85),
               child: FlutterFlowIconButton(
                 borderColor: Colors.transparent,
                 borderRadius: 30,

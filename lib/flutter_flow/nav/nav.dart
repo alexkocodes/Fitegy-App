@@ -97,21 +97,24 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
               name: 'HomePage',
               path: 'homePage',
               builder: (context, params) => params.isEmpty
-                  ? NavBarPage(initialPage: 'HomePage')
+                  ? NavBarPage(initialPage: 'HomePage', page: HomePageWidget())
                   : HomePageWidget(),
             ),
             FFRoute(
               name: 'MyAccount',
               path: 'myAccount',
               builder: (context, params) => params.isEmpty
-                  ? NavBarPage(initialPage: 'MyAccount')
+                  ? NavBarPage(
+                      initialPage: 'MyAccount',
+                      page: MyAccountWidget(),
+                    )
                   : MyAccountWidget(),
             ),
             FFRoute(
               name: 'Create',
               path: 'create',
               builder: (context, params) => params.isEmpty
-                  ? NavBarPage(initialPage: 'Create')
+                  ? NavBarPage(initialPage: 'Create', page: CreateWidget())
                   : CreateWidget(),
             ),
             FFRoute(
@@ -125,7 +128,8 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
               name: 'MyChallenges',
               path: 'myChallenges',
               builder: (context, params) => params.isEmpty
-                  ? NavBarPage(initialPage: 'MyChallenges')
+                  ? NavBarPage(
+                      initialPage: 'MyChallenges', page: MyChallengesWidget())
                   : MyChallengesWidget(),
             ),
             FFRoute(

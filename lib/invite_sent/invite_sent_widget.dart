@@ -108,7 +108,7 @@ class _InviteSentWidgetState extends State<InviteSentWidget>
               ),
             ),
             Align(
-              alignment: AlignmentDirectional(0.9, -0.94),
+              alignment: AlignmentDirectional(0.8, -0.85),
               child: FlutterFlowIconButton(
                 borderColor: Colors.transparent,
                 borderRadius: 30,

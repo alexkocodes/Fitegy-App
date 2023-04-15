@@ -63,13 +63,15 @@ class _HomePageWidgetState extends State<HomePageWidget>
       for (var change in event.docChanges) {
         if (change.type == DocumentChangeType.added) {
           //print("Added post");
-          setState(() {
-            if (!_firstLoad) {
-              _showNewPosts1 = true;
-            } else {
-              _showNewPosts1 = false;
-            }
-          });
+          if (mounted) {
+            setState(() {
+              if (!_firstLoad) {
+                _showNewPosts1 = true;
+              } else {
+                _showNewPosts1 = false;
+              }
+            });
+          }
         } else if (change.type == DocumentChangeType.modified) {
           //print("Modified post");
         } else if (change.type == DocumentChangeType.removed) {
@@ -381,10 +383,12 @@ class _HomePageWidgetState extends State<HomePageWidget>
                           curve: Curves.ease,
                         );
                         _pagingController!.refresh();
-                        setState(() {
-                          _showNewPosts = false;
-                          _showNewPosts1 = false;
-                        });
+                        if (mounted) {
+                          setState(() {
+                            _showNewPosts = false;
+                            _showNewPosts1 = false;
+                          });
+                        }
                       },
                       text: 'New Posts',
                       icon: Icon(
