@@ -3,6 +3,7 @@ import 'dart:io';
 import 'package:fitegy/flutter_flow/flutter_flow_animations.dart';
 import 'package:fitegy/flutter_flow/flutter_flow_icon_button.dart';
 import 'package:fitegy/flutter_flow/flutter_flow_widgets.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_animate/effects/visibility_effect.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_platform_alert/flutter_platform_alert.dart';
@@ -126,6 +127,7 @@ class _HomePageWidgetState extends State<HomePageWidget>
           ),
           backgroundColor: FlutterFlowTheme.of(context).primaryColor,
           onPressed: () {
+            HapticFeedback.lightImpact();
             context.pushNamed("PostPage");
           },
         ),

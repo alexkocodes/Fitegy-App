@@ -1,6 +1,7 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:fitegy/auth/firebase_user_provider.dart';
 import 'package:fitegy/components/profile_stats_bar_widget.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_platform_alert/flutter_platform_alert.dart';
 import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
 import 'package:scrolls_to_top/scrolls_to_top.dart';
@@ -330,6 +331,7 @@ class _MyAccountWidgetState extends State<MyAccountWidget> {
                                       ? Expanded(
                                           child: FFButtonWidget(
                                             onPressed: () async {
+                                              HapticFeedback.lightImpact();
                                               context.pushNamed(
                                                 'EditProfile',
                                                 queryParams: {
@@ -632,7 +634,14 @@ class _MyAccountWidgetState extends State<MyAccountWidget> {
                                               emoji = '👋';
                                             }
                                             return FFButtonWidget(
-                                              onPressed: () {},
+                                              onPressed: () {
+                                                FlutterPlatformAlert.showAlert(
+                                                    windowTitle:
+                                                        "You just pinned them!🤏",
+                                                    text:
+                                                        "Don't pin them too much tho...");
+                                                HapticFeedback.lightImpact();
+                                              },
                                               text: snapshot.data.toString() !=
                                                       'null'
                                                   ? snapshot.data.toString()

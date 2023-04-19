@@ -229,6 +229,7 @@ class _PostActionBarWidgetState extends State<PostActionBarWidget> {
               color: Colors.transparent,
               child: InkWell(
                 onTap: () async {
+                  HapticFeedback.lightImpact();
                   showModalBottomSheet(
                     isScrollControlled: true,
                     backgroundColor: Colors.transparent,

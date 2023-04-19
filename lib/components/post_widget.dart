@@ -415,7 +415,8 @@ class _PostWidgetState extends State<PostWidget> {
                                         doubleTapZoomable: true);
                                   },
                                   child: Hero(
-                                    tag: imageUrls[imageUrlsIndex],
+                                    tag: imageUrls[imageUrlsIndex] +
+                                        widget.onPage.toString(),
                                     transitionOnUserGestures: true,
                                     child: ClipRRect(
                                       borderRadius: BorderRadius.circular(15),
