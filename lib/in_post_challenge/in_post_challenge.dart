@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:fitegy/components/post_widget.dart';
 import 'package:fitegy/flutter_flow/flutter_flow_animations.dart';
+import 'package:flutter_platform_alert/flutter_platform_alert.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
 
@@ -398,6 +399,63 @@ class _InPostChallengeWidgetState extends State<InPostChallengeWidget> {
                                                                             .bodyText1Family),
                                                                 lineHeight: 1.5,
                                                               ),
+                                                    ),
+                                                  ),
+                                                  // add a button
+                                                  Padding(
+                                                    padding:
+                                                        EdgeInsetsDirectional
+                                                            .fromSTEB(
+                                                                0, 40, 0, 0),
+                                                    child: Row(
+                                                      mainAxisAlignment:
+                                                          MainAxisAlignment.end,
+                                                      children: [
+                                                        FFButtonWidget(
+                                                            onPressed:
+                                                                () async {
+                                                              FlutterPlatformAlert
+                                                                  .showAlert(
+                                                                      windowTitle:
+                                                                          "Coming soon!",
+                                                                      text:
+                                                                          "Soon you will be able to request to join your friend's challenges!");
+                                                            },
+                                                            text:
+                                                                'Request to Join',
+                                                            options:
+                                                                FFButtonOptions(
+                                                              width: 150,
+                                                              height: 40,
+                                                              color:
+                                                                  Colors.white,
+                                                              textStyle:
+                                                                  FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .bodyMedium
+                                                                      .override(
+                                                                        fontFamily:
+                                                                            'Archivo Black',
+                                                                        color: FlutterFlowTheme.of(context)
+                                                                            .primary,
+                                                                        fontSize:
+                                                                            20,
+                                                                        fontWeight:
+                                                                            FontWeight.w500,
+                                                                      ),
+                                                              elevation: 5,
+                                                              borderSide:
+                                                                  BorderSide(
+                                                                color: Colors
+                                                                    .transparent,
+                                                                width: 1,
+                                                              ),
+                                                              borderRadius: BorderRadius
+                                                                  .all(Radius
+                                                                      .circular(
+                                                                          12)),
+                                                            )),
+                                                      ],
                                                     ),
                                                   ),
                                                 ],
