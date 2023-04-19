@@ -1,3 +1,5 @@
+import 'package:flutter_platform_alert/flutter_platform_alert.dart';
+
 import '../auth/auth_util.dart';
 import '../backend/backend.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
@@ -385,6 +387,10 @@ class _CreateChallengePageWidgetState extends State<CreateChallengePageWidget> {
                                     FlutterFlowTheme.of(context)
                                         .bodyText2Family),
                               ),
+                          prefixIcon: Icon(
+                            Icons.rocket_launch,
+                            color: FlutterFlowTheme.of(context).lineColor,
+                          ),
                           hintText: 'Anything special about this challenge?',
                           hintStyle: FlutterFlowTheme.of(context)
                               .bodyText2
@@ -443,108 +449,108 @@ class _CreateChallengePageWidgetState extends State<CreateChallengePageWidget> {
                       ),
                     ),
                   ),
-                  Text(
-                    'Who to challenge?',
-                    style: FlutterFlowTheme.of(context).bodyText1.override(
-                          fontFamily:
-                              FlutterFlowTheme.of(context).bodyText1Family,
-                          color: FlutterFlowTheme.of(context).secondaryText,
-                          fontSize: 16,
-                          useGoogleFonts: GoogleFonts.asMap().containsKey(
-                              FlutterFlowTheme.of(context).bodyText1Family),
-                        ),
-                  ),
-                  Padding(
-                    padding: EdgeInsetsDirectional.fromSTEB(0, 10, 0, 10),
-                    child: Container(
-                      width: double.infinity,
-                      decoration: BoxDecoration(
-                        color: FlutterFlowTheme.of(context).secondaryBackground,
-                        boxShadow: [
-                          BoxShadow(
-                            blurRadius: 6,
-                            color: Color(0x3416202A),
-                            offset: Offset(0, 2),
-                          )
-                        ],
-                        borderRadius: BorderRadius.circular(12),
-                      ),
-                      child: TextFormField(
-                        controller: textController4,
-                        obscureText: false,
-                        decoration: InputDecoration(
-                          labelStyle: FlutterFlowTheme.of(context)
-                              .bodyText2
-                              .override(
-                                fontFamily: 'Montserrat',
-                                color: Color(0xFFB1B1B1),
-                                fontWeight: FontWeight.w300,
-                                useGoogleFonts: GoogleFonts.asMap().containsKey(
-                                    FlutterFlowTheme.of(context)
-                                        .bodyText2Family),
-                              ),
-                          hintText: 'Challenge your friends! ',
-                          hintStyle: FlutterFlowTheme.of(context)
-                              .bodyText2
-                              .override(
-                                fontFamily: 'Inter',
-                                color: Color(0xFFB1B1B1),
-                                useGoogleFonts: GoogleFonts.asMap().containsKey(
-                                    FlutterFlowTheme.of(context)
-                                        .bodyText2Family),
-                              ),
-                          enabledBorder: OutlineInputBorder(
-                            borderSide: BorderSide(
-                              color: Color(0x00000000),
-                              width: 1,
-                            ),
-                            borderRadius: BorderRadius.circular(10),
-                          ),
-                          focusedBorder: OutlineInputBorder(
-                            borderSide: BorderSide(
-                              color: Color(0x00000000),
-                              width: 1,
-                            ),
-                            borderRadius: BorderRadius.circular(10),
-                          ),
-                          errorBorder: OutlineInputBorder(
-                            borderSide: BorderSide(
-                              color: Color(0x00000000),
-                              width: 1,
-                            ),
-                            borderRadius: BorderRadius.circular(10),
-                          ),
-                          focusedErrorBorder: OutlineInputBorder(
-                            borderSide: BorderSide(
-                              color: Color(0x00000000),
-                              width: 1,
-                            ),
-                            borderRadius: BorderRadius.circular(10),
-                          ),
-                          filled: true,
-                          fillColor:
-                              FlutterFlowTheme.of(context).secondaryBackground,
-                          prefixIcon: Icon(
-                            Icons.supervised_user_circle_sharp,
-                            color: FlutterFlowTheme.of(context).lineColor,
-                          ),
-                        ),
-                        style: FlutterFlowTheme.of(context).bodyText1.override(
-                              fontFamily: 'Inter',
-                              color: Colors.black,
-                              fontSize: 14,
-                              useGoogleFonts: GoogleFonts.asMap().containsKey(
-                                  FlutterFlowTheme.of(context).bodyText1Family),
-                            ),
-                      ),
-                    ),
-                  ),
+                  // Text(
+                  //   'Who to challenge?',
+                  //   style: FlutterFlowTheme.of(context).bodyText1.override(
+                  //         fontFamily:
+                  //             FlutterFlowTheme.of(context).bodyText1Family,
+                  //         color: FlutterFlowTheme.of(context).secondaryText,
+                  //         fontSize: 16,
+                  //         useGoogleFonts: GoogleFonts.asMap().containsKey(
+                  //             FlutterFlowTheme.of(context).bodyText1Family),
+                  //       ),
+                  // ),
+                  // Padding(
+                  //   padding: EdgeInsetsDirectional.fromSTEB(0, 10, 0, 10),
+                  //   child: Container(
+                  //     width: double.infinity,
+                  //     decoration: BoxDecoration(
+                  //       color: FlutterFlowTheme.of(context).secondaryBackground,
+                  //       boxShadow: [
+                  //         BoxShadow(
+                  //           blurRadius: 6,
+                  //           color: Color(0x3416202A),
+                  //           offset: Offset(0, 2),
+                  //         )
+                  //       ],
+                  //       borderRadius: BorderRadius.circular(12),
+                  //     ),
+                  //     child: TextFormField(
+                  //       controller: textController4,
+                  //       obscureText: false,
+                  //       decoration: InputDecoration(
+                  //         labelStyle: FlutterFlowTheme.of(context)
+                  //             .bodyText2
+                  //             .override(
+                  //               fontFamily: 'Montserrat',
+                  //               color: Color(0xFFB1B1B1),
+                  //               fontWeight: FontWeight.w300,
+                  //               useGoogleFonts: GoogleFonts.asMap().containsKey(
+                  //                   FlutterFlowTheme.of(context)
+                  //                       .bodyText2Family),
+                  //             ),
+                  //         hintText: 'Challenge your friends! ',
+                  //         hintStyle: FlutterFlowTheme.of(context)
+                  //             .bodyText2
+                  //             .override(
+                  //               fontFamily: 'Inter',
+                  //               color: Color(0xFFB1B1B1),
+                  //               useGoogleFonts: GoogleFonts.asMap().containsKey(
+                  //                   FlutterFlowTheme.of(context)
+                  //                       .bodyText2Family),
+                  //             ),
+                  //         enabledBorder: OutlineInputBorder(
+                  //           borderSide: BorderSide(
+                  //             color: Color(0x00000000),
+                  //             width: 1,
+                  //           ),
+                  //           borderRadius: BorderRadius.circular(10),
+                  //         ),
+                  //         focusedBorder: OutlineInputBorder(
+                  //           borderSide: BorderSide(
+                  //             color: Color(0x00000000),
+                  //             width: 1,
+                  //           ),
+                  //           borderRadius: BorderRadius.circular(10),
+                  //         ),
+                  //         errorBorder: OutlineInputBorder(
+                  //           borderSide: BorderSide(
+                  //             color: Color(0x00000000),
+                  //             width: 1,
+                  //           ),
+                  //           borderRadius: BorderRadius.circular(10),
+                  //         ),
+                  //         focusedErrorBorder: OutlineInputBorder(
+                  //           borderSide: BorderSide(
+                  //             color: Color(0x00000000),
+                  //             width: 1,
+                  //           ),
+                  //           borderRadius: BorderRadius.circular(10),
+                  //         ),
+                  //         filled: true,
+                  //         fillColor:
+                  //             FlutterFlowTheme.of(context).secondaryBackground,
+                  //         prefixIcon: Icon(
+                  //           Icons.supervised_user_circle_sharp,
+                  //           color: FlutterFlowTheme.of(context).lineColor,
+                  //         ),
+                  //       ),
+                  //       style: FlutterFlowTheme.of(context).bodyText1.override(
+                  //             fontFamily: 'Inter',
+                  //             color: Colors.black,
+                  //             fontSize: 14,
+                  //             useGoogleFonts: GoogleFonts.asMap().containsKey(
+                  //                 FlutterFlowTheme.of(context).bodyText1Family),
+                  //           ),
+                  //     ),
+                  //   ),
+                  // ),
                   Divider(
                     thickness: 1,
                     color: Color(0xFFCFCFCF),
                   ),
                   Padding(
-                    padding: EdgeInsetsDirectional.fromSTEB(0, 10, 0, 0),
+                    padding: EdgeInsetsDirectional.fromSTEB(0, 10, 0, 10),
                     child: Row(
                       mainAxisSize: MainAxisSize.max,
                       mainAxisAlignment: MainAxisAlignment.start,
@@ -759,60 +765,6 @@ class _CreateChallengePageWidgetState extends State<CreateChallengePageWidget> {
                       ],
                     ),
                   ),
-                  Row(
-                    mainAxisSize: MainAxisSize.max,
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    children: [
-                      Expanded(
-                        child: Stack(
-                          alignment:
-                              AlignmentDirectional(0, -0.050000000000000044),
-                          children: [
-                            Align(
-                              alignment: AlignmentDirectional(-1, 0.2),
-                              child: Text(
-                                'Set to Private: ',
-                                style: FlutterFlowTheme.of(context)
-                                    .bodyText1
-                                    .override(
-                                      fontFamily: FlutterFlowTheme.of(context)
-                                          .bodyText1Family,
-                                      color: FlutterFlowTheme.of(context)
-                                          .secondaryText,
-                                      useGoogleFonts: GoogleFonts.asMap()
-                                          .containsKey(
-                                              FlutterFlowTheme.of(context)
-                                                  .bodyText1Family),
-                                    ),
-                              ),
-                            ),
-                            Align(
-                              alignment: AlignmentDirectional(-0.43, 0),
-                              child: ToggleIcon(
-                                onPressed: () async {
-                                  setState(() =>
-                                      FFAppState().isChallengePrivate =
-                                          !FFAppState().isChallengePrivate);
-                                },
-                                value: FFAppState().isChallengePrivate,
-                                onIcon: Icon(
-                                  Icons.check_circle,
-                                  color: FlutterFlowTheme.of(context)
-                                      .secondaryColor,
-                                  size: 20,
-                                ),
-                                offIcon: Icon(
-                                  Icons.check_circle_outline_sharp,
-                                  color: Color(0xA1868686),
-                                  size: 20,
-                                ),
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                    ],
-                  ),
                   Padding(
                     padding: EdgeInsetsDirectional.fromSTEB(0, 10, 0, 0),
                     child: Row(
@@ -822,23 +774,12 @@ class _CreateChallengePageWidgetState extends State<CreateChallengePageWidget> {
                         FFButtonWidget(
                           onPressed: () async {
                             if (textController1!.text == '') {
-                              await showDialog(
-                                  context: context,
-                                  builder: (alertDialogContext) {
-                                    return AlertDialog(
-                                      title: Text(
-                                          'Challenge name can\'t be empty!'),
-                                      content: Text(
-                                          'Try something like: Spring Break Saadiyat 4k Run Challenge 🏃‍♂️'),
-                                      actions: [
-                                        TextButton(
-                                          onPressed: () =>
-                                              Navigator.pop(alertDialogContext),
-                                          child: Text('Ok'),
-                                        ),
-                                      ],
-                                    );
-                                  });
+                              await FlutterPlatformAlert.showAlert(
+                                windowTitle: "Challenge name can\'t be empty!",
+                                text:
+                                    "Try something like: Spring Break Saadiyat 4k Run Challenge 🏃‍♂️",
+                                iconStyle: IconStyle.information,
+                              );
                             } else {
                               final challengesCreateData = {
                                 ...createChallengesRecordData(

@@ -1,4 +1,5 @@
 import 'package:fitegy/flutter_flow/flutter_flow_animations.dart';
+import 'package:flutter_platform_alert/flutter_platform_alert.dart';
 
 import '../backend/backend.dart';
 
@@ -166,7 +167,7 @@ class _ChallengeDetailsWidgetState extends State<ChallengeDetailsWidget> {
                                                   color: FlutterFlowTheme.of(
                                                           context)
                                                       .secondaryBackground,
-                                                  fontSize: 18,
+                                                  fontSize: 20,
                                                   useGoogleFonts: GoogleFonts
                                                           .asMap()
                                                       .containsKey(
@@ -229,8 +230,8 @@ class _ChallengeDetailsWidgetState extends State<ChallengeDetailsWidget> {
                                                     color: FlutterFlowTheme.of(
                                                             context)
                                                         .primaryBackground,
-                                                    fontSize: 12,
-                                                    fontWeight: FontWeight.w300,
+                                                    fontSize: 18,
+                                                    fontWeight: FontWeight.w600,
                                                     useGoogleFonts: GoogleFonts
                                                             .asMap()
                                                         .containsKey(
@@ -294,7 +295,7 @@ class _ChallengeDetailsWidgetState extends State<ChallengeDetailsWidget> {
                                                     color: FlutterFlowTheme.of(
                                                             context)
                                                         .primaryBackground,
-                                                    fontSize: 12,
+                                                    fontSize: 15,
                                                     fontWeight: FontWeight.w300,
                                                     useGoogleFonts: GoogleFonts
                                                             .asMap()
@@ -384,170 +385,176 @@ class _ChallengeDetailsWidgetState extends State<ChallengeDetailsWidget> {
                                         return Row(
                                             mainAxisSize: MainAxisSize.max,
                                             mainAxisAlignment:
-                                                MainAxisAlignment.spaceBetween,
+                                                MainAxisAlignment.spaceAround,
                                             children: [
-                                              CompleteButtonWidget(
-                                                path: widget.path,
-                                              ),
-                                              FFButtonWidget(
-                                                onPressed: () async {
-                                                  context.pushNamed(
-                                                    'Invite',
-                                                    queryParams: {
-                                                      'title': serializeParam(
-                                                        widget.title,
-                                                        ParamType.String,
-                                                      ),
-                                                      'time': serializeParam(
-                                                        widget.time,
-                                                        ParamType.DateTime,
-                                                      ),
-                                                      'details': serializeParam(
-                                                        widget.details,
-                                                        ParamType.String,
-                                                      ),
-                                                      'comments':
-                                                          serializeParam(
-                                                        widget.comments,
-                                                        ParamType.String,
-                                                      ),
-                                                      'path': serializeParam(
-                                                        widget.path,
-                                                        ParamType.String,
-                                                      ),
-                                                      'colorScheme':
-                                                          serializeParam(
-                                                        widget.colorScheme,
-                                                        ParamType.int,
-                                                      ),
-                                                      'challengeReference':
-                                                          serializeParam(
-                                                        widget
-                                                            .challengeReference,
-                                                        ParamType
-                                                            .DocumentReference,
-                                                      ),
-                                                    }.withoutNulls,
-                                                  );
-                                                },
-                                                text: 'Invite 🔥 ',
-                                                options: FFButtonOptions(
-                                                  width: 110,
-                                                  height: 40,
-                                                  color: FlutterFlowTheme.of(
-                                                          context)
-                                                      .secondaryText,
-                                                  textStyle:
-                                                      FlutterFlowTheme.of(
-                                                              context)
-                                                          .subtitle2
-                                                          .override(
-                                                            fontFamily:
-                                                                'Archivo Black',
-                                                            color: Colors.white,
-                                                            useGoogleFonts: GoogleFonts
-                                                                    .asMap()
-                                                                .containsKey(
-                                                                    FlutterFlowTheme.of(
-                                                                            context)
-                                                                        .subtitle2Family),
-                                                          ),
-                                                  elevation: 4,
-                                                  borderSide: BorderSide(
-                                                    color: Colors.transparent,
-                                                    width: 1,
-                                                  ),
-                                                  borderRadius:
-                                                      BorderRadius.circular(8),
+                                              Expanded(
+                                                flex: 2,
+                                                child: CompleteButtonWidget(
+                                                  path: widget.path,
                                                 ),
                                               ),
-                                              FFButtonWidget(
-                                                onPressed: () async {
-                                                  var confirmDialogResponse =
-                                                      await showDialog<bool>(
-                                                            context: context,
-                                                            builder:
-                                                                (alertDialogContext) {
-                                                              return AlertDialog(
-                                                                title: Text(
-                                                                    'Delete This Challenge'),
-                                                                content: Text(
-                                                                    'Are you sure you want to delete this challenge?'),
-                                                                actions: [
-                                                                  TextButton(
-                                                                    onPressed: () =>
-                                                                        Navigator.pop(
-                                                                            alertDialogContext,
-                                                                            false),
-                                                                    child: Text(
-                                                                        'Cancel'),
-                                                                  ),
-                                                                  TextButton(
-                                                                    onPressed: () =>
-                                                                        Navigator.pop(
-                                                                            alertDialogContext,
-                                                                            true),
-                                                                    child: Text(
-                                                                        'Confirm'),
-                                                                  ),
-                                                                ],
-                                                              );
-                                                            },
-                                                          ) ??
-                                                          false;
-                                                  if (confirmDialogResponse) {
-                                                    print("deleting");
-                                                    await db
-                                                        .doc(widget.path!)
-                                                        .delete();
-                                                    context.goNamed(
-                                                        'MyChallenges',
-                                                        extra: <String,
-                                                            dynamic>{
-                                                          kTransitionInfoKey:
-                                                              TransitionInfo(
-                                                            hasTransition: true,
-                                                            transitionType:
-                                                                PageTransitionType
-                                                                    .leftToRight,
-                                                            duration: Duration(
-                                                                milliseconds:
-                                                                    300),
+                                              Expanded(
+                                                flex: 2,
+                                                child: Padding(
+                                                  padding: EdgeInsetsDirectional
+                                                      .fromSTEB(8, 0, 0, 0),
+                                                  child: FFButtonWidget(
+                                                    onPressed: () async {
+                                                      context.pushNamed(
+                                                        'Invite',
+                                                        queryParams: {
+                                                          'title':
+                                                              serializeParam(
+                                                            widget.title,
+                                                            ParamType.String,
                                                           ),
-                                                        });
-                                                  } else if (!confirmDialogResponse) {
-                                                    Navigator.pop(context);
-                                                  }
-                                                },
-                                                text: 'Delete',
-                                                options: FFButtonOptions(
-                                                  width: 110,
-                                                  height: 40,
-                                                  color: FlutterFlowTheme.of(
-                                                          context)
-                                                      .alternate,
-                                                  textStyle:
-                                                      FlutterFlowTheme.of(
-                                                              context)
-                                                          .subtitle2
-                                                          .override(
-                                                            fontFamily:
-                                                                'Archivo Black',
-                                                            color: Colors.white,
-                                                            useGoogleFonts: GoogleFonts
-                                                                    .asMap()
-                                                                .containsKey(
-                                                                    FlutterFlowTheme.of(
-                                                                            context)
-                                                                        .subtitle2Family),
+                                                          'time':
+                                                              serializeParam(
+                                                            widget.time,
+                                                            ParamType.DateTime,
                                                           ),
-                                                  elevation: 4,
-                                                  borderSide: BorderSide(
-                                                    color: Colors.transparent,
-                                                    width: 1,
+                                                          'details':
+                                                              serializeParam(
+                                                            widget.details,
+                                                            ParamType.String,
+                                                          ),
+                                                          'comments':
+                                                              serializeParam(
+                                                            widget.comments,
+                                                            ParamType.String,
+                                                          ),
+                                                          'path':
+                                                              serializeParam(
+                                                            widget.path,
+                                                            ParamType.String,
+                                                          ),
+                                                          'colorScheme':
+                                                              serializeParam(
+                                                            widget.colorScheme,
+                                                            ParamType.int,
+                                                          ),
+                                                          'challengeReference':
+                                                              serializeParam(
+                                                            widget
+                                                                .challengeReference,
+                                                            ParamType
+                                                                .DocumentReference,
+                                                          ),
+                                                        }.withoutNulls,
+                                                      );
+                                                    },
+                                                    text: 'Invite 🔥 ',
+                                                    options: FFButtonOptions(
+                                                      height: 40,
+                                                      color:
+                                                          FlutterFlowTheme.of(
+                                                                  context)
+                                                              .secondaryText,
+                                                      textStyle:
+                                                          FlutterFlowTheme.of(
+                                                                  context)
+                                                              .subtitle2
+                                                              .override(
+                                                                fontFamily:
+                                                                    'Archivo Black',
+                                                                color: Colors
+                                                                    .white,
+                                                                useGoogleFonts: GoogleFonts
+                                                                        .asMap()
+                                                                    .containsKey(
+                                                                        FlutterFlowTheme.of(context)
+                                                                            .subtitle2Family),
+                                                              ),
+                                                      elevation: 4,
+                                                      borderSide: BorderSide(
+                                                        color:
+                                                            Colors.transparent,
+                                                        width: 1,
+                                                      ),
+                                                      borderRadius:
+                                                          BorderRadius.circular(
+                                                              8),
+                                                    ),
                                                   ),
-                                                  borderRadius:
-                                                      BorderRadius.circular(8),
+                                                ),
+                                              ),
+                                              Expanded(
+                                                flex: 2,
+                                                child: Padding(
+                                                  padding: EdgeInsetsDirectional
+                                                      .fromSTEB(8, 0, 0, 0),
+                                                  child: FFButtonWidget(
+                                                    onPressed: () async {
+                                                      var confirmDialogResponse =
+                                                          await FlutterPlatformAlert
+                                                              .showAlert(
+                                                        windowTitle:
+                                                            "Delete This Challenge",
+                                                        text:
+                                                            "Are you sure you want to delete this challenge?",
+                                                        alertStyle:
+                                                            AlertButtonStyle
+                                                                .yesNo,
+                                                      );
+                                                      if (confirmDialogResponse ==
+                                                          AlertButton
+                                                              .yesButton) {
+                                                        await db
+                                                            .doc(widget.path!)
+                                                            .delete();
+                                                        context.goNamed(
+                                                            'MyChallenges',
+                                                            extra: <String,
+                                                                dynamic>{
+                                                              kTransitionInfoKey:
+                                                                  TransitionInfo(
+                                                                hasTransition:
+                                                                    true,
+                                                                transitionType:
+                                                                    PageTransitionType
+                                                                        .leftToRight,
+                                                                duration: Duration(
+                                                                    milliseconds:
+                                                                        300),
+                                                              ),
+                                                            });
+                                                      } else {
+                                                        return;
+                                                      }
+                                                    },
+                                                    text: 'Delete',
+                                                    options: FFButtonOptions(
+                                                      height: 40,
+                                                      color:
+                                                          FlutterFlowTheme.of(
+                                                                  context)
+                                                              .alternate,
+                                                      textStyle:
+                                                          FlutterFlowTheme.of(
+                                                                  context)
+                                                              .subtitle2
+                                                              .override(
+                                                                fontFamily:
+                                                                    'Archivo Black',
+                                                                color: Colors
+                                                                    .white,
+                                                                useGoogleFonts: GoogleFonts
+                                                                        .asMap()
+                                                                    .containsKey(
+                                                                        FlutterFlowTheme.of(context)
+                                                                            .subtitle2Family),
+                                                              ),
+                                                      elevation: 4,
+                                                      borderSide: BorderSide(
+                                                        color:
+                                                            Colors.transparent,
+                                                        width: 1,
+                                                      ),
+                                                      borderRadius:
+                                                          BorderRadius.circular(
+                                                              8),
+                                                    ),
+                                                  ),
                                                 ),
                                               ),
                                             ]);

@@ -353,7 +353,7 @@ class _LandingWidgetState extends State<LandingWidget>
                   image: DecorationImage(
                     fit: BoxFit.cover,
                     image: Image.asset(
-                      'assets/images/15.png',
+                      'assets/images/app_background.png',
                     ).image,
                   ),
                 ),

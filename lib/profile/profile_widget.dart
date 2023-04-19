@@ -1,8 +1,10 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:fitegy/auth/firebase_user_provider.dart';
 import 'package:fitegy/components/profile_stats_bar_widget.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_platform_alert/flutter_platform_alert.dart';
 import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
+import 'package:scrolls_to_top/scrolls_to_top.dart';
 
 import '../components/post_widget.dart';
 import '../flutter_flow/flutter_flow_model.dart';
@@ -67,6 +69,10 @@ class _ProfileWidgetState extends State<ProfileWidget> {
     }
   }
 
+  void refresh() {
+    _pagingController!.refresh();
+  }
+
   // create an async function to get the author's profile image and return a string
   Future<String> getAuthorImage(DocumentReference authorRef) async {
     final authorData = await authorRef.get();
@@ -97,18 +103,22 @@ class _ProfileWidgetState extends State<ProfileWidget> {
     return data;
   }
 
+  Future<void> _onScrollsToTop(ScrollsToTopEvent event) async {
+    _pagingController!.refresh();
+  }
+
   @override
   Widget build(BuildContext context) {
     var name;
     var bio;
     var emoji;
-    return Scaffold(
-      extendBodyBehindAppBar: true,
-      key: scaffoldKey,
-      backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
-      body: SafeArea(
-        top: false,
-        child: Builder(builder: (context) {
+    return ScrollsToTop(
+      onScrollsToTop: _onScrollsToTop,
+      child: Scaffold(
+        extendBodyBehindAppBar: true,
+        key: scaffoldKey,
+        backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
+        body: Builder(builder: (context) {
           return SingleChildScrollView(
             primary: true,
             child: Column(
@@ -191,7 +201,7 @@ class _ProfileWidgetState extends State<ProfileWidget> {
                                                       BorderRadius.circular(8),
                                                 ),
                                                 child: Text(
-                                                  "",
+                                                  "Name",
                                                   style: FlutterFlowTheme.of(
                                                           context)
                                                       .title1
@@ -207,7 +217,8 @@ class _ProfileWidgetState extends State<ProfileWidget> {
                                                                 FlutterFlowTheme.of(
                                                                         context)
                                                                     .title1Family),
-                                                        color: Colors.black,
+                                                        color:
+                                                            Colors.transparent,
                                                         fontWeight:
                                                             FontWeight.bold,
                                                       ),
@@ -267,25 +278,26 @@ class _ProfileWidgetState extends State<ProfileWidget> {
                                                             8),
                                                   ),
                                                   child: Text(
-                                                    "",
+                                                    "Just joined!",
                                                     style: FlutterFlowTheme.of(
                                                             context)
-                                                        .bodyText1
+                                                        .bodyText2
                                                         .override(
+                                                          fontSize: 13,
                                                           fontFamily:
                                                               FlutterFlowTheme.of(
                                                                       context)
-                                                                  .bodyText1Family,
-                                                          fontSize: 13,
+                                                                  .bodyText2Family,
+                                                          color: Colors
+                                                              .transparent,
+                                                          fontWeight:
+                                                              FontWeight.w500,
                                                           useGoogleFonts: GoogleFonts
                                                                   .asMap()
                                                               .containsKey(
                                                                   FlutterFlowTheme.of(
                                                                           context)
-                                                                      .bodyText1Family),
-                                                          color: Colors.black,
-                                                          fontWeight:
-                                                              FontWeight.normal,
+                                                                      .bodyText2Family),
                                                         ),
                                                   ),
                                                 ),
@@ -296,7 +308,7 @@ class _ProfileWidgetState extends State<ProfileWidget> {
                                             return Text(
                                               valueOrDefault(bio,
                                                   'Just joined Fitegy! Come challenge me!'),
-                                              maxLines: 20,
+                                              maxLines: 4,
                                               style: FlutterFlowTheme.of(
                                                       context)
                                                   .bodyText2
@@ -334,79 +346,81 @@ class _ProfileWidgetState extends State<ProfileWidget> {
                                       MainAxisAlignment.spaceBetween,
                                   children: [
                                     (widget.authorRef == currentUserReference)
-                                        ? FFButtonWidget(
-                                            onPressed: () async {
-                                              context.pushNamed(
-                                                'EditProfile',
-                                                queryParams: {
-                                                  'name': serializeParam(
-                                                    name,
-                                                    ParamType.String,
-                                                  ),
-                                                  'bio': serializeParam(
-                                                    bio,
-                                                    ParamType.String,
-                                                  ),
-                                                  'emoji': serializeParam(
-                                                    emoji,
-                                                    ParamType.String,
-                                                  ),
-                                                }.withoutNulls,
-                                              );
-                                            },
-                                            text: 'Edit Profile',
-                                            options: FFButtonOptions(
-                                              width: 280,
-                                              height: 45,
-                                              padding: EdgeInsetsDirectional
-                                                  .fromSTEB(0.0, 0.0, 0.0, 0.0),
-                                              iconPadding: EdgeInsetsDirectional
-                                                  .fromSTEB(0.0, 0.0, 0.0, 0.0),
-                                              color:
-                                                  FlutterFlowTheme.of(context)
-                                                      .primaryColor,
-                                              textStyle:
-                                                  FlutterFlowTheme.of(context)
-                                                      .subtitle2
-                                                      .override(
-                                                        fontFamily:
-                                                            FlutterFlowTheme.of(
-                                                                    context)
-                                                                .subtitle2Family,
-                                                        color: Colors.white,
-                                                        fontSize: 20,
-                                                        fontWeight:
-                                                            FontWeight.w600,
-                                                        useGoogleFonts: GoogleFonts
-                                                                .asMap()
-                                                            .containsKey(
-                                                                FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .subtitle2Family),
-                                                      ),
-                                              borderSide: BorderSide(
-                                                color: Colors.transparent,
-                                                width: 1,
+                                        ? Expanded(
+                                            child: FFButtonWidget(
+                                              onPressed: () async {
+                                                HapticFeedback.lightImpact();
+                                                context.pushNamed(
+                                                  'EditProfile',
+                                                  queryParams: {
+                                                    'name': serializeParam(
+                                                      name,
+                                                      ParamType.String,
+                                                    ),
+                                                    'bio': serializeParam(
+                                                      bio,
+                                                      ParamType.String,
+                                                    ),
+                                                    'emoji': serializeParam(
+                                                      emoji,
+                                                      ParamType.String,
+                                                    ),
+                                                  }.withoutNulls,
+                                                );
+                                              },
+                                              text: 'Edit Profile',
+                                              options: FFButtonOptions(
+                                                height: 45,
+                                                padding: EdgeInsetsDirectional
+                                                    .fromSTEB(
+                                                        0.0, 0.0, 0.0, 0.0),
+                                                iconPadding:
+                                                    EdgeInsetsDirectional
+                                                        .fromSTEB(
+                                                            0.0, 0.0, 0.0, 0.0),
+                                                color:
+                                                    FlutterFlowTheme.of(context)
+                                                        .primaryColor,
+                                                textStyle:
+                                                    FlutterFlowTheme.of(context)
+                                                        .subtitle2
+                                                        .override(
+                                                          fontFamily:
+                                                              FlutterFlowTheme.of(
+                                                                      context)
+                                                                  .subtitle2Family,
+                                                          color: Colors.white,
+                                                          fontSize: 20,
+                                                          fontWeight:
+                                                              FontWeight.w600,
+                                                          useGoogleFonts: GoogleFonts
+                                                                  .asMap()
+                                                              .containsKey(
+                                                                  FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .subtitle2Family),
+                                                        ),
+                                                borderSide: BorderSide(
+                                                  color: Colors.transparent,
+                                                  width: 1,
+                                                ),
+                                                borderRadius:
+                                                    BorderRadius.circular(15),
                                               ),
-                                              borderRadius:
-                                                  BorderRadius.circular(15),
                                             ),
                                           )
                                         : FutureBuilder(
                                             future: getData(widget.authorRef!),
                                             builder: (context, snapshot) {
                                               if (!snapshot.hasData) {
-                                                return Flexible(
+                                                return Expanded(
                                                   child: Center(
-                                                    child:
-                                                        // CircularProgressIndicator(),
-                                                        Shimmer.fromColors(
+                                                    child: Shimmer.fromColors(
                                                       baseColor:
                                                           Colors.grey[300]!,
                                                       highlightColor:
                                                           Colors.white,
                                                       child: Container(
-                                                        width: 280,
                                                         height: 45,
                                                         decoration:
                                                             BoxDecoration(
@@ -446,200 +460,211 @@ class _ProfileWidgetState extends State<ProfileWidget> {
 
                                                 if (friendsList.contains(
                                                     widget.authorRef)) {
-                                                  return FFButtonWidget(
-                                                    onPressed: () async {
-                                                      // remove the current user to the other user's friends list, and vice versa
-                                                      // open a dialog to confirm
-                                                      final result =
-                                                          await FlutterPlatformAlert
-                                                              .showAlert(
-                                                        windowTitle: 'Confirm',
-                                                        text:
-                                                            'Are you sure you want to remove this user from your friends list?',
-                                                        iconStyle:
-                                                            IconStyle.question,
-                                                        alertStyle:
-                                                            AlertButtonStyle
-                                                                .yesNoCancel,
-                                                      );
+                                                  return Expanded(
+                                                    child: FFButtonWidget(
+                                                      onPressed: () async {
+                                                        // remove the current user to the other user's friends list, and vice versa
+                                                        // open a dialog to confirm
+                                                        final result =
+                                                            await FlutterPlatformAlert
+                                                                .showAlert(
+                                                          windowTitle:
+                                                              'Confirm',
+                                                          text:
+                                                              'Are you sure you want to remove this user from your friends list?',
+                                                          iconStyle: IconStyle
+                                                              .question,
+                                                          alertStyle:
+                                                              AlertButtonStyle
+                                                                  .yesNo,
+                                                        );
 
-                                                      if (result ==
-                                                          AlertButton
-                                                              .yesButton) {
+                                                        if (result ==
+                                                            AlertButton
+                                                                .yesButton) {
+                                                          widget.authorRef!
+                                                              .update({
+                                                            'friends': FieldValue
+                                                                .arrayRemove([
+                                                              currentUserReference
+                                                            ])
+                                                          });
+                                                          currentUserReference!
+                                                              .update({
+                                                            'friends': FieldValue
+                                                                .arrayRemove([
+                                                              widget.authorRef
+                                                            ])
+                                                          });
+                                                          if (mounted) {
+                                                            setState(() {});
+                                                          }
+                                                        } else {
+                                                          return;
+                                                        }
+
+                                                        var docs =
+                                                            await currentUserReference!
+                                                                .collection(
+                                                                    'friends')
+                                                                .where("uid",
+                                                                    isEqualTo:
+                                                                        widget
+                                                                            .authorRef)
+                                                                .get();
+                                                        docs.docs
+                                                            .forEach((doc) {
+                                                          doc.reference
+                                                              .delete();
+                                                        });
+
+                                                        var docs2 = await widget
+                                                            .authorRef!
+                                                            .collection(
+                                                                'friends')
+                                                            .where("uid",
+                                                                isEqualTo:
+                                                                    currentUserReference)
+                                                            .get();
+                                                        docs2.docs
+                                                            .forEach((doc) {
+                                                          doc.reference
+                                                              .delete();
+                                                        });
+                                                      },
+                                                      text: 'You are friends!',
+                                                      options: FFButtonOptions(
+                                                        height: 45,
+                                                        textStyle:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .subtitle2
+                                                                .override(
+                                                                  fontFamily: FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .subtitle2Family,
+                                                                  color: Colors
+                                                                      .white,
+                                                                  fontSize: 20,
+                                                                  fontWeight:
+                                                                      FontWeight
+                                                                          .w600,
+                                                                  useGoogleFonts: GoogleFonts
+                                                                          .asMap()
+                                                                      .containsKey(
+                                                                          FlutterFlowTheme.of(context)
+                                                                              .subtitle2Family),
+                                                                ),
+                                                        borderSide: BorderSide(
+                                                          color: Colors
+                                                              .transparent,
+                                                          width: 0,
+                                                        ),
+                                                        borderRadius:
+                                                            BorderRadius
+                                                                .circular(15),
+                                                      ),
+                                                    ),
+                                                  );
+                                                } else {
+                                                  return Expanded(
+                                                    child: FFButtonWidget(
+                                                      onPressed: () async {
+                                                        // add the current user to the other user's friends list, and vice versa
                                                         widget.authorRef!
                                                             .update({
                                                           'friends': FieldValue
-                                                              .arrayRemove([
+                                                              .arrayUnion([
                                                             currentUserReference
                                                           ])
                                                         });
                                                         currentUserReference!
                                                             .update({
                                                           'friends': FieldValue
-                                                              .arrayRemove([
+                                                              .arrayUnion([
                                                             widget.authorRef
                                                           ])
                                                         });
+
                                                         if (mounted) {
                                                           setState(() {});
                                                         }
-                                                      } else {
-                                                        return;
-                                                      }
 
-                                                      var docs =
-                                                          await currentUserReference!
-                                                              .collection(
-                                                                  'friends')
-                                                              .where("uid",
-                                                                  isEqualTo: widget
-                                                                      .authorRef)
-                                                              .get();
-                                                      docs.docs.forEach((doc) {
-                                                        doc.reference.delete();
-                                                      });
+                                                        final userFriendsUpdateData =
+                                                            createFriendsRecordData(
+                                                          uid: widget.authorRef,
+                                                          displayName:
+                                                              widget.name,
+                                                          username:
+                                                              authorUsername,
+                                                        );
 
-                                                      var docs2 = await widget
-                                                          .authorRef!
-                                                          .collection('friends')
-                                                          .where("uid",
-                                                              isEqualTo:
-                                                                  currentUserReference)
-                                                          .get();
-                                                      docs2.docs.forEach((doc) {
-                                                        doc.reference.delete();
-                                                      });
-                                                    },
-                                                    text: 'You are friends!',
-                                                    options: FFButtonOptions(
-                                                      width: 280,
-                                                      height: 45,
-                                                      textStyle:
-                                                          FlutterFlowTheme.of(
-                                                                  context)
-                                                              .subtitle2
-                                                              .override(
-                                                                fontFamily: FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .subtitle2Family,
-                                                                color: Colors
-                                                                    .white,
-                                                                fontSize: 20,
-                                                                fontWeight:
-                                                                    FontWeight
-                                                                        .w600,
-                                                                useGoogleFonts: GoogleFonts
-                                                                        .asMap()
-                                                                    .containsKey(
-                                                                        FlutterFlowTheme.of(context)
-                                                                            .subtitle2Family),
-                                                              ),
-                                                      borderSide: BorderSide(
+                                                        await FriendsRecord
+                                                                .createDoc(
+                                                                    currentUserReference!)
+                                                            .set(
+                                                                userFriendsUpdateData);
+
+                                                        final userFriendsUpdateData2 =
+                                                            createFriendsRecordData(
+                                                          uid:
+                                                              currentUserReference,
+                                                          displayName:
+                                                              currentUserDisplayName,
+                                                          username:
+                                                              currentUserUsername,
+                                                        );
+
+                                                        await FriendsRecord
+                                                                .createDoc(widget
+                                                                    .authorRef!)
+                                                            .set(
+                                                                userFriendsUpdateData2);
+                                                      },
+                                                      text: 'Add Friend',
+                                                      options: FFButtonOptions(
+                                                        height: 45,
+                                                        padding:
+                                                            EdgeInsetsDirectional
+                                                                .fromSTEB(
+                                                                    0, 0, 0, 0),
+                                                        iconPadding:
+                                                            EdgeInsetsDirectional
+                                                                .fromSTEB(
+                                                                    0, 0, 0, 0),
                                                         color:
-                                                            Colors.transparent,
-                                                        width: 1,
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .customColor4,
+                                                        textStyle:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .subtitle2
+                                                                .override(
+                                                                  fontFamily: FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .subtitle2Family,
+                                                                  color: Colors
+                                                                      .white,
+                                                                  fontSize: 20,
+                                                                  fontWeight:
+                                                                      FontWeight
+                                                                          .w600,
+                                                                  useGoogleFonts: GoogleFonts
+                                                                          .asMap()
+                                                                      .containsKey(
+                                                                          FlutterFlowTheme.of(context)
+                                                                              .subtitle2Family),
+                                                                ),
+                                                        borderSide: BorderSide(
+                                                          color: Colors
+                                                              .transparent,
+                                                          width: 1,
+                                                        ),
+                                                        borderRadius:
+                                                            BorderRadius
+                                                                .circular(15),
                                                       ),
-                                                      borderRadius:
-                                                          BorderRadius.circular(
-                                                              15),
-                                                    ),
-                                                  );
-                                                } else {
-                                                  return FFButtonWidget(
-                                                    onPressed: () async {
-                                                      // add the current user to the other user's friends list, and vice versa
-                                                      widget.authorRef!.update({
-                                                        'friends': FieldValue
-                                                            .arrayUnion([
-                                                          currentUserReference
-                                                        ])
-                                                      });
-                                                      currentUserReference!
-                                                          .update({
-                                                        'friends': FieldValue
-                                                            .arrayUnion([
-                                                          widget.authorRef
-                                                        ])
-                                                      });
-
-                                                      if (mounted) {
-                                                        setState(() {});
-                                                      }
-
-                                                      final userFriendsUpdateData =
-                                                          createFriendsRecordData(
-                                                        uid: widget.authorRef,
-                                                        displayName:
-                                                            widget.name,
-                                                        username:
-                                                            authorUsername,
-                                                      );
-
-                                                      await FriendsRecord.createDoc(
-                                                              currentUserReference!)
-                                                          .set(
-                                                              userFriendsUpdateData);
-
-                                                      final userFriendsUpdateData2 =
-                                                          createFriendsRecordData(
-                                                        uid:
-                                                            currentUserReference,
-                                                        displayName:
-                                                            currentUserDisplayName,
-                                                        username:
-                                                            currentUserUsername,
-                                                      );
-
-                                                      await FriendsRecord
-                                                              .createDoc(widget
-                                                                  .authorRef!)
-                                                          .set(
-                                                              userFriendsUpdateData2);
-                                                    },
-                                                    text: 'Add Friend',
-                                                    options: FFButtonOptions(
-                                                      width: 280,
-                                                      height: 45,
-                                                      padding:
-                                                          EdgeInsetsDirectional
-                                                              .fromSTEB(
-                                                                  0, 0, 0, 0),
-                                                      iconPadding:
-                                                          EdgeInsetsDirectional
-                                                              .fromSTEB(
-                                                                  0, 0, 0, 0),
-                                                      color:
-                                                          FlutterFlowTheme.of(
-                                                                  context)
-                                                              .customColor4,
-                                                      textStyle:
-                                                          FlutterFlowTheme.of(
-                                                                  context)
-                                                              .subtitle2
-                                                              .override(
-                                                                fontFamily: FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .subtitle2Family,
-                                                                color: Colors
-                                                                    .white,
-                                                                fontSize: 20,
-                                                                fontWeight:
-                                                                    FontWeight
-                                                                        .w600,
-                                                                useGoogleFonts: GoogleFonts
-                                                                        .asMap()
-                                                                    .containsKey(
-                                                                        FlutterFlowTheme.of(context)
-                                                                            .subtitle2Family),
-                                                              ),
-                                                      borderSide: BorderSide(
-                                                        color:
-                                                            Colors.transparent,
-                                                        width: 1,
-                                                      ),
-                                                      borderRadius:
-                                                          BorderRadius.circular(
-                                                              15),
                                                     ),
                                                   );
                                                 }
@@ -660,7 +685,14 @@ class _ProfileWidgetState extends State<ProfileWidget> {
                                                 emoji = '👋';
                                               }
                                               return FFButtonWidget(
-                                                onPressed: () {},
+                                                onPressed: () {
+                                                  FlutterPlatformAlert.showAlert(
+                                                      windowTitle:
+                                                          "You just pinned them!🤏",
+                                                      text:
+                                                          "Don't pin them too much tho...");
+                                                  HapticFeedback.lightImpact();
+                                                },
                                                 text: snapshot.data
                                                             .toString() !=
                                                         'null'
@@ -832,7 +864,8 @@ class _ProfileWidgetState extends State<ProfileWidget> {
                           .addPageRequestListener((nextPageMarker) {
                         queryPostsRecordPage(
                           parent: widget.authorRef,
-                          queryBuilder: (postsRecord) => postsRecord,
+                          queryBuilder: (postsRecord) => postsRecord
+                              .orderBy('time_posted', descending: true),
                           nextPageMarker: nextPageMarker,
                           pageSize: 8,
                           isStream: true,
@@ -879,7 +912,20 @@ class _ProfileWidgetState extends State<ProfileWidget> {
                           ),
                         ),
                       ),
-
+                      noItemsFoundIndicatorBuilder: (_) => Center(
+                        child: Padding(
+                          padding: EdgeInsetsDirectional.fromSTEB(0, 50, 0, 0),
+                          child: Text(
+                            'No posts found',
+                            style: FlutterFlowTheme.of(context)
+                                .titleSmall
+                                .override(
+                                  fontFamily: 'Inter',
+                                  color: FlutterFlowTheme.of(context).gray200,
+                                ),
+                          ),
+                        ),
+                      ),
                       itemBuilder: (context, _, listViewIndex) {
                         final listViewPostsRecord =
                             _pagingController!.itemList![listViewIndex];
@@ -902,6 +948,7 @@ class _ProfileWidgetState extends State<ProfileWidget> {
                           ),
                           callback: callback,
                           onPage: 'HomePage',
+                          refresh: refresh,
                         );
                       },
                     ),

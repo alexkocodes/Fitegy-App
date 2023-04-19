@@ -6,9 +6,11 @@ import 'package:detectable_text_field/widgets/detectable_editable_text.dart';
 import 'package:detectable_text_field/widgets/detectable_text_field.dart';
 import 'package:fitegy/components/challenge_card_widget.dart';
 import 'package:fitegy/components/selected_challenge.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_animate/effects/fade_effect.dart';
 import 'package:flutter_animate/effects/move_effect.dart';
 import 'package:flutter_animate/flutter_animate.dart';
+import 'package:flutter_platform_alert/flutter_platform_alert.dart';
 
 import '../auth/auth_util.dart';
 import '../backend/backend.dart';
@@ -165,12 +167,12 @@ class _CreateWidgetState extends State<CreateWidget>
                             alignment: AlignmentDirectional(-1.1, 0.12),
                             child: Padding(
                               padding:
-                                  EdgeInsetsDirectional.fromSTEB(0, 30, 0, 0),
+                                  EdgeInsetsDirectional.fromSTEB(0, 40, 0, 0),
                               child: FlutterFlowIconButton(
                                 borderColor: Colors.transparent,
                                 borderRadius: 30,
                                 borderWidth: 1,
-                                buttonSize: 50,
+                                buttonSize: 40,
                                 icon: Icon(
                                   Icons.keyboard_arrow_left_sharp,
                                   color:
@@ -210,53 +212,63 @@ class _CreateWidgetState extends State<CreateWidget>
                     mainAxisAlignment: MainAxisAlignment.center,
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Padding(
-                        padding: EdgeInsetsDirectional.fromSTEB(10, 40, 10, 10),
-                        child: Column(
-                          mainAxisSize: MainAxisSize.max,
-                          crossAxisAlignment: CrossAxisAlignment.stretch,
-                          children: [
-                            Padding(
-                              padding:
-                                  EdgeInsetsDirectional.fromSTEB(10, 0, 16, 0),
-                              child: Text(
-                                'Create',
-                                style: FlutterFlowTheme.of(context)
-                                    .title1
-                                    .override(
-                                      fontFamily: 'Inter',
-                                      color: FlutterFlowTheme.of(context)
-                                          .secondaryText,
-                                      fontSize: 30,
-                                      fontWeight: FontWeight.bold,
-                                      useGoogleFonts: GoogleFonts.asMap()
-                                          .containsKey(
-                                              FlutterFlowTheme.of(context)
-                                                  .title1Family),
-                                    ),
+                      InkWell(
+                        onTap: () async {
+                          HapticFeedback.lightImpact();
+                          await pageViewController?.previousPage(
+                            duration: Duration(milliseconds: 300),
+                            curve: Curves.ease,
+                          );
+                        },
+                        child: Padding(
+                          padding:
+                              EdgeInsetsDirectional.fromSTEB(10, 40, 10, 10),
+                          child: Column(
+                            mainAxisSize: MainAxisSize.max,
+                            crossAxisAlignment: CrossAxisAlignment.stretch,
+                            children: [
+                              Padding(
+                                padding: EdgeInsetsDirectional.fromSTEB(
+                                    10, 0, 16, 0),
+                                child: Text(
+                                  'Create',
+                                  style: FlutterFlowTheme.of(context)
+                                      .title1
+                                      .override(
+                                        fontFamily: 'Inter',
+                                        color: FlutterFlowTheme.of(context)
+                                            .secondaryText,
+                                        fontSize: 30,
+                                        fontWeight: FontWeight.bold,
+                                        useGoogleFonts: GoogleFonts.asMap()
+                                            .containsKey(
+                                                FlutterFlowTheme.of(context)
+                                                    .title1Family),
+                                      ),
+                                ),
                               ),
-                            ),
-                            Padding(
-                              padding:
-                                  EdgeInsetsDirectional.fromSTEB(10, 10, 0, 0),
-                              child: Text(
-                                'Choose create mode to create \na new challenge.',
-                                style: FlutterFlowTheme.of(context)
-                                    .bodyText2
-                                    .override(
-                                      fontFamily: 'Inter',
-                                      color: FlutterFlowTheme.of(context)
-                                          .primaryColor,
-                                      fontSize: 18,
-                                      fontWeight: FontWeight.w600,
-                                      useGoogleFonts: GoogleFonts.asMap()
-                                          .containsKey(
-                                              FlutterFlowTheme.of(context)
-                                                  .bodyText2Family),
-                                    ),
+                              Padding(
+                                padding: EdgeInsetsDirectional.fromSTEB(
+                                    10, 10, 0, 0),
+                                child: Text(
+                                  'Choose create mode to create \na new challenge.',
+                                  style: FlutterFlowTheme.of(context)
+                                      .bodyText2
+                                      .override(
+                                        fontFamily: 'Inter',
+                                        color: FlutterFlowTheme.of(context)
+                                            .primaryColor,
+                                        fontSize: 18,
+                                        fontWeight: FontWeight.w600,
+                                        useGoogleFonts: GoogleFonts.asMap()
+                                            .containsKey(
+                                                FlutterFlowTheme.of(context)
+                                                    .bodyText2Family),
+                                      ),
+                                ),
                               ),
-                            ),
-                          ],
+                            ],
+                          ),
                         ),
                       ),
                       Padding(
@@ -272,6 +284,7 @@ class _CreateWidgetState extends State<CreateWidget>
                             size: 40,
                           ),
                           onPressed: () async {
+                            HapticFeedback.lightImpact();
                             await pageViewController?.previousPage(
                               duration: Duration(milliseconds: 300),
                               curve: Curves.ease,
@@ -303,6 +316,7 @@ class _CreateWidgetState extends State<CreateWidget>
                           ),
                           showLoadingIndicator: true,
                           onPressed: () async {
+                            HapticFeedback.lightImpact();
                             await pageViewController?.nextPage(
                               duration: Duration(milliseconds: 300),
                               curve: Curves.ease,
@@ -311,37 +325,58 @@ class _CreateWidgetState extends State<CreateWidget>
                           },
                         ),
                       ),
-                      Padding(
-                        padding: EdgeInsetsDirectional.fromSTEB(20, 10, 16, 0),
-                        child: Text(
-                          'Post',
-                          style: FlutterFlowTheme.of(context).title1.override(
-                                fontFamily: 'Inter',
-                                color:
-                                    FlutterFlowTheme.of(context).secondaryText,
-                                fontSize: 30,
-                                fontWeight: FontWeight.bold,
-                                useGoogleFonts: GoogleFonts.asMap().containsKey(
-                                    FlutterFlowTheme.of(context).title1Family),
+                      InkWell(
+                        onTap: () async {
+                          HapticFeedback.lightImpact();
+                          await pageViewController?.nextPage(
+                            duration: Duration(milliseconds: 300),
+                            curve: Curves.ease,
+                          );
+                        },
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Padding(
+                              padding:
+                                  EdgeInsetsDirectional.fromSTEB(20, 10, 16, 0),
+                              child: Text(
+                                'Post',
+                                style: FlutterFlowTheme.of(context)
+                                    .title1
+                                    .override(
+                                      fontFamily: 'Inter',
+                                      color: FlutterFlowTheme.of(context)
+                                          .secondaryText,
+                                      fontSize: 30,
+                                      fontWeight: FontWeight.bold,
+                                      useGoogleFonts: GoogleFonts.asMap()
+                                          .containsKey(
+                                              FlutterFlowTheme.of(context)
+                                                  .title1Family),
+                                    ),
                               ),
-                        ),
-                      ),
-                      Padding(
-                        padding: EdgeInsetsDirectional.fromSTEB(20, 10, 0, 0),
-                        child: Text(
-                          'Choose post mode to make \na new post.',
-                          style: FlutterFlowTheme.of(context)
-                              .bodyText2
-                              .override(
-                                fontFamily: 'Inter',
-                                color:
-                                    FlutterFlowTheme.of(context).primaryColor,
-                                fontSize: 18,
-                                fontWeight: FontWeight.w600,
-                                useGoogleFonts: GoogleFonts.asMap().containsKey(
-                                    FlutterFlowTheme.of(context)
-                                        .bodyText2Family),
+                            ),
+                            Padding(
+                              padding:
+                                  EdgeInsetsDirectional.fromSTEB(20, 10, 0, 0),
+                              child: Text(
+                                'Choose post mode to make \na new post.',
+                                style: FlutterFlowTheme.of(context)
+                                    .bodyText2
+                                    .override(
+                                      fontFamily: 'Inter',
+                                      color: FlutterFlowTheme.of(context)
+                                          .primaryColor,
+                                      fontSize: 18,
+                                      fontWeight: FontWeight.w600,
+                                      useGoogleFonts: GoogleFonts.asMap()
+                                          .containsKey(
+                                              FlutterFlowTheme.of(context)
+                                                  .bodyText2Family),
+                                    ),
                               ),
+                            ),
+                          ],
                         ),
                       ),
                     ],
@@ -441,31 +476,16 @@ class _CreateWidgetState extends State<CreateWidget>
                                               ),
                                               FFButtonWidget(
                                                 onPressed: () async {
-                                                  // currentUserLocationValue =
-                                                  //     await getCurrentUserLocation(
-                                                  //         defaultLocation:
-                                                  //             LatLng(0.0, 0.0));
                                                   if (textController!.text ==
                                                       '') {
-                                                    await showDialog(
-                                                      context: context,
-                                                      builder:
-                                                          (alertDialogContext) {
-                                                        return AlertDialog(
-                                                          title: Text(
-                                                              'Post can\'t be empty!'),
-                                                          content: Text(
-                                                              'Come on! Type something for your post 🤓'),
-                                                          actions: [
-                                                            TextButton(
-                                                              onPressed: () =>
-                                                                  Navigator.pop(
-                                                                      alertDialogContext),
-                                                              child: Text('Ok'),
-                                                            ),
-                                                          ],
-                                                        );
-                                                      },
+                                                    await FlutterPlatformAlert
+                                                        .showAlert(
+                                                      windowTitle:
+                                                          'Post can\'t be empty!',
+                                                      text:
+                                                          'Come on! Type something for your post 🤓',
+                                                      iconStyle:
+                                                          IconStyle.information,
                                                     );
                                                   } else {
                                                     if (toBeUploaded != null &&
@@ -479,11 +499,6 @@ class _CreateWidgetState extends State<CreateWidget>
                                                       var downloadUrls =
                                                           <String>[];
                                                       try {
-                                                        showUploadMessage(
-                                                          context,
-                                                          'Uploading file...',
-                                                          showLoading: true,
-                                                        );
                                                         downloadUrls =
                                                             (await Future.wait(
                                                           toBeUploaded.map(
@@ -509,9 +524,6 @@ class _CreateWidgetState extends State<CreateWidget>
                                                         setState(() =>
                                                             uploadedFileUrls =
                                                                 downloadUrls);
-                                                        showUploadMessage(
-                                                            context,
-                                                            'Success!');
                                                       } else {
                                                         setState(() {});
                                                         showUploadMessage(
@@ -549,6 +561,7 @@ class _CreateWidgetState extends State<CreateWidget>
                                                                           "selectedPath"])),
                                                       'post_images':
                                                           uploadedFileUrls,
+                                                      'likes': [],
                                                     };
                                                     await PostsRecord.createDoc(
                                                             currentUserReference!)
@@ -1121,37 +1134,6 @@ class _CreateWidgetState extends State<CreateWidget>
                               Icons.clear_all,
                               color: Color(0x9999EDFF),
                               size: 40,
-                            ),
-                            options: FFButtonOptions(
-                              elevation: 0,
-                              color: Color(0x003B3F6B),
-                              textStyle: FlutterFlowTheme.of(context)
-                                  .subtitle2
-                                  .override(
-                                    fontFamily: FlutterFlowTheme.of(context)
-                                        .subtitle2Family,
-                                    color: Colors.white,
-                                    useGoogleFonts: GoogleFonts.asMap()
-                                        .containsKey(
-                                            FlutterFlowTheme.of(context)
-                                                .subtitle2Family),
-                                  ),
-                              borderSide: BorderSide(
-                                color: Colors.transparent,
-                                width: 1,
-                              ),
-                              borderRadius: BorderRadius.circular(8),
-                            ),
-                          ),
-                          FFButtonWidget(
-                            onPressed: () {
-                              print('Button pressed ...');
-                            },
-                            text: '',
-                            icon: Icon(
-                              Icons.location_on,
-                              color: Color(0x9999EDFF),
-                              size: 30,
                             ),
                             options: FFButtonOptions(
                               elevation: 0,

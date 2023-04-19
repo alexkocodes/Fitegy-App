@@ -14,7 +14,7 @@ class _EmptyWidgetState extends State<EmptyWidget> {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: EdgeInsetsDirectional.fromSTEB(0, 140, 0, 0),
+      padding: EdgeInsetsDirectional.fromSTEB(0, 100, 0, 0),
       child: Column(
         mainAxisSize: MainAxisSize.max,
         mainAxisAlignment: MainAxisAlignment.start,
@@ -28,7 +28,7 @@ class _EmptyWidgetState extends State<EmptyWidget> {
             'Nothing here ',
             style: FlutterFlowTheme.of(context).bodyText1.override(
                   fontFamily: 'Archivo Black',
-                  fontSize: 30,
+                  fontSize: 25,
                   useGoogleFonts: GoogleFonts.asMap().containsKey(
                       FlutterFlowTheme.of(context).bodyText1Family),
                 ),

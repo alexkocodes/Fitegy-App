@@ -10,6 +10,7 @@ import 'package:fitegy/components/selected_challenge.dart';
 import 'package:flutter_animate/effects/fade_effect.dart';
 import 'package:flutter_animate/effects/move_effect.dart';
 import 'package:flutter_animate/flutter_animate.dart';
+import 'package:flutter_platform_alert/flutter_platform_alert.dart';
 
 import '../auth/auth_util.dart';
 import '../backend/backend.dart';
@@ -113,9 +114,13 @@ class _PostPageState extends State<PostPage> with TickerProviderStateMixin {
   var selectedChallengeData = {};
   final db = FirebaseFirestore.instance;
   getData(data) {
-    setState(() {
-      selectedChallengeData = data;
-    });
+    if (mounted) {
+      setState(() {
+        if (data != null) {
+          selectedChallengeData = data;
+        }
+      });
+    }
   }
 
   @override
@@ -206,29 +211,15 @@ class _PostPageState extends State<PostPage> with TickerProviderStateMixin {
                                         ),
                                         FFButtonWidget(
                                           onPressed: () async {
-                                            // currentUserLocationValue =
-                                            //     await getCurrentUserLocation(
-                                            //         defaultLocation:
-                                            //             LatLng(0.0, 0.0));
                                             if (textController!.text == '') {
-                                              await showDialog(
-                                                context: context,
-                                                builder: (alertDialogContext) {
-                                                  return AlertDialog(
-                                                    title: Text(
-                                                        'Post can\'t be empty!'),
-                                                    content: Text(
-                                                        'Come on! Type something for your post 🤓'),
-                                                    actions: [
-                                                      TextButton(
-                                                        onPressed: () =>
-                                                            Navigator.pop(
-                                                                alertDialogContext),
-                                                        child: Text('Ok'),
-                                                      ),
-                                                    ],
-                                                  );
-                                                },
+                                              await FlutterPlatformAlert
+                                                  .showAlert(
+                                                windowTitle:
+                                                    'Post can\'t be empty!',
+                                                text:
+                                                    'Come on! Type something for your post 🤓',
+                                                iconStyle:
+                                                    IconStyle.information,
                                               );
                                             } else {
                                               if (toBeUploaded != null &&
@@ -236,15 +227,13 @@ class _PostPageState extends State<PostPage> with TickerProviderStateMixin {
                                                       validateFileFormat(
                                                           m.storagePath,
                                                           context))) {
-                                                setState(() =>
-                                                    isMediaUploading = true);
+                                                if (mounted) {
+                                                  setState(() =>
+                                                      isMediaUploading = true);
+                                                }
+
                                                 var downloadUrls = <String>[];
                                                 try {
-                                                  showUploadMessage(
-                                                    context,
-                                                    'Uploading file...',
-                                                    showLoading: true,
-                                                  );
                                                   downloadUrls =
                                                       (await Future.wait(
                                                     toBeUploaded.map(
@@ -265,13 +254,15 @@ class _PostPageState extends State<PostPage> with TickerProviderStateMixin {
                                                 }
                                                 if (downloadUrls.length ==
                                                     toBeUploaded.length) {
-                                                  setState(() =>
-                                                      uploadedFileUrls =
-                                                          downloadUrls);
-                                                  showUploadMessage(
-                                                      context, 'Success!');
+                                                  if (mounted) {
+                                                    setState(() =>
+                                                        uploadedFileUrls =
+                                                            downloadUrls);
+                                                  }
                                                 } else {
-                                                  setState(() {});
+                                                  if (mounted) {
+                                                    setState(() {});
+                                                  }
                                                   showUploadMessage(context,
                                                       'Failed to upload media');
                                                   return;
@@ -302,6 +293,7 @@ class _PostPageState extends State<PostPage> with TickerProviderStateMixin {
                                                             selectedChallengeData[
                                                                 "selectedPath"])),
                                                 'post_images': uploadedFileUrls,
+                                                'likes': [],
                                               };
                                               await PostsRecord.createDoc(
                                                       currentUserReference!)
@@ -633,7 +625,9 @@ class _PostPageState extends State<PostPage> with TickerProviderStateMixin {
                                             ),
                                             onPressed: () {
                                               imageFileList!.removeAt(index);
-                                              setState(() {});
+                                              if (mounted) {
+                                                setState(() {});
+                                              }
                                             },
                                           ),
                                         )
@@ -687,11 +681,13 @@ class _PostPageState extends State<PostPage> with TickerProviderStateMixin {
                                               );
                                             },
                                           ).then((data) async {
-                                            setState(() {
-                                              if (data != null) {
-                                                selectedChallengeData = data;
-                                              }
-                                            });
+                                            if (mounted) {
+                                              setState(() {
+                                                if (data != null) {
+                                                  selectedChallengeData = data;
+                                                }
+                                              });
+                                            }
                                           });
                                         },
                                         text: '',
@@ -753,9 +749,13 @@ class _PostPageState extends State<PostPage> with TickerProviderStateMixin {
                       onPressed: () async {
                         final List<XFile>? selectedImages =
                             await imagePicker.pickMultiImage(imageQuality: 70);
+                        if (selectedImages == null) {
+                          return;
+                        }
                         if (selectedImages!.isNotEmpty) {
                           imageFileList!.addAll(selectedImages);
                         }
+
                         var selectedMedia = await Future.wait(
                           selectedImages.asMap().entries.map(
                             (e) async {
@@ -764,6 +764,7 @@ class _PostPageState extends State<PostPage> with TickerProviderStateMixin {
                               final mediaBytes = await media.readAsBytes();
                               final path = storagePath(
                                   currentUserUid, media.name, false, index);
+
                               return SelectedMedia(
                                 path,
                                 mediaBytes,
@@ -771,9 +772,11 @@ class _PostPageState extends State<PostPage> with TickerProviderStateMixin {
                             },
                           ),
                         );
-                        setState(() {
-                          toBeUploaded = selectedMedia;
-                        });
+                        if (mounted) {
+                          setState(() {
+                            toBeUploaded = selectedMedia;
+                          });
+                        }
                       },
                       text: '',
                       icon: Icon(
@@ -816,42 +819,21 @@ class _PostPageState extends State<PostPage> with TickerProviderStateMixin {
                               ),
                             );
                           },
-                        ).then((value) => setState(() {}));
+                        ).then((value) {
+                          if (mounted) {
+                            setState(() {
+                              if (value != null) {
+                                selectedChallengeData = value;
+                              }
+                            });
+                          }
+                        });
                       },
                       text: '',
                       icon: Icon(
                         Icons.clear_all,
                         color: Color(0x9999EDFF),
                         size: 40,
-                      ),
-                      options: FFButtonOptions(
-                        elevation: 0,
-                        color: Color(0x003B3F6B),
-                        textStyle: FlutterFlowTheme.of(context)
-                            .subtitle2
-                            .override(
-                              fontFamily:
-                                  FlutterFlowTheme.of(context).subtitle2Family,
-                              color: Colors.white,
-                              useGoogleFonts: GoogleFonts.asMap().containsKey(
-                                  FlutterFlowTheme.of(context).subtitle2Family),
-                            ),
-                        borderSide: BorderSide(
-                          color: Colors.transparent,
-                          width: 1,
-                        ),
-                        borderRadius: BorderRadius.circular(8),
-                      ),
-                    ),
-                    FFButtonWidget(
-                      onPressed: () {
-                        print('Button pressed ...');
-                      },
-                      text: '',
-                      icon: Icon(
-                        Icons.location_on,
-                        color: Color(0x9999EDFF),
-                        size: 30,
                       ),
                       options: FFButtonOptions(
                         elevation: 0,

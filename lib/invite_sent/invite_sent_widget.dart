@@ -108,7 +108,7 @@ class _InviteSentWidgetState extends State<InviteSentWidget>
               ),
             ),
             Align(
-              alignment: AlignmentDirectional(0.9, -0.94),
+              alignment: AlignmentDirectional(0.8, -0.85),
               child: FlutterFlowIconButton(
                 borderColor: Colors.transparent,
                 borderRadius: 30,
@@ -120,7 +120,7 @@ class _InviteSentWidgetState extends State<InviteSentWidget>
                   size: 30,
                 ),
                 onPressed: () async {
-                  context.pushNamed('HomePage');
+                  context.pushNamed('MyChallenges');
                 },
               ),
             ),
@@ -156,7 +156,7 @@ class _InviteSentWidgetState extends State<InviteSentWidget>
                       Padding(
                         padding: EdgeInsetsDirectional.fromSTEB(0, 10, 0, 0),
                         child: Text(
-                          'They must so excited to join your challenge!',
+                          'They must be so excited to join your challenge!',
                           style: FlutterFlowTheme.of(context)
                               .bodyText1
                               .override(

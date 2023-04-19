@@ -77,7 +77,7 @@ class _ChallengeBottomSheetWidgetState extends State<ChallengeBottomSheetWidget>
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Padding(
-                      padding: EdgeInsetsDirectional.fromSTEB(15, 0, 0, 0),
+                      padding: EdgeInsetsDirectional.fromSTEB(15, 0, 10, 0),
                       child: Text(
                         'Select a challenge you want \nto embed in your post.',
                         style: FlutterFlowTheme.of(context).bodyText1.override(
@@ -90,39 +90,41 @@ class _ChallengeBottomSheetWidgetState extends State<ChallengeBottomSheetWidget>
                             ),
                       ),
                     ),
-                    FFButtonWidget(
-                      onPressed: () async {
-                        if (selectedData["selectedPath"] == "") {
-                          // show alert box
-                          await FlutterPlatformAlert.showAlert(
-                            windowTitle: 'Oh NO!',
-                            text:
-                                'You didn\'t select any challenge. Please select a challenge to continue.',
-                            iconStyle: IconStyle.information,
-                          );
-                        } else {
-                          Navigator.pop(context, selectedData);
-                        }
-                      },
-                      text: 'Select',
-                      options: FFButtonOptions(
-                        width: 100,
-                        height: 40,
-                        color: Color(0xFF4791FF),
-                        textStyle: FlutterFlowTheme.of(context)
-                            .subtitle2
-                            .override(
-                              fontFamily: 'Archivo Black',
-                              color: Colors.white,
-                              useGoogleFonts: GoogleFonts.asMap().containsKey(
-                                  FlutterFlowTheme.of(context).subtitle2Family),
-                            ),
-                        elevation: 5,
-                        borderSide: BorderSide(
-                          color: Colors.transparent,
-                          width: 1,
+                    Expanded(
+                      child: FFButtonWidget(
+                        onPressed: () async {
+                          if (selectedData["selectedPath"] == "") {
+                            // show alert box
+                            await FlutterPlatformAlert.showAlert(
+                              windowTitle: 'Oh NO!',
+                              text:
+                                  'You didn\'t select any challenge. Please select a challenge to continue.',
+                              iconStyle: IconStyle.information,
+                            );
+                          } else {
+                            Navigator.pop(context, selectedData);
+                          }
+                        },
+                        text: 'Select',
+                        options: FFButtonOptions(
+                          height: 40,
+                          color: Color(0xFF4791FF),
+                          textStyle: FlutterFlowTheme.of(context)
+                              .subtitle2
+                              .override(
+                                fontFamily: 'Archivo Black',
+                                color: Colors.white,
+                                useGoogleFonts: GoogleFonts.asMap().containsKey(
+                                    FlutterFlowTheme.of(context)
+                                        .subtitle2Family),
+                              ),
+                          elevation: 5,
+                          borderSide: BorderSide(
+                            color: Colors.transparent,
+                            width: 1,
+                          ),
+                          borderRadius: BorderRadius.circular(8),
                         ),
-                        borderRadius: BorderRadius.circular(8),
                       ),
                     ),
                   ],

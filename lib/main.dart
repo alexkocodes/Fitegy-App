@@ -1,7 +1,9 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:scrolls_to_top/scrolls_to_top.dart';
 import 'auth/firebase_user_provider.dart';
 import 'auth/auth_util.dart';
 
@@ -16,13 +18,12 @@ void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
 
-  FFAppState(); // Initialize FFAppState
+  FFAppState();
 
   runApp(MyApp());
 }
 
 class MyApp extends StatefulWidget {
-  // This widget is the root of your application.
   @override
   State<MyApp> createState() => _MyAppState();
 
@@ -58,7 +59,6 @@ class _MyAppState extends State<MyApp> {
   @override
   void dispose() {
     authUserSub.cancel();
-
     super.dispose();
   }
 
@@ -71,6 +71,12 @@ class _MyAppState extends State<MyApp> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp.router(
+      builder: (context, child) {
+        return MediaQuery(
+          child: child!,
+          data: MediaQuery.of(context).copyWith(textScaleFactor: 1.0),
+        );
+      },
       title: 'Fitegy',
       localizationsDelegates: [
         FFLocalizationsDelegate(),
@@ -80,7 +86,9 @@ class _MyAppState extends State<MyApp> {
       ],
       locale: _locale,
       supportedLocales: const [Locale('en', '')],
-      theme: ThemeData(brightness: Brightness.light),
+      theme: ThemeData(
+        brightness: Brightness.light,
+      ),
       themeMode: _themeMode,
       routeInformationParser: _router.routeInformationParser,
       routerDelegate: _router.routerDelegate,
@@ -98,35 +106,69 @@ class NavBarPage extends StatefulWidget {
   _NavBarPageState createState() => _NavBarPageState();
 }
 
-/// This is the private State class that goes with NavBarPage.
 class _NavBarPageState extends State<NavBarPage> {
   String _currentPageName = 'HomePage';
-  late Widget? _currentPage;
+  late Widget? _currentPage = widget.page;
+  PageController pageController = PageController();
 
+  int _selectedIndex = 0;
   @override
   void initState() {
     super.initState();
     _currentPageName = widget.initialPage ?? _currentPageName;
     _currentPage = widget.page;
+    // find the index of the initial page in the tabs map
+    final pages = ["HomePage", "Create", "MyChallenges", "MyAccount"];
+    pageController =
+        PageController(initialPage: pages.indexOf(_currentPageName));
+    _selectedIndex = pages.indexOf(_currentPageName);
+  }
+
+  @override
+  void dispose() {
+    pageController.dispose();
+    super.dispose();
+  }
+
+  _onTapped(int index) {
+    setState(() {
+      _selectedIndex = index;
+    });
+    pageController.jumpToPage(index);
+  }
+
+  void onPageChanged(int index) {
+    setState(() {
+      _selectedIndex = index;
+    });
   }
 
   @override
   Widget build(BuildContext context) {
+    SystemChrome.setPreferredOrientations([
+      DeviceOrientation.portraitUp,
+      DeviceOrientation.portraitDown,
+    ]);
     final tabs = {
       'HomePage': HomePageWidget(),
       'Create': CreateWidget(),
       'MyChallenges': MyChallengesWidget(),
       'MyAccount': MyAccountWidget(),
     };
-    final currentIndex = tabs.keys.toList().indexOf(_currentPageName);
+    //final currentIndex = tabs.keys.toList().indexOf(_currentPageName);
     return Scaffold(
-      body: _currentPage ?? tabs[_currentPageName],
+      body: PageView(
+        children: tabs.values.toList(),
+        controller: pageController,
+        onPageChanged: onPageChanged,
+      ),
       bottomNavigationBar: SizedBox(
         child: BottomNavigationBar(
-          currentIndex: currentIndex,
+          currentIndex: _selectedIndex,
           onTap: (i) => setState(() {
             _currentPage = null;
             _currentPageName = tabs.keys.toList()[i];
+            _onTapped(i);
           }),
           backgroundColor: Colors.white,
           selectedItemColor: Color(0xFF3B3F6B),

@@ -9,6 +9,8 @@ import '../flutter_flow/flutter_flow_util.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
+import 'post_bottom_sheet_widget.dart';
+
 class PostActionBarWidget extends StatefulWidget {
   const PostActionBarWidget({
     Key? key,
@@ -19,6 +21,8 @@ class PostActionBarWidget extends StatefulWidget {
     this.postReference,
     this.callback,
     this.onPage,
+    this.authorReference,
+    this.refresh,
   }) : super(key: key);
 
   final DocumentReference? postRef;
@@ -28,20 +32,24 @@ class PostActionBarWidget extends StatefulWidget {
   final DocumentReference? postReference;
   final Function? callback;
   final String? onPage;
+  final DocumentReference? authorReference;
+  final Function? refresh;
 
   @override
   _PostActionBarWidgetState createState() => _PostActionBarWidgetState();
 }
 
 class _PostActionBarWidgetState extends State<PostActionBarWidget> {
+  var _liked = false;
   @override
   void initState() {
+    _liked = widget.liked!;
     super.initState();
   }
 
   @override
   Widget build(BuildContext context) {
-    var _liked = widget.liked!;
+    _liked = widget.liked!;
     return Container(
       width: double.infinity,
       decoration: BoxDecoration(
@@ -53,7 +61,7 @@ class _PostActionBarWidgetState extends State<PostActionBarWidget> {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Container(
-            width: 70,
+            width: 60,
             child: Material(
               color: Colors.transparent,
               child: InkWell(
@@ -71,10 +79,10 @@ class _PostActionBarWidgetState extends State<PostActionBarWidget> {
                     });
                   }
                   _liked = !_liked;
+                  widget.callback!();
                   if (this.mounted) {
                     setState(() {});
                   }
-                  widget.callback!();
                 },
                 child: Stack(
                   children: [
@@ -126,7 +134,6 @@ class _PostActionBarWidgetState extends State<PostActionBarWidget> {
             ),
           ),
           Container(
-            width: 100,
             child: Material(
               color: Colors.transparent,
               child: InkWell(
@@ -140,55 +147,29 @@ class _PostActionBarWidgetState extends State<PostActionBarWidget> {
                   );
                 },
                 borderRadius: BorderRadius.circular(20),
-                child: Stack(
-                  children: [
-                    Align(
-                      alignment: AlignmentDirectional(-1.09, 0),
-                      child: FlutterFlowIconButton(
-                        borderColor: Colors.transparent,
-                        borderRadius: 30,
-                        borderWidth: 0,
-                        buttonSize: 40,
-                        icon: Icon(
-                          Icons.mode_comment_outlined,
-                          color: Color(0xFFCFCFCF),
-                          size: 18,
-                        ),
-                      ),
+                child: Align(
+                  alignment: AlignmentDirectional(-1.09, 0),
+                  child: FlutterFlowIconButton(
+                    borderColor: Colors.transparent,
+                    borderRadius: 30,
+                    borderWidth: 0,
+                    buttonSize: 40,
+                    icon: Icon(
+                      Icons.mode_comment_outlined,
+                      color: Color(0xFFCFCFCF),
+                      size: 18,
                     ),
-                    Align(
-                      alignment: AlignmentDirectional(0.8, 0.52),
-                      child: Padding(
-                        padding: EdgeInsetsDirectional.fromSTEB(0, 12, 0, 0),
-                        child: Text(
-                          'Comments',
-                          style: FlutterFlowTheme.of(context)
-                              .bodyText1
-                              .override(
-                                fontFamily: FlutterFlowTheme.of(context)
-                                    .bodyText1Family,
-                                color: Color(0xFFCFCFCF),
-                                fontSize: 13,
-                                useGoogleFonts: GoogleFonts.asMap().containsKey(
-                                    FlutterFlowTheme.of(context)
-                                        .bodyText1Family),
-                              ),
-                        ),
-                      ),
-                    ),
-                  ],
+                  ),
                 ),
               ),
             ),
           ),
           Container(
-            width: 120,
             child: Material(
               color: Colors.transparent,
               child: InkWell(
                 onTap: () {
                   HapticFeedback.lightImpact();
-
                   if (widget.onPage == 'InPostChallengePage') {
                     // do nothing
                   } else {
@@ -205,6 +186,10 @@ class _PostActionBarWidgetState extends State<PostActionBarWidget> {
                             ParamType.DocumentReference,
                           ),
                         }.withoutNulls,
+                        extra: {
+                          "refresh": widget.refresh,
+                          "callback": widget.callback
+                        },
                       );
                     } else {
                       // show an alert box saying this user didn't include a challenge in their post
@@ -218,47 +203,66 @@ class _PostActionBarWidgetState extends State<PostActionBarWidget> {
                   }
                 },
                 borderRadius: BorderRadius.circular(20),
-                child: Stack(
-                  children: [
-                    Align(
-                      alignment: AlignmentDirectional(0.8, 0.1),
-                      child: Padding(
-                        padding: EdgeInsetsDirectional.fromSTEB(0, 12, 0, 0),
-                        child: Text(
-                          'See Challenge',
-                          style: FlutterFlowTheme.of(context)
-                              .bodyText1
-                              .override(
-                                fontFamily: FlutterFlowTheme.of(context)
-                                    .bodyText1Family,
-                                color: widget.onPage == "InPostChallengePage"
-                                    ? Color(0xFF99EDFF)
-                                    : Color(0xFFCFCFCF),
-                                fontSize: 13,
-                                useGoogleFonts: GoogleFonts.asMap().containsKey(
-                                    FlutterFlowTheme.of(context)
-                                        .bodyText1Family),
-                              ),
-                        ),
-                      ),
+                child: Align(
+                  alignment: AlignmentDirectional(-1.09, -1.59),
+                  child: FlutterFlowIconButton(
+                    borderColor: Colors.transparent,
+                    borderRadius: 30,
+                    borderWidth: 0,
+                    buttonSize: 40,
+                    icon: Icon(
+                      widget.onPage == "InPostChallengePage"
+                          ? Icons.local_fire_department_rounded
+                          : Icons.local_fire_department_outlined,
+                      color: widget.onPage == "InPostChallengePage"
+                          ? Color.fromARGB(255, 252, 106, 106)
+                          : Color(0xFFCFCFCF),
+                      size: 20,
                     ),
-                    Align(
-                      alignment: AlignmentDirectional(-1.09, -1.59),
-                      child: FlutterFlowIconButton(
-                        borderColor: Colors.transparent,
-                        borderRadius: 30,
-                        borderWidth: 0,
-                        buttonSize: 40,
-                        icon: Icon(
-                          Icons.local_fire_department_outlined,
-                          color: widget.onPage == "InPostChallengePage"
-                              ? Color(0xFF99EDFF)
-                              : Color(0xFFCFCFCF),
-                          size: 20,
+                  ),
+                ),
+              ),
+            ),
+          ),
+          Container(
+            child: Material(
+              color: Colors.transparent,
+              child: InkWell(
+                onTap: () async {
+                  HapticFeedback.lightImpact();
+                  showModalBottomSheet(
+                    isScrollControlled: true,
+                    backgroundColor: Colors.transparent,
+                    context: context,
+                    builder: (context) {
+                      return Padding(
+                        padding: MediaQuery.of(context).viewInsets,
+                        child: Container(
+                          height: MediaQuery.of(context).size.height * 0.3,
+                          child: PostBottomSheetWidget(
+                            postRef: widget.postRef!,
+                            authorRef: widget.authorReference!,
+                            refresh: widget.refresh,
+                          ),
                         ),
-                      ),
+                      );
+                    },
+                  ).then((value) => setState(() {}));
+                },
+                borderRadius: BorderRadius.circular(20),
+                child: Align(
+                  alignment: AlignmentDirectional(-1.09, 0),
+                  child: FlutterFlowIconButton(
+                    borderColor: Colors.transparent,
+                    borderRadius: 30,
+                    borderWidth: 0,
+                    buttonSize: 40,
+                    icon: Icon(
+                      Icons.more_horiz,
+                      color: Color(0xFFCFCFCF),
+                      size: 18,
                     ),
-                  ],
+                  ),
                 ),
               ),
             ),

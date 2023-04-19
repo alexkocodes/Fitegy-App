@@ -1,6 +1,13 @@
+import 'dart:async';
+import 'dart:ui';
+
+import 'package:animated_loading_border/animated_loading_border.dart';
 import 'package:fitegy/components/post_widget.dart';
 import 'package:fitegy/flutter_flow/flutter_flow_animations.dart';
+import 'package:flutter/services.dart';
+import 'package:flutter_platform_alert/flutter_platform_alert.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
 
 import '../auth/auth_util.dart';
 import '../backend/backend.dart';
@@ -18,10 +25,12 @@ class InPostChallengeWidget extends StatefulWidget {
     Key? key,
     this.challengeReference,
     this.postReference,
+    this.extra,
   }) : super(key: key);
 
   final DocumentReference? challengeReference;
   final DocumentReference? postReference;
+  final Map? extra;
 
   @override
   _InPostChallengeWidgetState createState() => _InPostChallengeWidgetState();
@@ -39,7 +48,17 @@ class _InPostChallengeWidgetState extends State<InPostChallengeWidget> {
 
   // create a function to fetch challenge data
   Future<Map> getChallengeData() async {
-    final challengeData = await widget.challengeReference!.get();
+    final challengeData = await widget.challengeReference!
+        .get()
+        .timeout(
+          Duration(seconds: 4),
+          onTimeout: () => throw TimeoutException(
+            'Timeout while fetching challenge data',
+          ),
+        )
+        .catchError((e) {
+      print(e);
+    });
     return challengeData.data() as Map;
   }
 
@@ -52,9 +71,17 @@ class _InPostChallengeWidgetState extends State<InPostChallengeWidget> {
   Future<Map> getData() async {
     final challengeData = await widget.challengeReference!.get();
     final postData = await widget.postReference!.get();
+    if (challengeData.exists == false || postData.exists == false) {
+      return {
+        'challengeData': {},
+        'postData': {},
+        'status': 'deleted',
+      };
+    }
     return {
       'challengeData': challengeData.data() as Map,
       'postData': postData.data() as Map,
+      'status': 'success',
     };
   }
 
@@ -110,6 +137,18 @@ class _InPostChallengeWidgetState extends State<InPostChallengeWidget> {
                           child: CircularProgressIndicator(),
                         );
                       } else {
+                        if (((snapshot.data as Map)['status'] == 'deleted')) {
+                          return Center(
+                            child: Text(
+                              'Challenge or post does not exist',
+                              style: FlutterFlowTheme.of(context)
+                                  .bodyMedium
+                                  .override(
+                                    fontFamily: 'Inter',
+                                  ),
+                            ),
+                          );
+                        }
                         final challenge =
                             (snapshot.data as Map)['challengeData'];
                         final post = (snapshot.data as Map)['postData'];
@@ -122,6 +161,10 @@ class _InPostChallengeWidgetState extends State<InPostChallengeWidget> {
                               mainAxisAlignment: MainAxisAlignment.start,
                               children: [
                                 PostWidget(
+                                  callback: () {
+                                    setState(() {});
+                                    //widget.extra!['callback']();
+                                  },
                                   name: post["display_name"],
                                   location: post["location"],
                                   description: post["post_description"] ??
@@ -130,15 +173,19 @@ class _InPostChallengeWidgetState extends State<InPostChallengeWidget> {
                                     post["likes"].length,
                                     0,
                                   ),
-                                  challenge: challenge["in_post_challenge"],
+                                  challenge: post["in_post_challenge"],
                                   imageURLs:
                                       List<String>.from(post["post_images"]),
                                   authorRef: post["post_user"],
                                   postRef: widget.postReference,
                                   liked: post["likes"]
                                       .contains(currentUserReference),
-                                  callback: () {
-                                    setState(() {});
+                                  refresh: () {
+                                    setState(() {
+                                      widget.postReference!.delete();
+                                      context.safePop();
+                                      widget.extra!['refresh']();
+                                    });
                                   },
                                   onPage: "InPostChallengePage",
                                 ),
@@ -263,8 +310,7 @@ class _InPostChallengeWidgetState extends State<InPostChallengeWidget> {
                                                                 0, 20, 0, 0),
                                                     child: Text(
                                                       valueOrDefault<String>(
-                                                        challenge[
-                                                            "description"],
+                                                        challenge["details"],
                                                         'No details here 😮',
                                                       ),
                                                       style:
@@ -278,10 +324,10 @@ class _InPostChallengeWidgetState extends State<InPostChallengeWidget> {
                                                                 color: FlutterFlowTheme.of(
                                                                         context)
                                                                     .primaryBackground,
-                                                                fontSize: 12,
+                                                                fontSize: 17,
                                                                 fontWeight:
                                                                     FontWeight
-                                                                        .w300,
+                                                                        .bold,
                                                                 useGoogleFonts: GoogleFonts
                                                                         .asMap()
                                                                     .containsKey(
@@ -358,11 +404,60 @@ class _InPostChallengeWidgetState extends State<InPostChallengeWidget> {
                                                               ),
                                                     ),
                                                   ),
+                                                  // add a button
+                                                  Padding(
+                                                    padding:
+                                                        EdgeInsetsDirectional
+                                                            .fromSTEB(
+                                                                0, 20, 0, 0),
+                                                    child: Row(
+                                                      mainAxisAlignment:
+                                                          MainAxisAlignment.end,
+                                                      children: [],
+                                                    ),
+                                                  ),
                                                 ],
                                               ),
                                             ],
                                           ),
                                         ),
+                                      ),
+                                      Padding(
+                                        padding: EdgeInsetsDirectional.fromSTEB(
+                                            0, 20, 0, 0),
+                                        child: FFButtonWidget(
+                                            onPressed: () async {
+                                              HapticFeedback.lightImpact();
+                                              FlutterPlatformAlert.showAlert(
+                                                  windowTitle: "Coming soon!",
+                                                  text:
+                                                      "Soon you will be able to request to join your friend's challenges!");
+                                            },
+                                            text: 'Request to Join 🌟',
+                                            options: FFButtonOptions(
+                                              width: double.infinity,
+                                              height: 60,
+                                              color: Color.fromARGB(
+                                                  255, 76, 177, 249),
+                                              textStyle: FlutterFlowTheme.of(
+                                                      context)
+                                                  .bodyMedium
+                                                  .override(
+                                                    fontFamily: 'Archivo Black',
+                                                    color: FlutterFlowTheme.of(
+                                                            context)
+                                                        .secondaryBackground,
+                                                    fontSize: 20,
+                                                    fontWeight: FontWeight.w500,
+                                                  ),
+                                              elevation: 5,
+                                              borderSide: BorderSide(
+                                                color: Colors.transparent,
+                                                width: 1,
+                                              ),
+                                              borderRadius: BorderRadius.all(
+                                                  Radius.circular(20)),
+                                            )),
                                       ),
                                     ],
                                   ),

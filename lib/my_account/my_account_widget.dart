@@ -1,8 +1,10 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:fitegy/auth/firebase_user_provider.dart';
 import 'package:fitegy/components/profile_stats_bar_widget.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_platform_alert/flutter_platform_alert.dart';
 import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
+import 'package:scrolls_to_top/scrolls_to_top.dart';
 
 import '../components/empty_widget.dart';
 import '../components/post_widget.dart';
@@ -86,17 +88,21 @@ class _MyAccountWidgetState extends State<MyAccountWidget> {
     return data;
   }
 
+  Future<void> _onScrollsToTop(ScrollsToTopEvent event) async {
+    _pagingController!.refresh();
+  }
+
   @override
   Widget build(BuildContext context) {
     var name;
     var bio;
     var emoji;
-    return Scaffold(
-      key: scaffoldKey,
-      backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
-      body: SafeArea(
-        top: false,
-        child: SingleChildScrollView(
+    return ScrollsToTop(
+      onScrollsToTop: _onScrollsToTop,
+      child: Scaffold(
+        key: scaffoldKey,
+        backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
+        body: SingleChildScrollView(
           primary: true,
           child: Column(
             mainAxisSize: MainAxisSize.min,
@@ -285,7 +291,7 @@ class _MyAccountWidgetState extends State<MyAccountWidget> {
                                           return Text(
                                             valueOrDefault(bio,
                                                 'Just joined Fitegy! Come challenge me!'),
-                                            maxLines: 20,
+                                            maxLines: 4,
                                             style: FlutterFlowTheme.of(context)
                                                 .bodyText2
                                                 .override(
@@ -322,63 +328,64 @@ class _MyAccountWidgetState extends State<MyAccountWidget> {
                                     MainAxisAlignment.spaceBetween,
                                 children: [
                                   (currentUserReference == currentUserReference)
-                                      ? FFButtonWidget(
-                                          onPressed: () async {
-                                            context.pushNamed(
-                                              'EditProfile',
-                                              queryParams: {
-                                                'name': serializeParam(
-                                                  name,
-                                                  ParamType.String,
-                                                ),
-                                                'bio': serializeParam(
-                                                  bio,
-                                                  ParamType.String,
-                                                ),
-                                                'emoji': serializeParam(
-                                                  emoji,
-                                                  ParamType.String,
-                                                ),
-                                              }.withoutNulls,
-                                            );
-                                          },
-                                          text: 'Edit Profile',
-                                          options: FFButtonOptions(
-                                            width: 280,
-                                            height: 45,
-                                            padding:
-                                                EdgeInsetsDirectional.fromSTEB(
-                                                    0.0, 0.0, 0.0, 0.0),
-                                            iconPadding:
-                                                EdgeInsetsDirectional.fromSTEB(
-                                                    0.0, 0.0, 0.0, 0.0),
-                                            color: FlutterFlowTheme.of(context)
-                                                .primaryColor,
-                                            textStyle:
-                                                FlutterFlowTheme.of(context)
-                                                    .subtitle2
-                                                    .override(
-                                                      fontFamily:
-                                                          FlutterFlowTheme.of(
-                                                                  context)
-                                                              .subtitle2Family,
-                                                      color: Colors.white,
-                                                      fontSize: 20,
-                                                      fontWeight:
-                                                          FontWeight.w600,
-                                                      useGoogleFonts: GoogleFonts
-                                                              .asMap()
-                                                          .containsKey(
-                                                              FlutterFlowTheme.of(
-                                                                      context)
-                                                                  .subtitle2Family),
-                                                    ),
-                                            borderSide: BorderSide(
-                                              color: Colors.transparent,
-                                              width: 1,
+                                      ? Expanded(
+                                          child: FFButtonWidget(
+                                            onPressed: () async {
+                                              HapticFeedback.lightImpact();
+                                              context.pushNamed(
+                                                'EditProfile',
+                                                queryParams: {
+                                                  'name': serializeParam(
+                                                    name,
+                                                    ParamType.String,
+                                                  ),
+                                                  'bio': serializeParam(
+                                                    bio,
+                                                    ParamType.String,
+                                                  ),
+                                                  'emoji': serializeParam(
+                                                    emoji,
+                                                    ParamType.String,
+                                                  ),
+                                                }.withoutNulls,
+                                              );
+                                            },
+                                            text: 'Edit Profile',
+                                            options: FFButtonOptions(
+                                              height: 45,
+                                              padding: EdgeInsetsDirectional
+                                                  .fromSTEB(0.0, 0.0, 0.0, 0.0),
+                                              iconPadding: EdgeInsetsDirectional
+                                                  .fromSTEB(0.0, 0.0, 0.0, 0.0),
+                                              color:
+                                                  FlutterFlowTheme.of(context)
+                                                      .primaryColor,
+                                              textStyle:
+                                                  FlutterFlowTheme.of(context)
+                                                      .subtitle2
+                                                      .override(
+                                                        fontFamily:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .subtitle2Family,
+                                                        color: Colors.white,
+                                                        fontSize: 20,
+                                                        fontWeight:
+                                                            FontWeight.w600,
+                                                        useGoogleFonts: GoogleFonts
+                                                                .asMap()
+                                                            .containsKey(
+                                                                FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .subtitle2Family),
+                                                      ),
+                                              borderSide: BorderSide(
+                                                color: Colors.transparent,
+                                                width: 1,
+                                              ),
+                                              borderRadius:
+                                                  BorderRadius.circular(15),
                                             ),
-                                            borderRadius:
-                                                BorderRadius.circular(15),
                                           ),
                                         )
                                       : FutureBuilder(
@@ -444,7 +451,7 @@ class _MyAccountWidgetState extends State<MyAccountWidget> {
                                                           IconStyle.question,
                                                       alertStyle:
                                                           AlertButtonStyle
-                                                              .yesNoCancel,
+                                                              .yesNo,
                                                     );
 
                                                     if (result ==
@@ -609,7 +616,8 @@ class _MyAccountWidgetState extends State<MyAccountWidget> {
                                                 );
                                               }
                                             }
-                                          }),
+                                          },
+                                        ),
                                   Padding(
                                     padding: EdgeInsetsDirectional.fromSTEB(
                                         10, 0, 0, 0),
@@ -626,7 +634,14 @@ class _MyAccountWidgetState extends State<MyAccountWidget> {
                                               emoji = '👋';
                                             }
                                             return FFButtonWidget(
-                                              onPressed: () {},
+                                              onPressed: () {
+                                                FlutterPlatformAlert.showAlert(
+                                                    windowTitle:
+                                                        "You just pinned them!🤏",
+                                                    text:
+                                                        "Don't pin them too much tho...");
+                                                HapticFeedback.lightImpact();
+                                              },
                                               text: snapshot.data.toString() !=
                                                       'null'
                                                   ? snapshot.data.toString()
@@ -773,7 +788,8 @@ class _MyAccountWidgetState extends State<MyAccountWidget> {
                     _pagingController!.addPageRequestListener((nextPageMarker) {
                       queryPostsRecordPage(
                         parent: currentUserReference,
-                        queryBuilder: (postsRecord) => postsRecord,
+                        queryBuilder: (postsRecord) => postsRecord
+                            .orderBy('time_posted', descending: true),
                         nextPageMarker: nextPageMarker,
                         pageSize: 8,
                         isStream: true,
@@ -853,6 +869,7 @@ class _MyAccountWidgetState extends State<MyAccountWidget> {
                         ),
                         callback: callback,
                         onPage: 'ProfilePage',
+                        refresh: refresh,
                       );
                     },
                   ),
@@ -869,5 +886,9 @@ class _MyAccountWidgetState extends State<MyAccountWidget> {
     if (mounted) {
       setState(() {});
     }
+  }
+
+  void refresh() {
+    _pagingController!.refresh();
   }
 }
