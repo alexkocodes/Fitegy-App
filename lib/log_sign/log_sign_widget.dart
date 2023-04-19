@@ -1,4 +1,4 @@
-import '/auth/auth_util.dart';
+import '/auth/firebase_auth/auth_util.dart';
 import '/backend/backend.dart';
 import '/flutter_flow/flutter_flow_animations.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
@@ -35,6 +35,11 @@ class _LogSignWidgetState extends State<LogSignWidget>
 
   final scaffoldKey = GlobalKey<ScaffoldState>();
   final _unfocusNode = FocusNode();
+  int get pageViewCurrentIndex => _model.pageViewController != null &&
+          _model.pageViewController!.hasClients &&
+          _model.pageViewController!.page != null
+      ? _model.pageViewController!.page!.round()
+      : 0;
 
   final animationsMap = {
     'textOnPageLoadAnimation1': AnimationInfo(
@@ -613,7 +618,8 @@ class _LogSignWidgetState extends State<LogSignWidget>
                                                                 .prepareAuthEvent();
 
                                                             final user =
-                                                                await signInWithEmail(
+                                                                await authManager
+                                                                    .signInWithEmail(
                                                               context,
                                                               _model
                                                                   .logInEmailController
@@ -1105,8 +1111,8 @@ class _LogSignWidgetState extends State<LogSignWidget>
                                     ),
                                     onPressed: () async {
                                       GoRouter.of(context).prepareAuthEvent();
-                                      final user =
-                                          await signInWithGoogle(context);
+                                      final user = await authManager
+                                          .signInWithGoogle(context);
                                       if (user == null) {
                                         return;
                                       }
@@ -1133,8 +1139,8 @@ class _LogSignWidgetState extends State<LogSignWidget>
                                     ),
                                     onPressed: () async {
                                       GoRouter.of(context).prepareAuthEvent();
-                                      final user =
-                                          await signInWithApple(context);
+                                      final user = await authManager
+                                          .signInWithApple(context);
                                       if (user == null) {
                                         return;
                                       }
@@ -1161,8 +1167,8 @@ class _LogSignWidgetState extends State<LogSignWidget>
                                     ),
                                     onPressed: () async {
                                       GoRouter.of(context).prepareAuthEvent();
-                                      final user =
-                                          await signInWithGoogle(context);
+                                      final user = await authManager
+                                          .signInWithGoogle(context);
                                       if (user == null) {
                                         return;
                                       }
@@ -2013,8 +2019,8 @@ class _LogSignWidgetState extends State<LogSignWidget>
                                             return;
                                           }
 
-                                          final user =
-                                              await createAccountWithEmail(
+                                          final user = await authManager
+                                              .createAccountWithEmail(
                                             context,
                                             _model.newEmailController.text,
                                             _model.newPassController.text,
@@ -2048,7 +2054,8 @@ class _LogSignWidgetState extends State<LogSignWidget>
                                               .doc(user.uid)
                                               .update(usersCreateData);
 
-                                          await sendEmailVerification();
+                                          await authManager
+                                              .sendEmailVerification();
                                           await _model.pageViewController
                                               ?.nextPage(
                                             duration:

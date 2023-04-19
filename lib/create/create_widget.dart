@@ -1,4 +1,4 @@
-import '/auth/auth_util.dart';
+import '/auth/firebase_auth/auth_util.dart';
 import '/backend/backend.dart';
 import '/backend/firebase_storage/storage.dart';
 import '/components/challenge_bottom_sheet_widget.dart';
@@ -35,6 +35,11 @@ class _CreateWidgetState extends State<CreateWidget> {
   final scaffoldKey = GlobalKey<ScaffoldState>();
   final _unfocusNode = FocusNode();
   LatLng? currentUserLocationValue;
+  int get pageViewCurrentIndex => _model.pageViewController != null &&
+          _model.pageViewController!.hasClients &&
+          _model.pageViewController!.page != null
+      ? _model.pageViewController!.page!.round()
+      : 0;
 
   @override
   void initState() {
@@ -1528,7 +1533,7 @@ class _CreateWidgetState extends State<CreateWidget> {
                                               children: [
                                                 FlutterFlowDropDown<String>(
                                                   controller: _model
-                                                          .dropDownController ??=
+                                                          .dropDownValueController ??=
                                                       FormFieldController<
                                                           String>(
                                                     _model.dropDownValue ??=

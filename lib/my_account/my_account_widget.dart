@@ -1,4 +1,4 @@
-import '/auth/auth_util.dart';
+import '/auth/firebase_auth/auth_util.dart';
 import '/backend/backend.dart';
 import '/backend/firebase_storage/storage.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
@@ -221,7 +221,7 @@ class _MyAccountWidgetState extends State<MyAccountWidget> {
                   child: FFButtonWidget(
                     onPressed: () async {
                       GoRouter.of(context).prepareAuthEvent();
-                      await signOut();
+                      await authManager.signOut();
                       GoRouter.of(context).clearRedirectLocation();
 
                       context.goNamedAuth('Landing', mounted);

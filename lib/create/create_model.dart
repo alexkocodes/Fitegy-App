@@ -1,4 +1,4 @@
-import '/auth/auth_util.dart';
+import '/auth/firebase_auth/auth_util.dart';
 import '/backend/backend.dart';
 import '/backend/firebase_storage/storage.dart';
 import '/components/challenge_bottom_sheet_widget.dart';
@@ -39,7 +39,7 @@ class CreateModel extends FlutterFlowModel {
   String? Function(BuildContext, String?)? textController4Validator;
   // State field(s) for DropDown widget.
   String? dropDownValue;
-  FormFieldController<String>? dropDownController;
+  FormFieldController<String>? dropDownValueController;
   // State field(s) for TextField widget.
   TextEditingController? textController5;
   String? Function(BuildContext, String?)? textController5Validator;
