@@ -70,12 +70,10 @@ Future<Map> getAuthorData(DocumentReference authorRef) async {
 
 class _PostWidgetState extends State<PostWidget> {
   var status = "Not Sure";
-
   @override
   Widget build(BuildContext context) {
     final _imageProviders =
         widget.imageURLs?.map((e) => Image.network(e).image).toList();
-
     return Padding(
       padding: EdgeInsetsDirectional.fromSTEB(25, 10, 25, 10),
       child: Container(
@@ -127,16 +125,18 @@ class _PostWidgetState extends State<PostWidget> {
                                 child: AuthUserStreamWidget(
                                   builder: (context) => InkWell(
                                     onTap: () async {
-                                      context.pushNamed(
-                                        'ProfilePage',
-                                        queryParams: {
-                                          'userRef': serializeParam(
-                                            widget.authorRef,
-                                            ParamType.DocumentReference,
-                                          ),
-                                          "name": widget.name,
-                                        }.withoutNulls,
-                                      );
+                                      if (widget.onPage != "ProfilePage") {
+                                        context.pushNamed(
+                                          'ProfilePage',
+                                          queryParams: {
+                                            'userRef': serializeParam(
+                                              widget.authorRef,
+                                              ParamType.DocumentReference,
+                                            ),
+                                            "name": widget.name,
+                                          }.withoutNulls,
+                                        );
+                                      }
                                     },
                                     child: Container(
                                       width: 40,
@@ -201,16 +201,20 @@ class _PostWidgetState extends State<PostWidget> {
                                           width: 150,
                                           child: InkWell(
                                             onTap: () async {
-                                              context.pushNamed(
-                                                'ProfilePage',
-                                                queryParams: {
-                                                  'userRef': serializeParam(
-                                                    widget.authorRef,
-                                                    ParamType.DocumentReference,
-                                                  ),
-                                                  "name": widget.name,
-                                                }.withoutNulls,
-                                              );
+                                              if (widget.onPage !=
+                                                  "ProfilePage") {
+                                                context.pushNamed(
+                                                  'ProfilePage',
+                                                  queryParams: {
+                                                    'userRef': serializeParam(
+                                                      widget.authorRef,
+                                                      ParamType
+                                                          .DocumentReference,
+                                                    ),
+                                                    "name": widget.name,
+                                                  }.withoutNulls,
+                                                );
+                                              }
                                             },
                                             child: FutureBuilder(
                                                 future: getAuthorData(
@@ -309,52 +313,78 @@ class _PostWidgetState extends State<PostWidget> {
                                     default:
                                       return Container();
                                   }
-                                  return Row(
-                                    mainAxisAlignment: MainAxisAlignment.end,
-                                    children: [
-                                      Align(
-                                        alignment:
-                                            AlignmentDirectional(-0.55, 0),
-                                        child: Padding(
+                                  return InkWell(
+                                    onTap: () {
+                                      if (widget.onPage !=
+                                          "InPostChallengePage") {
+                                        context.pushNamed(
+                                          "InPostChallengePage",
+                                          queryParams: {
+                                            'challengeReference':
+                                                serializeParam(
+                                              widget.challenge,
+                                              ParamType.DocumentReference,
+                                            ),
+                                            'postReference': serializeParam(
+                                              widget.postRef,
+                                              ParamType.DocumentReference,
+                                            ),
+                                          }.withoutNulls,
+                                          extra: {
+                                            "refresh": widget.refresh,
+                                            "callback": widget.callback
+                                          },
+                                        );
+                                      }
+                                    },
+                                    child: Row(
+                                      mainAxisAlignment: MainAxisAlignment.end,
+                                      children: [
+                                        Align(
+                                          alignment:
+                                              AlignmentDirectional(-0.55, 0),
+                                          child: Padding(
+                                              padding: EdgeInsetsDirectional
+                                                  .fromSTEB(0, 5, 5, 0),
+                                              child: Icon(
+                                                icon,
+                                                color: color,
+                                                size: 13,
+                                              )),
+                                        ),
+                                        Align(
+                                          alignment:
+                                              AlignmentDirectional(1, -0.3),
+                                          child: Padding(
                                             padding:
                                                 EdgeInsetsDirectional.fromSTEB(
-                                                    0, 5, 5, 0),
-                                            child: Icon(
-                                              icon,
-                                              color: color,
-                                              size: 13,
-                                            )),
-                                      ),
-                                      Align(
-                                        alignment:
-                                            AlignmentDirectional(1, -0.3),
-                                        child: Padding(
-                                          padding:
-                                              EdgeInsetsDirectional.fromSTEB(
-                                                  0, 4, 0, 0),
-                                          child: Text(
-                                            text,
-                                            style: FlutterFlowTheme.of(context)
-                                                .bodyText1
-                                                .override(
-                                                  fontFamily:
-                                                      FlutterFlowTheme.of(
-                                                              context)
-                                                          .bodyText1Family,
-                                                  color: color,
-                                                  fontSize: 12,
-                                                  fontWeight: FontWeight.normal,
-                                                  useGoogleFonts: GoogleFonts
-                                                          .asMap()
-                                                      .containsKey(
-                                                          FlutterFlowTheme.of(
-                                                                  context)
-                                                              .bodyText1Family),
-                                                ),
+                                                    0, 4, 0, 0),
+                                            child: Text(
+                                              text,
+                                              style:
+                                                  FlutterFlowTheme.of(context)
+                                                      .bodyText1
+                                                      .override(
+                                                        fontFamily:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .bodyText1Family,
+                                                        color: color,
+                                                        fontSize: 12,
+                                                        fontWeight:
+                                                            FontWeight.normal,
+                                                        useGoogleFonts: GoogleFonts
+                                                                .asMap()
+                                                            .containsKey(
+                                                                FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .bodyText1Family),
+                                                      ),
+                                            ),
                                           ),
                                         ),
-                                      ),
-                                    ],
+                                      ],
+                                    ),
                                   );
                                 },
                               ),

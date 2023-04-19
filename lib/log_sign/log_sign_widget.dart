@@ -322,7 +322,7 @@ class _LogSignWidgetState extends State<LogSignWidget>
                                                                             GoogleFonts.asMap().containsKey(FlutterFlowTheme.of(context).bodyText2Family),
                                                                       ),
                                                               hintText:
-                                                                  'Your email address or username',
+                                                                  'Your email address',
                                                               hintStyle:
                                                                   FlutterFlowTheme.of(
                                                                           context)

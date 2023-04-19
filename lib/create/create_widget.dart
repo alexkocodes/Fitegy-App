@@ -53,6 +53,7 @@ class _CreateWidgetState extends State<CreateWidget>
   PageController? pageViewController;
   final scaffoldKey = GlobalKey<ScaffoldState>();
   FocusNode focusNode = FocusNode();
+  FocusNode _unfocusNode = FocusNode();
   final GlobalKey<AnimatedListState> _listKey = GlobalKey(); // backing data
 
   List<SelectedMedia> toBeUploaded = [];
@@ -66,6 +67,7 @@ class _CreateWidgetState extends State<CreateWidget>
   @override
   void dispose() {
     textController?.dispose();
+    _unfocusNode.dispose();
     super.dispose();
   }
 
@@ -1060,6 +1062,9 @@ class _CreateWidgetState extends State<CreateWidget>
                               final List<XFile>? selectedImages =
                                   await imagePicker.pickMultiImage(
                                       imageQuality: 70);
+                              if (selectedImages == null) {
+                                return;
+                              }
                               if (selectedImages!.isNotEmpty) {
                                 imageFileList!.addAll(selectedImages);
                               }
@@ -1110,6 +1115,88 @@ class _CreateWidgetState extends State<CreateWidget>
                               borderRadius: BorderRadius.circular(8),
                             ),
                           ),
+                          // FFButtonWidget(
+                          //   onPressed: () async {
+                          //     final selectedMedia =
+                          //         await selectMediaWithSourceBottomSheet(
+                          //       context: context,
+                          //       imageQuality: 100,
+                          //       allowPhoto: true,
+                          //       backgroundColor: FlutterFlowTheme.of(context)
+                          //           .primaryBackground,
+                          //       textColor:
+                          //           FlutterFlowTheme.of(context).secondaryText,
+                          //       pickerFontFamily: 'Archivo Black',
+                          //     );
+                          //     if (selectedMedia != null &&
+                          //         selectedMedia.every((m) => validateFileFormat(
+                          //             m.storagePath, context))) {
+                          //       setState(() => _model.isDataUploading = true);
+                          //       var selectedUploadedFiles = <FFUploadedFile>[];
+                          //       var downloadUrls = <String>[];
+                          //       try {
+                          //         selectedUploadedFiles = selectedMedia
+                          //             .map((m) => FFUploadedFile(
+                          //                   name: m.storagePath.split('/').last,
+                          //                   bytes: m.bytes,
+                          //                   height: m.dimensions?.height,
+                          //                   width: m.dimensions?.width,
+                          //                 ))
+                          //             .toList();
+                          //         downloadUrls = (await Future.wait(
+                          //           selectedMedia.map(
+                          //             (m) async => await uploadData(
+                          //                 m.storagePath, m.bytes),
+                          //           ),
+                          //         ))
+                          //             .where((u) => u != null)
+                          //             .map((u) => u!)
+                          //             .toList();
+                          //       } finally {
+                          //         _model.isDataUploading = false;
+                          //       }
+                          //       if (selectedUploadedFiles.length ==
+                          //               selectedMedia.length &&
+                          //           downloadUrls.length ==
+                          //               selectedMedia.length) {
+                          //         setState(() {
+                          //           _model.uploadedLocalFile =
+                          //               selectedUploadedFiles.first;
+                          //           _model.uploadedFileUrl = downloadUrls.first;
+                          //         });
+                          //       } else {
+                          //         setState(() {});
+                          //         return;
+                          //       }
+                          //     }
+                          //   },
+                          //   text: '',
+                          //   icon: Icon(
+                          //     Icons.camera_alt_rounded,
+                          //     color: Color(0x9999EDFF),
+                          //     size: 31,
+                          //   ),
+                          //   options: FFButtonOptions(
+                          //     elevation: 0,
+                          //     color: Color(0x003B3F6B),
+                          //     textStyle: FlutterFlowTheme.of(context)
+                          //         .subtitle2
+                          //         .override(
+                          //           fontFamily: FlutterFlowTheme.of(context)
+                          //               .subtitle2Family,
+                          //           color: Colors.white,
+                          //           useGoogleFonts: GoogleFonts.asMap()
+                          //               .containsKey(
+                          //                   FlutterFlowTheme.of(context)
+                          //                       .subtitle2Family),
+                          //         ),
+                          //     borderSide: BorderSide(
+                          //       color: Colors.transparent,
+                          //       width: 1,
+                          //     ),
+                          //     borderRadius: BorderRadius.circular(8),
+                          //   ),
+                          // ),
                           FFButtonWidget(
                             onPressed: () async {
                               await showModalBottomSheet(

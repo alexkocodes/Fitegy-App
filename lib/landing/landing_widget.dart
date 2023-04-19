@@ -1320,57 +1320,6 @@ class _LandingWidgetState extends State<LandingWidget>
                           ],
                         ),
                       ),
-                      Align(
-                        alignment: AlignmentDirectional(0, 1),
-                        child: Padding(
-                          padding:
-                              EdgeInsetsDirectional.fromSTEB(40, 0, 40, 12),
-                          child: Row(
-                            mainAxisSize: MainAxisSize.max,
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              FlutterFlowIconButton(
-                                borderColor: Colors.transparent,
-                                borderRadius: 8,
-                                borderWidth: 1,
-                                buttonSize: 45,
-                                icon: FaIcon(
-                                  FontAwesomeIcons.longArrowAltLeft,
-                                  color: FlutterFlowTheme.of(context)
-                                      .primaryBackground,
-                                  size: 14,
-                                ),
-                                onPressed: () async {
-                                  await pageViewController?.previousPage(
-                                    duration: Duration(milliseconds: 300),
-                                    curve: Curves.ease,
-                                  );
-                                },
-                              ).animateOnPageLoad(animationsMap[
-                                  'iconButtonOnPageLoadAnimation1']!),
-                              FlutterFlowIconButton(
-                                borderColor: Colors.transparent,
-                                borderRadius: 8,
-                                borderWidth: 1,
-                                buttonSize: 45,
-                                icon: FaIcon(
-                                  FontAwesomeIcons.longArrowAltRight,
-                                  color: FlutterFlowTheme.of(context)
-                                      .primaryBackground,
-                                  size: 14,
-                                ),
-                                onPressed: () async {
-                                  await pageViewController?.nextPage(
-                                    duration: Duration(milliseconds: 300),
-                                    curve: Curves.ease,
-                                  );
-                                },
-                              ).animateOnPageLoad(animationsMap[
-                                  'iconButtonOnPageLoadAnimation2']!),
-                            ],
-                          ),
-                        ),
-                      ),
                     ],
                   ),
                 ),

@@ -1,3 +1,4 @@
+import 'package:animated_loading_border/animated_loading_border.dart';
 import 'package:fitegy/flutter_flow/flutter_flow_animations.dart';
 import 'package:flutter_platform_alert/flutter_platform_alert.dart';
 
@@ -381,7 +382,62 @@ class _ChallengeDetailsWidgetState extends State<ChallengeDetailsWidget> {
                                             ),
                                           );
                                         }
-
+                                        if (snapshot.data!.status ==
+                                            "invited") {
+                                          return Padding(
+                                            padding:
+                                                EdgeInsetsDirectional.fromSTEB(
+                                                    0, 10, 0, 20),
+                                            child: FFButtonWidget(
+                                              onPressed: () async {
+                                                await db.doc(widget.path!).set(
+                                                    {"status": "active"},
+                                                    SetOptions(merge: true));
+                                                context.goNamed(
+                                                  'MyChallenges',
+                                                  extra: <String, dynamic>{
+                                                    kTransitionInfoKey:
+                                                        TransitionInfo(
+                                                      hasTransition: true,
+                                                      transitionType:
+                                                          PageTransitionType
+                                                              .fade,
+                                                      duration: Duration(
+                                                          milliseconds: 300),
+                                                    ),
+                                                  },
+                                                );
+                                              },
+                                              text: 'Accept Challenge 💪',
+                                              options: FFButtonOptions(
+                                                height: 20,
+                                                color: Color.fromARGB(
+                                                    255, 255, 153, 0),
+                                                textStyle:
+                                                    FlutterFlowTheme.of(context)
+                                                        .subtitle2
+                                                        .override(
+                                                          fontFamily:
+                                                              'Archivo Black',
+                                                          color: Colors.white,
+                                                          useGoogleFonts: GoogleFonts
+                                                                  .asMap()
+                                                              .containsKey(
+                                                                  FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .subtitle2Family),
+                                                        ),
+                                                // elevation: 8,
+                                                borderSide: BorderSide(
+                                                  color: Colors.transparent,
+                                                  width: 1,
+                                                ),
+                                                borderRadius:
+                                                    BorderRadius.circular(15),
+                                              ),
+                                            ),
+                                          );
+                                        }
                                         return Row(
                                             mainAxisSize: MainAxisSize.max,
                                             mainAxisAlignment:

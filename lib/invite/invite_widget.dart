@@ -443,11 +443,11 @@ class _InviteWidgetState extends State<InviteWidget> {
                               mainAxisAlignment: MainAxisAlignment.end,
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
-                                Icon(
-                                  Icons.arrow_right_alt,
-                                  color: Colors.black,
-                                  size: 40,
-                                ),
+                                // Icon(
+                                //   Icons.arrow_right_alt,
+                                //   color: Colors.black,
+                                //   size: 40,
+                                // ),
                                 FFButtonWidget(
                                   onPressed: () async {
                                     // if no friend is selected, show an alert box and do nothing

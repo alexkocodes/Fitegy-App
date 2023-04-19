@@ -947,7 +947,7 @@ class _ProfileWidgetState extends State<ProfileWidget> {
                             currentUserReference,
                           ),
                           callback: callback,
-                          onPage: 'HomePage',
+                          onPage: 'ProfilePage',
                           refresh: refresh,
                         );
                       },
