@@ -1,7 +1,10 @@
 import 'dart:async';
+import 'dart:ui';
 
+import 'package:animated_loading_border/animated_loading_border.dart';
 import 'package:fitegy/components/post_widget.dart';
 import 'package:fitegy/flutter_flow/flutter_flow_animations.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_platform_alert/flutter_platform_alert.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
@@ -406,56 +409,11 @@ class _InPostChallengeWidgetState extends State<InPostChallengeWidget> {
                                                     padding:
                                                         EdgeInsetsDirectional
                                                             .fromSTEB(
-                                                                0, 40, 0, 0),
+                                                                0, 20, 0, 0),
                                                     child: Row(
                                                       mainAxisAlignment:
                                                           MainAxisAlignment.end,
-                                                      children: [
-                                                        FFButtonWidget(
-                                                            onPressed:
-                                                                () async {
-                                                              FlutterPlatformAlert
-                                                                  .showAlert(
-                                                                      windowTitle:
-                                                                          "Coming soon!",
-                                                                      text:
-                                                                          "Soon you will be able to request to join your friend's challenges!");
-                                                            },
-                                                            text:
-                                                                'Request to Join',
-                                                            options:
-                                                                FFButtonOptions(
-                                                              width: 150,
-                                                              height: 40,
-                                                              color:
-                                                                  Colors.white,
-                                                              textStyle:
-                                                                  FlutterFlowTheme.of(
-                                                                          context)
-                                                                      .bodyMedium
-                                                                      .override(
-                                                                        fontFamily:
-                                                                            'Archivo Black',
-                                                                        color: FlutterFlowTheme.of(context)
-                                                                            .primary,
-                                                                        fontSize:
-                                                                            20,
-                                                                        fontWeight:
-                                                                            FontWeight.w500,
-                                                                      ),
-                                                              elevation: 5,
-                                                              borderSide:
-                                                                  BorderSide(
-                                                                color: Colors
-                                                                    .transparent,
-                                                                width: 1,
-                                                              ),
-                                                              borderRadius: BorderRadius
-                                                                  .all(Radius
-                                                                      .circular(
-                                                                          12)),
-                                                            )),
-                                                      ],
+                                                      children: [],
                                                     ),
                                                   ),
                                                 ],
@@ -463,6 +421,43 @@ class _InPostChallengeWidgetState extends State<InPostChallengeWidget> {
                                             ],
                                           ),
                                         ),
+                                      ),
+                                      Padding(
+                                        padding: EdgeInsetsDirectional.fromSTEB(
+                                            0, 20, 0, 0),
+                                        child: FFButtonWidget(
+                                            onPressed: () async {
+                                              HapticFeedback.lightImpact();
+                                              FlutterPlatformAlert.showAlert(
+                                                  windowTitle: "Coming soon!",
+                                                  text:
+                                                      "Soon you will be able to request to join your friend's challenges!");
+                                            },
+                                            text: 'Request to Join 🌟',
+                                            options: FFButtonOptions(
+                                              width: double.infinity,
+                                              height: 60,
+                                              color: Color.fromARGB(
+                                                  255, 76, 177, 249),
+                                              textStyle: FlutterFlowTheme.of(
+                                                      context)
+                                                  .bodyMedium
+                                                  .override(
+                                                    fontFamily: 'Archivo Black',
+                                                    color: FlutterFlowTheme.of(
+                                                            context)
+                                                        .secondaryBackground,
+                                                    fontSize: 20,
+                                                    fontWeight: FontWeight.w500,
+                                                  ),
+                                              elevation: 5,
+                                              borderSide: BorderSide(
+                                                color: Colors.transparent,
+                                                width: 1,
+                                              ),
+                                              borderRadius: BorderRadius.all(
+                                                  Radius.circular(20)),
+                                            )),
                                       ),
                                     ],
                                   ),

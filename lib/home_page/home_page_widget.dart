@@ -182,6 +182,7 @@ class _HomePageWidgetState extends State<HomePageWidget>
                             buttonSize: 45,
                             borderRadius: 60,
                             onPressed: () {
+                              HapticFeedback.lightImpact();
                               // push to the search page
                               context.pushNamed('SearchPage');
                             },
