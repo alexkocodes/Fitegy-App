@@ -1,3 +1,5 @@
+import 'dart:ui';
+
 import 'package:fitegy/components/comment_widget.dart';
 import 'package:fitegy/components/post_widget.dart';
 import 'package:fitegy/components/profile_stats_bar_widget.dart';
@@ -64,7 +66,7 @@ class _CommentPageWidgetState extends State<CommentPageWidget> {
         key: scaffoldKey,
         backgroundColor: Colors.white,
         bottomNavigationBar: BottomAppBar(
-          color: Color(0xFFF1F4F8),
+          color: Color.fromARGB(211, 255, 255, 255),
           elevation: 0,
         ),
         body: NestedScrollView(
@@ -163,57 +165,62 @@ class _CommentPageWidgetState extends State<CommentPageWidget> {
                     ),
                     Align(
                       alignment: Alignment.bottomCenter,
-                      child: Container(
-                        width: double.infinity,
-                        height: 60.0,
-                        decoration: BoxDecoration(
-                          color: Color.fromARGB(224, 255, 255, 255),
-                          boxShadow: [
-                            BoxShadow(
-                              blurRadius: 4.0,
-                              color: Color(0x26000000),
-                              offset: Offset(0.0, 2.0),
-                            )
-                          ],
-                          borderRadius: BorderRadius.circular(0.0),
-                        ),
-                        child: Row(
-                          mainAxisSize: MainAxisSize.max,
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Expanded(
-                              child: Container(
-                                width: double.infinity,
-                                height: 50.0,
-                                decoration: BoxDecoration(
-                                  // color: Color(0xFFF1F4F8),
+                      child: ClipRRect(
+                        child: BackdropFilter(
+                          filter: ImageFilter.blur(
+                            sigmaX: 5,
+                            sigmaY: 5,
+                          ),
+                          child: Container(
+                            width: double.infinity,
+                            height: 60.0,
+                            decoration: BoxDecoration(
+                              // gradient: LinearGradient(
+                              //   colors: [Color(0x94FFFFFF), Color(0x00FFFFFF)],
+                              //   stops: [0, 0.7],
+                              //   begin: AlignmentDirectional(-0.64, -1),
+                              //   end: AlignmentDirectional(0.64, 1),
+                              // ),
+                              color: Color.fromARGB(211, 255, 255, 255),
+                            ),
+                            child: Row(
+                              mainAxisSize: MainAxisSize.max,
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Expanded(
+                                  child: Container(
+                                    width: double.infinity,
+                                    height: 50.0,
+                                    decoration: BoxDecoration(
+                                      // color: Color(0xFFF1F4F8),
 
-                                  borderRadius: BorderRadius.circular(0.0),
-                                ),
-                                alignment: AlignmentDirectional(0.0, 0.0),
-                                child: Padding(
-                                  padding: EdgeInsetsDirectional.fromSTEB(
-                                      0.0, 5.0, 0.0, 0.0),
-                                  child: Row(
-                                    mainAxisSize: MainAxisSize.max,
-                                    children: [
-                                      Expanded(
-                                        child: Padding(
-                                          padding:
-                                              EdgeInsetsDirectional.fromSTEB(
-                                                  20.0, 0.0, 4.0, 0.0),
-                                          child: TextFormField(
-                                            controller:
-                                                _model.commentBoxController,
-                                            autofocus: true,
-                                            textCapitalization:
-                                                TextCapitalization.sentences,
-                                            obscureText: false,
-                                            decoration: InputDecoration(
-                                              hintText: 'Comment...',
-                                              hintStyle:
-                                                  FlutterFlowTheme.of(context)
+                                      borderRadius: BorderRadius.circular(0.0),
+                                    ),
+                                    alignment: AlignmentDirectional(0.0, 0.0),
+                                    child: Padding(
+                                      padding: EdgeInsetsDirectional.fromSTEB(
+                                          0.0, 5.0, 0.0, 0.0),
+                                      child: Row(
+                                        mainAxisSize: MainAxisSize.max,
+                                        children: [
+                                          Expanded(
+                                            child: Padding(
+                                              padding: EdgeInsetsDirectional
+                                                  .fromSTEB(
+                                                      20.0, 0.0, 4.0, 0.0),
+                                              child: TextFormField(
+                                                controller:
+                                                    _model.commentBoxController,
+                                                autofocus: true,
+                                                textCapitalization:
+                                                    TextCapitalization
+                                                        .sentences,
+                                                obscureText: false,
+                                                decoration: InputDecoration(
+                                                  hintText: 'Comment...',
+                                                  hintStyle: FlutterFlowTheme
+                                                          .of(context)
                                                       .bodyMedium
                                                       .override(
                                                         fontFamily: 'Inter',
@@ -231,133 +238,152 @@ class _CommentPageWidgetState extends State<CommentPageWidget> {
                                                                         context)
                                                                     .bodyMediumFamily),
                                                       ),
-                                              enabledBorder: OutlineInputBorder(
-                                                borderSide: BorderSide(
-                                                  color: Color(0x9295A1AC),
-                                                  width: 0.0,
+                                                  enabledBorder:
+                                                      OutlineInputBorder(
+                                                    borderSide: BorderSide(
+                                                      color: Color(0x9295A1AC),
+                                                      width: 0.0,
+                                                    ),
+                                                    borderRadius:
+                                                        BorderRadius.circular(
+                                                            15.0),
+                                                  ),
+                                                  focusedBorder:
+                                                      OutlineInputBorder(
+                                                    borderSide: BorderSide(
+                                                      color: Color(0x9295A1AC),
+                                                      width: 0.0,
+                                                    ),
+                                                    borderRadius:
+                                                        BorderRadius.circular(
+                                                            15.0),
+                                                  ),
+                                                  errorBorder:
+                                                      OutlineInputBorder(
+                                                    borderSide: BorderSide(
+                                                      color: Color(0x00000000),
+                                                      width: 0.0,
+                                                    ),
+                                                    borderRadius:
+                                                        BorderRadius.circular(
+                                                            15.0),
+                                                  ),
+                                                  focusedErrorBorder:
+                                                      OutlineInputBorder(
+                                                    borderSide: BorderSide(
+                                                      color: Color(0x00000000),
+                                                      width: 0.0,
+                                                    ),
+                                                    borderRadius:
+                                                        BorderRadius.circular(
+                                                            15.0),
+                                                  ),
+                                                  contentPadding:
+                                                      EdgeInsetsDirectional
+                                                          .fromSTEB(10.0, 16.0,
+                                                              0.0, 0.0),
                                                 ),
-                                                borderRadius:
-                                                    BorderRadius.circular(15.0),
+                                                style:
+                                                    FlutterFlowTheme.of(context)
+                                                        .bodyMedium
+                                                        .override(
+                                                          fontFamily: 'Inter',
+                                                          color:
+                                                              Color(0xFF14181B),
+                                                          fontSize: 14.0,
+                                                          fontWeight:
+                                                              FontWeight.normal,
+                                                          useGoogleFonts: GoogleFonts
+                                                                  .asMap()
+                                                              .containsKey(
+                                                                  FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .bodyMediumFamily),
+                                                        ),
+                                                textAlign: TextAlign.start,
+                                                maxLines: null,
+                                                keyboardType:
+                                                    TextInputType.multiline,
+                                                validator: _model
+                                                    .commentBoxControllerValidator
+                                                    .asValidator(context),
                                               ),
-                                              focusedBorder: OutlineInputBorder(
-                                                borderSide: BorderSide(
-                                                  color: Color(0x9295A1AC),
-                                                  width: 0.0,
-                                                ),
-                                                borderRadius:
-                                                    BorderRadius.circular(15.0),
-                                              ),
-                                              errorBorder: OutlineInputBorder(
-                                                borderSide: BorderSide(
-                                                  color: Color(0x00000000),
-                                                  width: 0.0,
-                                                ),
-                                                borderRadius:
-                                                    BorderRadius.circular(15.0),
-                                              ),
-                                              focusedErrorBorder:
-                                                  OutlineInputBorder(
-                                                borderSide: BorderSide(
-                                                  color: Color(0x00000000),
-                                                  width: 0.0,
-                                                ),
-                                                borderRadius:
-                                                    BorderRadius.circular(15.0),
-                                              ),
-                                              contentPadding:
-                                                  EdgeInsetsDirectional
-                                                      .fromSTEB(
-                                                          10.0, 16.0, 0.0, 0.0),
                                             ),
-                                            style: FlutterFlowTheme.of(context)
-                                                .bodyMedium
-                                                .override(
-                                                  fontFamily: 'Inter',
-                                                  color: Color(0xFF14181B),
-                                                  fontSize: 14.0,
-                                                  fontWeight: FontWeight.normal,
-                                                  useGoogleFonts: GoogleFonts
-                                                          .asMap()
-                                                      .containsKey(
-                                                          FlutterFlowTheme.of(
-                                                                  context)
-                                                              .bodyMediumFamily),
-                                                ),
-                                            textAlign: TextAlign.start,
-                                            maxLines: null,
-                                            keyboardType:
-                                                TextInputType.multiline,
-                                            validator: _model
-                                                .commentBoxControllerValidator
-                                                .asValidator(context),
                                           ),
-                                        ),
-                                      ),
-                                      Padding(
-                                        padding: EdgeInsetsDirectional.fromSTEB(
-                                            0.0, 0.0, 8.0, 0.0),
-                                        child: FFButtonWidget(
-                                          onPressed: _model.commentBoxController
-                                                          .text ==
-                                                      null ||
-                                                  _model.commentBoxController
-                                                          .text ==
-                                                      ''
-                                              ? () {
-                                                  FlutterPlatformAlert.showAlert(
-                                                      windowTitle: "Oops!",
-                                                      text:
-                                                          "You didn't enter anything 🙂");
-                                                }
-                                              : () async {
-                                                  setState(() {
-                                                    _model.commentBoxController
-                                                        ?.clear();
-                                                  });
-                                                },
-                                          text: 'Post',
-                                          options: FFButtonOptions(
-                                            width: 70.0,
-                                            height: 40.0,
+                                          Padding(
                                             padding:
                                                 EdgeInsetsDirectional.fromSTEB(
-                                                    0.0, 0.0, 0.0, 0.0),
-                                            iconPadding:
-                                                EdgeInsetsDirectional.fromSTEB(
-                                                    0.0, 0.0, 0.0, 0.0),
-                                            color: Color(0x004B39EF),
-                                            textStyle:
-                                                FlutterFlowTheme.of(context)
-                                                    .titleSmall
-                                                    .override(
-                                                      fontFamily: 'Inter',
-                                                      color: Color(0xFF00A2FF),
-                                                      fontSize: 16.0,
-                                                      fontWeight:
-                                                          FontWeight.w500,
-                                                      useGoogleFonts: GoogleFonts
-                                                              .asMap()
-                                                          .containsKey(
-                                                              FlutterFlowTheme.of(
-                                                                      context)
-                                                                  .titleSmallFamily),
-                                                    ),
-                                            elevation: 0.0,
-                                            borderSide: BorderSide(
-                                              color: Colors.transparent,
-                                              width: 1.0,
+                                                    0.0, 0.0, 8.0, 0.0),
+                                            child: FFButtonWidget(
+                                              onPressed: _model
+                                                              .commentBoxController
+                                                              .text ==
+                                                          null ||
+                                                      _model.commentBoxController
+                                                              .text ==
+                                                          ''
+                                                  ? () {
+                                                      FlutterPlatformAlert
+                                                          .showAlert(
+                                                              windowTitle:
+                                                                  "Oops!",
+                                                              text:
+                                                                  "You didn't enter anything 🙂");
+                                                    }
+                                                  : () async {
+                                                      setState(() {
+                                                        _model
+                                                            .commentBoxController
+                                                            ?.clear();
+                                                      });
+                                                    },
+                                              text: 'Post',
+                                              options: FFButtonOptions(
+                                                width: 70.0,
+                                                height: 40.0,
+                                                padding: EdgeInsetsDirectional
+                                                    .fromSTEB(
+                                                        0.0, 0.0, 0.0, 0.0),
+                                                iconPadding:
+                                                    EdgeInsetsDirectional
+                                                        .fromSTEB(
+                                                            0.0, 0.0, 0.0, 0.0),
+                                                color: Color(0x004B39EF),
+                                                textStyle:
+                                                    FlutterFlowTheme.of(context)
+                                                        .titleSmall
+                                                        .override(
+                                                          fontFamily: 'Inter',
+                                                          color:
+                                                              Color(0xFF00A2FF),
+                                                          fontSize: 16.0,
+                                                          fontWeight:
+                                                              FontWeight.w500,
+                                                          useGoogleFonts: GoogleFonts
+                                                                  .asMap()
+                                                              .containsKey(
+                                                                  FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .titleSmallFamily),
+                                                        ),
+                                                elevation: 0.0,
+                                                borderSide: BorderSide(
+                                                  color: Colors.transparent,
+                                                  width: 1.0,
+                                                ),
+                                                disabledTextColor:
+                                                    Color(0xFF82D1FF),
+                                              ),
                                             ),
-                                            disabledTextColor:
-                                                Color(0xFF82D1FF),
                                           ),
-                                        ),
+                                        ],
                                       ),
-                                    ],
+                                    ),
                                   ),
                                 ),
-                              ),
+                              ],
                             ),
-                          ],
+                          ),
                         ),
                       ),
                     )
