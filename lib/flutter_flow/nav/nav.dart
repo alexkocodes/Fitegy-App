@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:fitegy/comment_page/comment_page_widget.dart';
 import 'package:fitegy/edit_profiles/edit_profiles_widget.dart';
 import 'package:fitegy/in_post_challenge/in_post_challenge.dart';
 import 'package:fitegy/post_page/post_page.dart';
@@ -229,6 +230,20 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
               name: 'SearchPage',
               path: 'searchPage',
               builder: (context, params) => SearchPageWidget(),
+            ),
+            FFRoute(
+              name: 'CommentsPage',
+              path: 'commentsPage',
+              builder: (context, params) => CommentPageWidget(
+                challengeReference: params.getParam(
+                    'challengeReference',
+                    ParamType.DocumentReference,
+                    false,
+                    ['users', 'challenges']),
+                postReference: params.getParam('postReference',
+                    ParamType.DocumentReference, false, ['users', 'posts']),
+                extra: params.state.extra as Map,
+              ),
             ),
           ].map((r) => r.toRoute(appStateNotifier)).toList(),
         ).toRoute(appStateNotifier),

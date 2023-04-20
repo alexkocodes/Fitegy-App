@@ -139,11 +139,22 @@ class _PostActionBarWidgetState extends State<PostActionBarWidget> {
               child: InkWell(
                 onTap: () {
                   HapticFeedback.lightImpact();
-                  FlutterPlatformAlert.showAlert(
-                    windowTitle: 'Coming soon!',
-                    text:
-                        'This feature is coming soon. Please bear with us while we work on it. ☺️',
-                    iconStyle: IconStyle.information,
+                  context.pushNamed(
+                    "commentsPage",
+                    queryParams: {
+                      'challengeReference': serializeParam(
+                        widget.challengeReference,
+                        ParamType.DocumentReference,
+                      ),
+                      'postReference': serializeParam(
+                        widget.postReference,
+                        ParamType.DocumentReference,
+                      ),
+                    }.withoutNulls,
+                    extra: {
+                      "refresh": widget.refresh,
+                      "callback": widget.callback
+                    },
                   );
                 },
                 borderRadius: BorderRadius.circular(20),

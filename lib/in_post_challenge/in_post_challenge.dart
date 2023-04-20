@@ -140,7 +140,7 @@ class _InPostChallengeWidgetState extends State<InPostChallengeWidget> {
                         if (((snapshot.data as Map)['status'] == 'deleted')) {
                           return Center(
                             child: Text(
-                              'Challenge or post does not exist',
+                              'Oh no, the challenge has been deleted 😕',
                               style: FlutterFlowTheme.of(context)
                                   .bodyMedium
                                   .override(
