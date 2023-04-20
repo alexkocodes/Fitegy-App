@@ -47,15 +47,15 @@ class _ChallengeCardWidgetState extends State<ChallengeCardWidget>
           curve: Curves.easeInOut,
           delay: 0.ms,
           duration: 260.ms,
-          begin: 1.0,
-          end: 0.8,
+          begin: Offset(1.0, 1.0),
+          end: Offset(0.8, 0.8),
         ),
         ScaleEffect(
           curve: Curves.easeInOut,
           delay: 300.ms,
           duration: 600.ms,
-          begin: 0.8,
-          end: 1.0,
+          begin: Offset(0.8, 0.8),
+          end: Offset(1.0, 1.0),
         ),
       ],
     ),
@@ -94,6 +94,10 @@ class _ChallengeCardWidgetState extends State<ChallengeCardWidget>
     return Padding(
       padding: EdgeInsetsDirectional.fromSTEB(15.0, 0.0, 15.0, 0.0),
       child: InkWell(
+        splashColor: Colors.transparent,
+        focusColor: Colors.transparent,
+        hoverColor: Colors.transparent,
+        highlightColor: Colors.transparent,
         onTap: () async {
           context.pushNamed(
             'ChallengeDetails',

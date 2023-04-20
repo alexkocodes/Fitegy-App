@@ -186,6 +186,11 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
               name: 'SearchPage',
               path: 'searchPage',
               builder: (context, params) => SearchPageWidget(),
+            ),
+            FFRoute(
+              name: 'CommentPage',
+              path: 'commentPage',
+              builder: (context, params) => CommentPageWidget(),
             )
           ].map((r) => r.toRoute(appStateNotifier)).toList(),
         ),

@@ -140,6 +140,7 @@ class _EditProfilesWidgetState extends State<EditProfilesWidget> {
                                             bytes: m.bytes,
                                             height: m.dimensions?.height,
                                             width: m.dimensions?.width,
+                                            blurHash: m.blurHash,
                                           ))
                                       .toList();
 
@@ -565,6 +566,7 @@ class _EditProfilesWidgetState extends State<EditProfilesWidget> {
                                         bytes: m.bytes,
                                         height: m.dimensions?.height,
                                         width: m.dimensions?.width,
+                                        blurHash: m.blurHash,
                                       ))
                                   .toList();
 

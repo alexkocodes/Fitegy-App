@@ -1416,8 +1416,9 @@ class _CreateWidgetState extends State<CreateWidget> {
                                                         private: _model
                                                             .dropDownValue,
                                                       ),
-                                                      'post_images': _model
-                                                          .uploadedFileUrls,
+                                                      'post_images': [
+                                                        _model.uploadedFileUrl
+                                                      ],
                                                       'likes': [
                                                         currentUserReference
                                                       ],
@@ -1849,10 +1850,16 @@ class _CreateWidgetState extends State<CreateWidget> {
                         children: [
                           FFButtonWidget(
                             onPressed: () async {
-                              final selectedMedia = await selectMedia(
+                              final selectedMedia =
+                                  await selectMediaWithSourceBottomSheet(
+                                context: context,
                                 imageQuality: 100,
-                                mediaSource: MediaSource.photoGallery,
-                                multiImage: true,
+                                allowPhoto: true,
+                                backgroundColor: FlutterFlowTheme.of(context)
+                                    .primaryBackground,
+                                textColor:
+                                    FlutterFlowTheme.of(context).secondaryText,
+                                pickerFontFamily: 'Archivo Black',
                               );
                               if (selectedMedia != null &&
                                   selectedMedia.every((m) => validateFileFormat(
@@ -1861,17 +1868,13 @@ class _CreateWidgetState extends State<CreateWidget> {
                                 var selectedUploadedFiles = <FFUploadedFile>[];
                                 var downloadUrls = <String>[];
                                 try {
-                                  showUploadMessage(
-                                    context,
-                                    'Uploading file...',
-                                    showLoading: true,
-                                  );
                                   selectedUploadedFiles = selectedMedia
                                       .map((m) => FFUploadedFile(
                                             name: m.storagePath.split('/').last,
                                             bytes: m.bytes,
                                             height: m.dimensions?.height,
                                             width: m.dimensions?.width,
+                                            blurHash: m.blurHash,
                                           ))
                                       .toList();
 
@@ -1885,8 +1888,6 @@ class _CreateWidgetState extends State<CreateWidget> {
                                       .map((u) => u!)
                                       .toList();
                                 } finally {
-                                  ScaffoldMessenger.of(context)
-                                      .hideCurrentSnackBar();
                                   _model.isDataUploading = false;
                                 }
                                 if (selectedUploadedFiles.length ==
@@ -1894,15 +1895,12 @@ class _CreateWidgetState extends State<CreateWidget> {
                                     downloadUrls.length ==
                                         selectedMedia.length) {
                                   setState(() {
-                                    _model.uploadedLocalFiles =
-                                        selectedUploadedFiles;
-                                    _model.uploadedFileUrls = downloadUrls;
+                                    _model.uploadedLocalFile =
+                                        selectedUploadedFiles.first;
+                                    _model.uploadedFileUrl = downloadUrls.first;
                                   });
-                                  showUploadMessage(context, 'Success!');
                                 } else {
                                   setState(() {});
-                                  showUploadMessage(
-                                      context, 'Failed to upload data');
                                   return;
                                 }
                               }

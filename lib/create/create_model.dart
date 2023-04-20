@@ -44,8 +44,9 @@ class CreateModel extends FlutterFlowModel {
   TextEditingController? textController5;
   String? Function(BuildContext, String?)? textController5Validator;
   bool isDataUploading = false;
-  List<FFUploadedFile> uploadedLocalFiles = [];
-  List<String> uploadedFileUrls = [];
+  FFUploadedFile uploadedLocalFile =
+      FFUploadedFile(bytes: Uint8List.fromList([]));
+  String uploadedFileUrl = '';
 
   /// Initialization and disposal methods.
 

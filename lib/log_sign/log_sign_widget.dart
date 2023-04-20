@@ -202,33 +202,38 @@ class _LogSignWidgetState extends State<LogSignWidget>
                                       1),
                                   child: Column(
                                     children: [
-                                      TabBar(
-                                        isScrollable: true,
-                                        labelColor: FlutterFlowTheme.of(context)
-                                            .primary,
-                                        labelStyle: FlutterFlowTheme.of(context)
-                                            .displaySmall
-                                            .override(
-                                              fontFamily: 'Archivo Black',
-                                              fontWeight: FontWeight.w500,
-                                              useGoogleFonts: GoogleFonts
-                                                      .asMap()
-                                                  .containsKey(
-                                                      FlutterFlowTheme.of(
-                                                              context)
-                                                          .displaySmallFamily),
+                                      Align(
+                                        alignment: Alignment(0.0, 0),
+                                        child: TabBar(
+                                          isScrollable: true,
+                                          labelColor:
+                                              FlutterFlowTheme.of(context)
+                                                  .primary,
+                                          labelStyle:
+                                              FlutterFlowTheme.of(context)
+                                                  .displaySmall
+                                                  .override(
+                                                    fontFamily: 'Archivo Black',
+                                                    fontWeight: FontWeight.w500,
+                                                    useGoogleFonts: GoogleFonts
+                                                            .asMap()
+                                                        .containsKey(
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .displaySmallFamily),
+                                                  ),
+                                          indicatorColor:
+                                              FlutterFlowTheme.of(context)
+                                                  .primary,
+                                          tabs: [
+                                            Tab(
+                                              text: 'Log In',
                                             ),
-                                        indicatorColor:
-                                            FlutterFlowTheme.of(context)
-                                                .primary,
-                                        tabs: [
-                                          Tab(
-                                            text: 'Log In',
-                                          ),
-                                          Tab(
-                                            text: 'Sign Up',
-                                          ),
-                                        ],
+                                            Tab(
+                                              text: 'Sign Up',
+                                            ),
+                                          ],
+                                        ),
                                       ),
                                       Expanded(
                                         child: TabBarView(

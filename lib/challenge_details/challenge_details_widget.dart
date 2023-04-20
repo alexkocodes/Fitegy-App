@@ -353,6 +353,10 @@ class _ChallengeDetailsWidgetState extends State<ChallengeDetailsWidget>
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
                                 InkWell(
+                                  splashColor: Colors.transparent,
+                                  focusColor: Colors.transparent,
+                                  hoverColor: Colors.transparent,
+                                  highlightColor: Colors.transparent,
                                   onTap: () async {
                                     final challengesUpdateData = {
                                       'invited_participants':

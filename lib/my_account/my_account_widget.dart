@@ -115,6 +115,7 @@ class _MyAccountWidgetState extends State<MyAccountWidget> {
                                       bytes: m.bytes,
                                       height: m.dimensions?.height,
                                       width: m.dimensions?.width,
+                                      blurHash: m.blurHash,
                                     ))
                                 .toList();
 

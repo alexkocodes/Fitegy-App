@@ -110,33 +110,36 @@ class _MyChallengesWidgetState extends State<MyChallengesWidget>
                         initialIndex: 0,
                         child: Column(
                           children: [
-                            TabBar(
-                              labelColor:
-                                  FlutterFlowTheme.of(context).secondaryText,
-                              unselectedLabelColor: Color(0x9C868686),
-                              labelStyle: FlutterFlowTheme.of(context)
-                                  .bodyMedium
-                                  .override(
-                                    fontFamily: 'Archivo Black',
-                                    fontSize: 13.0,
-                                    useGoogleFonts: GoogleFonts.asMap()
-                                        .containsKey(
-                                            FlutterFlowTheme.of(context)
-                                                .bodyMediumFamily),
+                            Align(
+                              alignment: Alignment(0.0, 0),
+                              child: TabBar(
+                                labelColor:
+                                    FlutterFlowTheme.of(context).secondaryText,
+                                unselectedLabelColor: Color(0x9C868686),
+                                labelStyle: FlutterFlowTheme.of(context)
+                                    .bodyMedium
+                                    .override(
+                                      fontFamily: 'Archivo Black',
+                                      fontSize: 13.0,
+                                      useGoogleFonts: GoogleFonts.asMap()
+                                          .containsKey(
+                                              FlutterFlowTheme.of(context)
+                                                  .bodyMediumFamily),
+                                    ),
+                                indicatorColor:
+                                    FlutterFlowTheme.of(context).primaryBtnText,
+                                tabs: [
+                                  Tab(
+                                    text: 'In Progress',
                                   ),
-                              indicatorColor:
-                                  FlutterFlowTheme.of(context).primaryBtnText,
-                              tabs: [
-                                Tab(
-                                  text: 'In Progress',
-                                ),
-                                Tab(
-                                  text: 'Completed',
-                                ),
-                                Tab(
-                                  text: 'Invited',
-                                ),
-                              ],
+                                  Tab(
+                                    text: 'Completed',
+                                  ),
+                                  Tab(
+                                    text: 'Invited',
+                                  ),
+                                ],
+                              ),
                             ),
                             Expanded(
                               child: TabBarView(
@@ -294,6 +297,11 @@ class _MyChallengesWidgetState extends State<MyChallengesWidget>
                                                   .fromSTEB(
                                                       15.0, 0.0, 15.0, 0.0),
                                               child: InkWell(
+                                                splashColor: Colors.transparent,
+                                                focusColor: Colors.transparent,
+                                                hoverColor: Colors.transparent,
+                                                highlightColor:
+                                                    Colors.transparent,
                                                 onTap: () async {
                                                   context.pushNamed(
                                                       'ChallengeDetails');

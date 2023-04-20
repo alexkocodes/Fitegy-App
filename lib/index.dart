@@ -19,3 +19,4 @@ export '/invite_sent/invite_sent_widget.dart' show InviteSentWidget;
 export '/profile/profile_widget.dart' show ProfileWidget;
 export '/edit_profiles/edit_profiles_widget.dart' show EditProfilesWidget;
 export '/search_page/search_page_widget.dart' show SearchPageWidget;
+export '/comment_page/comment_page_widget.dart' show CommentPageWidget;

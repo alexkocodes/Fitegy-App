@@ -439,6 +439,10 @@ class _ChallengeSelectedWidgetState extends State<ChallengeSelectedWidget>
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 children: [
                                   InkWell(
+                                    splashColor: Colors.transparent,
+                                    focusColor: Colors.transparent,
+                                    hoverColor: Colors.transparent,
+                                    highlightColor: Colors.transparent,
                                     onTap: () async {
                                       context.pushNamed('ChallengeDetails');
                                     },
