@@ -5,6 +5,7 @@ import 'users_record.dart';
 import 'challenges_record.dart';
 import 'posts_record.dart';
 import 'friends_record.dart';
+import 'comments_record.dart';
 
 import 'index.dart';
 
@@ -20,6 +21,7 @@ const kDocumentReferenceField = 'Document__Reference__Field';
   ChallengesRecord,
   PostsRecord,
   FriendsRecord,
+  CommentsRecord,
 ])
 final Serializers serializers = (_$serializers.toBuilder()
       ..add(DocumentReferenceSerializer())

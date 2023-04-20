@@ -43,5 +43,17 @@ service cloud.firestore {
       allow read: if request.auth != null;
     }
 
+
+    match /users/{parent}/comments/{document} {
+      allow create: if true;
+      allow read: if true;
+      allow write: if true;
+      allow delete: if true;
+    }
+
+    match /{path=**}/comments/{document} {
+      allow read: if true;
+    }
+
   }
 }
