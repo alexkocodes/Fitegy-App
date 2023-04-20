@@ -82,9 +82,9 @@ class _CommentPageWidgetState extends State<CommentPageWidget> {
                 borderWidth: 1.0,
                 buttonSize: 60.0,
                 icon: Icon(
-                  Icons.arrow_back_rounded,
-                  color: Color(0xFF57636C),
-                  size: 30.0,
+                  Icons.keyboard_arrow_left_outlined,
+                  color: FlutterFlowTheme.of(context).primaryColor,
+                  size: 30,
                 ),
                 onPressed: () async {
                   context.safePop();
