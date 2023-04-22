@@ -18,14 +18,17 @@ abstract class CommentsRecord
   @BuiltValueField(wireName: 'created_at')
   DateTime? get createdAt;
 
+  BuiltList<DocumentReference>? get likes;
+
   @BuiltValueField(wireName: kDocumentReferenceField)
   DocumentReference? get ffRef;
   DocumentReference get reference => ffRef!;
 
   DocumentReference get parentReference => reference.parent.parent!;
 
-  static void _initializeBuilder(CommentsRecordBuilder builder) =>
-      builder..text = '';
+  static void _initializeBuilder(CommentsRecordBuilder builder) => builder
+    ..text = ''
+    ..likes = ListBuilder();
 
   static Query<Map<String, dynamic>> collection([DocumentReference? parent]) =>
       parent != null
@@ -64,7 +67,8 @@ Map<String, dynamic> createCommentsRecordData({
       (c) => c
         ..text = text
         ..author = author
-        ..createdAt = createdAt,
+        ..createdAt = createdAt
+        ..likes = null,
     ),
   );
 
