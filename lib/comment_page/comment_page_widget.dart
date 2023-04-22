@@ -1,3 +1,4 @@
+import '/auth/firebase_auth/auth_util.dart';
 import '/backend/backend.dart';
 import '/components/comment_widget.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
@@ -115,6 +116,7 @@ class _CommentPageWidgetState extends State<CommentPageWidget> {
                           _model.pagingController!
                               .addPageRequestListener((nextPageMarker) {
                             queryCommentsRecordPage(
+                              parent: currentUserReference,
                               queryBuilder: (commentsRecord) => commentsRecord
                                   .orderBy('likes', descending: true)
                                   .orderBy('created_at', descending: true),

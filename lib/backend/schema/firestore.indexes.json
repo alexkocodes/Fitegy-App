@@ -30,7 +30,7 @@
     },
     {
       "collectionGroup": "comments",
-      "queryScope": "COLLECTION_GROUP",
+      "queryScope": "COLLECTION",
       "fields": [
         {
           "fieldPath": "likes",
