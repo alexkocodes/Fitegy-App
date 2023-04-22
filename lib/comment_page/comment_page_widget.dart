@@ -1,5 +1,6 @@
 import 'dart:ui';
 
+import 'package:fitegy/backend/backend.dart';
 import 'package:fitegy/components/comment_widget.dart';
 import 'package:fitegy/components/post_widget.dart';
 import 'package:fitegy/components/profile_stats_bar_widget.dart';
@@ -210,6 +211,9 @@ class _CommentPageWidgetState extends State<CommentPageWidget> {
                                                   .fromSTEB(
                                                       20.0, 0.0, 4.0, 0.0),
                                               child: TextFormField(
+                                                onChanged: (value) {
+                                                  setState(() {});
+                                                },
                                                 controller:
                                                     _model.commentBoxController,
                                                 autofocus: true,
@@ -316,12 +320,9 @@ class _CommentPageWidgetState extends State<CommentPageWidget> {
                                                     0.0, 0.0, 8.0, 0.0),
                                             child: FFButtonWidget(
                                               onPressed: _model
-                                                              .commentBoxController
-                                                              .text ==
-                                                          null ||
-                                                      _model.commentBoxController
-                                                              .text ==
-                                                          ''
+                                                          .commentBoxController
+                                                          .text ==
+                                                      ''
                                                   ? () {
                                                       FlutterPlatformAlert
                                                           .showAlert(
@@ -331,11 +332,25 @@ class _CommentPageWidgetState extends State<CommentPageWidget> {
                                                                   "You didn't enter anything 🙂");
                                                     }
                                                   : () async {
-                                                      setState(() {
-                                                        _model
-                                                            .commentBoxController
-                                                            ?.clear();
-                                                      });
+                                                      final commentsCreateData =
+                                                          {
+                                                        ...createCommentsRecordData(
+                                                          text: _model
+                                                              .commentBoxController
+                                                              .text,
+                                                          author:
+                                                              currentUserReference,
+                                                          createdAt:
+                                                              DateTime.now(),
+                                                        )
+                                                      };
+                                                      await CommentsRecord
+                                                              .createDoc(widget
+                                                                  .postReference!)
+                                                          .set(
+                                                              commentsCreateData);
+
+                                                      setState(() {});
                                                     },
                                               text: 'Post',
                                               options: FFButtonOptions(
