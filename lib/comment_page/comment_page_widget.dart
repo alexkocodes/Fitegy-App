@@ -72,10 +72,11 @@ class _CommentPageWidgetState extends State<CommentPageWidget> {
           elevation: 0,
         ),
         body: NestedScrollView(
+          physics: NeverScrollableScrollPhysics(),
           headerSliverBuilder: (context, _) => [
             SliverAppBar(
               pinned: false,
-              floating: false,
+              floating: true,
               backgroundColor: Colors.white,
               automaticallyImplyLeading: false,
               leading: FlutterFlowIconButton(
@@ -107,159 +108,178 @@ class _CommentPageWidgetState extends State<CommentPageWidget> {
                   }
                   final post = snapshot.data as Map;
                   return Stack(children: [
-                    SingleChildScrollView(
+                    Align(
+                      alignment: AlignmentDirectional(0, 0),
                       child: Container(
                         height: MediaQuery.of(context).size.height,
-                        decoration: BoxDecoration(
-                          color:
-                              FlutterFlowTheme.of(context).secondaryBackground,
-                        ),
-                        child: Column(
-                          mainAxisSize: MainAxisSize.max,
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          crossAxisAlignment: CrossAxisAlignment.center,
+                        child: ListView(
+                          physics: AlwaysScrollableScrollPhysics(),
+                          primary: true,
+                          padding: EdgeInsets.zero,
                           children: [
-                            Column(
-                              mainAxisSize: MainAxisSize.max,
-                              children: [
-                                PostWidget(
-                                  callback: () {
-                                    setState(() {});
-                                    //widget.extra!['callback']();
-                                  },
-                                  name: post["display_name"],
-                                  location: post["location"],
-                                  description: post["post_description"] ??
-                                      'No description',
-                                  likeCount: valueOrDefault<int>(
-                                    post["likes"].length,
-                                    0,
-                                  ),
-                                  challenge: post["in_post_challenge"],
-                                  imageURLs:
-                                      List<String>.from(post["post_images"]),
-                                  authorRef: post["post_user"],
-                                  postRef: widget.postReference,
-                                  liked: post["likes"]
-                                      .contains(currentUserReference),
-                                  refresh: () {
-                                    setState(() {
-                                      widget.postReference!.delete();
-                                      context.safePop();
-                                      widget.extra!['refresh']();
-                                    });
-                                  },
-                                  onPage: "Comments",
-                                ),
-                                SizedBox(
-                                  height: 20,
-                                ),
-                                PagedListView<DocumentSnapshot<Object?>?,
-                                    CommentsRecord>(
-                                  primary: false,
-                                  pagingController: () {
-                                    final Query<Object?> Function(
-                                            Query<Object?>) queryBuilder =
-                                        (commentsRecord) => commentsRecord
-                                            .orderBy('likes', descending: true)
-                                            .orderBy('created_at',
-                                                descending: true);
-                                    if (_model.pagingController != null) {
-                                      final query = queryBuilder(
-                                          CommentsRecord.collection(
-                                              widget.postReference));
-                                      if (query != _model.pagingQuery) {
-                                        // The query has changed
-                                        _model.pagingQuery = query;
-                                        _model.streamSubscriptions
-                                            .forEach((s) => s?.cancel());
-                                        _model.streamSubscriptions.clear();
-                                        _model.pagingController!.refresh();
-                                      }
-                                      return _model.pagingController!;
-                                    }
-                                    _model.pagingController =
-                                        PagingController(firstPageKey: null);
-                                    _model.pagingQuery = queryBuilder(
-                                        CommentsRecord.collection(
-                                            widget.postReference));
-                                    _model.pagingController!
-                                        .addPageRequestListener(
-                                            (nextPageMarker) {
-                                      queryCommentsRecordPage(
-                                        parent: widget.postReference,
-                                        queryBuilder: (commentsRecord) =>
-                                            commentsRecord.orderBy('created_at',
-                                                descending: true),
-                                        nextPageMarker: nextPageMarker,
-                                        pageSize: 10,
-                                        isStream: true,
-                                      ).then((page) {
-                                        _model.pagingController!.appendPage(
-                                          page.data,
-                                          page.nextPageMarker,
-                                        );
-                                        final streamSubscription =
-                                            page.dataStream?.listen((data) {
-                                          data.forEach((item) {
-                                            final itemIndexes = _model
-                                                .pagingController!.itemList!
-                                                .asMap()
-                                                .map((k, v) => MapEntry(
-                                                    v.reference.id, k));
-                                            final index =
-                                                itemIndexes[item.reference.id];
-                                            final items = _model
-                                                .pagingController!.itemList!;
-                                            if (index != null) {
-                                              items.replaceRange(
-                                                  index, index + 1, [item]);
-                                              _model.pagingController!
-                                                  .itemList = {
-                                                for (var item in items)
-                                                  item.reference: item
-                                              }.values.toList();
-                                            }
-                                          });
-                                          setState(() {});
-                                        });
-                                        _model.streamSubscriptions
-                                            .add(streamSubscription);
+                            PostWidget(
+                              callback: () {
+                                setState(() {});
+                                //widget.extra!['callback']();
+                              },
+                              name: post["display_name"],
+                              location: post["location"],
+                              description:
+                                  post["post_description"] ?? 'No description',
+                              likeCount: valueOrDefault<int>(
+                                post["likes"].length,
+                                0,
+                              ),
+                              challenge: post["in_post_challenge"],
+                              imageURLs: List<String>.from(post["post_images"]),
+                              authorRef: post["post_user"],
+                              postRef: widget.postReference,
+                              liked:
+                                  post["likes"].contains(currentUserReference),
+                              refresh: () {
+                                setState(() {
+                                  widget.postReference!.delete();
+                                  context.safePop();
+                                  widget.extra!['refresh']();
+                                });
+                              },
+                              onPage: "Comments",
+                            ),
+                            SizedBox(
+                              height: 20,
+                            ),
+                            PagedListView<DocumentSnapshot<Object?>?,
+                                CommentsRecord>(
+                              physics: NeverScrollableScrollPhysics(),
+                              primary: false,
+                              pagingController: () {
+                                final Query<Object?> Function(Query<Object?>)
+                                    queryBuilder = (commentsRecord) =>
+                                        commentsRecord.orderBy('created_at',
+                                            descending: true);
+                                if (_model.pagingController != null) {
+                                  final query = queryBuilder(
+                                      CommentsRecord.collection(
+                                          widget.postReference));
+                                  if (query != _model.pagingQuery) {
+                                    // The query has changed
+                                    _model.pagingQuery = query;
+                                    _model.streamSubscriptions
+                                        .forEach((s) => s?.cancel());
+                                    _model.streamSubscriptions.clear();
+                                    _model.pagingController!.refresh();
+                                  }
+                                  return _model.pagingController!;
+                                }
+                                _model.pagingController =
+                                    PagingController(firstPageKey: null);
+                                _model.pagingQuery = queryBuilder(
+                                    CommentsRecord.collection(
+                                        widget.postReference));
+                                _model.pagingController!
+                                    .addPageRequestListener((nextPageMarker) {
+                                  queryCommentsRecordPage(
+                                    parent: widget.postReference,
+                                    queryBuilder: (commentsRecord) =>
+                                        commentsRecord.orderBy('created_at',
+                                            descending: true),
+                                    nextPageMarker: nextPageMarker,
+                                    pageSize: 10,
+                                    isStream: true,
+                                  ).then((page) {
+                                    _model.pagingController!.appendPage(
+                                      page.data,
+                                      page.nextPageMarker,
+                                    );
+                                    final streamSubscription =
+                                        page.dataStream?.listen((data) {
+                                      data.forEach((item) {
+                                        final itemIndexes = _model
+                                            .pagingController!.itemList!
+                                            .asMap()
+                                            .map((k, v) =>
+                                                MapEntry(v.reference.id, k));
+                                        final index =
+                                            itemIndexes[item.reference.id];
+                                        final items =
+                                            _model.pagingController!.itemList!;
+                                        if (index != null) {
+                                          items.replaceRange(
+                                              index, index + 1, [item]);
+                                          _model.pagingController!.itemList = {
+                                            for (var item in items)
+                                              item.reference: item
+                                          }.values.toList();
+                                        }
                                       });
+                                      setState(() {});
                                     });
+                                    _model.streamSubscriptions
+                                        .add(streamSubscription);
+                                  });
+                                });
 
-                                    return _model.pagingController!;
-                                  }(),
-                                  padding: EdgeInsets.zero,
-                                  shrinkWrap: true,
-                                  reverse: false,
-                                  scrollDirection: Axis.vertical,
-                                  builderDelegate:
-                                      PagedChildBuilderDelegate<CommentsRecord>(
-                                    firstPageProgressIndicatorBuilder: (_) =>
-                                        Center(
-                                      child: SizedBox(
-                                        width: 40,
-                                        height: 40,
-                                        child: CircularProgressIndicator(
-                                          color: FlutterFlowTheme.of(context)
-                                              .primaryBtnText,
-                                        ),
-                                      ),
+                                return _model.pagingController!;
+                              }(),
+                              padding: EdgeInsets.zero,
+                              shrinkWrap: true,
+                              reverse: false,
+                              scrollDirection: Axis.vertical,
+                              builderDelegate:
+                                  PagedChildBuilderDelegate<CommentsRecord>(
+                                firstPageProgressIndicatorBuilder: (_) =>
+                                    Center(
+                                  child: SizedBox(
+                                    width: 40,
+                                    height: 40,
+                                    child: CircularProgressIndicator(
+                                      color: FlutterFlowTheme.of(context)
+                                          .primaryBtnText,
                                     ),
-                                    itemBuilder: (context, _, listViewIndex) {
-                                      final listViewCommentsRecord = _model
-                                          .pagingController!
-                                          .itemList![listViewIndex];
-
-                                      return CommentWidget(
-                                        key: Key(
-                                            'Key11i_${listViewIndex}_of_${_model.pagingController!.itemList!.length}'),
-                                      );
-                                    },
                                   ),
-                                )
-                              ],
+                                ),
+                                noItemsFoundIndicatorBuilder: (_) => Center(
+                                    child: Padding(
+                                  padding: EdgeInsetsDirectional.fromSTEB(
+                                      0, 50, 0, 0),
+                                  child: Text(
+                                    'No comments yet.\nBe the first to comment! 🤠 ',
+                                    style: FlutterFlowTheme.of(context)
+                                        .titleSmall
+                                        .override(
+                                          fontFamily: 'Inter',
+                                          color: FlutterFlowTheme.of(context)
+                                              .gray200,
+                                        ),
+                                    textAlign: TextAlign.center,
+                                  ),
+                                )),
+                                itemBuilder: (context, _, listViewIndex) {
+                                  final listViewCommentsRecord = _model
+                                      .pagingController!
+                                      .itemList![listViewIndex];
+                                  // if this is the last item in the list, add a sized box to add some space at the bottom
+                                  double bottom = 0;
+                                  if (listViewIndex ==
+                                      _model.pagingController!.itemList!
+                                              .length -
+                                          1) {
+                                    bottom = 100;
+                                  }
+
+                                  return Padding(
+                                    padding: EdgeInsetsDirectional.fromSTEB(
+                                        0, 0, 0, bottom),
+                                    child: CommentWidget(
+                                      key: Key(
+                                          'Key11i_${listViewIndex}_of_${_model.pagingController!.itemList!.length}'),
+                                      authorRef: listViewCommentsRecord.author,
+                                      comment: listViewCommentsRecord.text,
+                                      time: listViewCommentsRecord.createdAt,
+                                    ),
+                                  );
+                                },
+                              ),
                             ),
                           ],
                         ),
@@ -450,7 +470,8 @@ class _CommentPageWidgetState extends State<CommentPageWidget> {
                                                                   .postReference!)
                                                           .set(
                                                               commentsCreateData);
-
+                                                      _model.pagingController!
+                                                          .refresh();
                                                       setState(() {});
                                                     },
                                               text: 'Post',
