@@ -1,3 +1,4 @@
+import '/backend/backend.dart';
 import '/components/comment_widget.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
@@ -5,6 +6,7 @@ import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
 import 'package:provider/provider.dart';
 import 'comment_page_model.dart';
 export 'comment_page_model.dart';
@@ -86,15 +88,103 @@ class _CommentPageWidgetState extends State<CommentPageWidget> {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
-                      Column(
-                        mainAxisSize: MainAxisSize.max,
-                        children: [
-                          wrapWithModel(
-                            model: _model.commentModel,
-                            updateCallback: () => setState(() {}),
-                            child: CommentWidget(),
+                      PagedListView<DocumentSnapshot<Object?>?, CommentsRecord>(
+                        pagingController: () {
+                          final Query<Object?> Function(Query<Object?>)
+                              queryBuilder = (commentsRecord) => commentsRecord
+                                  .orderBy('likes', descending: true)
+                                  .orderBy('created_at', descending: true);
+                          if (_model.pagingController != null) {
+                            final query =
+                                queryBuilder(CommentsRecord.collection());
+                            if (query != _model.pagingQuery) {
+                              // The query has changed
+                              _model.pagingQuery = query;
+                              _model.streamSubscriptions
+                                  .forEach((s) => s?.cancel());
+                              _model.streamSubscriptions.clear();
+                              _model.pagingController!.refresh();
+                            }
+                            return _model.pagingController!;
+                          }
+
+                          _model.pagingController =
+                              PagingController(firstPageKey: null);
+                          _model.pagingQuery =
+                              queryBuilder(CommentsRecord.collection());
+                          _model.pagingController!
+                              .addPageRequestListener((nextPageMarker) {
+                            queryCommentsRecordPage(
+                              queryBuilder: (commentsRecord) => commentsRecord
+                                  .orderBy('likes', descending: true)
+                                  .orderBy('created_at', descending: true),
+                              nextPageMarker: nextPageMarker,
+                              pageSize: 10,
+                              isStream: true,
+                            ).then((page) {
+                              _model.pagingController!.appendPage(
+                                page.data,
+                                page.nextPageMarker,
+                              );
+                              final streamSubscription =
+                                  page.dataStream?.listen((data) {
+                                data.forEach((item) {
+                                  final itemIndexes = _model
+                                      .pagingController!.itemList!
+                                      .asMap()
+                                      .map((k, v) =>
+                                          MapEntry(v.reference.id, k));
+                                  final index = itemIndexes[item.reference.id];
+                                  final items =
+                                      _model.pagingController!.itemList!;
+                                  if (index != null) {
+                                    items
+                                        .replaceRange(index, index + 1, [item]);
+                                    _model.pagingController!.itemList = {
+                                      for (var item in items)
+                                        item.reference: item
+                                    }.values.toList();
+                                  }
+                                });
+                                setState(() {});
+                              });
+                              _model.streamSubscriptions
+                                  .add(streamSubscription);
+                            });
+                          });
+                          return _model.pagingController!;
+                        }(),
+                        padding: EdgeInsets.zero,
+                        shrinkWrap: true,
+                        reverse: false,
+                        scrollDirection: Axis.vertical,
+                        builderDelegate:
+                            PagedChildBuilderDelegate<CommentsRecord>(
+                          // Customize what your widget looks like when it's loading the first page.
+                          firstPageProgressIndicatorBuilder: (_) => Center(
+                            child: SizedBox(
+                              width: 40.0,
+                              height: 40.0,
+                              child: CircularProgressIndicator(
+                                color:
+                                    FlutterFlowTheme.of(context).primaryBtnText,
+                              ),
+                            ),
                           ),
-                        ],
+
+                          itemBuilder: (context, _, listViewIndex) {
+                            final listViewCommentsRecord = _model
+                                .pagingController!.itemList![listViewIndex];
+                            return Container(
+                              height: 200.0,
+                              decoration: BoxDecoration(),
+                              child: CommentWidget(
+                                key: Key(
+                                    'Key11i_${listViewIndex}_of_${_model.pagingController!.itemList!.length}'),
+                              ),
+                            );
+                          },
+                        ),
                       ),
                       Container(
                         width: double.infinity,

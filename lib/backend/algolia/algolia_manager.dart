@@ -12,15 +12,17 @@ const kAlgoliaApplicationId = 'SGM8ETWORB';
 const kAlgoliaApiKey = 'f360a3678463b8e32d7eaacf672b52cb';
 
 class AlgoliaQueryParams extends Equatable {
-  const AlgoliaQueryParams(
-      this.term, this.latLng, this.maxResults, this.searchRadiusMeters);
+  const AlgoliaQueryParams(this.index, this.term, this.latLng, this.maxResults,
+      this.searchRadiusMeters);
+  final String index;
   final String? term;
   final LatLng? latLng;
   final int? maxResults;
   final double? searchRadiusMeters;
 
   @override
-  List<Object?> get props => [term, latLng, maxResults, searchRadiusMeters];
+  List<Object?> get props =>
+      [index, term, latLng, maxResults, searchRadiusMeters];
 }
 
 class FFAlgoliaManager {
@@ -60,7 +62,7 @@ class FFAlgoliaManager {
       }
     }
     final params =
-        AlgoliaQueryParams(term, loc, maxResults, searchRadiusMeters);
+        AlgoliaQueryParams(index, term, loc, maxResults, searchRadiusMeters);
     if (_algoliaCache.containsKey(params)) {
       return _algoliaCache[params]!;
     }

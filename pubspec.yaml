@@ -58,6 +58,7 @@ dependencies:
   go_router: 3.1.0
   google_fonts: 4.0.3
   google_sign_in: 5.4.0
+  google_sign_in_android: 6.1.8
   google_sign_in_ios: 5.4.0
   google_sign_in_platform_interface: 2.2.0
   google_sign_in_web: 0.10.2

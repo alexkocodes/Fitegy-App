@@ -18,6 +18,8 @@ abstract class CommentsRecord
   @BuiltValueField(wireName: 'created_at')
   DateTime? get createdAt;
 
+  DocumentReference? get likes;
+
   @BuiltValueField(wireName: kDocumentReferenceField)
   DocumentReference? get ffRef;
   DocumentReference get reference => ffRef!;
@@ -57,6 +59,7 @@ Map<String, dynamic> createCommentsRecordData({
   String? text,
   DocumentReference? author,
   DateTime? createdAt,
+  DocumentReference? likes,
 }) {
   final firestoreData = serializers.toFirestore(
     CommentsRecord.serializer,
@@ -64,7 +67,8 @@ Map<String, dynamic> createCommentsRecordData({
       (c) => c
         ..text = text
         ..author = author
-        ..createdAt = createdAt,
+        ..createdAt = createdAt
+        ..likes = likes,
     ),
   );
 
