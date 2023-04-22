@@ -5,6 +5,7 @@ import 'package:fitegy/components/comment_widget.dart';
 import 'package:fitegy/components/post_widget.dart';
 import 'package:fitegy/components/profile_stats_bar_widget.dart';
 import 'package:flutter_platform_alert/flutter_platform_alert.dart';
+import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
 import '../auth/auth_util.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
@@ -153,11 +154,111 @@ class _CommentPageWidgetState extends State<CommentPageWidget> {
                                 SizedBox(
                                   height: 20,
                                 ),
-                                wrapWithModel(
-                                  model: _model.commentModel,
-                                  updateCallback: () => setState(() {}),
-                                  child: CommentWidget(),
-                                ),
+                                PagedListView<DocumentSnapshot<Object?>?,
+                                    CommentsRecord>(
+                                  primary: false,
+                                  pagingController: () {
+                                    final Query<Object?> Function(
+                                            Query<Object?>) queryBuilder =
+                                        (commentsRecord) => commentsRecord
+                                            .orderBy('likes', descending: true)
+                                            .orderBy('created_at',
+                                                descending: true);
+                                    if (_model.pagingController != null) {
+                                      final query = queryBuilder(
+                                          CommentsRecord.collection(
+                                              widget.postReference));
+                                      if (query != _model.pagingQuery) {
+                                        // The query has changed
+                                        _model.pagingQuery = query;
+                                        _model.streamSubscriptions
+                                            .forEach((s) => s?.cancel());
+                                        _model.streamSubscriptions.clear();
+                                        _model.pagingController!.refresh();
+                                      }
+                                      return _model.pagingController!;
+                                    }
+                                    _model.pagingController =
+                                        PagingController(firstPageKey: null);
+                                    _model.pagingQuery = queryBuilder(
+                                        CommentsRecord.collection(
+                                            widget.postReference));
+                                    _model.pagingController!
+                                        .addPageRequestListener(
+                                            (nextPageMarker) {
+                                      queryCommentsRecordPage(
+                                        parent: widget.postReference,
+                                        queryBuilder: (commentsRecord) =>
+                                            commentsRecord.orderBy('created_at',
+                                                descending: true),
+                                        nextPageMarker: nextPageMarker,
+                                        pageSize: 10,
+                                        isStream: true,
+                                      ).then((page) {
+                                        _model.pagingController!.appendPage(
+                                          page.data,
+                                          page.nextPageMarker,
+                                        );
+                                        final streamSubscription =
+                                            page.dataStream?.listen((data) {
+                                          data.forEach((item) {
+                                            final itemIndexes = _model
+                                                .pagingController!.itemList!
+                                                .asMap()
+                                                .map((k, v) => MapEntry(
+                                                    v.reference.id, k));
+                                            final index =
+                                                itemIndexes[item.reference.id];
+                                            final items = _model
+                                                .pagingController!.itemList!;
+                                            if (index != null) {
+                                              items.replaceRange(
+                                                  index, index + 1, [item]);
+                                              _model.pagingController!
+                                                  .itemList = {
+                                                for (var item in items)
+                                                  item.reference: item
+                                              }.values.toList();
+                                            }
+                                          });
+                                          setState(() {});
+                                        });
+                                        _model.streamSubscriptions
+                                            .add(streamSubscription);
+                                      });
+                                    });
+
+                                    return _model.pagingController!;
+                                  }(),
+                                  padding: EdgeInsets.zero,
+                                  shrinkWrap: true,
+                                  reverse: false,
+                                  scrollDirection: Axis.vertical,
+                                  builderDelegate:
+                                      PagedChildBuilderDelegate<CommentsRecord>(
+                                    firstPageProgressIndicatorBuilder: (_) =>
+                                        Center(
+                                      child: SizedBox(
+                                        width: 40,
+                                        height: 40,
+                                        child: CircularProgressIndicator(
+                                          color: FlutterFlowTheme.of(context)
+                                              .primaryBtnText,
+                                        ),
+                                      ),
+                                    ),
+                                    itemBuilder: (context, _, listViewIndex) {
+                                      final listViewCommentsRecord = _model
+                                          .pagingController!
+                                          .itemList![listViewIndex];
+
+                                      return CommentWidget(
+                                        key: Key(
+                                            'Key11i_${listViewIndex}_of_${_model.pagingController!.itemList!.length}'),
+                                      );
+                                    },
+                                  ),
+                                )
                               ],
                             ),
                           ],

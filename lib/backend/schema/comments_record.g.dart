@@ -43,6 +43,16 @@ class _$CommentsRecordSerializer
         ..add(serializers.serialize(value,
             specifiedType: const FullType(DateTime)));
     }
+    value = object.likes;
+    if (value != null) {
+      result
+        ..add('likes')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(BuiltList, const [
+              const FullType(
+                  DocumentReference, const [const FullType.nullable(Object)])
+            ])));
+    }
     value = object.ffRef;
     if (value != null) {
       result
@@ -80,6 +90,13 @@ class _$CommentsRecordSerializer
           result.createdAt = serializers.deserialize(value,
               specifiedType: const FullType(DateTime)) as DateTime?;
           break;
+        case 'likes':
+          result.likes.replace(serializers.deserialize(value,
+              specifiedType: const FullType(BuiltList, const [
+                const FullType(
+                    DocumentReference, const [const FullType.nullable(Object)])
+              ]))! as BuiltList<Object?>);
+          break;
         case 'Document__Reference__Field':
           result.ffRef = serializers.deserialize(value,
               specifiedType: const FullType(DocumentReference, const [
@@ -101,12 +118,15 @@ class _$CommentsRecord extends CommentsRecord {
   @override
   final DateTime? createdAt;
   @override
+  final BuiltList<DocumentReference<Object?>>? likes;
+  @override
   final DocumentReference<Object?>? ffRef;
 
   factory _$CommentsRecord([void Function(CommentsRecordBuilder)? updates]) =>
       (new CommentsRecordBuilder()..update(updates))._build();
 
-  _$CommentsRecord._({this.text, this.author, this.createdAt, this.ffRef})
+  _$CommentsRecord._(
+      {this.text, this.author, this.createdAt, this.likes, this.ffRef})
       : super._();
 
   @override
@@ -124,13 +144,17 @@ class _$CommentsRecord extends CommentsRecord {
         text == other.text &&
         author == other.author &&
         createdAt == other.createdAt &&
+        likes == other.likes &&
         ffRef == other.ffRef;
   }
 
   @override
   int get hashCode {
     return $jf($jc(
-        $jc($jc($jc(0, text.hashCode), author.hashCode), createdAt.hashCode),
+        $jc(
+            $jc($jc($jc(0, text.hashCode), author.hashCode),
+                createdAt.hashCode),
+            likes.hashCode),
         ffRef.hashCode));
   }
 
@@ -140,6 +164,7 @@ class _$CommentsRecord extends CommentsRecord {
           ..add('text', text)
           ..add('author', author)
           ..add('createdAt', createdAt)
+          ..add('likes', likes)
           ..add('ffRef', ffRef))
         .toString();
   }
@@ -161,6 +186,12 @@ class CommentsRecordBuilder
   DateTime? get createdAt => _$this._createdAt;
   set createdAt(DateTime? createdAt) => _$this._createdAt = createdAt;
 
+  ListBuilder<DocumentReference<Object?>>? _likes;
+  ListBuilder<DocumentReference<Object?>> get likes =>
+      _$this._likes ??= new ListBuilder<DocumentReference<Object?>>();
+  set likes(ListBuilder<DocumentReference<Object?>>? likes) =>
+      _$this._likes = likes;
+
   DocumentReference<Object?>? _ffRef;
   DocumentReference<Object?>? get ffRef => _$this._ffRef;
   set ffRef(DocumentReference<Object?>? ffRef) => _$this._ffRef = ffRef;
@@ -175,6 +206,7 @@ class CommentsRecordBuilder
       _text = $v.text;
       _author = $v.author;
       _createdAt = $v.createdAt;
+      _likes = $v.likes?.toBuilder();
       _ffRef = $v.ffRef;
       _$v = null;
     }
@@ -196,9 +228,26 @@ class CommentsRecordBuilder
   CommentsRecord build() => _build();
 
   _$CommentsRecord _build() {
-    final _$result = _$v ??
-        new _$CommentsRecord._(
-            text: text, author: author, createdAt: createdAt, ffRef: ffRef);
+    _$CommentsRecord _$result;
+    try {
+      _$result = _$v ??
+          new _$CommentsRecord._(
+              text: text,
+              author: author,
+              createdAt: createdAt,
+              likes: _likes?.build(),
+              ffRef: ffRef);
+    } catch (_) {
+      late String _$failedField;
+      try {
+        _$failedField = 'likes';
+        _likes?.build();
+      } catch (e) {
+        throw new BuiltValueNestedFieldError(
+            r'CommentsRecord', _$failedField, e.toString());
+      }
+      rethrow;
+    }
     replace(_$result);
     return _$result;
   }
