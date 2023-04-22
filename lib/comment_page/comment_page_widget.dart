@@ -93,7 +93,6 @@ class _CommentPageWidgetState extends State<CommentPageWidget> {
                         pagingController: () {
                           final Query<Object?> Function(Query<Object?>)
                               queryBuilder = (commentsRecord) => commentsRecord
-                                  .orderBy('likes', descending: true)
                                   .orderBy('created_at', descending: true);
                           if (_model.pagingController != null) {
                             final query =
@@ -118,7 +117,6 @@ class _CommentPageWidgetState extends State<CommentPageWidget> {
                             queryCommentsRecordPage(
                               parent: currentUserReference,
                               queryBuilder: (commentsRecord) => commentsRecord
-                                  .orderBy('likes', descending: true)
                                   .orderBy('created_at', descending: true),
                               nextPageMarker: nextPageMarker,
                               pageSize: 10,
