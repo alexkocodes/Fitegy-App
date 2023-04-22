@@ -119,8 +119,9 @@ class _CommentPageWidgetState extends State<CommentPageWidget> {
                           children: [
                             PostWidget(
                               callback: () {
-                                setState(() {});
-                                //widget.extra!['callback']();
+                                if (mounted) {
+                                  setState(() {});
+                                }
                               },
                               name: post["display_name"],
                               location: post["location"],
@@ -137,11 +138,13 @@ class _CommentPageWidgetState extends State<CommentPageWidget> {
                               liked:
                                   post["likes"].contains(currentUserReference),
                               refresh: () {
-                                setState(() {
-                                  widget.postReference!.delete();
-                                  context.safePop();
-                                  widget.extra!['refresh']();
-                                });
+                                if (mounted) {
+                                  setState(() {
+                                    widget.postReference!.delete();
+                                    context.safePop();
+                                    widget.extra!['refresh']();
+                                  });
+                                }
                               },
                               onPage: "Comments",
                             ),
@@ -158,9 +161,8 @@ class _CommentPageWidgetState extends State<CommentPageWidget> {
                                         commentsRecord.orderBy('created_at',
                                             descending: true);
                                 if (_model.pagingController != null) {
-                                  final query = queryBuilder(
-                                      CommentsRecord.collection(
-                                          widget.postReference));
+                                  final query =
+                                      queryBuilder(CommentsRecord.collection());
                                   if (query != _model.pagingQuery) {
                                     // The query has changed
                                     _model.pagingQuery = query;
@@ -173,9 +175,8 @@ class _CommentPageWidgetState extends State<CommentPageWidget> {
                                 }
                                 _model.pagingController =
                                     PagingController(firstPageKey: null);
-                                _model.pagingQuery = queryBuilder(
-                                    CommentsRecord.collection(
-                                        widget.postReference));
+                                _model.pagingQuery =
+                                    queryBuilder(CommentsRecord.collection());
                                 _model.pagingController!
                                     .addPageRequestListener((nextPageMarker) {
                                   queryCommentsRecordPage(
@@ -191,28 +192,35 @@ class _CommentPageWidgetState extends State<CommentPageWidget> {
                                       page.data,
                                       page.nextPageMarker,
                                     );
+
                                     final streamSubscription =
                                         page.dataStream?.listen((data) {
                                       data.forEach((item) {
-                                        final itemIndexes = _model
-                                            .pagingController!.itemList!
-                                            .asMap()
-                                            .map((k, v) =>
-                                                MapEntry(v.reference.id, k));
-                                        final index =
-                                            itemIndexes[item.reference.id];
-                                        final items =
-                                            _model.pagingController!.itemList!;
-                                        if (index != null) {
-                                          items.replaceRange(
-                                              index, index + 1, [item]);
-                                          _model.pagingController!.itemList = {
-                                            for (var item in items)
-                                              item.reference: item
-                                          }.values.toList();
+                                        if (_model.pagingController!.itemList !=
+                                            null) {
+                                          final itemIndexes = _model
+                                              .pagingController!.itemList!
+                                              .asMap()
+                                              .map((k, v) =>
+                                                  MapEntry(v.reference.id, k));
+                                          final index =
+                                              itemIndexes[item.reference.id];
+                                          final items = _model
+                                              .pagingController!.itemList!;
+                                          if (index != null) {
+                                            items.replaceRange(
+                                                index, index + 1, [item]);
+                                            _model.pagingController!.itemList =
+                                                {
+                                              for (var item in items)
+                                                item.reference: item
+                                            }.values.toList();
+                                          }
                                         }
                                       });
-                                      setState(() {});
+                                      if (mounted) {
+                                        setState(() {});
+                                      }
                                     });
                                     _model.streamSubscriptions
                                         .add(streamSubscription);
@@ -276,6 +284,9 @@ class _CommentPageWidgetState extends State<CommentPageWidget> {
                                       authorRef: listViewCommentsRecord.author,
                                       comment: listViewCommentsRecord.text,
                                       time: listViewCommentsRecord.createdAt,
+                                      commentRef:
+                                          listViewCommentsRecord.reference,
+                                      refresh: _model.pagingController!.refresh,
                                     ),
                                   );
                                 },
@@ -333,7 +344,9 @@ class _CommentPageWidgetState extends State<CommentPageWidget> {
                                                       20.0, 0.0, 4.0, 0.0),
                                               child: TextFormField(
                                                 onChanged: (value) {
-                                                  setState(() {});
+                                                  if (mounted) {
+                                                    setState(() {});
+                                                  }
                                                 },
                                                 controller:
                                                     _model.commentBoxController,
@@ -470,9 +483,13 @@ class _CommentPageWidgetState extends State<CommentPageWidget> {
                                                                   .postReference!)
                                                           .set(
                                                               commentsCreateData);
+
                                                       _model.pagingController!
                                                           .refresh();
-                                                      setState(() {});
+
+                                                      _model
+                                                          .commentBoxController
+                                                          .text = '';
                                                     },
                                               text: 'Post',
                                               options: FFButtonOptions(

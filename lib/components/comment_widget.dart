@@ -1,4 +1,5 @@
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:flutter/services.dart';
 import 'package:shimmer/shimmer.dart';
 
 import '/flutter_flow/flutter_flow_theme.dart';
@@ -6,6 +7,7 @@ import '/flutter_flow/flutter_flow_util.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
+import 'comment_bottom_sheet_widget.dart';
 import 'comment_model.dart';
 export 'comment_model.dart';
 import 'package:timeago/timeago.dart' as timeago;
@@ -13,14 +15,18 @@ import 'package:timeago/timeago.dart' as timeago;
 class CommentWidget extends StatefulWidget {
   const CommentWidget({
     Key? key,
+    this.commentRef,
     this.authorRef,
     this.comment,
     this.time,
+    this.refresh,
   }) : super(key: key);
 
+  final DocumentReference? commentRef;
   final DocumentReference? authorRef;
   final String? comment;
   final DateTime? time;
+  final Function? refresh;
 
   @override
   _CommentWidgetState createState() => _CommentWidgetState();
@@ -111,67 +117,107 @@ class _CommentWidgetState extends State<CommentWidget> {
                             ],
                             borderRadius: BorderRadius.circular(12.0),
                           ),
-                          child: Padding(
-                            padding: EdgeInsetsDirectional.fromSTEB(
-                                12.0, 8.0, 12.0, 8.0),
-                            child: Column(
-                              mainAxisSize: MainAxisSize.max,
-                              crossAxisAlignment: CrossAxisAlignment.stretch,
-                              children: [
-                                Row(
-                                  mainAxisSize: MainAxisSize.min,
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceBetween,
-                                  children: [
-                                    Text(
-                                      authorData['authorName'],
-                                      style: FlutterFlowTheme.of(context)
-                                          .bodyMedium
-                                          .override(
-                                            fontFamily: 'Inter',
-                                            color: FlutterFlowTheme.of(context)
-                                                .primary,
-                                            fontSize: 13.0,
-                                            fontWeight: FontWeight.w600,
-                                            useGoogleFonts: GoogleFonts.asMap()
-                                                .containsKey(
-                                                    FlutterFlowTheme.of(context)
-                                                        .bodyMediumFamily),
-                                          ),
+                          child: InkWell(
+                            onLongPress: () async {
+                              HapticFeedback.lightImpact();
+                              showModalBottomSheet(
+                                isScrollControlled: true,
+                                backgroundColor: Colors.transparent,
+                                context: context,
+                                builder: (context) {
+                                  return Padding(
+                                    padding: MediaQuery.of(context).viewInsets,
+                                    child: Container(
+                                      height:
+                                          MediaQuery.of(context).size.height *
+                                              0.3,
+                                      child: CommentBottomSheetWidget(
+                                        commentRef: widget.commentRef!,
+                                        authorRef: widget.authorRef!,
+                                        refresh: widget.refresh!,
+                                      ),
                                     ),
-                                    Padding(
-                                      padding: EdgeInsetsDirectional.fromSTEB(
-                                          4.0, 0.0, 0.0, 0.0),
-                                      child: Icon(
-                                        _liked
-                                            ? Icons.favorite
-                                            : Icons.favorite_border_rounded,
-                                        color: _liked
-                                            ? Colors
-                                                .pink // FlutterFlowTheme.of(context).primaryColor
-                                            : Color(0xFFCFCFCF),
-                                        size: 13,
+                                  );
+                                },
+                              ).then((value) {
+                                if (mounted) {
+                                  setState(() {});
+                                }
+                              });
+                            },
+                            onDoubleTap: () {
+                              if (mounted) {
+                                setState(() {
+                                  _liked = !_liked;
+                                });
+                              }
+                              print("liked");
+                            },
+                            child: Padding(
+                              padding: EdgeInsetsDirectional.fromSTEB(
+                                  12.0, 8.0, 12.0, 8.0),
+                              child: Column(
+                                mainAxisSize: MainAxisSize.max,
+                                crossAxisAlignment: CrossAxisAlignment.stretch,
+                                children: [
+                                  Row(
+                                    mainAxisSize: MainAxisSize.min,
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceBetween,
+                                    children: [
+                                      Text(
+                                        authorData['authorName'],
+                                        style: FlutterFlowTheme.of(context)
+                                            .bodyMedium
+                                            .override(
+                                              fontFamily: 'Inter',
+                                              color:
+                                                  FlutterFlowTheme.of(context)
+                                                      .primary,
+                                              fontSize: 13.0,
+                                              fontWeight: FontWeight.w600,
+                                              useGoogleFonts: GoogleFonts
+                                                      .asMap()
+                                                  .containsKey(
+                                                      FlutterFlowTheme.of(
+                                                              context)
+                                                          .bodyMediumFamily),
+                                            ),
                                       ),
-                                    )
-                                  ],
-                                ),
-                                Text(
-                                  widget.comment!,
-                                  style: FlutterFlowTheme.of(context)
-                                      .bodySmall
-                                      .override(
-                                        fontFamily: 'Inter',
-                                        color: FlutterFlowTheme.of(context)
-                                            .secondaryText,
-                                        fontSize: 12.0,
-                                        fontWeight: FontWeight.normal,
-                                        useGoogleFonts: GoogleFonts.asMap()
-                                            .containsKey(
-                                                FlutterFlowTheme.of(context)
-                                                    .bodySmallFamily),
-                                      ),
-                                ),
-                              ],
+                                      Padding(
+                                        padding: EdgeInsetsDirectional.fromSTEB(
+                                            4.0, 0.0, 0.0, 0.0),
+                                        child: Icon(
+                                          _liked
+                                              ? Icons.favorite
+                                              : Icons.favorite_border_rounded,
+                                          color: _liked
+                                              ? Colors
+                                                  .pink // FlutterFlowTheme.of(context).primaryColor
+                                              : Color(0xFFCFCFCF),
+                                          size: 13,
+                                        ),
+                                      )
+                                    ],
+                                  ),
+                                  Text(
+                                    widget.comment!,
+                                    style: FlutterFlowTheme.of(context)
+                                        .bodySmall
+                                        .override(
+                                          fontFamily: 'Inter',
+                                          color: FlutterFlowTheme.of(context)
+                                              .secondaryText,
+                                          fontSize: 12.0,
+                                          fontWeight: FontWeight.normal,
+                                          useGoogleFonts: GoogleFonts.asMap()
+                                              .containsKey(
+                                                  FlutterFlowTheme.of(context)
+                                                      .bodySmallFamily),
+                                        ),
+                                  ),
+                                ],
+                              ),
                             ),
                           ),
                         ),
