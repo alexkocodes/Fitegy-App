@@ -139,6 +139,9 @@ class _PostActionBarWidgetState extends State<PostActionBarWidget> {
               child: InkWell(
                 onTap: () {
                   HapticFeedback.lightImpact();
+                  if (widget.onPage == "CommentsPage") {
+                    return;
+                  }
                   context.pushNamed(
                     "commentsPage",
                     queryParams: {

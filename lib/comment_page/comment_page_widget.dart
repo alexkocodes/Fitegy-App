@@ -146,7 +146,8 @@ class _CommentPageWidgetState extends State<CommentPageWidget> {
                                   });
                                 }
                               },
-                              onPage: "Comments",
+                              onPage: "CommentsPage",
+                              time: post["time_posted"].toDate(),
                             ),
                             SizedBox(
                               height: 20,
@@ -287,6 +288,10 @@ class _CommentPageWidgetState extends State<CommentPageWidget> {
                                       commentRef:
                                           listViewCommentsRecord.reference,
                                       refresh: _model.pagingController!.refresh,
+                                      liked: listViewCommentsRecord.likes!
+                                          .contains(currentUserReference),
+                                      likeCount:
+                                          listViewCommentsRecord.likes!.length,
                                     ),
                                   );
                                 },

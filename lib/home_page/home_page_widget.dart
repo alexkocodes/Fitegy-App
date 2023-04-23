@@ -357,6 +357,7 @@ class _HomePageWidgetState extends State<HomePageWidget>
                                     callback: callback,
                                     onPage: 'HomePage',
                                     refresh: refreshDB,
+                                    time: listViewPostsRecord.timePosted,
                                   );
                                 },
                               ),

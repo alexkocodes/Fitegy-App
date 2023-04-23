@@ -13,6 +13,7 @@ import 'package:google_fonts/google_fonts.dart';
 
 import 'image_expanded_view.dart';
 import 'package:easy_image_viewer/easy_image_viewer.dart';
+import 'package:timeago/timeago.dart' as timeago;
 
 class PostWidget extends StatefulWidget {
   const PostWidget({
@@ -29,6 +30,7 @@ class PostWidget extends StatefulWidget {
     this.callback,
     this.onPage,
     this.refresh,
+    this.time,
   }) : super(key: key);
 
   final String? name;
@@ -43,6 +45,7 @@ class PostWidget extends StatefulWidget {
   final Function? callback;
   final String? onPage;
   final Function? refresh;
+  final DateTime? time;
 
   @override
   _PostWidgetState createState() => _PostWidgetState();
@@ -417,7 +420,8 @@ class _PostWidgetState extends State<PostWidget> {
               ),
               widget.imageURLs!.length > 0
                   ? Container(
-                      height: 250,
+                      padding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 10),
+                      height: 260,
                       decoration: BoxDecoration(
                         color: FlutterFlowTheme.of(context).secondaryBackground,
                       ),
@@ -475,6 +479,17 @@ class _PostWidgetState extends State<PostWidget> {
                       ),
                     )
                   : Container(),
+              Text(
+                timeago.format(widget.time!),
+                style: FlutterFlowTheme.of(context).bodySmall.override(
+                      fontFamily: 'Inter',
+                      color: Color(0x5657636C),
+                      fontSize: 12.0,
+                      fontWeight: FontWeight.normal,
+                      useGoogleFonts: GoogleFonts.asMap().containsKey(
+                          FlutterFlowTheme.of(context).bodySmallFamily),
+                    ),
+              ),
               Divider(),
               PostActionBarWidget(
                 postRef: widget.postRef,

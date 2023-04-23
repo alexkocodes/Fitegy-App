@@ -1,12 +1,17 @@
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:fitegy/auth/auth_util.dart';
+import 'package:fitegy/flutter_flow/flutter_flow_widgets.dart';
 import 'package:flutter/services.dart';
-import 'package:shimmer/shimmer.dart';
+import 'package:flutter_animate/effects/shake_effect.dart';
+import 'package:flutter_animate/flutter_animate.dart';
 
+import '../flutter_flow/flutter_flow_animations.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:provider/provider.dart';
+import 'package:fitegy/flutter_flow/nav/nav.dart';
 import 'comment_bottom_sheet_widget.dart';
 import 'comment_model.dart';
 export 'comment_model.dart';
@@ -20,6 +25,8 @@ class CommentWidget extends StatefulWidget {
     this.comment,
     this.time,
     this.refresh,
+    this.liked,
+    this.likeCount,
   }) : super(key: key);
 
   final DocumentReference? commentRef;
@@ -27,6 +34,8 @@ class CommentWidget extends StatefulWidget {
   final String? comment;
   final DateTime? time;
   final Function? refresh;
+  final bool? liked;
+  final int? likeCount;
 
   @override
   _CommentWidgetState createState() => _CommentWidgetState();
@@ -34,6 +43,8 @@ class CommentWidget extends StatefulWidget {
 
 class _CommentWidgetState extends State<CommentWidget> {
   late CommentModel _model;
+  var _liked = false;
+  var _likeCount = 0;
 
   @override
   void setState(VoidCallback callback) {
@@ -45,13 +56,14 @@ class _CommentWidgetState extends State<CommentWidget> {
   void initState() {
     super.initState();
     _model = createModel(context, () => CommentModel());
-  }
+    _liked = widget.liked!;
+    _likeCount = widget.likeCount!;
 
-  @override
-  void dispose() {
-    _model.maybeDispose();
-
-    super.dispose();
+    @override
+    void dispose() {
+      _model.maybeDispose();
+      super.dispose();
+    }
   }
 
 // create an async function to get the author's profile image and return a string
@@ -68,7 +80,6 @@ class _CommentWidgetState extends State<CommentWidget> {
 
   @override
   Widget build(BuildContext context) {
-    bool _liked = false;
     return Padding(
       padding: EdgeInsetsDirectional.fromSTEB(25.0, 0.0, 25.0, 12.0),
       child: FutureBuilder(
@@ -80,19 +91,33 @@ class _CommentWidgetState extends State<CommentWidget> {
               mainAxisSize: MainAxisSize.max,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Container(
-                  width: 30,
-                  height: 30,
-                  clipBehavior: Clip.antiAlias,
-                  decoration: BoxDecoration(
-                    shape: BoxShape.circle,
-                  ),
-                  child: CachedNetworkImage(
-                    fit: BoxFit.cover,
-                    fadeInDuration: Duration(milliseconds: 500),
-                    imageUrl: valueOrDefault<String>(
-                      authorData['authorImage'],
-                      'https://images.unsplash.com/photo-1574158622682-e40e69881006?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2333&q=80',
+                InkWell(
+                  onTap: () async {
+                    context.pushNamed(
+                      'ProfilePage',
+                      queryParams: {
+                        'userRef': serializeParam(
+                          widget.authorRef,
+                          ParamType.DocumentReference,
+                        )!,
+                        "name": authorData['authorName'],
+                      },
+                    );
+                  },
+                  child: Container(
+                    width: 30,
+                    height: 30,
+                    clipBehavior: Clip.antiAlias,
+                    decoration: BoxDecoration(
+                      shape: BoxShape.circle,
+                    ),
+                    child: CachedNetworkImage(
+                      fit: BoxFit.cover,
+                      fadeInDuration: Duration(milliseconds: 500),
+                      imageUrl: valueOrDefault<String>(
+                        authorData['authorImage'],
+                        'https://images.unsplash.com/photo-1574158622682-e40e69881006?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2333&q=80',
+                      ),
                     ),
                   ),
                 ),
@@ -118,6 +143,7 @@ class _CommentWidgetState extends State<CommentWidget> {
                             borderRadius: BorderRadius.circular(12.0),
                           ),
                           child: InkWell(
+                            borderRadius: BorderRadius.circular(12.0),
                             onLongPress: () async {
                               HapticFeedback.lightImpact();
                               showModalBottomSheet(
@@ -146,12 +172,25 @@ class _CommentWidgetState extends State<CommentWidget> {
                               });
                             },
                             onDoubleTap: () {
-                              if (mounted) {
-                                setState(() {
-                                  _liked = !_liked;
+                              HapticFeedback.lightImpact();
+                              if (_liked) {
+                                widget.commentRef!.update({
+                                  'likes': FieldValue.arrayRemove(
+                                      [currentUserReference])
+                                });
+                              } else {
+                                widget.commentRef!.update({
+                                  'likes': FieldValue.arrayUnion(
+                                      [currentUserReference])
                                 });
                               }
-                              print("liked");
+                              _likeCount =
+                                  _liked ? _likeCount - 1 : _likeCount + 1;
+                              _liked = !_liked;
+
+                              if (mounted) {
+                                setState(() {});
+                              }
                             },
                             child: Padding(
                               padding: EdgeInsetsDirectional.fromSTEB(
@@ -165,50 +204,159 @@ class _CommentWidgetState extends State<CommentWidget> {
                                     mainAxisAlignment:
                                         MainAxisAlignment.spaceBetween,
                                     children: [
-                                      Text(
-                                        authorData['authorName'],
-                                        style: FlutterFlowTheme.of(context)
-                                            .bodyMedium
-                                            .override(
-                                              fontFamily: 'Inter',
-                                              color:
-                                                  FlutterFlowTheme.of(context)
-                                                      .primary,
-                                              fontSize: 13.0,
-                                              fontWeight: FontWeight.w600,
-                                              useGoogleFonts: GoogleFonts
-                                                      .asMap()
-                                                  .containsKey(
-                                                      FlutterFlowTheme.of(
-                                                              context)
-                                                          .bodyMediumFamily),
+                                      Row(
+                                        children: [
+                                          InkWell(
+                                            onTap: () async {
+                                              context.pushNamed(
+                                                'ProfilePage',
+                                                queryParams: {
+                                                  'userRef': serializeParam(
+                                                    widget.authorRef,
+                                                    ParamType.DocumentReference,
+                                                  )!,
+                                                  "name":
+                                                      authorData['authorName'],
+                                                },
+                                              );
+                                            },
+                                            child: Text(
+                                              authorData['authorName'],
+                                              style: FlutterFlowTheme.of(
+                                                      context)
+                                                  .bodyMedium
+                                                  .override(
+                                                    fontFamily: 'Inter',
+                                                    color: FlutterFlowTheme.of(
+                                                            context)
+                                                        .primary,
+                                                    fontSize: 13.0,
+                                                    fontWeight: FontWeight.w600,
+                                                    useGoogleFonts: GoogleFonts
+                                                            .asMap()
+                                                        .containsKey(
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .bodyMediumFamily),
+                                                  ),
                                             ),
+                                          ),
+                                          Padding(
+                                            padding:
+                                                EdgeInsetsDirectional.fromSTEB(
+                                                    4.0, 0.0, 0.0, 0.0),
+                                            child: Text(
+                                              timeago.format(widget.time!),
+                                              style:
+                                                  FlutterFlowTheme.of(context)
+                                                      .bodySmall
+                                                      .override(
+                                                        fontFamily: 'Inter',
+                                                        color:
+                                                            Color(0x5657636C),
+                                                        fontSize: 12.0,
+                                                        fontWeight:
+                                                            FontWeight.normal,
+                                                        useGoogleFonts: GoogleFonts
+                                                                .asMap()
+                                                            .containsKey(
+                                                                FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .bodySmallFamily),
+                                                      ),
+                                            ),
+                                          ),
+                                        ],
                                       ),
                                       Padding(
-                                        padding: EdgeInsetsDirectional.fromSTEB(
-                                            4.0, 0.0, 0.0, 0.0),
-                                        child: Icon(
-                                          _liked
-                                              ? Icons.favorite
-                                              : Icons.favorite_border_rounded,
-                                          color: _liked
-                                              ? Colors
-                                                  .pink // FlutterFlowTheme.of(context).primaryColor
-                                              : Color(0xFFCFCFCF),
-                                          size: 13,
-                                        ),
-                                      )
+                                          padding:
+                                              EdgeInsetsDirectional.fromSTEB(
+                                                  4.0, 0.0, 0.0, 0.0),
+                                          child: FFButtonWidget(
+                                            options: FFButtonOptions(
+                                              width: 40,
+                                              height: 13,
+                                              color: Colors.white,
+                                              elevation: 0,
+                                              borderSide: BorderSide(
+                                                color: Colors.transparent,
+                                                width: 1,
+                                              ),
+                                              textStyle: TextStyle(
+                                                fontFamily: 'Inter',
+                                                color: Colors.black,
+                                                fontSize: 12,
+                                              ),
+                                            ),
+                                            onPressed: () {
+                                              HapticFeedback.lightImpact();
+                                              if (_liked) {
+                                                widget.commentRef!.update({
+                                                  'likes':
+                                                      FieldValue.arrayRemove([
+                                                    currentUserReference
+                                                  ])
+                                                });
+                                              } else {
+                                                widget.commentRef!.update({
+                                                  'likes':
+                                                      FieldValue.arrayUnion([
+                                                    currentUserReference
+                                                  ])
+                                                });
+                                              }
+                                              _likeCount = _liked
+                                                  ? _likeCount - 1
+                                                  : _likeCount + 1;
+                                              _liked = !_liked;
+
+                                              if (mounted) {
+                                                setState(() {});
+                                              }
+                                            },
+                                            text: "hello",
+                                            icon: Icon(
+                                              _liked
+                                                  ? Icons.favorite
+                                                  : Icons
+                                                      .favorite_border_rounded,
+                                              color: _liked
+                                                  ? Colors
+                                                      .pink // FlutterFlowTheme.of(context).primaryColor
+                                                  : Color(0xFFCFCFCF),
+                                              size: 13,
+                                            ),
+                                          ))
                                     ],
                                   ),
+                                  Padding(
+                                    padding: EdgeInsetsDirectional.fromSTEB(
+                                        0.0, 3.0, 0.0, 5.0),
+                                    child: Text(
+                                      widget.comment!,
+                                      style: FlutterFlowTheme.of(context)
+                                          .bodySmall
+                                          .override(
+                                            fontFamily: 'Inter',
+                                            color: FlutterFlowTheme.of(context)
+                                                .secondaryText,
+                                            fontSize: 12.0,
+                                            fontWeight: FontWeight.normal,
+                                            useGoogleFonts: GoogleFonts.asMap()
+                                                .containsKey(
+                                                    FlutterFlowTheme.of(context)
+                                                        .bodySmallFamily),
+                                          ),
+                                    ),
+                                  ),
                                   Text(
-                                    widget.comment!,
+                                    _likeCount.toString() + ' likes',
                                     style: FlutterFlowTheme.of(context)
                                         .bodySmall
                                         .override(
                                           fontFamily: 'Inter',
-                                          color: FlutterFlowTheme.of(context)
-                                              .secondaryText,
-                                          fontSize: 12.0,
+                                          color: Color(0x5657636C),
+                                          fontSize: 10.0,
                                           fontWeight: FontWeight.normal,
                                           useGoogleFonts: GoogleFonts.asMap()
                                               .containsKey(
@@ -222,24 +370,24 @@ class _CommentWidgetState extends State<CommentWidget> {
                           ),
                         ),
                       ),
-                      Padding(
-                        padding:
-                            EdgeInsetsDirectional.fromSTEB(12.0, 4.0, 0.0, 0.0),
-                        child: Text(
-                          timeago.format(widget.time!),
-                          style: FlutterFlowTheme.of(context)
-                              .bodySmall
-                              .override(
-                                fontFamily: 'Inter',
-                                color: Color(0x5657636C),
-                                fontSize: 12.0,
-                                fontWeight: FontWeight.normal,
-                                useGoogleFonts: GoogleFonts.asMap().containsKey(
-                                    FlutterFlowTheme.of(context)
-                                        .bodySmallFamily),
-                              ),
-                        ),
-                      ),
+                      // Padding(
+                      //   padding:
+                      //       EdgeInsetsDirectional.fromSTEB(12.0, 4.0, 0.0, 0.0),
+                      //   child: Text(
+                      //     timeago.format(widget.time!),
+                      //     style: FlutterFlowTheme.of(context)
+                      //         .bodySmall
+                      //         .override(
+                      //           fontFamily: 'Inter',
+                      //           color: Color(0x5657636C),
+                      //           fontSize: 12.0,
+                      //           fontWeight: FontWeight.normal,
+                      //           useGoogleFonts: GoogleFonts.asMap().containsKey(
+                      //               FlutterFlowTheme.of(context)
+                      //                   .bodySmallFamily),
+                      //         ),
+                      //   ),
+                      // ),
                     ],
                   ),
                 ),

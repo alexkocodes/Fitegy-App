@@ -188,6 +188,7 @@ class _InPostChallengeWidgetState extends State<InPostChallengeWidget> {
                                     });
                                   },
                                   onPage: "InPostChallengePage",
+                                  time: post["time_posted"].toDate(),
                                 ),
                                 Padding(
                                   padding: EdgeInsetsDirectional.fromSTEB(

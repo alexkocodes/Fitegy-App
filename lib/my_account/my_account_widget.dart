@@ -850,26 +850,35 @@ class _MyAccountWidgetState extends State<MyAccountWidget> {
                     itemBuilder: (context, _, listViewIndex) {
                       final listViewPostsRecord =
                           _pagingController!.itemList![listViewIndex];
-
-                      return PostWidget(
-                        key: Key('Post_${listViewIndex}'),
-                        name: listViewPostsRecord.displayName,
-                        location: listViewPostsRecord.location,
-                        description: listViewPostsRecord.postDescription,
-                        likeCount: valueOrDefault<int>(
-                          listViewPostsRecord.likes!.toList().length,
-                          0,
+                      double bottom = 0;
+                      if (listViewIndex ==
+                          _pagingController!.itemList!.length - 1) {
+                        bottom = 50;
+                      }
+                      return Padding(
+                        padding:
+                            EdgeInsetsDirectional.fromSTEB(0, 0, 0, bottom),
+                        child: PostWidget(
+                          key: Key('Post_${listViewIndex}'),
+                          name: listViewPostsRecord.displayName,
+                          location: listViewPostsRecord.location,
+                          description: listViewPostsRecord.postDescription,
+                          likeCount: valueOrDefault<int>(
+                            listViewPostsRecord.likes!.toList().length,
+                            0,
+                          ),
+                          challenge: listViewPostsRecord.inPostChallenge,
+                          imageURLs: listViewPostsRecord.postImages!.toList(),
+                          authorRef: listViewPostsRecord.postUser,
+                          postRef: listViewPostsRecord.reference,
+                          liked: listViewPostsRecord.likes!.contains(
+                            currentUserReference,
+                          ),
+                          callback: callback,
+                          onPage: 'ProfilePage',
+                          refresh: refresh,
+                          time: listViewPostsRecord.timePosted,
                         ),
-                        challenge: listViewPostsRecord.inPostChallenge,
-                        imageURLs: listViewPostsRecord.postImages!.toList(),
-                        authorRef: listViewPostsRecord.postUser,
-                        postRef: listViewPostsRecord.reference,
-                        liked: listViewPostsRecord.likes!.contains(
-                          currentUserReference,
-                        ),
-                        callback: callback,
-                        onPage: 'ProfilePage',
-                        refresh: refresh,
                       );
                     },
                   ),
