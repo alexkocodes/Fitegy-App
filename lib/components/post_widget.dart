@@ -265,7 +265,8 @@ class _PostWidgetState extends State<PostWidget> {
                                             fontFamily:
                                                 FlutterFlowTheme.of(context)
                                                     .bodyText1Family,
-                                            color: Color(0xFFB1B1B1),
+                                            color: Color.fromARGB(
+                                                126, 87, 99, 108),
                                             fontSize: 10,
                                             fontWeight: FontWeight.w300,
                                             useGoogleFonts: GoogleFonts.asMap()
@@ -421,7 +422,7 @@ class _PostWidgetState extends State<PostWidget> {
               widget.imageURLs!.length > 0
                   ? Container(
                       padding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 10),
-                      height: 260,
+                      height: 250,
                       decoration: BoxDecoration(
                         color: FlutterFlowTheme.of(context).secondaryBackground,
                       ),
@@ -483,7 +484,7 @@ class _PostWidgetState extends State<PostWidget> {
                 timeago.format(widget.time!),
                 style: FlutterFlowTheme.of(context).bodySmall.override(
                       fontFamily: 'Inter',
-                      color: Color(0x5657636C),
+                      color: Color.fromARGB(126, 87, 99, 108),
                       fontSize: 12.0,
                       fontWeight: FontWeight.normal,
                       useGoogleFonts: GoogleFonts.asMap().containsKey(

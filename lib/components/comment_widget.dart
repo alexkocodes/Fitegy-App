@@ -252,8 +252,8 @@ class _CommentWidgetState extends State<CommentWidget> {
                                                       .bodySmall
                                                       .override(
                                                         fontFamily: 'Inter',
-                                                        color:
-                                                            Color(0x5657636C),
+                                                        color: Color.fromARGB(
+                                                            126, 87, 99, 108),
                                                         fontSize: 12.0,
                                                         fontWeight:
                                                             FontWeight.normal,
@@ -335,13 +335,13 @@ class _CommentWidgetState extends State<CommentWidget> {
                                     child: Text(
                                       widget.comment!,
                                       style: FlutterFlowTheme.of(context)
-                                          .bodySmall
+                                          .bodyMedium
                                           .override(
                                             fontFamily: 'Inter',
                                             color: FlutterFlowTheme.of(context)
                                                 .secondaryText,
                                             fontSize: 12.0,
-                                            fontWeight: FontWeight.normal,
+                                            fontWeight: FontWeight.w500,
                                             useGoogleFonts: GoogleFonts.asMap()
                                                 .containsKey(
                                                     FlutterFlowTheme.of(context)
@@ -355,7 +355,8 @@ class _CommentWidgetState extends State<CommentWidget> {
                                         .bodySmall
                                         .override(
                                           fontFamily: 'Inter',
-                                          color: Color(0x5657636C),
+                                          color:
+                                              Color.fromARGB(126, 87, 99, 108),
                                           fontSize: 10.0,
                                           fontWeight: FontWeight.normal,
                                           useGoogleFonts: GoogleFonts.asMap()
