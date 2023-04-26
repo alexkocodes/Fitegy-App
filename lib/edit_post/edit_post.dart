@@ -11,6 +11,7 @@ import 'package:flutter_animate/effects/fade_effect.dart';
 import 'package:flutter_animate/effects/move_effect.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_platform_alert/flutter_platform_alert.dart';
+import 'package:shimmer/shimmer.dart';
 
 import '../auth/auth_util.dart';
 import '../backend/backend.dart';
@@ -335,8 +336,8 @@ class _EditPostState extends State<EditPost> with TickerProviderStateMixin {
                 future: widget.postRef!.get().then((value) => value.data()),
                 builder: (context, snapshot) {
                   if (!snapshot.hasData) {
-                    return const Center(
-                      child: CircularProgressIndicator(),
+                    return Center(
+                      child: Container(),
                     );
                   }
                   final postRecordData = snapshot.data as Map;
