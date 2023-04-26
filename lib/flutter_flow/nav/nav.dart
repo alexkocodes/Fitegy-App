@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:fitegy/comment_page/comment_page_widget.dart';
+import 'package:fitegy/edit_post/edit_post.dart';
 import 'package:fitegy/edit_profiles/edit_profiles_widget.dart';
 import 'package:fitegy/in_post_challenge/in_post_challenge.dart';
 import 'package:fitegy/post_page/post_page.dart';
@@ -230,6 +231,14 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
               name: 'SearchPage',
               path: 'searchPage',
               builder: (context, params) => SearchPageWidget(),
+            ),
+            FFRoute(
+              name: 'EditPost',
+              path: 'editPost',
+              builder: (context, params) => EditPost(
+                postRef: params.getParam('postRef', ParamType.DocumentReference,
+                    false, ['users', 'posts']),
+              ),
             ),
             FFRoute(
               name: 'CommentsPage',

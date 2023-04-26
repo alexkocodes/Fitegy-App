@@ -78,11 +78,15 @@ class _PostBottomSheetWidgetState extends State<PostBottomSheetWidget> {
             (widget.authorRef == currentUserReference)
                 ? FFButtonWidget(
                     onPressed: () async {
-                      await FlutterPlatformAlert.showAlert(
-                          windowTitle: "Coming soon!",
-                          text:
-                              "Please bear with us while we work on this feature.😌",
-                          alertStyle: AlertButtonStyle.ok);
+                      context.pushNamed(
+                        "editPost",
+                        queryParams: {
+                          'postRef': serializeParam(
+                            widget.postRef,
+                            ParamType.DocumentReference,
+                          ),
+                        }.withoutNulls,
+                      );
                     },
                     text: 'Edit Post',
                     options: FFButtonOptions(

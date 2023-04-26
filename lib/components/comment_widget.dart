@@ -357,7 +357,7 @@ class _CommentWidgetState extends State<CommentWidget> {
                                           fontFamily: 'Inter',
                                           color:
                                               Color.fromARGB(126, 87, 99, 108),
-                                          fontSize: 10.0,
+                                          fontSize: 12.0,
                                           fontWeight: FontWeight.normal,
                                           useGoogleFonts: GoogleFonts.asMap()
                                               .containsKey(
