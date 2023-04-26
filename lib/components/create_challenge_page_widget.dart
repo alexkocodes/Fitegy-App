@@ -340,7 +340,7 @@ class _CreateChallengePageWidgetState extends State<CreateChallengePageWidget> {
                                   FlutterFlowTheme.of(context).bodyText1Family),
                             ),
                         textAlign: TextAlign.start,
-                        maxLines: 10,
+                        maxLines: 5,
                         keyboardType: TextInputType.multiline,
                       ),
                     ),

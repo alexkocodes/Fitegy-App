@@ -202,6 +202,7 @@ class _CreateWidgetState extends State<CreateWidget>
                             MediaQuery.of(context).padding.top - // top padding
                             kBottomNavigationBarHeight,
                         child: SingleChildScrollView(
+                            physics: NeverScrollableScrollPhysics(),
                             child: CreateChallengePageWidget())),
                   ],
                 ),

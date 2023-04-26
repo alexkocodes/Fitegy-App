@@ -267,8 +267,8 @@ class _PostWidgetState extends State<PostWidget> {
                                                     .bodyText1Family,
                                             color: Color.fromARGB(
                                                 126, 87, 99, 108),
-                                            fontSize: 10,
-                                            fontWeight: FontWeight.w300,
+                                            fontSize: 11,
+                                            fontWeight: FontWeight.w500,
                                             useGoogleFonts: GoogleFonts.asMap()
                                                 .containsKey(
                                                     FlutterFlowTheme.of(context)
