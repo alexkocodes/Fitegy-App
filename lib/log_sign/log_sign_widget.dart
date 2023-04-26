@@ -1,3 +1,5 @@
+import 'package:flutter_platform_alert/flutter_platform_alert.dart';
+
 import '../auth/auth_util.dart';
 import '../backend/backend.dart';
 import '../flutter_flow/flutter_flow_animations.dart';
@@ -857,6 +859,16 @@ class _LogSignWidgetState extends State<LogSignWidget>
                                                               ),
                                                               onPressed:
                                                                   () async {
+                                                                if (textController1
+                                                                    .text
+                                                                    .isEmpty) {
+                                                                  FlutterPlatformAlert.showAlert(
+                                                                      windowTitle:
+                                                                          "Empty 😔",
+                                                                      text:
+                                                                          "Please enter your name!");
+                                                                  return;
+                                                                }
                                                                 await pageViewController
                                                                     ?.nextPage(
                                                                   duration: Duration(
@@ -960,7 +972,10 @@ class _LogSignWidgetState extends State<LogSignWidget>
                                           size: 30,
                                         ),
                                         onPressed: () {
-                                          print('IconButton pressed ...');
+                                          FlutterPlatformAlert.showAlert(
+                                              windowTitle: "Coming soon",
+                                              text:
+                                                  "I'm building it as fast as I can 😅");
                                         },
                                       ),
                                     ),
@@ -981,16 +996,20 @@ class _LogSignWidgetState extends State<LogSignWidget>
                                           size: 24,
                                         ),
                                         onPressed: () async {
-                                          GoRouter.of(context)
-                                              .prepareAuthEvent();
-                                          final user =
-                                              await signInWithGoogle(context);
-                                          if (user == null) {
-                                            return;
-                                          }
+                                          // GoRouter.of(context)
+                                          //     .prepareAuthEvent();
+                                          // final user =
+                                          //     await signInWithGoogle(context);
+                                          // if (user == null) {
+                                          //   return;
+                                          // }
 
-                                          context.goNamedAuth(
-                                              'HomePage', mounted);
+                                          // context.goNamedAuth(
+                                          //     'HomePage', mounted);
+                                          FlutterPlatformAlert.showAlert(
+                                              windowTitle: "Coming soon",
+                                              text:
+                                                  "I'm building it as fast as I can 😅");
                                         },
                                       ),
                                     ),
@@ -1011,16 +1030,20 @@ class _LogSignWidgetState extends State<LogSignWidget>
                                           size: 24,
                                         ),
                                         onPressed: () async {
-                                          GoRouter.of(context)
-                                              .prepareAuthEvent();
-                                          final user =
-                                              await signInWithApple(context);
-                                          if (user == null) {
-                                            return;
-                                          }
+                                          // GoRouter.of(context)
+                                          //     .prepareAuthEvent();
+                                          // final user =
+                                          //     await signInWithApple(context);
+                                          // if (user == null) {
+                                          //   return;
+                                          // }
 
-                                          context.goNamedAuth(
-                                              'HomePage', mounted);
+                                          // context.goNamedAuth(
+                                          //     'HomePage', mounted);
+                                          FlutterPlatformAlert.showAlert(
+                                              windowTitle: "Coming soon",
+                                              text:
+                                                  "I'm building it as fast as I can 😅");
                                         },
                                       ),
                                     ),
@@ -1041,16 +1064,20 @@ class _LogSignWidgetState extends State<LogSignWidget>
                                           size: 26,
                                         ),
                                         onPressed: () async {
-                                          GoRouter.of(context)
-                                              .prepareAuthEvent();
-                                          final user =
-                                              await signInWithGoogle(context);
-                                          if (user == null) {
-                                            return;
-                                          }
+                                          // GoRouter.of(context)
+                                          //     .prepareAuthEvent();
+                                          // final user =
+                                          //     await signInWithGoogle(context);
+                                          // if (user == null) {
+                                          //   return;
+                                          // }
 
-                                          context.goNamedAuth(
-                                              'HomePage', mounted);
+                                          // context.goNamedAuth(
+                                          //     'HomePage', mounted);
+                                          FlutterPlatformAlert.showAlert(
+                                              windowTitle: "Coming soon",
+                                              text:
+                                                  "I'm building it as fast as I can 😅");
                                         },
                                       ),
                                     ),
@@ -1317,6 +1344,14 @@ class _LogSignWidgetState extends State<LogSignWidget>
                                               size: 30,
                                             ),
                                             onPressed: () async {
+                                              if (newEmailController
+                                                  .text.isEmpty) {
+                                                FlutterPlatformAlert.showAlert(
+                                                    windowTitle: "Empty 😔",
+                                                    text:
+                                                        "Please enter your email!");
+                                                return;
+                                              }
                                               await pageViewController
                                                   ?.nextPage(
                                                 duration:
@@ -1690,6 +1725,15 @@ class _LogSignWidgetState extends State<LogSignWidget>
                                           size: 30,
                                         ),
                                         onPressed: () async {
+                                          if (newPassController?.text !=
+                                              confirmPassController?.text) {
+                                            FlutterPlatformAlert.showAlert(
+                                                windowTitle:
+                                                    "Passwords dont't match!",
+                                                text:
+                                                    "Please make sure you enter the same passwords.");
+                                            return;
+                                          }
                                           await pageViewController?.nextPage(
                                             duration:
                                                 Duration(milliseconds: 300),
@@ -1756,6 +1800,7 @@ class _LogSignWidgetState extends State<LogSignWidget>
                                           ),
                                           Container(
                                             height: 50,
+                                            width: 300,
                                             decoration: BoxDecoration(),
                                             alignment:
                                                 AlignmentDirectional(-1, 0),
@@ -1763,7 +1808,7 @@ class _LogSignWidgetState extends State<LogSignWidget>
                                               padding: EdgeInsetsDirectional
                                                   .fromSTEB(0, 0, 16, 0),
                                               child: Text(
-                                                'Create your username 🤩',
+                                                'Create a username 🤩',
                                                 style:
                                                     FlutterFlowTheme.of(context)
                                                         .title1
@@ -1823,7 +1868,7 @@ class _LogSignWidgetState extends State<LogSignWidget>
                                           controller: textController3,
                                           obscureText: false,
                                           decoration: InputDecoration(
-                                            labelText: '@',
+                                            prefixText: "@",
                                             labelStyle:
                                                 FlutterFlowTheme.of(context)
                                                     .bodyText2
