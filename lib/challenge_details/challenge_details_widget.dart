@@ -1,5 +1,6 @@
 import 'package:animated_loading_border/animated_loading_border.dart';
 import 'package:fitegy/flutter_flow/flutter_flow_animations.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_platform_alert/flutter_platform_alert.dart';
 
 import '../backend/backend.dart';
@@ -390,6 +391,7 @@ class _ChallengeDetailsWidgetState extends State<ChallengeDetailsWidget> {
                                                     0, 10, 0, 20),
                                             child: FFButtonWidget(
                                               onPressed: () async {
+                                                HapticFeedback.heavyImpact();
                                                 await db.doc(widget.path!).set(
                                                     {"status": "active"},
                                                     SetOptions(merge: true));
