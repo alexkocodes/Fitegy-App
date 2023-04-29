@@ -1,4 +1,5 @@
 import 'package:fitegy/auth/auth_util.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_platform_alert/flutter_platform_alert.dart';
 
 import '/flutter_flow/flutter_flow_theme.dart';
@@ -78,6 +79,7 @@ class _PostBottomSheetWidgetState extends State<PostBottomSheetWidget> {
             (widget.authorRef == currentUserReference)
                 ? FFButtonWidget(
                     onPressed: () async {
+                      HapticFeedback.lightImpact();
                       context.pushNamed(
                         "editPost",
                         queryParams: {
@@ -156,6 +158,7 @@ class _PostBottomSheetWidgetState extends State<PostBottomSheetWidget> {
                         EdgeInsetsDirectional.fromSTEB(0.0, 16.0, 0.0, 0.0),
                     child: FFButtonWidget(
                       onPressed: () async {
+                        HapticFeedback.lightImpact();
                         final result = await FlutterPlatformAlert.showAlert(
                             windowTitle: "Delete This Post?",
                             text: "Are you sure you want to delete this post?",
@@ -201,6 +204,7 @@ class _PostBottomSheetWidgetState extends State<PostBottomSheetWidget> {
               padding: EdgeInsetsDirectional.fromSTEB(0.0, 16.0, 0.0, 0.0),
               child: FFButtonWidget(
                 onPressed: () async {
+                  HapticFeedback.lightImpact();
                   Navigator.pop(context);
                 },
                 text: 'Cancel',

@@ -95,6 +95,7 @@ class _SearchPageWidgetState extends State<SearchPageWidget> {
                 Padding(
                   padding: EdgeInsetsDirectional.fromSTEB(20, 4, 20, 0),
                   child: TextFormField(
+                    autofocus: true,
                     controller: _model.textController,
                     onChanged: (_) => EasyDebounce.debounce(
                       '_model.textController',

@@ -244,7 +244,7 @@ class _InPostChallengeWidgetState extends State<InPostChallengeWidget> {
                                                 crossAxisAlignment:
                                                     CrossAxisAlignment.start,
                                                 children: [
-                                                  Text(
+                                                  SelectableText(
                                                     valueOrDefault<String>(
                                                       challenge["title"],
                                                       'Can your friends do this? 😏',
@@ -309,7 +309,7 @@ class _InPostChallengeWidgetState extends State<InPostChallengeWidget> {
                                                         EdgeInsetsDirectional
                                                             .fromSTEB(
                                                                 0, 20, 0, 0),
-                                                    child: Text(
+                                                    child: SelectableText(
                                                       valueOrDefault<String>(
                                                         challenge["details"],
                                                         'No details here 😮',
@@ -376,7 +376,7 @@ class _InPostChallengeWidgetState extends State<InPostChallengeWidget> {
                                                         EdgeInsetsDirectional
                                                             .fromSTEB(
                                                                 0, 10, 0, 0),
-                                                    child: Text(
+                                                    child: SelectableText(
                                                       valueOrDefault<String>(
                                                         challenge["comments"],
                                                         'No comments. ',

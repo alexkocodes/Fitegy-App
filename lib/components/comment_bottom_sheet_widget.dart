@@ -1,4 +1,5 @@
 import 'package:fitegy/auth/auth_util.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_platform_alert/flutter_platform_alert.dart';
 
 import '/flutter_flow/flutter_flow_theme.dart';
@@ -79,6 +80,7 @@ class _CommentBottomSheetWidgetState extends State<CommentBottomSheetWidget> {
             (widget.authorRef == currentUserReference)
                 ? FFButtonWidget(
                     onPressed: () async {
+                      HapticFeedback.lightImpact();
                       await FlutterPlatformAlert.showAlert(
                           windowTitle: "Coming soon!",
                           text:
@@ -114,6 +116,7 @@ class _CommentBottomSheetWidgetState extends State<CommentBottomSheetWidget> {
                   )
                 : FFButtonWidget(
                     onPressed: () async {
+                      HapticFeedback.lightImpact();
                       await FlutterPlatformAlert.showAlert(
                           windowTitle: "Coming soon!",
                           text:
@@ -153,6 +156,7 @@ class _CommentBottomSheetWidgetState extends State<CommentBottomSheetWidget> {
                         EdgeInsetsDirectional.fromSTEB(0.0, 16.0, 0.0, 0.0),
                     child: FFButtonWidget(
                       onPressed: () async {
+                        HapticFeedback.lightImpact();
                         final result = await FlutterPlatformAlert.showAlert(
                             windowTitle: "Delete This Comment?",
                             text:
@@ -199,6 +203,7 @@ class _CommentBottomSheetWidgetState extends State<CommentBottomSheetWidget> {
               padding: EdgeInsetsDirectional.fromSTEB(0.0, 16.0, 0.0, 0.0),
               child: FFButtonWidget(
                 onPressed: () async {
+                  HapticFeedback.lightImpact();
                   Navigator.pop(context);
                 },
                 text: 'Cancel',

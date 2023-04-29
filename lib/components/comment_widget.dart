@@ -230,7 +230,7 @@ class _CommentWidgetState extends State<CommentWidget> {
                                                     color: FlutterFlowTheme.of(
                                                             context)
                                                         .primary,
-                                                    fontSize: 13.0,
+                                                    fontSize: 14.0,
                                                     fontWeight: FontWeight.w600,
                                                     useGoogleFonts: GoogleFonts
                                                             .asMap()
@@ -340,7 +340,7 @@ class _CommentWidgetState extends State<CommentWidget> {
                                             fontFamily: 'Inter',
                                             color: FlutterFlowTheme.of(context)
                                                 .secondaryText,
-                                            fontSize: 12.0,
+                                            fontSize: 13.0,
                                             fontWeight: FontWeight.w500,
                                             useGoogleFonts: GoogleFonts.asMap()
                                                 .containsKey(

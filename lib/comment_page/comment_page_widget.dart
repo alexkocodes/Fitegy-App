@@ -65,6 +65,7 @@ class _CommentPageWidgetState extends State<CommentPageWidget> {
     return GestureDetector(
       onTap: () => FocusScope.of(context).requestFocus(_unfocusNode),
       child: Scaffold(
+        resizeToAvoidBottomInset: true,
         key: scaffoldKey,
         backgroundColor: Colors.white,
         bottomNavigationBar: BottomAppBar(
@@ -435,7 +436,7 @@ class _CommentPageWidgetState extends State<CommentPageWidget> {
                                                               Color(0xFF14181B),
                                                           fontSize: 14.0,
                                                           fontWeight:
-                                                              FontWeight.normal,
+                                                              FontWeight.w500,
                                                           useGoogleFonts: GoogleFonts
                                                                   .asMap()
                                                               .containsKey(

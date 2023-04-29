@@ -1,4 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:fitegy/backend/backend.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_platform_alert/flutter_platform_alert.dart';
 
@@ -134,6 +135,7 @@ class _PostActionBarWidgetState extends State<PostActionBarWidget> {
             ),
           ),
           Container(
+            width: 60,
             child: Material(
               color: Colors.transparent,
               child: InkWell(
@@ -161,19 +163,59 @@ class _PostActionBarWidgetState extends State<PostActionBarWidget> {
                   );
                 },
                 borderRadius: BorderRadius.circular(20),
-                child: Align(
-                  alignment: AlignmentDirectional(-1.09, 0),
-                  child: FlutterFlowIconButton(
-                    borderColor: Colors.transparent,
-                    borderRadius: 30,
-                    borderWidth: 0,
-                    buttonSize: 40,
-                    icon: Icon(
-                      Icons.mode_comment_outlined,
-                      color: Color(0xFFCFCFCF),
-                      size: 18,
+                child: Stack(
+                  children: [
+                    Align(
+                      alignment: AlignmentDirectional(-1.07, 0),
+                      child: FlutterFlowIconButton(
+                        borderColor: Colors.transparent,
+                        borderRadius: 30,
+                        borderWidth: 0,
+                        buttonSize: 40,
+                        icon: Icon(
+                          Icons.mode_comment_outlined,
+                          color: // FlutterFlowTheme.of(context).primaryColor
+                              Color(0xFFCFCFCF),
+                          size: 20,
+                        ),
+                      ),
                     ),
-                  ),
+                    FutureBuilder(
+                      future: queryCommentsRecordCount(
+                          parent: widget.postReference),
+                      builder: (context, snapshot) {
+                        if (!snapshot.hasData) {
+                          return Container();
+                        }
+                        final commentCount = snapshot.data;
+                        return Align(
+                          alignment: AlignmentDirectional(0.45, -0.12),
+                          child: Padding(
+                            padding:
+                                EdgeInsetsDirectional.fromSTEB(0, 12, 0, 0),
+                            child: Text(
+                              valueOrDefault<String>(
+                                commentCount.toString(),
+                                '0',
+                              ),
+                              style: FlutterFlowTheme.of(context)
+                                  .bodyText1
+                                  .override(
+                                    fontFamily: FlutterFlowTheme.of(context)
+                                        .bodyText1Family,
+                                    color: Color(0xFFCFCFCF),
+                                    fontSize: 13,
+                                    useGoogleFonts: GoogleFonts.asMap()
+                                        .containsKey(
+                                            FlutterFlowTheme.of(context)
+                                                .bodyText1Family),
+                                  ),
+                            ),
+                          ),
+                        );
+                      },
+                    ),
+                  ],
                 ),
               ),
             ),

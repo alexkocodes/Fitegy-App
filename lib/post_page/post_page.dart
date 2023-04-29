@@ -52,6 +52,7 @@ class _PostPageState extends State<PostPage> with TickerProviderStateMixin {
   PageController? pageViewController;
   final scaffoldKey = GlobalKey<ScaffoldState>();
   FocusNode focusNode = FocusNode();
+  FocusNode _unfocusNode = FocusNode();
   final GlobalKey<AnimatedListState> _listKey = GlobalKey(); // backing data
 
   List<SelectedMedia> toBeUploaded = [];
@@ -65,6 +66,7 @@ class _PostPageState extends State<PostPage> with TickerProviderStateMixin {
   @override
   void dispose() {
     textController?.dispose();
+    _unfocusNode.dispose();
     super.dispose();
   }
 
@@ -496,6 +498,7 @@ class _PostPageState extends State<PostPage> with TickerProviderStateMixin {
                                   padding: EdgeInsetsDirectional.fromSTEB(
                                       0, 15, 0, 0),
                                   child: DetectableTextField(
+                                    autofocus: true,
                                     cursorHeight: 15,
                                     detectionRegExp: detectionRegExp()!,
                                     decoratedStyle: TextStyle(

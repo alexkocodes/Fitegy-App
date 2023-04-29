@@ -405,7 +405,7 @@ class _PostWidgetState extends State<PostWidget> {
                   ),
                   child: Padding(
                     padding: EdgeInsetsDirectional.fromSTEB(0, 4, 0, 0),
-                    child: Text(
+                    child: SelectableText(
                       widget.description!,
                       style: FlutterFlowTheme.of(context).bodyText1.override(
                             fontFamily:

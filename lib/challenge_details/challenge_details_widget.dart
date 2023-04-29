@@ -156,7 +156,7 @@ class _ChallengeDetailsWidgetState extends State<ChallengeDetailsWidget> {
                                         crossAxisAlignment:
                                             CrossAxisAlignment.start,
                                         children: [
-                                          Text(
+                                          SelectableText(
                                             valueOrDefault<String>(
                                               widget.title,
                                               'Can your friends do this? 😏',
@@ -215,7 +215,7 @@ class _ChallengeDetailsWidgetState extends State<ChallengeDetailsWidget> {
                                             padding:
                                                 EdgeInsetsDirectional.fromSTEB(
                                                     0, 20, 0, 0),
-                                            child: Text(
+                                            child: SelectableText(
                                               valueOrDefault<String>(
                                                 widget.details,
                                                 'No details here 😮',
@@ -280,7 +280,7 @@ class _ChallengeDetailsWidgetState extends State<ChallengeDetailsWidget> {
                                             padding:
                                                 EdgeInsetsDirectional.fromSTEB(
                                                     0, 10, 0, 0),
-                                            child: Text(
+                                            child: SelectableText(
                                               valueOrDefault<String>(
                                                 widget.comments,
                                                 'No comments. ',
