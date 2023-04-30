@@ -120,6 +120,7 @@ class _InviteWidgetState extends State<InviteWidget> {
                                   () => _model.algoliaSearchResults = null);
                               await UsersRecord.search(
                                 term: _model.textController.text,
+                                useCache: true,
                               )
                                   .then((r) => _model.algoliaSearchResults = r)
                                   .onError((_, __) =>
@@ -195,6 +196,7 @@ class _InviteWidgetState extends State<InviteWidget> {
                                           _model.algoliaSearchResults = null);
                                       await UsersRecord.search(
                                         term: _model.textController.text,
+                                        useCache: true,
                                       )
                                           .then((r) =>
                                               _model.algoliaSearchResults = r)

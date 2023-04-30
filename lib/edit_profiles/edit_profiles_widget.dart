@@ -644,6 +644,20 @@ class _EditProfilesWidgetState extends State<EditProfilesWidget> {
                               emoji: _model.yourEmojiController.text,
                             );
                             await currentUserReference!.update(usersUpdateData);
+                            if (_model.yourEmailController.text.isEmpty) {
+                              ScaffoldMessenger.of(context).showSnackBar(
+                                SnackBar(
+                                  content: Text(
+                                    'Email required!',
+                                  ),
+                                ),
+                              );
+                              return;
+                            }
+                            await authManager.resetPassword(
+                              email: _model.yourEmailController.text,
+                              context: context,
+                            );
                           },
                           text: 'Save Changes',
                           options: FFButtonOptions(

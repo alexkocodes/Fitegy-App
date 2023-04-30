@@ -47,6 +47,7 @@ class FFAlgoliaManager {
     int? maxResults,
     FutureOr<LatLng>? location,
     double? searchRadiusMeters,
+    bool useCache = false,
   }) async {
     // User must specify search term or location.
     if ((term ?? '').isEmpty && location == null) {
@@ -63,7 +64,8 @@ class FFAlgoliaManager {
     }
     final params =
         AlgoliaQueryParams(index, term, loc, maxResults, searchRadiusMeters);
-    if (_algoliaCache.containsKey(params)) {
+
+    if (useCache && _algoliaCache.containsKey(params)) {
       return _algoliaCache[params]!;
     }
 

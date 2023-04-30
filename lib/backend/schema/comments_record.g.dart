@@ -48,8 +48,10 @@ class _$CommentsRecordSerializer
       result
         ..add('likes')
         ..add(serializers.serialize(value,
-            specifiedType: const FullType(
-                DocumentReference, const [const FullType.nullable(Object)])));
+            specifiedType: const FullType(BuiltList, const [
+              const FullType(
+                  DocumentReference, const [const FullType.nullable(Object)])
+            ])));
     }
     value = object.ffRef;
     if (value != null) {
@@ -89,10 +91,11 @@ class _$CommentsRecordSerializer
               specifiedType: const FullType(DateTime)) as DateTime?;
           break;
         case 'likes':
-          result.likes = serializers.deserialize(value,
-              specifiedType: const FullType(DocumentReference, const [
-                const FullType.nullable(Object)
-              ])) as DocumentReference<Object?>?;
+          result.likes.replace(serializers.deserialize(value,
+              specifiedType: const FullType(BuiltList, const [
+                const FullType(
+                    DocumentReference, const [const FullType.nullable(Object)])
+              ]))! as BuiltList<Object?>);
           break;
         case 'Document__Reference__Field':
           result.ffRef = serializers.deserialize(value,
@@ -115,7 +118,7 @@ class _$CommentsRecord extends CommentsRecord {
   @override
   final DateTime? createdAt;
   @override
-  final DocumentReference<Object?>? likes;
+  final BuiltList<DocumentReference<Object?>>? likes;
   @override
   final DocumentReference<Object?>? ffRef;
 
@@ -185,9 +188,11 @@ class CommentsRecordBuilder
   DateTime? get createdAt => _$this._createdAt;
   set createdAt(DateTime? createdAt) => _$this._createdAt = createdAt;
 
-  DocumentReference<Object?>? _likes;
-  DocumentReference<Object?>? get likes => _$this._likes;
-  set likes(DocumentReference<Object?>? likes) => _$this._likes = likes;
+  ListBuilder<DocumentReference<Object?>>? _likes;
+  ListBuilder<DocumentReference<Object?>> get likes =>
+      _$this._likes ??= new ListBuilder<DocumentReference<Object?>>();
+  set likes(ListBuilder<DocumentReference<Object?>>? likes) =>
+      _$this._likes = likes;
 
   DocumentReference<Object?>? _ffRef;
   DocumentReference<Object?>? get ffRef => _$this._ffRef;
@@ -203,7 +208,7 @@ class CommentsRecordBuilder
       _text = $v.text;
       _author = $v.author;
       _createdAt = $v.createdAt;
-      _likes = $v.likes;
+      _likes = $v.likes?.toBuilder();
       _ffRef = $v.ffRef;
       _$v = null;
     }
@@ -225,13 +230,26 @@ class CommentsRecordBuilder
   CommentsRecord build() => _build();
 
   _$CommentsRecord _build() {
-    final _$result = _$v ??
-        new _$CommentsRecord._(
-            text: text,
-            author: author,
-            createdAt: createdAt,
-            likes: likes,
-            ffRef: ffRef);
+    _$CommentsRecord _$result;
+    try {
+      _$result = _$v ??
+          new _$CommentsRecord._(
+              text: text,
+              author: author,
+              createdAt: createdAt,
+              likes: _likes?.build(),
+              ffRef: ffRef);
+    } catch (_) {
+      late String _$failedField;
+      try {
+        _$failedField = 'likes';
+        _likes?.build();
+      } catch (e) {
+        throw new BuiltValueNestedFieldError(
+            r'CommentsRecord', _$failedField, e.toString());
+      }
+      rethrow;
+    }
     replace(_$result);
     return _$result;
   }

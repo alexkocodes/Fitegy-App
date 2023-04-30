@@ -1,4 +1,5 @@
 import '/flutter_flow/flutter_flow_theme.dart';
+import '/flutter_flow/flutter_flow_toggle_icon.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -84,19 +85,45 @@ class _CommentWidgetState extends State<CommentWidget> {
                         mainAxisSize: MainAxisSize.max,
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          Text(
-                            'Randy Alcorn',
-                            style: FlutterFlowTheme.of(context)
-                                .bodyMedium
-                                .override(
-                                  fontFamily: 'Inter',
-                                  color: FlutterFlowTheme.of(context).primary,
-                                  fontSize: 13.0,
-                                  fontWeight: FontWeight.w500,
-                                  useGoogleFonts: GoogleFonts.asMap()
-                                      .containsKey(FlutterFlowTheme.of(context)
-                                          .bodyMediumFamily),
+                          Row(
+                            mainAxisSize: MainAxisSize.max,
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Text(
+                                'Randy Alcorn',
+                                style: FlutterFlowTheme.of(context)
+                                    .bodyMedium
+                                    .override(
+                                      fontFamily: 'Inter',
+                                      color:
+                                          FlutterFlowTheme.of(context).primary,
+                                      fontSize: 13.0,
+                                      fontWeight: FontWeight.w500,
+                                      useGoogleFonts: GoogleFonts.asMap()
+                                          .containsKey(
+                                              FlutterFlowTheme.of(context)
+                                                  .bodyMediumFamily),
+                                    ),
+                              ),
+                              ToggleIcon(
+                                onPressed: () async {
+                                  setState(() =>
+                                      FFAppState().isChallengePrivate =
+                                          !FFAppState().isChallengePrivate);
+                                },
+                                value: FFAppState().isChallengePrivate,
+                                onIcon: Icon(
+                                  Icons.check_box,
+                                  color: FlutterFlowTheme.of(context).accent2,
+                                  size: 25.0,
                                 ),
+                                offIcon: Icon(
+                                  Icons.check_box_outline_blank,
+                                  color: FlutterFlowTheme.of(context).accent2,
+                                  size: 25.0,
+                                ),
+                              ),
+                            ],
                           ),
                           Text(
                             'I\'m not really sure about this section here aI think you should do soemthing cool!',

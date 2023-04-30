@@ -101,6 +101,7 @@ class _SearchPageWidgetState extends State<SearchPageWidget> {
                         setState(() => _model.algoliaSearchResults = null);
                         await UsersRecord.search(
                           term: _model.textController.text,
+                          useCache: true,
                         )
                             .then((r) => _model.algoliaSearchResults = r)
                             .onError(

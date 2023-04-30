@@ -91,11 +91,13 @@ abstract class UsersRecord implements Built<UsersRecord, UsersRecordBuilder> {
           ..ffRef = UsersRecord.collection.doc(snapshot.objectID),
       );
 
-  static Future<List<UsersRecord>> search(
-          {String? term,
-          FutureOr<LatLng>? location,
-          int? maxResults,
-          double? searchRadiusMeters}) =>
+  static Future<List<UsersRecord>> search({
+    String? term,
+    FutureOr<LatLng>? location,
+    int? maxResults,
+    double? searchRadiusMeters,
+    bool useCache = false,
+  }) =>
       FFAlgoliaManager.instance
           .algoliaQuery(
             index: 'users',
@@ -103,6 +105,7 @@ abstract class UsersRecord implements Built<UsersRecord, UsersRecordBuilder> {
             maxResults: maxResults,
             location: location,
             searchRadiusMeters: searchRadiusMeters,
+            useCache: useCache,
           )
           .then((r) => r.map(fromAlgolia).toList());
 

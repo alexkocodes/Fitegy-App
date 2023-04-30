@@ -63,14 +63,8 @@
     <string>This allows us to send you updates on your challenges and posts.</string>
 	<key>NSMicrophoneUsageDescription</key>
     <string>This lets you record audio when you are taking a video.</string>
-	<key>NSLocationWhenInUseUsageDescription</key>
-    <string>This allows us to find nearby challenges and events for you.</string>
 	<key>NSFaceIDUsageDescription</key>
     <string>This allows you to log in with Face ID.</string>
-	<key>NSPhotoLibraryUsageDescription</key>
-    <string>This allows you to upload pictures or videos from your gallery.</string>
-	<key>NSCameraUsageDescription</key>
-    <string>This lets you take pictures when you feel like it.</string>
 
 
 	<key>UILaunchStoryboardName</key>
