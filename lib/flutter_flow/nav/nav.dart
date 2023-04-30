@@ -6,6 +6,7 @@ import 'package:fitegy/edit_profiles/edit_profiles_widget.dart';
 import 'package:fitegy/in_post_challenge/in_post_challenge.dart';
 import 'package:fitegy/post_page/post_page.dart';
 import 'package:fitegy/profile/profile_widget.dart';
+import 'package:fitegy/settings/settings_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:page_transition/page_transition.dart';
@@ -225,6 +226,7 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
                 name: params.getParam("name", ParamType.String),
                 bio: params.getParam("bio", ParamType.String),
                 emoji: params.getParam("emoji", ParamType.String),
+                username: params.getParam("username", ParamType.String),
               ),
             ),
             FFRoute(
@@ -253,6 +255,11 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
                     ParamType.DocumentReference, false, ['users', 'posts']),
                 extra: params.state.extra as Map,
               ),
+            ),
+            FFRoute(
+              name: 'Settings',
+              path: 'settings',
+              builder: (context, params) => SettingsWidget(),
             ),
           ].map((r) => r.toRoute(appStateNotifier)).toList(),
         ).toRoute(appStateNotifier),

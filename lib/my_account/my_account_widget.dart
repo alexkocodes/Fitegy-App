@@ -97,6 +97,7 @@ class _MyAccountWidgetState extends State<MyAccountWidget> {
     var name;
     var bio;
     var emoji;
+    var username;
     return ScrollsToTop(
       onScrollsToTop: _onScrollsToTop,
       child: Scaffold(
@@ -211,6 +212,8 @@ class _MyAccountWidgetState extends State<MyAccountWidget> {
                                         }
                                         final data = snapshot.data as Map;
                                         name = data['displayName'];
+                                        username = data['authorUsername'];
+
                                         return Text(
                                           name!,
                                           style: FlutterFlowTheme.of(context)
@@ -345,6 +348,10 @@ class _MyAccountWidgetState extends State<MyAccountWidget> {
                                                   ),
                                                   'emoji': serializeParam(
                                                     emoji,
+                                                    ParamType.String,
+                                                  ),
+                                                  'username': serializeParam(
+                                                    username,
                                                     ParamType.String,
                                                   ),
                                                 }.withoutNulls,

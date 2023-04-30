@@ -72,9 +72,6 @@ Future resetPassword(
     );
     return null;
   }
-  ScaffoldMessenger.of(context).showSnackBar(
-    SnackBar(content: Text('Password reset email sent')),
-  );
 }
 
 Future sendEmailVerification() async =>

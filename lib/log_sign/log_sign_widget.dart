@@ -1962,7 +1962,16 @@ class _LogSignWidgetState extends State<LogSignWidget>
                                                 );
                                                 return;
                                               }
-
+                                              // if the username is empty, then show an alert box
+                                              if (textController3?.text == "") {
+                                                FlutterPlatformAlert.showAlert(
+                                                  windowTitle:
+                                                      "Username is empty!",
+                                                  text:
+                                                      "Please enter a username.",
+                                                );
+                                                return;
+                                              }
                                               final user =
                                                   await createAccountWithEmail(
                                                 context,

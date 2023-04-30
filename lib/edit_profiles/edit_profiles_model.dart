@@ -36,6 +36,9 @@ class EditProfilesModel extends FlutterFlowModel {
   // State field(s) for yourEmoji widget.
   TextEditingController? yourEmojiController;
   String? Function(BuildContext, String?)? yourEmojiControllerValidator;
+  // State field(s) for yourEmoji widget.
+  TextEditingController? yourUsernameController;
+  String? Function(BuildContext, String?)? yourUsernameControllerValidator;
   bool isDataUploading2 = false;
   FFUploadedFile uploadedLocalFile2 =
       FFUploadedFile(bytes: Uint8List.fromList([]));
@@ -50,6 +53,7 @@ class EditProfilesModel extends FlutterFlowModel {
     yourEmailController?.dispose();
     yourBioController?.dispose();
     yourEmojiController?.dispose();
+    yourUsernameController?.dispose();
   }
 
   /// Additional helper methods are added here.

@@ -1,5 +1,6 @@
 import 'package:fitegy/flutter_flow/flutter_flow_model.dart';
 import 'package:fitegy/flutter_flow/uploaded_file.dart';
+import 'package:flutter/services.dart';
 
 import '/auth/auth_util.dart';
 import '/backend/backend.dart';
@@ -24,10 +25,12 @@ class EditProfilesWidget extends StatefulWidget {
     this.name,
     this.bio,
     this.emoji,
+    this.username,
   }) : super(key: key);
   final String? name;
   final String? bio;
   final String? emoji;
+  final String? username;
 
   @override
   _EditProfilesWidgetState createState() => _EditProfilesWidgetState();
@@ -46,6 +49,8 @@ class _EditProfilesWidgetState extends State<EditProfilesWidget> {
     _model.yourNameController ??= TextEditingController(text: widget.name);
     _model.yourEmailController ??=
         TextEditingController(text: currentUserEmail);
+    _model.yourUsernameController ??=
+        TextEditingController(text: widget.username);
     _model.yourBioController ??= TextEditingController(
         text: valueOrDefault(
             widget.bio, 'Just joined Fitegy! Come challenge me!'));
@@ -85,17 +90,13 @@ class _EditProfilesWidgetState extends State<EditProfilesWidget> {
                   padding: EdgeInsetsDirectional.fromSTEB(0, 0, 12, 0),
                   child: FFButtonWidget(
                     onPressed: () async {
-                      // log out
-                      GoRouter.of(context).prepareAuthEvent();
-                      await signOut();
-                      GoRouter.of(context).clearRedirectLocation();
-
-                      context.goNamedAuth('Landing', mounted);
+                      HapticFeedback.lightImpact();
+                      context.pushNamed(
+                        'settings',
+                      );
                     },
-                    text: 'Log Out',
+                    text: 'Settings',
                     options: FFButtonOptions(
-                      width: 100,
-                      height: 40,
                       elevation: 0,
                       color: Colors.transparent,
                       textStyle: FlutterFlowTheme.of(context)
@@ -103,6 +104,7 @@ class _EditProfilesWidgetState extends State<EditProfilesWidget> {
                           .override(
                             fontFamily: 'Inter',
                             color: FlutterFlowTheme.of(context).secondaryText,
+                            fontSize: 14,
                           ),
                       borderSide: BorderSide(
                         color: Colors.transparent,
@@ -348,10 +350,10 @@ class _EditProfilesWidgetState extends State<EditProfilesWidget> {
                     Padding(
                       padding: EdgeInsetsDirectional.fromSTEB(20, 0, 20, 16),
                       child: TextFormField(
-                        controller: _model.yourEmailController,
+                        controller: _model.yourUsernameController,
                         obscureText: false,
                         decoration: InputDecoration(
-                          labelText: 'Your Email',
+                          labelText: 'Your Username',
                           labelStyle: FlutterFlowTheme.of(context)
                               .bodySmall
                               .override(
@@ -419,6 +421,80 @@ class _EditProfilesWidgetState extends State<EditProfilesWidget> {
                             .asValidator(context),
                       ),
                     ),
+                    // Padding(
+                    //   padding: EdgeInsetsDirectional.fromSTEB(20, 0, 20, 16),
+                    //   child: TextFormField(
+                    //     controller: _model.yourEmailController,
+                    //     obscureText: false,
+                    //     decoration: InputDecoration(
+                    //       labelText: 'Your Email',
+                    //       labelStyle: FlutterFlowTheme.of(context)
+                    //           .bodySmall
+                    //           .override(
+                    //             fontFamily: FlutterFlowTheme.of(context)
+                    //                 .bodySmallFamily,
+                    //             color: FlutterFlowTheme.of(context).accent3,
+                    //             useGoogleFonts: GoogleFonts.asMap().containsKey(
+                    //                 FlutterFlowTheme.of(context)
+                    //                     .bodySmallFamily),
+                    //           ),
+                    //       hintStyle: FlutterFlowTheme.of(context)
+                    //           .bodySmall
+                    //           .override(
+                    //             fontFamily: FlutterFlowTheme.of(context)
+                    //                 .bodySmallFamily,
+                    //             fontWeight: FontWeight.normal,
+                    //             useGoogleFonts: GoogleFonts.asMap().containsKey(
+                    //                 FlutterFlowTheme.of(context)
+                    //                     .bodySmallFamily),
+                    //           ),
+                    //       enabledBorder: OutlineInputBorder(
+                    //         borderSide: BorderSide(
+                    //           color: Color(0x9295A1AC),
+                    //           width: 1,
+                    //         ),
+                    //         borderRadius: BorderRadius.circular(15),
+                    //       ),
+                    //       focusedBorder: OutlineInputBorder(
+                    //         borderSide: BorderSide(
+                    //           color: Color(0x9295A1AC),
+                    //           width: 1,
+                    //         ),
+                    //         borderRadius: BorderRadius.circular(15),
+                    //       ),
+                    //       errorBorder: OutlineInputBorder(
+                    //         borderSide: BorderSide(
+                    //           color: Color(0x00000000),
+                    //           width: 1,
+                    //         ),
+                    //         borderRadius: BorderRadius.circular(15),
+                    //       ),
+                    //       focusedErrorBorder: OutlineInputBorder(
+                    //         borderSide: BorderSide(
+                    //           color: Color(0x00000000),
+                    //           width: 1,
+                    //         ),
+                    //         borderRadius: BorderRadius.circular(15),
+                    //       ),
+                    //       filled: true,
+                    //       fillColor:
+                    //           FlutterFlowTheme.of(context).secondaryBackground,
+                    //       contentPadding:
+                    //           EdgeInsetsDirectional.fromSTEB(20, 24, 0, 24),
+                    //     ),
+                    //     style: FlutterFlowTheme.of(context).bodyMedium.override(
+                    //           fontFamily:
+                    //               FlutterFlowTheme.of(context).bodyMediumFamily,
+                    //           color: FlutterFlowTheme.of(context).secondaryText,
+                    //           useGoogleFonts: GoogleFonts.asMap().containsKey(
+                    //               FlutterFlowTheme.of(context)
+                    //                   .bodyMediumFamily),
+                    //         ),
+                    //     maxLines: null,
+                    //     validator: _model.yourEmailControllerValidator
+                    //         .asValidator(context),
+                    //   ),
+                    // ),
                     Padding(
                       padding: EdgeInsetsDirectional.fromSTEB(20, 0, 20, 16),
                       child: AuthUserStreamWidget(
@@ -723,6 +799,7 @@ class _EditProfilesWidgetState extends State<EditProfilesWidget> {
                               email: _model.yourEmailController!.text,
                               bio: _model.yourBioController!.text,
                               emoji: _model.yourEmojiController!.text,
+                              username: _model.yourUsernameController!.text,
                             );
                             await currentUserReference!.update(usersUpdateData);
                             // safe pop
@@ -736,6 +813,48 @@ class _EditProfilesWidgetState extends State<EditProfilesWidget> {
                             iconPadding:
                                 EdgeInsetsDirectional.fromSTEB(0, 0, 0, 0),
                             color: FlutterFlowTheme.of(context).secondaryText,
+                            textStyle: FlutterFlowTheme.of(context)
+                                .titleSmall
+                                .override(
+                                  fontFamily: 'Inter',
+                                  color: Colors.white,
+                                  fontSize: 20,
+                                  fontWeight: FontWeight.w600,
+                                  useGoogleFonts: GoogleFonts.asMap()
+                                      .containsKey(FlutterFlowTheme.of(context)
+                                          .titleSmallFamily),
+                                ),
+                            elevation: 2,
+                            borderSide: BorderSide(
+                              color: Colors.transparent,
+                              width: 1,
+                            ),
+                            borderRadius: BorderRadius.circular(15),
+                          ),
+                        ),
+                      ),
+                    ),
+                    Align(
+                      alignment: AlignmentDirectional(0, 0.05),
+                      child: Padding(
+                        padding: EdgeInsetsDirectional.fromSTEB(20, 20, 20, 0),
+                        child: FFButtonWidget(
+                          onPressed: () async {
+                            // log out
+                            GoRouter.of(context).prepareAuthEvent();
+                            await signOut();
+                            GoRouter.of(context).clearRedirectLocation();
+
+                            context.goNamedAuth('Landing', mounted);
+                          },
+                          text: 'Log Out',
+                          options: FFButtonOptions(
+                            width: double.infinity,
+                            height: 60,
+                            padding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 0),
+                            iconPadding:
+                                EdgeInsetsDirectional.fromSTEB(0, 0, 0, 0),
+                            color: Colors.redAccent,
                             textStyle: FlutterFlowTheme.of(context)
                                 .titleSmall
                                 .override(
