@@ -61,6 +61,8 @@
 	<string>This allows you to upload pictures or videos from your gallery.</string>
 	<key>PermissionGroupNotification</key>
 	<string>This allows us to send you updates on your challenges and posts.</string>
+	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
+	<string>This allows us to find nearby challenges and events for you.</string>
 	<key>UIApplicationSupportsIndirectInputEvents</key>
 	<true/>
 	<key>UILaunchStoryboardName</key>
