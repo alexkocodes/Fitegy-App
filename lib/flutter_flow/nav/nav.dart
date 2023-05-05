@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:fitegy/AboutPage/about_page_widget.dart';
 import 'package:fitegy/comment_page/comment_page_widget.dart';
 import 'package:fitegy/edit_post/edit_post.dart';
 import 'package:fitegy/edit_profiles/edit_profiles_widget.dart';
@@ -260,6 +261,11 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
               name: 'Settings',
               path: 'settings',
               builder: (context, params) => SettingsWidget(),
+            ),
+            FFRoute(
+              name: 'AboutPage',
+              path: 'aboutPage',
+              builder: (context, params) => AboutPageWidget(),
             ),
           ].map((r) => r.toRoute(appStateNotifier)).toList(),
         ).toRoute(appStateNotifier),

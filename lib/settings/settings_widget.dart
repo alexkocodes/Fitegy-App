@@ -1,3 +1,4 @@
+import 'package:fitegy/AboutPage/about_page_widget.dart';
 import 'package:fitegy/flutter_flow/flutter_flow_model.dart';
 import 'package:fitegy/flutter_flow/uploaded_file.dart';
 import 'package:flutter/services.dart';
@@ -83,145 +84,248 @@ class _SettingsWidgetState extends State<SettingsWidget> {
           ],
           body: Builder(
             builder: (context) {
-              return SingleChildScrollView(
-                child: Column(
-                  mainAxisSize: MainAxisSize.max,
-                  children: [
-                    Padding(
-                        padding: EdgeInsetsDirectional.fromSTEB(20, 20, 20, 16),
-                        child: Text(
-                          "Enter your email to reset your password.",
-                          style: FlutterFlowTheme.of(context)
-                              .bodyText1
-                              .override(
-                                fontFamily: 'Inter',
-                                color:
-                                    FlutterFlowTheme.of(context).secondaryText,
-                                fontSize: 16,
-                                fontWeight: FontWeight.bold,
-                              ),
-                        )),
-                    Padding(
-                      padding: EdgeInsetsDirectional.fromSTEB(20, 20, 20, 16),
-                      child: TextFormField(
-                        controller: _model.yourEmailController,
-                        obscureText: false,
-                        decoration: InputDecoration(
-                          labelText: 'Your Email',
-                          labelStyle: FlutterFlowTheme.of(context)
-                              .bodySmall
-                              .override(
-                                fontFamily: FlutterFlowTheme.of(context)
-                                    .bodySmallFamily,
-                                color: FlutterFlowTheme.of(context).accent3,
-                                useGoogleFonts: GoogleFonts.asMap().containsKey(
-                                    FlutterFlowTheme.of(context)
-                                        .bodySmallFamily),
-                              ),
-                          hintStyle: FlutterFlowTheme.of(context)
-                              .bodySmall
-                              .override(
-                                fontFamily: FlutterFlowTheme.of(context)
-                                    .bodySmallFamily,
-                                fontWeight: FontWeight.normal,
-                                useGoogleFonts: GoogleFonts.asMap().containsKey(
-                                    FlutterFlowTheme.of(context)
-                                        .bodySmallFamily),
-                              ),
-                          enabledBorder: OutlineInputBorder(
-                            borderSide: BorderSide(
-                              color: Color(0x9295A1AC),
-                              width: 1,
-                            ),
-                            borderRadius: BorderRadius.circular(15),
-                          ),
-                          focusedBorder: OutlineInputBorder(
-                            borderSide: BorderSide(
-                              color: Color(0x9295A1AC),
-                              width: 1,
-                            ),
-                            borderRadius: BorderRadius.circular(15),
-                          ),
-                          errorBorder: OutlineInputBorder(
-                            borderSide: BorderSide(
-                              color: Color(0x00000000),
-                              width: 1,
-                            ),
-                            borderRadius: BorderRadius.circular(15),
-                          ),
-                          focusedErrorBorder: OutlineInputBorder(
-                            borderSide: BorderSide(
-                              color: Color(0x00000000),
-                              width: 1,
-                            ),
-                            borderRadius: BorderRadius.circular(15),
-                          ),
-                          filled: true,
-                          fillColor:
-                              FlutterFlowTheme.of(context).secondaryBackground,
-                          contentPadding:
-                              EdgeInsetsDirectional.fromSTEB(20, 24, 0, 24),
-                        ),
-                        style: FlutterFlowTheme.of(context).bodyMedium.override(
-                              fontFamily:
-                                  FlutterFlowTheme.of(context).bodyMediumFamily,
-                              color: FlutterFlowTheme.of(context).secondaryText,
-                              useGoogleFonts: GoogleFonts.asMap().containsKey(
-                                  FlutterFlowTheme.of(context)
-                                      .bodyMediumFamily),
-                            ),
-                        maxLines: null,
-                        validator: _model.yourEmailControllerValidator
-                            .asValidator(context),
-                      ),
-                    ),
-                    Align(
-                      alignment: AlignmentDirectional(0, 0.05),
-                      child: Padding(
-                        padding: EdgeInsetsDirectional.fromSTEB(20, 20, 20, 0),
-                        child: FFButtonWidget(
-                          onPressed: () async {
-                            HapticFeedback.lightImpact();
-                            await resetPassword(
-                              email: _model.yourEmailController.text,
-                              context: context,
-                            );
-                            FlutterPlatformAlert.showAlert(
-                                windowTitle: "Check your email 📧",
-                                text:
-                                    "We've sent you an email with a link to reset your password.");
-                            context.safePop();
-                          },
-                          text: 'Change Password',
-                          options: FFButtonOptions(
-                            width: double.infinity,
-                            height: 60,
-                            padding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 0),
-                            iconPadding:
-                                EdgeInsetsDirectional.fromSTEB(0, 0, 0, 0),
-                            color: FlutterFlowTheme.of(context).primaryColor,
-                            textStyle: FlutterFlowTheme.of(context)
-                                .titleSmall
-                                .override(
-                                  fontFamily: 'Inter',
-                                  color: Colors.white,
-                                  fontSize: 20,
-                                  fontWeight: FontWeight.w600,
-                                  useGoogleFonts: GoogleFonts.asMap()
-                                      .containsKey(FlutterFlowTheme.of(context)
-                                          .titleSmallFamily),
+              return Container(
+                height: MediaQuery.of(context).size.height * 1,
+                child: SingleChildScrollView(
+                  child: Container(
+                    height: MediaQuery.of(context).size.height * 1,
+                    child: Column(
+                      mainAxisSize: MainAxisSize.max,
+                      //mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Column(
+                          children: [
+                            Padding(
+                                padding: EdgeInsetsDirectional.fromSTEB(
+                                    20, 20, 20, 16),
+                                child: Text(
+                                  "Enter your email to reset your password.",
+                                  style: FlutterFlowTheme.of(context)
+                                      .bodyText1
+                                      .override(
+                                        fontFamily: 'Inter',
+                                        color: FlutterFlowTheme.of(context)
+                                            .secondaryText,
+                                        fontSize: 16,
+                                        fontWeight: FontWeight.bold,
+                                      ),
+                                )),
+                            Padding(
+                              padding: EdgeInsetsDirectional.fromSTEB(
+                                  20, 20, 20, 16),
+                              child: TextFormField(
+                                controller: _model.yourEmailController,
+                                obscureText: false,
+                                decoration: InputDecoration(
+                                  labelText: 'Your Email',
+                                  labelStyle: FlutterFlowTheme.of(context)
+                                      .bodySmall
+                                      .override(
+                                        fontFamily: FlutterFlowTheme.of(context)
+                                            .bodySmallFamily,
+                                        color: FlutterFlowTheme.of(context)
+                                            .accent3,
+                                        useGoogleFonts: GoogleFonts.asMap()
+                                            .containsKey(
+                                                FlutterFlowTheme.of(context)
+                                                    .bodySmallFamily),
+                                      ),
+                                  hintStyle: FlutterFlowTheme.of(context)
+                                      .bodySmall
+                                      .override(
+                                        fontFamily: FlutterFlowTheme.of(context)
+                                            .bodySmallFamily,
+                                        fontWeight: FontWeight.normal,
+                                        useGoogleFonts: GoogleFonts.asMap()
+                                            .containsKey(
+                                                FlutterFlowTheme.of(context)
+                                                    .bodySmallFamily),
+                                      ),
+                                  enabledBorder: OutlineInputBorder(
+                                    borderSide: BorderSide(
+                                      color: Color(0x9295A1AC),
+                                      width: 1,
+                                    ),
+                                    borderRadius: BorderRadius.circular(15),
+                                  ),
+                                  focusedBorder: OutlineInputBorder(
+                                    borderSide: BorderSide(
+                                      color: Color(0x9295A1AC),
+                                      width: 1,
+                                    ),
+                                    borderRadius: BorderRadius.circular(15),
+                                  ),
+                                  errorBorder: OutlineInputBorder(
+                                    borderSide: BorderSide(
+                                      color: Color(0x00000000),
+                                      width: 1,
+                                    ),
+                                    borderRadius: BorderRadius.circular(15),
+                                  ),
+                                  focusedErrorBorder: OutlineInputBorder(
+                                    borderSide: BorderSide(
+                                      color: Color(0x00000000),
+                                      width: 1,
+                                    ),
+                                    borderRadius: BorderRadius.circular(15),
+                                  ),
+                                  filled: true,
+                                  fillColor: FlutterFlowTheme.of(context)
+                                      .secondaryBackground,
+                                  contentPadding:
+                                      EdgeInsetsDirectional.fromSTEB(
+                                          20, 24, 0, 24),
                                 ),
-                            elevation: 2,
-                            borderSide: BorderSide(
-                              color: Colors.transparent,
-                              width: 1,
+                                style: FlutterFlowTheme.of(context)
+                                    .bodyMedium
+                                    .override(
+                                      fontFamily: FlutterFlowTheme.of(context)
+                                          .bodyMediumFamily,
+                                      color: FlutterFlowTheme.of(context)
+                                          .secondaryText,
+                                      useGoogleFonts: GoogleFonts.asMap()
+                                          .containsKey(
+                                              FlutterFlowTheme.of(context)
+                                                  .bodyMediumFamily),
+                                    ),
+                                maxLines: null,
+                                validator: _model.yourEmailControllerValidator
+                                    .asValidator(context),
+                              ),
                             ),
-                            borderRadius: BorderRadius.circular(15),
+                            Align(
+                              alignment: AlignmentDirectional(0, 0.05),
+                              child: Padding(
+                                padding: EdgeInsetsDirectional.fromSTEB(
+                                    20, 20, 20, 0),
+                                child: FFButtonWidget(
+                                  onPressed: () async {
+                                    HapticFeedback.lightImpact();
+                                    await resetPassword(
+                                      email: _model.yourEmailController.text,
+                                      context: context,
+                                    );
+                                    FlutterPlatformAlert.showAlert(
+                                        windowTitle: "Check your email 📧",
+                                        text:
+                                            "We've sent you an email with a link to reset your password.");
+                                    context.safePop();
+                                  },
+                                  text: 'Change Password',
+                                  options: FFButtonOptions(
+                                    width: double.infinity,
+                                    height: 60,
+                                    padding: EdgeInsetsDirectional.fromSTEB(
+                                        0, 0, 0, 0),
+                                    iconPadding: EdgeInsetsDirectional.fromSTEB(
+                                        0, 0, 0, 0),
+                                    color: FlutterFlowTheme.of(context)
+                                        .primaryColor,
+                                    textStyle: FlutterFlowTheme.of(context)
+                                        .titleSmall
+                                        .override(
+                                          fontFamily: 'Inter',
+                                          color: Colors.white,
+                                          fontSize: 20,
+                                          fontWeight: FontWeight.w600,
+                                          useGoogleFonts: GoogleFonts.asMap()
+                                              .containsKey(
+                                                  FlutterFlowTheme.of(context)
+                                                      .titleSmallFamily),
+                                        ),
+                                    elevation: 2,
+                                    borderSide: BorderSide(
+                                      color: Colors.transparent,
+                                      width: 1,
+                                    ),
+                                    borderRadius: BorderRadius.circular(15),
+                                  ),
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
+                        Spacer(),
+                        Align(
+                          alignment: AlignmentDirectional.bottomCenter,
+                          child: Padding(
+                            padding:
+                                EdgeInsetsDirectional.fromSTEB(0, 0, 0, 150),
+                            child: Column(
+                              children: [
+                                FFButtonWidget(
+                                  text: 'About Fitegy',
+                                  options: FFButtonOptions(
+                                    width: 130,
+                                    height: 30,
+                                    color: FlutterFlowTheme.of(context)
+                                        .secondaryBackground,
+                                    textStyle: FlutterFlowTheme.of(context)
+                                        .bodyText2
+                                        .override(
+                                          fontFamily: 'Inter',
+                                          color: FlutterFlowTheme.of(context)
+                                              .grayIcon,
+                                          fontSize: 12,
+                                          fontWeight: FontWeight.normal,
+                                        ),
+                                    elevation: 0,
+                                    borderSide: BorderSide(
+                                      color: Colors.transparent,
+                                      width: 1,
+                                    ),
+                                  ),
+                                  onPressed: () async {
+                                    await Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                        builder: (context) => AboutPageWidget(),
+                                      ),
+                                    );
+                                  },
+                                ),
+                                // Padding(
+                                //   padding: EdgeInsetsDirectional.fromSTEB(
+                                //       0, 0, 0, 0),
+                                //   child: FFButtonWidget(
+                                //     text: 'Terms and Conditions',
+                                //     options: FFButtonOptions(
+                                //       height: 20,
+                                //       color: FlutterFlowTheme.of(context)
+                                //           .secondaryBackground,
+                                //       textStyle: FlutterFlowTheme.of(context)
+                                //           .bodyText2
+                                //           .override(
+                                //             fontFamily: 'Inter',
+                                //             color: FlutterFlowTheme.of(context)
+                                //                 .grayIcon,
+                                //             fontSize: 12,
+                                //             fontWeight: FontWeight.normal,
+                                //           ),
+                                //       elevation: 0,
+                                //       borderSide: BorderSide(
+                                //         color: Colors.transparent,
+                                //         width: 1,
+                                //       ),
+                                //     ),
+                                //     onPressed: () async {
+                                //       await Navigator.push(
+                                //         context,
+                                //         MaterialPageRoute(
+                                //           builder: (context) =>
+                                //               AboutPageWidget(),
+                                //         ),
+                                //       );
+                                //     },
+                                //   ),
+                                // ),
+                              ],
+                            ),
                           ),
                         ),
-                      ),
+                      ],
                     ),
-                  ],
+                  ),
                 ),
               );
             },
