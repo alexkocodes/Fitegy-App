@@ -73,6 +73,30 @@ class _UserFriendsWidgetState extends State<UserFriendsWidget> {
                   .toLowerCase()
                   .contains(_model.textController.text.toLowerCase()))
           .toList();
+      // if results is empty, try agolia search
+      // if (results.isEmpty) {
+      //   await UsersRecord.search(
+      //     term: _model.textController.text,
+      //   )
+      //       .then((r) => _model.algoliaSearchResults = r)
+      //       .onError((_, __) => _model.algoliaSearchResults = [])
+      //       .whenComplete(() => setState(() {
+      //             if (_model.algoliaSearchResults == null) {
+      //               _model.pagingController!.itemList = [];
+      //               return;
+      //             }
+      //             var searchResults = _model.algoliaSearchResults;
+      //             // add users that are in the friends list to the itemList
+      //             searchResults!.forEach((user) {
+      //               if (_allFriends
+      //                   .any((friend) => friend.uid == user.reference)) {
+      //                 results.add(_allFriends.firstWhere(
+      //                     (friend) => friend.uid == user.reference));
+      //               }
+      //             });
+      //           }));
+      //   print("here");
+      // }
     }
     setState(() {
       _model.pagingController!.itemList = results;
@@ -145,13 +169,34 @@ class _UserFriendsWidgetState extends State<UserFriendsWidget> {
                     controller: _model.textController,
                     onChanged: (_) => EasyDebounce.debounce(
                       '_model.textController',
-                      Duration(milliseconds: 0),
+                      Duration(milliseconds: 400),
                       () async {
                         filter();
-                        // if (_model.textController.text.isEmpty) {
-                        //   _model.pagingController!.itemList = _allFriends;
-                        //   return;
-                        // }
+                        if (_model.pagingController!.itemList!.isEmpty) {
+                          await UsersRecord.search(
+                            term: _model.textController.text,
+                          )
+                              .then((r) => _model.algoliaSearchResults = r)
+                              .onError(
+                                  (_, __) => _model.algoliaSearchResults = [])
+                              .whenComplete(() => setState(() {
+                                    if (_model.algoliaSearchResults == null) {
+                                      _model.pagingController!.itemList = [];
+                                      return;
+                                    }
+                                    var searchResults =
+                                        _model.algoliaSearchResults;
+                                    // add users that are in the friends list to the itemList
+                                    searchResults!.forEach((user) {
+                                      if (_allFriends.any((friend) =>
+                                          friend.uid == user.reference)) {
+                                        _model.pagingController!.itemList!.add(
+                                            _allFriends.firstWhere((friend) =>
+                                                friend.uid == user.reference));
+                                      }
+                                    });
+                                  }));
+                        }
                       },
                     ),
                     obscureText: false,
@@ -318,7 +363,6 @@ class _UserFriendsWidgetState extends State<UserFriendsWidget> {
                               scrollDirection: Axis.vertical,
                               builderDelegate:
                                   PagedChildBuilderDelegate<FriendsRecord>(
-                                // Customize what your widget looks like when it's loading the first page.
                                 firstPageProgressIndicatorBuilder: (_) =>
                                     Center(
                                   child: SizedBox(
@@ -330,7 +374,15 @@ class _UserFriendsWidgetState extends State<UserFriendsWidget> {
                                     ),
                                   ),
                                 ),
-
+                                noItemsFoundIndicatorBuilder: (_) => Container(
+                                  width: double.infinity,
+                                  height: 100,
+                                  child: Center(
+                                    child: Text(
+                                      'They are not friends :(',
+                                    ),
+                                  ),
+                                ),
                                 itemBuilder: (context, _, listViewIndex) {
                                   final listViewFriendsRecord = _model
                                       .pagingController!

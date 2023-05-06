@@ -99,7 +99,7 @@ class _SearchPageWidgetState extends State<SearchPageWidget> {
                     controller: _model.textController,
                     onChanged: (_) => EasyDebounce.debounce(
                       '_model.textController',
-                      Duration(milliseconds: 800),
+                      Duration(milliseconds: 400),
                       () async {
                         if (_model.textController.text.isEmpty) {
                           _model.pagingController!.itemList = _initialUsers;
@@ -298,11 +298,13 @@ class _SearchPageWidgetState extends State<SearchPageWidget> {
                                     ),
                                   ),
                                 ),
-                                noItemsFoundIndicatorBuilder: (_) => Center(
-                                  child: Container(
-                                    width:
-                                        MediaQuery.of(context).size.width * 0.5,
-                                    child: EmptyWidget(),
+                                noItemsFoundIndicatorBuilder: (_) => Container(
+                                  width: double.infinity,
+                                  height: 100,
+                                  child: Center(
+                                    child: Text(
+                                      'No users found. Keep searching!',
+                                    ),
                                   ),
                                 ),
                                 itemBuilder: (context, _, listViewIndex) {

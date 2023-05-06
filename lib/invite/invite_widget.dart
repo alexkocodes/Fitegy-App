@@ -382,7 +382,15 @@ class _InviteWidgetState extends State<InviteWidget> {
                                 ),
                               ),
                             ),
-
+                            noItemsFoundIndicatorBuilder: (_) => Container(
+                              width: double.infinity,
+                              height: 100,
+                              child: Center(
+                                child: Text(
+                                  'You don\'t have any friends yet...Go to the search page to find some!',
+                                ),
+                              ),
+                            ),
                             itemBuilder: (context, _, listViewIndex) {
                               final listViewFriendsRecord = _model
                                   .pagingController!.itemList![listViewIndex];

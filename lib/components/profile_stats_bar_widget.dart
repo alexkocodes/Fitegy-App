@@ -135,19 +135,51 @@ class _ProfileStatesBarState extends State<ProfileStatesBar> {
                           )!,
                         });
                       },
-                      child: Text(
-                        data['friends'] == null
-                            ? "0"
-                            : data['friends'].length.toString(),
-                        style: FlutterFlowTheme.of(context).bodyText1.override(
-                              fontFamily:
-                                  FlutterFlowTheme.of(context).bodyText1Family,
-                              color: FlutterFlowTheme.of(context).secondaryText,
-                              fontSize: 30.0,
-                              fontWeight: FontWeight.w600,
-                              useGoogleFonts: GoogleFonts.asMap().containsKey(
-                                  FlutterFlowTheme.of(context).bodyText1Family),
-                            ),
+                      child: FutureBuilder(
+                        future: queryFriendsRecordCount(
+                          parent: widget.authorRef,
+                          queryBuilder: (friendsRecord) => friendsRecord,
+                        ),
+                        builder: (context, snapshot) {
+                          if (snapshot.hasData) {
+                            return Text(
+                              data['friends'] == null
+                                  ? "0"
+                                  : valueOrDefault<String>(
+                                      snapshot.data.toString(),
+                                      '?',
+                                    ),
+                              style: FlutterFlowTheme.of(context)
+                                  .bodyText1
+                                  .override(
+                                    fontFamily: FlutterFlowTheme.of(context)
+                                        .bodyText1Family,
+                                    color: FlutterFlowTheme.of(context)
+                                        .secondaryText,
+                                    fontSize: 30.0,
+                                    fontWeight: FontWeight.w600,
+                                    useGoogleFonts: GoogleFonts.asMap()
+                                        .containsKey(
+                                            FlutterFlowTheme.of(context)
+                                                .bodyText1Family),
+                                  ),
+                            );
+                          } else {
+                            return Center(
+                              child: SizedBox(
+                                width: 36,
+                                height: 36,
+                                child: Padding(
+                                  padding: const EdgeInsets.all(8.0),
+                                  child: CircularProgressIndicator(
+                                    color: FlutterFlowTheme.of(context)
+                                        .primaryBtnText,
+                                  ),
+                                ),
+                              ),
+                            );
+                          }
+                        },
                       ),
                     );
                   },

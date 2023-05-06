@@ -112,6 +112,7 @@ class _ProfileWidgetState extends State<ProfileWidget> {
     var name;
     var bio;
     var emoji;
+    var username;
     return ScrollsToTop(
       onScrollsToTop: _onScrollsToTop,
       child: Scaffold(
@@ -228,6 +229,7 @@ class _ProfileWidgetState extends State<ProfileWidget> {
                                           }
                                           final data = snapshot.data as Map;
                                           name = data['displayName'];
+                                          username = data['authorUsername'];
                                           return Text(
                                             name!,
                                             style: FlutterFlowTheme.of(context)
@@ -365,6 +367,10 @@ class _ProfileWidgetState extends State<ProfileWidget> {
                                                       emoji,
                                                       ParamType.String,
                                                     ),
+                                                    'username': serializeParam(
+                                                      username,
+                                                      ParamType.String,
+                                                    ),
                                                   }.withoutNulls,
                                                 );
                                               },
@@ -448,10 +454,10 @@ class _ProfileWidgetState extends State<ProfileWidget> {
                                                             as Map)["userData"]
                                                         ["username"];
 
-                                                final currentUserDisplayName =
-                                                    (snapshot.data
-                                                            as Map)["userData"]
-                                                        ["displayName"];
+                                                // final currentUserDisplayName =
+                                                //     (snapshot.data
+                                                //             as Map)["userData"]
+                                                //         ["display_name"];
 
                                                 final authorUsername = (snapshot
                                                             .data

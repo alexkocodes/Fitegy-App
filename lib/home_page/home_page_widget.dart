@@ -328,7 +328,15 @@ class _HomePageWidgetState extends State<HomePageWidget>
                                     ),
                                   ),
                                 ),
-
+                                noItemsFoundIndicatorBuilder: (_) => Container(
+                                  width: double.infinity,
+                                  height: 100,
+                                  child: Center(
+                                    child: Text(
+                                      'No Posts Yet...',
+                                    ),
+                                  ),
+                                ),
                                 itemBuilder: (context, _, listViewIndex) {
                                   final listViewPostsRecord = _pagingController!
                                       .itemList![listViewIndex];
