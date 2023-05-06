@@ -15,6 +15,7 @@ import 'package:flutter/scheduler.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:animated_background/animated_background.dart';
 
 class LogSignWidget extends StatefulWidget {
   const LogSignWidget({
@@ -893,196 +894,196 @@ class _LogSignWidgetState extends State<LogSignWidget>
                                     ),
                                   ),
                                 ),
-                                Padding(
-                                  padding: EdgeInsetsDirectional.fromSTEB(
-                                      0, 0, 0, 10),
-                                  child: Row(
-                                    mainAxisSize: MainAxisSize.max,
-                                    mainAxisAlignment:
-                                        MainAxisAlignment.spaceEvenly,
-                                    children: [
-                                      Container(
-                                        width:
-                                            MediaQuery.of(context).size.width *
-                                                0.4,
-                                        decoration: BoxDecoration(),
-                                        child: Column(
-                                          mainAxisSize: MainAxisSize.max,
-                                          children: [
-                                            Divider(
-                                              thickness: 1,
-                                              color: Color(0xB3FFFFFF),
-                                            ),
-                                          ],
-                                        ),
-                                      ),
-                                      Text(
-                                        'OR',
-                                        style: FlutterFlowTheme.of(context)
-                                            .bodyText2
-                                            .override(
-                                              fontFamily:
-                                                  FlutterFlowTheme.of(context)
-                                                      .bodyText2Family,
-                                              color: Color(0xB3FFFFFF),
-                                              useGoogleFonts:
-                                                  GoogleFonts.asMap()
-                                                      .containsKey(
-                                                          FlutterFlowTheme.of(
-                                                                  context)
-                                                              .bodyText2Family),
-                                            ),
-                                      ),
-                                      Container(
-                                        width:
-                                            MediaQuery.of(context).size.width *
-                                                0.4,
-                                        decoration: BoxDecoration(),
-                                        child: Column(
-                                          mainAxisSize: MainAxisSize.max,
-                                          children: [
-                                            Divider(
-                                              thickness: 1,
-                                              color: Color(0xB3FFFFFF),
-                                            ),
-                                          ],
-                                        ),
-                                      ),
-                                    ],
-                                  ),
-                                ),
-                                Row(
-                                  mainAxisSize: MainAxisSize.max,
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  children: [
-                                    Padding(
-                                      padding: EdgeInsetsDirectional.fromSTEB(
-                                          0, 0, 8, 0),
-                                      child: FlutterFlowIconButton(
-                                        borderColor: Colors.transparent,
-                                        borderRadius: 30,
-                                        borderWidth: 1,
-                                        buttonSize: 50,
-                                        fillColor: FlutterFlowTheme.of(context)
-                                            .primaryBtnText,
-                                        icon: FaIcon(
-                                          FontAwesomeIcons.facebookF,
-                                          color: FlutterFlowTheme.of(context)
-                                              .primaryText,
-                                          size: 30,
-                                        ),
-                                        onPressed: () {
-                                          FlutterPlatformAlert.showAlert(
-                                              windowTitle: "Coming soon",
-                                              text:
-                                                  "I'm building it as fast as I can 😅");
-                                        },
-                                      ),
-                                    ),
-                                    Padding(
-                                      padding: EdgeInsetsDirectional.fromSTEB(
-                                          8, 8, 8, 8),
-                                      child: FlutterFlowIconButton(
-                                        borderColor: Colors.transparent,
-                                        borderRadius: 30,
-                                        borderWidth: 1,
-                                        buttonSize: 50,
-                                        fillColor: FlutterFlowTheme.of(context)
-                                            .secondaryBackground,
-                                        icon: FaIcon(
-                                          FontAwesomeIcons.google,
-                                          color: FlutterFlowTheme.of(context)
-                                              .primaryText,
-                                          size: 24,
-                                        ),
-                                        onPressed: () async {
-                                          // GoRouter.of(context)
-                                          //     .prepareAuthEvent();
-                                          // final user =
-                                          //     await signInWithGoogle(context);
-                                          // if (user == null) {
-                                          //   return;
-                                          // }
+                                // Padding(
+                                //   padding: EdgeInsetsDirectional.fromSTEB(
+                                //       0, 0, 0, 10),
+                                //   child: Row(
+                                //     mainAxisSize: MainAxisSize.max,
+                                //     mainAxisAlignment:
+                                //         MainAxisAlignment.spaceEvenly,
+                                //     children: [
+                                //       Container(
+                                //         width:
+                                //             MediaQuery.of(context).size.width *
+                                //                 0.4,
+                                //         decoration: BoxDecoration(),
+                                //         child: Column(
+                                //           mainAxisSize: MainAxisSize.max,
+                                //           children: [
+                                //             Divider(
+                                //               thickness: 1,
+                                //               color: Color(0xB3FFFFFF),
+                                //             ),
+                                //           ],
+                                //         ),
+                                //       ),
+                                //       Text(
+                                //         'OR',
+                                //         style: FlutterFlowTheme.of(context)
+                                //             .bodyText2
+                                //             .override(
+                                //               fontFamily:
+                                //                   FlutterFlowTheme.of(context)
+                                //                       .bodyText2Family,
+                                //               color: Color(0xB3FFFFFF),
+                                //               useGoogleFonts:
+                                //                   GoogleFonts.asMap()
+                                //                       .containsKey(
+                                //                           FlutterFlowTheme.of(
+                                //                                   context)
+                                //                               .bodyText2Family),
+                                //             ),
+                                //       ),
+                                //       Container(
+                                //         width:
+                                //             MediaQuery.of(context).size.width *
+                                //                 0.4,
+                                //         decoration: BoxDecoration(),
+                                //         child: Column(
+                                //           mainAxisSize: MainAxisSize.max,
+                                //           children: [
+                                //             Divider(
+                                //               thickness: 1,
+                                //               color: Color(0xB3FFFFFF),
+                                //             ),
+                                //           ],
+                                //         ),
+                                //       ),
+                                //     ],
+                                //   ),
+                                // ),
+                                // Row(
+                                //   mainAxisSize: MainAxisSize.max,
+                                //   mainAxisAlignment: MainAxisAlignment.center,
+                                //   children: [
+                                //     Padding(
+                                //       padding: EdgeInsetsDirectional.fromSTEB(
+                                //           0, 0, 8, 0),
+                                //       child: FlutterFlowIconButton(
+                                //         borderColor: Colors.transparent,
+                                //         borderRadius: 30,
+                                //         borderWidth: 1,
+                                //         buttonSize: 50,
+                                //         fillColor: FlutterFlowTheme.of(context)
+                                //             .primaryBtnText,
+                                //         icon: FaIcon(
+                                //           FontAwesomeIcons.facebookF,
+                                //           color: FlutterFlowTheme.of(context)
+                                //               .primaryText,
+                                //           size: 30,
+                                //         ),
+                                //         onPressed: () {
+                                //           FlutterPlatformAlert.showAlert(
+                                //               windowTitle: "Coming soon",
+                                //               text:
+                                //                   "I'm building it as fast as I can 😅");
+                                //         },
+                                //       ),
+                                //     ),
+                                //     Padding(
+                                //       padding: EdgeInsetsDirectional.fromSTEB(
+                                //           8, 8, 8, 8),
+                                //       child: FlutterFlowIconButton(
+                                //         borderColor: Colors.transparent,
+                                //         borderRadius: 30,
+                                //         borderWidth: 1,
+                                //         buttonSize: 50,
+                                //         fillColor: FlutterFlowTheme.of(context)
+                                //             .secondaryBackground,
+                                //         icon: FaIcon(
+                                //           FontAwesomeIcons.google,
+                                //           color: FlutterFlowTheme.of(context)
+                                //               .primaryText,
+                                //           size: 24,
+                                //         ),
+                                //         onPressed: () async {
+                                //           // GoRouter.of(context)
+                                //           //     .prepareAuthEvent();
+                                //           // final user =
+                                //           //     await signInWithGoogle(context);
+                                //           // if (user == null) {
+                                //           //   return;
+                                //           // }
 
-                                          // context.goNamedAuth(
-                                          //     'HomePage', mounted);
-                                          FlutterPlatformAlert.showAlert(
-                                              windowTitle: "Coming soon",
-                                              text:
-                                                  "I'm building it as fast as I can 😅");
-                                        },
-                                      ),
-                                    ),
-                                    Padding(
-                                      padding: EdgeInsetsDirectional.fromSTEB(
-                                          8, 8, 8, 8),
-                                      child: FlutterFlowIconButton(
-                                        borderColor: Colors.transparent,
-                                        borderRadius: 30,
-                                        borderWidth: 1,
-                                        buttonSize: 50,
-                                        fillColor: FlutterFlowTheme.of(context)
-                                            .secondaryBackground,
-                                        icon: FaIcon(
-                                          FontAwesomeIcons.apple,
-                                          color: FlutterFlowTheme.of(context)
-                                              .primaryText,
-                                          size: 24,
-                                        ),
-                                        onPressed: () async {
-                                          // GoRouter.of(context)
-                                          //     .prepareAuthEvent();
-                                          // final user =
-                                          //     await signInWithApple(context);
-                                          // if (user == null) {
-                                          //   return;
-                                          // }
+                                //           // context.goNamedAuth(
+                                //           //     'HomePage', mounted);
+                                //           FlutterPlatformAlert.showAlert(
+                                //               windowTitle: "Coming soon",
+                                //               text:
+                                //                   "I'm building it as fast as I can 😅");
+                                //         },
+                                //       ),
+                                //     ),
+                                //     Padding(
+                                //       padding: EdgeInsetsDirectional.fromSTEB(
+                                //           8, 8, 8, 8),
+                                //       child: FlutterFlowIconButton(
+                                //         borderColor: Colors.transparent,
+                                //         borderRadius: 30,
+                                //         borderWidth: 1,
+                                //         buttonSize: 50,
+                                //         fillColor: FlutterFlowTheme.of(context)
+                                //             .secondaryBackground,
+                                //         icon: FaIcon(
+                                //           FontAwesomeIcons.apple,
+                                //           color: FlutterFlowTheme.of(context)
+                                //               .primaryText,
+                                //           size: 24,
+                                //         ),
+                                //         onPressed: () async {
+                                //           // GoRouter.of(context)
+                                //           //     .prepareAuthEvent();
+                                //           // final user =
+                                //           //     await signInWithApple(context);
+                                //           // if (user == null) {
+                                //           //   return;
+                                //           // }
 
-                                          // context.goNamedAuth(
-                                          //     'HomePage', mounted);
-                                          FlutterPlatformAlert.showAlert(
-                                              windowTitle: "Coming soon",
-                                              text:
-                                                  "I'm building it as fast as I can 😅");
-                                        },
-                                      ),
-                                    ),
-                                    Padding(
-                                      padding: EdgeInsetsDirectional.fromSTEB(
-                                          8, 0, 0, 0),
-                                      child: FlutterFlowIconButton(
-                                        borderColor: Colors.transparent,
-                                        borderRadius: 30,
-                                        borderWidth: 1,
-                                        buttonSize: 50,
-                                        fillColor: FlutterFlowTheme.of(context)
-                                            .primaryBtnText,
-                                        icon: FaIcon(
-                                          FontAwesomeIcons.twitter,
-                                          color: FlutterFlowTheme.of(context)
-                                              .primaryText,
-                                          size: 26,
-                                        ),
-                                        onPressed: () async {
-                                          // GoRouter.of(context)
-                                          //     .prepareAuthEvent();
-                                          // final user =
-                                          //     await signInWithGoogle(context);
-                                          // if (user == null) {
-                                          //   return;
-                                          // }
+                                //           // context.goNamedAuth(
+                                //           //     'HomePage', mounted);
+                                //           FlutterPlatformAlert.showAlert(
+                                //               windowTitle: "Coming soon",
+                                //               text:
+                                //                   "I'm building it as fast as I can 😅");
+                                //         },
+                                //       ),
+                                //     ),
+                                //     Padding(
+                                //       padding: EdgeInsetsDirectional.fromSTEB(
+                                //           8, 0, 0, 0),
+                                //       child: FlutterFlowIconButton(
+                                //         borderColor: Colors.transparent,
+                                //         borderRadius: 30,
+                                //         borderWidth: 1,
+                                //         buttonSize: 50,
+                                //         fillColor: FlutterFlowTheme.of(context)
+                                //             .primaryBtnText,
+                                //         icon: FaIcon(
+                                //           FontAwesomeIcons.twitter,
+                                //           color: FlutterFlowTheme.of(context)
+                                //               .primaryText,
+                                //           size: 26,
+                                //         ),
+                                //         onPressed: () async {
+                                //           // GoRouter.of(context)
+                                //           //     .prepareAuthEvent();
+                                //           // final user =
+                                //           //     await signInWithGoogle(context);
+                                //           // if (user == null) {
+                                //           //   return;
+                                //           // }
 
-                                          // context.goNamedAuth(
-                                          //     'HomePage', mounted);
-                                          FlutterPlatformAlert.showAlert(
-                                              windowTitle: "Coming soon",
-                                              text:
-                                                  "I'm building it as fast as I can 😅");
-                                        },
-                                      ),
-                                    ),
-                                  ],
-                                ),
+                                //           // context.goNamedAuth(
+                                //           //     'HomePage', mounted);
+                                //           FlutterPlatformAlert.showAlert(
+                                //               windowTitle: "Coming soon",
+                                //               text:
+                                //                   "I'm building it as fast as I can 😅");
+                                //         },
+                                //       ),
+                                //     ),
+                                //   ],
+                                // ),
                               ],
                             ),
                           ),

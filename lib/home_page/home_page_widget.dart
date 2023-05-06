@@ -197,7 +197,7 @@ class _HomePageWidgetState extends State<HomePageWidget>
                             onPressed: () {
                               FlutterPlatformAlert.showAlert(
                                 windowTitle: "I'm building it",
-                                text: "It's coming, I promise!🥹",
+                                text: "It's coming, I promise!",
                               );
                             },
                             borderRadius: 60,

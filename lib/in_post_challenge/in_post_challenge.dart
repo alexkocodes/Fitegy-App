@@ -430,7 +430,7 @@ class _InPostChallengeWidgetState extends State<InPostChallengeWidget> {
                                             onPressed: () async {
                                               HapticFeedback.lightImpact();
                                               FlutterPlatformAlert.showAlert(
-                                                  windowTitle: "I promise😭!",
+                                                  windowTitle: "Coming soon!",
                                                   text:
                                                       "Soon you will be able to request to join your friend's challenges.");
                                             },

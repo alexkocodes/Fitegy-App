@@ -101,6 +101,7 @@ dependencies:
   floating_bottom_navigation_bar: ^1.5.2
   scrolls_to_top: ^2.1.0
   hidable: ^1.0.3
+  animated_background: ^2.0.0
 
 dev_dependencies:
   build_runner: 2.4.1
