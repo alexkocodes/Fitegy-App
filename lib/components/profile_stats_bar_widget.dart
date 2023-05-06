@@ -122,19 +122,33 @@ class _ProfileStatesBarState extends State<ProfileStatesBar> {
                     final data = snapshot.data as Map<String, dynamic>;
                     // if friends is a field in data
 
-                    return Text(
-                      data['friends'] == null
-                          ? "0"
-                          : data['friends'].length.toString(),
-                      style: FlutterFlowTheme.of(context).bodyText1.override(
-                            fontFamily:
-                                FlutterFlowTheme.of(context).bodyText1Family,
-                            color: FlutterFlowTheme.of(context).secondaryText,
-                            fontSize: 30.0,
-                            fontWeight: FontWeight.w600,
-                            useGoogleFonts: GoogleFonts.asMap().containsKey(
-                                FlutterFlowTheme.of(context).bodyText1Family),
-                          ),
+                    return InkWell(
+                      onTap: () {
+                        context.pushNamed('userFriends', queryParams: {
+                          'userRef': serializeParam(
+                            widget.authorRef,
+                            ParamType.DocumentReference,
+                          )!,
+                          'userName': serializeParam(
+                            data['display_name'],
+                            ParamType.String,
+                          )!,
+                        });
+                      },
+                      child: Text(
+                        data['friends'] == null
+                            ? "0"
+                            : data['friends'].length.toString(),
+                        style: FlutterFlowTheme.of(context).bodyText1.override(
+                              fontFamily:
+                                  FlutterFlowTheme.of(context).bodyText1Family,
+                              color: FlutterFlowTheme.of(context).secondaryText,
+                              fontSize: 30.0,
+                              fontWeight: FontWeight.w600,
+                              useGoogleFonts: GoogleFonts.asMap().containsKey(
+                                  FlutterFlowTheme.of(context).bodyText1Family),
+                            ),
+                      ),
                     );
                   },
                 ),

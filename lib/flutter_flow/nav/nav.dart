@@ -8,6 +8,7 @@ import 'package:fitegy/in_post_challenge/in_post_challenge.dart';
 import 'package:fitegy/post_page/post_page.dart';
 import 'package:fitegy/profile/profile_widget.dart';
 import 'package:fitegy/settings/settings_widget.dart';
+import 'package:fitegy/user_friends/user_friends_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:page_transition/page_transition.dart';
@@ -266,6 +267,15 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
               name: 'AboutPage',
               path: 'aboutPage',
               builder: (context, params) => AboutPageWidget(),
+            ),
+            FFRoute(
+              name: 'UserFriends',
+              path: 'userFriends',
+              builder: (context, params) => UserFriendsWidget(
+                userRef: params.getParam(
+                    'userRef', ParamType.DocumentReference, false, ['users']),
+                userName: params.getParam('userName', ParamType.String),
+              ),
             ),
           ].map((r) => r.toRoute(appStateNotifier)).toList(),
         ).toRoute(appStateNotifier),

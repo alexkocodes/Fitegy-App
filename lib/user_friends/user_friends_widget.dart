@@ -1,41 +1,87 @@
 import 'package:easy_debounce/easy_debounce.dart';
-import 'package:firebase_core/firebase_core.dart';
 import 'package:fitegy/auth/auth_util.dart';
+import 'package:fitegy/auth/firebase_user_provider.dart';
+import 'package:flutter_platform_alert/flutter_platform_alert.dart';
+
+import '../backend/backend.dart';
+import '../components/empty_widget.dart';
+import '../components/user_card_small_widget.dart';
+import '../components/user_preview_card_widget.dart';
+import '../flutter_flow/flutter_flow_icon_button.dart';
+import '../flutter_flow/flutter_flow_model.dart';
+import '../flutter_flow/flutter_flow_theme.dart';
+import '../flutter_flow/flutter_flow_util.dart';
+import '../flutter_flow/flutter_flow_widgets.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
+import 'package:provider/provider.dart';
+import 'user_friends_model.dart';
+export 'user_friends_model.dart';
+import '../flutter_flow/random_data_util.dart' as random_data;
 
-import '../components/empty_widget.dart';
-import '/backend/backend.dart';
-import '/components/user_preview_card_widget.dart';
-import '/flutter_flow/flutter_flow_icon_button.dart';
-import '/flutter_flow/flutter_flow_theme.dart';
-import '/flutter_flow/flutter_flow_util.dart';
-import 'search_page_model.dart';
+class UserFriendsWidget extends StatefulWidget {
+  const UserFriendsWidget({
+    Key? key,
+    this.userRef,
+    this.userName,
+  }) : super(key: key);
 
-export 'search_page_model.dart';
-
-class SearchPageWidget extends StatefulWidget {
-  const SearchPageWidget({Key? key}) : super(key: key);
+  final DocumentReference? userRef;
+  final String? userName;
 
   @override
-  _SearchPageWidgetState createState() => _SearchPageWidgetState();
+  _UserFriendsWidgetState createState() => _UserFriendsWidgetState();
 }
 
-class _SearchPageWidgetState extends State<SearchPageWidget> {
-  late SearchPageModel _model;
+class _UserFriendsWidgetState extends State<UserFriendsWidget> {
+  late UserFriendsModel _model;
 
   final scaffoldKey = GlobalKey<ScaffoldState>();
   final _unfocusNode = FocusNode();
-  var _initialUsers = <UsersRecord>[];
-  bool _firstLoad = true;
   final db = FirebaseFirestore.instance;
+  var _allFriends = <FriendsRecord>[];
 
   @override
   void initState() {
     super.initState();
-    _model = createModel(context, () => SearchPageModel());
+    _model = createModel(context, () => UserFriendsModel());
     _model.textController ??= TextEditingController();
+    queryFriendsRecordOnce(
+      parent: widget.userRef,
+      queryBuilder: (friendsRecord) => friendsRecord.orderBy('username'),
+    ).then((value) {
+      setState(() {
+        _allFriends = value;
+      });
+    });
+  }
+
+  void filter() async {
+    List<FriendsRecord> results = [];
+    if (_model.textController.text.isEmpty) {
+      // if the search field is empty or only contains white-space, we'll display all users
+      results = _allFriends;
+    } else {
+      results = _allFriends
+          .where((user) =>
+              user.username!
+                  .toLowerCase()
+                  .contains(_model.textController.text.toLowerCase()) ||
+              user.displayName!
+                  .toLowerCase()
+                  .contains(_model.textController.text.toLowerCase()))
+          .toList();
+    }
+    setState(() {
+      _model.pagingController!.itemList = results;
+    });
+  }
+
+  Future<Map> getFriendInfo(DocumentReference uid) async {
+    final data = await uid.get();
+    return data.data() as Map;
   }
 
   @override
@@ -70,8 +116,9 @@ class _SearchPageWidgetState extends State<SearchPageWidget> {
               context.safePop();
             },
           ),
+          centerTitle: true,
           title: Text(
-            'Search For Users',
+            widget.userName! + "'s Friends",
             style: FlutterFlowTheme.of(context).headlineSmall.override(
                   fontFamily: 'Inter',
                   color: FlutterFlowTheme.of(context).primary,
@@ -82,7 +129,6 @@ class _SearchPageWidgetState extends State<SearchPageWidget> {
                 ),
           ),
           actions: [],
-          centerTitle: true,
           elevation: 0,
         ),
         body: SafeArea(
@@ -99,27 +145,13 @@ class _SearchPageWidgetState extends State<SearchPageWidget> {
                     controller: _model.textController,
                     onChanged: (_) => EasyDebounce.debounce(
                       '_model.textController',
-                      Duration(milliseconds: 800),
+                      Duration(milliseconds: 0),
                       () async {
-                        if (_model.textController.text.isEmpty) {
-                          _model.pagingController!.itemList = _initialUsers;
-                          return;
-                        }
-
-                        await UsersRecord.search(
-                          term: _model.textController.text,
-                        )
-                            .then((r) => _model.algoliaSearchResults = r)
-                            .onError(
-                                (_, __) => _model.algoliaSearchResults = [])
-                            .whenComplete(() => setState(() {
-                                  if (_model.algoliaSearchResults == null) {
-                                    _model.pagingController!.itemList = [];
-                                    return;
-                                  }
-                                  _model.pagingController!.itemList =
-                                      _model.algoliaSearchResults;
-                                }));
+                        filter();
+                        // if (_model.textController.text.isEmpty) {
+                        //   _model.pagingController!.itemList = _allFriends;
+                        //   return;
+                        // }
                       },
                     ),
                     obscureText: false,
@@ -182,11 +214,11 @@ class _SearchPageWidgetState extends State<SearchPageWidget> {
                         _model.textControllerValidator.asValidator(context),
                   ),
                 ),
-                Expanded(
-                  child: FutureBuilder<List<UsersRecord>>(
-                      future: queryUsersRecordOnce(
-                        queryBuilder: (usersRecord) =>
-                            usersRecord.orderBy('display_name'),
+                Flexible(
+                  child: FutureBuilder<List<FriendsRecord>>(
+                      future: queryFriendsRecordOnce(
+                        queryBuilder: (friendsRecord) =>
+                            friendsRecord.orderBy('display_name'),
                         limit: 14,
                       ),
                       builder: (context, snapshot) {
@@ -203,9 +235,9 @@ class _SearchPageWidgetState extends State<SearchPageWidget> {
                             ),
                           );
                         }
-                        List<UsersRecord> containerUsersRecordList =
-                            snapshot.data!.toList();
-                        _initialUsers = containerUsersRecordList;
+                        // List<FriendsRecord> containerFriendsRecordList =
+                        //     snapshot.data!.toList();
+                        // _allFriends = containerUsersRecordList;
                         return Container(
                           width: double.infinity,
                           height: double.infinity,
@@ -217,14 +249,14 @@ class _SearchPageWidgetState extends State<SearchPageWidget> {
                             padding:
                                 EdgeInsetsDirectional.fromSTEB(0, 10, 0, 0),
                             child: PagedListView<DocumentSnapshot<Object?>?,
-                                UsersRecord>(
+                                FriendsRecord>(
                               pagingController: () {
                                 final Query<Object?> Function(Query<Object?>)
-                                    queryBuilder = (usersRecord) =>
-                                        usersRecord.orderBy('display_name');
+                                    queryBuilder = (friendsRecord) =>
+                                        friendsRecord.orderBy('username');
                                 if (_model.pagingController != null) {
                                   final query =
-                                      queryBuilder(UsersRecord.collection);
+                                      queryBuilder(FriendsRecord.collection());
                                   if (query != _model.pagingQuery) {
                                     // The query has changed
                                     _model.pagingQuery = query;
@@ -239,14 +271,15 @@ class _SearchPageWidgetState extends State<SearchPageWidget> {
                                 _model.pagingController =
                                     PagingController(firstPageKey: null);
                                 _model.pagingQuery =
-                                    queryBuilder(UsersRecord.collection);
+                                    queryBuilder(FriendsRecord.collection());
                                 _model.pagingController!
                                     .addPageRequestListener((nextPageMarker) {
-                                  queryUsersRecordPage(
-                                    queryBuilder: (usersRecord) =>
-                                        usersRecord.orderBy('display_name'),
+                                  queryFriendsRecordPage(
+                                    parent: widget.userRef,
+                                    queryBuilder: (friendsRecord) =>
+                                        friendsRecord.orderBy('username'),
                                     nextPageMarker: nextPageMarker,
-                                    pageSize: 14,
+                                    pageSize: 10,
                                     isStream: true,
                                   ).then((page) {
                                     _model.pagingController!.appendPage(
@@ -274,7 +307,6 @@ class _SearchPageWidgetState extends State<SearchPageWidget> {
                                           }.values.toList();
                                         }
                                       });
-                                      setState(() {});
                                     });
                                     _model.streamSubscriptions
                                         .add(streamSubscription);
@@ -283,44 +315,59 @@ class _SearchPageWidgetState extends State<SearchPageWidget> {
                                 return _model.pagingController!;
                               }(),
                               padding: EdgeInsets.zero,
-                              reverse: false,
                               scrollDirection: Axis.vertical,
                               builderDelegate:
-                                  PagedChildBuilderDelegate<UsersRecord>(
+                                  PagedChildBuilderDelegate<FriendsRecord>(
+                                // Customize what your widget looks like when it's loading the first page.
                                 firstPageProgressIndicatorBuilder: (_) =>
                                     Center(
                                   child: SizedBox(
                                     width: 40,
                                     height: 40,
                                     child: CircularProgressIndicator(
-                                      color:
-                                          FlutterFlowTheme.of(context).primary,
+                                      color: FlutterFlowTheme.of(context)
+                                          .primaryBtnText,
                                     ),
                                   ),
                                 ),
-                                noItemsFoundIndicatorBuilder: (_) => Center(
-                                  child: Container(
-                                    width:
-                                        MediaQuery.of(context).size.width * 0.5,
-                                    child: EmptyWidget(),
-                                  ),
-                                ),
+
                                 itemBuilder: (context, _, listViewIndex) {
-                                  final listViewUsersRecord = _model
+                                  final listViewFriendsRecord = _model
                                       .pagingController!
                                       .itemList![listViewIndex];
 
-                                  return UserPreviewCardWidget(
-                                    key: Key(
-                                        'Keyp9h_${listViewIndex}_of_${_model.pagingController!.itemList!.length}'),
-                                    displayName:
-                                        listViewUsersRecord.displayName,
-                                    username: listViewUsersRecord.username,
-                                    emoji: listViewUsersRecord.emoji == ""
-                                        ? '👋'
-                                        : listViewUsersRecord.emoji,
-                                    userRef: listViewUsersRecord.reference,
-                                    imageURL: listViewUsersRecord.photoUrl,
+                                  return FutureBuilder(
+                                    future: getFriendInfo(
+                                        listViewFriendsRecord.uid!),
+                                    builder: (context, snapshot) {
+                                      if (!snapshot.hasData) {
+                                        return Container();
+                                      }
+                                      final friendData = snapshot.data as Map;
+                                      // if this is the last item in the list, add a bottom padding
+                                      var itemCount = _model
+                                          .pagingController!.itemList!.length;
+                                      double bottom = 0;
+                                      if (listViewIndex == itemCount - 1) {
+                                        bottom = 40;
+                                      }
+                                      return Padding(
+                                        padding: EdgeInsetsDirectional.fromSTEB(
+                                            0, 0, 0, bottom),
+                                        child: UserPreviewCardWidget(
+                                          key: Key(
+                                              'Keyp9h_${listViewIndex}_of_${_model.pagingController!.itemList!.length}'),
+                                          displayName:
+                                              friendData['display_name'],
+                                          username:
+                                              friendData['username'] ?? '',
+                                          emoji: friendData['emoji'] ?? '',
+                                          userRef: listViewFriendsRecord.uid,
+                                          imageURL:
+                                              friendData['photo_url'] ?? '',
+                                        ),
+                                      );
+                                    },
                                   );
                                 },
                               ),
