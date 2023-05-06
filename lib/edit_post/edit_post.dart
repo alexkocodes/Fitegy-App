@@ -61,10 +61,15 @@ class _EditPostState extends State<EditPost> with TickerProviderStateMixin {
   bool first_load = true;
   List<SelectedMedia> toBeUploaded = [];
 
+  var postRecordData = {};
   @override
   void initState() {
     super.initState();
     textController = TextEditingController();
+    widget.postRef!.get().then((value) {
+      postRecordData = value.data() as Map;
+      textController.text = postRecordData['post_description'];
+    });
   }
 
   @override
@@ -341,8 +346,6 @@ class _EditPostState extends State<EditPost> with TickerProviderStateMixin {
                     );
                   }
                   final postRecordData = snapshot.data as Map;
-                  textController.text =
-                      postRecordData['post_description'].toString();
 
                   return Expanded(
                     child: SingleChildScrollView(
