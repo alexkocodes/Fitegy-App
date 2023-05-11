@@ -738,6 +738,8 @@ class _LogSignWidgetState extends State<LogSignWidget>
                                                                         12),
                                                           ),
                                                           child: TextFormField(
+                                                            focusNode:
+                                                                nameFocus,
                                                             controller:
                                                                 textController1,
                                                             obscureText: false,
@@ -885,11 +887,11 @@ class _LogSignWidgetState extends State<LogSignWidget>
                                                                   curve: Curves
                                                                       .ease,
                                                                 );
-                                                                // refocus the keyboard
+                                                                // shift focus to email
                                                                 FocusScope.of(
                                                                         context)
                                                                     .requestFocus(
-                                                                        FocusNode());
+                                                                        emailFocus);
                                                               },
                                                             ),
                                                           ],
@@ -1129,9 +1131,9 @@ class _LogSignWidgetState extends State<LogSignWidget>
                                                 Duration(milliseconds: 300),
                                             curve: Curves.ease,
                                           );
-                                          // refocus the keyboard
+                                          // shift focus back to name field
                                           FocusScope.of(context)
-                                              .requestFocus(FocusNode());
+                                              .requestFocus(nameFocus);
                                         },
                                       ),
                                     ),
@@ -1244,6 +1246,7 @@ class _LogSignWidgetState extends State<LogSignWidget>
                                               BorderRadius.circular(12),
                                         ),
                                         child: TextFormField(
+                                          focusNode: emailFocus,
                                           controller: newEmailController,
                                           onChanged: (_) =>
                                               EasyDebounce.debounce(
@@ -1374,9 +1377,9 @@ class _LogSignWidgetState extends State<LogSignWidget>
                                                     Duration(milliseconds: 300),
                                                 curve: Curves.ease,
                                               );
-                                              // refocus the keyboard
+                                              // shift focus to password field
                                               FocusScope.of(context)
-                                                  .requestFocus(FocusNode());
+                                                  .requestFocus(passwordFocus);
                                             },
                                           ),
                                         ],
@@ -1417,9 +1420,9 @@ class _LogSignWidgetState extends State<LogSignWidget>
                                                 Duration(milliseconds: 300),
                                             curve: Curves.ease,
                                           );
-                                          // refocus the keyboard
+                                          // shift focus back to name field
                                           FocusScope.of(context)
-                                              .requestFocus(FocusNode());
+                                              .requestFocus(emailFocus);
                                         },
                                       ),
                                     ),
@@ -1505,6 +1508,7 @@ class _LogSignWidgetState extends State<LogSignWidget>
                                               EdgeInsetsDirectional.fromSTEB(
                                                   0, 0, 0, 10),
                                           child: TextFormField(
+                                            focusNode: passwordFocus,
                                             controller: newPassController,
                                             obscureText: !newPassVisibility,
                                             inputFormatters: [
@@ -1785,9 +1789,9 @@ class _LogSignWidgetState extends State<LogSignWidget>
                                                 Duration(milliseconds: 300),
                                             curve: Curves.ease,
                                           );
-                                          // refocus the keyboard
+                                          // shift focus to the username field
                                           FocusScope.of(context)
-                                              .requestFocus(FocusNode());
+                                              .requestFocus(usernameFocus);
                                         },
                                       ),
                                     ],
@@ -1826,9 +1830,9 @@ class _LogSignWidgetState extends State<LogSignWidget>
                                                 Duration(milliseconds: 300),
                                             curve: Curves.ease,
                                           );
-                                          // refocus the keyboard
+                                          // shift focus back to the password field
                                           FocusScope.of(context)
-                                              .requestFocus(FocusNode());
+                                              .requestFocus(passwordFocus);
                                         },
                                       ),
                                     ),
@@ -1917,6 +1921,7 @@ class _LogSignWidgetState extends State<LogSignWidget>
                                               BorderRadius.circular(12),
                                         ),
                                         child: TextFormField(
+                                          focusNode: usernameFocus,
                                           controller: textController3,
                                           obscureText: false,
                                           decoration: InputDecoration(
