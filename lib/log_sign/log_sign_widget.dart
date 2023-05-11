@@ -1,3 +1,4 @@
+import 'package:flutter/services.dart';
 import 'package:flutter_platform_alert/flutter_platform_alert.dart';
 
 import '../auth/auth_util.dart';
@@ -127,6 +128,11 @@ class _LogSignWidgetState extends State<LogSignWidget>
   late bool newPassVisibility;
   TextEditingController? textController3;
   final scaffoldKey = GlobalKey<ScaffoldState>();
+
+  FocusNode nameFocus = new FocusNode();
+  FocusNode emailFocus = new FocusNode();
+  FocusNode passwordFocus = new FocusNode();
+  FocusNode usernameFocus = new FocusNode();
 
   @override
   void initState() {
@@ -735,6 +741,7 @@ class _LogSignWidgetState extends State<LogSignWidget>
                                                             controller:
                                                                 textController1,
                                                             obscureText: false,
+                                                            autofocus: true,
                                                             decoration:
                                                                 InputDecoration(
                                                               labelText:
@@ -878,6 +885,11 @@ class _LogSignWidgetState extends State<LogSignWidget>
                                                                   curve: Curves
                                                                       .ease,
                                                                 );
+                                                                // refocus the keyboard
+                                                                FocusScope.of(
+                                                                        context)
+                                                                    .requestFocus(
+                                                                        FocusNode());
                                                               },
                                                             ),
                                                           ],
@@ -1117,6 +1129,9 @@ class _LogSignWidgetState extends State<LogSignWidget>
                                                 Duration(milliseconds: 300),
                                             curve: Curves.ease,
                                           );
+                                          // refocus the keyboard
+                                          FocusScope.of(context)
+                                              .requestFocus(FocusNode());
                                         },
                                       ),
                                     ),
@@ -1359,6 +1374,9 @@ class _LogSignWidgetState extends State<LogSignWidget>
                                                     Duration(milliseconds: 300),
                                                 curve: Curves.ease,
                                               );
+                                              // refocus the keyboard
+                                              FocusScope.of(context)
+                                                  .requestFocus(FocusNode());
                                             },
                                           ),
                                         ],
@@ -1399,6 +1417,9 @@ class _LogSignWidgetState extends State<LogSignWidget>
                                                 Duration(milliseconds: 300),
                                             curve: Curves.ease,
                                           );
+                                          // refocus the keyboard
+                                          FocusScope.of(context)
+                                              .requestFocus(FocusNode());
                                         },
                                       ),
                                     ),
@@ -1486,6 +1507,13 @@ class _LogSignWidgetState extends State<LogSignWidget>
                                           child: TextFormField(
                                             controller: newPassController,
                                             obscureText: !newPassVisibility,
+                                            inputFormatters: [
+                                              LengthLimitingTextInputFormatter(
+                                                  30),
+                                              // prevent white spaces
+                                              FilteringTextInputFormatter.deny(
+                                                  RegExp(r'\s')),
+                                            ],
                                             decoration: InputDecoration(
                                               labelText: 'Password',
                                               labelStyle: FlutterFlowTheme.of(
@@ -1614,6 +1642,13 @@ class _LogSignWidgetState extends State<LogSignWidget>
                                           child: TextFormField(
                                             controller: confirmPassController,
                                             obscureText: !confirmPassVisibility,
+                                            inputFormatters: [
+                                              LengthLimitingTextInputFormatter(
+                                                  30),
+                                              // prevent white spaces
+                                              FilteringTextInputFormatter.deny(
+                                                  RegExp(r'\s')),
+                                            ],
                                             decoration: InputDecoration(
                                               labelText: 'Password',
                                               labelStyle: FlutterFlowTheme.of(
@@ -1735,11 +1770,24 @@ class _LogSignWidgetState extends State<LogSignWidget>
                                                     "Please make sure you enter the same passwords.");
                                             return;
                                           }
+                                          // if the password length is less than 6 characters show an alert
+                                          if (newPassController!.text.length <
+                                              6) {
+                                            FlutterPlatformAlert.showAlert(
+                                                windowTitle:
+                                                    "Password too short!",
+                                                text:
+                                                    "Please make sure your password is at least 6 characters long.");
+                                            return;
+                                          }
                                           await pageViewController?.nextPage(
                                             duration:
                                                 Duration(milliseconds: 300),
                                             curve: Curves.ease,
                                           );
+                                          // refocus the keyboard
+                                          FocusScope.of(context)
+                                              .requestFocus(FocusNode());
                                         },
                                       ),
                                     ],
@@ -1778,6 +1826,9 @@ class _LogSignWidgetState extends State<LogSignWidget>
                                                 Duration(milliseconds: 300),
                                             curve: Curves.ease,
                                           );
+                                          // refocus the keyboard
+                                          FocusScope.of(context)
+                                              .requestFocus(FocusNode());
                                         },
                                       ),
                                     ),
@@ -2012,6 +2063,9 @@ class _LogSignWidgetState extends State<LogSignWidget>
                                                     Duration(milliseconds: 300),
                                                 curve: Curves.ease,
                                               );
+                                              // refocus the keyboard
+                                              FocusScope.of(context)
+                                                  .requestFocus(FocusNode());
                                             },
                                             text: 'Create!',
                                             options: FFButtonOptions(
