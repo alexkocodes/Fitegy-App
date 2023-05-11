@@ -1,6 +1,7 @@
 import 'package:fitegy/flutter_flow/flutter_flow_model.dart';
 import 'package:fitegy/flutter_flow/uploaded_file.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_platform_alert/flutter_platform_alert.dart';
 
 import '/auth/auth_util.dart';
 import '/backend/backend.dart';
@@ -794,6 +795,15 @@ class _EditProfilesWidgetState extends State<EditProfilesWidget> {
                         padding: EdgeInsetsDirectional.fromSTEB(20, 24, 20, 0),
                         child: FFButtonWidget(
                           onPressed: () async {
+                            // emoji cannot be empty or more than 1 character
+                            if (_model.yourEmojiController!.text.isEmpty ||
+                                _model.yourEmojiController!.text.length > 1) {
+                              FlutterPlatformAlert.showAlert(
+                                  windowTitle: 'Oh no',
+                                  text:
+                                      "Emoji cannot be empty or more than 1 character");
+                              return;
+                            }
                             final usersUpdateData = createUsersRecordData(
                               displayName: _model.yourNameController!.text,
                               email: _model.yourEmailController!.text,
