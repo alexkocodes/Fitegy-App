@@ -795,9 +795,9 @@ class _EditProfilesWidgetState extends State<EditProfilesWidget> {
                         padding: EdgeInsetsDirectional.fromSTEB(20, 24, 20, 0),
                         child: FFButtonWidget(
                           onPressed: () async {
-                            // emoji cannot be empty or more than 1 character
-                            if (_model.yourEmojiController!.text.isEmpty ||
-                                _model.yourEmojiController!.text.length > 1) {
+                            print(_model.yourEmojiController!.text.length);
+                            // emoji cannot be empty
+                            if (_model.yourEmojiController!.text.isEmpty) {
                               FlutterPlatformAlert.showAlert(
                                   windowTitle: 'Oh no',
                                   text:
