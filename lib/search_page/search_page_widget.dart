@@ -102,7 +102,8 @@ class _SearchPageWidgetState extends State<SearchPageWidget> {
                       Duration(milliseconds: 400),
                       () async {
                         if (_model.textController.text.isEmpty) {
-                          _model.pagingController!.itemList = _initialUsers;
+                          _model.pagingController!.refresh();
+
                           return;
                         }
 
