@@ -932,10 +932,41 @@ class _CreateWidgetState extends State<CreateWidget>
                                                         .withOpacity(0.8),
                                                     size: 18,
                                                   ),
-                                                  onPressed: () {
+                                                  onPressed: () async {
                                                     imageFileList!
                                                         .removeAt(index);
-                                                    setState(() {});
+                                                    var selectedMedia =
+                                                        await Future.wait(
+                                                      imageFileList!
+                                                          .asMap()
+                                                          .entries
+                                                          .map(
+                                                        (e) async {
+                                                          final index = e.key;
+                                                          final media = e.value;
+                                                          final mediaBytes =
+                                                              await media
+                                                                  .readAsBytes();
+                                                          final path =
+                                                              storagePath(
+                                                                  currentUserUid,
+                                                                  media.name,
+                                                                  false,
+                                                                  index);
+
+                                                          return SelectedMedia(
+                                                            path,
+                                                            mediaBytes,
+                                                          );
+                                                        },
+                                                      ),
+                                                    );
+                                                    if (mounted) {
+                                                      setState(() {
+                                                        toBeUploaded =
+                                                            selectedMedia;
+                                                      });
+                                                    }
                                                   },
                                                 ),
                                               )
