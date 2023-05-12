@@ -385,7 +385,8 @@ class _InviteWidgetState extends State<InviteWidget> {
                             noItemsFoundIndicatorBuilder: (_) => Container(
                               width: double.infinity,
                               height: 100,
-                              child: Center(
+                              child: Padding(
+                                padding: const EdgeInsets.all(40.0),
                                 child: Text(
                                   'You don\'t have any friends yet...Go to the search page to find some!',
                                 ),
@@ -394,35 +395,43 @@ class _InviteWidgetState extends State<InviteWidget> {
                             itemBuilder: (context, _, listViewIndex) {
                               final listViewFriendsRecord = _model
                                   .pagingController!.itemList![listViewIndex];
+                              // if this is the last item in the list, add a little padding
+                              final isLastItem = listViewIndex ==
+                                  _model.pagingController!.itemList!.length - 1;
+                              double paddingBottom = isLastItem ? 300.0 : 0;
 
-                              return FutureBuilder(
-                                future:
-                                    getFriendInfo(listViewFriendsRecord.uid!),
-                                builder: (context, snapshot) {
-                                  if (!snapshot.hasData) {
-                                    return Container();
-                                  }
-                                  final friendData = snapshot.data as Map;
+                              return Padding(
+                                padding: EdgeInsetsDirectional.fromSTEB(
+                                    0, 0, 0, paddingBottom),
+                                child: FutureBuilder(
+                                  future:
+                                      getFriendInfo(listViewFriendsRecord.uid!),
+                                  builder: (context, snapshot) {
+                                    if (!snapshot.hasData) {
+                                      return Container();
+                                    }
+                                    final friendData = snapshot.data as Map;
 
-                                  return UserCardSmallWidget(
-                                    key: Key(
-                                        'Key046_${listViewIndex}_of_${_model.pagingController!.itemList!.length}'),
-                                    imageURL: friendData['photo_url'] == ""
-                                        ? 'https://images.unsplash.com/photo-1574158622682-e40e69881006?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2333&q=80'
-                                        : friendData['photo_url'],
-                                    username: friendData['username'],
-                                    emoji: friendData.containsKey('emoji')
-                                        ? friendData['emoji']
-                                        : '👋',
-                                    color: listViewIndex % 2 == 0
-                                        ? "grey"
-                                        : "white",
-                                    uid: listViewFriendsRecord.uid,
-                                    callback: getUID,
-                                    initialCheck: selectedFriends
-                                        .contains(listViewFriendsRecord.uid),
-                                  );
-                                },
+                                    return UserCardSmallWidget(
+                                      key: Key(
+                                          'Key046_${listViewIndex}_of_${_model.pagingController!.itemList!.length}'),
+                                      imageURL: friendData['photo_url'] == ""
+                                          ? 'https://images.unsplash.com/photo-1574158622682-e40e69881006?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2333&q=80'
+                                          : friendData['photo_url'],
+                                      username: friendData['username'],
+                                      emoji: friendData.containsKey('emoji')
+                                          ? friendData['emoji']
+                                          : '👋',
+                                      color: listViewIndex % 2 == 0
+                                          ? "grey"
+                                          : "white",
+                                      uid: listViewFriendsRecord.uid,
+                                      callback: getUID,
+                                      initialCheck: selectedFriends
+                                          .contains(listViewFriendsRecord.uid),
+                                    );
+                                  },
+                                ),
                               );
                             },
                           ),
